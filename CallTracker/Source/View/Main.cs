@@ -13,7 +13,6 @@ using CallTracker.Helpers;
 
 namespace CallTracker.View
 {
-
     public partial class Main : System.Windows.Forms.Form
     {
         internal DataRepository DataStore;
@@ -196,14 +195,11 @@ namespace CallTracker.View
         {
             if (e.Button == MouseButtons.Left)
             {
+                
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                Properties.Settings.Default.Main_Position = Location;
             }
-        }
-
-        private void Main_Move(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.Main_Position = Location;
         }
     }
 }
