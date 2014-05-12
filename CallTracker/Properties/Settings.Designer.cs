@@ -61,7 +61,7 @@ namespace CallTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("617, 183")]
         public global::System.Drawing.Size Logins_Size {
             get {
                 return ((global::System.Drawing.Size)(this["Logins_Size"]));

@@ -22,10 +22,8 @@ namespace CallTracker.View
     {
         internal List<PasteBind> PasteBinds;
         internal List<CustomerContact> Contacts;
+        internal List<LoginsModel> Logins;
         public CustomerContact SelectedContact { get; set; }
-
-        //internal BindSmartPasteForm bspf;
-        //internal ViewSmartPasteBinds vspb;
 
         private HotkeyController HotKeys;
 
@@ -43,6 +41,8 @@ namespace CallTracker.View
 
             using (var file = File.OpenRead("Bindings.bin"))
                 PasteBinds = Serializer.Deserialize<List<PasteBind>>(file);
+            using (var file = File.OpenRead("Logins.bin"))
+                Logins = Serializer.Deserialize<List<LoginsModel>>(file);
             using (var file = File.OpenRead("Contacts.bin"))
                 Contacts = Serializer.Deserialize<List<CustomerContact>>(file);
             Contacts.Add(new CustomerContact() { Id = Contacts.Count });
@@ -56,14 +56,15 @@ namespace CallTracker.View
         {
             if (Properties.Settings.Default.ViewSmartPasteBinds_Position == Point.Empty)
                 Properties.Settings.Default.ViewSmartPasteBinds_Position = DesktopLocation;
+            if (Properties.Settings.Default.Logins_Position == Point.Empty)
+                Properties.Settings.Default.Logins_Position = DesktopLocation;
 
-            //bspf = new BindSmartPasteForm(this);
-
-            // Enable split panel scrolling.
-            // TODO: pas back focus to previous control after scrolling.
             splitContainer2.MouseWheel += splitContainer2_MouseWheel;
-            panel1.MouseEnter += splitContainer2_MouseEnter;
-            splitContainer2.Panel2.MouseEnter += splitContainer2_MouseEnter;
+            HfcPanel.MouseEnter += splitContainer2_MouseEnter;
+            NbnPanel.MouseEnter += splitContainer2_MouseEnter;
+
+            PropertyInfo prop2 = SelectedContact.GetType().GetProperty("Name");
+            Console.WriteLine(prop2 == null);
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -74,6 +75,10 @@ namespace CallTracker.View
             toolStripProgressBar1.Value = 30;
             using (var file = File.Create("Bindings.bin"))
                 Serializer.Serialize<List<PasteBind>>(file, PasteBinds);
+
+            toolStripProgressBar1.Value = 30;
+            using (var file = File.Create("Logins.bin"))
+                Serializer.Serialize<List<LoginsModel>>(file, Logins);
             
             toolStripProgressBar1.Value = 50;
             using (var file = File.Create("Contacts.bin"))
@@ -83,8 +88,6 @@ namespace CallTracker.View
             HotKeys.Dispose();
 
             toolStripProgressBar1.Value = 90;
-            //if (bspf != null)
-            //    bspf.Dispose();
         }
 
         void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
@@ -142,8 +145,10 @@ namespace CallTracker.View
 
         private void loginsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ViewLogins logins = new ViewLogins();
-            logins.Show();
+            //ViewLogins logins = new ViewLogins();
+            //logins.Show();
+
+            ShowSettingsForm<ViewLogins>();
         }
 
         private void smartPasteBindsToolStripMenuItem_Click(object sender, EventArgs e)

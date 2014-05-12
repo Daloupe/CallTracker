@@ -32,10 +32,35 @@ namespace CallTracker.Model
 
         //public static List<string> ContactDataStrings = new List<string>()
         //{ "Name", "Username", "DN", "Mobile", "CMBS", "ICON", "Note", "Address", "PR", "Node"};
-        public static List<string> ContactDataStrings = new List<string>()
+        public static List<string> ContactDataOldStrings = new List<string>()
         { "Name", "Username", "DN", "Mobile", "CMBS", 
           "ICON", "Note", "Address", "PR", "Node",
           "AVC", "CVC", "CSA", "NNI", "GSI", "Equipment"};
+
+
+        public static List<string> ContactDataStrings = new List<string>()
+        { "", "Name", "Username", "DN", "Mobile", "CMBS", 
+          "ICON", "Note", "Address", "Fault.PR", "Service.Node",
+          "Service.AVC", "Service.CVC", "Service.CSA", "Service.NNI", "Service.GSI", "Service.Equipment"};
+
+        public List<string> ContactDataStrings3 = new List<string>()
+        { "", "Name", "Username", "DN", "Mobile", "CMBS", 
+          "ICON", "Note", "Address", "Fault.PR", "Service.Node",
+          "Service.AVC", "Service.CVC", "Service.CSA", "Service.NNI", "Service.GSI", "Service.Equipment"};
+
+        //public static List<DataBindType> ContactDataStrings2 = new List<DataBindType>()
+            //{
+            //    new DataBindType("Name", "Name"),
+            //    new DataBindType("PR", "Fault.PR")
+            //};
+       
+            
+        //public static List<DataBindType> ContactDataValueStrings = new List<DataBindType>()
+        //{ 
+        //{"Name", "Name"}, {"Username","Username"},{ "DN","DN"}, {"Mobile","Mobile"}, {"CMBS","CMBS"}, 
+        //{"ICON", "ICON"}, {"Note", "Note"}, {"Address", "Address"}, {"PR", "Fault.PR"}, {"Node","Service.Node"},
+        //{"AVC","Service.AVC"}, {"CVC","Service.CVC"}, {"CSA","Service.CSA"}, {"NNI","Service.NNI"}, {"GSI","Service.GSI"}, {"Equipment","Service.Equipment"}
+        //  };
 
         [ProtoMember(1)]
         public int Id { get; set; }
@@ -77,6 +102,8 @@ namespace CallTracker.Model
             sb.AppendLine("Outcome");
             sb.AppendLine("- ");
             Note = sb.ToString();
+
+            
         }
     }
 }

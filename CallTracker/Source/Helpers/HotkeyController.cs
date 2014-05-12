@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 
 using Shortcut;
-//using NHotkey;
-//using NHotkey.WindowsForms;
 using WatiN.Core;
 
 using CallTracker.View;
@@ -18,131 +15,111 @@ using CallTracker.Model;
 
 namespace CallTracker.Helpers
 {
-    class HotkeyController : IDisposable
+    public class HotkeyController : IDisposable
     {
         private static IE browser;
-
-        private HotkeyCombination SmartCopyHotkey, SmartPasteHotkey, BindSmartPasteHotkey;
-        private static readonly HotkeyBinder _hotkeyBinder = new HotkeyBinder();
-        
-        private Main parent;
-        
-        public static List<string> ContactProperties = new List<string>() { "Name", "Username", "DN", "Mobile", "CMBS", "ICON", "Note", "Address" };
-        public static List<string> FaultProperties = new List<string>() { "PR", "INC" };
-        public static List<string> ServiceProperties = new List<string>() { "Node", "AVC", "CVC", "CSA", "NNI", "GSI", "Equipment" };
+        private static string PreviousHWND;
+        private static Main parent;
 
         public HotkeyController(Main _parent)
         {
             parent = _parent;
-            //HotkeyManager.Current.AddOrReplace("SmartCopy", Keys.Control | Keys.Alt | Keys.C, OnSmartCopy);
-            //HotkeyManager.Current.AddOrReplace("SmartPaste", Keys.Control | Keys.Alt | Keys.V, OnSmartPaste);
-            //HotkeyManager.Current.AddOrReplace("SmartPasteBind", Keys.Control | Keys.Alt | Keys.Shift | Keys.V, OnBindSmartPaste);
-            // HotKeys Init
-            //_hotkeyBinder = new HotkeyBinder();
 
-
-            SmartCopyHotkey = new HotkeyCombination(Modifiers.Win, Keys.C);
-            SmartPasteHotkey = new HotkeyCombination(Modifiers.Win, Keys.V);
-            BindSmartPasteHotkey = new HotkeyCombination(Modifiers.Win | Modifiers.Shift, Keys.B);
-
-            _hotkeyBinder.Bind(SmartCopyHotkey).To(OnSmartCopy);
-            _hotkeyBinder.Bind(SmartPasteHotkey).To(OnSmartPaste);
-            _hotkeyBinder.Bind(BindSmartPasteHotkey).To(OnBindSmartPaste);
+            HotKeyManager.AddOrReplaceHotkey("SmartCopy", Modifiers.Win, Keys.C, OnSmartCopy);
+            HotKeyManager.AddOrReplaceHotkey("SmartPaste", Modifiers.Win, Keys.V, OnSmartPaste);
+            HotKeyManager.AddOrReplaceHotkey("BindSmartPaste", Modifiers.Win | Modifiers.Shift, Keys.B, OnBindSmartPaste);
+            HotKeyManager.AddOrReplaceHotkey("ICON", Modifiers.Shift | Modifiers.Control, Keys.D1, DataPaste);
+            HotKeyManager.AddOrReplaceHotkey("CMBS", Modifiers.Shift | Modifiers.Control, Keys.D2, DataPaste);
+            HotKeyManager.AddOrReplaceHotkey("UN", Modifiers.Shift | Modifiers.Control, Keys.Q, DataPaste);
+            HotKeyManager.AddOrReplaceHotkey("DN", Modifiers.Shift | Modifiers.Control, Keys.W, DataPaste);
+            HotKeyManager.AddOrReplaceHotkey("Name", Modifiers.Shift | Modifiers.Control, Keys.A, DataPaste);
+            HotKeyManager.AddOrReplaceHotkey("Mobile", Modifiers.Shift | Modifiers.Control, Keys.S, DataPaste);
+            HotKeyManager.AddOrReplaceHotkey("PR", Modifiers.Shift | Modifiers.Control, Keys.Z, DataPaste);
+            HotKeyManager.AddOrReplaceHotkey("Node", Modifiers.Shift | Modifiers.Control, Keys.X, DataPaste);
         }
 
         public void Dispose()
         {
-            _hotkeyBinder.Unbind(SmartCopyHotkey);
-            _hotkeyBinder.Unbind(SmartPasteHotkey);
-            _hotkeyBinder.Unbind(BindSmartPasteHotkey);
-
+            HotKeyManager.UnbindHotkeys();
 
             if (browser != null)
             {
-                //browser.AutoClose = false;
                 browser.Dispose();
             }
         }
 
-        private void OnSmartPaste()//object sender, HotkeyEventArgs e)
+        private Dictionary<Keys, Func<string>> DataPasteValues = new Dictionary<Keys, Func<string>>()
         {
-            //string oldClip = Clipboard.GetText();
+            {Keys.D1, () => parent.SelectedContact.ICON},
+            {Keys.D2, () => parent.SelectedContact.CMBS},
+            {Keys.Q, () => parent.SelectedContact.Username},
+            {Keys.W, () => parent.SelectedContact.DN},
+            {Keys.A, () => parent.SelectedContact.Name},
+            {Keys.S, () => parent.SelectedContact.Mobile},
+            {Keys.Z, () => parent.SelectedContact.Fault.PR},
+            {Keys.X, () => parent.SelectedContact.Service.Node}
+        };
+
+        private void DataPaste(HotkeyPressedEventArgs e)
+        {
+            string dataToPaste = DataPasteValues[e.HotkeyCombination.Key].Invoke();
+            if(!String.IsNullOrEmpty(dataToPaste))
+            {
+                Clipboard.SetText(dataToPaste);
+                SendKeys.SendWait("^(v)");
+            } 
+        }
+
+        private void OnSmartPaste(HotkeyPressedEventArgs e)//object sender, HotkeyEventArgs e)
+        {
+            //string oldClip = String.Empty;
+            //if (Clipboard.ContainsText())
+             //   oldClip = Clipboard.GetText();
             //Clipboard.Clear();
-
-            Settings.AttachToBrowserTimeOut = 10;
-            Settings.WaitUntilExistsTimeOut = 240;
-            Settings.WaitForCompleteTimeOut = 240;
-            
-            if (!Browser.Exists(typeof(IE), Find.By("hwnd", ActiveWindow.HWND().ToString())))
+              
+            if (!FindActiveWindow())
                 return;
-
-            browser = Browser.AttachToNoWait<IE>(Find.By("hwnd", ActiveWindow.HWND().ToString()));         
 
             string url = browser.Url;
             string title = browser.Title;
             string element = browser.ActiveElement.IdOrName;
 
-
             PasteBind query = (from bind in parent.PasteBinds
                                where bind.Element == element &&
-                                      bind.Title == title &&
-                                      bind.Url == url
+                                      (title.Contains(bind.Title) ||
+                                      bind.Url == url)
                                select bind).FirstOrDefault();
             if (query != null)
             {
-                //PropertyInfo prop2 = parent.SelectedContact.GetType().GetProperty("Name");
-                //Console.WriteLine(prop2.IsDefined(typeof(string), true));
-                Console.WriteLine("yes");
-                PropertyInfo prop;
-                object dataValue = new object();
-                //object model = new object();
-                if (ContactProperties.Contains(query.Data))
+                string data = String.Empty;
+                data = FollowPropertyPath(parent.SelectedContact, query.Data).ToString();
+                if (String.IsNullOrEmpty(data) && query.AltData != null)
+                    data = FollowPropertyPath(parent.SelectedContact, query.AltData).ToString();
+                
+                if (!String.IsNullOrEmpty(data))
                 {
-                    prop = parent.SelectedContact.GetType().GetProperty(query.Data);
-                    dataValue = prop.GetValue(parent.SelectedContact, null);
-                }
-                else if (ServiceProperties.Contains(query.Data))
-                {
-                    prop = parent.SelectedContact.Service.GetType().GetProperty(query.Data);
-                    dataValue = prop.GetValue(parent.SelectedContact.Service, null);
-                }
-                else if (FaultProperties.Contains(query.Data))
-                {
-                    prop = parent.SelectedContact.Fault.GetType().GetProperty(query.Data);
-                    dataValue = prop.GetValue(parent.SelectedContact.Fault, null);
-                }
-                //PropertyInfo prop = model.GetType().GetProperty(query.Data);
-                //string dataValue = prop.GetValue(parent.SelectedContact).ToString();
-
-                if(dataValue != null)
-                    Clipboard.SetText(dataValue.ToString());
-                SendKeys.Send("^(v)");
+                    //while (Clipboard.GetText() != data)
+                    Clipboard.SetText(data);
+                    SendKeys.SendWait("^(v)");
+                    //Clipboard.SetText(oldClip);
+                } 
             }
-            //if(!String.IsNullOrEmpty(oldClip))
-              //  Clipboard.SetText(oldClip);
-            //SendKeys.Flush();
         }
 
-        private void OnBindSmartPaste()//object sender, HotkeyEventArgs e)
+        private void OnBindSmartPaste(HotkeyPressedEventArgs e)
         {
-            Settings.AttachToBrowserTimeOut = 10;
-            Settings.WaitUntilExistsTimeOut = 240;
-            Settings.WaitForCompleteTimeOut = 240;
-
-            if (!Browser.Exists(typeof(IE), Find.By("hwnd", ActiveWindow.HWND().ToString())))
+            if(!FindActiveWindow())
                 return;
-
-            browser = Browser.AttachToNoWait<IE>(Find.By("hwnd", ActiveWindow.HWND().ToString()));
 
             string url = browser.Url;
             string title = browser.Title;
             string element = browser.ActiveElement.IdOrName;
 
-            PasteBind query = (from bind in parent.PasteBinds
-                               where bind.Element == element &&
-                                    (bind.Title == title ||
-                                     bind.Url == url)
-                               select bind).FirstOrDefault();
+            PasteBind query = (from  bind in parent.PasteBinds
+                               where bind.Element == element 
+                                     && (bind.Url == url 
+                                     || title.Contains(bind.Title))
+                              select bind).FirstOrDefault();
 
             if (query == null)
             {
@@ -152,7 +129,26 @@ namespace CallTracker.Helpers
             ((BindSmartPasteForm)Main.ShowSettingsForm<BindSmartPasteForm>()).UpdateFields(query);
         }
 
-        private void OnSmartCopy()//object sender, HotkeyEventArgs e)
+        private bool FindActiveWindow()
+        {
+            string currentHWND = ActiveWindow.HWND().ToString();
+
+            if (!Browser.Exists(typeof(IE), Find.By("hwnd", currentHWND)))
+                return false;
+
+            if (PreviousHWND != currentHWND)
+            {
+                if (browser != null)
+                    browser.Dispose();
+                browser = Browser.AttachToNoWait<IE>(Find.By("hwnd", currentHWND));
+                browser.AutoClose = false;
+                PreviousHWND = currentHWND;
+            }
+
+            return true;
+        }
+
+        private void OnSmartCopy(HotkeyPressedEventArgs e)//object sender, HotkeyEventArgs e)
         {
             string oldClip = Clipboard.GetText();
             SendKeys.SendWait("^(c)");
@@ -207,6 +203,19 @@ namespace CallTracker.Helpers
                 parent.SelectedContact.Note += text;
 
 
+        }
+
+        public static object FollowPropertyPath(object value, string path)
+        {
+            Type currentType = value.GetType();
+
+            foreach (string propertyName in path.Split('.'))
+            {
+                PropertyInfo property = currentType.GetProperty(propertyName);
+                value = property.GetValue(value, null);
+                currentType = property.PropertyType;
+            }
+            return value;
         }
     }
 }

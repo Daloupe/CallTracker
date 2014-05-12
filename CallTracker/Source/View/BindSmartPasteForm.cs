@@ -14,12 +14,46 @@ namespace CallTracker.View
     public partial class BindSmartPasteForm : Form
     {
         Main parent;
-        public BindSmartPasteForm()//Main _parent)
+        public BindSmartPasteForm()
         {
             InitializeComponent();
             parent = Application.OpenForms.OfType<Main>().First();
-            _Data.DataSource = CustomerContact.ContactDataStrings;
-            _AltData.DataSource = CustomerContact.ContactDataStrings;
+
+            DataTable dt = new DataTable();
+
+            DataColumn dc1 = new DataColumn("Name");
+            DataColumn dc2 = new DataColumn("Path");
+
+
+            dt.Columns.Add(dc1);
+            dt.Columns.Add(dc2);
+
+            dt.Rows.Add("Name", "Name");
+            dt.Rows.Add("PR", "Fault.PR");
+
+            // Bind the combobox
+            _Data.DataSource = dt.Copy();
+            _Data.DisplayMember = "Name";
+            _Data.ValueMember = "Path";
+
+            this._Data.DataBindings.Add(new Binding(
+                                      "SelectedValue",
+                                      this.pasteBindBindingSource,
+                                      "Data",
+                                      true,
+                                      DataSourceUpdateMode.OnPropertyChanged));
+
+            // Bind the combobox
+            _AltData.DataSource = dt.Copy();
+            _AltData.DisplayMember = "Name";
+            _AltData.ValueMember = "Path";
+
+            this._AltData.DataBindings.Add(new Binding(
+                                      "SelectedValue",
+                                      this.pasteBindBindingSource,
+                                      "AltData",
+                                      true,
+                                      DataSourceUpdateMode.OnPropertyChanged));
         }
 
         private void _Cancel_Click(object sender, EventArgs e)
@@ -31,28 +65,23 @@ namespace CallTracker.View
 
         private void _Ok_Click(object sender, EventArgs e)
         {
+
             this.Close();
         }
 
         public void UpdateFields(PasteBind _query)
         {
             pasteBindBindingSource.DataSource = _query;
+
             if (String.IsNullOrEmpty(_query.Data))
-                _query.Data = _Data.Text;
+                _query.Data = "Name";
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            //if (e.CloseReason == CloseReason.WindowsShutDown
-            //    || e.CloseReason == CloseReason.ApplicationExitCall
-            //    || e.CloseReason == CloseReason.TaskManagerClosing)
-            //    return;
-
-            //e.Cancel = true;
-            ////assuming you want the close-button to only hide the form, 
-            ////and are overriding the form's OnFormClosing method:
-            //this.Hide();
+            parent = null;
         }
+
     }
     
 

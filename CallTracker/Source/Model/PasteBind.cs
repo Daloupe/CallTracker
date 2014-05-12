@@ -13,6 +13,7 @@ namespace CallTracker.Model
     [ProtoContract]
     public class PasteBind
     {
+
         [ProtoMember(1)]
         public string System { get; set; }
         [ProtoMember(2)]
@@ -37,6 +38,7 @@ namespace CallTracker.Model
             Title = _title;
             Url = _url;
             //Data = "Name";
+
         }
     }
 }

@@ -14,27 +14,36 @@ namespace CallTracker.View
 {
     public partial class SettingsFormBase : Form
     {
+        protected Func<Point> GetPosition;
+        protected Func<Size> GetSize;
+        protected Action<Point> SetPosition;
+        protected Action<Size> SetSize;
+
+        protected Main MainForm;
+
         public SettingsFormBase()
         {
         }
 
         protected virtual void Init()
         {
-            Location = Properties.Settings.Default.ViewSmartPasteBinds_Position;
-            Size = Properties.Settings.Default.ViewSmartPasteBinds_Size;
+            Location = GetPosition.Invoke();
+            Size = GetSize.Invoke();
 
             this.Move += new System.EventHandler(this.Form_Move);
             this.Resize += new System.EventHandler(this.Form_Resize);
+
+            MainForm = Application.OpenForms.OfType<Main>().First();
         }
 
         protected virtual void Form_Move(object sender, EventArgs e)
         {
-            Properties.Settings.Default.ViewSmartPasteBinds_Position = this.Location;
+            SetPosition(this.Location);
         }
 
         protected virtual void Form_Resize(object sender, EventArgs e)
         {
-            Properties.Settings.Default.ViewSmartPasteBinds_Size = this.Size;
+            SetSize(this.Size);
         }
 
         private void InitializeComponent()

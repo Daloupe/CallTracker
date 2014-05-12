@@ -19,11 +19,15 @@ namespace CallTracker.View
             : base() //List<PasteBind> _binds
         {
             InitializeComponent();
+
+            GetPosition = () => Properties.Settings.Default.ViewSmartPasteBinds_Position;
+            GetSize = () => Properties.Settings.Default.ViewSmartPasteBinds_Size;
+            SetPosition = value => Properties.Settings.Default.ViewSmartPasteBinds_Position = value;
+            SetSize = value => Properties.Settings.Default.ViewSmartPasteBinds_Size = value;
+
             base.Init();
 
-            var mainForm = Application.OpenForms.OfType<Main>().First();
-
-            pasteBindBindingSource.DataSource = mainForm.PasteBinds;
+            pasteBindBindingSource.DataSource = MainForm.PasteBinds;
             customerContactBindingSource1.DataSource = CustomerContact.ContactDataStrings;
             //dataGridView1.Columns[5].DataPropertyName = "ContactDataStrings";
         }
