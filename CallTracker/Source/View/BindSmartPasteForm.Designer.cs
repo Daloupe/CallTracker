@@ -32,6 +32,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
             this._System = new System.Windows.Forms.TextBox();
+            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._TitleLabel = new System.Windows.Forms.Label();
             this._Title = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,10 +46,9 @@
             this._Ok = new System.Windows.Forms.Button();
             this._Cancel = new System.Windows.Forms.Button();
             this.customerContactBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -89,6 +89,10 @@
             this._System.Name = "_System";
             this._System.Size = new System.Drawing.Size(161, 19);
             this._System.TabIndex = 9;
+            // 
+            // pasteBindBindingSource
+            // 
+            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
             // 
             // _TitleLabel
             // 
@@ -201,13 +205,9 @@
             this._Cancel.Name = "_Cancel";
             this._Cancel.Size = new System.Drawing.Size(75, 21);
             this._Cancel.TabIndex = 1;
-            this._Cancel.Text = "Cancel";
+            this._Cancel.Text = "Delete";
             this._Cancel.UseVisualStyleBackColor = true;
             this._Cancel.Click += new System.EventHandler(this._Cancel_Click);
-            // 
-            // pasteBindBindingSource
-            // 
-            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
             // 
             // BindSmartPasteForm
             // 
@@ -232,8 +232,8 @@
             this.TopMost = true;
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

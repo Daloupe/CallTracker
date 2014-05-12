@@ -18,7 +18,7 @@ namespace CallTracker.Helpers
     public class HotkeyController : IDisposable
     {
         private static IE browser;
-        private static string PreviousHWND;
+        private static string PreviousIEMatch;
         private static Main parent;
 
         public HotkeyController(Main _parent)
@@ -28,6 +28,7 @@ namespace CallTracker.Helpers
             HotKeyManager.AddOrReplaceHotkey("SmartCopy", Modifiers.Win, Keys.C, OnSmartCopy);
             HotKeyManager.AddOrReplaceHotkey("SmartPaste", Modifiers.Win, Keys.V, OnSmartPaste);
             HotKeyManager.AddOrReplaceHotkey("BindSmartPaste", Modifiers.Win | Modifiers.Shift, Keys.B, OnBindSmartPaste);
+
             HotKeyManager.AddOrReplaceHotkey("ICON", Modifiers.Shift | Modifiers.Control, Keys.D1, DataPaste);
             HotKeyManager.AddOrReplaceHotkey("CMBS", Modifiers.Shift | Modifiers.Control, Keys.D2, DataPaste);
             HotKeyManager.AddOrReplaceHotkey("UN", Modifiers.Shift | Modifiers.Control, Keys.Q, DataPaste);
@@ -36,6 +37,8 @@ namespace CallTracker.Helpers
             HotKeyManager.AddOrReplaceHotkey("Mobile", Modifiers.Shift | Modifiers.Control, Keys.S, DataPaste);
             HotKeyManager.AddOrReplaceHotkey("PR", Modifiers.Shift | Modifiers.Control, Keys.Z, DataPaste);
             HotKeyManager.AddOrReplaceHotkey("Node", Modifiers.Shift | Modifiers.Control, Keys.X, DataPaste);
+
+            HotKeyManager.AddOrReplaceHotkey("AutoLogin", Modifiers.Win, Keys.Oemtilde, AutoLogin);
         }
 
         public void Dispose()
@@ -48,16 +51,39 @@ namespace CallTracker.Helpers
             }
         }
 
+        // Auto Login ///////////////////////////////////////////////////////////////////////////////////////
+        private void AutoLogin(HotkeyPressedEventArgs e)
+        {
+            if (!FindActiveIEByTitle())
+                return;
+
+            string title = browser.Title;
+            string url = browser.Url;
+
+            LoginsModel query = (from   login in parent.DataStore.Logins
+                                 where  title.Contains(login.Title) ||
+                                        login.Url == url
+                                 select login)
+                                 .FirstOrDefault();
+            if (query == null)
+                return;
+
+            SetValueByIdOrName(query.UsernameElement, query.Username);
+            SetValueByIdOrName(query.PasswordElement, query.Password);
+            ClickElementByIdOrName(query.SubmitElement);
+        }
+
+        // Data Paste ///////////////////////////////////////////////////////////////////////////////////////
         private Dictionary<Keys, Func<string>> DataPasteValues = new Dictionary<Keys, Func<string>>()
         {
             {Keys.D1, () => parent.SelectedContact.ICON},
             {Keys.D2, () => parent.SelectedContact.CMBS},
-            {Keys.Q, () => parent.SelectedContact.Username},
-            {Keys.W, () => parent.SelectedContact.DN},
-            {Keys.A, () => parent.SelectedContact.Name},
-            {Keys.S, () => parent.SelectedContact.Mobile},
-            {Keys.Z, () => parent.SelectedContact.Fault.PR},
-            {Keys.X, () => parent.SelectedContact.Service.Node}
+            {Keys.Q , () => parent.SelectedContact.Username},
+            {Keys.W , () => parent.SelectedContact.DN},
+            {Keys.A , () => parent.SelectedContact.Name},
+            {Keys.S , () => parent.SelectedContact.Mobile},
+            {Keys.Z , () => parent.SelectedContact.Fault.PR},
+            {Keys.X , () => parent.SelectedContact.Service.Node}
         };
 
         private void DataPaste(HotkeyPressedEventArgs e)
@@ -70,25 +96,22 @@ namespace CallTracker.Helpers
             } 
         }
 
-        private void OnSmartPaste(HotkeyPressedEventArgs e)//object sender, HotkeyEventArgs e)
+        // Smart Paste ///////////////////////////////////////////////////////////////////////////////////////
+        private void OnSmartPaste(HotkeyPressedEventArgs e)
         {
-            //string oldClip = String.Empty;
-            //if (Clipboard.ContainsText())
-             //   oldClip = Clipboard.GetText();
-            //Clipboard.Clear();
-              
-            if (!FindActiveWindow())
+            if (!FindActiveIEByTitle())
                 return;
 
             string url = browser.Url;
             string title = browser.Title;
             string element = browser.ActiveElement.IdOrName;
 
-            PasteBind query = (from bind in parent.PasteBinds
-                               where bind.Element == element &&
-                                      (title.Contains(bind.Title) ||
-                                      bind.Url == url)
-                               select bind).FirstOrDefault();
+            PasteBind query = (from   bind in parent.DataStore.PasteBinds
+                               where  bind.Element == element &&
+                                     (bind.Url == url || title.Contains(bind.Title))
+                               select bind)
+                               .FirstOrDefault();
+
             if (query != null)
             {
                 string data = String.Empty;
@@ -97,58 +120,36 @@ namespace CallTracker.Helpers
                     data = FollowPropertyPath(parent.SelectedContact, query.AltData).ToString();
                 
                 if (!String.IsNullOrEmpty(data))
-                {
-                    //while (Clipboard.GetText() != data)
-                    Clipboard.SetText(data);
-                    SendKeys.SendWait("^(v)");
-                    //Clipboard.SetText(oldClip);
-                } 
+                    SetValueByIdOrName(element, data);
             }
         }
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
         {
-            if(!FindActiveWindow())
+            if (!FindActiveIEByTitle())
                 return;
 
             string url = browser.Url;
             string title = browser.Title;
             string element = browser.ActiveElement.IdOrName;
 
-            PasteBind query = (from  bind in parent.PasteBinds
-                               where bind.Element == element 
-                                     && (bind.Url == url 
-                                     || title.Contains(bind.Title))
-                              select bind).FirstOrDefault();
+            PasteBind query = (from   bind in parent.DataStore.PasteBinds
+                               where  bind.Element == element &&
+                                     (bind.Url == url || title.Contains(bind.Title))
+                               select bind)
+                               .FirstOrDefault();
 
             if (query == null)
             {
                 query = new PasteBind(url, title, element);
-                parent.PasteBinds.Add(query);
-            }
-            ((BindSmartPasteForm)Main.ShowSettingsForm<BindSmartPasteForm>()).UpdateFields(query);
-        }
-
-        private bool FindActiveWindow()
-        {
-            string currentHWND = ActiveWindow.HWND().ToString();
-
-            if (!Browser.Exists(typeof(IE), Find.By("hwnd", currentHWND)))
-                return false;
-
-            if (PreviousHWND != currentHWND)
-            {
-                if (browser != null)
-                    browser.Dispose();
-                browser = Browser.AttachToNoWait<IE>(Find.By("hwnd", currentHWND));
-                browser.AutoClose = false;
-                PreviousHWND = currentHWND;
+                parent.DataStore.PasteBinds.Add(query);
             }
 
-            return true;
+            Main.ShowSettingsForm<BindSmartPasteForm>().UpdateFields(query);
         }
 
-        private void OnSmartCopy(HotkeyPressedEventArgs e)//object sender, HotkeyEventArgs e)
+        // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
+        private void OnSmartCopy(HotkeyPressedEventArgs e)
         {
             string oldClip = Clipboard.GetText();
             SendKeys.SendWait("^(c)");
@@ -201,8 +202,45 @@ namespace CallTracker.Helpers
             
             else
                 parent.SelectedContact.Note += text;
+        }
 
+        // Misc Methods ///////////////////////////////////////////////////////////////////////////////////////
+        private bool FindActiveIEByHWND()
+        {
+            string currentHWND = ActiveWindow.HWND().ToString();
 
+            if (!Browser.Exists(typeof(IE), Find.By("hwnd", currentHWND)))
+                return false;
+
+            if (PreviousIEMatch != currentHWND)
+            {
+                if (browser != null)
+                    browser.Dispose();
+                browser = Browser.AttachToNoWait<IE>(Find.By("hwnd", currentHWND));
+                browser.AutoClose = false;
+                PreviousIEMatch = currentHWND;
+            }
+
+            return true;
+        }
+
+        private bool FindActiveIEByTitle()
+        {
+            string currentTitle = Regex.Split(ActiveWindow.Title(), " - Internet Explorer")[0];
+
+            if (!Browser.Exists(typeof(IE), Find.ByTitle(currentTitle)))
+                return false;
+
+            if (PreviousIEMatch != currentTitle)
+            {
+                if (browser != null)
+                    browser.Dispose();
+                browser = Browser.AttachToNoWait<IE>(Find.ByTitle(currentTitle));
+                browser.AutoClose = false;
+                PreviousIEMatch = currentTitle;
+            }
+
+            return true;
         }
 
         public static object FollowPropertyPath(object value, string path)
@@ -216,6 +254,27 @@ namespace CallTracker.Helpers
                 currentType = property.PropertyType;
             }
             return value;
+        }
+
+        public static void SetValueByIdOrName(string _element, string _data)
+        {
+            if (String.IsNullOrEmpty(_element))
+                return;
+            Element inputField = browser.Element(Find.ById(_element));
+            if (inputField == null)
+                inputField = browser.Element(Find.ByName(_element));
+            if (inputField != null)
+                inputField.SetAttributeValue("Value", _data);
+        }
+        public static void ClickElementByIdOrName(string _element)
+        {
+            if (String.IsNullOrEmpty(_element))
+                return;
+            Element inputField = browser.Element(Find.ById(_element));
+            if (inputField == null)
+                inputField = browser.Element(Find.ByName(_element));
+            if (inputField != null)
+                inputField.Click();
         }
     }
 }

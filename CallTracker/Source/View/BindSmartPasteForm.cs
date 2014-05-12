@@ -19,36 +19,24 @@ namespace CallTracker.View
             InitializeComponent();
             parent = Application.OpenForms.OfType<Main>().First();
 
-            DataTable dt = new DataTable();
-
-            DataColumn dc1 = new DataColumn("Name");
-            DataColumn dc2 = new DataColumn("Path");
-
-
-            dt.Columns.Add(dc1);
-            dt.Columns.Add(dc2);
-
-            dt.Rows.Add("Name", "Name");
-            dt.Rows.Add("PR", "Fault.PR");
-
-            // Bind the combobox
-            _Data.DataSource = dt.Copy();
+            _Data.DataSource = CustomerContact.PropertyStrings;
             _Data.DisplayMember = "Name";
             _Data.ValueMember = "Path";
+            _Data.SelectedIndex = 1;
 
-            this._Data.DataBindings.Add(new Binding(
+            _Data.DataBindings.Add(new Binding(
                                       "SelectedValue",
                                       this.pasteBindBindingSource,
                                       "Data",
                                       true,
                                       DataSourceUpdateMode.OnPropertyChanged));
 
-            // Bind the combobox
-            _AltData.DataSource = dt.Copy();
+            _AltData.DataSource = CustomerContact.PropertyStrings;
+            _AltData.BindingContext = new BindingContext();
             _AltData.DisplayMember = "Name";
             _AltData.ValueMember = "Path";
 
-            this._AltData.DataBindings.Add(new Binding(
+            _AltData.DataBindings.Add(new Binding(
                                       "SelectedValue",
                                       this.pasteBindBindingSource,
                                       "AltData",
@@ -58,14 +46,12 @@ namespace CallTracker.View
 
         private void _Cancel_Click(object sender, EventArgs e)
         {
-            pasteBindBindingSource.DataSource = null;
-            parent.RemovePasteBind((PasteBind)pasteBindBindingSource.DataSource);
+            parent.RemovePasteBind(((PasteBind)pasteBindBindingSource.DataSource));
             this.Close();
         }
 
         private void _Ok_Click(object sender, EventArgs e)
         {
-
             this.Close();
         }
 

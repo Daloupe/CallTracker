@@ -30,24 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.customerContactBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.customerContactBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.elementDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.urlDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.customerContactBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.AltData = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerContactBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._Data = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this._AltData = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.AllowUserToResizeRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -58,8 +59,8 @@
             this.elementDataGridViewTextBoxColumn,
             this.titleDataGridViewTextBoxColumn,
             this.urlDataGridViewTextBoxColumn,
-            this.dataDataGridViewTextBoxColumn,
-            this.AltData});
+            this._Data,
+            this._AltData});
             this.dataGridView1.DataSource = this.pasteBindBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
@@ -70,60 +71,63 @@
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.Visible = false;
             // 
+            // pasteBindBindingSource
+            // 
+            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
+            // 
+            // customerContactBindingSource1
+            // 
+            this.customerContactBindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
+            // customerContactBindingSource
+            // 
+            this.customerContactBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
             // systemDataGridViewTextBoxColumn
             // 
             this.systemDataGridViewTextBoxColumn.DataPropertyName = "System";
-            this.systemDataGridViewTextBoxColumn.FillWeight = 50F;
+            this.systemDataGridViewTextBoxColumn.FillWeight = 57F;
             this.systemDataGridViewTextBoxColumn.HeaderText = "System";
             this.systemDataGridViewTextBoxColumn.Name = "systemDataGridViewTextBoxColumn";
             // 
             // elementDataGridViewTextBoxColumn
             // 
             this.elementDataGridViewTextBoxColumn.DataPropertyName = "Element";
+            this.elementDataGridViewTextBoxColumn.FillWeight = 79.28934F;
             this.elementDataGridViewTextBoxColumn.HeaderText = "Element";
             this.elementDataGridViewTextBoxColumn.Name = "elementDataGridViewTextBoxColumn";
             // 
             // titleDataGridViewTextBoxColumn
             // 
             this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.FillWeight = 79.28934F;
             this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
             this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
             // 
             // urlDataGridViewTextBoxColumn
             // 
             this.urlDataGridViewTextBoxColumn.DataPropertyName = "Url";
+            this.urlDataGridViewTextBoxColumn.FillWeight = 79.28934F;
             this.urlDataGridViewTextBoxColumn.HeaderText = "Url";
             this.urlDataGridViewTextBoxColumn.Name = "urlDataGridViewTextBoxColumn";
             // 
-            // dataDataGridViewTextBoxColumn
+            // _Data
             // 
-            this.dataDataGridViewTextBoxColumn.DataPropertyName = "Data";
-            this.dataDataGridViewTextBoxColumn.DataSource = this.customerContactBindingSource1;
-            this.dataDataGridViewTextBoxColumn.HeaderText = "Data";
-            this.dataDataGridViewTextBoxColumn.Name = "dataDataGridViewTextBoxColumn";
-            this.dataDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this._Data.DataPropertyName = "Data";
+            this._Data.FillWeight = 79.28934F;
+            this._Data.HeaderText = "Data";
+            this._Data.Name = "_Data";
+            this._Data.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this._Data.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // customerContactBindingSource1
+            // _AltData
             // 
-            this.customerContactBindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
-            // 
-            // AltData
-            // 
-            this.AltData.DataPropertyName = "AltData";
-            this.AltData.DataSource = this.customerContactBindingSource1;
-            this.AltData.HeaderText = "AltData";
-            this.AltData.Name = "AltData";
-            this.AltData.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.AltData.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // pasteBindBindingSource
-            // 
-            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
-            // 
-            // customerContactBindingSource
-            // 
-            this.customerContactBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
+            this._AltData.DataPropertyName = "AltData";
+            this._AltData.FillWeight = 79.28934F;
+            this._AltData.HeaderText = "AltData";
+            this._AltData.Name = "_AltData";
+            this._AltData.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this._AltData.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // ViewSmartPasteBinds
             // 
@@ -143,8 +147,8 @@
             this.TopMost = true;
             this.Shown += new System.EventHandler(this.ViewSmartPasteBinds_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -155,12 +159,12 @@
         private System.Windows.Forms.BindingSource pasteBindBindingSource;
         private System.Windows.Forms.BindingSource customerContactBindingSource;
         private System.Windows.Forms.BindingSource customerContactBindingSource1;
+        public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn systemDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn elementDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn urlDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn dataDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn AltData;
-        public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewComboBoxColumn _Data;
+        private System.Windows.Forms.DataGridViewComboBoxColumn _AltData;
     }
 }

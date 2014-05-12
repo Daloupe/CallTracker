@@ -44,6 +44,8 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.loginsModelBindingSource)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -71,7 +73,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(609, 159);
+            this.splitContainer1.Size = new System.Drawing.Size(609, 196);
             this.splitContainer1.SplitterDistance = 404;
             this.splitContainer1.TabIndex = 8;
             // 
@@ -91,7 +93,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(404, 159);
+            this.dataGridView1.Size = new System.Drawing.Size(404, 196);
             this.dataGridView1.TabIndex = 1;
             // 
             // systemDataGridViewTextBoxColumn
@@ -122,10 +124,12 @@
             this.flowLayoutPanel1.Controls.Add(this.textBox2);
             this.flowLayoutPanel1.Controls.Add(this.label4);
             this.flowLayoutPanel1.Controls.Add(this.textBox3);
+            this.flowLayoutPanel1.Controls.Add(this.label5);
+            this.flowLayoutPanel1.Controls.Add(this.textBox4);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(201, 159);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(201, 196);
             this.flowLayoutPanel1.TabIndex = 8;
             // 
             // label2
@@ -171,7 +175,7 @@
             this.label3.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.label3.Size = new System.Drawing.Size(195, 19);
             this.label3.TabIndex = 10;
-            this.label3.Text = "UN Elem:";
+            this.label3.Text = "UN Element:";
             // 
             // textBox2
             // 
@@ -189,7 +193,7 @@
             this.label4.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.label4.Size = new System.Drawing.Size(195, 19);
             this.label4.TabIndex = 12;
-            this.label4.Text = "PW Elem:";
+            this.label4.Text = "PW Element:";
             // 
             // textBox3
             // 
@@ -200,17 +204,35 @@
             this.textBox3.Size = new System.Drawing.Size(195, 19);
             this.textBox3.TabIndex = 11;
             // 
+            // label5
+            // 
+            this.label5.Location = new System.Drawing.Point(3, 152);
+            this.label5.Name = "label5";
+            this.label5.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.label5.Size = new System.Drawing.Size(195, 19);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "Submit Element:";
+            // 
+            // textBox4
+            // 
+            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.loginsModelBindingSource, "SubmitElement", true));
+            this.textBox4.Location = new System.Drawing.Point(3, 171);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(195, 19);
+            this.textBox4.TabIndex = 13;
+            // 
             // ViewLogins
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(609, 159);
+            this.ClientSize = new System.Drawing.Size(609, 196);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(617, 183);
+            this.MinimumSize = new System.Drawing.Size(625, 230);
             this.Name = "ViewLogins";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -245,6 +267,8 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBox4;
 
     }
 }

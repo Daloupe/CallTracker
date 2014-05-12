@@ -83,10 +83,12 @@
     <None Include="Source\Helpers\IClosableViewModel.cs" />
     <None Include="Source\Helpers\RelayCommand.cs" />
     <Compile Include="Source\Helpers\HotKeyManager.cs" />
+    <Compile Include="Source\Helpers\SimpleEncrypt.cs" />
     <Compile Include="Source\Model\Address.cs" />
     <Compile Include="Source\Model\BookingModel.cs" />
     <Compile Include="Source\Model\CustomerContact.cs" />
     <Compile Include="Source\Model\DataBindType.cs" />
+    <Compile Include="Source\Model\DataRepository.cs" />
     <Compile Include="Source\Model\FaultModel.cs" />
     <Compile Include="Source\Model\LoginsModel.cs" />
     <Compile Include="Source\Model\PasteBind.cs" />
@@ -173,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <Content Include="TextFile1.txt" />
     <None Include="Resources\Close.png" />
   </ItemGroup>
   <ItemGroup>

@@ -48,11 +48,25 @@ namespace CallTracker.Model
           "ICON", "Note", "Address", "Fault.PR", "Service.Node",
           "Service.AVC", "Service.CVC", "Service.CSA", "Service.NNI", "Service.GSI", "Service.Equipment"};
 
-        //public static List<DataBindType> ContactDataStrings2 = new List<DataBindType>()
-            //{
-            //    new DataBindType("Name", "Name"),
-            //    new DataBindType("PR", "Fault.PR")
-            //};
+        public static List<DataBindType> PropertyStrings = new List<DataBindType>()
+            {
+                new DataBindType("Name", "Name"),
+                new DataBindType("Username","Username"),
+                new DataBindType("DN","DN"),
+                new DataBindType("Mobile","Mobile"),
+                new DataBindType("CMBS","CMBS"),
+                new DataBindType("ICON", "ICON"),
+                new DataBindType("Note", "Note"),
+                new DataBindType("Address", "Address"),
+                new DataBindType("PR", "Fault.PR"),
+                new DataBindType("Node","Service.Node"),
+                new DataBindType("AVC","Service.AVC"),
+                new DataBindType("CVC","Service.CVC"),
+                new DataBindType("CSA","Service.CSA"),
+                new DataBindType("NNI","Service.NNI"),
+                new DataBindType("GSI","Service.GSI"),
+                new DataBindType("Equipment","Service.Equipment"),
+            };
        
             
         //public static List<DataBindType> ContactDataValueStrings = new List<DataBindType>()

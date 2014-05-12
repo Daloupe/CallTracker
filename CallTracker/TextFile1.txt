@@ -1,0 +1,24 @@
+﻿To Do:
+
+Scraper
+ | On login page, smart pastes logins.
+ - On non login page, smart pastes all known binds.
+	| SmartPaste should attempt to edit html field directly, before ctrl-v.
+	- Store which binds can't be edited directly.
+
+GridLinks
+ - Detect Login page and Autologin/ Detect Log in Required Page (ie Wobs).
+
+Main GUI
+ - Right Click Menu > Always on Top.
+ - Double Click Menu to Collapse.
+
+Glance GUI
+ - Trafic lights available data.
+
+ Utility
+ | Reset Logins, Contacts when new user detected.
+ | Encrypt Passwords and Current User before saving.
+ | Clear Calls option.
+ | Create .bin if not found.
+	| Use a single .bin file.

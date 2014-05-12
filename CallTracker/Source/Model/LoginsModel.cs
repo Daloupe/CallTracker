@@ -27,7 +27,8 @@ namespace CallTracker.Model
         public string Username { get; set; }
         [ProtoMember(7)]
         public string Password{ get; set; }
-        
+        [ProtoMember(8)]
+        public string SubmitElement { get; set; }
 
         public LoginsModel()
         {

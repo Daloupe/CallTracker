@@ -48,7 +48,7 @@
             this._Note = new System.Windows.Forms.TextBox();
             this._MainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DeleteCallDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -102,6 +102,8 @@
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.FaultPanel = new System.Windows.Forms.Panel();
             this.MainPanel = new System.Windows.Forms.Panel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.faultModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.customerServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contactsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -328,15 +330,16 @@
             // _Note
             // 
             this._Note.BackColor = System.Drawing.Color.GhostWhite;
-            this._Note.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._Note.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Note", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Note.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this._Note.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Note.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(34)))), ((int)(((byte)(44)))));
             this._Note.Location = new System.Drawing.Point(3, 114);
             this._Note.Multiline = true;
             this._Note.Name = "_Note";
             this._Note.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this._Note.Size = new System.Drawing.Size(328, 83);
             this._Note.TabIndex = 8;
+            this._Note.Text = "This is some test text.";
             // 
             // _MainMenu
             // 
@@ -361,24 +364,26 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionsToolStripMenuItem,
+            this.DeleteCallDataMenuItem,
+            this.toolStripSeparator2,
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(79, 18);
             this.fileToolStripMenuItem.Text = "Call Tracker";
             // 
-            // optionsToolStripMenuItem
+            // DeleteCallDataMenuItem
             // 
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.optionsToolStripMenuItem.Text = "Options";
-            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
+            this.DeleteCallDataMenuItem.Name = "DeleteCallDataMenuItem";
+            this.DeleteCallDataMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DeleteCallDataMenuItem.Text = "Delete All Calls";
+            this.DeleteCallDataMenuItem.Click += new System.EventHandler(this.DeleteCallDataMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -448,6 +453,7 @@
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = null;
+            this.bindingNavigator1.BackColor = System.Drawing.Color.LightGray;
             this.bindingNavigator1.BindingSource = this.contactsListBindingSource;
             this.bindingNavigator1.CountItem = null;
             this.bindingNavigator1.DeleteItem = null;
@@ -469,7 +475,7 @@
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
             this.bindingNavigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.bindingNavigator1.Size = new System.Drawing.Size(328, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(359, 25);
             this.bindingNavigator1.TabIndex = 3;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -486,6 +492,7 @@
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.BackColor = System.Drawing.Color.GhostWhite;
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 21);
             this.bindingNavigatorPositionItem.Text = "0";
@@ -507,6 +514,7 @@
             // 
             // toolStripProgressBar1
             // 
+            this.toolStripProgressBar1.BackColor = System.Drawing.Color.Brown;
             this.toolStripProgressBar1.ForeColor = System.Drawing.SystemColors.Desktop;
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(135, 22);
@@ -601,10 +609,10 @@
             this.flowLayoutPanel3.Controls.Add(this.checkBox11);
             this.flowLayoutPanel3.Controls.Add(this.checkBox12);
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(334, 3);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(335, 3);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(5, 3, 3, 3);
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(49, 223);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(54, 223);
             this.flowLayoutPanel3.TabIndex = 17;
             // 
             // checkBox7
@@ -700,7 +708,6 @@
             this.NbnPanel.Controls.Add(this.textBox3);
             this.NbnPanel.Controls.Add(this.label14);
             this.NbnPanel.Controls.Add(this.textBox4);
-            this.NbnPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.NbnPanel.Location = new System.Drawing.Point(0, 0);
             this.NbnPanel.Name = "NbnPanel";
             this.NbnPanel.Padding = new System.Windows.Forms.Padding(3);
@@ -856,9 +863,9 @@
             this.HfcPanel.Controls.Add(this.comboBox1);
             this.HfcPanel.Controls.Add(this.label7);
             this.HfcPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.HfcPanel.Location = new System.Drawing.Point(0, -56);
+            this.HfcPanel.Location = new System.Drawing.Point(0, -59);
             this.HfcPanel.Name = "HfcPanel";
-            this.HfcPanel.Size = new System.Drawing.Size(176, 221);
+            this.HfcPanel.Size = new System.Drawing.Size(177, 221);
             this.HfcPanel.TabIndex = 22;
             // 
             // label8
@@ -920,7 +927,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel2);
             this.splitContainer1.Panel2MinSize = 0;
             this.splitContainer1.Size = new System.Drawing.Size(275, 358);
-            this.splitContainer1.SplitterDistance = 178;
+            this.splitContainer1.SplitterDistance = 179;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 24;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -943,8 +950,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.NbnPanel);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(178, 358);
-            this.splitContainer2.SplitterDistance = 167;
+            this.splitContainer2.Size = new System.Drawing.Size(179, 358);
+            this.splitContainer2.SplitterDistance = 164;
             this.splitContainer2.SplitterWidth = 6;
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
@@ -955,7 +962,7 @@
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 61);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(3);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(173, 224);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(180, 224);
             this.flowLayoutPanel2.TabIndex = 22;
             // 
             // AppPanel
@@ -967,7 +974,7 @@
             this.AppPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AppPanel.Location = new System.Drawing.Point(0, 0);
             this.AppPanel.Name = "AppPanel";
-            this.AppPanel.Size = new System.Drawing.Size(585, 251);
+            this.AppPanel.Size = new System.Drawing.Size(586, 251);
             this.AppPanel.TabIndex = 25;
             // 
             // MenuPanel
@@ -984,7 +991,7 @@
             // FaultPanel
             // 
             this.FaultPanel.Controls.Add(this.splitContainer1);
-            this.FaultPanel.Location = new System.Drawing.Point(382, 23);
+            this.FaultPanel.Location = new System.Drawing.Point(389, 23);
             this.FaultPanel.Name = "FaultPanel";
             this.FaultPanel.Size = new System.Drawing.Size(210, 223);
             this.FaultPanel.TabIndex = 26;
@@ -997,8 +1004,20 @@
             this.MainPanel.Controls.Add(this.flowLayoutPanel3);
             this.MainPanel.Location = new System.Drawing.Point(0, 20);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(386, 229);
+            this.MainPanel.Size = new System.Drawing.Size(392, 229);
             this.MainPanel.TabIndex = 25;
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolStripMenuItem.Text = "Options";
+            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
             // 
             // faultModelBindingSource
             // 
@@ -1038,8 +1057,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(585, 251);
+            this.BackColor = System.Drawing.Color.LightSlateGray;
+            this.ClientSize = new System.Drawing.Size(586, 251);
             this.ControlBox = false;
             this.Controls.Add(this.AppPanel);
             this.Font = new System.Drawing.Font("Verdana", 7F);
@@ -1155,7 +1174,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DeleteCallDataMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Label label9;
@@ -1171,6 +1190,8 @@
         private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.Panel FaultPanel;
         private System.Windows.Forms.Panel MenuPanel;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 
     }
 }

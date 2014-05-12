@@ -23,8 +23,7 @@ namespace CallTracker.View
 
             base.Init();
 
-            
-            loginsModelBindingSource.DataSource = MainForm.Logins;
+            loginsModelBindingSource.DataSource = MainForm.DataStore.Logins;
         }
 
     }

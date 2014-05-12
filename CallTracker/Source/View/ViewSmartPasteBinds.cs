@@ -15,8 +15,7 @@ namespace CallTracker.View
     public partial class ViewSmartPasteBinds : SettingsFormBase
     {
 
-        public ViewSmartPasteBinds()
-            : base() //List<PasteBind> _binds
+        public ViewSmartPasteBinds() : base()
         {
             InitializeComponent();
 
@@ -27,15 +26,20 @@ namespace CallTracker.View
 
             base.Init();
 
-            pasteBindBindingSource.DataSource = MainForm.PasteBinds;
-            customerContactBindingSource1.DataSource = CustomerContact.ContactDataStrings;
-            //dataGridView1.Columns[5].DataPropertyName = "ContactDataStrings";
+            pasteBindBindingSource.DataSource = MainForm.DataStore.PasteBinds;
+
+            _Data.DataSource = CustomerContact.PropertyStrings;
+            _Data.DisplayMember = "Name";
+            _Data.ValueMember = "Path";
+
+            _AltData.DataSource = CustomerContact.PropertyStrings;
+            _AltData.DisplayMember = "Name";
+            _AltData.ValueMember = "Path";
         }
 
         private void ViewSmartPasteBinds_Shown(object sender, EventArgs e)
         {
             dataGridView1.Visible = true;
-        
         }
 
     }
