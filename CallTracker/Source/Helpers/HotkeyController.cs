@@ -115,9 +115,9 @@ namespace CallTracker.Helpers
             if (query != null)
             {
                 string data = String.Empty;
-                data = FollowPropertyPath(parent.SelectedContact, query.Data).ToString();
+                       data = FollowPropertyPath(parent.SelectedContact, query.Data).ToString();
                 if (String.IsNullOrEmpty(data) && query.AltData != null)
-                    data = FollowPropertyPath(parent.SelectedContact, query.AltData).ToString();
+                       data = FollowPropertyPath(parent.SelectedContact, query.AltData).ToString();
                 
                 if (!String.IsNullOrEmpty(data))
                     SetValueByIdOrName(element, data);
@@ -156,7 +156,6 @@ namespace CallTracker.Helpers
             string text = Clipboard.GetText().Trim();
             int textlen = text.Length;
             string firstchar = text.Substring(0, 1);
-
 
             if (Regex.IsMatch(text, @"^[AVCSNIG]{3}\d{15}"))
             {

@@ -1,4 +1,4 @@
-﻿To Do:
+To Do:
 
 Scraper
  | On login page, smart pastes logins.
@@ -22,3 +22,5 @@ Glance GUI
  | Clear Calls option.
  | Create .bin if not found.
 	| Use a single .bin file.
+ | Prevent program from opening twice.
+ | Reset window location if out of monitor bounds.

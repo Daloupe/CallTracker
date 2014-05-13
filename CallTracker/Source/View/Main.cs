@@ -23,21 +23,50 @@ namespace CallTracker.View
         {
             InitializeComponent();
 
-            if(Properties.Settings.Default.Main_Position != Point.Empty)
-            {
-                StartPosition = FormStartPosition.Manual;
-                Location = Properties.Settings.Default.Main_Position;
-            }
+            SetAppLocation();
 
             if(!File.Exists("Data.bin"))
                 File.Create("Data.bin").Close();
             using (var file = File.OpenRead("Data.bin"))
                 DataStore = Serializer.Deserialize<DataRepository>(file);
 
+            DecryptData();
+
+            DataStore.Contacts.Add(new CustomerContact() { Id = DataStore.Contacts.Count });
+            contactsListBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
+            contactsListBindingSource.DataSource = DataStore.Contacts;
+            contactsListBindingSource.Position = DataStore.Contacts.Count;
+
+            HotKeys = new HotkeyController(this);
+        }
+
+        private void SetAppLocation()
+        {
+            Size totalSize = new Size();
+            foreach (var screen in Screen.AllScreens)
+                totalSize += screen.Bounds.Size;
+
+            if (Properties.Settings.Default.Main_Position.X > totalSize.Width 
+             && Properties.Settings.Default.Main_Position.Y > totalSize.Height)
+            {
+                Properties.Settings.Default.Main_Position = Point.Empty;
+                Properties.Settings.Default.ViewSmartPasteBinds_Position = Point.Empty;
+                Properties.Settings.Default.Logins_Position = Point.Empty;
+            }
+
+            if (Properties.Settings.Default.Main_Position != Point.Empty)
+            {
+                StartPosition = FormStartPosition.Manual;
+                Location = Properties.Settings.Default.Main_Position;
+            }
+        }
+
+        private void DecryptData()
+        {
             DataStore.CurrentUser = StringCipher.Decrypt(DataStore.CurrentUser, "2point71828");
             if (DataStore.CurrentUser != Environment.UserName)
             {
-                foreach(var login in DataStore.Logins)
+                foreach (var login in DataStore.Logins)
                     login.Password = "";
                 DataStore.CurrentUser = Environment.UserName;
             }
@@ -46,14 +75,6 @@ namespace CallTracker.View
                 foreach (var login in DataStore.Logins)
                     login.Password = StringCipher.Decrypt(login.Password, "2point71828");
             }
-
-            DataStore.Contacts.Add(new CustomerContact() { Id = DataStore.Contacts.Count });
-
-            contactsListBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
-            contactsListBindingSource.DataSource = DataStore.Contacts;
-            contactsListBindingSource.Position = DataStore.Contacts.Count;
-
-            HotKeys = new HotkeyController(this);
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -74,10 +95,13 @@ namespace CallTracker.View
             Properties.Settings.Default.Save();
 
             toolStripProgressBar1.Value = 20;
+            DataStore.CurrentUser = StringCipher.Encrypt(DataStore.CurrentUser, "2point71828");
 
+            toolStripProgressBar1.Value = 30;
             foreach (var login in DataStore.Logins)
                 login.Password = StringCipher.Encrypt(login.Password, "2point71828");
-            DataStore.CurrentUser = StringCipher.Encrypt(DataStore.CurrentUser, "2point71828");
+            
+            toolStripProgressBar1.Value = 40;
             using (var file = File.Create("Data.bin"))
                 Serializer.Serialize<DataRepository>(file, DataStore);
             
