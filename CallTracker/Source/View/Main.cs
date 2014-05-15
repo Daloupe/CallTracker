@@ -88,37 +88,37 @@ namespace CallTracker.View
             if (Properties.Settings.Default.Logins_Position == Point.Empty)
                 Properties.Settings.Default.Logins_Position = DesktopLocation;
 
-            splitContainer2.MouseWheel += splitContainer2_MouseWheel;
-            HfcPanel.MouseEnter += splitContainer2_MouseEnter;
-            NbnPanel.MouseEnter += splitContainer2_MouseEnter;
+            //splitContainer2.MouseWheel += splitContainer2_MouseWheel;
+            //HfcPanel.MouseEnter += splitContainer2_MouseEnter;
+            //NbnPanel.MouseEnter += splitContainer2_MouseEnter;
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            toolStripProgressBar1.Value = 10;
+            //toolStripProgressBar1.Value = 10;
             Properties.Settings.Default.Save();
 
-            toolStripProgressBar1.Value = 20;
+            //toolStripProgressBar1.Value = 20;
             //DataStore.CurrentUser = StringCipher.Encrypt(DataStore.CurrentUser, "2point71828");
 
-            toolStripProgressBar1.Value = 30;
+            //toolStripProgressBar1.Value = 30;
             foreach (var login in DataStore.Logins)
                 login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt(Environment.UserName, "2point71828"));
             
-            toolStripProgressBar1.Value = 40;
+            //toolStripProgressBar1.Value = 40;
             using (var file = File.Create("Data.bin"))
                 Serializer.Serialize<DataRepository>(file, DataStore);
             
-            toolStripProgressBar1.Value = 70;
+            //toolStripProgressBar1.Value = 70;
             HotKeys.Dispose();
 
-            toolStripProgressBar1.Value = 90;
+            //toolStripProgressBar1.Value = 90;
         }
 
         // Contact Navigator ////////////////////////////////////////////////////////////////////////////////
         void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
-            SelectedContact = DataStore.Contacts[Convert.ToInt32(bindingNavigator1.PositionItem.Text) - 1];
+            //SelectedContact = DataStore.Contacts[Convert.ToInt32(bindingNavigator1.PositionItem.Text) - 1];
             customerContactsBindingSource.DataSource = SelectedContact;
             contactAddressBindingSource.DataSource = SelectedContact.Address;
             customerServiceBindingSource.DataSource = SelectedContact.Service;
@@ -137,32 +137,32 @@ namespace CallTracker.View
                 DataStore.PasteBinds.Remove(_bind);
         }
 
-        // Splitter ////////////////////////////////////////////////////////////////////////////////
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (splitContainer1.SplitterDistance > 180)
-                splitContainer1.SplitterDistance = 180;
-        }
+        //// Splitter ////////////////////////////////////////////////////////////////////////////////
+        //private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        //{
+        //    if (splitContainer1.SplitterDistance > 180)
+        //        splitContainer1.SplitterDistance = 180;
+        //}
 
-        private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (splitContainer2.SplitterDistance > 272)
-                splitContainer2.SplitterDistance = 272;
-            else if (splitContainer2.SplitterDistance < 70)
-                splitContainer2.SplitterDistance = 70;
-        }
+        //private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
+        //{
+        //    if (splitContainer2.SplitterDistance > 272)
+        //        splitContainer2.SplitterDistance = 272;
+        //    else if (splitContainer2.SplitterDistance < 70)
+        //        splitContainer2.SplitterDistance = 70;
+        //}
 
-        void splitContainer2_MouseWheel(object sender, MouseEventArgs e)
-        {
-            if ((splitContainer2.SplitterDistance > 268 && e.Delta > 0) || (splitContainer2.SplitterDistance < 74 && e.Delta < 0))
-                return;
-            splitContainer2.SplitterDistance += e.Delta/6;
-        }
+        //void splitContainer2_MouseWheel(object sender, MouseEventArgs e)
+        //{
+        //    if ((splitContainer2.SplitterDistance > 268 && e.Delta > 0) || (splitContainer2.SplitterDistance < 74 && e.Delta < 0))
+        //        return;
+        //    splitContainer2.SplitterDistance += e.Delta/6;
+        //}
 
-        void splitContainer2_MouseEnter(object sender, EventArgs e)
-        {
-            splitContainer2.Focus();
-        }
+        //void splitContainer2_MouseEnter(object sender, EventArgs e)
+        //{
+        //    splitContainer2.Focus();
+        //}
 
         // Menu Bar ////////////////////////////////////////////////////////////////////////////////
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
