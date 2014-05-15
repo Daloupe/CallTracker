@@ -33,6 +33,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this._Icon = new System.Windows.Forms.TextBox();
+            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this._Cmbs = new System.Windows.Forms.TextBox();
             this._UnLabel = new System.Windows.Forms.Label();
@@ -45,6 +46,7 @@
             this._Mobile = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this._Address = new System.Windows.Forms.TextBox();
+            this.contactAddressBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._Note = new System.Windows.Forms.TextBox();
             this._MainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,16 +58,23 @@
             this.loginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smartPasteBindsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridLinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHotkeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.featuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.contactsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.customerServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.faultModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -100,22 +109,18 @@
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.FaultPanel = new System.Windows.Forms.Panel();
             this.MainPanel = new System.Windows.Forms.Panel();
-            this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.faultModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.contactsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.contactAddressBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.mainBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).BeginInit();
             this._MainMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).BeginInit();
             this.flowLayoutPanel3.SuspendLayout();
             this.NbnPanel.SuspendLayout();
             this.HfcPanel.SuspendLayout();
@@ -129,11 +134,6 @@
             this.MenuPanel.SuspendLayout();
             this.FaultPanel.SuspendLayout();
             this.MainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).BeginInit();
@@ -186,6 +186,11 @@
             this._Icon.TabIndex = 1;
             this._Icon.Text = "12345678912345";
             this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // customerContactsBindingSource
+            // 
+            this.customerContactsBindingSource.AllowNew = true;
+            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // label1
             // 
@@ -327,6 +332,10 @@
             this._Address.TabIndex = 7;
             this._Address.Text = "16 everterrace st";
             // 
+            // contactAddressBindingSource
+            // 
+            this.contactAddressBindingSource.DataSource = typeof(CallTracker.Model.ContactAddress);
+            // 
             // _Note
             // 
             this._Note.BackColor = System.Drawing.Color.GhostWhite;
@@ -431,6 +440,15 @@
             this.gridLinksToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.gridLinksToolStripMenuItem.Text = "Grid Link Binds";
             // 
+            // quitToolStripMenuItem1
+            // 
+            this.quitToolStripMenuItem1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.quitToolStripMenuItem1.Image = global::CallTracker.Properties.Resources.Close;
+            this.quitToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.quitToolStripMenuItem1.Name = "quitToolStripMenuItem1";
+            this.quitToolStripMenuItem1.Size = new System.Drawing.Size(22, 18);
+            this.quitToolStripMenuItem1.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -482,6 +500,20 @@
             this.bindingNavigator1.TabIndex = 3;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
+            // contactsListBindingSource
+            // 
+            this.contactsListBindingSource.AllowNew = true;
+            this.contactsListBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            // 
             // bindingNavigatorPositionItem
             // 
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
@@ -491,6 +523,15 @@
             this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 21);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // toolStripSeparator1
             // 
@@ -510,6 +551,20 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.AutoSize = false;
+            this.bindingNavigatorAddNewItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(78, 22);
+            this.bindingNavigatorAddNewItem.Text = "Next Call";
+            this.bindingNavigatorAddNewItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bindingNavigatorAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+            // 
             // comboBox1
             // 
             this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.customerServiceBindingSource, "Equipment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -524,6 +579,10 @@
             this.comboBox1.TabIndex = 13;
             this.comboBox1.Text = "Netgear EVG2000";
             // 
+            // customerServiceBindingSource
+            // 
+            this.customerServiceBindingSource.DataSource = typeof(CallTracker.Model.ServiceModel);
+            // 
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -535,6 +594,10 @@
             this.textBox1.Size = new System.Drawing.Size(71, 19);
             this.textBox1.TabIndex = 9;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // faultModelBindingSource
+            // 
+            this.faultModelBindingSource.DataSource = typeof(CallTracker.Model.FaultModel);
             // 
             // label6
             // 
@@ -945,7 +1008,7 @@
             this.AppPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AppPanel.Location = new System.Drawing.Point(0, 0);
             this.AppPanel.Name = "AppPanel";
-            this.AppPanel.Size = new System.Drawing.Size(586, 374);
+            this.AppPanel.Size = new System.Drawing.Size(586, 250);
             this.AppPanel.TabIndex = 25;
             // 
             // MenuPanel
@@ -978,69 +1041,6 @@
             this.MainPanel.Size = new System.Drawing.Size(392, 229);
             this.MainPanel.TabIndex = 25;
             // 
-            // quitToolStripMenuItem1
-            // 
-            this.quitToolStripMenuItem1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.quitToolStripMenuItem1.Image = global::CallTracker.Properties.Resources.Close;
-            this.quitToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.quitToolStripMenuItem1.Name = "quitToolStripMenuItem1";
-            this.quitToolStripMenuItem1.Size = new System.Drawing.Size(22, 18);
-            this.quitToolStripMenuItem1.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
-            // 
-            // faultModelBindingSource
-            // 
-            this.faultModelBindingSource.DataSource = typeof(CallTracker.Model.FaultModel);
-            // 
-            // customerServiceBindingSource
-            // 
-            this.customerServiceBindingSource.DataSource = typeof(CallTracker.Model.ServiceModel);
-            // 
-            // contactsListBindingSource
-            // 
-            this.contactsListBindingSource.AllowNew = true;
-            this.contactsListBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.AutoSize = false;
-            this.bindingNavigatorAddNewItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(78, 22);
-            this.bindingNavigatorAddNewItem.Text = "Next Call";
-            this.bindingNavigatorAddNewItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.bindingNavigatorAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // customerContactsBindingSource
-            // 
-            this.customerContactsBindingSource.AllowNew = true;
-            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
-            // 
-            // contactAddressBindingSource
-            // 
-            this.contactAddressBindingSource.DataSource = typeof(CallTracker.Model.ContactAddress);
-            // 
             // bindingSource1
             // 
             this.bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
@@ -1058,7 +1058,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.ClientSize = new System.Drawing.Size(586, 374);
+            this.ClientSize = new System.Drawing.Size(586, 250);
             this.ControlBox = false;
             this.Controls.Add(this.AppPanel);
             this.Font = new System.Drawing.Font("Verdana", 7F);
@@ -1073,11 +1073,16 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).EndInit();
             this._MainMenu.ResumeLayout(false);
             this._MainMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).EndInit();
             this.flowLayoutPanel3.ResumeLayout(false);
             this.NbnPanel.ResumeLayout(false);
             this.NbnPanel.PerformLayout();
@@ -1094,11 +1099,6 @@
             this.FaultPanel.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             this.MainPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mainBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource2)).EndInit();

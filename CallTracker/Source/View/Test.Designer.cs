@@ -74,6 +74,7 @@
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.LightGray;
             this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Controls.Add(this._Element);
             this.flowLayoutPanel1.Controls.Add(this.label1);
@@ -87,7 +88,7 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(173, 214);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(173, 224);
             this.flowLayoutPanel1.TabIndex = 8;
             // 
             // label1
@@ -178,7 +179,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(350, 214);
+            this.dataGridView1.Size = new System.Drawing.Size(403, 224);
             this.dataGridView1.TabIndex = 1;
             // 
             // splitContainer1
@@ -196,8 +197,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(527, 214);
-            this.splitContainer1.SplitterDistance = 350;
+            this.splitContainer1.Size = new System.Drawing.Size(580, 224);
+            this.splitContainer1.SplitterDistance = 403;
             this.splitContainer1.TabIndex = 9;
             // 
             // systemDataGridViewTextBoxColumn
@@ -228,7 +229,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
             this.Name = "Test";
-            this.Size = new System.Drawing.Size(527, 214);
+            this.Size = new System.Drawing.Size(580, 224);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

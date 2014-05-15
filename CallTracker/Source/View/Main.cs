@@ -88,9 +88,9 @@ namespace CallTracker.View
             if (Properties.Settings.Default.Logins_Position == Point.Empty)
                 Properties.Settings.Default.Logins_Position = DesktopLocation;
 
-            splitContainer2.MouseWheel += splitContainer2_MouseWheel;
-            HfcPanel.MouseEnter += splitContainer2_MouseEnter;
-            NbnPanel.MouseEnter += splitContainer2_MouseEnter;
+            //splitContainer2.MouseWheel += splitContainer2_MouseWheel;
+            //HfcPanel.MouseEnter += splitContainer2_MouseEnter;
+            //NbnPanel.MouseEnter += splitContainer2_MouseEnter;
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -156,7 +156,7 @@ namespace CallTracker.View
         {
             if ((splitContainer2.SplitterDistance > 268 && e.Delta > 0) || (splitContainer2.SplitterDistance < 74 && e.Delta < 0))
                 return;
-            splitContainer2.SplitterDistance += e.Delta/6;
+            splitContainer2.SplitterDistance += e.Delta / 6;
         }
 
         void splitContainer2_MouseEnter(object sender, EventArgs e)

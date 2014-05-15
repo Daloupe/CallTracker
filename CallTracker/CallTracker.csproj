@@ -104,6 +104,18 @@
     <Compile Include="Source\View\BindSmartPasteForm.Designer.cs">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\View\Contact.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Contact.Designer.cs">
+      <DependentUpon>Contact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\EditLogins.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\EditLogins.Designer.cs">
+      <DependentUpon>EditLogins.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,6 +161,12 @@
     </Compile>
     <EmbeddedResource Include="Source\View\BindSmartPasteForm.resx">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Contact.resx">
+      <DependentUpon>Contact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\EditLogins.resx">
+      <DependentUpon>EditLogins.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
