@@ -17,14 +17,16 @@ namespace CallTracker.Model
         [ProtoMember(1)]
         public string System { get; set; }
         [ProtoMember(2)]
-        public string Element { get; set; }
+        public string Name { get; set; }
         [ProtoMember(3)]
-        public string Title { get; set; }
+        public string Element { get; set; }
         [ProtoMember(4)]
-        public string Url { get; set; }
+        public string Title { get; set; }
         [ProtoMember(5)]
-        public string Data { get; set; }
+        public string Url { get; set; }
         [ProtoMember(6)]
+        public string Data { get; set; }
+        [ProtoMember(7)]
         public string AltData { get; set; }
 
         public PasteBind()
@@ -38,7 +40,6 @@ namespace CallTracker.Model
             Title = _title;
             Url = _url;
             //Data = "Name";
-
         }
     }
 }

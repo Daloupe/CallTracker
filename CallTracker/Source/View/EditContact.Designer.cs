@@ -1,4 +1,4 @@
-﻿namespace CallTracker.Source.View
+﻿namespace CallTracker.View
 {
     partial class EditContact
     {
@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditContact));
-            this.customerServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.contactAddressBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.contactsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.faultModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.FaultPanel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -44,7 +39,9 @@
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.faultModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox2 = new System.Windows.Forms.TextBox();
+            this.customerServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.NbnPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -61,8 +58,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.MainPanel = new System.Windows.Forms.Panel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.contactsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
@@ -73,6 +70,7 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this._Icon = new System.Windows.Forms.TextBox();
+            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this._Cmbs = new System.Windows.Forms.TextBox();
             this._UnLabel = new System.Windows.Forms.Label();
@@ -85,19 +83,17 @@
             this._Mobile = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this._Address = new System.Windows.Forms.TextBox();
+            this.contactAddressBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._Note = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ServiceTypePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.checkBox11 = new System.Windows.Forms.CheckBox();
             this.checkBox12 = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).BeginInit();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -106,48 +102,33 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.HfcPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).BeginInit();
             this.NbnPanel.SuspendLayout();
-            this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).BeginInit();
+            this.ServiceTypePanel.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
+            this.MainPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // customerServiceBindingSource
-            // 
-            this.customerServiceBindingSource.DataSource = typeof(CallTracker.Model.ServiceModel);
-            // 
-            // contactAddressBindingSource
-            // 
-            this.contactAddressBindingSource.DataSource = typeof(CallTracker.Model.ContactAddress);
-            // 
-            // contactsListBindingSource
-            // 
-            this.contactsListBindingSource.AllowNew = true;
-            this.contactsListBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
-            // 
-            // customerContactsBindingSource
-            // 
-            this.customerContactsBindingSource.AllowNew = true;
-            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
-            // 
-            // faultModelBindingSource
-            // 
-            this.faultModelBindingSource.DataSource = typeof(CallTracker.Model.FaultModel);
             // 
             // FaultPanel
             // 
             this.FaultPanel.Controls.Add(this.splitContainer1);
-            this.FaultPanel.Location = new System.Drawing.Point(389, 3);
+            this.FaultPanel.Location = new System.Drawing.Point(391, 3);
+            this.FaultPanel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.FaultPanel.Name = "FaultPanel";
-            this.FaultPanel.Size = new System.Drawing.Size(210, 223);
+            this.FaultPanel.Size = new System.Drawing.Size(210, 216);
             this.FaultPanel.TabIndex = 28;
             // 
             // splitContainer1
             // 
-            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer1.Location = new System.Drawing.Point(3, -61);
+            this.splitContainer1.BackColor = System.Drawing.Color.Transparent;
+            this.splitContainer1.Location = new System.Drawing.Point(3, -56);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -159,14 +140,15 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel2);
             this.splitContainer1.Panel2MinSize = 0;
-            this.splitContainer1.Size = new System.Drawing.Size(275, 358);
-            this.splitContainer1.SplitterDistance = 179;
+            this.splitContainer1.Size = new System.Drawing.Size(275, 330);
+            this.splitContainer1.SplitterDistance = 176;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 24;
+            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // splitContainer2
             // 
-            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
@@ -182,10 +164,11 @@
             this.splitContainer2.Panel2.Controls.Add(this.NbnPanel);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(177, 356);
-            this.splitContainer2.SplitterDistance = 115;
-            this.splitContainer2.SplitterWidth = 6;
+            this.splitContainer2.Size = new System.Drawing.Size(176, 330);
+            this.splitContainer2.SplitterDistance = 151;
+            this.splitContainer2.SplitterWidth = 9;
             this.splitContainer2.TabIndex = 0;
+            this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
             // 
             // HfcPanel
             // 
@@ -199,19 +182,19 @@
             this.HfcPanel.Controls.Add(this.comboBox1);
             this.HfcPanel.Controls.Add(this.label7);
             this.HfcPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.HfcPanel.Location = new System.Drawing.Point(0, -108);
+            this.HfcPanel.Location = new System.Drawing.Point(0, -61);
             this.HfcPanel.Name = "HfcPanel";
-            this.HfcPanel.Size = new System.Drawing.Size(175, 221);
+            this.HfcPanel.Size = new System.Drawing.Size(176, 212);
             this.HfcPanel.TabIndex = 22;
             // 
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(4, 174);
+            this.label8.Location = new System.Drawing.Point(4, 169);
             this.label8.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label8.Name = "label8";
             this.label8.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label8.Size = new System.Drawing.Size(77, 18);
+            this.label8.Size = new System.Drawing.Size(77, 17);
             this.label8.TabIndex = 21;
             this.label8.Text = "Equipment:";
             // 
@@ -224,9 +207,9 @@
             "D",
             "N",
             "H"});
-            this.comboBox3.Location = new System.Drawing.Point(115, 126);
+            this.comboBox3.Location = new System.Drawing.Point(115, 125);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(48, 21);
+            this.comboBox3.Size = new System.Drawing.Size(48, 20);
             this.comboBox3.TabIndex = 11;
             this.comboBox3.Text = "I";
             // 
@@ -241,20 +224,20 @@
             "CCI",
             "MSG",
             "NPI"});
-            this.comboBox2.Location = new System.Drawing.Point(115, 154);
+            this.comboBox2.Location = new System.Drawing.Point(115, 150);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(48, 21);
+            this.comboBox2.Size = new System.Drawing.Size(48, 20);
             this.comboBox2.TabIndex = 12;
             this.comboBox2.Text = "COS";
             // 
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(4, 126);
+            this.label6.Location = new System.Drawing.Point(4, 125);
             this.label6.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label6.Name = "label6";
             this.label6.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label6.Size = new System.Drawing.Size(31, 18);
+            this.label6.Size = new System.Drawing.Size(31, 17);
             this.label6.TabIndex = 4;
             this.label6.Text = "PR:";
             // 
@@ -263,24 +246,32 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox1.Location = new System.Drawing.Point(38, 126);
+            this.textBox1.Location = new System.Drawing.Point(38, 125);
             this.textBox1.Name = "textBox1";
             this.textBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBox1.Size = new System.Drawing.Size(71, 19);
             this.textBox1.TabIndex = 9;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // faultModelBindingSource
+            // 
+            this.faultModelBindingSource.DataSource = typeof(CallTracker.Model.FaultModel);
+            // 
             // textBox2
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox2.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox2.Location = new System.Drawing.Point(39, 154);
+            this.textBox2.Location = new System.Drawing.Point(39, 150);
             this.textBox2.Name = "textBox2";
             this.textBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.textBox2.Size = new System.Drawing.Size(70, 19);
             this.textBox2.TabIndex = 10;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // customerServiceBindingSource
+            // 
+            this.customerServiceBindingSource.DataSource = typeof(CallTracker.Model.ServiceModel);
             // 
             // comboBox1
             // 
@@ -290,20 +281,20 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Netgear CG3000 V2",
             "Cisco DPQ3925"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 195);
+            this.comboBox1.Location = new System.Drawing.Point(6, 188);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(157, 21);
+            this.comboBox1.Size = new System.Drawing.Size(157, 20);
             this.comboBox1.TabIndex = 13;
             this.comboBox1.Text = "Netgear EVG2000";
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(4, 154);
+            this.label7.Location = new System.Drawing.Point(4, 150);
             this.label7.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label7.Name = "label7";
             this.label7.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label7.Size = new System.Drawing.Size(36, 18);
+            this.label7.Size = new System.Drawing.Size(36, 17);
             this.label7.TabIndex = 15;
             this.label7.Text = "Node:";
             // 
@@ -335,7 +326,7 @@
             this.label10.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label10.Name = "label10";
             this.label10.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label10.Size = new System.Drawing.Size(33, 18);
+            this.label10.Size = new System.Drawing.Size(33, 17);
             this.label10.TabIndex = 4;
             this.label10.Text = "AVC:";
             // 
@@ -358,7 +349,7 @@
             this.label11.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label11.Name = "label11";
             this.label11.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label11.Size = new System.Drawing.Size(33, 18);
+            this.label11.Size = new System.Drawing.Size(33, 17);
             this.label11.TabIndex = 15;
             this.label11.Text = "CSA:";
             // 
@@ -381,7 +372,7 @@
             this.label12.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label12.Name = "label12";
             this.label12.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label12.Size = new System.Drawing.Size(33, 18);
+            this.label12.Size = new System.Drawing.Size(33, 17);
             this.label12.TabIndex = 17;
             this.label12.Text = "CVC:";
             // 
@@ -404,7 +395,7 @@
             this.label13.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label13.Name = "label13";
             this.label13.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label13.Size = new System.Drawing.Size(33, 18);
+            this.label13.Size = new System.Drawing.Size(33, 17);
             this.label13.TabIndex = 19;
             this.label13.Text = "NNI:";
             // 
@@ -427,7 +418,7 @@
             this.label9.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label9.Name = "label9";
             this.label9.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label9.Size = new System.Drawing.Size(33, 18);
+            this.label9.Size = new System.Drawing.Size(33, 17);
             this.label9.TabIndex = 21;
             this.label9.Text = "INC:";
             // 
@@ -450,7 +441,7 @@
             this.label14.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label14.Name = "label14";
             this.label14.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label14.Size = new System.Drawing.Size(33, 18);
+            this.label14.Size = new System.Drawing.Size(33, 17);
             this.label14.TabIndex = 23;
             this.label14.Text = "Bras:";
             // 
@@ -468,22 +459,11 @@
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.BackColor = System.Drawing.Color.LightCyan;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 61);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 56);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(3);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(180, 224);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(180, 216);
             this.flowLayoutPanel2.TabIndex = 22;
-            // 
-            // MainPanel
-            // 
-            this.MainPanel.Controls.Add(this.bindingNavigator1);
-            this.MainPanel.Controls.Add(this.flowLayoutPanel1);
-            this.MainPanel.Controls.Add(this._Note);
-            this.MainPanel.Controls.Add(this.flowLayoutPanel3);
-            this.MainPanel.Location = new System.Drawing.Point(0, 0);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(392, 229);
-            this.MainPanel.TabIndex = 27;
             // 
             // bindingNavigator1
             // 
@@ -492,7 +472,7 @@
             this.bindingNavigator1.BindingSource = this.contactsListBindingSource;
             this.bindingNavigator1.CountItem = null;
             this.bindingNavigator1.DeleteItem = null;
-            this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.None;
+            this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bindingNavigator1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMovePreviousItem,
@@ -502,7 +482,7 @@
             this.toolStripProgressBar1,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem});
-            this.bindingNavigator1.Location = new System.Drawing.Point(3, 201);
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 194);
             this.bindingNavigator1.MoveFirstItem = null;
             this.bindingNavigator1.MoveLastItem = null;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -510,9 +490,14 @@
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
             this.bindingNavigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.bindingNavigator1.Size = new System.Drawing.Size(328, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(330, 25);
             this.bindingNavigator1.TabIndex = 3;
             this.bindingNavigator1.Text = "bindingNavigator1";
+            // 
+            // contactsListBindingSource
+            // 
+            this.contactsListBindingSource.AllowNew = true;
+            this.contactsListBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // bindingNavigatorMovePreviousItem
             // 
@@ -552,7 +537,7 @@
             this.toolStripProgressBar1.BackColor = System.Drawing.Color.LightSlateGray;
             this.toolStripProgressBar1.ForeColor = System.Drawing.SystemColors.Desktop;
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(135, 22);
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(137, 22);
             this.toolStripProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
             // bindingNavigatorSeparator2
@@ -590,11 +575,13 @@
             this.flowLayoutPanel1.Controls.Add(this._Mobile);
             this.flowLayoutPanel1.Controls.Add(this.label5);
             this.flowLayoutPanel1.Controls.Add(this._Address);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 3);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3, 3, 0, 3);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(328, 106);
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(331, 108);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // label2
@@ -604,7 +591,7 @@
             this.label2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label2.Size = new System.Drawing.Size(51, 18);
+            this.label2.Size = new System.Drawing.Size(51, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "ICON:";
             // 
@@ -621,6 +608,11 @@
             this._Icon.Text = "12345678912345";
             this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // customerContactsBindingSource
+            // 
+            this.customerContactsBindingSource.AllowNew = true;
+            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -628,7 +620,7 @@
             this.label1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label1.Size = new System.Drawing.Size(42, 18);
+            this.label1.Size = new System.Drawing.Size(42, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "CMBS:";
             // 
@@ -652,7 +644,7 @@
             this._UnLabel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this._UnLabel.Name = "_UnLabel";
             this._UnLabel.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this._UnLabel.Size = new System.Drawing.Size(51, 18);
+            this._UnLabel.Size = new System.Drawing.Size(51, 17);
             this._UnLabel.TabIndex = 2;
             this._UnLabel.Text = "UN:";
             // 
@@ -675,7 +667,7 @@
             this._DnLabel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this._DnLabel.Name = "_DnLabel";
             this._DnLabel.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this._DnLabel.Size = new System.Drawing.Size(42, 18);
+            this._DnLabel.Size = new System.Drawing.Size(42, 17);
             this._DnLabel.TabIndex = 0;
             this._DnLabel.Text = "DN:";
             // 
@@ -699,7 +691,7 @@
             this.label3.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label3.Size = new System.Drawing.Size(51, 18);
+            this.label3.Size = new System.Drawing.Size(51, 17);
             this.label3.TabIndex = 8;
             this.label3.Text = "Name:";
             // 
@@ -721,7 +713,7 @@
             this.label4.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label4.Size = new System.Drawing.Size(42, 18);
+            this.label4.Size = new System.Drawing.Size(42, 17);
             this.label4.TabIndex = 10;
             this.label4.Text = "Mobile:";
             // 
@@ -745,7 +737,7 @@
             this.label5.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label5.Size = new System.Drawing.Size(51, 18);
+            this.label5.Size = new System.Drawing.Size(51, 17);
             this.label5.TabIndex = 12;
             this.label5.Text = "Address:";
             // 
@@ -761,44 +753,51 @@
             this._Address.TabIndex = 7;
             this._Address.Text = "16 everterrace st";
             // 
+            // contactAddressBindingSource
+            // 
+            this.contactAddressBindingSource.DataSource = typeof(CallTracker.Model.ContactAddress);
+            // 
             // _Note
             // 
             this._Note.BackColor = System.Drawing.Color.GhostWhite;
+            this._Note.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._Note.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Note", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Note.Font = new System.Drawing.Font("Verdana", 7F);
             this._Note.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(34)))), ((int)(((byte)(44)))));
-            this._Note.Location = new System.Drawing.Point(3, 114);
+            this._Note.Location = new System.Drawing.Point(0, 114);
+            this._Note.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this._Note.Multiline = true;
             this._Note.Name = "_Note";
             this._Note.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._Note.Size = new System.Drawing.Size(328, 83);
+            this._Note.Size = new System.Drawing.Size(331, 77);
             this._Note.TabIndex = 8;
             this._Note.Text = "This is some test text.";
             // 
-            // flowLayoutPanel3
+            // ServiceTypePanel
             // 
-            this.flowLayoutPanel3.BackColor = System.Drawing.Color.LightGray;
-            this.flowLayoutPanel3.Controls.Add(this.checkBox7);
-            this.flowLayoutPanel3.Controls.Add(this.checkBox8);
-            this.flowLayoutPanel3.Controls.Add(this.checkBox9);
-            this.flowLayoutPanel3.Controls.Add(this.checkBox10);
-            this.flowLayoutPanel3.Controls.Add(this.checkBox11);
-            this.flowLayoutPanel3.Controls.Add(this.checkBox12);
-            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(335, 3);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Padding = new System.Windows.Forms.Padding(5, 3, 3, 3);
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(54, 223);
-            this.flowLayoutPanel3.TabIndex = 17;
+            this.ServiceTypePanel.BackColor = System.Drawing.Color.LightGray;
+            this.ServiceTypePanel.Controls.Add(this.checkBox7);
+            this.ServiceTypePanel.Controls.Add(this.checkBox8);
+            this.ServiceTypePanel.Controls.Add(this.checkBox9);
+            this.ServiceTypePanel.Controls.Add(this.checkBox10);
+            this.ServiceTypePanel.Controls.Add(this.checkBox11);
+            this.ServiceTypePanel.Controls.Add(this.checkBox12);
+            this.ServiceTypePanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.ServiceTypePanel.Location = new System.Drawing.Point(337, 3);
+            this.ServiceTypePanel.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.ServiceTypePanel.Name = "ServiceTypePanel";
+            this.ServiceTypePanel.Padding = new System.Windows.Forms.Padding(5, 3, 3, 3);
+            this.ServiceTypePanel.Size = new System.Drawing.Size(54, 216);
+            this.ServiceTypePanel.TabIndex = 17;
             // 
             // checkBox7
             // 
             this.checkBox7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.checkBox7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox7.Location = new System.Drawing.Point(5, 6);
-            this.checkBox7.Margin = new System.Windows.Forms.Padding(0, 3, 0, 13);
+            this.checkBox7.Location = new System.Drawing.Point(5, 11);
+            this.checkBox7.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(47, 20);
+            this.checkBox7.Size = new System.Drawing.Size(47, 18);
             this.checkBox7.TabIndex = 0;
             this.checkBox7.Text = "LAT";
             this.checkBox7.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -808,10 +807,10 @@
             // 
             this.checkBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.checkBox8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox8.Location = new System.Drawing.Point(5, 42);
-            this.checkBox8.Margin = new System.Windows.Forms.Padding(0, 3, 0, 13);
+            this.checkBox8.Location = new System.Drawing.Point(5, 45);
+            this.checkBox8.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(47, 20);
+            this.checkBox8.Size = new System.Drawing.Size(47, 18);
             this.checkBox8.TabIndex = 1;
             this.checkBox8.Text = "LIP";
             this.checkBox8.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -821,10 +820,10 @@
             // 
             this.checkBox9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.checkBox9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox9.Location = new System.Drawing.Point(5, 78);
-            this.checkBox9.Margin = new System.Windows.Forms.Padding(0, 3, 0, 13);
+            this.checkBox9.Location = new System.Drawing.Point(5, 79);
+            this.checkBox9.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(47, 20);
+            this.checkBox9.Size = new System.Drawing.Size(47, 18);
             this.checkBox9.TabIndex = 2;
             this.checkBox9.Text = "ONC";
             this.checkBox9.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -834,10 +833,10 @@
             // 
             this.checkBox10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.checkBox10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox10.Location = new System.Drawing.Point(5, 114);
-            this.checkBox10.Margin = new System.Windows.Forms.Padding(0, 3, 0, 13);
+            this.checkBox10.Location = new System.Drawing.Point(5, 113);
+            this.checkBox10.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(47, 20);
+            this.checkBox10.Size = new System.Drawing.Size(47, 18);
             this.checkBox10.TabIndex = 3;
             this.checkBox10.Text = "NBN";
             this.checkBox10.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -847,10 +846,10 @@
             // 
             this.checkBox11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.checkBox11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox11.Location = new System.Drawing.Point(5, 150);
-            this.checkBox11.Margin = new System.Windows.Forms.Padding(0, 3, 0, 13);
+            this.checkBox11.Location = new System.Drawing.Point(5, 147);
+            this.checkBox11.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(47, 20);
+            this.checkBox11.Size = new System.Drawing.Size(47, 18);
             this.checkBox11.TabIndex = 4;
             this.checkBox11.Text = "DTV";
             this.checkBox11.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -860,28 +859,47 @@
             // 
             this.checkBox12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.checkBox12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox12.Location = new System.Drawing.Point(5, 186);
-            this.checkBox12.Margin = new System.Windows.Forms.Padding(0, 3, 0, 13);
+            this.checkBox12.Location = new System.Drawing.Point(5, 181);
+            this.checkBox12.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
             this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(47, 20);
+            this.checkBox12.Size = new System.Drawing.Size(47, 18);
             this.checkBox12.TabIndex = 5;
             this.checkBox12.Text = "MTV";
             this.checkBox12.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.checkBox12.UseVisualStyleBackColor = true;
             // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel1);
+            this.flowLayoutPanel4.Controls.Add(this._Note);
+            this.flowLayoutPanel4.Controls.Add(this.bindingNavigator1);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 0);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(331, 219);
+            this.flowLayoutPanel4.TabIndex = 29;
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.Controls.Add(this.flowLayoutPanel4);
+            this.MainPanel.Controls.Add(this.ServiceTypePanel);
+            this.MainPanel.Controls.Add(this.FaultPanel);
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(0, 0);
+            this.MainPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(585, 219);
+            this.MainPanel.TabIndex = 30;
+            this.MainPanel.WrapContents = false;
+            // 
             // EditContact
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.FaultPanel);
             this.Controls.Add(this.MainPanel);
+            this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "EditContact";
-            this.Size = new System.Drawing.Size(586, 230);
-            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).EndInit();
+            this.Size = new System.Drawing.Size(585, 219);
             this.FaultPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -891,16 +909,22 @@
             this.splitContainer2.ResumeLayout(false);
             this.HfcPanel.ResumeLayout(false);
             this.HfcPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).EndInit();
             this.NbnPanel.ResumeLayout(false);
             this.NbnPanel.PerformLayout();
-            this.MainPanel.ResumeLayout(false);
-            this.MainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).EndInit();
+            this.ServiceTypePanel.ResumeLayout(false);
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
+            this.MainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -938,7 +962,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Panel MainPanel;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
         private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
@@ -963,12 +986,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox _Address;
         private System.Windows.Forms.TextBox _Note;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel ServiceTypePanel;
         private System.Windows.Forms.CheckBox checkBox7;
         private System.Windows.Forms.CheckBox checkBox8;
         private System.Windows.Forms.CheckBox checkBox9;
         private System.Windows.Forms.CheckBox checkBox10;
         private System.Windows.Forms.CheckBox checkBox11;
         private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.FlowLayoutPanel MainPanel;
     }
 }

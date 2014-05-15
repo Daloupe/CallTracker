@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.customerContactBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.customerContactBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.elementDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.urlDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._Data = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this._AltData = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.customerContactBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.customerContactBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource1)).BeginInit();
@@ -70,18 +70,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(544, 217);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.Visible = false;
-            // 
-            // pasteBindBindingSource
-            // 
-            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
-            // 
-            // customerContactBindingSource1
-            // 
-            this.customerContactBindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
-            // 
-            // customerContactBindingSource
-            // 
-            this.customerContactBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // systemDataGridViewTextBoxColumn
             // 
@@ -128,6 +116,18 @@
             this._AltData.Name = "_AltData";
             this._AltData.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this._AltData.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // pasteBindBindingSource
+            // 
+            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
+            // 
+            // customerContactBindingSource1
+            // 
+            this.customerContactBindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
+            // customerContactBindingSource
+            // 
+            this.customerContactBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // ViewSmartPasteBinds
             // 
