@@ -13,7 +13,7 @@ using CallTracker.Helpers;
 
 namespace CallTracker.View
 {
-    public partial class Main : System.Windows.Forms.Form
+    public partial class Main : Form
     {
         internal DataRepository DataStore;
         internal CustomerContact SelectedContact { get; set; }
@@ -63,18 +63,22 @@ namespace CallTracker.View
 
         private void DecryptData()
         {
-            DataStore.CurrentUser = StringCipher.Decrypt(DataStore.CurrentUser, "2point71828");
-            if (DataStore.CurrentUser != Environment.UserName)
-            {
-                foreach (var login in DataStore.Logins)
-                    login.Password = "";
-                DataStore.CurrentUser = Environment.UserName;
-            }
-            else
-            {
-                foreach (var login in DataStore.Logins)
-                    login.Password = StringCipher.Decrypt(login.Password, "2point71828");
-            }
+            string key = StringCipher.Encrypt(Environment.UserName, "2point71828");
+            foreach (var login in DataStore.Logins)
+                login.Password = StringCipher.Decrypt(login.Password, key);
+
+            //DataStore.CurrentUser = StringCipher.Decrypt(DataStore.CurrentUser, "2point71828");
+            //if (DataStore.CurrentUser != Environment.UserName)
+            //{
+            //    foreach (var login in DataStore.Logins)
+            //        login.Password = "";
+            //    DataStore.CurrentUser = Environment.UserName;
+            //}
+            //else
+            //{
+            //    foreach (var login in DataStore.Logins)
+            //        login.Password = StringCipher.Decrypt(login.Password, "2point71828");
+            //}
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -95,11 +99,11 @@ namespace CallTracker.View
             Properties.Settings.Default.Save();
 
             toolStripProgressBar1.Value = 20;
-            DataStore.CurrentUser = StringCipher.Encrypt(DataStore.CurrentUser, "2point71828");
+            //DataStore.CurrentUser = StringCipher.Encrypt(DataStore.CurrentUser, "2point71828");
 
             toolStripProgressBar1.Value = 30;
             foreach (var login in DataStore.Logins)
-                login.Password = StringCipher.Encrypt(login.Password, "2point71828");
+                login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt(Environment.UserName, "2point71828"));
             
             toolStripProgressBar1.Value = 40;
             using (var file = File.Create("Data.bin"))

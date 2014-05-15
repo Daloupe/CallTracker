@@ -19,8 +19,8 @@ namespace CallTracker.Model
         internal List<CustomerContact> Contacts { get; set; }
         [ProtoMember(3)]
         internal List<LoginsModel> Logins { get; set; }
-        [ProtoMember(4)]
-        internal string CurrentUser { get; set; }
+        //[ProtoMember(4)]
+        //internal string CurrentUser { get; set; }
 
         public DataRepository()
         {
