@@ -30,36 +30,38 @@
         {
             this.components = new System.ComponentModel.Container();
             this._Done = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new CallTracker.View.BorderedTextBox();
+            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
-            this._Element = new System.Windows.Forms.TextBox();
+            this._Element = new CallTracker.View.BorderedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new CallTracker.View.BorderedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this._Data = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this._AltData = new System.Windows.Forms.ComboBox();
-            this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // _Done
             // 
             this._Done.BackColor = System.Drawing.Color.LightGray;
-            this._Done.Location = new System.Drawing.Point(506, 193);
+            this._Done.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this._Done.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Done.Location = new System.Drawing.Point(506, 197);
             this._Done.Name = "_Done";
-            this._Done.Size = new System.Drawing.Size(75, 25);
+            this._Done.Size = new System.Drawing.Size(75, 22);
             this._Done.TabIndex = 10;
             this._Done.Text = "Done";
             this._Done.UseVisualStyleBackColor = false;
@@ -67,34 +69,38 @@
             // 
             // textBox1
             // 
+            this.textBox1.BorderColor = System.Drawing.Color.Gray;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(3, 55);
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Title", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox1.Location = new System.Drawing.Point(6, 56);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(191, 19);
+            this.textBox1.Size = new System.Drawing.Size(190, 19);
             this.textBox1.TabIndex = 7;
+            // 
+            // pasteBindBindingSource
+            // 
+            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
             // 
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(3, 3);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
             this.splitContainer1.Panel1.Margin = new System.Windows.Forms.Padding(3);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(3, 3, 0, 0);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Panel2.Margin = new System.Windows.Forms.Padding(0, 0, 4, 0);
-            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(0, 3, 4, 0);
-            this.splitContainer1.Size = new System.Drawing.Size(585, 190);
-            this.splitContainer1.SplitterDistance = 380;
+            this.splitContainer1.Size = new System.Drawing.Size(579, 191);
+            this.splitContainer1.SplitterDistance = 374;
             this.splitContainer1.TabIndex = 11;
             // 
             // dataGridView1
@@ -111,13 +117,26 @@
             this.systemDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.pasteBindBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(377, 187);
+            this.dataGridView1.Size = new System.Drawing.Size(374, 191);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.dataGridView1_Paint);
+            // 
+            // systemDataGridViewTextBoxColumn
+            // 
+            this.systemDataGridViewTextBoxColumn.DataPropertyName = "System";
+            this.systemDataGridViewTextBoxColumn.HeaderText = "System";
+            this.systemDataGridViewTextBoxColumn.Name = "systemDataGridViewTextBoxColumn";
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Bind Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             // 
             // flowLayoutPanel1
             // 
@@ -132,63 +151,70 @@
             this.flowLayoutPanel1.Controls.Add(this._Data);
             this.flowLayoutPanel1.Controls.Add(this.label5);
             this.flowLayoutPanel1.Controls.Add(this._AltData);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 3);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(197, 187);
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(201, 191);
             this.flowLayoutPanel1.TabIndex = 8;
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.dataGridView1_Paint);
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(3, 0);
+            this.label2.Location = new System.Drawing.Point(6, 3);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label2.Size = new System.Drawing.Size(191, 18);
+            this.label2.Size = new System.Drawing.Size(190, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "URL:";
             // 
             // _Element
             // 
+            this._Element.BorderColor = System.Drawing.Color.Gray;
             this._Element.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Element.Location = new System.Drawing.Point(3, 18);
+            this._Element.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Element.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._Element.Location = new System.Drawing.Point(6, 20);
             this._Element.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._Element.Name = "_Element";
-            this._Element.Size = new System.Drawing.Size(191, 19);
+            this._Element.Size = new System.Drawing.Size(190, 19);
             this._Element.TabIndex = 5;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(3, 37);
+            this.label1.Location = new System.Drawing.Point(6, 39);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label1.Size = new System.Drawing.Size(191, 18);
+            this.label1.Size = new System.Drawing.Size(190, 17);
             this.label1.TabIndex = 8;
             this.label1.Text = "Title:";
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(3, 74);
+            this.label3.Location = new System.Drawing.Point(6, 75);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label3.Size = new System.Drawing.Size(191, 18);
+            this.label3.Size = new System.Drawing.Size(190, 17);
             this.label3.TabIndex = 10;
             this.label3.Text = "Element:";
             // 
             // textBox2
             // 
+            this.textBox2.BorderColor = System.Drawing.Color.Gray;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.Location = new System.Drawing.Point(3, 92);
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Element", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox2.Location = new System.Drawing.Point(6, 92);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(191, 19);
+            this.textBox2.Size = new System.Drawing.Size(190, 19);
             this.textBox2.TabIndex = 9;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(3, 111);
+            this.label4.Location = new System.Drawing.Point(6, 111);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label4.Size = new System.Drawing.Size(191, 18);
+            this.label4.Size = new System.Drawing.Size(190, 17);
             this.label4.TabIndex = 12;
             this.label4.Text = "Data:";
             // 
@@ -196,18 +222,19 @@
             // 
             this._Data.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this._Data.FormattingEnabled = true;
-            this._Data.Location = new System.Drawing.Point(3, 129);
+            this._Data.Location = new System.Drawing.Point(6, 128);
             this._Data.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._Data.Name = "_Data";
-            this._Data.Size = new System.Drawing.Size(191, 20);
+            this._Data.Size = new System.Drawing.Size(190, 20);
             this._Data.TabIndex = 16;
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(3, 149);
+            this.label5.BackColor = System.Drawing.Color.LightGray;
+            this.label5.Location = new System.Drawing.Point(6, 148);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label5.Size = new System.Drawing.Size(191, 18);
+            this.label5.Size = new System.Drawing.Size(190, 17);
             this.label5.TabIndex = 17;
             this.label5.Text = "Alternate Data:";
             // 
@@ -215,27 +242,11 @@
             // 
             this._AltData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this._AltData.FormattingEnabled = true;
-            this._AltData.Location = new System.Drawing.Point(3, 167);
+            this._AltData.Location = new System.Drawing.Point(6, 165);
             this._AltData.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._AltData.Name = "_AltData";
-            this._AltData.Size = new System.Drawing.Size(191, 20);
+            this._AltData.Size = new System.Drawing.Size(190, 20);
             this._AltData.TabIndex = 18;
-            // 
-            // systemDataGridViewTextBoxColumn
-            // 
-            this.systemDataGridViewTextBoxColumn.DataPropertyName = "System";
-            this.systemDataGridViewTextBoxColumn.HeaderText = "System";
-            this.systemDataGridViewTextBoxColumn.Name = "systemDataGridViewTextBoxColumn";
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Bind Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // pasteBindBindingSource
-            // 
-            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
             // 
             // EditSmartPasteBinds
             // 
@@ -246,14 +257,15 @@
             this.Controls.Add(this._Done);
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "EditSmartPasteBinds";
-            this.Size = new System.Drawing.Size(585, 218);
+            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Size = new System.Drawing.Size(585, 222);
+            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -261,15 +273,15 @@
         #endregion
 
         private System.Windows.Forms.Button _Done;
-        private System.Windows.Forms.TextBox textBox1;
+        private BorderedTextBox textBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox _Element;
+        private BorderedTextBox _Element;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private BorderedTextBox textBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.BindingSource pasteBindBindingSource;
         private System.Windows.Forms.ComboBox _Data;

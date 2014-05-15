@@ -34,6 +34,7 @@ namespace CallTracker.View
 
             editContact.Init(this);
             editLogins.Init(this);
+            editSmartPasteBinds.Init(this);
 
             HotKeys = new HotkeyController(this);
         }
@@ -44,15 +45,9 @@ namespace CallTracker.View
             foreach (var screen in Screen.AllScreens)
                 totalSize += screen.Bounds.Size;
 
-            if (Properties.Settings.Default.Main_Position.X > totalSize.Width 
-             && Properties.Settings.Default.Main_Position.Y > totalSize.Height)
-            {
-                Properties.Settings.Default.Main_Position = Point.Empty;
-                Properties.Settings.Default.ViewSmartPasteBinds_Position = Point.Empty;
-                Properties.Settings.Default.Logins_Position = Point.Empty;
-            }
-
-            if (Properties.Settings.Default.Main_Position != Point.Empty)
+            if (Properties.Settings.Default.Main_Position != Point.Empty
+             && Properties.Settings.Default.Main_Position.X < totalSize.Width
+             && Properties.Settings.Default.Main_Position.Y < totalSize.Height)
             {
                 StartPosition = FormStartPosition.Manual;
                 Location = Properties.Settings.Default.Main_Position;
@@ -68,19 +63,12 @@ namespace CallTracker.View
 
         private void Main_Load(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.ViewSmartPasteBinds_Position == Point.Empty)
-                Properties.Settings.Default.ViewSmartPasteBinds_Position = DesktopLocation;
-            if (Properties.Settings.Default.Logins_Position == Point.Empty)
-                Properties.Settings.Default.Logins_Position = DesktopLocation;
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             //toolStripProgressBar1.Value = 10;
             Properties.Settings.Default.Save();
-
-            //toolStripProgressBar1.Value = 20;
-            //DataStore.CurrentUser = StringCipher.Encrypt(DataStore.CurrentUser, "2point71828");
 
             //toolStripProgressBar1.Value = 30;
             foreach (var login in DataStore.Logins)
@@ -121,18 +109,24 @@ namespace CallTracker.View
             options.Show();
         }
 
+        private UserControl VisibleSetting {get; set;}
+
         private void loginsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ShowSettingsForm<ViewLogins>();
+            if (VisibleSetting != null)
+                VisibleSetting.Visible = false;
             editLogins.Visible = true;
-            editLogins.Enabled = true;    
+            VisibleSetting = editLogins;    
         }
 
         private void smartPasteBindsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //ShowSettingsForm<ViewSmartPasteBinds>();
-            editLogins.Visible = true;
-            editLogins.Enabled = true;   
+            if (VisibleSetting != null)
+                VisibleSetting.Visible = false;
+            editSmartPasteBinds.Visible = true;
+            VisibleSetting = editSmartPasteBinds;
         }
 
         public static T ShowSettingsForm<T>() where T : Form, new()
@@ -169,6 +163,17 @@ namespace CallTracker.View
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
                 Properties.Settings.Default.Main_Position = Location;
             }
+        }
+
+        // Misc ////////////////////////////////////////////////////////////////////////////////////
+        private void PaintGrayBorder(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawRectangle(Pens.Gainsboro,
+              e.ClipRectangle.Left,
+              e.ClipRectangle.Top,
+              e.ClipRectangle.Width - 1,
+              e.ClipRectangle.Height - 1);
+            base.OnPaint(e);
         }
     }
 }

@@ -19,24 +19,11 @@ namespace CallTracker.Model
             //Add(new CustomerContact(1) { Name = "Harry", DN = "0294813388", ICON = "60", Address = new ContactAddress { Number = "7", Street = "lo street" } });
         }
     }
-    
-        
-        
+
     [ImplementPropertyChanged]
     [ProtoContract]
     public class CustomerContact
     {
-//#pragma warning disable 67
-//        public event PropertyChangedEventHandler PropertyChanged;
-//#pragma warning restore 67
-
-        //public static List<string> ContactDataStrings = new List<string>()
-        //{ "Name", "Username", "DN", "Mobile", "CMBS", "ICON", "Note", "Address", "PR", "Node"};
-        public static List<string> ContactDataOldStrings = new List<string>()
-        { "Name", "Username", "DN", "Mobile", "CMBS", 
-          "ICON", "Note", "Address", "PR", "Node",
-          "AVC", "CVC", "CSA", "NNI", "GSI", "Equipment"};
-
         public static List<DataBindType> PropertyStrings = new List<DataBindType>()
             {
                 new DataBindType("Name", "Name"),

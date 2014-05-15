@@ -38,28 +38,25 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.faultModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.customerServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox1 = new BorderedTextBox();
+            this.textBox2 = new BorderedTextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.NbnPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new BorderedTextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new BorderedTextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new BorderedTextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new BorderedTextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new BorderedTextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new BorderedTextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.contactsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
@@ -69,21 +66,19 @@
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
-            this._Icon = new System.Windows.Forms.TextBox();
-            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._Icon = new BorderedTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this._Cmbs = new System.Windows.Forms.TextBox();
+            this._Cmbs = new BorderedTextBox();
             this._UnLabel = new System.Windows.Forms.Label();
-            this._Username = new System.Windows.Forms.TextBox();
+            this._Username = new BorderedTextBox();
             this._DnLabel = new System.Windows.Forms.Label();
-            this._Dn = new System.Windows.Forms.TextBox();
+            this._Dn = new BorderedTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this._Name = new System.Windows.Forms.TextBox();
+            this._Name = new BorderedTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this._Mobile = new System.Windows.Forms.TextBox();
+            this._Mobile = new BorderedTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this._Address = new System.Windows.Forms.TextBox();
-            this.contactAddressBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._Address = new BorderedTextBox();
             this._Note = new System.Windows.Forms.TextBox();
             this.ServiceTypePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
@@ -94,6 +89,11 @@
             this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.contactAddressBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.contactsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.faultModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.customerServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -102,25 +102,25 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.HfcPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).BeginInit();
             this.NbnPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).BeginInit();
             this.ServiceTypePanel.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.MainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // FaultPanel
             // 
             this.FaultPanel.Controls.Add(this.splitContainer1);
-            this.FaultPanel.Location = new System.Drawing.Point(391, 3);
-            this.FaultPanel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.FaultPanel.Location = new System.Drawing.Point(388, 0);
+            this.FaultPanel.Margin = new System.Windows.Forms.Padding(0);
             this.FaultPanel.Name = "FaultPanel";
             this.FaultPanel.Size = new System.Drawing.Size(210, 216);
             this.FaultPanel.TabIndex = 28;
@@ -138,7 +138,9 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel2);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer1.Panel2MinSize = 0;
             this.splitContainer1.Size = new System.Drawing.Size(275, 330);
             this.splitContainer1.SplitterDistance = 176;
@@ -148,7 +150,7 @@
             // 
             // splitContainer2
             // 
-            this.splitContainer2.BackColor = System.Drawing.Color.Transparent;
+            this.splitContainer2.BackColor = System.Drawing.Color.DarkGray;
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
             this.splitContainer2.Name = "splitContainer2";
@@ -156,12 +158,16 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.BackColor = System.Drawing.Color.Gainsboro;
             this.splitContainer2.Panel1.Controls.Add(this.HfcPanel);
+            this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer2.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.splitContainer2.Panel2.Controls.Add(this.NbnPanel);
+            this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.Size = new System.Drawing.Size(176, 330);
@@ -169,6 +175,7 @@
             this.splitContainer2.SplitterWidth = 9;
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
+            this.splitContainer2.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
             // HfcPanel
             // 
@@ -182,9 +189,9 @@
             this.HfcPanel.Controls.Add(this.comboBox1);
             this.HfcPanel.Controls.Add(this.label7);
             this.HfcPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.HfcPanel.Location = new System.Drawing.Point(0, -61);
+            this.HfcPanel.Location = new System.Drawing.Point(1, -62);
             this.HfcPanel.Name = "HfcPanel";
-            this.HfcPanel.Size = new System.Drawing.Size(176, 212);
+            this.HfcPanel.Size = new System.Drawing.Size(174, 212);
             this.HfcPanel.TabIndex = 22;
             // 
             // label8
@@ -253,10 +260,6 @@
             this.textBox1.TabIndex = 9;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // faultModelBindingSource
-            // 
-            this.faultModelBindingSource.DataSource = typeof(CallTracker.Model.FaultModel);
-            // 
             // textBox2
             // 
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -268,10 +271,6 @@
             this.textBox2.Size = new System.Drawing.Size(70, 19);
             this.textBox2.TabIndex = 10;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // customerServiceBindingSource
-            // 
-            this.customerServiceBindingSource.DataSource = typeof(CallTracker.Model.ServiceModel);
             // 
             // comboBox1
             // 
@@ -459,20 +458,23 @@
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.BackColor = System.Drawing.Color.LightCyan;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 56);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(1, 1);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(3);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(180, 216);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(183, 328);
             this.flowLayoutPanel2.TabIndex = 22;
             // 
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = null;
+            this.bindingNavigator1.AutoSize = false;
             this.bindingNavigator1.BackColor = System.Drawing.Color.LightGray;
             this.bindingNavigator1.BindingSource = this.contactsListBindingSource;
             this.bindingNavigator1.CountItem = null;
             this.bindingNavigator1.DeleteItem = null;
             this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bindingNavigator1.Font = new System.Drawing.Font("Verdana", 7F);
             this.bindingNavigator1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMovePreviousItem,
@@ -482,22 +484,19 @@
             this.toolStripProgressBar1,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 194);
+            this.bindingNavigator1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 190);
             this.bindingNavigator1.MoveFirstItem = null;
             this.bindingNavigator1.MoveLastItem = null;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
+            this.bindingNavigator1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.bindingNavigator1.Size = new System.Drawing.Size(330, 25);
+            this.bindingNavigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.bindingNavigator1.Size = new System.Drawing.Size(331, 29);
             this.bindingNavigator1.TabIndex = 3;
             this.bindingNavigator1.Text = "bindingNavigator1";
-            // 
-            // contactsListBindingSource
-            // 
-            this.contactsListBindingSource.AllowNew = true;
-            this.contactsListBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // bindingNavigatorMovePreviousItem
             // 
@@ -505,7 +504,7 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 23);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorPositionItem
@@ -513,8 +512,9 @@
             this.bindingNavigatorPositionItem.AccessibleName = "Position";
             this.bindingNavigatorPositionItem.AutoSize = false;
             this.bindingNavigatorPositionItem.BackColor = System.Drawing.Color.GhostWhite;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Verdana", 7F);
             this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 21);
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(40, 19);
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
@@ -524,36 +524,40 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 23);
             this.bindingNavigatorMoveNextItem.Text = "Move next";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 26);
             // 
             // toolStripProgressBar1
             // 
             this.toolStripProgressBar1.BackColor = System.Drawing.Color.LightSlateGray;
             this.toolStripProgressBar1.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.toolStripProgressBar1.Margin = new System.Windows.Forms.Padding(1, 3, 1, 2);
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(137, 22);
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(148, 21);
             this.toolStripProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 26);
             // 
             // bindingNavigatorAddNewItem
             // 
+            this.bindingNavigatorAddNewItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.bindingNavigatorAddNewItem.AutoSize = false;
-            this.bindingNavigatorAddNewItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bindingNavigatorAddNewItem.Font = new System.Drawing.Font("Verdana", 7F);
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(78, 22);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(80, 22);
             this.bindingNavigatorAddNewItem.Text = "Next Call";
             this.bindingNavigatorAddNewItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bindingNavigatorAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
@@ -577,12 +581,13 @@
             this.flowLayoutPanel1.Controls.Add(this._Address);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 3);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(331, 108);
             this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
             // label2
             // 
@@ -607,11 +612,6 @@
             this._Icon.TabIndex = 1;
             this._Icon.Text = "12345678912345";
             this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // customerContactsBindingSource
-            // 
-            this.customerContactsBindingSource.AllowNew = true;
-            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // label1
             // 
@@ -753,10 +753,6 @@
             this._Address.TabIndex = 7;
             this._Address.Text = "16 everterrace st";
             // 
-            // contactAddressBindingSource
-            // 
-            this.contactAddressBindingSource.DataSource = typeof(CallTracker.Model.ContactAddress);
-            // 
             // _Note
             // 
             this._Note.BackColor = System.Drawing.Color.GhostWhite;
@@ -764,12 +760,12 @@
             this._Note.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Note", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Note.Font = new System.Drawing.Font("Verdana", 7F);
             this._Note.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(34)))), ((int)(((byte)(44)))));
-            this._Note.Location = new System.Drawing.Point(0, 114);
+            this._Note.Location = new System.Drawing.Point(0, 111);
             this._Note.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
             this._Note.Multiline = true;
             this._Note.Name = "_Note";
             this._Note.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._Note.Size = new System.Drawing.Size(331, 77);
+            this._Note.Size = new System.Drawing.Size(331, 76);
             this._Note.TabIndex = 8;
             this._Note.Text = "This is some test text.";
             // 
@@ -783,12 +779,13 @@
             this.ServiceTypePanel.Controls.Add(this.checkBox11);
             this.ServiceTypePanel.Controls.Add(this.checkBox12);
             this.ServiceTypePanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.ServiceTypePanel.Location = new System.Drawing.Point(337, 3);
-            this.ServiceTypePanel.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.ServiceTypePanel.Location = new System.Drawing.Point(334, 0);
+            this.ServiceTypePanel.Margin = new System.Windows.Forms.Padding(0);
             this.ServiceTypePanel.Name = "ServiceTypePanel";
             this.ServiceTypePanel.Padding = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.ServiceTypePanel.Size = new System.Drawing.Size(54, 216);
             this.ServiceTypePanel.TabIndex = 17;
+            this.ServiceTypePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
             // checkBox7
             // 
@@ -873,10 +870,10 @@
             this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel1);
             this.flowLayoutPanel4.Controls.Add(this._Note);
             this.flowLayoutPanel4.Controls.Add(this.bindingNavigator1);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 0);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(331, 219);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(331, 216);
             this.flowLayoutPanel4.TabIndex = 29;
             // 
             // MainPanel
@@ -885,12 +882,34 @@
             this.MainPanel.Controls.Add(this.ServiceTypePanel);
             this.MainPanel.Controls.Add(this.FaultPanel);
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(0, 0);
+            this.MainPanel.Location = new System.Drawing.Point(3, 3);
             this.MainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(585, 219);
+            this.MainPanel.Size = new System.Drawing.Size(579, 216);
             this.MainPanel.TabIndex = 30;
             this.MainPanel.WrapContents = false;
+            // 
+            // customerContactsBindingSource
+            // 
+            this.customerContactsBindingSource.AllowNew = true;
+            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
+            // contactAddressBindingSource
+            // 
+            this.contactAddressBindingSource.DataSource = typeof(CallTracker.Model.ContactAddress);
+            // 
+            // contactsListBindingSource
+            // 
+            this.contactsListBindingSource.AllowNew = true;
+            this.contactsListBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
+            // faultModelBindingSource
+            // 
+            this.faultModelBindingSource.DataSource = typeof(CallTracker.Model.FaultModel);
+            // 
+            // customerServiceBindingSource
+            // 
+            this.customerServiceBindingSource.DataSource = typeof(CallTracker.Model.ServiceModel);
             // 
             // EditContact
             // 
@@ -899,7 +918,8 @@
             this.Controls.Add(this.MainPanel);
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "EditContact";
-            this.Size = new System.Drawing.Size(585, 219);
+            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Size = new System.Drawing.Size(585, 222);
             this.FaultPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -909,22 +929,22 @@
             this.splitContainer2.ResumeLayout(false);
             this.HfcPanel.ResumeLayout(false);
             this.HfcPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).EndInit();
             this.NbnPanel.ResumeLayout(false);
             this.NbnPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).EndInit();
             this.ServiceTypePanel.ResumeLayout(false);
             this.flowLayoutPanel4.ResumeLayout(false);
             this.flowLayoutPanel4.PerformLayout();
             this.MainPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactAddressBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -944,23 +964,23 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private BorderedTextBox textBox1;
+        private BorderedTextBox textBox2;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.FlowLayoutPanel NbnPanel;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox5;
+        private BorderedTextBox textBox5;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox6;
+        private BorderedTextBox textBox6;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox7;
+        private BorderedTextBox textBox7;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox8;
+        private BorderedTextBox textBox8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox textBox3;
+        private BorderedTextBox textBox3;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox4;
+        private BorderedTextBox textBox4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
@@ -972,19 +992,19 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox _Icon;
+        private BorderedTextBox _Icon;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox _Cmbs;
+        private BorderedTextBox _Cmbs;
         private System.Windows.Forms.Label _UnLabel;
-        private System.Windows.Forms.TextBox _Username;
+        private BorderedTextBox _Username;
         private System.Windows.Forms.Label _DnLabel;
-        private System.Windows.Forms.TextBox _Dn;
+        private BorderedTextBox _Dn;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox _Name;
+        private BorderedTextBox _Name;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox _Mobile;
+        private BorderedTextBox _Mobile;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox _Address;
+        private BorderedTextBox _Address;
         private System.Windows.Forms.TextBox _Note;
         private System.Windows.Forms.FlowLayoutPanel ServiceTypePanel;
         private System.Windows.Forms.CheckBox checkBox7;

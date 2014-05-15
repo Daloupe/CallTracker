@@ -20,21 +20,24 @@ namespace CallTracker.Helpers
         private static IE browser;
         private static string PreviousIEMatch;
         private static Main parent;
+        private static HotKeyManager HotKeyManager;
 
         public HotkeyController(Main _parent)
         {
             parent = _parent;
- 
+            HotKeyManager = new HotKeyManager();
+
             HotKeyManager.AddOrReplaceHotkey("SmartCopy", Modifiers.Win, Keys.C, OnSmartCopy);
             HotKeyManager.AddOrReplaceHotkey("SmartPaste", Modifiers.Win, Keys.V, OnSmartPaste);
             HotKeyManager.AddOrReplaceHotkey("BindSmartPaste", Modifiers.Win | Modifiers.Shift, Keys.B, OnBindSmartPaste);
 
             foreach (var DataPasteHotkey in DataPasteHotkeys)
-            {
                 HotKeyManager.AddOrReplaceHotkey(DataPasteHotkey.Value, Modifiers.Shift | Modifiers.Control, DataPasteHotkey.Key, DataPaste);
-            }
 
             HotKeyManager.AddOrReplaceHotkey("AutoLogin", Modifiers.Win, Keys.Oemtilde, AutoLogin);
+
+            foreach (var GridLinkHotKey in GridLinkHotkeys)
+                HotKeyManager.AddOrReplaceHotkey(GridLinkHotKey.Value, Modifiers.Win, GridLinkHotKey.Key, GridLinks);
         }
 
         public void Dispose()
@@ -47,10 +50,32 @@ namespace CallTracker.Helpers
             }
         }
 
+        // Grid Links ///////////////////////////////////////////////////////////////////////////////////////
+        private Dictionary<Keys, string> GridLinkHotkeys = new Dictionary<Keys, string>()
+        {
+            {Keys.NumPad0, "0"},
+            {Keys.NumPad1, "1"},
+            {Keys.NumPad2, "2"},
+            {Keys.NumPad3, "3"},
+            {Keys.NumPad4, "4"},
+            {Keys.NumPad5, "5"},
+            {Keys.NumPad6, "6"},
+            {Keys.NumPad7, "7"},
+            {Keys.NumPad8, "8"},
+            {Keys.NumPad9, "9"}
+        };
+
+        private void GridLinks(HotkeyPressedEventArgs e)
+        {
+            if (!FindIEByTitle(parent.DataStore.GridLinks[Convert.ToInt32(e.Name)].Title))
+                return;
+            browser.BringToFront();
+        }
+
         // Auto Login ///////////////////////////////////////////////////////////////////////////////////////
         private void AutoLogin(HotkeyPressedEventArgs e)
         {
-            if (!FindActiveIEByTitle())
+            if (!FindIEByTitle(ActiveWindow.Title()))
                 return;
 
             string title = browser.Title;
@@ -95,7 +120,7 @@ namespace CallTracker.Helpers
         // Smart Paste ///////////////////////////////////////////////////////////////////////////////////////
         private void OnSmartPaste(HotkeyPressedEventArgs e)
         {
-            if (!FindActiveIEByTitle())
+            if (!FindIEByTitle(ActiveWindow.Title()))
                 return;
 
             string url = browser.Url;
@@ -121,8 +146,7 @@ namespace CallTracker.Helpers
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
         {
-
-            if (!FindActiveIEByTitle())
+            if (!FindIEByTitle(ActiveWindow.Title()))
                 return;
 
             string url = browser.Url;
@@ -200,9 +224,9 @@ namespace CallTracker.Helpers
         }
 
         // Misc Methods ///////////////////////////////////////////////////////////////////////////////////////
-        private bool FindActiveIEByHWND()
+        private bool FindActiveIEByHWND(IntPtr _HWND)
         {
-            string currentHWND = ActiveWindow.HWND().ToString();
+            string currentHWND = _HWND.ToString();
 
             if (!Browser.Exists(typeof(IE), Find.By("hwnd", currentHWND)))
                 return false;
@@ -219,11 +243,10 @@ namespace CallTracker.Helpers
             return true;
         }
 
-        private bool FindActiveIEByTitle()
+        private bool FindIEByTitle(string _title)
         {
-            string[] titleRegex = Regex.Split(ActiveWindow.Title(), " - Internet Explorer");
-            if(titleRegex.Length == 1)
-                titleRegex = Regex.Split(ActiveWindow.Title(), " - Windows Internet Explorer");
+            string[] titleRegex = Regex.Split(_title, " -( Windows)? Internet Explorer");
+            
             string currentTitle = titleRegex[0];
 
             if (!Browser.Exists(typeof(IE), Find.ByTitle(currentTitle)))

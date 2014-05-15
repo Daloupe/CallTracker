@@ -81,5 +81,15 @@ namespace CallTracker.View
         {
             splitContainer2.Focus();
         }
+
+        private void PaintGrayBorder(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawRectangle(Pens.Gainsboro,
+              e.ClipRectangle.Left,
+              e.ClipRectangle.Top,
+              e.ClipRectangle.Width - 1,
+              e.ClipRectangle.Height - 1);
+            base.OnPaint(e);
+        }
     }
 }

@@ -14,16 +14,22 @@ namespace CallTracker.View
     public partial class BindSmartPasteForm : Form
     {
         Main parent;
+        private BindingSource source1 = new BindingSource();
+        private BindingSource source2 = new BindingSource();
+
         public BindSmartPasteForm()
         {
             InitializeComponent();
             parent = Application.OpenForms.OfType<Main>().First();
+            
+        }
 
-            _Data.DataSource = CustomerContact.PropertyStrings;
+        private void BindSmartPasteForm_Load(object sender, EventArgs e)
+        {
+            source1.DataSource = CustomerContact.PropertyStrings;
+            _Data.DataSource = source1;
             _Data.DisplayMember = "Name";
             _Data.ValueMember = "Path";
-            _Data.SelectedIndex = 1;
-
             _Data.DataBindings.Add(new Binding(
                                       "SelectedValue",
                                       this.pasteBindBindingSource,
@@ -31,17 +37,40 @@ namespace CallTracker.View
                                       true,
                                       DataSourceUpdateMode.OnPropertyChanged));
 
-            _AltData.DataSource = CustomerContact.PropertyStrings;
-            _AltData.BindingContext = new BindingContext();
+            source2.DataSource = CustomerContact.PropertyStrings;
+            _AltData.DataSource = source2;
             _AltData.DisplayMember = "Name";
             _AltData.ValueMember = "Path";
-
             _AltData.DataBindings.Add(new Binding(
                                       "SelectedValue",
                                       this.pasteBindBindingSource,
                                       "AltData",
                                       true,
                                       DataSourceUpdateMode.OnPropertyChanged));
+
+            //_Data.DataSource = CustomerContact.PropertyStrings;
+            //_Data.DisplayMember = "Name";
+            //_Data.ValueMember = "Path";
+            //_Data.SelectedIndex = 1;
+
+            //_Data.DataBindings.Add(new Binding(
+            //                          "SelectedValue",
+            //                          this.pasteBindBindingSource,
+            //                          "Data",
+            //                          true,
+            //                          DataSourceUpdateMode.OnPropertyChanged));
+
+            //_AltData.DataSource = CustomerContact.PropertyStrings;
+            //_AltData.BindingContext = new BindingContext();
+            //_AltData.DisplayMember = "Name";
+            //_AltData.ValueMember = "Path";
+
+            //_AltData.DataBindings.Add(new Binding(
+            //                          "SelectedValue",
+            //                          this.pasteBindBindingSource,
+            //                          "AltData",
+            //                          true,
+            //                          DataSourceUpdateMode.OnPropertyChanged));
         }
 
         private void _Cancel_Click(object sender, EventArgs e)
@@ -59,8 +88,8 @@ namespace CallTracker.View
         {
             pasteBindBindingSource.DataSource = _query;
 
-            if (String.IsNullOrEmpty(_query.Data))
-                _query.Data = "Name";
+            //if (String.IsNullOrEmpty(_query.Data))
+            //    _query.Data = "Name";
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)

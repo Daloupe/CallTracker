@@ -30,7 +30,6 @@
         {
             this._MainMenu = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DeleteCallDataMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,10 +42,10 @@
             this.viewHotkeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.featuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
+            this.MenuPanel = new System.Windows.Forms.Panel();
+            this.editSmartPasteBinds = new CallTracker.View.EditSmartPasteBinds();
             this.editLogins = new CallTracker.View.EditLogins();
             this.editContact = new CallTracker.View.EditContact();
-            this.MenuPanel = new System.Windows.Forms.Panel();
-            this.editSmartPasteBinds1 = new CallTracker.View.EditSmartPasteBinds();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -69,12 +68,12 @@
             this._MainMenu.Size = new System.Drawing.Size(584, 18);
             this._MainMenu.TabIndex = 2;
             this._MainMenu.Text = "_MainMenu";
+            this._MainMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             this._MainMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MainMenu_MouseDown);
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.optionsToolStripMenuItem,
             this.DeleteCallDataMenuItem,
             this.toolStripSeparator2,
             this.quitToolStripMenuItem});
@@ -83,30 +82,23 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(79, 18);
             this.fileToolStripMenuItem.Text = "Call Tracker";
             // 
-            // optionsToolStripMenuItem
-            // 
-            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
-            this.optionsToolStripMenuItem.Text = "Options";
-            this.optionsToolStripMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem_Click);
-            // 
             // DeleteCallDataMenuItem
             // 
             this.DeleteCallDataMenuItem.Name = "DeleteCallDataMenuItem";
-            this.DeleteCallDataMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.DeleteCallDataMenuItem.Size = new System.Drawing.Size(152, 22);
             this.DeleteCallDataMenuItem.Text = "Delete All Calls";
             this.DeleteCallDataMenuItem.Click += new System.EventHandler(this.DeleteCallDataMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(146, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -176,7 +168,7 @@
             // AppPanel
             // 
             this.AppPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AppPanel.Controls.Add(this.editSmartPasteBinds1);
+            this.AppPanel.Controls.Add(this.editSmartPasteBinds);
             this.AppPanel.Controls.Add(this.editLogins);
             this.AppPanel.Controls.Add(this.editContact);
             this.AppPanel.Controls.Add(this.MenuPanel);
@@ -185,26 +177,6 @@
             this.AppPanel.Name = "AppPanel";
             this.AppPanel.Size = new System.Drawing.Size(586, 241);
             this.AppPanel.TabIndex = 25;
-            // 
-            // editLogins
-            // 
-            this.editLogins.BackColor = System.Drawing.Color.LightSlateGray;
-            this.editLogins.Enabled = false;
-            this.editLogins.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editLogins.Location = new System.Drawing.Point(0, 18);
-            this.editLogins.Name = "editLogins";
-            this.editLogins.Size = new System.Drawing.Size(585, 218);
-            this.editLogins.TabIndex = 29;
-            this.editLogins.Visible = false;
-            // 
-            // editContact
-            // 
-            this.editContact.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editContact.Location = new System.Drawing.Point(0, 18);
-            this.editContact.Margin = new System.Windows.Forms.Padding(0);
-            this.editContact.Name = "editContact";
-            this.editContact.Size = new System.Drawing.Size(585, 218);
-            this.editContact.TabIndex = 28;
             // 
             // MenuPanel
             // 
@@ -217,14 +189,37 @@
             this.MenuPanel.Size = new System.Drawing.Size(586, 20);
             this.MenuPanel.TabIndex = 27;
             // 
-            // editSmartPasteBinds1
+            // editSmartPasteBinds
             // 
-            this.editSmartPasteBinds1.BackColor = System.Drawing.Color.LightSlateGray;
-            this.editSmartPasteBinds1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editSmartPasteBinds1.Location = new System.Drawing.Point(0, 18);
-            this.editSmartPasteBinds1.Name = "editSmartPasteBinds1";
-            this.editSmartPasteBinds1.Size = new System.Drawing.Size(585, 218);
-            this.editSmartPasteBinds1.TabIndex = 30;
+            this.editSmartPasteBinds.BackColor = System.Drawing.Color.LightSlateGray;
+            this.editSmartPasteBinds.Font = new System.Drawing.Font("Verdana", 7F);
+            this.editSmartPasteBinds.Location = new System.Drawing.Point(0, 18);
+            this.editSmartPasteBinds.Name = "editSmartPasteBinds";
+            this.editSmartPasteBinds.Padding = new System.Windows.Forms.Padding(3);
+            this.editSmartPasteBinds.Size = new System.Drawing.Size(584, 222);
+            this.editSmartPasteBinds.TabIndex = 30;
+            this.editSmartPasteBinds.Visible = false;
+            // 
+            // editLogins
+            // 
+            this.editLogins.BackColor = System.Drawing.Color.LightSlateGray;
+            this.editLogins.Font = new System.Drawing.Font("Verdana", 7F);
+            this.editLogins.Location = new System.Drawing.Point(0, 18);
+            this.editLogins.Name = "editLogins";
+            this.editLogins.Padding = new System.Windows.Forms.Padding(3);
+            this.editLogins.Size = new System.Drawing.Size(584, 222);
+            this.editLogins.TabIndex = 29;
+            this.editLogins.Visible = false;
+            // 
+            // editContact
+            // 
+            this.editContact.Font = new System.Drawing.Font("Verdana", 7F);
+            this.editContact.Location = new System.Drawing.Point(0, 18);
+            this.editContact.Margin = new System.Windows.Forms.Padding(0);
+            this.editContact.Name = "editContact";
+            this.editContact.Padding = new System.Windows.Forms.Padding(3);
+            this.editContact.Size = new System.Drawing.Size(584, 222);
+            this.editContact.TabIndex = 28;
             // 
             // Main
             // 
@@ -269,11 +264,10 @@
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem1;
         private System.Windows.Forms.Panel AppPanel;
         private System.Windows.Forms.Panel MenuPanel;
-        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private EditContact editContact;
         private EditLogins editLogins;
-        private EditSmartPasteBinds editSmartPasteBinds1;
+        private EditSmartPasteBinds editSmartPasteBinds;
 
     }
 }

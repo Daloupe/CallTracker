@@ -19,14 +19,16 @@ namespace CallTracker.Model
         internal List<CustomerContact> Contacts { get; set; }
         [ProtoMember(3)]
         internal List<LoginsModel> Logins { get; set; }
-        //[ProtoMember(4)]
-        //internal string CurrentUser { get; set; }
+        [ProtoMember(4)]
+        internal List<GridLinksModel> GridLinks { get; set; }
 
         public DataRepository()
         {
             PasteBinds = new List<PasteBind>();
             Contacts = new List<CustomerContact>();
             Logins = new List<LoginsModel>();
+            GridLinks = new List<GridLinksModel>();
+            GridLinks.Capacity = 10;
         }
     }
 }
