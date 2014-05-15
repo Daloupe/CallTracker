@@ -24,19 +24,15 @@ namespace CallTracker.Helpers
         public HotkeyController(Main _parent)
         {
             parent = _parent;
-
+ 
             HotKeyManager.AddOrReplaceHotkey("SmartCopy", Modifiers.Win, Keys.C, OnSmartCopy);
             HotKeyManager.AddOrReplaceHotkey("SmartPaste", Modifiers.Win, Keys.V, OnSmartPaste);
             HotKeyManager.AddOrReplaceHotkey("BindSmartPaste", Modifiers.Win | Modifiers.Shift, Keys.B, OnBindSmartPaste);
 
-            HotKeyManager.AddOrReplaceHotkey("ICON", Modifiers.Shift | Modifiers.Control, Keys.D1, DataPaste);
-            HotKeyManager.AddOrReplaceHotkey("CMBS", Modifiers.Shift | Modifiers.Control, Keys.D2, DataPaste);
-            HotKeyManager.AddOrReplaceHotkey("UN", Modifiers.Shift | Modifiers.Control, Keys.Q, DataPaste);
-            HotKeyManager.AddOrReplaceHotkey("DN", Modifiers.Shift | Modifiers.Control, Keys.W, DataPaste);
-            HotKeyManager.AddOrReplaceHotkey("Name", Modifiers.Shift | Modifiers.Control, Keys.A, DataPaste);
-            HotKeyManager.AddOrReplaceHotkey("Mobile", Modifiers.Shift | Modifiers.Control, Keys.S, DataPaste);
-            HotKeyManager.AddOrReplaceHotkey("PR", Modifiers.Shift | Modifiers.Control, Keys.Z, DataPaste);
-            HotKeyManager.AddOrReplaceHotkey("Node", Modifiers.Shift | Modifiers.Control, Keys.X, DataPaste);
+            foreach (var DataPasteHotkey in DataPasteHotkeys)
+            {
+                HotKeyManager.AddOrReplaceHotkey(DataPasteHotkey.Value, Modifiers.Shift | Modifiers.Control, DataPasteHotkey.Key, DataPaste);
+            }
 
             HotKeyManager.AddOrReplaceHotkey("AutoLogin", Modifiers.Win, Keys.Oemtilde, AutoLogin);
         }
@@ -59,7 +55,6 @@ namespace CallTracker.Helpers
 
             string title = browser.Title;
             string url = browser.Url;
-
             LoginsModel query = (from   login in parent.DataStore.Logins
                                  where  title.Contains(login.Title) ||
                                         login.Url == url
@@ -74,25 +69,26 @@ namespace CallTracker.Helpers
         }
 
         // Data Paste ///////////////////////////////////////////////////////////////////////////////////////
-        private Dictionary<Keys, Func<string>> DataPasteValues = new Dictionary<Keys, Func<string>>()
+        private Dictionary<Keys, string> DataPasteHotkeys = new Dictionary<Keys, string>()
         {
-            {Keys.D1, () => parent.SelectedContact.ICON},
-            {Keys.D2, () => parent.SelectedContact.CMBS},
-            {Keys.Q , () => parent.SelectedContact.Username},
-            {Keys.W , () => parent.SelectedContact.DN},
-            {Keys.A , () => parent.SelectedContact.Name},
-            {Keys.S , () => parent.SelectedContact.Mobile},
-            {Keys.Z , () => parent.SelectedContact.Fault.PR},
-            {Keys.X , () => parent.SelectedContact.Service.Node}
+            {Keys.D1, "ICON"},
+            {Keys.D2, "CMBS"},
+            {Keys.Q , "Username"},
+            {Keys.W , "DN"},
+            {Keys.A , "Name"},
+            {Keys.S , "Mobile"},
+            {Keys.Z , "Fault.PR"},
+            {Keys.X , "Service.Node"}
         };
 
         private void DataPaste(HotkeyPressedEventArgs e)
         {
-            string dataToPaste = DataPasteValues[e.HotkeyCombination.Key].Invoke();
-            if(!String.IsNullOrEmpty(dataToPaste))
+            string dataToPaste = FollowPropertyPath(parent.SelectedContact, e.Name);
+
+            if (!String.IsNullOrEmpty(dataToPaste))
             {
                 Clipboard.SetText(dataToPaste);
-                SendKeys.SendWait("^(v)");
+                SendKeys.Send("^(v)");
             } 
         }
 
@@ -114,10 +110,9 @@ namespace CallTracker.Helpers
 
             if (query != null)
             {
-                string data = String.Empty;
-                       data = FollowPropertyPath(parent.SelectedContact, query.Data).ToString();
+                string data = FollowPropertyPath(parent.SelectedContact, query.Data);
                 if (String.IsNullOrEmpty(data) && query.AltData != null)
-                       data = FollowPropertyPath(parent.SelectedContact, query.AltData).ToString();
+                       data = FollowPropertyPath(parent.SelectedContact, query.AltData);
                 
                 if (!String.IsNullOrEmpty(data))
                     SetValueByIdOrName(element, data);
@@ -126,6 +121,7 @@ namespace CallTracker.Helpers
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
         {
+
             if (!FindActiveIEByTitle())
                 return;
 
@@ -225,7 +221,10 @@ namespace CallTracker.Helpers
 
         private bool FindActiveIEByTitle()
         {
-            string currentTitle = Regex.Split(ActiveWindow.Title(), " - Internet Explorer")[0];
+            string[] titleRegex = Regex.Split(ActiveWindow.Title(), " - Internet Explorer");
+            if(titleRegex.Length == 1)
+                titleRegex = Regex.Split(ActiveWindow.Title(), " - Windows Internet Explorer");
+            string currentTitle = titleRegex[0];
 
             if (!Browser.Exists(typeof(IE), Find.ByTitle(currentTitle)))
                 return false;
@@ -242,7 +241,7 @@ namespace CallTracker.Helpers
             return true;
         }
 
-        public static object FollowPropertyPath(object value, string path)
+        public static string FollowPropertyPath(object value, string path)
         {
             Type currentType = value.GetType();
 
@@ -252,7 +251,8 @@ namespace CallTracker.Helpers
                 value = property.GetValue(value, null);
                 currentType = property.PropertyType;
             }
-            return value;
+
+            return value.ToString();
         }
 
         public static void SetValueByIdOrName(string _element, string _data)

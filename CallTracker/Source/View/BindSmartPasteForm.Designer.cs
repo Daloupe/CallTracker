@@ -205,7 +205,7 @@
             this._Cancel.Name = "_Cancel";
             this._Cancel.Size = new System.Drawing.Size(75, 21);
             this._Cancel.TabIndex = 1;
-            this._Cancel.Text = "Delete";
+            this._Cancel.Text = "Cancel";
             this._Cancel.UseVisualStyleBackColor = true;
             this._Cancel.Click += new System.EventHandler(this._Cancel_Click);
             // 

@@ -37,17 +37,6 @@ namespace CallTracker.Model
           "ICON", "Note", "Address", "PR", "Node",
           "AVC", "CVC", "CSA", "NNI", "GSI", "Equipment"};
 
-
-        public static List<string> ContactDataStrings = new List<string>()
-        { "", "Name", "Username", "DN", "Mobile", "CMBS", 
-          "ICON", "Note", "Address", "Fault.PR", "Service.Node",
-          "Service.AVC", "Service.CVC", "Service.CSA", "Service.NNI", "Service.GSI", "Service.Equipment"};
-
-        public List<string> ContactDataStrings3 = new List<string>()
-        { "", "Name", "Username", "DN", "Mobile", "CMBS", 
-          "ICON", "Note", "Address", "Fault.PR", "Service.Node",
-          "Service.AVC", "Service.CVC", "Service.CSA", "Service.NNI", "Service.GSI", "Service.Equipment"};
-
         public static List<DataBindType> PropertyStrings = new List<DataBindType>()
             {
                 new DataBindType("Name", "Name"),
@@ -67,14 +56,6 @@ namespace CallTracker.Model
                 new DataBindType("GSI","Service.GSI"),
                 new DataBindType("Equipment","Service.Equipment"),
             };
-       
-            
-        //public static List<DataBindType> ContactDataValueStrings = new List<DataBindType>()
-        //{ 
-        //{"Name", "Name"}, {"Username","Username"},{ "DN","DN"}, {"Mobile","Mobile"}, {"CMBS","CMBS"}, 
-        //{"ICON", "ICON"}, {"Note", "Note"}, {"Address", "Address"}, {"PR", "Fault.PR"}, {"Node","Service.Node"},
-        //{"AVC","Service.AVC"}, {"CVC","Service.CVC"}, {"CSA","Service.CSA"}, {"NNI","Service.NNI"}, {"GSI","Service.GSI"}, {"Equipment","Service.Equipment"}
-        //  };
 
         [ProtoMember(1)]
         public int Id { get; set; }
@@ -103,6 +84,13 @@ namespace CallTracker.Model
 
         public CustomerContact()
         {
+            Name = String.Empty;
+            Username = String.Empty;
+            DN = String.Empty;
+            Mobile = String.Empty;
+            CMBS = String.Empty;
+            ICON = String.Empty;
+
             Address = new ContactAddress();
             Service = new ServiceModel();
             Fault = new FaultModel();

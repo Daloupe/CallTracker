@@ -82,7 +82,7 @@
     <Compile Include="Source\Helpers\HotkeyController.cs" />
     <None Include="Source\Helpers\IClosableViewModel.cs" />
     <None Include="Source\Helpers\RelayCommand.cs" />
-    <Compile Include="Source\Helpers\HotKeyManager.cs" />
+    <None Include="Source\Helpers\HotKeyManager.cs" />
     <Compile Include="Source\Helpers\SimpleEncrypt.cs" />
     <Compile Include="Source\Model\Address.cs" />
     <Compile Include="Source\Model\BookingModel.cs" />
@@ -119,6 +119,12 @@
     <Compile Include="Source\View\SettingsFormBase.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Source\View\Test.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\ViewLogins.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +158,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\SettingsFormBase.resx">
       <DependentUpon>SettingsFormBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\ViewLogins.resx">
       <DependentUpon>ViewLogins.cs</DependentUpon>

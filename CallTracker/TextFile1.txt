@@ -12,6 +12,12 @@ GridLinks
 Main GUI
  - Right Click Menu > Always on Top.
  - Double Click Menu to Collapse.
+ - Have Settings windows show in main gui, rather than their own popup.
+
+ViewSmartPasteBinds
+ - Only have System and Name in DataGrid.
+ - Data should be a listbox that you can add multiple item to, and reorder.
+	- Hotkey SmartPaste will just foreach through the list until it gets a non null.
 
 Glance GUI
  - Trafic lights available data.
@@ -24,3 +30,4 @@ Glance GUI
 	| Use a single .bin file.
  | Prevent program from opening twice.
  | Reset window location if out of monitor bounds.
+
