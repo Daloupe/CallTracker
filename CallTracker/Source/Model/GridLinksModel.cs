@@ -15,22 +15,24 @@ namespace CallTracker.Model
         [ProtoMember(1)]
         public List<GridLinksItem> GridLinkList { get; set; }
 
-        public static List<SystemItem> SystemItems = new List<SystemItem>
-        {
-            new SystemItem { System = "Google", Title = "Google"},
-            new SystemItem { System = "Yahoo", Title = "Yahoo"},
-            new SystemItem { System = "Hotmail", Title = "HotmailT"},
-            new SystemItem { System = "ICON", Title = "ICONT"},
-            new SystemItem { System = "IFMS", Title = "IFMST"},
-            new SystemItem { System = "SCAMPS", Title = "SCAMPST"},
-            new SystemItem { System = "DIMPS", Title = "DIMPST"},
-            new SystemItem { System = "Nexus", Title = "NexusT"},
-            new SystemItem { System = "MAD", Title = "MADT"},
-            new SystemItem { System = "WOBS", Title = "WobsT"}
-        };
+        public List<SystemItem> SystemItems { get; set; }
 
         public GridLinksModel()
         {
+            SystemItems = new List<SystemItem>
+            {
+                new SystemItem { System = "Google", Title = "Google"},
+                new SystemItem { System = "Yahoo", Title = "Yahoo"},
+                new SystemItem { System = "Hotmail", Title = "HotmailT"},
+                new SystemItem { System = "ICON", Title = "ICONT"},
+                new SystemItem { System = "IFMS", Title = "IFMST"},
+                new SystemItem { System = "SCAMPS", Title = "SCAMPST"},
+                new SystemItem { System = "DIMPS", Title = "DIMPST"},
+                new SystemItem { System = "Nexus", Title = "NexusT"},
+                new SystemItem { System = "MAD", Title = "MADT"},
+                new SystemItem { System = "WOBS", Title = "WobsT"}
+            };
+
             GridLinkList = new List<GridLinksItem>();
         }
 

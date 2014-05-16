@@ -22,6 +22,10 @@ namespace CallTracker.View
         public void Init(Main _parent)
         {
             loginsModelBindingSource.DataSource = _parent.DataStore.Logins;
+            this.Visible = true;
+            this.SendToBack();
+            this.Visible = false;
+            this.BringToFront();
         }
 
         private void _Done_Click(object sender, EventArgs e)

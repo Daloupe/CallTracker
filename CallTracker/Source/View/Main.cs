@@ -33,11 +33,6 @@ namespace CallTracker.View
             DataStore.Contacts.Add(new CustomerContact() { Id = DataStore.Contacts.Count });
             DataStore.GridLinks.PopulateIfEmpty();
 
-            editContact.Init(this);
-            editLogins.Init(this);
-            editSmartPasteBinds.Init(this);
-            editGridLinks.Init(this);
-
             HotKeys = new HotkeyController(this);
         }
 
@@ -60,11 +55,24 @@ namespace CallTracker.View
         {
             string key = StringCipher.Encrypt(Environment.UserName, "2point71828");
             foreach (var login in DataStore.Logins)
-                login.Password = StringCipher.Decrypt(login.Password, key);
+            {
+                if (!String.IsNullOrEmpty(login.Password))
+                    login.Password = StringCipher.Decrypt(login.Password, key);
+            }
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
+            editContact.Init(this);
+            
+            editLogins.Init(this);
+            editLogins.Tag = loginsToolStripMenuItem;
+            
+            editSmartPasteBinds.Init(this);
+            editSmartPasteBinds.Tag = smartPasteBindsToolStripMenuItem;
+            
+            editGridLinks.Init(this);
+            editGridLinks.Tag = gridLinksToolStripMenuItem;
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -74,8 +82,10 @@ namespace CallTracker.View
 
             //toolStripProgressBar1.Value = 30;
             foreach (var login in DataStore.Logins)
-                login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt(Environment.UserName, "2point71828"));
-            
+            {
+                if (!String.IsNullOrEmpty(login.Password))
+                    login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt(Environment.UserName, "2point71828"));
+            }            
             //toolStripProgressBar1.Value = 40;
             using (var file = File.Create("Data.bin"))
                 Serializer.Serialize<DataRepository>(file, DataStore);
@@ -104,30 +114,48 @@ namespace CallTracker.View
             DataStore.Contacts.Add(new CustomerContact() { Id = DataStore.Contacts.Count });
             editContact.DeleteCalls();
         }
-       
-        private UserControl VisibleSetting {get; set;}
+
+        private UserControl _VisibleSetting;
+        private UserControl VisibleSetting 
+        {
+            get
+            {
+                return _VisibleSetting;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    value.BringToFront();
+                    value.Visible = true;
+                    ((ToolStripMenuItem)value.Tag).Checked = true;
+                }
+
+                if (_VisibleSetting != null)
+                {
+                    _VisibleSetting.Visible = false;
+                    ((ToolStripMenuItem)_VisibleSetting.Tag).Checked = false;
+                }
+
+                if (value != _VisibleSetting)
+                    _VisibleSetting = value;
+                else
+                    _VisibleSetting = null;
+            }
+        }
 
         private void loginsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (VisibleSetting != null)
-                VisibleSetting.Visible = false;
-            editLogins.Visible = true;
             VisibleSetting = editLogins;    
         }
 
         private void smartPasteBindsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (VisibleSetting != null)
-                VisibleSetting.Visible = false;
-            editSmartPasteBinds.Visible = true;
             VisibleSetting = editSmartPasteBinds;
         }
 
         private void gridLinksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (VisibleSetting != null)
-                VisibleSetting.Visible = false;
-            editGridLinks.Visible = true;
             VisibleSetting = editGridLinks;
         }
 

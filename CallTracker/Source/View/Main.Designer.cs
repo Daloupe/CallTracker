@@ -42,11 +42,11 @@
             this.viewHotkeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.featuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
+            this.MenuPanel = new System.Windows.Forms.Panel();
+            this.editGridLinks = new CallTracker.View.EditGridLinks();
             this.editSmartPasteBinds = new CallTracker.View.EditSmartPasteBinds();
             this.editLogins = new CallTracker.View.EditLogins();
             this.editContact = new CallTracker.View.EditContact();
-            this.MenuPanel = new System.Windows.Forms.Panel();
-            this.editGridLinks = new CallTracker.View.EditGridLinks();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -86,20 +86,20 @@
             // DeleteCallDataMenuItem
             // 
             this.DeleteCallDataMenuItem.Name = "DeleteCallDataMenuItem";
-            this.DeleteCallDataMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.DeleteCallDataMenuItem.Size = new System.Drawing.Size(149, 22);
             this.DeleteCallDataMenuItem.Text = "Delete All Calls";
             this.DeleteCallDataMenuItem.Click += new System.EventHandler(this.DeleteCallDataMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(146, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -108,8 +108,8 @@
             this.viewToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loginsToolStripMenuItem,
-            this.smartPasteBindsToolStripMenuItem,
-            this.gridLinksToolStripMenuItem});
+            this.gridLinksToolStripMenuItem,
+            this.smartPasteBindsToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(41, 18);
             this.viewToolStripMenuItem.Text = "View";
@@ -181,6 +181,28 @@
             this.AppPanel.Size = new System.Drawing.Size(586, 241);
             this.AppPanel.TabIndex = 25;
             // 
+            // MenuPanel
+            // 
+            this.MenuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MenuPanel.Controls.Add(this._MainMenu);
+            this.MenuPanel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.MenuPanel.Location = new System.Drawing.Point(-1, -1);
+            this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.MenuPanel.Name = "MenuPanel";
+            this.MenuPanel.Size = new System.Drawing.Size(586, 20);
+            this.MenuPanel.TabIndex = 27;
+            // 
+            // editGridLinks
+            // 
+            this.editGridLinks.BackColor = System.Drawing.Color.LightSlateGray;
+            this.editGridLinks.Font = new System.Drawing.Font("Verdana", 7F);
+            this.editGridLinks.Location = new System.Drawing.Point(-1, 18);
+            this.editGridLinks.Name = "editGridLinks";
+            this.editGridLinks.Padding = new System.Windows.Forms.Padding(3);
+            this.editGridLinks.Size = new System.Drawing.Size(584, 222);
+            this.editGridLinks.TabIndex = 31;
+            this.editGridLinks.Visible = false;
+            // 
             // editSmartPasteBinds
             // 
             this.editSmartPasteBinds.BackColor = System.Drawing.Color.LightSlateGray;
@@ -212,28 +234,6 @@
             this.editContact.Padding = new System.Windows.Forms.Padding(3);
             this.editContact.Size = new System.Drawing.Size(584, 222);
             this.editContact.TabIndex = 28;
-            // 
-            // MenuPanel
-            // 
-            this.MenuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MenuPanel.Controls.Add(this._MainMenu);
-            this.MenuPanel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.MenuPanel.Location = new System.Drawing.Point(-1, -1);
-            this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.MenuPanel.Name = "MenuPanel";
-            this.MenuPanel.Size = new System.Drawing.Size(586, 20);
-            this.MenuPanel.TabIndex = 27;
-            // 
-            // editGridLinks
-            // 
-            this.editGridLinks.BackColor = System.Drawing.Color.LightSlateGray;
-            this.editGridLinks.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editGridLinks.Location = new System.Drawing.Point(-1, 18);
-            this.editGridLinks.Name = "editGridLinks";
-            this.editGridLinks.Padding = new System.Windows.Forms.Padding(3);
-            this.editGridLinks.Size = new System.Drawing.Size(584, 222);
-            this.editGridLinks.TabIndex = 31;
-            this.editGridLinks.Visible = false;
             // 
             // Main
             // 

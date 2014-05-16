@@ -47,6 +47,11 @@ namespace CallTracker.View
                                       "AltData",
                                       true,
                                       DataSourceUpdateMode.OnPropertyChanged));
+
+            this.Visible = true;
+            this.SendToBack();
+            this.Visible = false;
+            this.BringToFront();
         }
 
         private void _Done_Click(object sender, EventArgs e)

@@ -40,6 +40,12 @@ namespace CallTracker.Model
             UsernameElement = _element;
             Title = _title;
             Url = _url;
+            System = String.Empty;
+            Username = String.Empty;
+            Password = String.Empty;
+            SubmitElement = String.Empty;
+            UsernameElement = String.Empty;
+            PasswordElement = String.Empty;
             //Data = "Name";
         }
     }

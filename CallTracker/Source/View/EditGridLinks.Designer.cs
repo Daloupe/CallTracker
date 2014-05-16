@@ -101,7 +101,6 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.DataSource = this.systemItemBindingSource;
             this.comboBox1.DisplayMember = "System";
             this.comboBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -193,7 +192,6 @@
             // 
             // comboBox0
             // 
-            this.comboBox0.DataSource = this.systemItemBindingSource;
             this.comboBox0.DisplayMember = "System";
             this.comboBox0.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox0.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -232,7 +230,6 @@
             // 
             // comboBox9
             // 
-            this.comboBox9.DataSource = this.systemItemBindingSource;
             this.comboBox9.DisplayMember = "System";
             this.comboBox9.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -271,7 +268,6 @@
             // 
             // comboBox5
             // 
-            this.comboBox5.DataSource = this.systemItemBindingSource;
             this.comboBox5.DisplayMember = "System";
             this.comboBox5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -310,7 +306,6 @@
             // 
             // comboBox7
             // 
-            this.comboBox7.DataSource = this.systemItemBindingSource;
             this.comboBox7.DisplayMember = "System";
             this.comboBox7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -349,7 +344,6 @@
             // 
             // comboBox8
             // 
-            this.comboBox8.DataSource = this.systemItemBindingSource;
             this.comboBox8.DisplayMember = "System";
             this.comboBox8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -388,7 +382,6 @@
             // 
             // comboBox4
             // 
-            this.comboBox4.DataSource = this.systemItemBindingSource;
             this.comboBox4.DisplayMember = "System";
             this.comboBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -427,7 +420,6 @@
             // 
             // comboBox3
             // 
-            this.comboBox3.DataSource = this.systemItemBindingSource;
             this.comboBox3.DisplayMember = "System";
             this.comboBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -466,7 +458,6 @@
             // 
             // comboBox2
             // 
-            this.comboBox2.DataSource = this.systemItemBindingSource;
             this.comboBox2.DisplayMember = "System";
             this.comboBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
@@ -505,7 +496,6 @@
             // 
             // comboBox6
             // 
-            this.comboBox6.DataSource = this.systemItemBindingSource;
             this.comboBox6.DisplayMember = "System";
             this.comboBox6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
