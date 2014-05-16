@@ -163,7 +163,10 @@ namespace CallTracker.Helpers
             {
                 query = new PasteBind(url, title, element);
                 parent.DataStore.PasteBinds.Add(query);
+                parent.editSmartPasteBinds.pasteBindBindingSource.ResetBindings(true);
             }
+
+            parent.editSmartPasteBinds.SelectQuery(query);
 
             Main.ShowSettingsForm<BindSmartPasteForm>().UpdateFields(query);
         }

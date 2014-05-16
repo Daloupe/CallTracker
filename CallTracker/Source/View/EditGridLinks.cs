@@ -12,9 +12,8 @@ using CallTracker.Model;
 
 namespace CallTracker.View
 {
-    public partial class EditGridLinks : UserControl
+    public partial class EditGridLinks : SettingsViewBase
     {
-        private Main parent;
         BindingSource[] bs = new BindingSource[10];
 
         public EditGridLinks()
@@ -22,16 +21,16 @@ namespace CallTracker.View
             InitializeComponent();
         }
 
-        public void Init(Main _parent)
+        public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
+            base.Init(_parent, _menuItem);
 
-            parent = _parent;
-            gridLinksBindingSource.DataSource = _parent.DataStore.GridLinks.GridLinkList;
+            gridLinksBindingSource.DataSource = MainForm.DataStore.GridLinks.GridLinkList;
 
             for (var x = 0; x <10; x++)
             {
                 bs[x] = new BindingSource();
-                bs[x].DataSource = parent.DataStore.GridLinks.SystemItems;
+                bs[x].DataSource = MainForm.DataStore.GridLinks.SystemItems;
             }
 
             comboBox0.DataSource = bs[0];
@@ -63,26 +62,16 @@ namespace CallTracker.View
 
             comboBox9.DataSource = bs[9];
             comboBox9.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[9], "System", false, DataSourceUpdateMode.OnPropertyChanged));
-
-            this.Visible = true;
-            this.SendToBack();
-            this.Visible = false;
-            this.BringToFront();
         }
 
-        private void _Done_Click(object sender, EventArgs e)
+        protected override void _Done_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
+            base._Done_Click(sender, e);
         }
 
-        private void dataGridView1_Paint(object sender, PaintEventArgs e)
+        protected override void PaintBorder(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(Pens.Gainsboro,
-              e.ClipRectangle.Left,
-              e.ClipRectangle.Top,
-              e.ClipRectangle.Width - 1 ,
-              e.ClipRectangle.Height - 1);
-            base.OnPaint(e);
+            base.PaintBorder(sender, e);
         }
     }
 }

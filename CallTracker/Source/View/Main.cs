@@ -15,8 +15,9 @@ namespace CallTracker.View
 {
     public partial class Main : Form
     {
-        internal DataRepository DataStore;
         internal static CustomerContact SelectedContact { get; set; }
+
+        internal DataRepository DataStore;
         private HotkeyController HotKeys;
 
         public Main()
@@ -24,15 +25,7 @@ namespace CallTracker.View
             InitializeComponent();
 
             SetAppLocation();
-
-            if (!File.Exists("Data.bin"))
-                File.Create("Data.bin").Close();
-            using (var file = File.OpenRead("Data.bin"))
-                DataStore = Serializer.Deserialize<DataRepository>(file);
-            DecryptData();
-            DataStore.Contacts.Add(new CustomerContact() { Id = DataStore.Contacts.Count });
-            DataStore.GridLinks.PopulateIfEmpty();
-
+            DataStore = DataRepository.ReadFile();
             HotKeys = new HotkeyController(this);
         }
 
@@ -51,49 +44,21 @@ namespace CallTracker.View
             }
         }
 
-        private void DecryptData()
-        {
-            string key = StringCipher.Encrypt(Environment.UserName, "2point71828");
-            foreach (var login in DataStore.Logins)
-            {
-                if (!String.IsNullOrEmpty(login.Password))
-                    login.Password = StringCipher.Decrypt(login.Password, key);
-            }
-        }
-
         private void Main_Load(object sender, EventArgs e)
         {
             editContact.Init(this);
-            
-            editLogins.Init(this);
-            editLogins.Tag = loginsToolStripMenuItem;
-            
-            editSmartPasteBinds.Init(this);
-            editSmartPasteBinds.Tag = smartPasteBindsToolStripMenuItem;
-            
-            editGridLinks.Init(this);
-            editGridLinks.Tag = gridLinksToolStripMenuItem;
+
+            editLogins.Init(this, loginsViewMenuItem);
+            editSmartPasteBinds.Init(this, pasteBindsViewMenuItem);
+            editGridLinks.Init(this, gridLinksViewMenuItem);
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             //toolStripProgressBar1.Value = 10;
             Properties.Settings.Default.Save();
-
-            //toolStripProgressBar1.Value = 30;
-            foreach (var login in DataStore.Logins)
-            {
-                if (!String.IsNullOrEmpty(login.Password))
-                    login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt(Environment.UserName, "2point71828"));
-            }            
-            //toolStripProgressBar1.Value = 40;
-            using (var file = File.Create("Data.bin"))
-                Serializer.Serialize<DataRepository>(file, DataStore);
-            
-            //toolStripProgressBar1.Value = 70;
+            DataRepository.SaveFile(DataStore);
             HotKeys.Dispose();
-
-            //toolStripProgressBar1.Value = 90;
         }
 
         public void RemovePasteBind(PasteBind _bind)
@@ -115,48 +80,29 @@ namespace CallTracker.View
             editContact.DeleteCalls();
         }
 
-        private UserControl _VisibleSetting;
-        private UserControl VisibleSetting 
+        private SettingsViewBase _VisibleSetting;
+        public SettingsViewBase VisibleSetting 
         {
-            get
-            {
-                return _VisibleSetting;
-            }
+            get { return _VisibleSetting; }
             set
             {
                 if (value != null)
-                {
-                    value.BringToFront();
-                    value.Visible = true;
-                    ((ToolStripMenuItem)value.Tag).Checked = true;
-                }
+                    value.ShowSetting();
 
                 if (_VisibleSetting != null)
-                {
-                    _VisibleSetting.Visible = false;
-                    ((ToolStripMenuItem)_VisibleSetting.Tag).Checked = false;
-                }
+                    _VisibleSetting.HideSetting();
 
-                if (value != _VisibleSetting)
-                    _VisibleSetting = value;
-                else
+                if (_VisibleSetting == value)
                     _VisibleSetting = null;
+                else
+                    _VisibleSetting = value;
             }
         }
 
-        private void loginsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void settingMenuItem_Click(object sender, EventArgs e)
         {
-            VisibleSetting = editLogins;    
-        }
-
-        private void smartPasteBindsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            VisibleSetting = editSmartPasteBinds;
-        }
-
-        private void gridLinksToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            VisibleSetting = editGridLinks;
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            VisibleSetting = item.Tag as SettingsViewBase;
         }
 
         public static T ShowSettingsForm<T>() where T : Form, new()
@@ -171,7 +117,6 @@ namespace CallTracker.View
             {
                 findForm.First().Activate();
             }
-
             return findForm.First();
         }
 

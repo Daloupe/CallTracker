@@ -8,20 +8,33 @@ Scraper
 
 GridLinks
  | Added.
+ - Pull Systems from Login information.
  - Detect Login page and Autologin/ Detect Log in Required Page (ie Wobs).
 
 General GUI
  | Gray bordered Text Boxes. 
 
 Main GUI
- - Right Click Menu > Always on Top.
- - Double Click Menu to Collapse.
  | Have Settings windows show in main gui, rather than their own popup.
+ - Add other information: Outcome, Clearance, NIT results, Speed Test Results.
+ - Hook up affected products check boxes.
+ - Add status bar to display warnings.
+
+Silent Search
+ - Launches searches with available data in the background.
+ - Options let you specify which systems to search in.
+
+ARO GUI
+ - Create GUI with Suburb, Node, PR, Products, and Date fields.
+ - Button lives near Next Call, hotkey win-a.
+ - ARO's older than 2 days are automatically deleted.
+ - Cross check ARO nodes when a node is smart copied.
+
+ PR/SMS Templates
 
 ViewSmartPasteBinds
  | Only have System and Name in DataGrid.
  - Data should be a listbox that you can add multiple item to, and reorder.
-	- Hotkey SmartPaste will just foreach through the list until it gets a non null.
 
 Glance GUI
  - Trafic lights available data.
@@ -34,4 +47,6 @@ Glance GUI
 	| Use a single .bin file.
  | Prevent program from opening twice.
  | Reset window location if out of monitor bounds.
+ - Right Click Menu > Always on Top.
+ - Double Click Menu to Collapse.
 

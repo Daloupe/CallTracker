@@ -12,35 +12,27 @@ using CallTracker.Model;
 
 namespace CallTracker.View
 {
-    public partial class EditLogins : UserControl
+    public partial class EditLogins : SettingsViewBase
     {
         public EditLogins()
         {
             InitializeComponent();
         }
 
-        public void Init(Main _parent)
+        public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
-            loginsModelBindingSource.DataSource = _parent.DataStore.Logins;
-            this.Visible = true;
-            this.SendToBack();
-            this.Visible = false;
-            this.BringToFront();
+            base.Init(_parent, _menuItem);
+            loginsModelBindingSource.DataSource = MainForm.DataStore.Logins;
         }
 
-        private void _Done_Click(object sender, EventArgs e)
+        protected override void _Done_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
+            base._Done_Click(sender, e);
         }
 
-        private void PaintGrayBorder(object sender, PaintEventArgs e)
+        protected override void PaintBorder(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(Pens.Gainsboro,
-              e.ClipRectangle.Left,
-              e.ClipRectangle.Top,
-              e.ClipRectangle.Width - 1,
-              e.ClipRectangle.Height - 1);
-            base.OnPaint(e);
+            base.PaintBorder(sender, e);
         }
     }
 }

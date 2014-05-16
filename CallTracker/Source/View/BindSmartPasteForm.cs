@@ -47,40 +47,18 @@ namespace CallTracker.View
                                       "AltData",
                                       true,
                                       DataSourceUpdateMode.OnPropertyChanged));
-
-            //_Data.DataSource = CustomerContact.PropertyStrings;
-            //_Data.DisplayMember = "Name";
-            //_Data.ValueMember = "Path";
-            //_Data.SelectedIndex = 1;
-
-            //_Data.DataBindings.Add(new Binding(
-            //                          "SelectedValue",
-            //                          this.pasteBindBindingSource,
-            //                          "Data",
-            //                          true,
-            //                          DataSourceUpdateMode.OnPropertyChanged));
-
-            //_AltData.DataSource = CustomerContact.PropertyStrings;
-            //_AltData.BindingContext = new BindingContext();
-            //_AltData.DisplayMember = "Name";
-            //_AltData.ValueMember = "Path";
-
-            //_AltData.DataBindings.Add(new Binding(
-            //                          "SelectedValue",
-            //                          this.pasteBindBindingSource,
-            //                          "AltData",
-            //                          true,
-            //                          DataSourceUpdateMode.OnPropertyChanged));
         }
 
         private void _Cancel_Click(object sender, EventArgs e)
         {
-            parent.RemovePasteBind(((PasteBind)pasteBindBindingSource.DataSource));
+            parent.RemovePasteBind((PasteBind)pasteBindBindingSource.DataSource);
             this.Close();
         }
 
         private void _Ok_Click(object sender, EventArgs e)
         {
+            //parent.editSmartPasteBinds.dataGridView1.Invalidate();
+            //parent.editSmartPasteBinds.pasteBindBindingSource.ResetBindings(true);
             this.Close();
         }
 

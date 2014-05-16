@@ -34,19 +34,19 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.smartPasteBindsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gridLinksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loginsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridLinksViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteBindsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewHotkeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.featuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
+            this.editContact = new CallTracker.View.EditContact();
             this.MenuPanel = new System.Windows.Forms.Panel();
             this.editGridLinks = new CallTracker.View.EditGridLinks();
             this.editSmartPasteBinds = new CallTracker.View.EditSmartPasteBinds();
             this.editLogins = new CallTracker.View.EditLogins();
-            this.editContact = new CallTracker.View.EditContact();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -107,34 +107,34 @@
             // 
             this.viewToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loginsToolStripMenuItem,
-            this.gridLinksToolStripMenuItem,
-            this.smartPasteBindsToolStripMenuItem});
+            this.loginsViewMenuItem,
+            this.gridLinksViewMenuItem,
+            this.pasteBindsViewMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(41, 18);
             this.viewToolStripMenuItem.Text = "View";
             // 
-            // loginsToolStripMenuItem
+            // loginsViewMenuItem
             // 
-            this.loginsToolStripMenuItem.Name = "loginsToolStripMenuItem";
-            this.loginsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.loginsToolStripMenuItem.Text = "Logins";
-            this.loginsToolStripMenuItem.Click += new System.EventHandler(this.loginsToolStripMenuItem_Click);
+            this.loginsViewMenuItem.Name = "loginsViewMenuItem";
+            this.loginsViewMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.loginsViewMenuItem.Text = "Logins";
+            this.loginsViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
-            // smartPasteBindsToolStripMenuItem
+            // gridLinksViewMenuItem
             // 
-            this.smartPasteBindsToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.smartPasteBindsToolStripMenuItem.Name = "smartPasteBindsToolStripMenuItem";
-            this.smartPasteBindsToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.smartPasteBindsToolStripMenuItem.Text = "Smart Paste Binds";
-            this.smartPasteBindsToolStripMenuItem.Click += new System.EventHandler(this.smartPasteBindsToolStripMenuItem_Click);
+            this.gridLinksViewMenuItem.Name = "gridLinksViewMenuItem";
+            this.gridLinksViewMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.gridLinksViewMenuItem.Text = "Grid Link Binds";
+            this.gridLinksViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
-            // gridLinksToolStripMenuItem
+            // pasteBindsViewMenuItem
             // 
-            this.gridLinksToolStripMenuItem.Name = "gridLinksToolStripMenuItem";
-            this.gridLinksToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.gridLinksToolStripMenuItem.Text = "Grid Link Binds";
-            this.gridLinksToolStripMenuItem.Click += new System.EventHandler(this.gridLinksToolStripMenuItem_Click);
+            this.pasteBindsViewMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pasteBindsViewMenuItem.Name = "pasteBindsViewMenuItem";
+            this.pasteBindsViewMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.pasteBindsViewMenuItem.Text = "Smart Paste Binds";
+            this.pasteBindsViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
             // quitToolStripMenuItem1
             // 
@@ -170,16 +170,26 @@
             // AppPanel
             // 
             this.AppPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AppPanel.Controls.Add(this.editContact);
+            this.AppPanel.Controls.Add(this.MenuPanel);
             this.AppPanel.Controls.Add(this.editGridLinks);
             this.AppPanel.Controls.Add(this.editSmartPasteBinds);
             this.AppPanel.Controls.Add(this.editLogins);
-            this.AppPanel.Controls.Add(this.editContact);
-            this.AppPanel.Controls.Add(this.MenuPanel);
             this.AppPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AppPanel.Location = new System.Drawing.Point(0, 0);
             this.AppPanel.Name = "AppPanel";
             this.AppPanel.Size = new System.Drawing.Size(586, 241);
             this.AppPanel.TabIndex = 25;
+            // 
+            // editContact
+            // 
+            this.editContact.Font = new System.Drawing.Font("Verdana", 7F);
+            this.editContact.Location = new System.Drawing.Point(0, 18);
+            this.editContact.Margin = new System.Windows.Forms.Padding(0);
+            this.editContact.Name = "editContact";
+            this.editContact.Padding = new System.Windows.Forms.Padding(3);
+            this.editContact.Size = new System.Drawing.Size(584, 222);
+            this.editContact.TabIndex = 28;
             // 
             // MenuPanel
             // 
@@ -225,16 +235,6 @@
             this.editLogins.TabIndex = 29;
             this.editLogins.Visible = false;
             // 
-            // editContact
-            // 
-            this.editContact.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editContact.Location = new System.Drawing.Point(0, 18);
-            this.editContact.Margin = new System.Windows.Forms.Padding(0);
-            this.editContact.Name = "editContact";
-            this.editContact.Padding = new System.Windows.Forms.Padding(3);
-            this.editContact.Size = new System.Drawing.Size(584, 222);
-            this.editContact.TabIndex = 28;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -268,9 +268,9 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem smartPasteBindsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loginsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gridLinksToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteBindsViewMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loginsViewMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gridLinksViewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewHotkeysToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem featuresToolStripMenuItem;
@@ -281,8 +281,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private EditContact editContact;
         private EditLogins editLogins;
-        private EditSmartPasteBinds editSmartPasteBinds;
         private EditGridLinks editGridLinks;
+        public EditSmartPasteBinds editSmartPasteBinds;
 
     }
 }

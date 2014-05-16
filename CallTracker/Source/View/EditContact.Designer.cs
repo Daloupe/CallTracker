@@ -38,23 +38,15 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new BorderedTextBox();
-            this.textBox2 = new BorderedTextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.NbnPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox5 = new BorderedTextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox6 = new BorderedTextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox7 = new BorderedTextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox8 = new BorderedTextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.textBox3 = new BorderedTextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox4 = new BorderedTextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -66,19 +58,12 @@
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
-            this._Icon = new BorderedTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this._Cmbs = new BorderedTextBox();
             this._UnLabel = new System.Windows.Forms.Label();
-            this._Username = new BorderedTextBox();
             this._DnLabel = new System.Windows.Forms.Label();
-            this._Dn = new BorderedTextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this._Name = new BorderedTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this._Mobile = new BorderedTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this._Address = new BorderedTextBox();
             this._Note = new System.Windows.Forms.TextBox();
             this.ServiceTypePanel = new System.Windows.Forms.FlowLayoutPanel();
             this.checkBox7 = new System.Windows.Forms.CheckBox();
@@ -89,11 +74,26 @@
             this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this._Icon = new CallTracker.View.BorderedTextBox();
             this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._Cmbs = new CallTracker.View.BorderedTextBox();
+            this._Username = new CallTracker.View.BorderedTextBox();
+            this._Dn = new CallTracker.View.BorderedTextBox();
+            this._Name = new CallTracker.View.BorderedTextBox();
+            this._Mobile = new CallTracker.View.BorderedTextBox();
+            this._Address = new CallTracker.View.BorderedTextBox();
             this.contactAddressBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contactsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox1 = new CallTracker.View.BorderedTextBox();
             this.faultModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox2 = new CallTracker.View.BorderedTextBox();
             this.customerServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox5 = new CallTracker.View.BorderedTextBox();
+            this.textBox6 = new CallTracker.View.BorderedTextBox();
+            this.textBox7 = new CallTracker.View.BorderedTextBox();
+            this.textBox8 = new CallTracker.View.BorderedTextBox();
+            this.textBox3 = new CallTracker.View.BorderedTextBox();
+            this.textBox4 = new CallTracker.View.BorderedTextBox();
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -248,30 +248,6 @@
             this.label6.TabIndex = 4;
             this.label6.Text = "PR:";
             // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox1.Location = new System.Drawing.Point(38, 125);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox1.Size = new System.Drawing.Size(71, 19);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox2
-            // 
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox2.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox2.Location = new System.Drawing.Point(39, 150);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox2.Size = new System.Drawing.Size(70, 19);
-            this.textBox2.TabIndex = 10;
-            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // comboBox1
             // 
             this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.customerServiceBindingSource, "Equipment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -329,18 +305,6 @@
             this.label10.TabIndex = 4;
             this.label10.Text = "AVC:";
             // 
-            // textBox5
-            // 
-            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "AVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox5.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox5.Location = new System.Drawing.Point(39, 6);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox5.Size = new System.Drawing.Size(128, 19);
-            this.textBox5.TabIndex = 14;
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // label11
             // 
             this.label11.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -351,18 +315,6 @@
             this.label11.Size = new System.Drawing.Size(33, 17);
             this.label11.TabIndex = 15;
             this.label11.Text = "CSA:";
-            // 
-            // textBox6
-            // 
-            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "CSA", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox6.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox6.Location = new System.Drawing.Point(39, 31);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox6.Size = new System.Drawing.Size(128, 19);
-            this.textBox6.TabIndex = 15;
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label12
             // 
@@ -375,18 +327,6 @@
             this.label12.TabIndex = 17;
             this.label12.Text = "CVC:";
             // 
-            // textBox7
-            // 
-            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox7.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "CVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox7.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox7.Location = new System.Drawing.Point(39, 56);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox7.Size = new System.Drawing.Size(128, 19);
-            this.textBox7.TabIndex = 16;
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -397,18 +337,6 @@
             this.label13.Size = new System.Drawing.Size(33, 17);
             this.label13.TabIndex = 19;
             this.label13.Text = "NNI:";
-            // 
-            // textBox8
-            // 
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox8.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "NNI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox8.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox8.Location = new System.Drawing.Point(39, 81);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox8.Size = new System.Drawing.Size(128, 19);
-            this.textBox8.TabIndex = 17;
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
             // 
@@ -421,18 +349,6 @@
             this.label9.TabIndex = 21;
             this.label9.Text = "INC:";
             // 
-            // textBox3
-            // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "INC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox3.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox3.Location = new System.Drawing.Point(39, 106);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox3.Size = new System.Drawing.Size(128, 19);
-            this.textBox3.TabIndex = 18;
-            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // label14
             // 
             this.label14.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -443,17 +359,6 @@
             this.label14.Size = new System.Drawing.Size(33, 17);
             this.label14.TabIndex = 23;
             this.label14.Text = "Bras:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox4.Location = new System.Drawing.Point(39, 131);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox4.Size = new System.Drawing.Size(128, 19);
-            this.textBox4.TabIndex = 19;
-            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // flowLayoutPanel2
             // 
@@ -561,6 +466,7 @@
             this.bindingNavigatorAddNewItem.Text = "Next Call";
             this.bindingNavigatorAddNewItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bindingNavigatorAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -600,19 +506,6 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "ICON:";
             // 
-            // _Icon
-            // 
-            this._Icon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Icon.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "ICON", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Icon.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Icon.Location = new System.Drawing.Point(57, 6);
-            this._Icon.Name = "_Icon";
-            this._Icon.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Icon.Size = new System.Drawing.Size(133, 19);
-            this._Icon.TabIndex = 1;
-            this._Icon.Text = "12345678912345";
-            this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -623,19 +516,6 @@
             this.label1.Size = new System.Drawing.Size(42, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "CMBS:";
-            // 
-            // _Cmbs
-            // 
-            this._Cmbs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Cmbs.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "CMBS", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Cmbs.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Cmbs.Location = new System.Drawing.Point(238, 6);
-            this._Cmbs.Name = "_Cmbs";
-            this._Cmbs.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Cmbs.Size = new System.Drawing.Size(84, 19);
-            this._Cmbs.TabIndex = 2;
-            this._Cmbs.Text = "12345678";
-            this._Cmbs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // _UnLabel
             // 
@@ -648,18 +528,6 @@
             this._UnLabel.TabIndex = 2;
             this._UnLabel.Text = "UN:";
             // 
-            // _Username
-            // 
-            this._Username.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Username.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Username", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Username.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Username.Location = new System.Drawing.Point(57, 31);
-            this._Username.Name = "_Username";
-            this._Username.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Username.Size = new System.Drawing.Size(133, 19);
-            this._Username.TabIndex = 3;
-            this._Username.Text = "ramachandra.yello16";
-            // 
             // _DnLabel
             // 
             this._DnLabel.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -670,19 +538,6 @@
             this._DnLabel.Size = new System.Drawing.Size(42, 17);
             this._DnLabel.TabIndex = 0;
             this._DnLabel.Text = "DN:";
-            // 
-            // _Dn
-            // 
-            this._Dn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Dn.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "DN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Dn.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Dn.Location = new System.Drawing.Point(238, 31);
-            this._Dn.Name = "_Dn";
-            this._Dn.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Dn.Size = new System.Drawing.Size(84, 19);
-            this._Dn.TabIndex = 4;
-            this._Dn.Text = "0294813386";
-            this._Dn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label3
             // 
@@ -695,17 +550,6 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Name:";
             // 
-            // _Name
-            // 
-            this._Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Name.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Name.Location = new System.Drawing.Point(57, 56);
-            this._Name.Name = "_Name";
-            this._Name.Size = new System.Drawing.Size(133, 19);
-            this._Name.TabIndex = 5;
-            this._Name.Text = "Ramachandran Yelloduba";
-            // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -717,19 +561,6 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Mobile:";
             // 
-            // _Mobile
-            // 
-            this._Mobile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Mobile.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Mobile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Mobile.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Mobile.Location = new System.Drawing.Point(238, 56);
-            this._Mobile.Name = "_Mobile";
-            this._Mobile.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Mobile.Size = new System.Drawing.Size(84, 19);
-            this._Mobile.TabIndex = 6;
-            this._Mobile.Text = "0402758780";
-            this._Mobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -740,18 +571,6 @@
             this.label5.Size = new System.Drawing.Size(51, 17);
             this.label5.TabIndex = 12;
             this.label5.Text = "Address:";
-            // 
-            // _Address
-            // 
-            this._Address.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Address.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contactAddressBindingSource, "Address", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Address.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Address.Location = new System.Drawing.Point(57, 81);
-            this._Address.Name = "_Address";
-            this._Address.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Address.Size = new System.Drawing.Size(265, 19);
-            this._Address.TabIndex = 7;
-            this._Address.Text = "16 everterrace st";
             // 
             // _Note
             // 
@@ -889,10 +708,104 @@
             this.MainPanel.TabIndex = 30;
             this.MainPanel.WrapContents = false;
             // 
+            // _Icon
+            // 
+            this._Icon.BorderColor = System.Drawing.Color.Gray;
+            this._Icon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Icon.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "ICON", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Icon.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Icon.Location = new System.Drawing.Point(57, 6);
+            this._Icon.Name = "_Icon";
+            this._Icon.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Icon.Size = new System.Drawing.Size(133, 19);
+            this._Icon.TabIndex = 1;
+            this._Icon.Text = "12345678912345";
+            this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // customerContactsBindingSource
             // 
             this.customerContactsBindingSource.AllowNew = true;
             this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
+            // _Cmbs
+            // 
+            this._Cmbs.BorderColor = System.Drawing.Color.Gray;
+            this._Cmbs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Cmbs.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "CMBS", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Cmbs.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Cmbs.Location = new System.Drawing.Point(238, 6);
+            this._Cmbs.Name = "_Cmbs";
+            this._Cmbs.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Cmbs.Size = new System.Drawing.Size(84, 19);
+            this._Cmbs.TabIndex = 2;
+            this._Cmbs.Text = "12345678";
+            this._Cmbs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // _Username
+            // 
+            this._Username.BorderColor = System.Drawing.Color.Gray;
+            this._Username.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Username.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Username", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Username.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Username.Location = new System.Drawing.Point(57, 31);
+            this._Username.Name = "_Username";
+            this._Username.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Username.Size = new System.Drawing.Size(133, 19);
+            this._Username.TabIndex = 3;
+            this._Username.Text = "ramachandra.yello16";
+            // 
+            // _Dn
+            // 
+            this._Dn.BorderColor = System.Drawing.Color.Gray;
+            this._Dn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Dn.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "DN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Dn.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Dn.Location = new System.Drawing.Point(238, 31);
+            this._Dn.Name = "_Dn";
+            this._Dn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Dn.Size = new System.Drawing.Size(84, 19);
+            this._Dn.TabIndex = 4;
+            this._Dn.Text = "0294813386";
+            this._Dn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // _Name
+            // 
+            this._Name.BorderColor = System.Drawing.Color.Gray;
+            this._Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Name.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Name.Location = new System.Drawing.Point(57, 56);
+            this._Name.Name = "_Name";
+            this._Name.Size = new System.Drawing.Size(133, 19);
+            this._Name.TabIndex = 5;
+            this._Name.Text = "Ramachandran Yelloduba";
+            // 
+            // _Mobile
+            // 
+            this._Mobile.BorderColor = System.Drawing.Color.Gray;
+            this._Mobile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Mobile.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Mobile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Mobile.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Mobile.Location = new System.Drawing.Point(238, 56);
+            this._Mobile.Name = "_Mobile";
+            this._Mobile.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Mobile.Size = new System.Drawing.Size(84, 19);
+            this._Mobile.TabIndex = 6;
+            this._Mobile.Text = "0402758780";
+            this._Mobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // _Address
+            // 
+            this._Address.BorderColor = System.Drawing.Color.Gray;
+            this._Address.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Address.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.contactAddressBindingSource, "Address", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Address.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Address.Location = new System.Drawing.Point(57, 81);
+            this._Address.Name = "_Address";
+            this._Address.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Address.Size = new System.Drawing.Size(265, 19);
+            this._Address.TabIndex = 7;
+            this._Address.Text = "16 everterrace st";
             // 
             // contactAddressBindingSource
             // 
@@ -903,13 +816,117 @@
             this.contactsListBindingSource.AllowNew = true;
             this.contactsListBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
+            // textBox1
+            // 
+            this.textBox1.BorderColor = System.Drawing.Color.Gray;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.textBox1.Location = new System.Drawing.Point(38, 125);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBox1.Size = new System.Drawing.Size(71, 19);
+            this.textBox1.TabIndex = 9;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // faultModelBindingSource
             // 
             this.faultModelBindingSource.DataSource = typeof(CallTracker.Model.FaultModel);
             // 
+            // textBox2
+            // 
+            this.textBox2.BorderColor = System.Drawing.Color.Gray;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox2.Font = new System.Drawing.Font("Verdana", 7F);
+            this.textBox2.Location = new System.Drawing.Point(39, 150);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBox2.Size = new System.Drawing.Size(70, 19);
+            this.textBox2.TabIndex = 10;
+            this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // customerServiceBindingSource
             // 
             this.customerServiceBindingSource.DataSource = typeof(CallTracker.Model.ServiceModel);
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox5.BorderColor = System.Drawing.Color.Gray;
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox5.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "AVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox5.Font = new System.Drawing.Font("Verdana", 7F);
+            this.textBox5.Location = new System.Drawing.Point(39, 6);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBox5.Size = new System.Drawing.Size(128, 19);
+            this.textBox5.TabIndex = 14;
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox6
+            // 
+            this.textBox6.BorderColor = System.Drawing.Color.Gray;
+            this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox6.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "CSA", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox6.Font = new System.Drawing.Font("Verdana", 7F);
+            this.textBox6.Location = new System.Drawing.Point(39, 31);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBox6.Size = new System.Drawing.Size(128, 19);
+            this.textBox6.TabIndex = 15;
+            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox7
+            // 
+            this.textBox7.BorderColor = System.Drawing.Color.Gray;
+            this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox7.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "CVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox7.Font = new System.Drawing.Font("Verdana", 7F);
+            this.textBox7.Location = new System.Drawing.Point(39, 56);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBox7.Size = new System.Drawing.Size(128, 19);
+            this.textBox7.TabIndex = 16;
+            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox8
+            // 
+            this.textBox8.BorderColor = System.Drawing.Color.Gray;
+            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox8.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "NNI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox8.Font = new System.Drawing.Font("Verdana", 7F);
+            this.textBox8.Location = new System.Drawing.Point(39, 81);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBox8.Size = new System.Drawing.Size(128, 19);
+            this.textBox8.TabIndex = 17;
+            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox3
+            // 
+            this.textBox3.BorderColor = System.Drawing.Color.Gray;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "INC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox3.Font = new System.Drawing.Font("Verdana", 7F);
+            this.textBox3.Location = new System.Drawing.Point(39, 106);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBox3.Size = new System.Drawing.Size(128, 19);
+            this.textBox3.TabIndex = 18;
+            this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // textBox4
+            // 
+            this.textBox4.BorderColor = System.Drawing.Color.Gray;
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox4.Font = new System.Drawing.Font("Verdana", 7F);
+            this.textBox4.Location = new System.Drawing.Point(39, 131);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.textBox4.Size = new System.Drawing.Size(128, 19);
+            this.textBox4.TabIndex = 19;
+            this.textBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // EditContact
             // 

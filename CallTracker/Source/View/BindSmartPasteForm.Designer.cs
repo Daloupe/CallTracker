@@ -98,7 +98,7 @@ namespace CallTracker.View
             // 
             this._System.BorderColor = System.Drawing.Color.Gray;
             this._System.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._System.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "System", true));
+            this._System.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "System", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._System.Location = new System.Drawing.Point(64, 6);
             this._System.Name = "_System";
             this._System.Size = new System.Drawing.Size(161, 19);
@@ -122,7 +122,7 @@ namespace CallTracker.View
             // 
             this.textBox1.BorderColor = System.Drawing.Color.Gray;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Name", true));
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox1.Location = new System.Drawing.Point(64, 31);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(161, 19);
@@ -142,7 +142,7 @@ namespace CallTracker.View
             // 
             this._Title.BorderColor = System.Drawing.Color.Gray;
             this._Title.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Title.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Title", true));
+            this._Title.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Title", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Title.Dock = System.Windows.Forms.DockStyle.Right;
             this._Title.Location = new System.Drawing.Point(64, 56);
             this._Title.Name = "_Title";
@@ -163,7 +163,7 @@ namespace CallTracker.View
             // 
             this._Element.BorderColor = System.Drawing.Color.Gray;
             this._Element.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Element.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Element", true));
+            this._Element.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Element", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Element.Dock = System.Windows.Forms.DockStyle.Right;
             this._Element.Location = new System.Drawing.Point(64, 81);
             this._Element.Name = "_Element";
@@ -184,7 +184,7 @@ namespace CallTracker.View
             // 
             this._Url.BorderColor = System.Drawing.Color.Gray;
             this._Url.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Url.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Url", true));
+            this._Url.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Url.Dock = System.Windows.Forms.DockStyle.Right;
             this._Url.Location = new System.Drawing.Point(64, 106);
             this._Url.Multiline = true;

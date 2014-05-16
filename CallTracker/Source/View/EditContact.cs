@@ -14,7 +14,6 @@ namespace CallTracker.View
     public partial class EditContact : UserControl
     {
         internal DataRepository DataStore;
-        //internal CustomerContact SelectedContact { get; set; }
 
         public EditContact()
         {
@@ -82,9 +81,10 @@ namespace CallTracker.View
             splitContainer2.Focus();
         }
 
+        // Misc ////////////////////////////////////////////////////////////////////////////////
         private void PaintGrayBorder(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(Pens.Gainsboro,
+            e.Graphics.DrawRectangle(Pens.WhiteSmoke,
               e.ClipRectangle.Left,
               e.ClipRectangle.Top,
               e.ClipRectangle.Width - 1,

@@ -1,6 +1,6 @@
 ﻿namespace CallTracker.View
 {
-    partial class EditSmartPasteBinds
+    partial class EditSmartPasteBinds : SettingsViewBase
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,30 +29,42 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.label6 = new System.Windows.Forms.Label();
             this._Done = new System.Windows.Forms.Button();
-            this.textBox1 = new CallTracker.View.BorderedTextBox();
-            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this._Element = new CallTracker.View.BorderedTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new CallTracker.View.BorderedTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new CallTracker.View.BorderedTextBox();
             this.label4 = new System.Windows.Forms.Label();
             this._Data = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this._AltData = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label6.Location = new System.Drawing.Point(5, 199);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(228, 18);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "//Edit Smart Paste Binds";
             // 
             // _Done
             // 
@@ -67,24 +79,8 @@
             this._Done.UseVisualStyleBackColor = false;
             this._Done.Click += new System.EventHandler(this._Done_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.BorderColor = System.Drawing.Color.Gray;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Title", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox1.Location = new System.Drawing.Point(6, 56);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(190, 19);
-            this.textBox1.TabIndex = 7;
-            // 
-            // pasteBindBindingSource
-            // 
-            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
-            // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.splitContainer1.IsSplitterFixed = true;
@@ -99,8 +95,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(579, 191);
-            this.splitContainer1.SplitterDistance = 374;
+            this.splitContainer1.Size = new System.Drawing.Size(578, 191);
+            this.splitContainer1.SplitterDistance = 373;
             this.splitContainer1.TabIndex = 11;
             // 
             // dataGridView1
@@ -117,14 +113,15 @@
             this.systemDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.pasteBindBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(374, 191);
+            this.dataGridView1.ShowCellToolTips = false;
+            this.dataGridView1.Size = new System.Drawing.Size(373, 191);
             this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.dataGridView1_Paint);
+            this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
             // 
             // systemDataGridViewTextBoxColumn
             // 
@@ -137,6 +134,10 @@
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Bind Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // pasteBindBindingSource
+            // 
+            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
             // 
             // flowLayoutPanel1
             // 
@@ -157,7 +158,7 @@
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(201, 191);
             this.flowLayoutPanel1.TabIndex = 8;
-            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.dataGridView1_Paint);
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
             // 
             // label2
             // 
@@ -188,6 +189,17 @@
             this.label1.Size = new System.Drawing.Size(190, 17);
             this.label1.TabIndex = 8;
             this.label1.Text = "Title:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderColor = System.Drawing.Color.Gray;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Title", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox1.Location = new System.Drawing.Point(6, 56);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(190, 19);
+            this.textBox1.TabIndex = 7;
             // 
             // label3
             // 
@@ -253,20 +265,22 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this._Done);
+            this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "EditSmartPasteBinds";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(585, 222);
-            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).EndInit();
+            this.Size = new System.Drawing.Size(584, 222);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -275,7 +289,6 @@
         private System.Windows.Forms.Button _Done;
         private BorderedTextBox textBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Label label2;
         private BorderedTextBox _Element;
@@ -283,11 +296,13 @@
         private System.Windows.Forms.Label label3;
         private BorderedTextBox textBox2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.BindingSource pasteBindBindingSource;
         private System.Windows.Forms.ComboBox _Data;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox _AltData;
         private System.Windows.Forms.DataGridViewTextBoxColumn systemDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label6;
+        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.BindingSource pasteBindBindingSource;
     }
 }

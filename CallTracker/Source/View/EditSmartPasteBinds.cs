@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -12,7 +13,7 @@ using CallTracker.Model;
 
 namespace CallTracker.View
 {
-    public partial class EditSmartPasteBinds : UserControl
+    public partial class EditSmartPasteBinds : SettingsViewBase
     {
         private BindingSource source1 = new BindingSource();
         private BindingSource source2 = new BindingSource();
@@ -20,11 +21,14 @@ namespace CallTracker.View
         public EditSmartPasteBinds()
         {
             InitializeComponent();
+
         }
 
-        public void Init(Main _parent)
+        public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
-            pasteBindBindingSource.DataSource = _parent.DataStore.PasteBinds;
+            base.Init(_parent, _menuItem);
+
+            pasteBindBindingSource.DataSource = MainForm.DataStore.PasteBinds;
 
             source1.DataSource = CustomerContact.PropertyStrings;
             _Data.DataSource = source1;
@@ -46,27 +50,21 @@ namespace CallTracker.View
                                       this.pasteBindBindingSource,
                                       "AltData",
                                       true,
-                                      DataSourceUpdateMode.OnPropertyChanged));
-
-            this.Visible = true;
-            this.SendToBack();
-            this.Visible = false;
-            this.BringToFront();
+                                      DataSourceUpdateMode.OnPropertyChanged));       
+        }
+        public void SelectQuery(PasteBind _query)
+        {
+            pasteBindBindingSource.Position = pasteBindBindingSource.IndexOf(_query);
         }
 
-        private void _Done_Click(object sender, EventArgs e)
+        protected override void _Done_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
+            base._Done_Click(sender, e);
         }
 
-        private void dataGridView1_Paint(object sender, PaintEventArgs e)
+        protected override void PaintBorder(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(Pens.Gainsboro,
-              e.ClipRectangle.Left,
-              e.ClipRectangle.Top,
-              e.ClipRectangle.Width - 1 ,
-              e.ClipRectangle.Height - 1);
-            base.OnPaint(e);
+            base.PaintBorder(sender, e);
         }
     }
 }

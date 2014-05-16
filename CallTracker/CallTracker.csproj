@@ -76,6 +76,36 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Source\View\Archive\FMaskOverlay.cs">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Source\View\Archive\FMaskOverlay.Designer.cs">
+      <DependentUpon>FMaskOverlay.cs</DependentUpon>
+    </None>
+    <None Include="Source\View\Archive\FMask.cs">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Source\View\Archive\FMask.Designer.cs">
+      <DependentUpon>FMask.cs</DependentUpon>
+    </None>
+    <Compile Include="Source\View\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\SettingsViewBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <EmbeddedResource Include="Source\View\Archive\FMaskOverlay.resx">
+      <DependentUpon>FMaskOverlay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\SettingsViewBase.resx">
+      <DependentUpon>SettingsViewBase.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\DataSources\CallTracker.Model.ContactAddress.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.CustomerContact.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.FaultModel.datasource" />
@@ -85,7 +115,6 @@
     <None Include="Properties\DataSources\CallTracker.Model.PasteBind.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.ServiceModel.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.SystemItem.datasource" />
-    <None Include="Properties\DataSources\CallTracker.View.Main.datasource" />
     <None Include="Source\Helpers\Archive\Converters.cs" />
     <None Include="Source\Helpers\Archive\DialogCloser.cs" />
     <Compile Include="Source\Helpers\GetActiveWindow.cs" />
@@ -192,12 +221,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
-    <Content Include="TextFile1.txt" />
+    <Content Include="Resources\bindingNavigatorDeleteItem.Image.png" />
+    <None Include="Resources\help.jpg" />
+    <Content Include="Resources\helpToolStripButton.Image.png" />
+    <Content Include="ToDo.txt" />
     <None Include="Resources\Close.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Source\View\Archive\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.23.2\build\Fody.targets" Condition="Exists('..\packages\Fody.1.23.2\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -30,29 +30,32 @@
         {
             this.components = new System.ComponentModel.Container();
             this._Done = new System.Windows.Forms.Button();
-            this.textBox1 = new BorderedTextBox();
+            this.textBox1 = new CallTracker.View.BorderedTextBox();
+            this.loginsModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
-            this._Element = new BorderedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new BorderedTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new BorderedTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textBox4 = new BorderedTextBox();
             this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loginsModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this._Element = new CallTracker.View.BorderedTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new CallTracker.View.BorderedTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox3 = new CallTracker.View.BorderedTextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBox4 = new CallTracker.View.BorderedTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this._help = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.loginsModelBindingSource)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loginsModelBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._help)).BeginInit();
             this.SuspendLayout();
             // 
             // _Done
@@ -70,13 +73,18 @@
             // 
             // textBox1
             // 
+            this.textBox1.BorderColor = System.Drawing.Color.Gray;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.loginsModelBindingSource, "Title", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox1.Location = new System.Drawing.Point(6, 58);
+            this.textBox1.Location = new System.Drawing.Point(6, 56);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(190, 19);
             this.textBox1.TabIndex = 7;
+            // 
+            // loginsModelBindingSource
+            // 
+            this.loginsModelBindingSource.DataSource = typeof(CallTracker.Model.LoginsModel);
             // 
             // splitContainer1
             // 
@@ -94,8 +102,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
-            this.splitContainer1.Size = new System.Drawing.Size(579, 191);
-            this.splitContainer1.SplitterDistance = 374;
+            this.splitContainer1.Size = new System.Drawing.Size(578, 191);
+            this.splitContainer1.SplitterDistance = 373;
             this.splitContainer1.TabIndex = 11;
             // 
             // dataGridView1
@@ -118,9 +126,27 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(374, 191);
+            this.dataGridView1.Size = new System.Drawing.Size(373, 191);
             this.dataGridView1.TabIndex = 1;
-            this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
+            this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
+            // 
+            // systemDataGridViewTextBoxColumn
+            // 
+            this.systemDataGridViewTextBoxColumn.DataPropertyName = "System";
+            this.systemDataGridViewTextBoxColumn.HeaderText = "System";
+            this.systemDataGridViewTextBoxColumn.Name = "systemDataGridViewTextBoxColumn";
+            // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
+            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
             // 
             // flowLayoutPanel1
             // 
@@ -141,22 +167,23 @@
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(201, 191);
             this.flowLayoutPanel1.TabIndex = 8;
-            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
+            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
             // 
             // label2
             // 
             this.label2.Location = new System.Drawing.Point(6, 3);
             this.label2.Name = "label2";
             this.label2.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label2.Size = new System.Drawing.Size(190, 18);
+            this.label2.Size = new System.Drawing.Size(190, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "URL:";
             // 
             // _Element
             // 
+            this._Element.BorderColor = System.Drawing.Color.Gray;
             this._Element.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._Element.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.loginsModelBindingSource, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Element.Location = new System.Drawing.Point(6, 21);
+            this._Element.Location = new System.Drawing.Point(6, 20);
             this._Element.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._Element.Name = "_Element";
             this._Element.Size = new System.Drawing.Size(190, 19);
@@ -164,27 +191,28 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(6, 40);
+            this.label1.Location = new System.Drawing.Point(6, 39);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label1.Size = new System.Drawing.Size(190, 18);
+            this.label1.Size = new System.Drawing.Size(190, 17);
             this.label1.TabIndex = 8;
             this.label1.Text = "Title:";
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(6, 77);
+            this.label3.Location = new System.Drawing.Point(6, 75);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label3.Size = new System.Drawing.Size(190, 18);
+            this.label3.Size = new System.Drawing.Size(190, 17);
             this.label3.TabIndex = 10;
             this.label3.Text = "UN Element:";
             // 
             // textBox2
             // 
+            this.textBox2.BorderColor = System.Drawing.Color.Gray;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.loginsModelBindingSource, "UsernameElement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox2.Location = new System.Drawing.Point(6, 95);
+            this.textBox2.Location = new System.Drawing.Point(6, 92);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(190, 19);
@@ -192,18 +220,19 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(6, 114);
+            this.label4.Location = new System.Drawing.Point(6, 111);
             this.label4.Name = "label4";
             this.label4.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label4.Size = new System.Drawing.Size(190, 18);
+            this.label4.Size = new System.Drawing.Size(190, 17);
             this.label4.TabIndex = 12;
             this.label4.Text = "PW Element:";
             // 
             // textBox3
             // 
+            this.textBox3.BorderColor = System.Drawing.Color.Gray;
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.loginsModelBindingSource, "PasswordElement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox3.Location = new System.Drawing.Point(6, 132);
+            this.textBox3.Location = new System.Drawing.Point(6, 128);
             this.textBox3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(190, 19);
@@ -211,64 +240,69 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(6, 151);
+            this.label5.Location = new System.Drawing.Point(6, 147);
             this.label5.Name = "label5";
             this.label5.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label5.Size = new System.Drawing.Size(190, 18);
+            this.label5.Size = new System.Drawing.Size(190, 17);
             this.label5.TabIndex = 14;
             this.label5.Text = "Submit Element:";
             // 
             // textBox4
             // 
+            this.textBox4.BorderColor = System.Drawing.Color.Gray;
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.loginsModelBindingSource, "SubmitElement", true));
-            this.textBox4.Location = new System.Drawing.Point(6, 169);
+            this.textBox4.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.loginsModelBindingSource, "SubmitElement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox4.Location = new System.Drawing.Point(6, 164);
             this.textBox4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(190, 19);
             this.textBox4.TabIndex = 13;
             // 
-            // systemDataGridViewTextBoxColumn
+            // label6
             // 
-            this.systemDataGridViewTextBoxColumn.DataPropertyName = "System";
-            this.systemDataGridViewTextBoxColumn.HeaderText = "System";
-            this.systemDataGridViewTextBoxColumn.Name = "systemDataGridViewTextBoxColumn";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label6.Location = new System.Drawing.Point(23, 200);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(124, 18);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "//Edit Logins";
             // 
-            // usernameDataGridViewTextBoxColumn
+            // _help
             // 
-            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
-            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
-            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            // 
-            // loginsModelBindingSource
-            // 
-            this.loginsModelBindingSource.DataSource = typeof(CallTracker.Model.LoginsModel);
+            this._help.BackColor = System.Drawing.Color.Transparent;
+            this._help.BackgroundImage = global::CallTracker.Properties.Resources.helpToolStripButton_Image;
+            this._help.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this._help.Location = new System.Drawing.Point(3, 199);
+            this._help.Name = "_help";
+            this._help.Size = new System.Drawing.Size(20, 20);
+            this._help.TabIndex = 14;
+            this._help.TabStop = false;
             // 
             // EditLogins
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
+            this.Controls.Add(this._help);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this._Done);
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "EditLogins";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(585, 222);
+            this.Size = new System.Drawing.Size(584, 222);
+            ((System.ComponentModel.ISupportInitialize)(this.loginsModelBindingSource)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loginsModelBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._help)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -292,5 +326,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn systemDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox _help;
     }
 }

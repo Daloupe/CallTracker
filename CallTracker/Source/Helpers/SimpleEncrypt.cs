@@ -18,6 +18,9 @@ namespace CallTracker.Helpers
 
         public static string Encrypt(string plainText, string passPhrase)
         {
+            if (String.IsNullOrEmpty(plainText) || String.IsNullOrEmpty(passPhrase))
+                return String.Empty;
+
             byte[] initVectorBytes = Encoding.UTF8.GetBytes(initVector);
             byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
             PasswordDeriveBytes password = new PasswordDeriveBytes(passPhrase, null);
@@ -37,6 +40,9 @@ namespace CallTracker.Helpers
 
         public static string Decrypt(string cipherText, string passPhrase)
         {
+            if (String.IsNullOrEmpty(cipherText) || String.IsNullOrEmpty(passPhrase))
+                return String.Empty;
+
             byte[] initVectorBytes = Encoding.ASCII.GetBytes(initVector);
             byte[] cipherTextBytes = Convert.FromBase64String(cipherText);
             PasswordDeriveBytes password = new PasswordDeriveBytes(passPhrase, null);
