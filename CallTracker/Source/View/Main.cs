@@ -31,10 +31,12 @@ namespace CallTracker.View
                 DataStore = Serializer.Deserialize<DataRepository>(file);
             DecryptData();
             DataStore.Contacts.Add(new CustomerContact() { Id = DataStore.Contacts.Count });
+            DataStore.GridLinks.PopulateIfEmpty();
 
             editContact.Init(this);
             editLogins.Init(this);
             editSmartPasteBinds.Init(this);
+            editGridLinks.Init(this);
 
             HotKeys = new HotkeyController(this);
         }
@@ -102,18 +104,11 @@ namespace CallTracker.View
             DataStore.Contacts.Add(new CustomerContact() { Id = DataStore.Contacts.Count });
             editContact.DeleteCalls();
         }
-        
-        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Options options = new Options();
-            options.Show();
-        }
-
+       
         private UserControl VisibleSetting {get; set;}
 
         private void loginsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ShowSettingsForm<ViewLogins>();
             if (VisibleSetting != null)
                 VisibleSetting.Visible = false;
             editLogins.Visible = true;
@@ -122,11 +117,18 @@ namespace CallTracker.View
 
         private void smartPasteBindsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //ShowSettingsForm<ViewSmartPasteBinds>();
             if (VisibleSetting != null)
                 VisibleSetting.Visible = false;
             editSmartPasteBinds.Visible = true;
             VisibleSetting = editSmartPasteBinds;
+        }
+
+        private void gridLinksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (VisibleSetting != null)
+                VisibleSetting.Visible = false;
+            editGridLinks.Visible = true;
+            VisibleSetting = editGridLinks;
         }
 
         public static T ShowSettingsForm<T>() where T : Form, new()

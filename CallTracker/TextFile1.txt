@@ -7,6 +7,7 @@ Scraper
 	- Store which binds can't be edited directly.
 
 GridLinks
+ | Added.
  - Detect Login page and Autologin/ Detect Log in Required Page (ie Wobs).
 
 General GUI

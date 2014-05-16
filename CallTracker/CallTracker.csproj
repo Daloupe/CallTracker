@@ -79,9 +79,12 @@
     <None Include="Properties\DataSources\CallTracker.Model.ContactAddress.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.CustomerContact.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.FaultModel.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.GridLinksItem.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.GridLinksModel.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.LoginsModel.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.PasteBind.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.ServiceModel.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.SystemItem.datasource" />
     <None Include="Properties\DataSources\CallTracker.View.Main.datasource" />
     <None Include="Source\Helpers\Converters.cs" />
     <None Include="Source\Helpers\DialogCloser.cs" />
@@ -111,6 +114,12 @@
     </Compile>
     <Compile Include="Source\View\BindSmartPasteForm.Designer.cs">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\EditGridLinks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\EditGridLinks.Designer.cs">
+      <DependentUpon>EditGridLinks.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\FormControls.cs">
       <SubType>Component</SubType>
@@ -163,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\EditContact.resx">
       <DependentUpon>EditContact.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\EditGridLinks.resx">
+      <DependentUpon>EditGridLinks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\EditSmartPasteBinds.resx">
       <DependentUpon>EditSmartPasteBinds.cs</DependentUpon>

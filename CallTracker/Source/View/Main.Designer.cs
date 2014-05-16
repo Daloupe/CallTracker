@@ -42,10 +42,11 @@
             this.viewHotkeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.featuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
-            this.MenuPanel = new System.Windows.Forms.Panel();
             this.editSmartPasteBinds = new CallTracker.View.EditSmartPasteBinds();
             this.editLogins = new CallTracker.View.EditLogins();
             this.editContact = new CallTracker.View.EditContact();
+            this.MenuPanel = new System.Windows.Forms.Panel();
+            this.editGridLinks = new CallTracker.View.EditGridLinks();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -133,6 +134,7 @@
             this.gridLinksToolStripMenuItem.Name = "gridLinksToolStripMenuItem";
             this.gridLinksToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.gridLinksToolStripMenuItem.Text = "Grid Link Binds";
+            this.gridLinksToolStripMenuItem.Click += new System.EventHandler(this.gridLinksToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem1
             // 
@@ -168,6 +170,7 @@
             // AppPanel
             // 
             this.AppPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AppPanel.Controls.Add(this.editGridLinks);
             this.AppPanel.Controls.Add(this.editSmartPasteBinds);
             this.AppPanel.Controls.Add(this.editLogins);
             this.AppPanel.Controls.Add(this.editContact);
@@ -177,17 +180,6 @@
             this.AppPanel.Name = "AppPanel";
             this.AppPanel.Size = new System.Drawing.Size(586, 241);
             this.AppPanel.TabIndex = 25;
-            // 
-            // MenuPanel
-            // 
-            this.MenuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MenuPanel.Controls.Add(this._MainMenu);
-            this.MenuPanel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.MenuPanel.Location = new System.Drawing.Point(-1, -1);
-            this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.MenuPanel.Name = "MenuPanel";
-            this.MenuPanel.Size = new System.Drawing.Size(586, 20);
-            this.MenuPanel.TabIndex = 27;
             // 
             // editSmartPasteBinds
             // 
@@ -220,6 +212,28 @@
             this.editContact.Padding = new System.Windows.Forms.Padding(3);
             this.editContact.Size = new System.Drawing.Size(584, 222);
             this.editContact.TabIndex = 28;
+            // 
+            // MenuPanel
+            // 
+            this.MenuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MenuPanel.Controls.Add(this._MainMenu);
+            this.MenuPanel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.MenuPanel.Location = new System.Drawing.Point(-1, -1);
+            this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.MenuPanel.Name = "MenuPanel";
+            this.MenuPanel.Size = new System.Drawing.Size(586, 20);
+            this.MenuPanel.TabIndex = 27;
+            // 
+            // editGridLinks
+            // 
+            this.editGridLinks.BackColor = System.Drawing.Color.LightSlateGray;
+            this.editGridLinks.Font = new System.Drawing.Font("Verdana", 7F);
+            this.editGridLinks.Location = new System.Drawing.Point(-1, 18);
+            this.editGridLinks.Name = "editGridLinks";
+            this.editGridLinks.Padding = new System.Windows.Forms.Padding(3);
+            this.editGridLinks.Size = new System.Drawing.Size(584, 222);
+            this.editGridLinks.TabIndex = 31;
+            this.editGridLinks.Visible = false;
             // 
             // Main
             // 
@@ -268,6 +282,7 @@
         private EditContact editContact;
         private EditLogins editLogins;
         private EditSmartPasteBinds editSmartPasteBinds;
+        private EditGridLinks editGridLinks;
 
     }
 }

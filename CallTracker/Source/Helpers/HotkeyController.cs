@@ -53,8 +53,8 @@ namespace CallTracker.Helpers
         // Grid Links ///////////////////////////////////////////////////////////////////////////////////////
         private Dictionary<Keys, string> GridLinkHotkeys = new Dictionary<Keys, string>()
         {
-            {Keys.NumPad0, "0"},
-            {Keys.NumPad1, "1"},
+            {Keys.Q, "0"},
+            {Keys.W, "1"},
             {Keys.NumPad2, "2"},
             {Keys.NumPad3, "3"},
             {Keys.NumPad4, "4"},
@@ -67,7 +67,7 @@ namespace CallTracker.Helpers
 
         private void GridLinks(HotkeyPressedEventArgs e)
         {
-            if (!FindIEByTitle(parent.DataStore.GridLinks[Convert.ToInt32(e.Name)].Title))
+            if (!FindIEByTitle(parent.DataStore.GridLinks.GridLinkList[Convert.ToInt32(e.Name)].System))
                 return;
             browser.BringToFront();
         }
