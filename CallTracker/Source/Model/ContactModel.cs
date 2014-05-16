@@ -10,17 +10,6 @@ using ProtoBuf;
 namespace CallTracker.Model
 {
     [ImplementPropertyChanged]
-    public class ContactsList : List<CustomerContact>
-    {
-        public ContactsList() : base()
-        {
-            //this.Add(new CustomerContact(0));
-            //InsertItem(0, new CustomerContact(0) { Name = "Dick", DN = "0294813387", ICON = "40", Address = new ContactAddress { Number = "6", Street = "ho street", Type = "st" } });
-            //Add(new CustomerContact(1) { Name = "Harry", DN = "0294813388", ICON = "60", Address = new ContactAddress { Number = "7", Street = "lo street" } });
-        }
-    }
-
-    [ImplementPropertyChanged]
     [ProtoContract]
     public class CustomerContact
     {
@@ -95,4 +84,14 @@ namespace CallTracker.Model
             
         }
     }
+    //[ImplementPropertyChanged]
+    //public class ContactsList : List<CustomerContact>
+    //{
+    //    public ContactsList() : base()
+    //    {
+    //        //this.Add(new CustomerContact(0));
+    //        //InsertItem(0, new CustomerContact(0) { Name = "Dick", DN = "0294813387", ICON = "40", Address = new ContactAddress { Number = "6", Street = "ho street", Type = "st" } });
+    //        //Add(new CustomerContact(1) { Name = "Harry", DN = "0294813388", ICON = "60", Address = new ContactAddress { Number = "7", Street = "lo street" } });
+    //    }
+    //}
 }

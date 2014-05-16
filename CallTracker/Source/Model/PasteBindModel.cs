@@ -2,18 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using System.Threading.Tasks;
 
 using PropertyChanged;
 using ProtoBuf;
 
 namespace CallTracker.Model
 {
+    public class DataBindType
+    {
+        public string Name { get; set; }
+        public string Path { get; set; }
+
+        public DataBindType(string _name, string _path)
+        {
+            Name = _name;
+            Path = _path;
+        }
+    }
+
     [ImplementPropertyChanged]
     [ProtoContract]
     public class PasteBind
     {
-
         [ProtoMember(1)]
         public string System { get; set; }
         [ProtoMember(2)]

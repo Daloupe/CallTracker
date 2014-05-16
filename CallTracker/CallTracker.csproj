@@ -86,27 +86,27 @@
     <None Include="Properties\DataSources\CallTracker.Model.ServiceModel.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.SystemItem.datasource" />
     <None Include="Properties\DataSources\CallTracker.View.Main.datasource" />
-    <None Include="Source\Helpers\Converters.cs" />
-    <None Include="Source\Helpers\DialogCloser.cs" />
+    <None Include="Source\Helpers\Archive\Converters.cs" />
+    <None Include="Source\Helpers\Archive\DialogCloser.cs" />
     <Compile Include="Source\Helpers\GetActiveWindow.cs" />
     <Compile Include="Source\Helpers\HotkeyController.cs" />
-    <None Include="Source\Helpers\IClosableViewModel.cs" />
-    <None Include="Source\Helpers\RelayCommand.cs" />
-    <None Include="Source\Helpers\HotKeyManager.cs" />
+    <None Include="Source\Helpers\Archive\IClosableViewModel.cs" />
+    <None Include="Source\Helpers\Archive\RelayCommand.cs" />
+    <None Include="Source\Helpers\Archive\HotKeyManager.cs" />
     <Compile Include="Source\Helpers\SimpleEncrypt.cs" />
-    <Compile Include="Source\Model\Address.cs" />
+    <Compile Include="Source\Model\AddressModel.cs" />
     <Compile Include="Source\Model\BookingModel.cs" />
-    <Compile Include="Source\Model\CustomerContact.cs" />
-    <Compile Include="Source\Model\DataBindType.cs" />
+    <Compile Include="Source\Model\ContactModel.cs" />
+    <None Include="Source\Model\Archive\DataBindType.cs" />
     <Compile Include="Source\Model\DataRepository.cs" />
     <Compile Include="Source\Model\FaultModel.cs" />
     <Compile Include="Source\Model\GridLinksModel.cs" />
     <Compile Include="Source\Model\LoginsModel.cs" />
-    <Compile Include="Source\Model\PasteBind.cs" />
-    <Compile Include="Source\Model\Person.cs" />
-    <None Include="Source\Model\PersonelBusinessObject.cs" />
-    <Compile Include="Source\Model\PocoCustomer.cs" />
-    <Compile Include="Source\Model\PocoPerson.cs" />
+    <Compile Include="Source\Model\PasteBindModel.cs" />
+    <None Include="Source\Model\Archive\Person.cs" />
+    <None Include="Source\Model\Archive\PersonelBusinessObject.cs" />
+    <None Include="Source\Model\Archive\PocoCustomer.cs" />
+    <None Include="Source\Model\Archive\PocoPerson.cs" />
     <Compile Include="Source\Model\ServiceModel.cs" />
     <Compile Include="Source\Model\StatisticsModel.cs" />
     <Compile Include="Source\View\BindSmartPasteForm.cs">
@@ -148,15 +148,9 @@
     <Compile Include="Source\View\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Options.cs">
+    <None Include="Source\View\Archive\SettingsFormBase.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Source\View\Options.Designer.cs">
-      <DependentUpon>Options.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\View\SettingsFormBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    </None>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -185,10 +179,7 @@
     <EmbeddedResource Include="Source\View\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Options.resx">
-      <DependentUpon>Options.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\SettingsFormBase.resx">
+    <EmbeddedResource Include="Source\View\Archive\SettingsFormBase.resx">
       <DependentUpon>SettingsFormBase.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
