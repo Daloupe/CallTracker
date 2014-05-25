@@ -39,11 +39,11 @@
             this.pasteBindsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewHotkeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.featuresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewKeyCommandsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
-            this.editContact = new CallTracker.View.EditContact();
             this.MenuPanel = new System.Windows.Forms.Panel();
+            this.helpKeyCommands = new CallTracker.View.HelpKeyCommands();
+            this.editContact = new CallTracker.View.EditContact();
             this.editGridLinks = new CallTracker.View.EditGridLinks();
             this.editSmartPasteBinds = new CallTracker.View.EditSmartPasteBinds();
             this.editLogins = new CallTracker.View.EditLogins();
@@ -69,7 +69,6 @@
             this._MainMenu.Size = new System.Drawing.Size(584, 18);
             this._MainMenu.TabIndex = 2;
             this._MainMenu.Text = "_MainMenu";
-            this._MainMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             this._MainMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MainMenu_MouseDown);
             // 
             // fileToolStripMenuItem
@@ -82,6 +81,7 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(79, 18);
             this.fileToolStripMenuItem.Text = "Call Tracker";
+            this.fileToolStripMenuItem.DropDownClosed += new System.EventHandler(this._MainMenu_MenuDeactivate);
             // 
             // DeleteCallDataMenuItem
             // 
@@ -113,6 +113,7 @@
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(41, 18);
             this.viewToolStripMenuItem.Text = "View";
+            this.viewToolStripMenuItem.DropDownClosed += new System.EventHandler(this._MainMenu_MenuDeactivate);
             // 
             // loginsViewMenuItem
             // 
@@ -149,23 +150,18 @@
             // 
             this.helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewHotkeysToolStripMenuItem,
-            this.featuresToolStripMenuItem});
+            this.viewKeyCommandsMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 18);
             this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.DropDownClosed += new System.EventHandler(this._MainMenu_MenuDeactivate);
             // 
-            // viewHotkeysToolStripMenuItem
+            // viewKeyCommandsMenuItem
             // 
-            this.viewHotkeysToolStripMenuItem.Name = "viewHotkeysToolStripMenuItem";
-            this.viewHotkeysToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.viewHotkeysToolStripMenuItem.Text = "View Hotkeys";
-            // 
-            // featuresToolStripMenuItem
-            // 
-            this.featuresToolStripMenuItem.Name = "featuresToolStripMenuItem";
-            this.featuresToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.featuresToolStripMenuItem.Text = "Features";
+            this.viewKeyCommandsMenuItem.Name = "viewKeyCommandsMenuItem";
+            this.viewKeyCommandsMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.viewKeyCommandsMenuItem.Text = "Key Commands";
+            this.viewKeyCommandsMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
             // AppPanel
             // 
@@ -175,21 +171,12 @@
             this.AppPanel.Controls.Add(this.editGridLinks);
             this.AppPanel.Controls.Add(this.editSmartPasteBinds);
             this.AppPanel.Controls.Add(this.editLogins);
+            this.AppPanel.Controls.Add(this.helpKeyCommands);
             this.AppPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AppPanel.Location = new System.Drawing.Point(0, 0);
             this.AppPanel.Name = "AppPanel";
-            this.AppPanel.Size = new System.Drawing.Size(586, 241);
+            this.AppPanel.Size = new System.Drawing.Size(586, 242);
             this.AppPanel.TabIndex = 25;
-            // 
-            // editContact
-            // 
-            this.editContact.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editContact.Location = new System.Drawing.Point(0, 18);
-            this.editContact.Margin = new System.Windows.Forms.Padding(0);
-            this.editContact.Name = "editContact";
-            this.editContact.Padding = new System.Windows.Forms.Padding(3);
-            this.editContact.Size = new System.Drawing.Size(584, 222);
-            this.editContact.TabIndex = 28;
             // 
             // MenuPanel
             // 
@@ -202,11 +189,31 @@
             this.MenuPanel.Size = new System.Drawing.Size(586, 20);
             this.MenuPanel.TabIndex = 27;
             // 
+            // helpKeyCommands
+            // 
+            this.helpKeyCommands.BackColor = System.Drawing.Color.LightSlateGray;
+            this.helpKeyCommands.Font = new System.Drawing.Font("Verdana", 7F);
+            this.helpKeyCommands.Location = new System.Drawing.Point(0, 18);
+            this.helpKeyCommands.Name = "helpKeyCommands";
+            this.helpKeyCommands.Padding = new System.Windows.Forms.Padding(3);
+            this.helpKeyCommands.Size = new System.Drawing.Size(584, 222);
+            this.helpKeyCommands.TabIndex = 32;
+            // 
+            // editContact
+            // 
+            this.editContact.Font = new System.Drawing.Font("Verdana", 7F);
+            this.editContact.Location = new System.Drawing.Point(0, 18);
+            this.editContact.Margin = new System.Windows.Forms.Padding(0);
+            this.editContact.Name = "editContact";
+            this.editContact.Padding = new System.Windows.Forms.Padding(3);
+            this.editContact.Size = new System.Drawing.Size(584, 222);
+            this.editContact.TabIndex = 28;
+            // 
             // editGridLinks
             // 
             this.editGridLinks.BackColor = System.Drawing.Color.LightSlateGray;
             this.editGridLinks.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editGridLinks.Location = new System.Drawing.Point(-1, 18);
+            this.editGridLinks.Location = new System.Drawing.Point(0, 18);
             this.editGridLinks.Name = "editGridLinks";
             this.editGridLinks.Padding = new System.Windows.Forms.Padding(3);
             this.editGridLinks.Size = new System.Drawing.Size(584, 222);
@@ -240,7 +247,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.ClientSize = new System.Drawing.Size(586, 241);
+            this.ClientSize = new System.Drawing.Size(586, 242);
             this.ControlBox = false;
             this.Controls.Add(this.AppPanel);
             this.Font = new System.Drawing.Font("Verdana", 7F);
@@ -272,17 +279,17 @@
         private System.Windows.Forms.ToolStripMenuItem loginsViewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gridLinksViewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewHotkeysToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem featuresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewKeyCommandsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem DeleteCallDataMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem1;
         private System.Windows.Forms.Panel AppPanel;
         private System.Windows.Forms.Panel MenuPanel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private EditContact editContact;
         private EditLogins editLogins;
         private EditGridLinks editGridLinks;
         public EditSmartPasteBinds editSmartPasteBinds;
+        public EditContact editContact;
+        private HelpKeyCommands helpKeyCommands;
 
     }
 }

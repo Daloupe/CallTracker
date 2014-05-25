@@ -110,7 +110,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(82, 20);
             this.comboBox1.TabIndex = 13;
-            this.comboBox1.ValueMember = "Title";
+            this.comboBox1.ValueMember = "System";
             // 
             // panel1
             // 
@@ -201,7 +201,7 @@
             this.comboBox0.Name = "comboBox0";
             this.comboBox0.Size = new System.Drawing.Size(82, 20);
             this.comboBox0.TabIndex = 13;
-            this.comboBox0.ValueMember = "Title";
+            this.comboBox0.ValueMember = "System";
             // 
             // panel7
             // 
@@ -239,7 +239,7 @@
             this.comboBox9.Name = "comboBox9";
             this.comboBox9.Size = new System.Drawing.Size(83, 20);
             this.comboBox9.TabIndex = 13;
-            this.comboBox9.ValueMember = "Title";
+            this.comboBox9.ValueMember = "System";
             // 
             // panel5
             // 
@@ -277,7 +277,7 @@
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(82, 20);
             this.comboBox5.TabIndex = 13;
-            this.comboBox5.ValueMember = "Title";
+            this.comboBox5.ValueMember = "System";
             // 
             // panel8
             // 
@@ -315,7 +315,7 @@
             this.comboBox7.Name = "comboBox7";
             this.comboBox7.Size = new System.Drawing.Size(82, 20);
             this.comboBox7.TabIndex = 13;
-            this.comboBox7.ValueMember = "Title";
+            this.comboBox7.ValueMember = "System";
             // 
             // panel9
             // 
@@ -353,7 +353,7 @@
             this.comboBox8.Name = "comboBox8";
             this.comboBox8.Size = new System.Drawing.Size(82, 20);
             this.comboBox8.TabIndex = 13;
-            this.comboBox8.ValueMember = "Title";
+            this.comboBox8.ValueMember = "System";
             // 
             // panel4
             // 
@@ -391,7 +391,7 @@
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(82, 20);
             this.comboBox4.TabIndex = 13;
-            this.comboBox4.ValueMember = "Title";
+            this.comboBox4.ValueMember = "System";
             // 
             // panel3
             // 
@@ -429,7 +429,7 @@
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(83, 20);
             this.comboBox3.TabIndex = 13;
-            this.comboBox3.ValueMember = "Title";
+            this.comboBox3.ValueMember = "System";
             // 
             // panel2
             // 
@@ -467,7 +467,7 @@
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(82, 20);
             this.comboBox2.TabIndex = 13;
-            this.comboBox2.ValueMember = "Title";
+            this.comboBox2.ValueMember = "System";
             // 
             // panel6
             // 
@@ -505,14 +505,14 @@
             this.comboBox6.Name = "comboBox6";
             this.comboBox6.Size = new System.Drawing.Size(83, 20);
             this.comboBox6.TabIndex = 13;
-            this.comboBox6.ValueMember = "Title";
+            this.comboBox6.ValueMember = "System";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
             this.label11.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label11.Location = new System.Drawing.Point(5, 199);
+            this.label11.Location = new System.Drawing.Point(3, 199);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(148, 18);
             this.label11.TabIndex = 17;

@@ -66,5 +66,10 @@ namespace CallTracker.View
         {
             base.PaintBorder(sender, e);
         }
+
+        private void propertyLock_CheckedChanged(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Enabled = !propertyLock.Checked;
+        }
     }
 }

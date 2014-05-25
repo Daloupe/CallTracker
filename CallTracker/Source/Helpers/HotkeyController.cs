@@ -9,35 +9,60 @@ using System.Windows.Input;
 
 using Shortcut;
 using WatiN.Core;
+using SHDocVw;
 
 using CallTracker.View;
 using CallTracker.Model;
 
 namespace CallTracker.Helpers
 {
+    public delegate void ActionEventHandler();
+
     public class HotkeyController : IDisposable
     {
+        // HotkeyController Methods:
+            // HotKey Methods:
+                // private void OnGridLinks(HotkeyPressedEventArgs e)
+                // private void OnDataPaste(HotkeyPressedEventArgs e)
+                // private void OnSmartPaste(HotkeyPressedEventArgs e)
+                // private void OnBindSmartPaste(HotkeyPressedEventArgs e)
+                // private void OnAutoFill(HotkeyPressedEventArgs e)
+                // private void OnAutoLogin(HotkeyPressedEventArgs e)
+                // private void OnSmartCopy(HotkeyPressedEventArgs e)
+            // Browser Methods:
+                // private bool FindIEByHWND(IntPtr _HWND)
+                // private bool FindIEByTitle(string _title)
+                // public static void SetValueByIdOrName(string _element, string _data)
+                // public static void ClickElementByIdOrName(string _element)
+                // public static void SubmitFormByIdOrName(string _form)
+            // Object Methods:
+                // public static string FollowPropertyPath(object value, string path)
+                // public static string FollowPropertyPath(object value, string path, string altPath)
+        private static Main parent;
         private static IE browser;
         private static string PreviousIEMatch;
-        private static Main parent;
         private static HotKeyManager HotKeyManager;
 
+        public event ActionEventHandler OnAction;
+        
         public HotkeyController(Main _parent)
         {
             parent = _parent;
+            OnAction += parent.UpdateProgressBar;
+
             HotKeyManager = new HotKeyManager();
 
-            HotKeyManager.AddOrReplaceHotkey("SmartCopy", Modifiers.Win, Keys.C, OnSmartCopy);
-            HotKeyManager.AddOrReplaceHotkey("SmartPaste", Modifiers.Win, Keys.V, OnSmartPaste);
-            HotKeyManager.AddOrReplaceHotkey("BindSmartPaste", Modifiers.Win | Modifiers.Shift, Keys.B, OnBindSmartPaste);
-
+                HotKeyManager.AddOrReplaceHotkey("SmartCopy", Modifiers.Win, Keys.C, OnSmartCopy);
+                HotKeyManager.AddOrReplaceHotkey("SmartPaste", Modifiers.Win, Keys.V, OnSmartPaste);
+                HotKeyManager.AddOrReplaceHotkey("BindSmartPaste", Modifiers.Win | Modifiers.Shift, Keys.B, OnBindSmartPaste);
+                HotKeyManager.AddOrReplaceHotkey("AutoLogin", Modifiers.Win, Keys.Oemtilde, OnAutoLogin);
+                HotKeyManager.AddOrReplaceHotkey("AutoFill", Modifiers.Win | Modifiers.Control, Keys.V, OnAutoFill);
             foreach (var DataPasteHotkey in DataPasteHotkeys)
-                HotKeyManager.AddOrReplaceHotkey(DataPasteHotkey.Value, Modifiers.Shift | Modifiers.Control, DataPasteHotkey.Key, DataPaste);
-
-            HotKeyManager.AddOrReplaceHotkey("AutoLogin", Modifiers.Win, Keys.Oemtilde, AutoLogin);
-
+                HotKeyManager.AddOrReplaceHotkey(DataPasteHotkey.Value, Modifiers.Shift | Modifiers.Control, DataPasteHotkey.Key, OnDataPaste);
             foreach (var GridLinkHotKey in GridLinkHotkeys)
-                HotKeyManager.AddOrReplaceHotkey(GridLinkHotKey.Value, Modifiers.Win, GridLinkHotKey.Key, GridLinks);
+                HotKeyManager.AddOrReplaceHotkey(GridLinkHotKey.Value, Modifiers.Win, GridLinkHotKey.Key, OnGridLinks);
+
+            Settings.Instance.AutoMoveMousePointerToTopLeft = false;
         }
 
         public void Dispose()
@@ -45,16 +70,14 @@ namespace CallTracker.Helpers
             HotKeyManager.UnbindHotkeys();
 
             if (browser != null)
-            {
                 browser.Dispose();
-            }
         }
 
         // Grid Links ///////////////////////////////////////////////////////////////////////////////////////
         private Dictionary<Keys, string> GridLinkHotkeys = new Dictionary<Keys, string>()
         {
-            {Keys.Q, "0"},
-            {Keys.W, "1"},
+            {Keys.NumPad0, "0"},
+            {Keys.NumPad1, "1"},
             {Keys.NumPad2, "2"},
             {Keys.NumPad3, "3"},
             {Keys.NumPad4, "4"},
@@ -65,32 +88,24 @@ namespace CallTracker.Helpers
             {Keys.NumPad9, "9"}
         };
 
-        private void GridLinks(HotkeyPressedEventArgs e)
+        private void OnGridLinks(HotkeyPressedEventArgs e)
         {
-            if (!FindIEByTitle(parent.DataStore.GridLinks.GridLinkList[Convert.ToInt32(e.Name)].System))
-                return;
-            browser.BringToFront();
-        }
+            parent.SetProgressBarStep(5);
+            GridLinksItem gridLink = parent.DataStore.GridLinks.GridLinkList[Convert.ToInt32(e.Name)];
+            SystemItem systemItem = parent.DataStore.GridLinks.SystemItems.Find(s => s.System == gridLink.System);
+            OnAction();
 
-        // Auto Login ///////////////////////////////////////////////////////////////////////////////////////
-        private void AutoLogin(HotkeyPressedEventArgs e)
-        {
-            if (!FindIEByTitle(ActiveWindow.Title()))
-                return;
-
-            string title = browser.Title;
-            string url = browser.Url;
-            LoginsModel query = (from login in parent.DataStore.Logins
-                                 where  title.Contains(login.Title) ||
-                                        login.Url == url
-                                 select login)
-                                 .FirstOrDefault();
-            if (query == null)
-                return;
-
-            SetValueByIdOrName(query.UsernameElement, query.Username);
-            SetValueByIdOrName(query.PasswordElement, query.Password);
-            ClickElementByIdOrName(query.SubmitElement);
+            if (FindIEByTitle(gridLink.System))
+            {
+                new IETabActivator(browser, parent).ActivateByTabsUrl(browser.Url);
+                AutoLogin();
+            }
+            else
+            {
+                CreateNewIE(systemItem.Url);
+                AutoLogin();
+            }
+            parent.UpdateProgressBar(0);
         }
 
         // Data Paste ///////////////////////////////////////////////////////////////////////////////////////
@@ -106,7 +121,7 @@ namespace CallTracker.Helpers
             {Keys.X , "Service.Node"}
         };
 
-        private void DataPaste(HotkeyPressedEventArgs e)
+        private void OnDataPaste(HotkeyPressedEventArgs e)
         {
             string dataToPaste = FollowPropertyPath(Main.SelectedContact, e.Name);
 
@@ -120,43 +135,49 @@ namespace CallTracker.Helpers
         // Smart Paste ///////////////////////////////////////////////////////////////////////////////////////
         private void OnSmartPaste(HotkeyPressedEventArgs e)
         {
-            if (!FindIEByTitle(ActiveWindow.Title()))
+            if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
                 return;
 
             string url = browser.Url;
             string title = browser.Title;
             string element = browser.ActiveElement.IdOrName;
 
-            PasteBind query = (from   bind in parent.DataStore.PasteBinds
-                               where  bind.Element == element &&
-                                     (bind.Url == url || title.Contains(bind.Title))
-                               select bind)
+            PasteBind query = (from   
+                                   bind in parent.DataStore.PasteBinds
+                               where  
+                                   bind.Element == element &&
+                                   (bind.Url == url || title.Contains(bind.Title))
+                               select 
+                                   bind)
                                .FirstOrDefault();
 
             if (query != null)
-            {
-                string data = FollowPropertyPath(Main.SelectedContact, query.Data);
-                if (String.IsNullOrEmpty(data) && query.AltData != null)
-                    data = FollowPropertyPath(Main.SelectedContact, query.AltData);
-                
-                if (!String.IsNullOrEmpty(data))
-                    SetValueByIdOrName(element, data);
-            }
+                SetValueByIdOrName(element, FollowPropertyPath(Main.SelectedContact, query.Data, query.AltData));
         }
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
         {
-            if (!FindIEByTitle(ActiveWindow.Title()))
+            if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
                 return;
 
             string url = browser.Url;
             string title = browser.Title;
             string element = browser.ActiveElement.IdOrName;
 
-            PasteBind query = (from bind in parent.DataStore.PasteBinds
-                               where  bind.Element == element &&
-                                     (bind.Url == url || title.Contains(bind.Title))
-                               select bind)
+            if(String.IsNullOrEmpty(element))
+            {
+                WindowHelper.SetForegroundWindow(parent.Handle);
+                MessageBox.Show(parent, "Unable to bind: Unable to find element");
+                return;
+            }
+
+            PasteBind query = (from   
+                                   bind in parent.DataStore.PasteBinds
+                               where  
+                                   bind.Element == element &&
+                                   (bind.Url == url || title.Contains(bind.Title))
+                               select 
+                                   bind)
                                .FirstOrDefault();
 
             if (query == null)
@@ -171,6 +192,64 @@ namespace CallTracker.Helpers
             Main.ShowSettingsForm<BindSmartPasteForm>().UpdateFields(query);
         }
 
+        // AutoFill /////////////////////////////////////////////////////////////////////////////////////////
+        private void OnAutoFill(HotkeyPressedEventArgs e)
+        {
+            if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
+                return;
+
+            string url = browser.Url;
+            string title = browser.Title;
+
+            var query = from
+                            bind in parent.DataStore.PasteBinds
+                        where
+                            bind.Url == url ||
+                            title.Contains(bind.Title)
+                        select
+                            bind;
+
+            foreach (PasteBind bind in query)
+                SetValueByIdOrName(bind.Element, FollowPropertyPath(Main.SelectedContact, bind.Data, bind.AltData));
+        }
+
+        // Auto Login ///////////////////////////////////////////////////////////////////////////////////////
+        private void OnAutoLogin(HotkeyPressedEventArgs e)
+        {
+            parent.SetProgressBarStep(2);
+            AutoLogin();
+            parent.UpdateProgressBar(0);
+        }
+
+        private void AutoLogin()
+        {
+            OnAction();
+            if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
+                return;
+            string title = browser.Title;
+            string url = browser.Url;
+
+            LoginsModel query = (from
+                                     login in parent.DataStore.Logins
+                                 where
+                                     title.Contains(login.Title) ||
+                                     login.Url == url
+                                 select
+                                     login)
+                                 .FirstOrDefault();
+            if (query == null)
+                return;
+
+            OnAction();
+
+            SetValueByIdOrName(query.UsernameElement, query.Username);
+            SetValueByIdOrName(query.PasswordElement, query.Password);
+            if (query.SubmitAsForm)
+                SubmitFormByIdOrName(query.SubmitElement);
+            else
+                ClickElementByIdOrName(query.SubmitElement);   
+        }
+
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
         private void OnSmartCopy(HotkeyPressedEventArgs e)
         {
@@ -179,6 +258,8 @@ namespace CallTracker.Helpers
             string text = Clipboard.GetText().Trim();
             int textlen = text.Length;
             string firstchar = text.Substring(0, 1);
+
+            //check if each if needs returns.
 
             if (Regex.IsMatch(text, @"^[AVCSNIG]{3}\d{15}"))
             {
@@ -221,13 +302,13 @@ namespace CallTracker.Helpers
 
             else if (Regex.Matches(text, @"\w+").Count > 3)
                 Main.SelectedContact.Address.Address = text;//[Unit|Level]?([-|/]?:\d+)?\w+
-            
+         
             else
                 Main.SelectedContact.Note += text;
         }
 
-        // Misc Methods ///////////////////////////////////////////////////////////////////////////////////////
-        private bool FindActiveIEByHWND(IntPtr _HWND)
+        // Browser Methods ///////////////////////////////////////////////////////////////////////////////////////
+        private bool FindIEByHWND(IntPtr _HWND)
         {
             string currentHWND = _HWND.ToString();
 
@@ -267,23 +348,21 @@ namespace CallTracker.Helpers
             return true;
         }
 
-        public static string FollowPropertyPath(object value, string path)
+        public void CreateNewIE(string _url)
         {
-            Type currentType = value.GetType();
+            OnAction();
+            if (browser != null)
+                browser.Dispose();
 
-            foreach (string propertyName in path.Split('.'))
-            {
-                PropertyInfo property = currentType.GetProperty(propertyName);
-                value = property.GetValue(value, null);
-                currentType = property.PropertyType;
-            }
-
-            return value.ToString();
+            OnAction();
+            browser = new IE(_url);
+            browser.AutoClose = false;
+            PreviousIEMatch = browser.Title;      
         }
 
         public static void SetValueByIdOrName(string _element, string _data)
         {
-            if (String.IsNullOrEmpty(_element))
+            if (String.IsNullOrEmpty(_element) || String.IsNullOrEmpty(_data))
                 return;
             Element inputField = browser.Element(Find.ById(_element));
             if (inputField == null)
@@ -291,6 +370,7 @@ namespace CallTracker.Helpers
             if (inputField != null)
                 inputField.SetAttributeValue("Value", _data);
         }
+
         public static void ClickElementByIdOrName(string _element)
         {
             if (String.IsNullOrEmpty(_element))
@@ -301,5 +381,56 @@ namespace CallTracker.Helpers
             if (inputField != null)
                 inputField.Click();
         }
+
+        public static void SubmitFormByIdOrName(string _form)
+        {
+            if (String.IsNullOrEmpty(_form))
+                return;
+            WatiN.Core.Form form = browser.Form(Find.ById(_form));
+            if (form == null)
+                form = browser.Form(Find.ByName(_form));
+            if (form != null)
+                form.Submit();
+        }
+
+        // Object Methods ///////////////////////////////////////////////////////////////////////////////////////
+        public static string FollowPropertyPath(object _value, string _path)
+        {
+            if (String.IsNullOrEmpty(_path))
+                return null;
+
+            Type currentType = _value.GetType();
+
+            foreach (string propertyName in _path.Split('.'))
+            {
+                PropertyInfo property = currentType.GetProperty(propertyName);
+                _value = property.GetValue(_value, null);
+                currentType = property.PropertyType;
+            }
+
+            return _value.ToString();
+        }
+
+        public static string FollowPropertyPath(object _value, string _path, string _altPath)
+        {
+            if (String.IsNullOrEmpty(_path))
+                return null;
+
+            Type currentType = _value.GetType();
+            object output = _value;
+
+            foreach (string propertyName in _path.Split('.'))
+            {
+                PropertyInfo property = currentType.GetProperty(propertyName);
+                output = property.GetValue(output, null);
+                currentType = property.PropertyType;
+            }
+
+            if (String.IsNullOrEmpty(output.ToString()) && !String.IsNullOrEmpty(_altPath))
+                output = FollowPropertyPath(_value, _altPath);
+
+            return output.ToString();
+        }
+
     }
 }

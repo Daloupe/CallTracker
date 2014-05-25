@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -12,17 +13,19 @@ using CallTracker.Model;
 
 namespace CallTracker.View
 {
-    public partial class EditLogins : SettingsViewBase
+    public partial class HelpKeyCommands : SettingsViewBase
     {
-        public EditLogins()
+
+        public HelpKeyCommands()
         {
             InitializeComponent();
+
         }
 
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
-            loginsModelBindingSource.DataSource = MainForm.DataStore.Logins;
+     
         }
 
         protected override void _Done_Click(object sender, EventArgs e)
@@ -34,5 +37,6 @@ namespace CallTracker.View
         {
             base.PaintBorder(sender, e);
         }
+
     }
 }

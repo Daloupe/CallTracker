@@ -55,18 +55,54 @@ namespace CallTracker.View
         }
 
         // Splitter ////////////////////////////////////////////////////////////////////////////////
+        private const int SPLITTER_1_MIN = 0;
+        private const int SPLITTER_1_MAX = 176;
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
-            if (splitContainer1.SplitterDistance > 176)
-                splitContainer1.SplitterDistance = 176;
+            if (splitContainer1.SplitterDistance > SPLITTER_1_MAX)
+                splitContainer1.SplitterDistance = SPLITTER_1_MAX;
         }
 
+        private void splitContainer1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int dist = splitContainer1.SplitterDistance;
+
+            if (dist == SPLITTER_1_MAX)
+                dist = SPLITTER_1_MIN;
+            else if (dist == SPLITTER_1_MIN)
+                dist = SPLITTER_1_MAX;
+            else if (dist < SPLITTER_1_MAX/2)
+                dist = SPLITTER_1_MIN;
+            else
+                dist = SPLITTER_1_MAX;
+
+            splitContainer1.SplitterDistance = dist;
+        }
+
+        private const int SPLITTER_2_MIN = 70;
+        private const int SPLITTER_2_MAX = 258;
         private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
         {
-            if (splitContainer2.SplitterDistance > 258)
-                splitContainer2.SplitterDistance = 258;
-            else if (splitContainer2.SplitterDistance < 70)
-                splitContainer2.SplitterDistance = 70;
+            if (splitContainer2.SplitterDistance > SPLITTER_2_MAX)
+                splitContainer2.SplitterDistance = SPLITTER_2_MAX;
+            else if (splitContainer2.SplitterDistance < SPLITTER_2_MIN)
+                splitContainer2.SplitterDistance = SPLITTER_2_MIN;
+        }
+
+        private void splitContainer2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int dist = splitContainer2.SplitterDistance;
+
+            if (dist == SPLITTER_2_MAX)
+                dist = SPLITTER_2_MIN;
+            else if (dist == SPLITTER_2_MIN)
+                dist = SPLITTER_2_MAX;
+            else if (dist < SPLITTER_2_MAX - SPLITTER_2_MIN)
+                dist = SPLITTER_2_MIN;
+            else
+                dist = SPLITTER_2_MAX;
+
+            splitContainer2.SplitterDistance = dist;
         }
 
         void splitContainer2_MouseWheel(object sender, MouseEventArgs e)

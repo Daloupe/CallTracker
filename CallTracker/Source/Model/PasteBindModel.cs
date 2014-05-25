@@ -41,16 +41,22 @@ namespace CallTracker.Model
 
         public PasteBind()
         {
-
+            System = String.Empty;
+            Name = String.Empty;
+            Element = String.Empty;
+            Title = String.Empty;
+            Url = String.Empty;
+            Data = String.Empty;
+            AltData = String.Empty;
         }
 
         public PasteBind(string _url, string _title, string _element)
         {
             System = String.Empty;
             Name = String.Empty;
-            Element = _element;
-            Title = _title;
-            Url = _url;
+            Element = _element ?? String.Empty;
+            Title = _title ?? String.Empty;
+            Url = _url ?? String.Empty;
             Data = String.Empty;
             AltData = String.Empty;
         }

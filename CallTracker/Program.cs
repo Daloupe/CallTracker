@@ -8,14 +8,12 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 
 using CallTracker.View;
+using CallTracker.Helpers;
 
 namespace CallTracker
 {
     static class Program
     {
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool SetForegroundWindow(IntPtr hWnd);
 
         /// <summary>
         /// The main entry point for the application.
@@ -39,7 +37,7 @@ namespace CallTracker
                     {
                         if (process.Id != current.Id)
                         {
-                            SetForegroundWindow(process.MainWindowHandle);
+                            WindowHelper.SetForegroundWindow(process.MainWindowHandle);
                             break;
                         }
                     }

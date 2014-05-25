@@ -21,6 +21,7 @@ namespace CallTracker.View
             MainForm = _parent;
 
             this.Visible = true;
+            //HideSetting();
             this.SendToBack();
             this.Visible = false;
             //this.BringToFront();
@@ -36,10 +37,12 @@ namespace CallTracker.View
             MenuControl.Checked = false;
             this.SendToBack();
             this.Visible = false;
+            //MainForm.Controls.Remove(this);
         }
 
         public virtual void ShowSetting()
         {
+            //MainForm.Controls.Add(this);
             MenuControl.Checked = true;
             this.BringToFront();
             this.Visible = true;

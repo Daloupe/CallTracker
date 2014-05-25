@@ -1,40 +1,58 @@
 To Do:
 
+Edit Datagrids (Logins and Binds)
+ - Export/Import only Logins/Binds.
+ - Create "Default" Logins and Binds in case user changes it too much.
+ | Add an Edit Lock to Logins and Binds to prevent accidental changes.
+ | Edit Section should be scrollable.
+
+	ViewSmartPasteBinds
+	 | Only have System and Name in DataGrid.
+	 - Data should be a listbox that you can add multiple item to, and reorder.
+	 | If no element is found, pop up a box advising that it can't be bound.
+
+	Autologin
+	 | Add field for form name.
+	 | Option to Submit instead of click the submit button.
+	 - Option to find element in relation to form element.
+
+AutoFill
+ | Smart Pastes all known binds on a page.
+ | Ctrl + Win + V.
+
 Scraper
  | On login page, smart pastes logins.
- - On non login page, smart pastes all known binds.
+ | On non login page, smart pastes all known binds.
 	| SmartPaste should attempt to edit html field directly, before ctrl-v.
-	- Store which binds can't be edited directly.
 
 GridLinks
- | Added.
+ | Detect Login page and Autologin/ Detect Log in Required Page (ie Wobs).
  - Pull Systems from Login information.
- - Detect Login page and Autologin/ Detect Log in Required Page (ie Wobs).
+ - Cycling Links - eg NBN/CM/CIP templates.
+ - Context aware Links?
 
 General GUI
- | Gray bordered Text Boxes. 
+ | Gray bordered Text Boxes.
+ | Add Progress bar events on long operations eg AutoLogin/IECreate.
 
 Main GUI
  | Have Settings windows show in main gui, rather than their own popup.
+ - Add status bar to display warnings.
+ - Start inputting system variables.
+
+Contact GUI
+ | Double click splitters to toggle panels.
  - Add other information: Outcome, Clearance, NIT results, Speed Test Results.
  - Hook up affected products check boxes.
- - Add status bar to display warnings.
-
-Silent Search
- - Launches searches with available data in the background.
- - Options let you specify which systems to search in.
 
 ARO GUI
+ - Ctrl + Win + C.
  - Create GUI with Suburb, Node, PR, Products, and Date fields.
  - Button lives near Next Call, hotkey win-a.
  - ARO's older than 2 days are automatically deleted.
  - Cross check ARO nodes when a node is smart copied.
 
- PR/SMS Templates
-
-ViewSmartPasteBinds
- | Only have System and Name in DataGrid.
- - Data should be a listbox that you can add multiple item to, and reorder.
+PR/SMS Templates
 
 Glance GUI
  - Trafic lights available data.
@@ -50,3 +68,6 @@ Glance GUI
  - Right Click Menu > Always on Top.
  - Double Click Menu to Collapse.
 
+Silent Search
+ - Launches searches with available data in the background.
+ - Options let you specify which systems to search in.

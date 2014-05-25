@@ -38,9 +38,11 @@
     <StartupObject>CallTracker.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Interop.SHDocVw">
-      <HintPath>..\packages\WatiN.2.1.0\lib\net35\Interop.SHDocVw.dll</HintPath>
+    <Reference Include="Accessibility" />
+    <Reference Include="Interop.SHDocVw, Version=1.1.0.0, Culture=neutral, PublicKeyToken=db7cfd3acb5ad44e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\packages\WatiN.2.1.0\lib\net35\Interop.SHDocVw.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -68,7 +70,8 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WatiN.Core">
+    <Reference Include="WatiN.Core, Version=2.1.0.1196, Culture=neutral, PublicKeyToken=db7cfd3acb5ad44e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WatiN.2.1.0\lib\net35\WatiN.Core.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -88,22 +91,23 @@
     <None Include="Source\View\Archive\FMask.Designer.cs">
       <DependentUpon>FMask.cs</DependentUpon>
     </None>
-    <Compile Include="Source\View\Form1.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Source\Helpers\IETabActivator.cs" />
+    <Compile Include="Source\View\Settings\HelpKeyCommands.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Source\View\Settings\HelpKeyCommands.Designer.cs">
+      <DependentUpon>HelpKeyCommands.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\SettingsViewBase.cs">
+    <Compile Include="Source\View\Settings\SettingsViewBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <EmbeddedResource Include="Source\View\Archive\FMaskOverlay.resx">
       <DependentUpon>FMaskOverlay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Source\View\Settings\HelpKeyCommands.resx">
+      <DependentUpon>HelpKeyCommands.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\SettingsViewBase.resx">
+    <EmbeddedResource Include="Source\View\Settings\SettingsViewBase.resx">
       <DependentUpon>SettingsViewBase.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\CallTracker.Model.ContactAddress.datasource" />
@@ -117,7 +121,7 @@
     <None Include="Properties\DataSources\CallTracker.Model.SystemItem.datasource" />
     <None Include="Source\Helpers\Archive\Converters.cs" />
     <None Include="Source\Helpers\Archive\DialogCloser.cs" />
-    <Compile Include="Source\Helpers\GetActiveWindow.cs" />
+    <Compile Include="Source\Helpers\WindowHelper.cs" />
     <Compile Include="Source\Helpers\HotkeyController.cs" />
     <None Include="Source\Helpers\Archive\IClosableViewModel.cs" />
     <None Include="Source\Helpers\Archive\RelayCommand.cs" />
@@ -144,10 +148,10 @@
     <Compile Include="Source\View\BindSmartPasteForm.Designer.cs">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\EditGridLinks.cs">
+    <Compile Include="Source\View\Settings\EditGridLinks.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\EditGridLinks.Designer.cs">
+    <Compile Include="Source\View\Settings\EditGridLinks.Designer.cs">
       <DependentUpon>EditGridLinks.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\FormControls.cs">
@@ -159,16 +163,16 @@
     <Compile Include="Source\View\EditContact.Designer.cs">
       <DependentUpon>EditContact.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\EditSmartPasteBinds.cs">
+    <Compile Include="Source\View\Settings\EditSmartPasteBinds.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\EditSmartPasteBinds.Designer.cs">
+    <Compile Include="Source\View\Settings\EditSmartPasteBinds.Designer.cs">
       <DependentUpon>EditSmartPasteBinds.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\EditLogins.cs">
+    <Compile Include="Source\View\Settings\EditLogins.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\EditLogins.Designer.cs">
+    <Compile Include="Source\View\Settings\EditLogins.Designer.cs">
       <DependentUpon>EditLogins.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Main.cs">
@@ -193,13 +197,13 @@
     <EmbeddedResource Include="Source\View\EditContact.resx">
       <DependentUpon>EditContact.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\EditGridLinks.resx">
+    <EmbeddedResource Include="Source\View\Settings\EditGridLinks.resx">
       <DependentUpon>EditGridLinks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\EditSmartPasteBinds.resx">
+    <EmbeddedResource Include="Source\View\Settings\EditSmartPasteBinds.resx">
       <DependentUpon>EditSmartPasteBinds.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\EditLogins.resx">
+    <EmbeddedResource Include="Source\View\Settings\EditLogins.resx">
       <DependentUpon>EditLogins.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Main.resx">
@@ -224,6 +228,9 @@
     <Content Include="Resources\bindingNavigatorDeleteItem.Image.png" />
     <None Include="Resources\help.jpg" />
     <Content Include="Resources\helpToolStripButton.Image.png" />
+    <None Include="Resources\lock.jpg" />
+    <None Include="Resources\lock.png" />
+    <None Include="Resources\padlock_small.png" />
     <Content Include="ToDo.txt" />
     <None Include="Resources\Close.png" />
   </ItemGroup>

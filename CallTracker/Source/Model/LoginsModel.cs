@@ -29,24 +29,35 @@ namespace CallTracker.Model
         public string Password{ get; set; }
         [ProtoMember(8)]
         public string SubmitElement { get; set; }
+        [ProtoMember(9)]
+        public bool SubmitAsForm { get; set; }
 
         public LoginsModel()
         {
-
-        }
-
-        public LoginsModel(string _url, string _title, string _element)
-        {
-            UsernameElement = _element;
-            Title = _title;
-            Url = _url;
+            UsernameElement = String.Empty;
+            Title = String.Empty;
+            Url = String.Empty;
             System = String.Empty;
             Username = String.Empty;
             Password = String.Empty;
             SubmitElement = String.Empty;
             UsernameElement = String.Empty;
             PasswordElement = String.Empty;
-            //Data = "Name";
+            SubmitAsForm = false;
+        }
+
+        public LoginsModel(string _url, string _title, string _element)
+        {
+            UsernameElement = _element ?? String.Empty;
+            Title = _title ?? String.Empty;
+            Url = _url ?? String.Empty;
+            System = String.Empty;
+            Username = String.Empty;
+            Password = String.Empty;
+            SubmitElement = String.Empty;
+            UsernameElement = String.Empty;
+            PasswordElement = String.Empty;
+            SubmitAsForm = false;
         }
     }
 }

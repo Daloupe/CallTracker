@@ -21,16 +21,16 @@ namespace CallTracker.Model
         {
             SystemItems = new List<SystemItem>
             {
-                new SystemItem { System = "Google", Title = "Google"},
-                new SystemItem { System = "Yahoo", Title = "Yahoo"},
-                new SystemItem { System = "Hotmail", Title = "HotmailT"},
-                new SystemItem { System = "ICON", Title = "ICONT"},
-                new SystemItem { System = "IFMS", Title = "IFMST"},
-                new SystemItem { System = "SCAMPS", Title = "SCAMPST"},
-                new SystemItem { System = "DIMPS", Title = "DIMPST"},
-                new SystemItem { System = "Nexus", Title = "NexusT"},
-                new SystemItem { System = "MAD", Title = "MADT"},
-                new SystemItem { System = "WOBS", Title = "WobsT"}
+                new SystemItem { System = "Google", Title = "Google", Url = "https://www.google.com.au/"},
+                new SystemItem { System = "Yahoo", Title = "Yahoo", Url = "https://login.yahoo.com/config/login_verify2?&.src=ym&.intl=au"},
+                new SystemItem { System = "Hotmail", Title = "Hotmail", Url = "http://www.yahoo.com"},
+                new SystemItem { System = "ICON", Title = "ICON", Url = "http://www.yahoo.com"},
+                new SystemItem { System = "IFMS", Title = "IFMST", Url = "http://www.yahoo.com"},
+                new SystemItem { System = "SCAMPS", Title = "SCAMPST", Url = "http://www.yahoo.com"},
+                new SystemItem { System = "DIMPS", Title = "DIMPST", Url = "http://www.yahoo.com"},
+                new SystemItem { System = "Nexus", Title = "NexusT", Url = "http://www.yahoo.com"},
+                new SystemItem { System = "MAD", Title = "MADT", Url = "http://www.yahoo.com"},
+                new SystemItem { System = "WOBS", Title = "WobsT", Url = "http://www.yahoo.com"}
             };
 
             GridLinkList = new List<GridLinksItem>();
@@ -43,7 +43,7 @@ namespace CallTracker.Model
                 int index = 0;
                 foreach (var SystemItem in SystemItems)
                 {
-                    GridLinkList.Add(new GridLinksItem { System = SystemItem.Title, Index = index });
+                    GridLinkList.Add(new GridLinksItem { System = SystemItem.System, Index = index });
                     index++;
                 }
             }
@@ -57,7 +57,7 @@ namespace CallTracker.Model
         [ProtoMember(1)]
         public int Index { get; set; }
         [ProtoMember(2)]
-        public string System { get; set; }     
+        public string System { get; set; }
 
         public GridLinksItem()
         {
@@ -70,11 +70,13 @@ namespace CallTracker.Model
     {
         public string System { get; set; }
         public string Title { get; set; }
+        public string Url { get; set; }
 
         public SystemItem()
         {
             System = String.Empty;
             Title = String.Empty;
+            Url = String.Empty;
         }
     }
 }

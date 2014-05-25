@@ -20,6 +20,8 @@ namespace CallTracker.View
         internal DataRepository DataStore;
         private HotkeyController HotKeys;
 
+        //public event ActionEventHandler OnAction;
+
         public Main()
         {
             InitializeComponent();
@@ -51,11 +53,12 @@ namespace CallTracker.View
             editLogins.Init(this, loginsViewMenuItem);
             editSmartPasteBinds.Init(this, pasteBindsViewMenuItem);
             editGridLinks.Init(this, gridLinksViewMenuItem);
+
+            helpKeyCommands.Init(this, viewKeyCommandsMenuItem);
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //toolStripProgressBar1.Value = 10;
             Properties.Settings.Default.Save();
             DataRepository.SaveFile(DataStore);
             HotKeys.Dispose();
@@ -132,8 +135,7 @@ namespace CallTracker.View
         private void _MainMenu_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-            {
-                
+            {  
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
                 Properties.Settings.Default.Main_Position = Location;
@@ -149,6 +151,27 @@ namespace CallTracker.View
               e.ClipRectangle.Width - 1,
               e.ClipRectangle.Height - 1);
             base.OnPaint(e);
+        }
+
+        private void _MainMenu_MenuDeactivate(object sender, EventArgs e)
+        {
+            this.Refresh();
+        }
+
+        public void UpdateProgressBar(int percent)
+        {
+            editContact.toolStripProgressBar1.Value = percent;
+        }
+
+        public void UpdateProgressBar()
+        {
+            editContact.toolStripProgressBar1.PerformStep();
+        }
+
+        public void SetProgressBarStep(int _steps)
+        {
+            editContact.toolStripProgressBar1.Maximum = _steps + 1;
+            UpdateProgressBar();
         }
     }
 }

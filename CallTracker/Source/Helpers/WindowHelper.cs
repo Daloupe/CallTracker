@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace CallTracker.Helpers
 {
-    public static class ActiveWindow
+    public static class WindowHelper
     {
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
@@ -12,7 +12,11 @@ namespace CallTracker.Helpers
         [DllImport("user32.dll")]
         private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
-        public static string Title()
+        [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        public static string GetActiveWindowTitle()
         {
             int chars = 256;
             StringBuilder buff = new StringBuilder(chars);
@@ -30,7 +34,7 @@ namespace CallTracker.Helpers
             return String.Empty;
         }
 
-        public static IntPtr HWND()
+        public static IntPtr GetActiveWindowHWND()
         {
             return GetForegroundWindow();
         }
