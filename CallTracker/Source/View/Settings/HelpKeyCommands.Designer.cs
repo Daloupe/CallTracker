@@ -125,7 +125,7 @@
             this.label12.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.label12.Size = new System.Drawing.Size(149, 49);
             this.label12.TabIndex = 17;
-            this.label12.Text = "- Smart Pastes all known fields on a page, not just the active element.";
+            this.label12.Text = "- Smart Pastes all known elements on a page, not just the active element.";
             // 
             // label11
             // 
