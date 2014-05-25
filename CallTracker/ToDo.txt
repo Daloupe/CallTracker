@@ -1,6 +1,53 @@
 To Do:
 
-Edit Datagrids (Logins and Binds)
+Main GUI
+ | Have Settings windows show in main gui, rather than their own popup.
+ - Add status bar to display warnings.
+ - Start inputting system variables.
+
+Contact GUI
+ | Double click splitters to toggle panels.
+ - Add other information: Outcome, Clearance, NIT results, Speed Test Results.
+ - Hook up affected products check boxes.
+
+ARO GUI
+ - Ctrl + Win + C.
+ - Create GUI with Suburb, Node, PR, Products, and Date fields.
+ - Button lives near Next Call, hotkey win-a.
+ - ARO's older than 2 days are automatically deleted.
+ - Cross check ARO nodes when a node is smart copied.
+
+PR/SMS Templates
+
+Glance GUI
+ - Trafic lights available data.
+
+Silent Search
+ - Launches searches with available data in the background.
+ - Options let you specify which systems to search in.
+
+ GridLinks
+ | Detect Login page and Autologin/ Detect Log in Required Page (ie Wobs).
+ - Pull Systems from Login information.
+ - Cycling Links - eg NBN/CM/CIP templates?
+ - Context aware Links?
+
+General GUI
+ | Gray bordered Text Boxes.
+ | Add Progress bar events on long operations eg AutoLogin/IECreate.
+
+ Utility
+ | Reset Logins, Contacts when new user detected.
+ | Encrypt Passwords and Current User before saving.
+ | Clear Calls option.
+ | Create .bin if not found.
+	| Use a single .bin file.
+ | Prevent program from opening twice.
+ | Reset window location if out of monitor bounds.
+ - Right Click Menu > Always on Top.
+ - Double Click Menu to Collapse.
+
+ Edit Datagrids (Logins and Binds)
  - Export/Import only Logins/Binds.
  - Create "Default" Logins and Binds in case user changes it too much.
  | Add an Edit Lock to Logins and Binds to prevent accidental changes.
@@ -25,49 +72,6 @@ Scraper
  | On non login page, smart pastes all known binds.
 	| SmartPaste should attempt to edit html field directly, before ctrl-v.
 
-GridLinks
- | Detect Login page and Autologin/ Detect Log in Required Page (ie Wobs).
- - Pull Systems from Login information.
- - Cycling Links - eg NBN/CM/CIP templates.
- - Context aware Links?
-
-General GUI
- | Gray bordered Text Boxes.
- | Add Progress bar events on long operations eg AutoLogin/IECreate.
-
-Main GUI
- | Have Settings windows show in main gui, rather than their own popup.
- - Add status bar to display warnings.
- - Start inputting system variables.
-
-Contact GUI
- | Double click splitters to toggle panels.
- - Add other information: Outcome, Clearance, NIT results, Speed Test Results.
- - Hook up affected products check boxes.
-
-ARO GUI
- - Ctrl + Win + C.
- - Create GUI with Suburb, Node, PR, Products, and Date fields.
- - Button lives near Next Call, hotkey win-a.
- - ARO's older than 2 days are automatically deleted.
- - Cross check ARO nodes when a node is smart copied.
-
-PR/SMS Templates
-
-Glance GUI
- - Trafic lights available data.
-
- Utility
- | Reset Logins, Contacts when new user detected.
- | Encrypt Passwords and Current User before saving.
- | Clear Calls option.
- | Create .bin if not found.
-	| Use a single .bin file.
- | Prevent program from opening twice.
- | Reset window location if out of monitor bounds.
- - Right Click Menu > Always on Top.
- - Double Click Menu to Collapse.
-
-Silent Search
- - Launches searches with available data in the background.
- - Options let you specify which systems to search in.
+BindSmartPaste GUI
+ | System AutoCompletes based on other SmartPaste systems.
+ | System prefills if other SmartPasteBinds share a URL/Title.

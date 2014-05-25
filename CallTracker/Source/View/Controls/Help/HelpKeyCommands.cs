@@ -13,7 +13,7 @@ using CallTracker.Model;
 
 namespace CallTracker.View
 {
-    public partial class HelpKeyCommands : SettingsViewBase
+    public partial class HelpKeyCommands : ViewControlBase
     {
 
         public HelpKeyCommands()

@@ -20,8 +20,6 @@ namespace CallTracker.View
         internal DataRepository DataStore;
         private HotkeyController HotKeys;
 
-        //public event ActionEventHandler OnAction;
-
         public Main()
         {
             InitializeComponent();
@@ -55,6 +53,9 @@ namespace CallTracker.View
             editGridLinks.Init(this, gridLinksViewMenuItem);
 
             helpKeyCommands.Init(this, viewKeyCommandsMenuItem);
+
+            IETabActivator.OnAction += UpdateProgressBar;
+            HotkeyController.OnAction += UpdateProgressBar;
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -83,8 +84,8 @@ namespace CallTracker.View
             editContact.DeleteCalls();
         }
 
-        private SettingsViewBase _VisibleSetting;
-        public SettingsViewBase VisibleSetting 
+        private ViewControlBase _VisibleSetting;
+        public ViewControlBase VisibleSetting 
         {
             get { return _VisibleSetting; }
             set
@@ -105,7 +106,7 @@ namespace CallTracker.View
         private void settingMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            VisibleSetting = item.Tag as SettingsViewBase;
+            VisibleSetting = item.Tag as ViewControlBase;
         }
 
         public static T ShowSettingsForm<T>() where T : Form, new()

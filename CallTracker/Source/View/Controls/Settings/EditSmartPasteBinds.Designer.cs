@@ -1,6 +1,6 @@
 ﻿namespace CallTracker.View
 {
-    partial class EditSmartPasteBinds : SettingsViewBase
+    partial class EditSmartPasteBinds : ViewControlBase
     {
         /// <summary> 
         /// Required designer variable.

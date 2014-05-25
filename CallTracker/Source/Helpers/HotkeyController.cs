@@ -43,12 +43,11 @@ namespace CallTracker.Helpers
         private static string PreviousIEMatch;
         private static HotKeyManager HotKeyManager;
 
-        public event ActionEventHandler OnAction;
+        public static event ActionEventHandler OnAction;
         
         public HotkeyController(Main _parent)
         {
             parent = _parent;
-            OnAction += parent.UpdateProgressBar;
 
             HotKeyManager = new HotKeyManager();
 
@@ -76,7 +75,7 @@ namespace CallTracker.Helpers
         // Grid Links ///////////////////////////////////////////////////////////////////////////////////////
         private Dictionary<Keys, string> GridLinkHotkeys = new Dictionary<Keys, string>()
         {
-            {Keys.NumPad0, "0"},
+            {Keys.Z, "0"},
             {Keys.NumPad1, "1"},
             {Keys.NumPad2, "2"},
             {Keys.NumPad3, "3"},
@@ -93,11 +92,11 @@ namespace CallTracker.Helpers
             parent.SetProgressBarStep(5);
             GridLinksItem gridLink = parent.DataStore.GridLinks.GridLinkList[Convert.ToInt32(e.Name)];
             SystemItem systemItem = parent.DataStore.GridLinks.SystemItems.Find(s => s.System == gridLink.System);
+            
             OnAction();
-
             if (FindIEByTitle(gridLink.System))
             {
-                new IETabActivator(browser, parent).ActivateByTabsUrl(browser.Url);
+                new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
                 AutoLogin();
             }
             else
@@ -146,7 +145,9 @@ namespace CallTracker.Helpers
                                    bind in parent.DataStore.PasteBinds
                                where  
                                    bind.Element == element &&
-                                   (bind.Url == url || title.Contains(bind.Title))
+                                   (bind.Url == url || 
+                                    title.Contains(bind.Title) || 
+                                    bind.Title.Contains(title))
                                select 
                                    bind)
                                .FirstOrDefault();
@@ -167,29 +168,35 @@ namespace CallTracker.Helpers
             if(String.IsNullOrEmpty(element))
             {
                 WindowHelper.SetForegroundWindow(parent.Handle);
-                MessageBox.Show(parent, "Unable to bind: Unable to find element");
+                MessageBox.Show(parent, "Unable to bind: Unable to find element name or id");
                 return;
             }
 
-            PasteBind query = (from   
-                                   bind in parent.DataStore.PasteBinds
-                               where  
-                                   bind.Element == element &&
-                                   (bind.Url == url || title.Contains(bind.Title))
-                               select 
-                                   bind)
-                               .FirstOrDefault();
+            var query1 = from
+                            bind in parent.DataStore.PasteBinds
+                         where
+                            bind.Url == url || 
+                            bind.Title.Contains(title) ||
+                            title.Contains(bind.Title) 
+                         select
+                            bind;
 
-            if (query == null)
+            PasteBind query2 = query1.FirstOrDefault(bind => bind.Element == element);
+
+            if (query2 == null)
             {
-                query = new PasteBind(url, title, element);
-                parent.DataStore.PasteBinds.Add(query);
+                query2 = new PasteBind(url, title, element);
+
+                if (query1.Count() > 0)
+                    query2.System = query1.FirstOrDefault().System;
+
+                parent.DataStore.PasteBinds.Add(query2);
                 parent.editSmartPasteBinds.pasteBindBindingSource.ResetBindings(true);
             }
 
-            parent.editSmartPasteBinds.SelectQuery(query);
+            parent.editSmartPasteBinds.SelectQuery(query2);
 
-            Main.ShowSettingsForm<BindSmartPasteForm>().UpdateFields(query);
+            Main.ShowSettingsForm<BindSmartPasteForm>().UpdateFields(query2);
         }
 
         // AutoFill /////////////////////////////////////////////////////////////////////////////////////////
@@ -205,6 +212,7 @@ namespace CallTracker.Helpers
                             bind in parent.DataStore.PasteBinds
                         where
                             bind.Url == url ||
+                            bind.Title.Contains(title) ||
                             title.Contains(bind.Title)
                         select
                             bind;
@@ -226,6 +234,7 @@ namespace CallTracker.Helpers
             OnAction();
             if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
                 return;
+
             string title = browser.Title;
             string url = browser.Url;
 
@@ -233,6 +242,7 @@ namespace CallTracker.Helpers
                                      login in parent.DataStore.Logins
                                  where
                                      title.Contains(login.Title) ||
+                                     login.Title.Contains(title) || 
                                      login.Url == url
                                  select
                                      login)
@@ -312,7 +322,7 @@ namespace CallTracker.Helpers
         {
             string currentHWND = _HWND.ToString();
 
-            if (!Browser.Exists(typeof(IE), Find.By("hwnd", currentHWND)))
+            if (!Browser.Exists<IE>(Find.By("hwnd", currentHWND)))
                 return false;
 
             if (PreviousIEMatch != currentHWND)
@@ -329,11 +339,9 @@ namespace CallTracker.Helpers
 
         private bool FindIEByTitle(string _title)
         {
-            string[] titleRegex = Regex.Split(_title, " -( Windows)? Internet Explorer");
-            
-            string currentTitle = titleRegex[0];
+            string currentTitle = Regex.Split(_title, " -( Windows)? Internet Explorer")[0];
 
-            if (!Browser.Exists(typeof(IE), Find.ByTitle(currentTitle)))
+            if (!Browser.Exists<IE>(Find.ByTitle(currentTitle)))
                 return false;
 
             if (PreviousIEMatch != currentTitle)

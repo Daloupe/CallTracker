@@ -12,7 +12,7 @@ using CallTracker.Model;
 
 namespace CallTracker.View
 {
-    public partial class EditGridLinks : SettingsViewBase
+    public partial class EditGridLinks : ViewControlBase
     {
         BindingSource[] bs = new BindingSource[10];
 

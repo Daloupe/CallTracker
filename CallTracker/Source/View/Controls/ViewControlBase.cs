@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace CallTracker.View
 {
-    public partial class SettingsViewBase : UserControl
+    public partial class ViewControlBase : UserControl
     {
         public ToolStripMenuItem MenuControl { get; protected set; }
         protected Main MainForm { get; set; }
@@ -21,7 +21,6 @@ namespace CallTracker.View
             MainForm = _parent;
 
             this.Visible = true;
-            //HideSetting();
             this.SendToBack();
             this.Visible = false;
             //this.BringToFront();
@@ -37,12 +36,10 @@ namespace CallTracker.View
             MenuControl.Checked = false;
             this.SendToBack();
             this.Visible = false;
-            //MainForm.Controls.Remove(this);
         }
 
         public virtual void ShowSetting()
         {
-            //MainForm.Controls.Add(this);
             MenuControl.Checked = true;
             this.BringToFront();
             this.Visible = true;
@@ -65,7 +62,7 @@ namespace CallTracker.View
             // SettingsViewBase
             // 
             this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.Name = "SettingsViewBase";
+            this.Name = "ViewControlBase";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(584, 222);
             this.ResumeLayout(false);

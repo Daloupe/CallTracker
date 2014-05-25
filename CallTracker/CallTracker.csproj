@@ -92,23 +92,23 @@
       <DependentUpon>FMask.cs</DependentUpon>
     </None>
     <Compile Include="Source\Helpers\IETabActivator.cs" />
-    <Compile Include="Source\View\Settings\HelpKeyCommands.cs">
+    <Compile Include="Source\View\Controls\Help\HelpKeyCommands.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Settings\HelpKeyCommands.Designer.cs">
+    <Compile Include="Source\View\Controls\Help\HelpKeyCommands.Designer.cs">
       <DependentUpon>HelpKeyCommands.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Settings\SettingsViewBase.cs">
+    <Compile Include="Source\View\Controls\ViewControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <EmbeddedResource Include="Source\View\Archive\FMaskOverlay.resx">
       <DependentUpon>FMaskOverlay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Settings\HelpKeyCommands.resx">
+    <EmbeddedResource Include="Source\View\Controls\Help\HelpKeyCommands.resx">
       <DependentUpon>HelpKeyCommands.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Settings\SettingsViewBase.resx">
-      <DependentUpon>SettingsViewBase.cs</DependentUpon>
+    <EmbeddedResource Include="Source\View\Controls\ViewControlBase.resx">
+      <DependentUpon>ViewControlBase.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\CallTracker.Model.ContactAddress.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.CustomerContact.datasource" />
@@ -142,19 +142,19 @@
     <None Include="Source\Model\Archive\PocoPerson.cs" />
     <Compile Include="Source\Model\ServiceModel.cs" />
     <Compile Include="Source\Model\StatisticsModel.cs" />
-    <Compile Include="Source\View\BindSmartPasteForm.cs">
+    <Compile Include="Source\View\Popups\BindSmartPasteForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Source\View\BindSmartPasteForm.Designer.cs">
+    <Compile Include="Source\View\Popups\BindSmartPasteForm.Designer.cs">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Settings\EditGridLinks.cs">
+    <Compile Include="Source\View\Controls\Settings\EditGridLinks.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Settings\EditGridLinks.Designer.cs">
+    <Compile Include="Source\View\Controls\Settings\EditGridLinks.Designer.cs">
       <DependentUpon>EditGridLinks.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\FormControls.cs">
+    <Compile Include="Source\View\Controls\FormControls.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Source\View\EditContact.cs">
@@ -163,16 +163,16 @@
     <Compile Include="Source\View\EditContact.Designer.cs">
       <DependentUpon>EditContact.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Settings\EditSmartPasteBinds.cs">
+    <Compile Include="Source\View\Controls\Settings\EditSmartPasteBinds.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Settings\EditSmartPasteBinds.Designer.cs">
+    <Compile Include="Source\View\Controls\Settings\EditSmartPasteBinds.Designer.cs">
       <DependentUpon>EditSmartPasteBinds.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Settings\EditLogins.cs">
+    <Compile Include="Source\View\Controls\Settings\EditLogins.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Settings\EditLogins.Designer.cs">
+    <Compile Include="Source\View\Controls\Settings\EditLogins.Designer.cs">
       <DependentUpon>EditLogins.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Main.cs">
@@ -191,19 +191,19 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Source\View\BindSmartPasteForm.resx">
+    <EmbeddedResource Include="Source\View\Popups\BindSmartPasteForm.resx">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\EditContact.resx">
       <DependentUpon>EditContact.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Settings\EditGridLinks.resx">
+    <EmbeddedResource Include="Source\View\Controls\Settings\EditGridLinks.resx">
       <DependentUpon>EditGridLinks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Settings\EditSmartPasteBinds.resx">
+    <EmbeddedResource Include="Source\View\Controls\Settings\EditSmartPasteBinds.resx">
       <DependentUpon>EditSmartPasteBinds.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Settings\EditLogins.resx">
+    <EmbeddedResource Include="Source\View\Controls\Settings\EditLogins.resx">
       <DependentUpon>EditLogins.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Main.resx">

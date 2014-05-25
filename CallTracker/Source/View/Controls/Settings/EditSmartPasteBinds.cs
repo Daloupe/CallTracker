@@ -1,31 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using CallTracker.View;
 using CallTracker.Model;
 
 namespace CallTracker.View
 {
-    public partial class BindSmartPasteForm : Form
+    public partial class EditSmartPasteBinds : ViewControlBase
     {
-        Main parent;
         private BindingSource source1 = new BindingSource();
         private BindingSource source2 = new BindingSource();
 
-        public BindSmartPasteForm()
+        public EditSmartPasteBinds()
         {
             InitializeComponent();
-            parent = Application.OpenForms.OfType<Main>().First();
-            
+
         }
 
-        private void BindSmartPasteForm_Load(object sender, EventArgs e)
+        public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
+            base.Init(_parent, _menuItem);
+
+            pasteBindBindingSource.DataSource = MainForm.DataStore.PasteBinds;
+
             source1.DataSource = CustomerContact.PropertyStrings;
             _Data.DataSource = source1;
             _Data.DisplayMember = "Name";
@@ -46,36 +50,26 @@ namespace CallTracker.View
                                       this.pasteBindBindingSource,
                                       "AltData",
                                       true,
-                                      DataSourceUpdateMode.OnPropertyChanged));
+                                      DataSourceUpdateMode.OnPropertyChanged));       
         }
-
-        private void _Cancel_Click(object sender, EventArgs e)
+        public void SelectQuery(PasteBind _query)
         {
-            parent.RemovePasteBind((PasteBind)pasteBindBindingSource.DataSource);
-            this.Close();
+            pasteBindBindingSource.Position = pasteBindBindingSource.IndexOf(_query);
         }
 
-        private void _Ok_Click(object sender, EventArgs e)
+        protected override void _Done_Click(object sender, EventArgs e)
         {
-            //parent.editSmartPasteBinds.dataGridView1.Invalidate();
-            //parent.editSmartPasteBinds.pasteBindBindingSource.ResetBindings(true);
-            this.Close();
+            base._Done_Click(sender, e);
         }
 
-        public void UpdateFields(PasteBind _query)
+        protected override void PaintBorder(object sender, PaintEventArgs e)
         {
-            pasteBindBindingSource.DataSource = _query;
-
-            //if (String.IsNullOrEmpty(_query.Data))
-            //    _query.Data = "Name";
+            base.PaintBorder(sender, e);
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
+        private void propertyLock_CheckedChanged(object sender, EventArgs e)
         {
-            parent = null;
+            flowLayoutPanel1.Enabled = !propertyLock.Checked;
         }
-
     }
-    
-
 }

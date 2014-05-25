@@ -1,6 +1,6 @@
 ﻿namespace CallTracker.View
 {
-    partial class HelpKeyCommands : SettingsViewBase
+    partial class HelpKeyCommands : ViewControlBase
     {
         /// <summary> 
         /// Required designer variable.

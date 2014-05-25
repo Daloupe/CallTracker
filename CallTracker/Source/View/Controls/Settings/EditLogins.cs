@@ -12,7 +12,7 @@ using CallTracker.Model;
 
 namespace CallTracker.View
 {
-    public partial class EditLogins : SettingsViewBase
+    public partial class EditLogins : ViewControlBase
     {
         public EditLogins()
         {
