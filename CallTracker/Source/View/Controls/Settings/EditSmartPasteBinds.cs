@@ -21,12 +21,13 @@ namespace CallTracker.View
         public EditSmartPasteBinds()
         {
             InitializeComponent();
-
         }
 
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
+
+            MainForm.DataStore.PasteBinds.Changed += OnListChanged;
 
             pasteBindBindingSource.DataSource = MainForm.DataStore.PasteBinds;
 
@@ -70,6 +71,11 @@ namespace CallTracker.View
         private void propertyLock_CheckedChanged(object sender, EventArgs e)
         {
             flowLayoutPanel1.Enabled = !propertyLock.Checked;
+        }
+
+        public void OnListChanged()
+        {
+            pasteBindBindingSource.ResetBindings(true);
         }
     }
 }

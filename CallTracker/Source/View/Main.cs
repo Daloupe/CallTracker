@@ -68,7 +68,10 @@ namespace CallTracker.View
         public void RemovePasteBind(PasteBind _bind)
         {
             if (DataStore.PasteBinds.Contains(_bind))
+            {
                 DataStore.PasteBinds.Remove(_bind);
+                //editSmartPasteBinds.pasteBindBindingSource.ResetBindings(true);
+            }
         }
 
         // Menu Bar ////////////////////////////////////////////////////////////////////////////////
@@ -109,7 +112,7 @@ namespace CallTracker.View
             VisibleSetting = item.Tag as ViewControlBase;
         }
 
-        public static T ShowSettingsForm<T>() where T : Form, new()
+        public static T ShowPopupForm<T>() where T : Form, new()
         {
             var findForm = Application.OpenForms.OfType<T>();
             if (!findForm.Any())

@@ -227,10 +227,18 @@
     <Content Include="FodyWeavers.xml" />
     <Content Include="Resources\bindingNavigatorDeleteItem.Image.png" />
     <None Include="Resources\help.jpg" />
+    <None Include="Resources\c.png" />
+    <None Include="Resources\Ctrl.png" />
     <Content Include="Resources\helpToolStripButton.Image.png" />
     <None Include="Resources\lock.jpg" />
     <None Include="Resources\lock.png" />
     <None Include="Resources\padlock_small.png" />
+    <None Include="Resources\Windows.png" />
+    <None Include="Resources\Numpad.png" />
+    <None Include="Resources\Tilda.png" />
+    <None Include="Resources\v.png" />
+    <None Include="Resources\keyboard.png" />
+    <None Include="Resources\Shift.png" />
     <Content Include="ToDo.txt" />
     <None Include="Resources\Close.png" />
   </ItemGroup>

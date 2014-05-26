@@ -11,11 +11,31 @@ using ProtoBuf;
 
 namespace CallTracker.Model
 {
+    public class TriggerList<T> : List<T>
+    {
+        public delegate void ChangedEventHandler();
+        public event ChangedEventHandler Changed;
+
+        public new void Add(T _item)
+        {
+            base.Add(_item);
+            if (Changed != null)
+                Changed();
+        }
+
+        public new void Remove(T _item)
+        {
+            base.Remove(_item);
+            if (Changed != null)
+                Changed();
+        }
+    }
+
     [ProtoContract]
     internal class DataRepository
     {
         [ProtoMember(1)]
-        internal List<PasteBind> PasteBinds { get; set; }
+        internal TriggerList<PasteBind> PasteBinds { get; set; }
         [ProtoMember(2)]
         internal List<CustomerContact> Contacts { get; set; }
         [ProtoMember(3)]
@@ -23,9 +43,11 @@ namespace CallTracker.Model
         [ProtoMember(4)]
         internal GridLinksModel GridLinks { get; set; }
 
+        //public List<T> Remove
+
         public DataRepository()
         {
-            PasteBinds = new List<PasteBind>();
+            PasteBinds = new TriggerList<PasteBind>();
             Contacts = new List<CustomerContact>();
             Logins = new List<LoginsModel>();
             GridLinks = new GridLinksModel();

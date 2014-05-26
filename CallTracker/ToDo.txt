@@ -57,6 +57,7 @@ General GUI
 	 | Only have System and Name in DataGrid.
 	 - Data should be a listbox that you can add multiple item to, and reorder.
 	 | If no element is found, pop up a box advising that it can't be bound.
+	 | Datagrid resets binding when datasource changes.
 
 	Autologin
 	 | Add field for form name.
@@ -75,3 +76,4 @@ Scraper
 BindSmartPaste GUI
  | System AutoCompletes based on other SmartPaste systems.
  | System prefills if other SmartPasteBinds share a URL/Title.
+ | Name prefills with Element name.

@@ -66,7 +66,7 @@ namespace CallTracker.View
             this.Close();
         }
 
-        public void UpdateFields(PasteBind _query)
+        public void SelectQuery(PasteBind _query)
         {
             pasteBindBindingSource.DataSource = _query;
             UpdateAutoComplete();
@@ -88,25 +88,5 @@ namespace CallTracker.View
             parent = null;
         }
 
-    }
-
-    public class PasteBindComparer : IEqualityComparer<PasteBind>
-    {
-        public bool Equals(PasteBind x, PasteBind y)
-        {
-            if (x.System == y.System)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public int GetHashCode(PasteBind obj)
-        {
-            return obj.System.GetHashCode();
-        }
     }
 }

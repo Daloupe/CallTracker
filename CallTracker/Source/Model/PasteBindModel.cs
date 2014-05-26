@@ -50,10 +50,10 @@ namespace CallTracker.Model
             AltData = String.Empty;
         }
 
-        public PasteBind(string _url, string _title, string _element)
+        public PasteBind(string _system, string _url, string _title, string _element)
         {
-            System = String.Empty;
-            Name = String.Empty;
+            System = _system ?? String.Empty;
+            Name = _element ?? String.Empty;
             Element = _element ?? String.Empty;
             Title = _title ?? String.Empty;
             Url = _url ?? String.Empty;
@@ -61,4 +61,6 @@ namespace CallTracker.Model
             AltData = String.Empty;
         }
     }
+
+    
 }

@@ -172,31 +172,27 @@ namespace CallTracker.Helpers
                 return;
             }
 
-            var query1 = from
-                            bind in parent.DataStore.PasteBinds
-                         where
-                            bind.Url == url || 
-                            bind.Title.Contains(title) ||
-                            title.Contains(bind.Title) 
-                         select
-                            bind;
+            var UrlOrTitleMatches =  from
+                                        bind in parent.DataStore.PasteBinds
+                                     where
+                                        bind.Url == url || 
+                                        bind.Title.Contains(title) ||
+                                        title.Contains(bind.Title) 
+                                     select
+                                        bind;
 
-            PasteBind query2 = query1.FirstOrDefault(bind => bind.Element == element);
+            PasteBind ElementMatch = UrlOrTitleMatches.FirstOrDefault(bind => bind.Element == element);
 
-            if (query2 == null)
+            if (ElementMatch == null)
             {
-                query2 = new PasteBind(url, title, element);
+                string system = UrlOrTitleMatches.Count() > 0 ? UrlOrTitleMatches.ElementAtOrDefault(0).System : String.Empty;
+                ElementMatch = new PasteBind(system, url, title, element);
 
-                if (query1.Count() > 0)
-                    query2.System = query1.FirstOrDefault().System;
-
-                parent.DataStore.PasteBinds.Add(query2);
-                parent.editSmartPasteBinds.pasteBindBindingSource.ResetBindings(true);
+                parent.DataStore.PasteBinds.Add(ElementMatch);
             }
 
-            parent.editSmartPasteBinds.SelectQuery(query2);
-
-            Main.ShowSettingsForm<BindSmartPasteForm>().UpdateFields(query2);
+            parent.editSmartPasteBinds.SelectQuery(ElementMatch);
+            Main.ShowPopupForm<BindSmartPasteForm>().SelectQuery(ElementMatch);
         }
 
         // AutoFill /////////////////////////////////////////////////////////////////////////////////////////
