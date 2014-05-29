@@ -6,9 +6,12 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
+using System.Diagnostics;
 
 using Shortcut;
 using WatiN.Core;
+using WatiN.Core.Constraints;
+using WatiN.Core.Interfaces;
 using SHDocVw;
 
 using CallTracker.View;
@@ -43,6 +46,8 @@ namespace CallTracker.Helpers
         private static string PreviousIEMatch;
         private static HotKeyManager HotKeyManager;
 
+        public Stopwatch sw = new Stopwatch();
+
         public static event ActionEventHandler OnAction;
         
         public HotkeyController(Main _parent)
@@ -62,6 +67,9 @@ namespace CallTracker.Helpers
                 HotKeyManager.AddOrReplaceHotkey(GridLinkHotKey.Value, Modifiers.Win, GridLinkHotKey.Key, OnGridLinks);
 
             Settings.Instance.AutoMoveMousePointerToTopLeft = false;
+            Settings.Instance.AttachToBrowserTimeOut = 5;
+            Settings.Instance.WaitForCompleteTimeOut = 5;
+            Settings.Instance.WaitUntilExistsTimeOut = 5;
         }
 
         public void Dispose()
@@ -94,10 +102,18 @@ namespace CallTracker.Helpers
             SystemItem systemItem = parent.DataStore.GridLinks.SystemItems.Find(s => s.System == gridLink.System);
             
             OnAction();
-            if (FindIEByTitle(gridLink.System))
+            if (gridLink.System == "MAD" || gridLink.System == "OPOM")
+            {
+                IntPtr hWnd = IntPtr.Zero;
+                hWnd = WindowHelper.FindHWNDByTitle(gridLink.System);
+                if (hWnd != IntPtr.Zero)
+                    WindowHelper.SetForegroundWindow(hWnd);
+            }
+            else if (FindIEByTitle(gridLink.System))
             {
                 new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
-                AutoLogin();
+                if (browser.Url == systemItem.Url)
+                    AutoLogin();
             }
             else
             {
@@ -153,7 +169,7 @@ namespace CallTracker.Helpers
                                .FirstOrDefault();
 
             if (query != null)
-                SetValueByIdOrName(element, FollowPropertyPath(Main.SelectedContact, query.Data, query.AltData));
+                SetElementValueByIdOrName(element, FollowPropertyPath(Main.SelectedContact, query.Data, query.AltData));
         }
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
@@ -214,7 +230,7 @@ namespace CallTracker.Helpers
                             bind;
 
             foreach (PasteBind bind in query)
-                SetValueByIdOrName(bind.Element, FollowPropertyPath(Main.SelectedContact, bind.Data, bind.AltData));
+                SetElementValueByIdOrName(bind.Element, FollowPropertyPath(Main.SelectedContact, bind.Data, bind.AltData));
         }
 
         // Auto Login ///////////////////////////////////////////////////////////////////////////////////////
@@ -247,13 +263,37 @@ namespace CallTracker.Helpers
                 return;
 
             OnAction();
+            query.Paste(browser, query.UsernameElement, query.Username);
+            query.Paste(browser, query.PasswordElement, query.Password);
 
-            SetValueByIdOrName(query.UsernameElement, query.Username);
-            SetValueByIdOrName(query.PasswordElement, query.Password);
             if (query.SubmitAsForm)
                 SubmitFormByIdOrName(query.SubmitElement);
             else
                 ClickElementByIdOrName(query.SubmitElement);   
+        }
+
+        public class FindByNameFactory : IFindByDefaultFactory
+        {
+            public Constraint ByDefault(string value)
+            {
+                return Find.ByName(value);
+            }
+            public Constraint ByDefault(Regex value)
+            {
+                return Find.ByName(value);
+            }
+        }
+
+        public class FindByIdFactory : IFindByDefaultFactory
+        {
+            public Constraint ByDefault(string value)
+            {
+                return Find.ById(value);
+            }
+            public Constraint ByDefault(Regex value)
+            {
+                return Find.ById(value);
+            }
         }
 
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
@@ -364,37 +404,63 @@ namespace CallTracker.Helpers
             PreviousIEMatch = browser.Title;      
         }
 
-        public static void SetValueByIdOrName(string _element, string _data)
+        public static void SetElementValueByIdOrName(string _element, string _data)
         {
             if (String.IsNullOrEmpty(_element) || String.IsNullOrEmpty(_data))
                 return;
-            Element inputField = browser.Element(Find.ById(_element));
-            if (inputField == null)
-                inputField = browser.Element(Find.ByName(_element));
-            if (inputField != null)
-                inputField.SetAttributeValue("Value", _data);
+
+            Settings.FindByDefaultFactory = new FindByIdFactory();
+            if (browser.Element(Find.ByName(_element)).Exists)
+                Settings.FindByDefaultFactory = new FindByNameFactory();
+
+            browser.Element(_element).SetAttributeValue("Value", _data);
+            //if (browser.Element(Find.ById(_element)).Exists)
+            //    browser.Element(Find.ById(_element)).SetAttributeValue("Value", _data);
+            //else if (browser.Element(Find.ByName(_element)).Exists)
+            //    browser.Element(Find.ByName(_element)).SetAttributeValue("Value", _data);
+             
         }
 
         public static void ClickElementByIdOrName(string _element)
         {
-            if (String.IsNullOrEmpty(_element))
+            if (!CheckAndSet<Element>(_element))
                 return;
-            Element inputField = browser.Element(Find.ById(_element));
-            if (inputField == null)
-                inputField = browser.Element(Find.ByName(_element));
-            if (inputField != null)
-                inputField.Click();
+            browser.Element(_element).ClickNoWait();
         }
 
         public static void SubmitFormByIdOrName(string _form)
         {
-            if (String.IsNullOrEmpty(_form))
+            if (!CheckAndSet<WatiN.Core.Form>(_form))
                 return;
-            WatiN.Core.Form form = browser.Form(Find.ById(_form));
-            if (form == null)
-                form = browser.Form(Find.ByName(_form));
-            if (form != null)
-                form.Submit();
+            browser.Form(_form).Submit();   
+        }
+
+        public static T GetContexteByIdOrName<T>(string _element) where T : Element
+        {
+            if (String.IsNullOrEmpty(_element))
+                return null;
+
+            Settings.FindByDefaultFactory = new FindByIdFactory();
+            if (browser.ElementOfType<T>(Find.ByName(_element)).Exists)
+                Settings.FindByDefaultFactory = new FindByNameFactory();
+
+            return browser.ElementOfType<T>(_element);
+        }
+
+        public static bool CheckAndSet<T>(string _element) where T : Element
+        {
+            if (String.IsNullOrEmpty(_element))
+                return false;
+
+            SetFindByDefault<T>(_element);
+            return true;
+        }
+
+        public static void SetFindByDefault<T>(string _value) where T : Element
+        {
+            Settings.FindByDefaultFactory = new FindByIdFactory();
+            if (browser.ElementOfType<T>(Find.ByName(_value)).Exists)
+                Settings.FindByDefaultFactory = new FindByNameFactory();
         }
 
         // Object Methods ///////////////////////////////////////////////////////////////////////////////////////

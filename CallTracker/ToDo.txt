@@ -26,11 +26,23 @@ Silent Search
  - Launches searches with available data in the background.
  - Options let you specify which systems to search in.
 
+Event Tracking
+ - Timestamp each interaction with CT, so as to get an idea of the order in which systems are accessed.
+
+Contact Statistics
+ - Timestamp each contact.
+
+Call History
+ - Gridview displays: Date, Time, Name, DN, Affected Service.
+ - Edit Panel displays: Note, Mobile.
+
+ IPCC Interaction
+ - Find a way to send messages to IPCC's controls.
+
  GridLinks
  | Detect Login page and Autologin/ Detect Log in Required Page (ie Wobs).
  - Pull Systems from Login information.
- - Cycling Links - eg NBN/CM/CIP templates?
- - Context aware Links?
+ - GridLinks on an empty IE page should load it in that window.
 
 General GUI
  | Gray bordered Text Boxes.
@@ -58,11 +70,13 @@ General GUI
 	 - Data should be a listbox that you can add multiple item to, and reorder.
 	 | If no element is found, pop up a box advising that it can't be bound.
 	 | Datagrid resets binding when datasource changes.
+	 - Store element constraint to avoid unneccessary .Exists.
 
 	Autologin
 	 | Add field for form name.
 	 | Option to Submit instead of click the submit button.
 	 - Option to find element in relation to form element.
+	 - Autologin should rely on URL to locate login page, Title should be the simplest form. Logins can then be reused as gridlinks which rely on simple titles to locate windows.
 
 AutoFill
  | Smart Pastes all known binds on a page.

@@ -73,5 +73,10 @@ namespace CallTracker.View
         {
             base.PaintBorder(sender, e);
         }
+
+        private void _SetDefaults_Click(object sender, EventArgs e)
+        {
+            MainForm.DataStore.GridLinks.Populate();
+        }
     }
 }

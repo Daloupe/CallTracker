@@ -63,7 +63,13 @@ namespace CallTracker.Model
                 dataStore = Serializer.Deserialize<DataRepository>(file);
             
             DecryptData(dataStore);
-            dataStore.Contacts.Add(new CustomerContact() { Id = dataStore.Contacts.Count });
+            
+            CustomerContact newContact = new CustomerContact();
+            newContact.Id = dataStore.Contacts.Count;
+            newContact.Contacts.StartDate = DateTime.Today;
+            newContact.Contacts.StartTime = DateTime.Now.TimeOfDay;
+
+            dataStore.Contacts.Add(newContact);
             dataStore.GridLinks.PopulateIfEmpty();
 
             return dataStore;

@@ -64,6 +64,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
+            this._SetDefaults = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.systemItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLinksBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -518,11 +519,25 @@
             this.label11.TabIndex = 17;
             this.label11.Text = "//Edit GridLinks";
             // 
+            // _SetDefaults
+            // 
+            this._SetDefaults.BackColor = System.Drawing.Color.LightGray;
+            this._SetDefaults.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this._SetDefaults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._SetDefaults.Location = new System.Drawing.Point(6, 3);
+            this._SetDefaults.Name = "_SetDefaults";
+            this._SetDefaults.Size = new System.Drawing.Size(75, 22);
+            this._SetDefaults.TabIndex = 18;
+            this._SetDefaults.Text = "Defaults";
+            this._SetDefaults.UseVisualStyleBackColor = false;
+            this._SetDefaults.Click += new System.EventHandler(this._SetDefaults_Click);
+            // 
             // EditGridLinks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
+            this.Controls.Add(this._SetDefaults);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this._Done);
@@ -585,5 +600,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button _SetDefaults;
     }
 }

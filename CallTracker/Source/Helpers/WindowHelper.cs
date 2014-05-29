@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.Threading;
+using System.Diagnostics;
 
 namespace CallTracker.Helpers
 {
@@ -37,6 +39,16 @@ namespace CallTracker.Helpers
         public static IntPtr GetActiveWindowHWND()
         {
             return GetForegroundWindow();
+        }
+
+        public static IntPtr FindHWNDByTitle(string _wName)
+        {
+            IntPtr hWnd = IntPtr.Zero;
+            foreach (Process pList in Process.GetProcesses())
+                if(pList.MainWindowTitle.Contains(_wName))
+                    hWnd = pList.MainWindowHandle;
+            
+            return hWnd;
         }
     }
 }

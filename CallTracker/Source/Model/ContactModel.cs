@@ -56,7 +56,7 @@ namespace CallTracker.Model
         [ProtoMember(11)]
         public FaultModel Fault { get; set; }
         [ProtoMember(12)]
-        public List<ContactStatistics> Contacts { get; set; }
+        public ContactStatistics Contacts { get; set; }
 
         public CustomerContact()
         {
@@ -70,7 +70,7 @@ namespace CallTracker.Model
             Address = new ContactAddress();
             Service = new ServiceModel();
             Fault = new FaultModel();
-            Contacts = new List<ContactStatistics>();
+            Contacts = new ContactStatistics();
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Situation");
@@ -80,8 +80,6 @@ namespace CallTracker.Model
             sb.AppendLine("Outcome");
             sb.AppendLine("- ");
             Note = sb.ToString();
-
-            
         }
     }
     //[ImplementPropertyChanged]

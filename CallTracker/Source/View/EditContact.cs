@@ -44,7 +44,12 @@ namespace CallTracker.View
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            DataStore.Contacts.Add(new CustomerContact() { Id = DataStore.Contacts.Count });
+            CustomerContact newContact = new CustomerContact();
+            newContact.Id = DataStore.Contacts.Count;
+            newContact.Contacts.StartDate = DateTime.Today;
+            newContact.Contacts.StartTime = DateTime.Now.TimeOfDay;
+
+            DataStore.Contacts.Add(newContact);
             contactsListBindingSource.Position = DataStore.Contacts.Count;
         }
 
