@@ -92,6 +92,7 @@
       <DependentUpon>FMask.cs</DependentUpon>
     </None>
     <Compile Include="Source\Helpers\IETabActivator.cs" />
+    <Compile Include="Source\Model\IEInteractBase.cs" />
     <Compile Include="Source\View\Controls\Help\HelpKeyCommands.cs">
       <SubType>UserControl</SubType>
     </Compile>
