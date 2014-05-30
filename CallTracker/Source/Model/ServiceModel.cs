@@ -28,6 +28,7 @@ namespace CallTracker.Model
         public string Equipment { get; set; }
         [ProtoMember(2)]
         public string Node { get; set; }
+
         [ProtoMember(3)]
         public string AVC { get; set; }
         [ProtoMember(4)]
@@ -40,6 +41,47 @@ namespace CallTracker.Model
         public string GIS { get; set; }
         [ProtoMember(8)]
         public string Bras { get; set; }
+
+        [ProtoMember(10)]
+        public string CauPing { get; set; }
+        [ProtoMember(11)]
+        public string NitResults { get; set; }
+
+        [ProtoMember(15)]
+        public string ModemStatus { get; set; }
+        [ProtoMember(16)]
+        public string RFIssues { get; set; }
+        [ProtoMember(17)]
+        public string CMMac { get; set; }
+        [ProtoMember(18)]
+        public string MTAMac { get; set; }
+        [ProtoMember(19)]
+        public string ModemSN { get; set; }
+
+        [ProtoMember(20)]
+        public string DownloadSpeed { get; set; }
+        [ProtoMember(21)]
+        public string UploadSpeed { get; set; }
+        [ProtoMember(22)]
+        public string Throttled { get; set; }
+        [ProtoMember(23)]
+        public string ModemIP { get; set; }
+
+        [ProtoMember(25)]
+        public string DTVMsg { get; set; }
+        [ProtoMember(26)]
+        public string DTVSmartCard { get; set; }
+        [ProtoMember(27)]
+        public string DTVLot { get; set; }
+        [ProtoMember(28)]
+        public string DTVBox { get; set; }
+        [ProtoMember(29)]
+        public string ConnectionType { get; set; }
+
+        [ProtoMember(30)]
+        public string MeTVMac { get; set; }
+        [ProtoMember(31)]
+        public string MeTVSN { get; set; }
 
         //public INetworkInfo NetworkInfo { get; set; }
     }

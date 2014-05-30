@@ -93,28 +93,58 @@
     </None>
     <Compile Include="Source\Helpers\IETabActivator.cs" />
     <Compile Include="Source\Model\IEInteractBase.cs" />
-    <Compile Include="Source\View\Controls\Help\HelpKeyCommands.cs">
+    <Compile Include="Source\View\Controls\DataArea.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\Help\HelpKeyCommands.Designer.cs">
+    <Compile Include="Source\View\Controls\DataArea.Designer.cs">
+      <DependentUpon>DataArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\DataDropDown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\DataDropDown.Designer.cs">
+      <DependentUpon>DataDropDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\PanelHeading.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\PanelHeading.Designer.cs">
+      <DependentUpon>PanelHeading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Help\HelpKeyCommands.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Help\HelpKeyCommands.Designer.cs">
       <DependentUpon>HelpKeyCommands.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Controls\Product Panels\DataField.cs">
+    <Compile Include="Source\View\Controls\DataField.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\Product Panels\DataField.Designer.cs">
+    <Compile Include="Source\View\Controls\DataField.Designer.cs">
       <DependentUpon>DataField.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Controls\Product Panels\NBF.cs">
+    <Compile Include="Source\View\Panels\Product\LIPPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\Product Panels\NBF.Designer.cs">
+    <Compile Include="Source\View\Panels\Product\LIPPanel.Designer.cs">
+      <DependentUpon>LIPPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\LATPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\LATPanel.Designer.cs">
+      <DependentUpon>LATPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\NBF.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\NBF.Designer.cs">
       <DependentUpon>NBF.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Controls\Settings\CallHistory.cs">
+    <Compile Include="Source\View\Panels\Settings\CallHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\Settings\CallHistory.Designer.cs">
+    <Compile Include="Source\View\Panels\Settings\CallHistory.Designer.cs">
       <DependentUpon>CallHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Controls\ViewControlBase.cs">
@@ -123,16 +153,31 @@
     <EmbeddedResource Include="Source\View\Archive\FMaskOverlay.resx">
       <DependentUpon>FMaskOverlay.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\Help\HelpKeyCommands.resx">
+    <EmbeddedResource Include="Source\View\Controls\DataArea.resx">
+      <DependentUpon>DataArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\DataDropDown.resx">
+      <DependentUpon>DataDropDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\PanelHeading.resx">
+      <DependentUpon>PanelHeading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Help\HelpKeyCommands.resx">
       <DependentUpon>HelpKeyCommands.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\Product Panels\DataField.resx">
+    <EmbeddedResource Include="Source\View\Controls\DataField.resx">
       <DependentUpon>DataField.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\Product Panels\NBF.resx">
+    <EmbeddedResource Include="Source\View\Panels\Product\LIPPanel.resx">
+      <DependentUpon>LIPPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Product\LATPanel.resx">
+      <DependentUpon>LATPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Product\NBF.resx">
       <DependentUpon>NBF.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\Settings\CallHistory.resx">
+    <EmbeddedResource Include="Source\View\Panels\Settings\CallHistory.resx">
       <DependentUpon>CallHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\ViewControlBase.resx">
@@ -176,10 +221,10 @@
     <Compile Include="Source\View\Popups\BindSmartPasteForm.Designer.cs">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Controls\Settings\EditGridLinks.cs">
+    <Compile Include="Source\View\Panels\Settings\EditGridLinks.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\Settings\EditGridLinks.Designer.cs">
+    <Compile Include="Source\View\Panels\Settings\EditGridLinks.Designer.cs">
       <DependentUpon>EditGridLinks.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Controls\FormControls.cs">
@@ -191,16 +236,16 @@
     <Compile Include="Source\View\EditContact.Designer.cs">
       <DependentUpon>EditContact.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Controls\Settings\EditSmartPasteBinds.cs">
+    <Compile Include="Source\View\Panels\Settings\EditSmartPasteBinds.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\Settings\EditSmartPasteBinds.Designer.cs">
+    <Compile Include="Source\View\Panels\Settings\EditSmartPasteBinds.Designer.cs">
       <DependentUpon>EditSmartPasteBinds.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Controls\Settings\EditLogins.cs">
+    <Compile Include="Source\View\Panels\Settings\EditLogins.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\Settings\EditLogins.Designer.cs">
+    <Compile Include="Source\View\Panels\Settings\EditLogins.Designer.cs">
       <DependentUpon>EditLogins.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Main.cs">
@@ -225,13 +270,13 @@
     <EmbeddedResource Include="Source\View\EditContact.resx">
       <DependentUpon>EditContact.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\Settings\EditGridLinks.resx">
+    <EmbeddedResource Include="Source\View\Panels\Settings\EditGridLinks.resx">
       <DependentUpon>EditGridLinks.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\Settings\EditSmartPasteBinds.resx">
+    <EmbeddedResource Include="Source\View\Panels\Settings\EditSmartPasteBinds.resx">
       <DependentUpon>EditSmartPasteBinds.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\Settings\EditLogins.resx">
+    <EmbeddedResource Include="Source\View\Panels\Settings\EditLogins.resx">
       <DependentUpon>EditLogins.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Main.resx">

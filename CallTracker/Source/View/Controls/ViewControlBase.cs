@@ -50,8 +50,8 @@ namespace CallTracker.View
             e.Graphics.DrawRectangle(Pens.WhiteSmoke,
              0,
              0,
-             ((Control)sender).Width - 1,
-             ((Control)sender).Height - 1);
+             ((Control)sender).Width + 1,
+             ((Control)sender).Height + 1);
             base.OnPaint(e);
         }
 

@@ -15,14 +15,14 @@ namespace CallTracker.View
     {
         internal DataRepository DataStore;
         private List<CheckBox> Products;
+        internal NBF NbnPanel;
+        internal LATPanel LATPanel;
 
         public EditContact()
         {
             InitializeComponent();
 
             splitContainer2.MouseWheel += splitContainer2_MouseWheel;
-            HfcPanel.MouseEnter += splitContainer2_MouseEnter;
-            NbnPanel.MouseEnter += splitContainer2_MouseEnter;
 
             Products = new List<CheckBox>
             {
@@ -32,8 +32,11 @@ namespace CallTracker.View
         
         public void Init(Main _parent)
         {
-
             DataStore = _parent.DataStore;
+
+            //NbnPanel = new NBF();
+            LATPanel = new LATPanel();
+            splitContainer2.Panel2.Controls.Add(LATPanel);
 
             contactsListBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
             contactsListBindingSource.DataSource = DataStore.Contacts;
@@ -41,8 +44,6 @@ namespace CallTracker.View
 
             _Severity.DataSource = Enum.GetValues(typeof(FaultSeverity));
             _Outcome.DataSource = Enum.GetValues(typeof(Outcomes));
-
-            
         }
 
         // Contact Navigator ////////////////////////////////////////////////////////////////////////////////
@@ -51,6 +52,7 @@ namespace CallTracker.View
             Main.SelectedContact = DataStore.Contacts[contactsListBindingSource.Position];//Convert.ToInt32(bindingNavigator1.PositionItem.Text) - 1];
             customerContactsBindingSource.DataSource = Main.SelectedContact;
             contactAddressBindingSource.DataSource = Main.SelectedContact.Address;
+            LATPanel.serviceModelBindingSource.DataSource = Main.SelectedContact.Service;
             customerServiceBindingSource.DataSource = Main.SelectedContact.Service;
             faultModelBindingSource.DataSource = Main.SelectedContact.Fault;
 
@@ -87,7 +89,7 @@ namespace CallTracker.View
 
         // Splitter ////////////////////////////////////////////////////////////////////////////////
         private const int SPLITTER_1_MIN = 0;
-        private const int SPLITTER_1_MAX = 176;
+        private const int SPLITTER_1_MAX = 180;
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
             if (splitContainer1.SplitterDistance > SPLITTER_1_MAX)

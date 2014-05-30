@@ -278,8 +278,9 @@ namespace CallTracker.Helpers
 
             //check if each if needs returns.
 
-            if (Regex.IsMatch(text, @"^[AVCSNIG]{3}\d{15}"))
+            if (Regex.IsMatch(text, @"^[AVCSNIG]{3}\d{13}"))
             {
+                Console.WriteLine("ye");
                 string firstThree = text.Substring(0, 3);
                 PropertyInfo prop = Main.SelectedContact.Service.GetType().GetProperty(firstThree);
                 prop.SetValue(Main.SelectedContact.Service, text, null);
