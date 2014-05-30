@@ -15,5 +15,10 @@ namespace CallTracker.View
         {
             InitializeComponent();
         }
+
+        public virtual void SetDataSource(object _source)
+        {
+
+        }
     }
 }

@@ -17,9 +17,9 @@ namespace CallTracker.View
             //this.MouseEnter += NBF_MouseEnter;
         }
 
-        //void NBF_MouseEnter(object sender, EventArgs e)
-        //{
-        //    ParentForm.Focus();
-        //}
+        public override void SetDataSource(object _source)
+        {
+            serviceModelBindingSource.DataSource = _source;
+        }
     }
 }

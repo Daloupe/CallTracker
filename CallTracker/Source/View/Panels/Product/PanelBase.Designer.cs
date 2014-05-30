@@ -28,14 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.serviceModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // serviceModelBindingSource
-            // 
-            this.serviceModelBindingSource.DataSource = typeof(CallTracker.Model.ServiceModel);
             // 
             // PanelBase
             // 
@@ -46,13 +39,11 @@
             this.Name = "PanelBase";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(180, 245);
-            ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        internal System.Windows.Forms.BindingSource serviceModelBindingSource;
     }
 }

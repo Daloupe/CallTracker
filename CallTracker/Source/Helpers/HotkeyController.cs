@@ -35,9 +35,6 @@ namespace CallTracker.Helpers
             // Browser Methods:
                 // private bool FindIEByHWND(IntPtr _HWND)
                 // private bool FindIEByTitle(string _title)
-                // public static void SetValueByIdOrName(string _element, string _data)
-                // public static void ClickElementByIdOrName(string _element)
-                // public static void SubmitFormByIdOrName(string _form)
             // Object Methods:
                 // public static string FollowPropertyPath(object value, string path)
                 // public static string FollowPropertyPath(object value, string path, string altPath)
@@ -280,7 +277,6 @@ namespace CallTracker.Helpers
 
             if (Regex.IsMatch(text, @"^[AVCSNIG]{3}\d{13}"))
             {
-                Console.WriteLine("ye");
                 string firstThree = text.Substring(0, 3);
                 PropertyInfo prop = Main.SelectedContact.Service.GetType().GetProperty(firstThree);
                 prop.SetValue(Main.SelectedContact.Service, text, null);
@@ -304,9 +300,9 @@ namespace CallTracker.Helpers
                     Main.SelectedContact.DN = text;
             }
 
-            else if (firstchar == "3")
+            else if (firstchar == "2" || firstchar == "3" || firstchar == "4")
             {
-                if (Regex.IsMatch(text, @"\A\d\d(?i)[a-z]{2}_??\d\d\z"))
+                if (Regex.IsMatch(text, @"^\d\d(?i)[A-Z]{2}_?\d\d\d\z"))
                     Main.SelectedContact.Service.Node = text;
                 else if (Regex.IsMatch(text, @"\A3[1-3]-??\d{5}(-|0|\s)\d\z"))
                     Main.SelectedContact.CMBS = text;

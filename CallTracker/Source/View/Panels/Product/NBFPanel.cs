@@ -14,12 +14,17 @@ namespace CallTracker.View
         public NBFPanel()
         {
             InitializeComponent();
-            //this.MouseEnter += NBF_MouseEnter;
+            serviceModelBindingSource.DataSourceChanged += serviceModelBindingSource_DataSourceChanged;
         }
 
-        //void NBF_MouseEnter(object sender, EventArgs e)
-        //{
-        //    ParentForm.Focus();
-        //}
+        void serviceModelBindingSource_DataSourceChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("NBF changed data");
+        }
+
+        public override void SetDataSource(object _source)
+        {
+            serviceModelBindingSource.DataSource = _source;
+        }
     }
 }

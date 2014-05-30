@@ -44,7 +44,6 @@ namespace CallTracker.View
         {
             DataStore = _parent.DataStore;
 
-
             contactsListBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
             contactsListBindingSource.DataSource = DataStore.Contacts;
             contactsListBindingSource.Position = DataStore.Contacts.Count;
@@ -59,7 +58,7 @@ namespace CallTracker.View
             Main.SelectedContact = DataStore.Contacts[contactsListBindingSource.Position];//Convert.ToInt32(bindingNavigator1.PositionItem.Text) - 1];
             customerContactsBindingSource.DataSource = Main.SelectedContact;
             contactAddressBindingSource.DataSource = Main.SelectedContact.Address;
-            customerServiceBindingSource.DataSource = Main.SelectedContact.Service;
+            //customerServiceBindingSource.DataSource = Main.SelectedContact.Service;
             faultModelBindingSource.DataSource = Main.SelectedContact.Fault;
 
             short tPb = Main.SelectedContact.Fault.AffectedServices;
@@ -78,7 +77,7 @@ namespace CallTracker.View
 
             ProductBit = Main.SelectedContact.Fault.AffectedServices;
 
-            CurrentPanel.serviceModelBindingSource.DataSource = Main.SelectedContact.Service;
+           
         }
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
@@ -293,6 +292,8 @@ namespace CallTracker.View
                     CurrentPanel = null;
                 }
 
+                if (CurrentPanel != null)
+                    CurrentPanel.SetDataSource(Main.SelectedContact.Service);
             }
         }
         private void _Product_CheckedChanged(object sender, EventArgs e)
