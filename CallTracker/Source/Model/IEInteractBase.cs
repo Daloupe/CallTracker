@@ -121,13 +121,13 @@ namespace CallTracker.Model
         }
         protected bool findAsTextField { get; set; }
 
-        public void Paste(Browser _browser, string _element, string _value)
+        public virtual void Paste(Browser _browser, string _element, string _value)
         {
             MethodInfo paste = this.GetType().GetMethod("PasteData").MakeGenericMethod(IEType);
             paste.Invoke(this, new object[] { _browser, _element, _value });
         }
 
-        public void PasteData<T>(Browser _browser, string _element, string _value) where T : Element
+        public virtual void PasteData<T>(Browser _browser, string _element, string _value) where T : Element
         {
             Element elem = IEContext(_browser).ElementOfType<T>(IEConstraint(_element));
             if (!elem.Exists)
