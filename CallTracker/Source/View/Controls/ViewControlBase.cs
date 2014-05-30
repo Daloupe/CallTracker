@@ -47,11 +47,11 @@ namespace CallTracker.View
 
         protected virtual void PaintBorder(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(Pens.Gainsboro,
-              e.ClipRectangle.Left,
-              e.ClipRectangle.Top,
-              e.ClipRectangle.Width - 1,
-              e.ClipRectangle.Height - 1);
+            e.Graphics.DrawRectangle(Pens.WhiteSmoke,
+             0,
+             0,
+             ((Control)sender).Width - 1,
+             ((Control)sender).Height - 1);
             base.OnPaint(e);
         }
 

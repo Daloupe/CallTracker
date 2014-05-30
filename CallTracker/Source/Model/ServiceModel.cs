@@ -18,9 +18,11 @@ namespace CallTracker.Model
     [ProtoContract]
     public class ServiceModel
     {
-        //#pragma warning disable 67
-        //        public event PropertyChangedEventHandler PropertyChanged;
-        //#pragma warning restore 67
+        public ServiceModel()
+        {
+            Equipment = String.Empty;
+            Node = String.Empty;
+        }
 
         [ProtoMember(1)]
         public string Equipment { get; set; }

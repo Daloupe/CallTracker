@@ -34,26 +34,35 @@
             this._Done = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this._AsTextFields = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this._FindByName = new System.Windows.Forms.CheckBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this._Data = new System.Windows.Forms.ComboBox();
+            this._AltData = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
             this._Element = new CallTracker.View.BorderedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new CallTracker.View.BorderedTextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new CallTracker.View.BorderedTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this._Data = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this._AltData = new System.Windows.Forms.ComboBox();
+            this._FormElement = new CallTracker.View.BorderedTextBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // propertyLock
@@ -144,6 +153,187 @@
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.LightGray;
+            this.flowLayoutPanel1.Controls.Add(this.label2);
+            this.flowLayoutPanel1.Controls.Add(this._Element);
+            this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.textBox1);
+            this.flowLayoutPanel1.Controls.Add(this.panel1);
+            this.flowLayoutPanel1.Controls.Add(this.label4);
+            this.flowLayoutPanel1.Controls.Add(this._Data);
+            this.flowLayoutPanel1.Controls.Add(this.label8);
+            this.flowLayoutPanel1.Controls.Add(this._AltData);
+            this.flowLayoutPanel1.Controls.Add(this.panel2);
+            this.flowLayoutPanel1.Controls.Add(this.label3);
+            this.flowLayoutPanel1.Controls.Add(this.textBox2);
+            this.flowLayoutPanel1.Controls.Add(this._AsTextFields);
+            this.flowLayoutPanel1.Controls.Add(this.checkBox4);
+            this.flowLayoutPanel1.Controls.Add(this._FindByName);
+            this.flowLayoutPanel1.Controls.Add(this.checkBox3);
+            this.flowLayoutPanel1.Controls.Add(this.panel3);
+            this.flowLayoutPanel1.Controls.Add(this.label7);
+            this.flowLayoutPanel1.Controls.Add(this._FormElement);
+            this.flowLayoutPanel1.Enabled = false;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(-1, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(205, 327);
+            this.flowLayoutPanel1.TabIndex = 9;
+            // 
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(6, 3);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(189, 10);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "URL:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(6, 35);
+            this.label1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(189, 10);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Title:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Black;
+            this.panel1.Location = new System.Drawing.Point(6, 73);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 1);
+            this.panel1.TabIndex = 21;
+            // 
+            // label7
+            // 
+            this.label7.Location = new System.Drawing.Point(6, 283);
+            this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(189, 10);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Form Element:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindInForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox3.Location = new System.Drawing.Point(6, 254);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(118, 16);
+            this.checkBox3.TabIndex = 18;
+            this.checkBox3.Text = "Find Within Form";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Black;
+            this.panel2.Location = new System.Drawing.Point(6, 149);
+            this.panel2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(200, 1);
+            this.panel2.TabIndex = 22;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(6, 153);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(189, 10);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Element:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // _AsTextFields
+            // 
+            this._AsTextFields.AutoSize = true;
+            this._AsTextFields.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindAsTextField", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._AsTextFields.Location = new System.Drawing.Point(6, 188);
+            this._AsTextFields.Name = "_AsTextFields";
+            this._AsTextFields.Size = new System.Drawing.Size(98, 16);
+            this._AsTextFields.TabIndex = 17;
+            this._AsTextFields.Text = "As TextFields";
+            this._AsTextFields.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "TypeText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox4.Location = new System.Drawing.Point(6, 210);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(80, 16);
+            this.checkBox4.TabIndex = 24;
+            this.checkBox4.Text = "Type Text";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // _FindByName
+            // 
+            this._FindByName.AutoSize = true;
+            this._FindByName.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindByName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._FindByName.Location = new System.Drawing.Point(6, 232);
+            this._FindByName.Name = "_FindByName";
+            this._FindByName.Size = new System.Drawing.Size(100, 16);
+            this._FindByName.TabIndex = 25;
+            this._FindByName.Text = "Find By Name";
+            this._FindByName.UseVisualStyleBackColor = true;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Black;
+            this.panel3.Location = new System.Drawing.Point(6, 279);
+            this.panel3.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(200, 1);
+            this.panel3.TabIndex = 23;
+            // 
+            // _Data
+            // 
+            this._Data.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this._Data.FormattingEnabled = true;
+            this._Data.Location = new System.Drawing.Point(6, 90);
+            this._Data.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this._Data.Name = "_Data";
+            this._Data.Size = new System.Drawing.Size(190, 20);
+            this._Data.TabIndex = 16;
+            // 
+            // _AltData
+            // 
+            this._AltData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this._AltData.FormattingEnabled = true;
+            this._AltData.Location = new System.Drawing.Point(6, 123);
+            this._AltData.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this._AltData.Name = "_AltData";
+            this._AltData.Size = new System.Drawing.Size(190, 20);
+            this._AltData.TabIndex = 18;
+            // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(6, 77);
+            this.label4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(189, 10);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Data:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(6, 110);
+            this.label8.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(189, 10);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Alternate Data:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // systemDataGridViewTextBoxColumn
             // 
             this.systemDataGridViewTextBoxColumn.DataPropertyName = "System";
@@ -160,127 +350,49 @@
             // 
             this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.LightGray;
-            this.flowLayoutPanel1.Controls.Add(this.label2);
-            this.flowLayoutPanel1.Controls.Add(this._Element);
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.textBox1);
-            this.flowLayoutPanel1.Controls.Add(this.label3);
-            this.flowLayoutPanel1.Controls.Add(this.textBox2);
-            this.flowLayoutPanel1.Controls.Add(this.label4);
-            this.flowLayoutPanel1.Controls.Add(this._Data);
-            this.flowLayoutPanel1.Controls.Add(this.label5);
-            this.flowLayoutPanel1.Controls.Add(this._AltData);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Enabled = false;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(221, 191);
-            this.flowLayoutPanel1.TabIndex = 8;
-            this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(6, 3);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label2.Size = new System.Drawing.Size(190, 17);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "URL:";
-            // 
             // _Element
             // 
             this._Element.BorderColor = System.Drawing.Color.Gray;
             this._Element.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._Element.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Element.ForeColor = System.Drawing.SystemColors.WindowText;
-            this._Element.Location = new System.Drawing.Point(6, 20);
+            this._Element.Location = new System.Drawing.Point(6, 16);
             this._Element.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._Element.Name = "_Element";
-            this._Element.Size = new System.Drawing.Size(190, 19);
+            this._Element.Size = new System.Drawing.Size(189, 19);
             this._Element.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(6, 39);
-            this.label1.Name = "label1";
-            this.label1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label1.Size = new System.Drawing.Size(190, 17);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Title:";
             // 
             // textBox1
             // 
             this.textBox1.BorderColor = System.Drawing.Color.Gray;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Title", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox1.Location = new System.Drawing.Point(6, 56);
+            this.textBox1.Location = new System.Drawing.Point(6, 48);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(190, 19);
+            this.textBox1.Size = new System.Drawing.Size(189, 19);
             this.textBox1.TabIndex = 7;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(6, 75);
-            this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label3.Size = new System.Drawing.Size(190, 17);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Element:";
             // 
             // textBox2
             // 
             this.textBox2.BorderColor = System.Drawing.Color.Gray;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Element", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox2.Location = new System.Drawing.Point(6, 92);
+            this.textBox2.Location = new System.Drawing.Point(6, 166);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(190, 19);
+            this.textBox2.Size = new System.Drawing.Size(189, 19);
             this.textBox2.TabIndex = 9;
             // 
-            // label4
+            // _FormElement
             // 
-            this.label4.Location = new System.Drawing.Point(6, 111);
-            this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label4.Size = new System.Drawing.Size(190, 17);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Data:";
-            // 
-            // _Data
-            // 
-            this._Data.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this._Data.FormattingEnabled = true;
-            this._Data.Location = new System.Drawing.Point(6, 128);
-            this._Data.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this._Data.Name = "_Data";
-            this._Data.Size = new System.Drawing.Size(190, 20);
-            this._Data.TabIndex = 16;
-            // 
-            // label5
-            // 
-            this.label5.BackColor = System.Drawing.Color.LightGray;
-            this.label5.Location = new System.Drawing.Point(6, 148);
-            this.label5.Name = "label5";
-            this.label5.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label5.Size = new System.Drawing.Size(190, 17);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Alternate Data:";
-            // 
-            // _AltData
-            // 
-            this._AltData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this._AltData.FormattingEnabled = true;
-            this._AltData.Location = new System.Drawing.Point(6, 165);
-            this._AltData.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this._AltData.Name = "_AltData";
-            this._AltData.Size = new System.Drawing.Size(190, 20);
-            this._AltData.TabIndex = 18;
+            this._FormElement.BorderColor = System.Drawing.Color.Gray;
+            this._FormElement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._FormElement.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "FormElement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._FormElement.Location = new System.Drawing.Point(6, 296);
+            this._FormElement.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this._FormElement.Name = "_FormElement";
+            this._FormElement.Size = new System.Drawing.Size(189, 19);
+            this._FormElement.TabIndex = 19;
             // 
             // EditSmartPasteBinds
             // 
@@ -299,9 +411,9 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -310,17 +422,8 @@
         #endregion
 
         private System.Windows.Forms.Button _Done;
-        private BorderedTextBox textBox1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Label label2;
-        private BorderedTextBox _Element;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private BorderedTextBox textBox2;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox _Data;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox _AltData;
         private System.Windows.Forms.DataGridViewTextBoxColumn systemDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
@@ -328,5 +431,23 @@
         public System.Windows.Forms.DataGridView dataGridView1;
         public System.Windows.Forms.BindingSource pasteBindBindingSource;
         private System.Windows.Forms.CheckBox propertyLock;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label label2;
+        private BorderedTextBox _Element;
+        private System.Windows.Forms.Label label1;
+        private BorderedTextBox textBox1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label7;
+        private BorderedTextBox _FormElement;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label3;
+        private BorderedTextBox textBox2;
+        private System.Windows.Forms.CheckBox _AsTextFields;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox _FindByName;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label8;
     }
 }

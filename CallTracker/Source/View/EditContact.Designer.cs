@@ -34,16 +34,26 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.HfcPanel = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new CallTracker.View.BorderedTextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this._Outcome = new System.Windows.Forms.ComboBox();
             this.faultModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._Symptom = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this._Severity = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.borderedTextBox3 = new CallTracker.View.BorderedTextBox();
+            this.textBox1 = new CallTracker.View.BorderedTextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.borderedTextBox1 = new CallTracker.View.BorderedTextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.textBox2 = new CallTracker.View.BorderedTextBox();
             this.customerServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.borderedTextBox2 = new CallTracker.View.BorderedTextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.NbnPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.label10 = new System.Windows.Forms.Label();
             this.textBox5 = new CallTracker.View.BorderedTextBox();
@@ -58,6 +68,9 @@
             this.label14 = new System.Windows.Forms.Label();
             this.textBox4 = new CallTracker.View.BorderedTextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.comboBox4 = new System.Windows.Forms.ComboBox();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.contactsListBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -84,15 +97,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this._Address = new CallTracker.View.BorderedTextBox();
             this.contactAddressBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._Note = new System.Windows.Forms.TextBox();
             this.ServiceTypePanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this._LAT = new System.Windows.Forms.CheckBox();
+            this._LIP = new System.Windows.Forms.CheckBox();
+            this._ONC = new System.Windows.Forms.CheckBox();
+            this._NVF = new System.Windows.Forms.CheckBox();
+            this._NBF = new System.Windows.Forms.CheckBox();
+            this._DTV = new System.Windows.Forms.CheckBox();
+            this._MTV = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this._Note = new System.Windows.Forms.TextBox();
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -105,6 +119,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).BeginInit();
             this.NbnPanel.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contactsListBindingSource)).BeginInit();
@@ -143,7 +158,7 @@
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer1.Panel2MinSize = 0;
             this.splitContainer1.Size = new System.Drawing.Size(275, 330);
-            this.splitContainer1.SplitterDistance = 176;
+            this.splitContainer1.SplitterDistance = 180;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 24;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -171,8 +186,8 @@
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(176, 330);
-            this.splitContainer2.SplitterDistance = 151;
+            this.splitContainer2.Size = new System.Drawing.Size(180, 330);
+            this.splitContainer2.SplitterDistance = 204;
             this.splitContainer2.SplitterWidth = 9;
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
@@ -182,73 +197,121 @@
             // HfcPanel
             // 
             this.HfcPanel.BackColor = System.Drawing.Color.Moccasin;
-            this.HfcPanel.Controls.Add(this.label8);
-            this.HfcPanel.Controls.Add(this.comboBox3);
-            this.HfcPanel.Controls.Add(this.comboBox2);
-            this.HfcPanel.Controls.Add(this.label6);
+            this.HfcPanel.Controls.Add(this.label21);
+            this.HfcPanel.Controls.Add(this._Outcome);
+            this.HfcPanel.Controls.Add(this._Symptom);
+            this.HfcPanel.Controls.Add(this.label20);
+            this.HfcPanel.Controls.Add(this._Severity);
+            this.HfcPanel.Controls.Add(this.label15);
+            this.HfcPanel.Controls.Add(this.label23);
+            this.HfcPanel.Controls.Add(this.borderedTextBox3);
             this.HfcPanel.Controls.Add(this.textBox1);
+            this.HfcPanel.Controls.Add(this.label22);
+            this.HfcPanel.Controls.Add(this.borderedTextBox1);
+            this.HfcPanel.Controls.Add(this.label8);
+            this.HfcPanel.Controls.Add(this.label18);
             this.HfcPanel.Controls.Add(this.textBox2);
             this.HfcPanel.Controls.Add(this.comboBox1);
-            this.HfcPanel.Controls.Add(this.label7);
+            this.HfcPanel.Controls.Add(this.borderedTextBox2);
+            this.HfcPanel.Controls.Add(this.label17);
+            this.HfcPanel.Controls.Add(this.label6);
             this.HfcPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.HfcPanel.Location = new System.Drawing.Point(1, -62);
+            this.HfcPanel.Location = new System.Drawing.Point(1, -9);
             this.HfcPanel.Name = "HfcPanel";
-            this.HfcPanel.Size = new System.Drawing.Size(174, 212);
+            this.HfcPanel.Size = new System.Drawing.Size(178, 212);
             this.HfcPanel.TabIndex = 22;
             // 
-            // label8
+            // label21
             // 
-            this.label8.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(4, 169);
-            this.label8.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label8.Name = "label8";
-            this.label8.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label8.Size = new System.Drawing.Size(77, 17);
-            this.label8.TabIndex = 21;
-            this.label8.Text = "Equipment:";
+            this.label21.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(104, 103);
+            this.label21.Margin = new System.Windows.Forms.Padding(0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(62, 20);
+            this.label21.TabIndex = 44;
+            this.label21.Text = "Outcome:";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // comboBox3
+            // _Outcome
             // 
-            this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
-            "I",
-            "D",
-            "N",
-            "H"});
-            this.comboBox3.Location = new System.Drawing.Point(115, 125);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(48, 20);
-            this.comboBox3.TabIndex = 11;
-            this.comboBox3.Text = "I";
+            this._Outcome.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "Outcome", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Outcome.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this._Outcome.FormattingEnabled = true;
+            this._Outcome.Location = new System.Drawing.Point(104, 126);
+            this._Outcome.Name = "_Outcome";
+            this._Outcome.Size = new System.Drawing.Size(62, 20);
+            this._Outcome.TabIndex = 43;
             // 
-            // comboBox2
+            // faultModelBindingSource
             // 
-            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "COS",
-            "NDT",
-            "LIC",
-            "CCI",
-            "MSG",
-            "NPI"});
-            this.comboBox2.Location = new System.Drawing.Point(115, 150);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(48, 20);
-            this.comboBox2.TabIndex = 12;
-            this.comboBox2.Text = "COS";
+            this.faultModelBindingSource.DataSource = typeof(CallTracker.Model.FaultModel);
             // 
-            // label6
+            // _Symptom
             // 
-            this.label6.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(4, 125);
-            this.label6.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label6.Name = "label6";
-            this.label6.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label6.Size = new System.Drawing.Size(31, 17);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "PR:";
+            this._Symptom.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "Symptom", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Symptom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Symptom.FormattingEnabled = true;
+            this._Symptom.Location = new System.Drawing.Point(51, 125);
+            this._Symptom.Name = "_Symptom";
+            this._Symptom.Size = new System.Drawing.Size(48, 20);
+            this._Symptom.TabIndex = 40;
+            // 
+            // label20
+            // 
+            this.label20.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(4, 103);
+            this.label20.Margin = new System.Windows.Forms.Padding(0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(63, 20);
+            this.label20.TabIndex = 42;
+            this.label20.Text = "Symptom:";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // _Severity
+            // 
+            this._Severity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "Severity", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Severity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Severity.FormattingEnabled = true;
+            this._Severity.Location = new System.Drawing.Point(6, 125);
+            this._Severity.Name = "_Severity";
+            this._Severity.Size = new System.Drawing.Size(35, 20);
+            this._Severity.TabIndex = 39;
+            // 
+            // label15
+            // 
+            this.label15.Font = new System.Drawing.Font("Verdana", 9.75F);
+            this.label15.Location = new System.Drawing.Point(35, 123);
+            this.label15.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.label15.Name = "label15";
+            this.label15.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.label15.Size = new System.Drawing.Size(20, 20);
+            this.label15.TabIndex = 41;
+            this.label15.Text = "/";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label23
+            // 
+            this.label23.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(84, 25);
+            this.label23.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.label23.Name = "label23";
+            this.label23.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.label23.Size = new System.Drawing.Size(84, 19);
+            this.label23.TabIndex = 38;
+            this.label23.Text = "Up(Mbps)";
+            // 
+            // borderedTextBox3
+            // 
+            this.borderedTextBox3.BorderColor = System.Drawing.Color.Gray;
+            this.borderedTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.borderedTextBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.borderedTextBox3.Font = new System.Drawing.Font("Verdana", 7F);
+            this.borderedTextBox3.Location = new System.Drawing.Point(86, 163);
+            this.borderedTextBox3.Name = "borderedTextBox3";
+            this.borderedTextBox3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.borderedTextBox3.Size = new System.Drawing.Size(80, 19);
+            this.borderedTextBox3.TabIndex = 36;
+            this.borderedTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // textBox1
             // 
@@ -256,16 +319,58 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox1.Location = new System.Drawing.Point(38, 125);
+            this.textBox1.Location = new System.Drawing.Point(5, 163);
             this.textBox1.Name = "textBox1";
             this.textBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox1.Size = new System.Drawing.Size(71, 19);
+            this.textBox1.Size = new System.Drawing.Size(75, 19);
             this.textBox1.TabIndex = 9;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // faultModelBindingSource
+            // label22
             // 
-            this.faultModelBindingSource.DataSource = typeof(CallTracker.Model.FaultModel);
+            this.label22.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(84, 149);
+            this.label22.Margin = new System.Windows.Forms.Padding(0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(82, 13);
+            this.label22.TabIndex = 37;
+            this.label22.Text = "Network PR:";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // borderedTextBox1
+            // 
+            this.borderedTextBox1.BorderColor = System.Drawing.Color.Gray;
+            this.borderedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.borderedTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.borderedTextBox1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.borderedTextBox1.Location = new System.Drawing.Point(5, 46);
+            this.borderedTextBox1.Name = "borderedTextBox1";
+            this.borderedTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.borderedTextBox1.Size = new System.Drawing.Size(75, 19);
+            this.borderedTextBox1.TabIndex = 26;
+            this.borderedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label8
+            // 
+            this.label8.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(2, 187);
+            this.label8.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.label8.Name = "label8";
+            this.label8.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.label8.Size = new System.Drawing.Size(37, 22);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Equip:";
+            // 
+            // label18
+            // 
+            this.label18.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(5, 25);
+            this.label18.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.label18.Name = "label18";
+            this.label18.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
+            this.label18.Size = new System.Drawing.Size(75, 19);
+            this.label18.TabIndex = 30;
+            this.label18.Text = "Down(Mbps)";
             // 
             // textBox2
             // 
@@ -273,10 +378,10 @@
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerServiceBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.textBox2.Font = new System.Drawing.Font("Verdana", 7F);
-            this.textBox2.Location = new System.Drawing.Point(39, 150);
+            this.textBox2.Location = new System.Drawing.Point(5, 83);
             this.textBox2.Name = "textBox2";
             this.textBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox2.Size = new System.Drawing.Size(70, 19);
+            this.textBox2.Size = new System.Drawing.Size(75, 19);
             this.textBox2.TabIndex = 10;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -292,22 +397,47 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Netgear CG3000 V2",
             "Cisco DPQ3925"});
-            this.comboBox1.Location = new System.Drawing.Point(6, 188);
+            this.comboBox1.Location = new System.Drawing.Point(38, 187);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(157, 20);
+            this.comboBox1.Size = new System.Drawing.Size(128, 20);
             this.comboBox1.TabIndex = 13;
             this.comboBox1.Text = "Netgear EVG2000";
             // 
-            // label7
+            // borderedTextBox2
             // 
-            this.label7.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(4, 150);
-            this.label7.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label7.Name = "label7";
-            this.label7.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
-            this.label7.Size = new System.Drawing.Size(36, 17);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "Node:";
+            this.borderedTextBox2.BorderColor = System.Drawing.Color.Gray;
+            this.borderedTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.borderedTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.borderedTextBox2.Font = new System.Drawing.Font("Verdana", 7F);
+            this.borderedTextBox2.Location = new System.Drawing.Point(86, 45);
+            this.borderedTextBox2.Name = "borderedTextBox2";
+            this.borderedTextBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.borderedTextBox2.Size = new System.Drawing.Size(80, 19);
+            this.borderedTextBox2.TabIndex = 28;
+            this.borderedTextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label17
+            // 
+            this.label17.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(3, 68);
+            this.label17.Margin = new System.Windows.Forms.Padding(0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(77, 16);
+            this.label17.TabIndex = 35;
+            this.label17.Text = "Node:";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(3, 149);
+            this.label6.Margin = new System.Windows.Forms.Padding(0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(77, 13);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Customer PR:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // NbnPanel
             // 
@@ -477,12 +607,51 @@
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.BackColor = System.Drawing.Color.LightCyan;
-            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(1, 1);
+            this.flowLayoutPanel2.Controls.Add(this.label7);
+            this.flowLayoutPanel2.Controls.Add(this.dateTimePicker1);
+            this.flowLayoutPanel2.Controls.Add(this.comboBox4);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(1, 56);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(3);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(183, 328);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(183, 216);
             this.flowLayoutPanel2.TabIndex = 22;
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(3, 3);
+            this.label7.Margin = new System.Windows.Forms.Padding(0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(162, 20);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "Booking:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(6, 26);
+            this.dateTimePicker1.MaxDate = new System.DateTime(2019, 12, 25, 23, 59, 59, 0);
+            this.dateTimePicker1.MinDate = new System.DateTime(2012, 5, 30, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(94, 19);
+            this.dateTimePicker1.TabIndex = 30;
+            this.dateTimePicker1.Value = new System.DateTime(2014, 12, 30, 5, 11, 0, 0);
+            // 
+            // comboBox4
+            // 
+            this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.comboBox4.FormattingEnabled = true;
+            this.comboBox4.Items.AddRange(new object[] {
+            "AM",
+            "PM",
+            "EVE"});
+            this.comboBox4.Location = new System.Drawing.Point(106, 26);
+            this.comboBox4.Name = "comboBox4";
+            this.comboBox4.Size = new System.Drawing.Size(62, 20);
+            this.comboBox4.TabIndex = 31;
+            this.comboBox4.Text = "AM";
             // 
             // bindingNavigator1
             // 
@@ -504,7 +673,7 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem});
             this.bindingNavigator1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 190);
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 189);
             this.bindingNavigator1.MoveFirstItem = null;
             this.bindingNavigator1.MoveLastItem = null;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -795,6 +964,142 @@
             // 
             this.contactAddressBindingSource.DataSource = typeof(CallTracker.Model.ContactAddress);
             // 
+            // ServiceTypePanel
+            // 
+            this.ServiceTypePanel.BackColor = System.Drawing.Color.LightGray;
+            this.ServiceTypePanel.Controls.Add(this._LAT);
+            this.ServiceTypePanel.Controls.Add(this._LIP);
+            this.ServiceTypePanel.Controls.Add(this._ONC);
+            this.ServiceTypePanel.Controls.Add(this._NVF);
+            this.ServiceTypePanel.Controls.Add(this._NBF);
+            this.ServiceTypePanel.Controls.Add(this._DTV);
+            this.ServiceTypePanel.Controls.Add(this._MTV);
+            this.ServiceTypePanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.ServiceTypePanel.Location = new System.Drawing.Point(334, 0);
+            this.ServiceTypePanel.Margin = new System.Windows.Forms.Padding(0);
+            this.ServiceTypePanel.Name = "ServiceTypePanel";
+            this.ServiceTypePanel.Padding = new System.Windows.Forms.Padding(5, 3, 3, 3);
+            this.ServiceTypePanel.Size = new System.Drawing.Size(54, 216);
+            this.ServiceTypePanel.TabIndex = 17;
+            this.ServiceTypePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
+            // 
+            // _LAT
+            // 
+            this._LAT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._LAT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._LAT.Location = new System.Drawing.Point(5, 8);
+            this._LAT.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this._LAT.Name = "_LAT";
+            this._LAT.Size = new System.Drawing.Size(47, 20);
+            this._LAT.TabIndex = 0;
+            this._LAT.Tag = "1";
+            this._LAT.Text = "LAT";
+            this._LAT.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this._LAT.UseVisualStyleBackColor = true;
+            this._LAT.CheckedChanged += new System.EventHandler(this._LAT_CheckedChanged);
+            // 
+            // _LIP
+            // 
+            this._LIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._LIP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._LIP.Location = new System.Drawing.Point(5, 38);
+            this._LIP.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this._LIP.Name = "_LIP";
+            this._LIP.Size = new System.Drawing.Size(47, 20);
+            this._LIP.TabIndex = 1;
+            this._LIP.Tag = "1";
+            this._LIP.Text = "LIP";
+            this._LIP.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this._LIP.UseVisualStyleBackColor = true;
+            this._LIP.CheckedChanged += new System.EventHandler(this._LIP_CheckedChanged);
+            // 
+            // _ONC
+            // 
+            this._ONC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._ONC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._ONC.Location = new System.Drawing.Point(5, 68);
+            this._ONC.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this._ONC.Name = "_ONC";
+            this._ONC.Size = new System.Drawing.Size(47, 20);
+            this._ONC.TabIndex = 2;
+            this._ONC.Tag = "2";
+            this._ONC.Text = "ONC";
+            this._ONC.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this._ONC.UseVisualStyleBackColor = true;
+            this._ONC.CheckStateChanged += new System.EventHandler(this._Product_CheckedChanged);
+            // 
+            // _NVF
+            // 
+            this._NVF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._NVF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._NVF.Location = new System.Drawing.Point(5, 98);
+            this._NVF.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this._NVF.Name = "_NVF";
+            this._NVF.Size = new System.Drawing.Size(47, 20);
+            this._NVF.TabIndex = 6;
+            this._NVF.Tag = "4";
+            this._NVF.Text = "NVF";
+            this._NVF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this._NVF.UseVisualStyleBackColor = true;
+            this._NVF.CheckStateChanged += new System.EventHandler(this._Product_CheckedChanged);
+            // 
+            // _NBF
+            // 
+            this._NBF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._NBF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._NBF.Location = new System.Drawing.Point(5, 128);
+            this._NBF.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this._NBF.Name = "_NBF";
+            this._NBF.Size = new System.Drawing.Size(47, 20);
+            this._NBF.TabIndex = 3;
+            this._NBF.Tag = "8";
+            this._NBF.Text = "NBF";
+            this._NBF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this._NBF.UseVisualStyleBackColor = true;
+            this._NBF.CheckStateChanged += new System.EventHandler(this._Product_CheckedChanged);
+            // 
+            // _DTV
+            // 
+            this._DTV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._DTV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._DTV.Location = new System.Drawing.Point(5, 158);
+            this._DTV.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this._DTV.Name = "_DTV";
+            this._DTV.Size = new System.Drawing.Size(47, 20);
+            this._DTV.TabIndex = 4;
+            this._DTV.Tag = "16";
+            this._DTV.Text = "DTV";
+            this._DTV.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this._DTV.UseVisualStyleBackColor = true;
+            this._DTV.CheckStateChanged += new System.EventHandler(this._Product_CheckedChanged);
+            // 
+            // _MTV
+            // 
+            this._MTV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._MTV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._MTV.Location = new System.Drawing.Point(5, 188);
+            this._MTV.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this._MTV.Name = "_MTV";
+            this._MTV.Size = new System.Drawing.Size(47, 20);
+            this._MTV.TabIndex = 5;
+            this._MTV.Tag = "32";
+            this._MTV.Text = "MTV";
+            this._MTV.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this._MTV.UseVisualStyleBackColor = true;
+            this._MTV.CheckStateChanged += new System.EventHandler(this._Product_CheckedChanged);
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel1);
+            this.flowLayoutPanel4.Controls.Add(this._Note);
+            this.flowLayoutPanel4.Controls.Add(this.bindingNavigator1);
+            this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(331, 238);
+            this.flowLayoutPanel4.TabIndex = 29;
+            // 
             // _Note
             // 
             this._Note.BackColor = System.Drawing.Color.GhostWhite;
@@ -807,116 +1112,9 @@
             this._Note.Multiline = true;
             this._Note.Name = "_Note";
             this._Note.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._Note.Size = new System.Drawing.Size(331, 76);
-            this._Note.TabIndex = 8;
+            this._Note.Size = new System.Drawing.Size(331, 75);
+            this._Note.TabIndex = 10;
             this._Note.Text = "This is some test text.";
-            // 
-            // ServiceTypePanel
-            // 
-            this.ServiceTypePanel.BackColor = System.Drawing.Color.LightGray;
-            this.ServiceTypePanel.Controls.Add(this.checkBox7);
-            this.ServiceTypePanel.Controls.Add(this.checkBox8);
-            this.ServiceTypePanel.Controls.Add(this.checkBox9);
-            this.ServiceTypePanel.Controls.Add(this.checkBox10);
-            this.ServiceTypePanel.Controls.Add(this.checkBox11);
-            this.ServiceTypePanel.Controls.Add(this.checkBox12);
-            this.ServiceTypePanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.ServiceTypePanel.Location = new System.Drawing.Point(334, 0);
-            this.ServiceTypePanel.Margin = new System.Windows.Forms.Padding(0);
-            this.ServiceTypePanel.Name = "ServiceTypePanel";
-            this.ServiceTypePanel.Padding = new System.Windows.Forms.Padding(5, 3, 3, 3);
-            this.ServiceTypePanel.Size = new System.Drawing.Size(54, 216);
-            this.ServiceTypePanel.TabIndex = 17;
-            this.ServiceTypePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.checkBox7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox7.Location = new System.Drawing.Point(5, 11);
-            this.checkBox7.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(47, 18);
-            this.checkBox7.TabIndex = 0;
-            this.checkBox7.Text = "LAT";
-            this.checkBox7.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.checkBox8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox8.Location = new System.Drawing.Point(5, 45);
-            this.checkBox8.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(47, 18);
-            this.checkBox8.TabIndex = 1;
-            this.checkBox8.Text = "LIP";
-            this.checkBox8.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox9
-            // 
-            this.checkBox9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.checkBox9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox9.Location = new System.Drawing.Point(5, 79);
-            this.checkBox9.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(47, 18);
-            this.checkBox9.TabIndex = 2;
-            this.checkBox9.Text = "ONC";
-            this.checkBox9.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.checkBox9.UseVisualStyleBackColor = true;
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.checkBox10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox10.Location = new System.Drawing.Point(5, 113);
-            this.checkBox10.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(47, 18);
-            this.checkBox10.TabIndex = 3;
-            this.checkBox10.Text = "NBN";
-            this.checkBox10.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.checkBox10.UseVisualStyleBackColor = true;
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.checkBox11.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox11.Location = new System.Drawing.Point(5, 147);
-            this.checkBox11.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(47, 18);
-            this.checkBox11.TabIndex = 4;
-            this.checkBox11.Text = "DTV";
-            this.checkBox11.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.checkBox11.UseVisualStyleBackColor = true;
-            // 
-            // checkBox12
-            // 
-            this.checkBox12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.checkBox12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.checkBox12.Location = new System.Drawing.Point(5, 181);
-            this.checkBox12.Margin = new System.Windows.Forms.Padding(0, 8, 0, 8);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(47, 18);
-            this.checkBox12.TabIndex = 5;
-            this.checkBox12.Text = "MTV";
-            this.checkBox12.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.checkBox12.UseVisualStyleBackColor = true;
-            // 
-            // flowLayoutPanel4
-            // 
-            this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel1);
-            this.flowLayoutPanel4.Controls.Add(this._Note);
-            this.flowLayoutPanel4.Controls.Add(this.bindingNavigator1);
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(331, 216);
-            this.flowLayoutPanel4.TabIndex = 29;
             // 
             // MainPanel
             // 
@@ -953,6 +1151,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).EndInit();
             this.NbnPanel.ResumeLayout(false);
             this.NbnPanel.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
@@ -981,13 +1180,10 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Panel HfcPanel;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label6;
         private BorderedTextBox textBox1;
         private BorderedTextBox textBox2;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.FlowLayoutPanel NbnPanel;
         private System.Windows.Forms.Label label10;
         private BorderedTextBox textBox5;
@@ -1024,16 +1220,33 @@
         private BorderedTextBox _Mobile;
         private System.Windows.Forms.Label label5;
         private BorderedTextBox _Address;
-        private System.Windows.Forms.TextBox _Note;
         private System.Windows.Forms.FlowLayoutPanel ServiceTypePanel;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.CheckBox checkBox11;
-        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox _LAT;
+        private System.Windows.Forms.CheckBox _LIP;
+        private System.Windows.Forms.CheckBox _ONC;
+        private System.Windows.Forms.CheckBox _NBF;
+        private System.Windows.Forms.CheckBox _DTV;
+        private System.Windows.Forms.CheckBox _MTV;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
         private System.Windows.Forms.FlowLayoutPanel MainPanel;
         public System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.Label label18;
+        private BorderedTextBox borderedTextBox1;
+        private BorderedTextBox borderedTextBox2;
+        private System.Windows.Forms.Label label17;
+        private BorderedTextBox borderedTextBox3;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.CheckBox _NVF;
+        private System.Windows.Forms.TextBox _Note;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox _Outcome;
+        private System.Windows.Forms.ComboBox _Symptom;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox _Severity;
+        private System.Windows.Forms.Label label15;
     }
 }

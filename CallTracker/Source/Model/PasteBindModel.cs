@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using WatiN.Core;
 using PropertyChanged;
 using ProtoBuf;
 
@@ -22,43 +23,52 @@ namespace CallTracker.Model
 
     [ImplementPropertyChanged]
     [ProtoContract]
-    public class PasteBind
+    public class PasteBind : IEInteractBase
     {
         [ProtoMember(1)]
-        public string System { get; set; }
-        [ProtoMember(2)]
         public string Name { get; set; }
-        [ProtoMember(3)]
+        [ProtoMember(2)]
         public string Element { get; set; }
-        [ProtoMember(4)]
-        public string Title { get; set; }
-        [ProtoMember(5)]
-        public string Url { get; set; }
-        [ProtoMember(6)]
+        [ProtoMember(3)]
         public string Data { get; set; }
-        [ProtoMember(7)]
+        [ProtoMember(4)]
         public string AltData { get; set; }
 
-        public PasteBind()
+        public PasteBind() : base()
         {
-            System = String.Empty;
             Name = String.Empty;
             Element = String.Empty;
-            Title = String.Empty;
-            Url = String.Empty;
             Data = String.Empty;
             AltData = String.Empty;
         }
 
-        public PasteBind(string _system, string _url, string _title, string _element)
+        public PasteBind(string _system, string _url, string _title, Element _activeElement) : base()
         {
             System = _system ?? String.Empty;
-            Name = _element ?? String.Empty;
-            Element = _element ?? String.Empty;
-            Title = _title ?? String.Empty;
             Url = _url ?? String.Empty;
+            Title = _title ?? String.Empty;
+            Element = _activeElement.IdOrName;
+            Name = Element;
             Data = String.Empty;
             AltData = String.Empty;
+
+            FindByName = String.IsNullOrEmpty(_activeElement.Id);
+
+            Form form = _activeElement.Ancestor<Form>();
+            if (form.Exists)
+            {
+                FormElement = form.IdOrName;
+
+                if (String.IsNullOrEmpty(FormElement))
+                    return;
+
+                if (String.IsNullOrEmpty(form.Id))
+                    IEFormConstraint = ConstraintByName;
+                else
+                    IEFormConstraint = ConstraintById;
+
+                FindInForm = true;
+            }
         }
     }
 

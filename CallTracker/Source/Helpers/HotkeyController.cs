@@ -67,9 +67,9 @@ namespace CallTracker.Helpers
                 HotKeyManager.AddOrReplaceHotkey(GridLinkHotKey.Value, Modifiers.Win, GridLinkHotKey.Key, OnGridLinks);
 
             Settings.Instance.AutoMoveMousePointerToTopLeft = false;
-            Settings.Instance.AttachToBrowserTimeOut = 5;
-            Settings.Instance.WaitForCompleteTimeOut = 5;
-            Settings.Instance.WaitUntilExistsTimeOut = 5;
+            Settings.Instance.AttachToBrowserTimeOut = 20;
+            Settings.Instance.WaitForCompleteTimeOut = 20;
+            Settings.Instance.WaitUntilExistsTimeOut = 20;
         }
 
         public void Dispose()
@@ -83,7 +83,7 @@ namespace CallTracker.Helpers
         // Grid Links ///////////////////////////////////////////////////////////////////////////////////////
         private Dictionary<Keys, string> GridLinkHotkeys = new Dictionary<Keys, string>()
         {
-            {Keys.Z, "0"},
+            {Keys.NumPad0, "0"},
             {Keys.NumPad1, "1"},
             {Keys.NumPad2, "2"},
             {Keys.NumPad3, "3"},
@@ -169,7 +169,7 @@ namespace CallTracker.Helpers
                                .FirstOrDefault();
 
             if (query != null)
-                SetElementValueByIdOrName(element, FollowPropertyPath(Main.SelectedContact, query.Data, query.AltData));
+                query.Paste(browser, element, FollowPropertyPath(Main.SelectedContact, query.Data, query.AltData));
         }
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
@@ -202,8 +202,7 @@ namespace CallTracker.Helpers
             if (ElementMatch == null)
             {
                 string system = UrlOrTitleMatches.Count() > 0 ? UrlOrTitleMatches.ElementAtOrDefault(0).System : String.Empty;
-                ElementMatch = new PasteBind(system, url, title, element);
-
+                ElementMatch = new PasteBind(system, url, title, browser.ActiveElement);
                 parent.DataStore.PasteBinds.Add(ElementMatch);
             }
 
@@ -230,7 +229,7 @@ namespace CallTracker.Helpers
                             bind;
 
             foreach (PasteBind bind in query)
-                SetElementValueByIdOrName(bind.Element, FollowPropertyPath(Main.SelectedContact, bind.Data, bind.AltData));
+                bind.Paste(browser, bind.Element, FollowPropertyPath(Main.SelectedContact, bind.Data, bind.AltData));
         }
 
         // Auto Login ///////////////////////////////////////////////////////////////////////////////////////
@@ -253,47 +252,19 @@ namespace CallTracker.Helpers
             LoginsModel query = (from
                                      login in parent.DataStore.Logins
                                  where
-                                     title.Contains(login.Title) ||
-                                     login.Title.Contains(title) || 
+                                     //title.Contains(login.Title) ||
+                                     //login.Title.Contains(title) || 
                                      login.Url == url
                                  select
                                      login)
                                  .FirstOrDefault();
+            OnAction();
             if (query == null)
                 return;
 
-            OnAction();
             query.Paste(browser, query.UsernameElement, query.Username);
             query.Paste(browser, query.PasswordElement, query.Password);
-
-            if (query.SubmitAsForm)
-                SubmitFormByIdOrName(query.SubmitElement);
-            else
-                ClickElementByIdOrName(query.SubmitElement);   
-        }
-
-        public class FindByNameFactory : IFindByDefaultFactory
-        {
-            public Constraint ByDefault(string value)
-            {
-                return Find.ByName(value);
-            }
-            public Constraint ByDefault(Regex value)
-            {
-                return Find.ByName(value);
-            }
-        }
-
-        public class FindByIdFactory : IFindByDefaultFactory
-        {
-            public Constraint ByDefault(string value)
-            {
-                return Find.ById(value);
-            }
-            public Constraint ByDefault(Regex value)
-            {
-                return Find.ById(value);
-            }
+            query.Submit(browser);
         }
 
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
@@ -402,65 +373,6 @@ namespace CallTracker.Helpers
             browser = new IE(_url);
             browser.AutoClose = false;
             PreviousIEMatch = browser.Title;      
-        }
-
-        public static void SetElementValueByIdOrName(string _element, string _data)
-        {
-            if (String.IsNullOrEmpty(_element) || String.IsNullOrEmpty(_data))
-                return;
-
-            Settings.FindByDefaultFactory = new FindByIdFactory();
-            if (browser.Element(Find.ByName(_element)).Exists)
-                Settings.FindByDefaultFactory = new FindByNameFactory();
-
-            browser.Element(_element).SetAttributeValue("Value", _data);
-            //if (browser.Element(Find.ById(_element)).Exists)
-            //    browser.Element(Find.ById(_element)).SetAttributeValue("Value", _data);
-            //else if (browser.Element(Find.ByName(_element)).Exists)
-            //    browser.Element(Find.ByName(_element)).SetAttributeValue("Value", _data);
-             
-        }
-
-        public static void ClickElementByIdOrName(string _element)
-        {
-            if (!CheckAndSet<Element>(_element))
-                return;
-            browser.Element(_element).ClickNoWait();
-        }
-
-        public static void SubmitFormByIdOrName(string _form)
-        {
-            if (!CheckAndSet<WatiN.Core.Form>(_form))
-                return;
-            browser.Form(_form).Submit();   
-        }
-
-        public static T GetContexteByIdOrName<T>(string _element) where T : Element
-        {
-            if (String.IsNullOrEmpty(_element))
-                return null;
-
-            Settings.FindByDefaultFactory = new FindByIdFactory();
-            if (browser.ElementOfType<T>(Find.ByName(_element)).Exists)
-                Settings.FindByDefaultFactory = new FindByNameFactory();
-
-            return browser.ElementOfType<T>(_element);
-        }
-
-        public static bool CheckAndSet<T>(string _element) where T : Element
-        {
-            if (String.IsNullOrEmpty(_element))
-                return false;
-
-            SetFindByDefault<T>(_element);
-            return true;
-        }
-
-        public static void SetFindByDefault<T>(string _value) where T : Element
-        {
-            Settings.FindByDefaultFactory = new FindByIdFactory();
-            if (browser.ElementOfType<T>(Find.ByName(_value)).Exists)
-                Settings.FindByDefaultFactory = new FindByNameFactory();
         }
 
         // Object Methods ///////////////////////////////////////////////////////////////////////////////////////

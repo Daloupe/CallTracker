@@ -41,12 +41,12 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewKeyCommandsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
-            this.MenuPanel = new System.Windows.Forms.Panel();
-            this.helpKeyCommands = new CallTracker.View.HelpKeyCommands();
             this.editContact = new CallTracker.View.EditContact();
+            this.MenuPanel = new System.Windows.Forms.Panel();
             this.editGridLinks = new CallTracker.View.EditGridLinks();
             this.editSmartPasteBinds = new CallTracker.View.EditSmartPasteBinds();
             this.editLogins = new CallTracker.View.EditLogins();
+            this.helpKeyCommands = new CallTracker.View.HelpKeyCommands();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -69,6 +69,7 @@
             this._MainMenu.Size = new System.Drawing.Size(584, 18);
             this._MainMenu.TabIndex = 2;
             this._MainMenu.Text = "_MainMenu";
+            this._MainMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             this._MainMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MainMenu_MouseDown);
             // 
             // fileToolStripMenuItem
@@ -81,7 +82,6 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(79, 18);
             this.fileToolStripMenuItem.Text = "Call Tracker";
-            this.fileToolStripMenuItem.DropDownClosed += new System.EventHandler(this._MainMenu_MenuDeactivate);
             // 
             // DeleteCallDataMenuItem
             // 
@@ -113,7 +113,6 @@
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(41, 18);
             this.viewToolStripMenuItem.Text = "View";
-            this.viewToolStripMenuItem.DropDownClosed += new System.EventHandler(this._MainMenu_MenuDeactivate);
             // 
             // loginsViewMenuItem
             // 
@@ -154,7 +153,6 @@
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 18);
             this.helpToolStripMenuItem.Text = "Help";
-            this.helpToolStripMenuItem.DropDownClosed += new System.EventHandler(this._MainMenu_MenuDeactivate);
             // 
             // viewKeyCommandsMenuItem
             // 
@@ -178,6 +176,17 @@
             this.AppPanel.Size = new System.Drawing.Size(586, 242);
             this.AppPanel.TabIndex = 25;
             // 
+            // editContact
+            // 
+            this.editContact.Font = new System.Drawing.Font("Verdana", 7F);
+            this.editContact.Location = new System.Drawing.Point(0, 18);
+            this.editContact.Margin = new System.Windows.Forms.Padding(0);
+            this.editContact.Name = "editContact";
+            this.editContact.Padding = new System.Windows.Forms.Padding(3);
+            this.editContact.ProductBit = ((short)(0));
+            this.editContact.Size = new System.Drawing.Size(584, 222);
+            this.editContact.TabIndex = 28;
+            // 
             // MenuPanel
             // 
             this.MenuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -188,26 +197,6 @@
             this.MenuPanel.Name = "MenuPanel";
             this.MenuPanel.Size = new System.Drawing.Size(586, 20);
             this.MenuPanel.TabIndex = 27;
-            // 
-            // helpKeyCommands
-            // 
-            this.helpKeyCommands.BackColor = System.Drawing.Color.LightSlateGray;
-            this.helpKeyCommands.Font = new System.Drawing.Font("Verdana", 7F);
-            this.helpKeyCommands.Location = new System.Drawing.Point(0, 18);
-            this.helpKeyCommands.Name = "helpKeyCommands";
-            this.helpKeyCommands.Padding = new System.Windows.Forms.Padding(3);
-            this.helpKeyCommands.Size = new System.Drawing.Size(584, 222);
-            this.helpKeyCommands.TabIndex = 32;
-            // 
-            // editContact
-            // 
-            this.editContact.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editContact.Location = new System.Drawing.Point(0, 18);
-            this.editContact.Margin = new System.Windows.Forms.Padding(0);
-            this.editContact.Name = "editContact";
-            this.editContact.Padding = new System.Windows.Forms.Padding(3);
-            this.editContact.Size = new System.Drawing.Size(584, 222);
-            this.editContact.TabIndex = 28;
             // 
             // editGridLinks
             // 
@@ -241,6 +230,16 @@
             this.editLogins.Size = new System.Drawing.Size(584, 222);
             this.editLogins.TabIndex = 29;
             this.editLogins.Visible = false;
+            // 
+            // helpKeyCommands
+            // 
+            this.helpKeyCommands.BackColor = System.Drawing.Color.LightSlateGray;
+            this.helpKeyCommands.Font = new System.Drawing.Font("Verdana", 7F);
+            this.helpKeyCommands.Location = new System.Drawing.Point(0, 18);
+            this.helpKeyCommands.Name = "helpKeyCommands";
+            this.helpKeyCommands.Padding = new System.Windows.Forms.Padding(3);
+            this.helpKeyCommands.Size = new System.Drawing.Size(584, 222);
+            this.helpKeyCommands.TabIndex = 32;
             // 
             // Main
             // 

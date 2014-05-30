@@ -4,11 +4,15 @@ Main GUI
  | Have Settings windows show in main gui, rather than their own popup.
  - Add status bar to display warnings.
  - Start inputting system variables.
+ - Right Click menu on Note to switch between On-Call Notes, and ICON Note.
 
 Contact GUI
  | Double click splitters to toggle panels.
- - Add other information: Outcome, Clearance, NIT results, Speed Test Results.
+ \ Add other information: Outcome, Clearance, NIT results, Speed Test Results.
  - Hook up affected products check boxes.
+
+Note Writer
+ - Add info to Note based on entered info and Symptom.
 
 ARO GUI
  - Ctrl + Win + C.
@@ -47,6 +51,8 @@ Call History
 General GUI
  | Gray bordered Text Boxes.
  | Add Progress bar events on long operations eg AutoLogin/IECreate.
+ | Models that interact with IE now subclass IEInteractBase, which holds methods for constructing interactions. Context.Type(Constraint).Method.
+	| Objects use either Name or Id to speed up search.
 
  Utility
  | Reset Logins, Contacts when new user detected.
@@ -75,7 +81,7 @@ General GUI
 	Autologin
 	 | Add field for form name.
 	 | Option to Submit instead of click the submit button.
-	 - Option to find element in relation to form element.
+	 | Option to find element in relation to form element.
 	 - Autologin should rely on URL to locate login page, Title should be the simplest form. Logins can then be reused as gridlinks which rely on simple titles to locate windows.
 
 AutoFill

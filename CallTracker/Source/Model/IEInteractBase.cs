@@ -12,22 +12,28 @@ namespace CallTracker.Model
 {
     [ProtoContract]
     [ProtoInclude(9, typeof(LoginsModel))]
+    [ProtoInclude(10, typeof(PasteBind))]
     public class IEInteractBase
     {
         public IEInteractBase()
         {
-            ContextForm = new Func<Browser, IElementContainer>(b => b.Form(Find.ByName(FormElement)));
+            ContextForm = new Func<Browser, IElementContainer>(b => b.Form(IEFormConstraint(FormElement)));
+
+            IEContext = ContextBrowser;
+            IEType = typeof(Element);
+            IEConstraint = ConstraintById;
+            IEFormConstraint = ConstraintById;
+            IEMethod = MethodSetAttributeValue;
 
             Title = String.Empty;
             Url = String.Empty;
             System = String.Empty;
             FormElement = String.Empty;
+
             FindInForm = false;
             TypeText = false;
             FindByName = false;
-            IEMethod = MethodValue;
-            IEConstraint = ConstraintById;
-            IEContext = ContextForm;      
+            FindAsTextField = false;
         }
 
         [ProtoMember(1)]
@@ -37,9 +43,18 @@ namespace CallTracker.Model
         [ProtoMember(3)]
         public string Title { get; set; }
         [ProtoMember(4)]
-        public string FormElement { get; set; }
+        public string FormElement
+        {
+            get { return formElement; }
+            set
+            {
+                formElement = value;
+                if (String.IsNullOrEmpty(formElement))
+                    FindInForm = false;
+            }
+        }
+        public string formElement { get; set; }
 
-        protected bool findInForm { get; set; }
         [ProtoMember(5)]
         public bool FindInForm
         {
@@ -53,8 +68,8 @@ namespace CallTracker.Model
                     IEContext = ContextBrowser;
             }
         }
-
-        protected bool typeText { get; set; }
+        protected bool findInForm { get; set; }
+        
         [ProtoMember(6)]
         public bool TypeText
         {
@@ -68,8 +83,8 @@ namespace CallTracker.Model
                     IEMethod = MethodValue;
             }
         }
-
-        protected bool findByName { get; set; }
+        protected bool typeText { get; set; }
+        
         [ProtoMember(7)]
         public bool FindByName
         {
@@ -83,8 +98,8 @@ namespace CallTracker.Model
                     IEConstraint = ConstraintById;
             }
         }
-
-        protected bool findAsTextField { get; set; }
+        protected bool findByName { get; set; }
+        
         [ProtoMember(8)]
         public bool FindAsTextField
         {
@@ -102,9 +117,9 @@ namespace CallTracker.Model
                     IEType = typeof(Element);
                     IEMethod = MethodSetAttributeValue;
                 }
-
             }
         }
+        protected bool findAsTextField { get; set; }
 
         public void Paste(Browser _browser, string _element, string _value)
         {
@@ -124,9 +139,10 @@ namespace CallTracker.Model
         protected Func<Browser, IElementContainer> ContextForm;
         protected static Func<Browser, IElementContainer> ContextBrowser = new Func<Browser, IElementContainer>(b => b);
 
-        protected Type IEType = typeof(TextField);
+        protected Type IEType = typeof(Element);
 
         protected Func<string, Constraint> IEConstraint;
+        protected Func<string, Constraint> IEFormConstraint;
         protected static Func<string, Constraint> ConstraintById = new Func<string, Constraint>(s => Find.ById(s));
         protected static Func<string, Constraint> ConstraintByName = new Func<string, Constraint>(s => Find.ByName(s));
 
@@ -134,7 +150,37 @@ namespace CallTracker.Model
         protected static Action<Element, string> MethodTypeText = new Action<Element, string>((e, s) => ((TextField)e).TypeText(s));
         protected static Action<Element, string> MethodValue = new Action<Element, string>((e, s) => ((TextField)e).Value = s);
         protected static Action<Element, string> MethodSetAttributeValue = new Action<Element, string>((e, s) => e.SetAttributeValue("value", s));
-    }
-
-        
+    }     
 }
+
+
+
+
+
+
+
+
+//public static MethodInfo IEElementOfType = typeof(IElementContainer)
+//                                    .GetMethods()
+//                                    .Where(m => m.Name == "ElementOfType")
+//                                    .Select(m => new
+//                                    {
+//                                        Method = m,
+//                                        Params = m.GetParameters(),
+//                                        Args = m.GetGenericArguments()
+//                                    })
+//                                    .Where(x => x.Params.Length == 1
+//                                                && x.Args.Length == 1
+//                                                && x.Params[0].ParameterType == typeof(Constraint))
+//                                    .Select(x => x.Method)
+//                                    .First();
+//public void Paste(Browser _browser, string _element, string _value)
+//{
+//    //Element elem = IEContext(_browser).ElementOfType<T>(IEConstraint(_element));
+//    var elem = IEElementOfType
+//                .MakeGenericMethod(IEType)
+//                .Invoke(IEContext(_browser), new object[] { IEConstraint(_element) }) as Element;
+//    if (!elem.Exists)
+//        return;
+//    IEMethod(elem, _value);
+//}
