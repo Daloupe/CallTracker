@@ -8,6 +8,21 @@ using PropertyChanged;
 namespace CallTracker.Model
 {
     [ImplementPropertyChanged]
+    public class Person
+    {
+        public string GivenNames { get; set; }
+        public string FamilyName { get; set; }
+
+        public string FullName
+        {
+            get
+            {
+                return string.Format("{0} {1}", GivenNames, FamilyName);
+            }
+        }
+    }
+
+    [ImplementPropertyChanged]
     [ProtoContract]
     public class FaultModel
     {
@@ -33,6 +48,9 @@ namespace CallTracker.Model
         public string Outcome { get; set; }
         [ProtoMember(7)]
         public BookingModel Booking { get; set; }
+
+        [ProtoMember(8)]
+        public string NPR { get; set; }
 
         public static List<string> FaultSeverity = new List<string>
         {

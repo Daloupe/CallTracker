@@ -58,6 +58,9 @@ namespace CallTracker.Model
         [ProtoMember(12)]
         public ContactStatistics Contacts { get; set; }
 
+        [ProtoMember(13)]
+        public Dictionary<string, string> ICONNote { get; set; }
+
         public CustomerContact()
         {
             Name = String.Empty;

@@ -10,6 +10,10 @@ using ProtoBuf;
 
 namespace CallTracker.Model
 {
+    // Context.Type(Constraint).Action:
+    // IEMethod(IEContext.ElementOfType<T>(IEConstraint(tag)), value);
+    // Which is called in a generic function through reflection to enable IEType to select the element type.
+
     [ProtoContract]
     [ProtoInclude(9, typeof(LoginsModel))]
     [ProtoInclude(10, typeof(PasteBind))]
@@ -130,9 +134,8 @@ namespace CallTracker.Model
         public virtual void PasteData<T>(Browser _browser, string _element, string _value) where T : Element
         {
             Element elem = IEContext(_browser).ElementOfType<T>(IEConstraint(_element));
-            if (!elem.Exists)
-                return;
-            IEMethod(elem, _value);
+            if (elem.Exists)
+                IEMethod(elem, _value);
         }
 
         protected Func<Browser, IElementContainer> IEContext;

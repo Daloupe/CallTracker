@@ -91,6 +91,7 @@
     <None Include="Source\View\Archive\FMask.Designer.cs">
       <DependentUpon>FMask.cs</DependentUpon>
     </None>
+    <Compile Include="Source\Helpers\ICONNoteGenerator.cs" />
     <Compile Include="Source\Helpers\IETabActivator.cs" />
     <Compile Include="Source\Model\IEInteractBase.cs" />
     <Compile Include="Source\View\Controls\DataArea.cs">

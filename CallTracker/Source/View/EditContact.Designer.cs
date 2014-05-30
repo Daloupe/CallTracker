@@ -304,7 +304,7 @@
             // 
             this.borderedTextBox3.BorderColor = System.Drawing.Color.Gray;
             this.borderedTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.borderedTextBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.borderedTextBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.faultModelBindingSource, "NPR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.borderedTextBox3.Font = new System.Drawing.Font("Verdana", 7F);
             this.borderedTextBox3.Location = new System.Drawing.Point(95, 148);
             this.borderedTextBox3.Name = "borderedTextBox3";

@@ -31,6 +31,12 @@ namespace CallTracker.View
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
             //SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+
+            Person per = new Person();
+            per.FamilyName = "George";
+            per.GivenNames = "Jesse";
+            Console.WriteLine(per.FullName);
+            
         }
 
         protected override CreateParams CreateParams
