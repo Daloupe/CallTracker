@@ -16,7 +16,7 @@ namespace CallTracker.Model
             Severity = String.Empty;
             Symptom = String.Empty;
             Outcome = String.Empty;
-            AffectedServices = 0;
+            AffectedServices = 1;
         }
 
         [ProtoMember(1)]

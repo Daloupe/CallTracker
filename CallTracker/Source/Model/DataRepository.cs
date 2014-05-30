@@ -68,6 +68,7 @@ namespace CallTracker.Model
             newContact.Id = dataStore.Contacts.Count;
             newContact.Contacts.StartDate = DateTime.Today;
             newContact.Contacts.StartTime = DateTime.Now.TimeOfDay;
+            //newContact.Fault.AffectedServices = 1;
 
             dataStore.Contacts.Add(newContact);
             dataStore.GridLinks.PopulateIfEmpty();

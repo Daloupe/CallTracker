@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace CallTracker.View
 {
-    public partial class LIPPanel : PanelBase
+    public partial class NBFPanel : PanelBase
     {
-        public LIPPanel()
+        public NBFPanel()
         {
             InitializeComponent();
             //this.MouseEnter += NBF_MouseEnter;

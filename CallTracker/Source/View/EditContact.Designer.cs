@@ -634,7 +634,7 @@
             this._LAT.Text = "LAT";
             this._LAT.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._LAT.UseVisualStyleBackColor = true;
-            this._LAT.CheckedChanged += new System.EventHandler(this._LAT_CheckedChanged);
+            this._LAT.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _LIP
             // 
@@ -645,11 +645,11 @@
             this._LIP.Name = "_LIP";
             this._LIP.Size = new System.Drawing.Size(47, 20);
             this._LIP.TabIndex = 1;
-            this._LIP.Tag = "1";
+            this._LIP.Tag = "2";
             this._LIP.Text = "LIP";
             this._LIP.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._LIP.UseVisualStyleBackColor = true;
-            this._LIP.CheckedChanged += new System.EventHandler(this._LIP_CheckedChanged);
+            this._LIP.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _ONC
             // 
@@ -660,11 +660,11 @@
             this._ONC.Name = "_ONC";
             this._ONC.Size = new System.Drawing.Size(47, 20);
             this._ONC.TabIndex = 2;
-            this._ONC.Tag = "2";
+            this._ONC.Tag = "4";
             this._ONC.Text = "ONC";
             this._ONC.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._ONC.UseVisualStyleBackColor = true;
-            this._ONC.CheckStateChanged += new System.EventHandler(this._Product_CheckedChanged);
+            this._ONC.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _NVF
             // 
@@ -675,11 +675,11 @@
             this._NVF.Name = "_NVF";
             this._NVF.Size = new System.Drawing.Size(47, 20);
             this._NVF.TabIndex = 6;
-            this._NVF.Tag = "4";
+            this._NVF.Tag = "8";
             this._NVF.Text = "NVF";
             this._NVF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._NVF.UseVisualStyleBackColor = true;
-            this._NVF.CheckStateChanged += new System.EventHandler(this._Product_CheckedChanged);
+            this._NVF.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _NBF
             // 
@@ -690,11 +690,11 @@
             this._NBF.Name = "_NBF";
             this._NBF.Size = new System.Drawing.Size(47, 20);
             this._NBF.TabIndex = 3;
-            this._NBF.Tag = "8";
+            this._NBF.Tag = "16";
             this._NBF.Text = "NBF";
             this._NBF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._NBF.UseVisualStyleBackColor = true;
-            this._NBF.CheckStateChanged += new System.EventHandler(this._Product_CheckedChanged);
+            this._NBF.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _DTV
             // 
@@ -705,11 +705,11 @@
             this._DTV.Name = "_DTV";
             this._DTV.Size = new System.Drawing.Size(47, 20);
             this._DTV.TabIndex = 4;
-            this._DTV.Tag = "16";
+            this._DTV.Tag = "32";
             this._DTV.Text = "DTV";
             this._DTV.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._DTV.UseVisualStyleBackColor = true;
-            this._DTV.CheckStateChanged += new System.EventHandler(this._Product_CheckedChanged);
+            this._DTV.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _MTV
             // 
@@ -720,11 +720,11 @@
             this._MTV.Name = "_MTV";
             this._MTV.Size = new System.Drawing.Size(47, 20);
             this._MTV.TabIndex = 5;
-            this._MTV.Tag = "32";
+            this._MTV.Tag = "64";
             this._MTV.Text = "MTV";
             this._MTV.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._MTV.UseVisualStyleBackColor = true;
-            this._MTV.CheckStateChanged += new System.EventHandler(this._Product_CheckedChanged);
+            this._MTV.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // flowLayoutPanel4
             // 

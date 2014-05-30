@@ -123,6 +123,30 @@
     <Compile Include="Source\View\Controls\DataField.Designer.cs">
       <DependentUpon>DataField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\View\Panels\Product\MTVPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\MTVPanel.Designer.cs">
+      <DependentUpon>MTVPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\DTVPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\DTVPanel.Designer.cs">
+      <DependentUpon>DTVPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\PanelBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\PanelBase.Designer.cs">
+      <DependentUpon>PanelBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\ONCPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\ONCPanel.Designer.cs">
+      <DependentUpon>ONCPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Panels\Product\LIPPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -135,11 +159,11 @@
     <Compile Include="Source\View\Panels\Product\LATPanel.Designer.cs">
       <DependentUpon>LATPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Panels\Product\NBF.cs">
+    <Compile Include="Source\View\Panels\Product\NBFPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Panels\Product\NBF.Designer.cs">
-      <DependentUpon>NBF.cs</DependentUpon>
+    <Compile Include="Source\View\Panels\Product\NBFPanel.Designer.cs">
+      <DependentUpon>NBFPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Panels\Settings\CallHistory.cs">
       <SubType>UserControl</SubType>
@@ -168,14 +192,26 @@
     <EmbeddedResource Include="Source\View\Controls\DataField.resx">
       <DependentUpon>DataField.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Product\MTVPanel.resx">
+      <DependentUpon>MTVPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Product\DTVPanel.resx">
+      <DependentUpon>DTVPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Product\PanelBase.resx">
+      <DependentUpon>PanelBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Product\ONCPanel.resx">
+      <DependentUpon>ONCPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Product\LIPPanel.resx">
       <DependentUpon>LIPPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Product\LATPanel.resx">
       <DependentUpon>LATPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Product\NBF.resx">
-      <DependentUpon>NBF.cs</DependentUpon>
+    <EmbeddedResource Include="Source\View\Panels\Product\NBFPanel.resx">
+      <DependentUpon>NBFPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Settings\CallHistory.resx">
       <DependentUpon>CallHistory.cs</DependentUpon>

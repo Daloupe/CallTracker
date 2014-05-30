@@ -15,8 +15,13 @@ namespace CallTracker.View
     {
         internal DataRepository DataStore;
         private List<CheckBox> Products;
-        internal NBF NbnPanel;
-        internal LATPanel LATPanel;
+        internal static NBFPanel NVFPanel;
+        internal static NBFPanel NBFPanel;
+        internal static LATPanel LATPanel;
+        internal static LIPPanel LIPPanel;
+        internal static ONCPanel ONCPanel;
+        internal static DTVPanel DTVPanel;
+        internal static MTVPanel MTVPanel;
 
         public EditContact()
         {
@@ -24,9 +29,14 @@ namespace CallTracker.View
 
             splitContainer2.MouseWheel += splitContainer2_MouseWheel;
 
+            //Products = new List<CheckBox>
+            //{
+            //    _LAT, _LIP, _ONC, _NVF, _NBF, _DTV, _MTV
+            //};
+
             Products = new List<CheckBox>
             {
-                _LAT, _LIP, _ONC, _NVF, _NBF, _DTV, _MTV
+                _MTV, _DTV, _NBF, _NVF, _ONC, _LIP, _LAT 
             };
         }
         
@@ -34,9 +44,6 @@ namespace CallTracker.View
         {
             DataStore = _parent.DataStore;
 
-            //NbnPanel = new NBF();
-            LATPanel = new LATPanel();
-            splitContainer2.Panel2.Controls.Add(LATPanel);
 
             contactsListBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
             contactsListBindingSource.DataSource = DataStore.Contacts;
@@ -52,7 +59,6 @@ namespace CallTracker.View
             Main.SelectedContact = DataStore.Contacts[contactsListBindingSource.Position];//Convert.ToInt32(bindingNavigator1.PositionItem.Text) - 1];
             customerContactsBindingSource.DataSource = Main.SelectedContact;
             contactAddressBindingSource.DataSource = Main.SelectedContact.Address;
-            LATPanel.serviceModelBindingSource.DataSource = Main.SelectedContact.Service;
             customerServiceBindingSource.DataSource = Main.SelectedContact.Service;
             faultModelBindingSource.DataSource = Main.SelectedContact.Fault;
 
@@ -60,14 +66,19 @@ namespace CallTracker.View
             short tag;
             foreach(var product in Products)
             {
+                product.CheckedChanged -= _Product_CheckedChanged;
                 tag = Convert.ToInt16(product.Tag);
                 if ((tPb & tag) == tag)
                     product.Checked = true;
                 else
                     product.Checked = false;
+
+                product.CheckedChanged += _Product_CheckedChanged;
             }
 
             ProductBit = Main.SelectedContact.Fault.AffectedServices;
+
+            CurrentPanel.serviceModelBindingSource.DataSource = Main.SelectedContact.Service;
         }
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
@@ -177,6 +188,7 @@ namespace CallTracker.View
             _Product_CheckedChanged(sender, e);      
         }
 
+        private PanelBase CurrentPanel;
         private short productBit;
         public short ProductBit
         {
@@ -193,30 +205,92 @@ namespace CallTracker.View
                 if ((productBit & 1) == 1)
                 {
                     _Symptom.DataSource = LATSymptoms;
+                    if (LATPanel == null)
+                        LATPanel = new LATPanel();
+                    if (!splitContainer2.Panel2.Controls.Contains(LATPanel))
+                    {
+                        splitContainer2.Panel2.Controls.Add(LATPanel);
+                        splitContainer2.Panel2.Controls.Remove(CurrentPanel);
+                        CurrentPanel = LATPanel;
+                    }
                 }
                 else if ((productBit & 2) == 2)
                 {
-                    _Symptom.DataSource = ONCSymptoms;
+                    _Symptom.DataSource = LATSymptoms;
+                    if (LIPPanel == null)
+                        LIPPanel = new LIPPanel();
+                    if (!splitContainer2.Panel2.Controls.Contains(LIPPanel))
+                    {
+                        splitContainer2.Panel2.Controls.Add(LIPPanel);
+                        splitContainer2.Panel2.Controls.Remove(CurrentPanel);
+                        CurrentPanel = LIPPanel;
+                    }
                 }
                 else if ((productBit & 4) == 4)
                 {
-                    _Symptom.DataSource = NVFSymptoms;
+                    _Symptom.DataSource = ONCSymptoms;
+                    if (ONCPanel == null)
+                        ONCPanel = new ONCPanel();
+                    if (!splitContainer2.Panel2.Controls.Contains(ONCPanel))
+                    {
+                        splitContainer2.Panel2.Controls.Add(ONCPanel);
+                        splitContainer2.Panel2.Controls.Remove(CurrentPanel);
+                        CurrentPanel = ONCPanel;
+                    }
                 }
                 else if ((productBit & 8) == 8)
                 {
-                    _Symptom.DataSource = NBFSymptoms;
+                    _Symptom.DataSource = NVFSymptoms;
+                    if (NVFPanel == null)
+                        NVFPanel = new NBFPanel();
+                    if (!splitContainer2.Panel2.Controls.Contains(NVFPanel))
+                    {
+                        splitContainer2.Panel2.Controls.Add(NVFPanel);
+                        splitContainer2.Panel2.Controls.Remove(CurrentPanel);
+                        CurrentPanel = NVFPanel;
+                    }
                 }
                 else if ((productBit & 16) == 16)
                 {
-                    _Symptom.DataSource = DTVSymptoms;
+                    _Symptom.DataSource = NBFSymptoms;
+                    if (NBFPanel == null)
+                        NBFPanel = new NBFPanel();
+                    if (!splitContainer2.Panel2.Controls.Contains(NBFPanel))
+                    {
+                        splitContainer2.Panel2.Controls.Add(NBFPanel);
+                        splitContainer2.Panel2.Controls.Remove(CurrentPanel);
+                        CurrentPanel = NBFPanel;
+                    }
                 }
                 else if ((productBit & 32) == 32)
                 {
+                    _Symptom.DataSource = DTVSymptoms;
+                    if (DTVPanel == null)
+                        DTVPanel = new DTVPanel();
+                    if(!splitContainer2.Panel2.Controls.Contains(DTVPanel))
+                    {
+                        splitContainer2.Panel2.Controls.Add(DTVPanel);
+                        splitContainer2.Panel2.Controls.Remove(CurrentPanel);
+                        CurrentPanel = DTVPanel;
+                    }              
+                }
+                else if ((productBit & 64) == 64)
+                {
                     _Symptom.DataSource = MTVSymptoms;
+                    if (MTVPanel == null)
+                        MTVPanel = new MTVPanel();
+                    if (!splitContainer2.Panel2.Controls.Contains(MTVPanel))
+                    {
+                        splitContainer2.Panel2.Controls.Add(MTVPanel);
+                        splitContainer2.Panel2.Controls.Remove(CurrentPanel);
+                        CurrentPanel = MTVPanel;
+                    }
                 }
                 else
                 {
                     _Symptom.DataSource = null;
+                    splitContainer2.Panel2.Controls.Clear();
+                    CurrentPanel = null;
                 }
 
             }
@@ -224,10 +298,23 @@ namespace CallTracker.View
         private void _Product_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox checkbox = (CheckBox)sender;
+            short tag = Convert.ToInt16(checkbox.Tag);
+            if (tag == 1)
+            {
+                if (_LIP.Checked)
+                    _LIP.Checked = !_LAT.Checked;
+            }
+            else if (tag == 2)
+                if (_LAT.Checked)
+                    _LAT.Checked = !_LIP.Checked;
+
             if (checkbox.Checked)
-                ProductBit += Convert.ToInt16(checkbox.Tag);
+                ProductBit += Convert.ToInt16(checkbox.Tag);   
             else
                 ProductBit -= Convert.ToInt16(checkbox.Tag);
+
+            //if tag > CurrProduct, don't Add/Remove.
+                //if tag > CurrProduct, ignore/
 
             //Console.WriteLine(GetIntBinaryString(ProductBit));
         }

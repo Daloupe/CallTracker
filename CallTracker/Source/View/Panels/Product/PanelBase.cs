@@ -9,17 +9,11 @@ using System.Windows.Forms;
 
 namespace CallTracker.View
 {
-    public partial class LIPPanel : PanelBase
+    public partial class PanelBase : UserControl
     {
-        public LIPPanel()
+        public PanelBase()
         {
             InitializeComponent();
-            //this.MouseEnter += NBF_MouseEnter;
         }
-
-        //void NBF_MouseEnter(object sender, EventArgs e)
-        //{
-        //    ParentForm.Focus();
-        //}
     }
 }
