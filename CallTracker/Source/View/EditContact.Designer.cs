@@ -535,6 +535,7 @@
             this._Icon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._Icon.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "ICON", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Icon.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Icon.ForeColor = System.Drawing.SystemColors.WindowText;
             this._Icon.Location = new System.Drawing.Point(57, 6);
             this._Icon.Name = "_Icon";
             this._Icon.RightToLeft = System.Windows.Forms.RightToLeft.No;

@@ -50,6 +50,7 @@
             // 
             // dataField1
             // 
+            this.dataField1.BackColor = System.Drawing.Color.Ivory;
             this.dataField1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dataField1.Font = new System.Drawing.Font("Verdana", 7F);
             this.dataField1.LabelText = "Node:";
@@ -213,10 +214,7 @@
             this.Controls.Add(this.panelHeading1);
             this.Controls.Add(this.dataDropDown1);
             this.Controls.Add(this.dataField1);
-            this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "ONCPanel";
-            this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(180, 245);
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 

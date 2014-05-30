@@ -24,6 +24,11 @@ namespace CallTracker.View
             this.SendToBack();
             this.Visible = false;
             //this.BringToFront();
+
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         }
 
         protected virtual void _Done_Click(object sender, EventArgs e)

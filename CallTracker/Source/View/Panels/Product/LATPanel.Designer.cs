@@ -105,10 +105,7 @@
             this.Controls.Add(this.dataDropDown1);
             this.Controls.Add(this.dataArea1);
             this.Controls.Add(this.dataField1);
-            this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "LATPanel";
-            this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(180, 245);
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 

@@ -14,7 +14,6 @@ namespace CallTracker.View
         public LATPanel()
         {
             InitializeComponent();
-            //this.MouseEnter += NBF_MouseEnter;
         }
 
         public override void SetDataSource(object _source)

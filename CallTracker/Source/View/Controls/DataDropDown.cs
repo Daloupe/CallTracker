@@ -9,12 +9,16 @@ using System.Windows.Forms;
 
 namespace CallTracker.View
 {
-    [DefaultBindingProperty("TextField")]
+    [DefaultBindingProperty("DataText")]
     public partial class DataDropDown : UserControl
     {
         public DataDropDown()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         }
 
         [Category("A1")]
@@ -56,12 +60,11 @@ namespace CallTracker.View
 
         private void PaintGrayBorder(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawRectangle(Pens.DarkGray,
-             _DataField.Left-1,
-             _DataField.Top -1,
-             _DataField.Width +1,
-             _DataField.Height +1);
-            //base.OnPaint(e);
+            e.Graphics.DrawRectangle(Pens.Gray,
+              _DataField.Left - 1,
+              _DataField.Top - 1,
+              _DataField.Width + 1,
+              _DataField.Height + 1);
         }
     }
 }

@@ -15,30 +15,48 @@ namespace CallTracker.View
     {
         internal DataRepository DataStore;
         private List<CheckBox> Products;
-        internal static NBFPanel NVFPanel;
-        internal static NBFPanel NBFPanel;
-        internal static LATPanel LATPanel;
-        internal static LIPPanel LIPPanel;
-        internal static ONCPanel ONCPanel;
-        internal static DTVPanel DTVPanel;
-        internal static MTVPanel MTVPanel;
+        internal NBFPanel NVFPanel;
+        internal NBFPanel NBFPanel;
+        internal LATPanel LATPanel;
+        internal LIPPanel LIPPanel;
+        internal ONCPanel ONCPanel;
+        internal DTVPanel DTVPanel;
+        internal MTVPanel MTVPanel;
 
         public EditContact()
         {
             InitializeComponent();
 
-            splitContainer2.MouseWheel += splitContainer2_MouseWheel;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
-            //Products = new List<CheckBox>
-            //{
-            //    _LAT, _LIP, _ONC, _NVF, _NBF, _DTV, _MTV
-            //};
+            splitContainer2.MouseWheel += splitContainer2_MouseWheel;
 
             Products = new List<CheckBox>
             {
-                _MTV, _DTV, _NBF, _NVF, _ONC, _LIP, _LAT 
+                _LAT, _LIP, _ONC, _NVF, _NBF, _DTV, _MTV
             };
+
+            NVFPanel = new NBFPanel();
+            NBFPanel = new NBFPanel();
+            LATPanel = new LATPanel();
+            LIPPanel = new LIPPanel();
+            ONCPanel = new ONCPanel();
+            DTVPanel = new DTVPanel();
+            MTVPanel = new MTVPanel();
         }
+
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        var parms = base.CreateParams;
+        //        parms.Style &= ~0x02000000;  // Turn off WS_CLIPCHILDREN
+        //        return parms;
+        //    }
+        //}
         
         public void Init(Main _parent)
         {
@@ -152,7 +170,7 @@ namespace CallTracker.View
         {
             if ((splitContainer2.SplitterDistance > 254 && e.Delta > 0) || (splitContainer2.SplitterDistance < 74 && e.Delta < 0))
                 return;
-            splitContainer2.SplitterDistance += e.Delta / 8;
+            splitContainer2.SplitterDistance += e.Delta / 10;
         }
 
         void splitContainer2_MouseEnter(object sender, EventArgs e)
@@ -204,8 +222,6 @@ namespace CallTracker.View
                 if ((productBit & 1) == 1)
                 {
                     _Symptom.DataSource = LATSymptoms;
-                    if (LATPanel == null)
-                        LATPanel = new LATPanel();
                     if (!splitContainer2.Panel2.Controls.Contains(LATPanel))
                     {
                         splitContainer2.Panel2.Controls.Add(LATPanel);
@@ -216,8 +232,6 @@ namespace CallTracker.View
                 else if ((productBit & 2) == 2)
                 {
                     _Symptom.DataSource = LATSymptoms;
-                    if (LIPPanel == null)
-                        LIPPanel = new LIPPanel();
                     if (!splitContainer2.Panel2.Controls.Contains(LIPPanel))
                     {
                         splitContainer2.Panel2.Controls.Add(LIPPanel);
@@ -228,8 +242,6 @@ namespace CallTracker.View
                 else if ((productBit & 4) == 4)
                 {
                     _Symptom.DataSource = ONCSymptoms;
-                    if (ONCPanel == null)
-                        ONCPanel = new ONCPanel();
                     if (!splitContainer2.Panel2.Controls.Contains(ONCPanel))
                     {
                         splitContainer2.Panel2.Controls.Add(ONCPanel);
@@ -240,8 +252,6 @@ namespace CallTracker.View
                 else if ((productBit & 8) == 8)
                 {
                     _Symptom.DataSource = NVFSymptoms;
-                    if (NVFPanel == null)
-                        NVFPanel = new NBFPanel();
                     if (!splitContainer2.Panel2.Controls.Contains(NVFPanel))
                     {
                         splitContainer2.Panel2.Controls.Add(NVFPanel);
@@ -252,8 +262,6 @@ namespace CallTracker.View
                 else if ((productBit & 16) == 16)
                 {
                     _Symptom.DataSource = NBFSymptoms;
-                    if (NBFPanel == null)
-                        NBFPanel = new NBFPanel();
                     if (!splitContainer2.Panel2.Controls.Contains(NBFPanel))
                     {
                         splitContainer2.Panel2.Controls.Add(NBFPanel);
@@ -264,8 +272,6 @@ namespace CallTracker.View
                 else if ((productBit & 32) == 32)
                 {
                     _Symptom.DataSource = DTVSymptoms;
-                    if (DTVPanel == null)
-                        DTVPanel = new DTVPanel();
                     if(!splitContainer2.Panel2.Controls.Contains(DTVPanel))
                     {
                         splitContainer2.Panel2.Controls.Add(DTVPanel);
@@ -276,8 +282,6 @@ namespace CallTracker.View
                 else if ((productBit & 64) == 64)
                 {
                     _Symptom.DataSource = MTVSymptoms;
-                    if (MTVPanel == null)
-                        MTVPanel = new MTVPanel();
                     if (!splitContainer2.Panel2.Controls.Contains(MTVPanel))
                     {
                         splitContainer2.Panel2.Controls.Add(MTVPanel);

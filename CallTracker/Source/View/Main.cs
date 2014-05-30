@@ -27,7 +27,21 @@ namespace CallTracker.View
             SetAppLocation();
             DataStore = DataRepository.ReadFile();
             HotKeys = new HotkeyController(this);
+
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                return cp;
+            }
+        } 
 
         private void SetAppLocation()
         {

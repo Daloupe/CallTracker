@@ -14,6 +14,11 @@ namespace CallTracker.View
         public PanelBase()
         {
             InitializeComponent();
+            
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint, true);
+            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         }
 
         public virtual void SetDataSource(object _source)

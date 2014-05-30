@@ -41,8 +41,8 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewKeyCommandsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
-            this.editContact = new CallTracker.View.EditContact();
             this.MenuPanel = new System.Windows.Forms.Panel();
+            this.editContact = new CallTracker.View.EditContact();
             this.editGridLinks = new CallTracker.View.EditGridLinks();
             this.editSmartPasteBinds = new CallTracker.View.EditSmartPasteBinds();
             this.editLogins = new CallTracker.View.EditLogins();
@@ -176,17 +176,6 @@
             this.AppPanel.Size = new System.Drawing.Size(586, 242);
             this.AppPanel.TabIndex = 25;
             // 
-            // editContact
-            // 
-            this.editContact.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editContact.Location = new System.Drawing.Point(0, 18);
-            this.editContact.Margin = new System.Windows.Forms.Padding(0);
-            this.editContact.Name = "editContact";
-            this.editContact.Padding = new System.Windows.Forms.Padding(3);
-            this.editContact.ProductBit = ((short)(0));
-            this.editContact.Size = new System.Drawing.Size(584, 222);
-            this.editContact.TabIndex = 28;
-            // 
             // MenuPanel
             // 
             this.MenuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -197,6 +186,17 @@
             this.MenuPanel.Name = "MenuPanel";
             this.MenuPanel.Size = new System.Drawing.Size(586, 20);
             this.MenuPanel.TabIndex = 27;
+            // 
+            // editContact
+            // 
+            this.editContact.Font = new System.Drawing.Font("Verdana", 7F);
+            this.editContact.Location = new System.Drawing.Point(0, 18);
+            this.editContact.Margin = new System.Windows.Forms.Padding(0);
+            this.editContact.Name = "editContact";
+            this.editContact.Padding = new System.Windows.Forms.Padding(3);
+            this.editContact.ProductBit = ((short)(0));
+            this.editContact.Size = new System.Drawing.Size(584, 222);
+            this.editContact.TabIndex = 28;
             // 
             // editGridLinks
             // 
