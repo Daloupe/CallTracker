@@ -158,7 +158,7 @@
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer1.Panel2MinSize = 0;
             this.splitContainer1.Size = new System.Drawing.Size(275, 330);
-            this.splitContainer1.SplitterDistance = 180;
+            this.splitContainer1.SplitterDistance = 182;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 24;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -186,8 +186,8 @@
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(180, 330);
-            this.splitContainer2.SplitterDistance = 204;
+            this.splitContainer2.Size = new System.Drawing.Size(182, 330);
+            this.splitContainer2.SplitterDistance = 68;
             this.splitContainer2.SplitterWidth = 9;
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
@@ -216,9 +216,9 @@
             this.HfcPanel.Controls.Add(this.label17);
             this.HfcPanel.Controls.Add(this.label6);
             this.HfcPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.HfcPanel.Location = new System.Drawing.Point(1, -9);
+            this.HfcPanel.Location = new System.Drawing.Point(1, -145);
             this.HfcPanel.Name = "HfcPanel";
-            this.HfcPanel.Size = new System.Drawing.Size(178, 212);
+            this.HfcPanel.Size = new System.Drawing.Size(180, 212);
             this.HfcPanel.TabIndex = 22;
             // 
             // label21

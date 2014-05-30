@@ -99,6 +99,18 @@
     <Compile Include="Source\View\Controls\Help\HelpKeyCommands.Designer.cs">
       <DependentUpon>HelpKeyCommands.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\View\Controls\Product Panels\DataField.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Product Panels\DataField.Designer.cs">
+      <DependentUpon>DataField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\Product Panels\NBF.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Product Panels\NBF.Designer.cs">
+      <DependentUpon>NBF.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Controls\Settings\CallHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -113,6 +125,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\Help\HelpKeyCommands.resx">
       <DependentUpon>HelpKeyCommands.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Product Panels\DataField.resx">
+      <DependentUpon>DataField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Product Panels\NBF.resx">
+      <DependentUpon>NBF.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\Settings\CallHistory.resx">
       <DependentUpon>CallHistory.cs</DependentUpon>
