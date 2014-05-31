@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace CallTracker.Source.View.Controls.Product_Panels
+namespace CallTracker.View
 {
     [DefaultBindingProperty("TextField")]
     public partial class DataField : UserControl

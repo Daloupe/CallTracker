@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.ComponentModel;
 
 //using CallTracker.Model;
 using CallTracker.Helpers;
@@ -37,7 +38,7 @@ namespace CallTracker.Model
         [ProtoMember(1)]
         internal TriggerList<PasteBind> PasteBinds { get; set; }
         [ProtoMember(2)]
-        internal List<CustomerContact> Contacts { get; set; }
+        internal BindingList<CustomerContact> Contacts { get; set; }
         [ProtoMember(3)]
         internal List<LoginsModel> Logins { get; set; }
         [ProtoMember(4)]
@@ -48,7 +49,7 @@ namespace CallTracker.Model
         public DataRepository()
         {
             PasteBinds = new TriggerList<PasteBind>();
-            Contacts = new List<CustomerContact>();
+            Contacts = new BindingList<CustomerContact>();
             Logins = new List<LoginsModel>();
             GridLinks = new GridLinksModel();
         }

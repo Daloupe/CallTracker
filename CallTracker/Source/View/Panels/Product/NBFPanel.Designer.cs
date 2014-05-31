@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataField6 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
+            this.dataField6 = new CallTracker.View.DataField();
             this.serviceModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataField5 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
-            this.dataField4 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
-            this.dataField3 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
-            this.dataField2 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
-            this.dataField1 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
-            this.dataField7 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
+            this.dataField5 = new CallTracker.View.DataField();
+            this.dataField4 = new CallTracker.View.DataField();
+            this.dataField3 = new CallTracker.View.DataField();
+            this.dataField2 = new CallTracker.View.DataField();
+            this.dataField1 = new CallTracker.View.DataField();
+            this.dataField7 = new CallTracker.View.DataField();
             this.panelHeading1 = new CallTracker.View.PanelHeading();
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -178,14 +178,14 @@
 
         #endregion
 
-        private Source.View.Controls.Product_Panels.DataField dataField1;
-        private Source.View.Controls.Product_Panels.DataField dataField2;
-        private Source.View.Controls.Product_Panels.DataField dataField3;
-        private Source.View.Controls.Product_Panels.DataField dataField4;
-        private Source.View.Controls.Product_Panels.DataField dataField5;
-        private Source.View.Controls.Product_Panels.DataField dataField6;
+        private View.DataField dataField1;
+        private View.DataField dataField2;
+        private View.DataField dataField3;
+        private View.DataField dataField4;
+        private View.DataField dataField5;
+        private View.DataField dataField6;
         internal System.Windows.Forms.BindingSource serviceModelBindingSource;
-        private Source.View.Controls.Product_Panels.DataField dataField7;
+        private View.DataField dataField7;
         private PanelHeading panelHeading1;
     }
 }

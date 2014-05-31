@@ -57,10 +57,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net35\protobuf-net.dll</HintPath>
     </Reference>
-    <Reference Include="Shortcut, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\Shortcut-master\src\Shortcut\bin\Release\Shortcut.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -79,18 +75,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Source\View\Archive\FMaskOverlay.cs">
-      <SubType>Form</SubType>
-    </None>
-    <None Include="Source\View\Archive\FMaskOverlay.Designer.cs">
-      <DependentUpon>FMaskOverlay.cs</DependentUpon>
-    </None>
-    <None Include="Source\View\Archive\FMask.cs">
-      <SubType>Form</SubType>
-    </None>
-    <None Include="Source\View\Archive\FMask.Designer.cs">
-      <DependentUpon>FMask.cs</DependentUpon>
-    </None>
     <Compile Include="Source\Helpers\ICONNoteGenerator.cs" />
     <Compile Include="Source\Helpers\IETabActivator.cs" />
     <Compile Include="Source\Model\IEInteractBase.cs" />
@@ -175,9 +159,6 @@
     <Compile Include="Source\View\Controls\ViewControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <EmbeddedResource Include="Source\View\Archive\FMaskOverlay.resx">
-      <DependentUpon>FMaskOverlay.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\DataArea.resx">
       <DependentUpon>DataArea.cs</DependentUpon>
     </EmbeddedResource>
@@ -352,7 +333,12 @@
     <Content Include="ToDo.txt" />
     <None Include="Resources\Close.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Shortcut\Shortcut.csproj">
+      <Project>{5deadf0b-dc7b-430f-982e-647f7b05455d}</Project>
+      <Name>Shortcut</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.23.2\build\Fody.targets" Condition="Exists('..\packages\Fody.1.23.2\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

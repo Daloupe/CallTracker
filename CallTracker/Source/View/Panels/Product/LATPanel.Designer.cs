@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.dataArea1 = new CallTracker.View.DataArea();
             this.serviceModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataField1 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
+            this.dataField1 = new CallTracker.View.DataField();
             this.dataDropDown1 = new CallTracker.View.DataDropDown();
             this.panelHeading1 = new CallTracker.View.PanelHeading();
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).BeginInit();
@@ -113,7 +113,7 @@
 
         #endregion
 
-        private Source.View.Controls.Product_Panels.DataField dataField1;
+        private DataField dataField1;
         internal System.Windows.Forms.BindingSource serviceModelBindingSource;
         private DataArea dataArea1;
         private DataDropDown dataDropDown1;

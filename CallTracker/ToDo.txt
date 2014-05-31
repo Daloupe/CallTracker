@@ -5,6 +5,7 @@ Main GUI
  - Add status bar to display warnings.
  - Start inputting system variables.
  - Right Click menu on Note to switch between On-Call Notes, and ICON Note.
+ - Key Command Help extends window height.
 
 Contact GUI
  | Double click splitters to toggle panels.
@@ -13,6 +14,12 @@ Contact GUI
 
 Note Writer
  - Add info to Note based on entered info and Symptom.
+ - Note class subscribes to OnPropertyChange of CustomerContact.
+ - Event searches property name in a List<NoteItem>, and uses reflection to fill it's value field.
+ - GenerateNote() foreaches NoteItems, appending strings constructed by replacing "[value]" in NoteItem.Note with NoteItem.Value. Items with null value are skipped.
+ - Fields like Symptom will need to be stored as full string rather than "NDT".
+ ? Can dataGridViews hide certain memebers?
+ ? Can lists hold interfaced items?
 
 ARO GUI
  - Ctrl + Win + C.

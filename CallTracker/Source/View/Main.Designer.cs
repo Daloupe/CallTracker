@@ -42,7 +42,7 @@
             this.viewKeyCommandsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
             this.MenuPanel = new System.Windows.Forms.Panel();
-            this.editContact = new CallTracker.View.EditContact();
+            this.editContact = new CallTracker.View.EditContact(this);
             this.editGridLinks = new CallTracker.View.EditGridLinks();
             this.editSmartPasteBinds = new CallTracker.View.EditSmartPasteBinds();
             this.editLogins = new CallTracker.View.EditLogins();

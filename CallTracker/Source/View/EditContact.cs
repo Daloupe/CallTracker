@@ -23,10 +23,10 @@ namespace CallTracker.View
         internal DTVPanel DTVPanel;
         internal MTVPanel MTVPanel;
 
-        public EditContact()
+        public EditContact(Main _mainform)
         {
             InitializeComponent();
-
+            MainForm = _mainform;
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.UserPaint, true);
@@ -57,14 +57,17 @@ namespace CallTracker.View
         //        return parms;
         //    }
         //}
-        
+        Main MainForm;
         public void Init(Main _parent)
         {
+            MainForm = _parent;
             DataStore = _parent.DataStore;
 
-            contactsListBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
-            contactsListBindingSource.DataSource = DataStore.Contacts;
-            contactsListBindingSource.Position = DataStore.Contacts.Count;
+            customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
+            customerContactsBindingSource.PositionChanged += MainForm.NoteGen.OnContactChange;
+            customerContactsBindingSource.DataSource = DataStore.Contacts;
+            customerContactsBindingSource.Position = DataStore.Contacts.Count;
+            customerContactsBindingSource.ListChanged += MainForm.NoteGen.OnDataFieldChange;
 
             _Severity.DataSource = Enum.GetValues(typeof(FaultSeverity));
             _Outcome.DataSource = Enum.GetValues(typeof(Outcomes));
@@ -73,13 +76,9 @@ namespace CallTracker.View
         // Contact Navigator ////////////////////////////////////////////////////////////////////////////////
         void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
-            Main.SelectedContact = DataStore.Contacts[contactsListBindingSource.Position];//Convert.ToInt32(bindingNavigator1.PositionItem.Text) - 1];
-            customerContactsBindingSource.DataSource = Main.SelectedContact;
-            contactAddressBindingSource.DataSource = Main.SelectedContact.Address;
-            //customerServiceBindingSource.DataSource = Main.SelectedContact.Service;
-            faultModelBindingSource.DataSource = Main.SelectedContact.Fault;
+            MainForm.SelectedContact = DataStore.Contacts[customerContactsBindingSource.Position];
 
-            short tPb = Main.SelectedContact.Fault.AffectedServices;
+            short tPb = MainForm.SelectedContact.Fault.AffectedServices;
             short tag;
             foreach(var product in Products)
             {
@@ -93,9 +92,7 @@ namespace CallTracker.View
                 product.CheckedChanged += _Product_CheckedChanged;
             }
 
-            ProductBit = Main.SelectedContact.Fault.AffectedServices;
-
-           
+            ProductBit = MainForm.SelectedContact.Fault.AffectedServices;  
         }
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
@@ -106,13 +103,13 @@ namespace CallTracker.View
             newContact.Contacts.StartTime = DateTime.Now.TimeOfDay;
 
             DataStore.Contacts.Add(newContact);
-            contactsListBindingSource.Position = DataStore.Contacts.Count;
+            customerContactsBindingSource.Position = DataStore.Contacts.Count;
         }
 
         public void DeleteCalls()
         {
-            contactsListBindingSource.DataSource = DataStore.Contacts;
-            contactsListBindingSource.Position = DataStore.Contacts.Count;
+            customerContactsBindingSource.DataSource = DataStore.Contacts;
+            customerContactsBindingSource.Position = DataStore.Contacts.Count;
         }
 
         // Splitter ////////////////////////////////////////////////////////////////////////////////
@@ -216,8 +213,8 @@ namespace CallTracker.View
             set
             {
                 productBit = value;
-                if (Main.SelectedContact != null)
-                    Main.SelectedContact.Fault.AffectedServices = productBit;
+                if (MainForm.SelectedContact != null)
+                    MainForm.SelectedContact.Fault.AffectedServices = productBit;
 
                 if ((productBit & 1) == 1)
                 {
@@ -297,7 +294,7 @@ namespace CallTracker.View
                 }
 
                 if (CurrentPanel != null)
-                    CurrentPanel.SetDataSource(Main.SelectedContact.Service);
+                    CurrentPanel.SetDataSource(MainForm.SelectedContact.Service);
             }
         }
         private void _Product_CheckedChanged(object sender, EventArgs e)

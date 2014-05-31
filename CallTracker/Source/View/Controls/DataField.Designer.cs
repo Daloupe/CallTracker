@@ -1,4 +1,4 @@
-﻿namespace CallTracker.Source.View.Controls.Product_Panels
+﻿namespace CallTracker.View
 {
     partial class DataField
     {
@@ -77,6 +77,6 @@
         #endregion
 
         private System.Windows.Forms.Label _Label;
-        private CallTracker.View.BorderedTextBox _DataField;
+        public BorderedTextBox _DataField;
     }
 }

@@ -48,26 +48,29 @@ namespace CallTracker.Model
             };
         }
         private List<string> PropList = new List<string>() {"Number", "Street", "Type", "Suburb", "State", "Postcode" };
+        private string address;
         public string Address
         {
             get
             {
-                StringBuilder _address = new StringBuilder();
+                return address;
+                //StringBuilder _address = new StringBuilder();
 
-                foreach (var field in AddressFields)
-                {
-                    string key = field.Key.Invoke();
-                    if (!String.IsNullOrEmpty(key))
-                        _address.Append(key + field.Value);
-                }
+                //foreach (var field in AddressFields)
+                //{
+                //    string key = field.Key.Invoke();
+                //    if (!String.IsNullOrEmpty(key))
+                //        _address.Append(key + field.Value);
+                //}
 
-                return _address.ToString();
+                //return _address.ToString();
             }
             set 
             {
+                address = value;
                 //MatchCollection address = Regex.Matches(value, @"[Unit|Level]?([-|/]?:\d+)?\w+");
 
-                //for (var i = 0; i < address.Count; i++ )
+                //for (var i = 0; i < address.Count; i++)
                 //{
 
                 //    if (address[i].Value == "Unit" || address[i].Value == "Level")
@@ -75,16 +78,16 @@ namespace CallTracker.Model
                 //        i++;
                 //        continue;
                 //    }
-                //    else if(char.IsDigit(address[i].Value, 0) && char.IsDigit(address[i+1].Value, 0))
+                //    else if (char.IsDigit(address[i].Value, 0) && char.IsDigit(address[i + 1].Value, 0))
                 //        continue;
 
                 //    PropertyInfo prop = this.GetType().GetProperty(PropList[i]);
-                //    prop.SetValue(this, address[i].Value);
-                    
+                //    prop.SetValue(this, address[i].Value, null);
+
                 //}
-                //    if (address != null)
-                //        if (address[0].Value == "Unit" || address[0].Value == "Level")
-                //            Number = address[0].Value;
+                //if (address != null)
+                //    if (address[0].Value == "Unit" || address[0].Value == "Level")
+                //        Number = address[0].Value;
                 //Street = address[1].Value;
                 //Type = address[2].Value;
                 //Suburb = address[3].Value;

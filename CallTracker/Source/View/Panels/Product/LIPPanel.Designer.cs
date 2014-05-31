@@ -30,14 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.serviceModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataField1 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
+            this.dataField1 = new CallTracker.View.DataField();
             this.dataDropDown1 = new CallTracker.View.DataDropDown();
             this.panelHeading1 = new CallTracker.View.PanelHeading();
             this.dataDropDown2 = new CallTracker.View.DataDropDown();
-            this.dataField2 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
+            this.dataField2 = new CallTracker.View.DataField();
             this.panelHeading2 = new CallTracker.View.PanelHeading();
-            this.dataField3 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
-            this.dataField4 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
+            this.dataField3 = new CallTracker.View.DataField();
+            this.dataField4 = new CallTracker.View.DataField();
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,7 +47,7 @@
             // 
             // dataField1
             // 
-            this.dataField1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.dataField1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Node", true));
             this.dataField1.Font = new System.Drawing.Font("Verdana", 7F);
             this.dataField1.LabelText = "Node:";
             this.dataField1.LabelWidth = 35;
@@ -168,10 +168,7 @@
             this.Controls.Add(this.panelHeading1);
             this.Controls.Add(this.dataDropDown1);
             this.Controls.Add(this.dataField1);
-            this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "LIPPanel";
-            this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(180, 245);
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -179,14 +176,14 @@
 
         #endregion
 
-        private Source.View.Controls.Product_Panels.DataField dataField1;
         internal System.Windows.Forms.BindingSource serviceModelBindingSource;
         private DataDropDown dataDropDown1;
         private PanelHeading panelHeading1;
         private DataDropDown dataDropDown2;
-        private Source.View.Controls.Product_Panels.DataField dataField2;
         private PanelHeading panelHeading2;
-        private Source.View.Controls.Product_Panels.DataField dataField3;
-        private Source.View.Controls.Product_Panels.DataField dataField4;
+        private CallTracker.View.DataField dataField1;
+        private CallTracker.View.DataField dataField2;
+        private CallTracker.View.DataField dataField3;
+        private CallTracker.View.DataField dataField4;
     }
 }

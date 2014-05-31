@@ -135,7 +135,7 @@ namespace CallTracker.Helpers
 
         private void OnDataPaste(HotkeyPressedEventArgs e)
         {
-            string dataToPaste = FollowPropertyPath(Main.SelectedContact, e.Name);
+            string dataToPaste = FollowPropertyPath(parent.SelectedContact, e.Name);
 
             if (!String.IsNullOrEmpty(dataToPaste))
             {
@@ -166,7 +166,7 @@ namespace CallTracker.Helpers
                                .FirstOrDefault();
 
             if (query != null)
-                query.Paste(browser, element, FollowPropertyPath(Main.SelectedContact, query.Data, query.AltData));
+                query.Paste(browser, element, FollowPropertyPath(parent.SelectedContact, query.Data, query.AltData));
         }
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
@@ -226,7 +226,7 @@ namespace CallTracker.Helpers
                             bind;
 
             foreach (PasteBind bind in query)
-                bind.Paste(browser, bind.Element, FollowPropertyPath(Main.SelectedContact, bind.Data, bind.AltData));
+                bind.Paste(browser, bind.Element, FollowPropertyPath(parent.SelectedContact, bind.Data, bind.AltData));
         }
 
         // Auto Login ///////////////////////////////////////////////////////////////////////////////////////
@@ -278,47 +278,47 @@ namespace CallTracker.Helpers
             if (Regex.IsMatch(text, @"^[AVCSNIG]{3}\d{13}"))
             {
                 string firstThree = text.Substring(0, 3);
-                PropertyInfo prop = Main.SelectedContact.Service.GetType().GetProperty(firstThree);
-                prop.SetValue(Main.SelectedContact.Service, text, null);
+                PropertyInfo prop = parent.SelectedContact.Service.GetType().GetProperty(firstThree);
+                prop.SetValue(parent.SelectedContact.Service, text, null);
                 
             }
             else if (Char.IsLetter(text, 0))
             {
                 if (Regex.IsMatch(text, @"(\b[A-Z][a-z]+(-|\s)?){2,}"))
-                    Main.SelectedContact.Name = text;
+                    parent.SelectedContact.Name = text;
                 else if (Regex.IsMatch(text, @"\A[a-z]+([a-z]?[0-9]?\.?_?)*\z") || Regex.IsMatch(text, @"\A[A-Z]+([A-Z]?[0-9]?\.?_?)*\z"))
-                    Main.SelectedContact.Username = text;
+                    parent.SelectedContact.Username = text;
                 else if (Regex.Matches(text, @"\w+").Count > 3)
-                    Main.SelectedContact.Address.Address = text;
+                    parent.SelectedContact.Address.Address = text;
             }
 
             else if ((firstchar == "0" && textlen == 10) || (text.Substring(0, 2) == "61" && textlen == 11))
             {
                 if (Regex.IsMatch(text, @"^(0|61)4\d{8}$"))
-                    Main.SelectedContact.Mobile = text;
+                    parent.SelectedContact.Mobile = text;
                 else if (Regex.IsMatch(text, @"^(0|61)[2378]\d{8}$"))
-                    Main.SelectedContact.DN = text;
+                    parent.SelectedContact.DN = text;
             }
 
             else if (firstchar == "2" || firstchar == "3" || firstchar == "4")
             {
                 if (Regex.IsMatch(text, @"^\d\d(?i)[A-Z]{2}_?\d\d\d\z"))
-                    Main.SelectedContact.Service.Node = text;
+                    parent.SelectedContact.Service.Node = text;
                 else if (Regex.IsMatch(text, @"\A3[1-3]-??\d{5}(-|0|\s)\d\z"))
-                    Main.SelectedContact.CMBS = text;
+                    parent.SelectedContact.CMBS = text;
             }
 
             else if (firstchar == "1" && textlen == 8)
-                Main.SelectedContact.Fault.PR = text;
+                parent.SelectedContact.Fault.PR = text;
 
             else if (Regex.IsMatch(text, @"\A(1|5|8|9)\d{13}\z"))
-                Main.SelectedContact.ICON = text;
+                parent.SelectedContact.ICON = text;
 
             else if (Regex.Matches(text, @"\w+").Count > 3)
-                Main.SelectedContact.Address.Address = text;//[Unit|Level]?([-|/]?:\d+)?\w+
+                parent.SelectedContact.Address.Address = text;//[Unit|Level]?([-|/]?:\d+)?\w+
          
             else
-                Main.SelectedContact.Note += text;
+                parent.SelectedContact.Note += text;
         }
 
         // Browser Methods ///////////////////////////////////////////////////////////////////////////////////////

@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.serviceModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataField1 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
+            this.dataField1 = new CallTracker.View.DataField();
             this.panelHeading1 = new CallTracker.View.PanelHeading();
             this.panelHeading2 = new CallTracker.View.PanelHeading();
             this.dataDropDown1 = new CallTracker.View.DataDropDown();
-            this.dataField5 = new CallTracker.Source.View.Controls.Product_Panels.DataField();
+            this.dataField5 = new CallTracker.View.DataField();
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,11 +129,11 @@
 
         #endregion
 
-        private Source.View.Controls.Product_Panels.DataField dataField1;
+        private DataField dataField1;
         internal System.Windows.Forms.BindingSource serviceModelBindingSource;
         private PanelHeading panelHeading1;
         private PanelHeading panelHeading2;
         private DataDropDown dataDropDown1;
-        private Source.View.Controls.Product_Panels.DataField dataField5;
+        private DataField dataField5;
     }
 }

@@ -5,24 +5,29 @@ using System.Linq;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Drawing;
+using System.ComponentModel;
 
 using ProtoBuf;
+using PropertyChanged;
 
 using CallTracker.Model;
 using CallTracker.Helpers;
 
 namespace CallTracker.View
 {
+    [ImplementPropertyChanged]
     public partial class Main : Form
     {
-        internal static CustomerContact SelectedContact { get; set; }
+        internal CustomerContact SelectedContact { get; set; }
 
         internal DataRepository DataStore;
         private HotkeyController HotKeys;
+        internal ICONNoteGenerator NoteGen;
 
         public Main()
         {
             InitializeComponent();
+            SelectedContact = new CustomerContact();
 
             SetAppLocation();
             DataStore = DataRepository.ReadFile();
@@ -32,10 +37,8 @@ namespace CallTracker.View
             SetStyle(ControlStyles.DoubleBuffer, true);
             //SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
-            Person per = new Person();
-            per.FamilyName = "George";
-            per.GivenNames = "Jesse";
-            Console.WriteLine(per.FullName);
+            NoteGen = new ICONNoteGenerator(this);
+
             
         }
 
@@ -102,7 +105,7 @@ namespace CallTracker.View
 
         private void DeleteCallDataMenuItem_Click(object sender, EventArgs e)
         {
-            DataStore.Contacts = new List<CustomerContact>();
+            DataStore.Contacts = new BindingList<CustomerContact>();
             DataStore.Contacts.Add(new CustomerContact() { Id = DataStore.Contacts.Count });
             editContact.DeleteCalls();
         }
