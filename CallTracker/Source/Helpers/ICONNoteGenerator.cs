@@ -12,21 +12,15 @@ using CallTracker.View;
 
 namespace CallTracker.Helpers
 {
-
     abstract class NoteItem
     {
-        protected static PropertyInfo[] pinfo = typeof(CustomerContact).GetProperties();
-
         public string Name { get; set; }
-        public PropertyInfo Property { get; set; }
         public string Value { get; set; }
         public string Note { get; set; }
 
         public NoteItem(string _name, string _note)
         {
-            
             Name = _name;
-            Property = typeof(CustomerContact).GetProperty(Name);//.FirstOrDefault(x => x.Name == _name);
             Note = _note;
         }
 
@@ -83,7 +77,7 @@ namespace CallTracker.Helpers
 
             NoteItems = new List<NoteItem>();
             NoteItems.Add(new NoteItemHeading("Situation", "{0}:"));
-            NoteItems.Add(new NoteItemAcronym("Symptom",  "- Customer is experiencing {0}", Symptoms));
+            NoteItems.Add(new NoteItemAcronym("Fault.Symptom",  "- Customer is experiencing {0}", Symptoms));
             NoteItems.Add(new NoteItemHeading("Action", "{0}:"));
             NoteItems.Add(new NoteItemString("Name", "- Name:{0}"));
             NoteItems.Add(new NoteItemHeading("Outcome", "{0}:"));
@@ -91,19 +85,19 @@ namespace CallTracker.Helpers
 
         }
 
-
         public void OnContactChange(object sender, EventArgs args)
         {
             foreach(var nitem in NoteItems)
-                if(nitem.Property != null)
-                    nitem.Value = nitem.Property.GetValue(((BindingSource)sender).Current, null).ToString();
+                nitem.Value = FindProperty.FollowPropertyPath(((BindingSource)sender).Current, nitem.Name);
             Console.WriteLine(GenerateNote());
         }
 
         public void OnDataFieldChange(object sender, ListChangedEventArgs args)
         {
-            NoteItem _item = NoteItems.Find(x => x.Name == args.PropertyDescriptor.Name);
+            if (args.ListChangedType != ListChangedType.ItemChanged)
+                return;
 
+            NoteItem _item = NoteItems.Find(x => x.Name == args.PropertyDescriptor.Name);
             if (_item != null)
             {
                 _item.Value = args.PropertyDescriptor.GetValue(((BindingSource)sender).Current).ToString();

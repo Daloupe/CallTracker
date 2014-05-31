@@ -135,7 +135,7 @@ namespace CallTracker.Helpers
 
         private void OnDataPaste(HotkeyPressedEventArgs e)
         {
-            string dataToPaste = FollowPropertyPath(parent.SelectedContact, e.Name);
+            string dataToPaste = FindProperty.FollowPropertyPath(parent.SelectedContact, e.Name);
 
             if (!String.IsNullOrEmpty(dataToPaste))
             {
@@ -166,7 +166,7 @@ namespace CallTracker.Helpers
                                .FirstOrDefault();
 
             if (query != null)
-                query.Paste(browser, element, FollowPropertyPath(parent.SelectedContact, query.Data, query.AltData));
+                query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data, query.AltData));
         }
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
@@ -226,7 +226,7 @@ namespace CallTracker.Helpers
                             bind;
 
             foreach (PasteBind bind in query)
-                bind.Paste(browser, bind.Element, FollowPropertyPath(parent.SelectedContact, bind.Data, bind.AltData));
+                bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, bind.AltData));
         }
 
         // Auto Login ///////////////////////////////////////////////////////////////////////////////////////
@@ -371,45 +371,6 @@ namespace CallTracker.Helpers
             browser.AutoClose = false;
             PreviousIEMatch = browser.Title;      
         }
-
-        // Object Methods ///////////////////////////////////////////////////////////////////////////////////////
-        public static string FollowPropertyPath(object _value, string _path)
-        {
-            if (String.IsNullOrEmpty(_path))
-                return null;
-
-            Type currentType = _value.GetType();
-
-            foreach (string propertyName in _path.Split('.'))
-            {
-                PropertyInfo property = currentType.GetProperty(propertyName);
-                _value = property.GetValue(_value, null);
-                currentType = property.PropertyType;
-            }
-
-            return _value.ToString();
-        }
-
-        public static string FollowPropertyPath(object _value, string _path, string _altPath)
-        {
-            if (String.IsNullOrEmpty(_path))
-                return null;
-
-            Type currentType = _value.GetType();
-            object output = _value;
-
-            foreach (string propertyName in _path.Split('.'))
-            {
-                PropertyInfo property = currentType.GetProperty(propertyName);
-                output = property.GetValue(output, null);
-                currentType = property.PropertyType;
-            }
-
-            if (String.IsNullOrEmpty(output.ToString()) && !String.IsNullOrEmpty(_altPath))
-                output = FollowPropertyPath(_value, _altPath);
-
-            return output.ToString();
-        }
-
     }
+
 }

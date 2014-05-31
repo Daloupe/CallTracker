@@ -102,7 +102,7 @@ namespace CallTracker.View
             newContact.Contacts.StartDate = DateTime.Today;
             newContact.Contacts.StartTime = DateTime.Now.TimeOfDay;
 
-            DataStore.Contacts.Add(newContact);
+            DataStore.Contacts.Add(newContact);     
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
         }
 

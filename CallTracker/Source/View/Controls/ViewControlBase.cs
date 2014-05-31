@@ -11,6 +11,7 @@ namespace CallTracker.View
 {
     public partial class ViewControlBase : UserControl
     {
+    
         public ToolStripMenuItem MenuControl { get; protected set; }
         protected Main MainForm { get; set; }
 
@@ -64,9 +65,13 @@ namespace CallTracker.View
         {
             this.SuspendLayout();
             // 
-            // SettingsViewBase
+            // ViewControlBase
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
+            this.Font = new System.Drawing.Font("Verdana", 7F);
+            this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "ViewControlBase";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(584, 222);

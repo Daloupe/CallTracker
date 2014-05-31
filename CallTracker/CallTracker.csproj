@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Helpers\FindProperty.cs" />
     <Compile Include="Source\Helpers\ICONNoteGenerator.cs" />
     <Compile Include="Source\Helpers\IETabActivator.cs" />
     <Compile Include="Source\Model\IEInteractBase.cs" />
@@ -95,6 +96,9 @@
     </Compile>
     <Compile Include="Source\View\Controls\PanelHeading.Designer.cs">
       <DependentUpon>PanelHeading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\EditDataGridBase.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Source\View\Panels\Help\HelpKeyCommands.cs">
       <SubType>UserControl</SubType>
@@ -168,6 +172,9 @@
     <EmbeddedResource Include="Source\View\Controls\PanelHeading.resx">
       <DependentUpon>PanelHeading.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\EditDataGridBase.resx">
+      <DependentUpon>EditDataGridBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Help\HelpKeyCommands.resx">
       <DependentUpon>HelpKeyCommands.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +240,9 @@
     <None Include="Source\Model\Archive\PocoPerson.cs" />
     <Compile Include="Source\Model\ServiceModel.cs" />
     <Compile Include="Source\Model\StatisticsModel.cs" />
+    <Compile Include="Source\View\Panels\Settings\EditCallHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Source\View\Popups\BindSmartPasteForm.cs">
       <SubType>Form</SubType>
     </Compile>
