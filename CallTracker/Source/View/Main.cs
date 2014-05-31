@@ -24,6 +24,12 @@ namespace CallTracker.View
         private HotkeyController HotKeys;
         internal ICONNoteGenerator NoteGen;
 
+        internal EditLogins editLogins;
+        internal EditGridLinks editGridLinks;
+        internal EditSmartPasteBinds editSmartPasteBinds;
+        internal EditContact editContact;
+        internal HelpKeyCommands helpKeyCommands;
+
         public Main()
         {
             InitializeComponent();
@@ -39,7 +45,27 @@ namespace CallTracker.View
 
             NoteGen = new ICONNoteGenerator(this);
 
-            
+            Point offset = new Point(0, 18);
+            editLogins = new EditLogins();
+            editLogins.Location = offset;
+            editGridLinks = new EditGridLinks();
+            editGridLinks.Location = offset;
+            editSmartPasteBinds = new EditSmartPasteBinds();
+            editSmartPasteBinds.Location = offset;
+
+            helpKeyCommands = new HelpKeyCommands();
+            helpKeyCommands.Location = offset;
+            editContact = new EditContact(this);
+            editContact.Location = offset;
+
+            Controls.Add(editLogins);
+            Controls.Add(editGridLinks);
+            Controls.Add(editSmartPasteBinds);
+            Controls.Add(helpKeyCommands);
+            Controls.Add(editContact);
+
+            editContact.BringToFront();
+            editContact.Visible = true;
         }
 
         protected override CreateParams CreateParams

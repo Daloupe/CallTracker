@@ -42,11 +42,6 @@
             this.viewKeyCommandsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
             this.MenuPanel = new System.Windows.Forms.Panel();
-            this.editContact = new CallTracker.View.EditContact(this);
-            this.editGridLinks = new CallTracker.View.EditGridLinks();
-            this.editSmartPasteBinds = new CallTracker.View.EditSmartPasteBinds();
-            this.editLogins = new CallTracker.View.EditLogins();
-            this.helpKeyCommands = new CallTracker.View.HelpKeyCommands();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -164,12 +159,7 @@
             // AppPanel
             // 
             this.AppPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AppPanel.Controls.Add(this.editContact);
             this.AppPanel.Controls.Add(this.MenuPanel);
-            this.AppPanel.Controls.Add(this.editGridLinks);
-            this.AppPanel.Controls.Add(this.editSmartPasteBinds);
-            this.AppPanel.Controls.Add(this.editLogins);
-            this.AppPanel.Controls.Add(this.helpKeyCommands);
             this.AppPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AppPanel.Location = new System.Drawing.Point(0, 0);
             this.AppPanel.Name = "AppPanel";
@@ -186,60 +176,6 @@
             this.MenuPanel.Name = "MenuPanel";
             this.MenuPanel.Size = new System.Drawing.Size(586, 20);
             this.MenuPanel.TabIndex = 27;
-            // 
-            // editContact
-            // 
-            this.editContact.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editContact.Location = new System.Drawing.Point(0, 18);
-            this.editContact.Margin = new System.Windows.Forms.Padding(0);
-            this.editContact.Name = "editContact";
-            this.editContact.Padding = new System.Windows.Forms.Padding(3);
-            this.editContact.ProductBit = ((short)(0));
-            this.editContact.Size = new System.Drawing.Size(584, 222);
-            this.editContact.TabIndex = 28;
-            // 
-            // editGridLinks
-            // 
-            this.editGridLinks.BackColor = System.Drawing.Color.LightSlateGray;
-            this.editGridLinks.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editGridLinks.Location = new System.Drawing.Point(0, 18);
-            this.editGridLinks.Name = "editGridLinks";
-            this.editGridLinks.Padding = new System.Windows.Forms.Padding(3);
-            this.editGridLinks.Size = new System.Drawing.Size(584, 222);
-            this.editGridLinks.TabIndex = 31;
-            this.editGridLinks.Visible = false;
-            // 
-            // editSmartPasteBinds
-            // 
-            this.editSmartPasteBinds.BackColor = System.Drawing.Color.LightSlateGray;
-            this.editSmartPasteBinds.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editSmartPasteBinds.Location = new System.Drawing.Point(0, 18);
-            this.editSmartPasteBinds.Name = "editSmartPasteBinds";
-            this.editSmartPasteBinds.Padding = new System.Windows.Forms.Padding(3);
-            this.editSmartPasteBinds.Size = new System.Drawing.Size(584, 222);
-            this.editSmartPasteBinds.TabIndex = 30;
-            this.editSmartPasteBinds.Visible = false;
-            // 
-            // editLogins
-            // 
-            this.editLogins.BackColor = System.Drawing.Color.LightSlateGray;
-            this.editLogins.Font = new System.Drawing.Font("Verdana", 7F);
-            this.editLogins.Location = new System.Drawing.Point(0, 18);
-            this.editLogins.Name = "editLogins";
-            this.editLogins.Padding = new System.Windows.Forms.Padding(3);
-            this.editLogins.Size = new System.Drawing.Size(584, 222);
-            this.editLogins.TabIndex = 29;
-            this.editLogins.Visible = false;
-            // 
-            // helpKeyCommands
-            // 
-            this.helpKeyCommands.BackColor = System.Drawing.Color.LightSlateGray;
-            this.helpKeyCommands.Font = new System.Drawing.Font("Verdana", 7F);
-            this.helpKeyCommands.Location = new System.Drawing.Point(0, 18);
-            this.helpKeyCommands.Name = "helpKeyCommands";
-            this.helpKeyCommands.Padding = new System.Windows.Forms.Padding(3);
-            this.helpKeyCommands.Size = new System.Drawing.Size(584, 222);
-            this.helpKeyCommands.TabIndex = 32;
             // 
             // Main
             // 
@@ -284,11 +220,5 @@
         private System.Windows.Forms.Panel AppPanel;
         private System.Windows.Forms.Panel MenuPanel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private EditLogins editLogins;
-        private EditGridLinks editGridLinks;
-        public EditSmartPasteBinds editSmartPasteBinds;
-        public EditContact editContact;
-        private HelpKeyCommands helpKeyCommands;
-
     }
 }
