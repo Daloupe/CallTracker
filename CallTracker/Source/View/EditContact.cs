@@ -34,6 +34,7 @@ namespace CallTracker.View
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
             splitContainer2.MouseWheel += splitContainer2_MouseWheel;
+            HfcPanel.MouseEnter += splitContainer2_MouseEnter;
 
             Products = new List<CheckBox>
             {
@@ -47,16 +48,7 @@ namespace CallTracker.View
             ONCPanel = new ONCPanel();
             DTVPanel = new DTVPanel();
             MTVPanel = new MTVPanel();
-
-            ContextMenu cm = new ContextMenu();
-            MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
-            cm1.Tag = "Note";
-            cm1.Checked = true;
-            MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
-            cm2.Tag = "ICONNote";
-            cm.MenuItems.Add(cm1);
-            cm.MenuItems.Add(cm2);
-            _Note.ContextMenu = cm;
+            
         }
 
         public void SwitchNote(object sender, EventArgs e)
@@ -73,7 +65,7 @@ namespace CallTracker.View
             string tag = cm.Tag.ToString();
             _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
             if (tag == "ICONNote")
-                _Note.Text = MainForm.NoteGen.GenerateNoteManually(DataStore.Contacts[customerContactsBindingSource.Position]);
+                _Note.DataBindings[0].ReadValue();
         }
         //protected override CreateParams CreateParams
         //{
@@ -95,17 +87,38 @@ namespace CallTracker.View
             _BookingTimeSlot.DataSource = Enum.GetValues(typeof(BookingTimeslot));
 
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
-            //customerContactsBindingSource.PositionChanged += MainForm.NoteGen.OnContactChange;
-            //customerContactsBindingSource.ListChanged += MainForm.NoteGen.OnDataFieldChange;
             customerContactsBindingSource.DataSource = DataStore.Contacts;
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
+
+
+            _NPR.DataBindings.Add(new Binding("Text", customerContactsBindingSource, "Fault.NPR", true, DataSourceUpdateMode.OnPropertyChanged));
+            _PR.DataBindings.Add(new Binding("Text", customerContactsBindingSource, "Fault.PR", true, DataSourceUpdateMode.OnPropertyChanged));
+
+
+            ContextMenu cm = new ContextMenu();
+            MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
+            cm1.Tag = "Note";
+            cm1.Checked = true;
+            MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
+            cm2.Tag = "ICONNote";
+            cm.MenuItems.Add(cm1);
+            cm.MenuItems.Add(cm2);
+            _Note.ContextMenu = cm;
+        }
+
+        void customerContactsBindingSource_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            Console.WriteLine(e.ListChangedType);
         }
 
         // Contact Navigator ////////////////////////////////////////////////////////////////////////////////
         void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
+            MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;      
             MainForm.SelectedContact = DataStore.Contacts[customerContactsBindingSource.Position];
+            MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
 
+           // ((INotifyPropertyChanged)con.Fault).PropertyChanged += con.CustomerContact_PropertyChanged;
             short tPb = MainForm.SelectedContact.Fault.AffectedServices;
             short tag;
             foreach(var product in Products)
@@ -123,6 +136,12 @@ namespace CallTracker.View
             ProductBit = MainForm.SelectedContact.Fault.AffectedServices;  
         }
 
+        void SelectedContact_NestedChange(object sender, PropertyChangedEventArgs e)
+        {
+            if(_Note.DataBindings.Count > 0)
+                _Note.DataBindings[0].ReadValue();
+        }
+
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             DataStore.Contacts.Add(new CustomerContact(1));
@@ -136,80 +155,7 @@ namespace CallTracker.View
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
         }
 
-        // Splitter ////////////////////////////////////////////////////////////////////////////////
-        private const int SPLITTER_1_MIN = 0;
-        private const int SPLITTER_1_MAX = 180;
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (splitContainer1.SplitterDistance > SPLITTER_1_MAX)
-                splitContainer1.SplitterDistance = SPLITTER_1_MAX;
-        }
-
-        private void splitContainer1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            int dist = splitContainer1.SplitterDistance;
-
-            if (dist == SPLITTER_1_MAX)
-                dist = SPLITTER_1_MIN;
-            else if (dist == SPLITTER_1_MIN)
-                dist = SPLITTER_1_MAX;
-            else if (dist < SPLITTER_1_MAX/2)
-                dist = SPLITTER_1_MIN;
-            else
-                dist = SPLITTER_1_MAX;
-
-            splitContainer1.SplitterDistance = dist;
-        }
-
-        private const int SPLITTER_2_MIN = 70;
-        private const int SPLITTER_2_MAX = 258;
-        private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-            if (splitContainer2.SplitterDistance > SPLITTER_2_MAX)
-                splitContainer2.SplitterDistance = SPLITTER_2_MAX;
-            else if (splitContainer2.SplitterDistance < SPLITTER_2_MIN)
-                splitContainer2.SplitterDistance = SPLITTER_2_MIN;
-        }
-
-        private void splitContainer2_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            int dist = splitContainer2.SplitterDistance;
-
-            if (dist == SPLITTER_2_MAX)
-                dist = SPLITTER_2_MIN;
-            else if (dist == SPLITTER_2_MIN)
-                dist = SPLITTER_2_MAX;
-            else if (dist < SPLITTER_2_MAX - SPLITTER_2_MIN)
-                dist = SPLITTER_2_MIN;
-            else
-                dist = SPLITTER_2_MAX;
-
-            splitContainer2.SplitterDistance = dist;
-        }
-
-        void splitContainer2_MouseWheel(object sender, MouseEventArgs e)
-        {
-            if ((splitContainer2.SplitterDistance > 254 && e.Delta > 0) || (splitContainer2.SplitterDistance < 74 && e.Delta < 0))
-                return;
-            splitContainer2.SplitterDistance += e.Delta / 10;
-        }
-
-        void splitContainer2_MouseEnter(object sender, EventArgs e)
-        {
-            splitContainer2.Focus();
-        }
-
-        // Misc ////////////////////////////////////////////////////////////////////////////////
-        private void PaintGrayBorder(object sender, PaintEventArgs e)
-        {
-            e.Graphics.DrawRectangle(Pens.WhiteSmoke,
-              0,
-              0,
-              ((Control)sender).Width - 1,
-              ((Control)sender).Height - 1);
-            base.OnPaint(e);
-        }
-
+        // Product Codes ////////////////////////////////////////////////////////////////////////////////
         private void _LAT_CheckedChanged(object sender, EventArgs e)
         {
             if (_LIP.Checked)
@@ -226,7 +172,20 @@ namespace CallTracker.View
             _Product_CheckedChanged(sender, e);      
         }
 
-        private PanelBase CurrentPanel;
+        private PanelBase currentPanel;
+        private PanelBase CurrentPanel
+        {
+            get {return currentPanel;}
+            set 
+            {
+                if(currentPanel != null)
+                    currentPanel.RemoveEvents(splitContainer2_MouseEnter);
+                currentPanel = value;
+
+                if (currentPanel != null)
+                    currentPanel.ConnectEvents(splitContainer2_MouseEnter);
+            }
+        }
         private short productBit;
         public short ProductBit
         {
@@ -365,6 +324,80 @@ namespace CallTracker.View
                 i++;
             }
             return new string(b);
+        }
+
+        // Splitter ////////////////////////////////////////////////////////////////////////////////
+        private const int SPLITTER_1_MIN = 0;
+        private const int SPLITTER_1_MAX = 180;
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (splitContainer1.SplitterDistance > SPLITTER_1_MAX)
+                splitContainer1.SplitterDistance = SPLITTER_1_MAX;
+        }
+
+        private void splitContainer1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int dist = splitContainer1.SplitterDistance;
+
+            if (dist == SPLITTER_1_MAX)
+                dist = SPLITTER_1_MIN;
+            else if (dist == SPLITTER_1_MIN)
+                dist = SPLITTER_1_MAX;
+            else if (dist < SPLITTER_1_MAX / 2)
+                dist = SPLITTER_1_MIN;
+            else
+                dist = SPLITTER_1_MAX;
+
+            splitContainer1.SplitterDistance = dist;
+        }
+
+        private const int SPLITTER_2_MIN = 70;
+        private const int SPLITTER_2_MAX = 258;
+        private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            if (splitContainer2.SplitterDistance > SPLITTER_2_MAX)
+                splitContainer2.SplitterDistance = SPLITTER_2_MAX;
+            else if (splitContainer2.SplitterDistance < SPLITTER_2_MIN)
+                splitContainer2.SplitterDistance = SPLITTER_2_MIN;
+        }
+
+        private void splitContainer2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int dist = splitContainer2.SplitterDistance;
+
+            if (dist == SPLITTER_2_MAX)
+                dist = SPLITTER_2_MIN;
+            else if (dist == SPLITTER_2_MIN)
+                dist = SPLITTER_2_MAX;
+            else if (dist < SPLITTER_2_MAX - SPLITTER_2_MIN)
+                dist = SPLITTER_2_MIN;
+            else
+                dist = SPLITTER_2_MAX;
+
+            splitContainer2.SplitterDistance = dist;
+        }
+
+        void splitContainer2_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if ((splitContainer2.SplitterDistance > 254 && e.Delta > 0) || (splitContainer2.SplitterDistance < 74 && e.Delta < 0))
+                return;
+            splitContainer2.SplitterDistance += e.Delta / 10;
+        }
+
+        void splitContainer2_MouseEnter(object sender, EventArgs e)
+        {
+            splitContainer2.Focus();
+        }
+
+        // Misc ////////////////////////////////////////////////////////////////////////////////
+        private void PaintGrayBorder(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawRectangle(Pens.WhiteSmoke,
+              0,
+              0,
+              ((Control)sender).Width - 1,
+              ((Control)sender).Height - 1);
+            base.OnPaint(e);
         }
 
         public static List<string> LATSymptoms = new List<string>

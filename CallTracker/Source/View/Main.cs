@@ -22,7 +22,7 @@ namespace CallTracker.View
 
         internal DataRepository DataStore;
         private HotkeyController HotKeys;
-        internal ICONNoteGenerator NoteGen;
+        internal static ICONNoteGenerator NoteGen = new ICONNoteGenerator();
 
         internal EditLogins editLogins;
         internal EditGridLinks editGridLinks;
@@ -30,6 +30,8 @@ namespace CallTracker.View
         internal EditContact editContact;
         internal CallHistory callHistory;
         internal HelpKeyCommands helpKeyCommands;
+
+
         public Point ControlOffset = new Point(0, 18);
 
         public Main()
@@ -44,14 +46,14 @@ namespace CallTracker.View
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
 
-            NoteGen = new ICONNoteGenerator(this);
+            editContact = new EditContact(this);
 
             editLogins = new EditLogins();
             editGridLinks = new EditGridLinks();
             editSmartPasteBinds = new EditSmartPasteBinds();
             callHistory = new CallHistory();
             helpKeyCommands = new HelpKeyCommands();
-            editContact = new EditContact(this);
+            
 
             Controls.Add(editLogins);
             Controls.Add(editGridLinks);

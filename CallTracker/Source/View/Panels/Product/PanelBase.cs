@@ -25,5 +25,17 @@ namespace CallTracker.View
         {
 
         }
+
+        public virtual void ConnectEvents(EventHandler action)
+        {
+            foreach (Control control in Controls)
+                control.MouseEnter += action;
+        }
+
+        public virtual void RemoveEvents(EventHandler action)
+        {
+            foreach (Control control in Controls)
+                control.MouseEnter -= action;
+        }
     }
 }

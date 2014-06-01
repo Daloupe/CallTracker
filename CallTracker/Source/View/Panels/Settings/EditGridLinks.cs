@@ -78,5 +78,6 @@ namespace CallTracker.View
         {
             MainForm.DataStore.GridLinks.Populate();
         }
+
     }
 }

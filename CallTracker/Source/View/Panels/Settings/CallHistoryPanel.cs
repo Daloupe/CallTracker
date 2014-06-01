@@ -23,11 +23,22 @@ namespace CallTracker.View
                 if (control.GetType().BaseType == typeof(IDataField))
                 {
                     IDataField cont = control as IDataField;
+                    cont.DataBindings.Clear();
                     cont.DataBindings.Add(new Binding("TextField",
                                                         _source,
                                                         cont.PropertyName,
                                                         true,
                                                         DataSourceUpdateMode.OnPropertyChanged));
+                }
+        }
+
+        public void RemoveBindingSource(BindingSource _source)
+        {
+            foreach (var control in Controls)
+                if (control.GetType().BaseType == typeof(IDataField))
+                {
+                    IDataField cont = control as IDataField;
+                    cont.DataBindings.Clear();
                 }
         }
     }

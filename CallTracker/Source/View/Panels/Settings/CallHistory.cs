@@ -25,11 +25,11 @@ namespace CallTracker.View
             dataGridView1.Columns.Add("Name", "Name");
 
             dataGridView1.Columns["Date"].DataPropertyName = "ContactDate";
-            dataGridView1.Columns["Date"].Width = 70;
+            dataGridView1.Columns["Date"].Width = 75;
             dataGridView1.Columns["Date"].ReadOnly = true;
 
             dataGridView1.Columns["Time"].DataPropertyName = "ContactTime";
-            dataGridView1.Columns["Time"].Width = 40;
+            dataGridView1.Columns["Time"].Width = 50;
             dataGridView1.Columns["Time"].ReadOnly = true;
 
             dataGridView1.Columns["Name"].DataPropertyName = "Name";

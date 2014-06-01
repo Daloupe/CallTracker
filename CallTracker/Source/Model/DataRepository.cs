@@ -40,7 +40,7 @@ namespace CallTracker.Model
         [ProtoMember(2)]
         internal BindingList<CustomerContact> Contacts { get; set; }
         [ProtoMember(3)]
-        internal List<LoginsModel> Logins { get; set; }
+        internal BindingList<LoginsModel> Logins { get; set; }
         [ProtoMember(4)]
         internal GridLinksModel GridLinks { get; set; }
 
@@ -50,7 +50,7 @@ namespace CallTracker.Model
         {
             PasteBinds = new TriggerList<PasteBind>();
             Contacts = new BindingList<CustomerContact>();
-            Logins = new List<LoginsModel>();
+            Logins = new BindingList<LoginsModel>();
             GridLinks = new GridLinksModel();
         }
 

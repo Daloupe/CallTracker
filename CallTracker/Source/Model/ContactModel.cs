@@ -7,12 +7,15 @@ using System.Text;
 using PropertyChanged;
 using ProtoBuf;
 
+using CallTracker.View;
 namespace CallTracker.Model
 {
-    [ImplementPropertyChanged]
     [ProtoContract]
-    public class CustomerContact
+    [ImplementPropertyChanged]
+    public class CustomerContact : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public static List<DataBindType> PropertyStrings = new List<DataBindType>()
             {
                 new DataBindType("Name", "Name"),
@@ -22,8 +25,10 @@ namespace CallTracker.Model
                 new DataBindType("CMBS","CMBS"),
                 new DataBindType("ICON", "ICON"),
                 new DataBindType("Note", "Note"),
+                new DataBindType("ICON Note", "ICONNote"),
                 new DataBindType("Address", "Address"),
                 new DataBindType("PR", "Fault.PR"),
+                new DataBindType("NPR", "Fault.NPR"),
                 new DataBindType("Node","Service.Node"),
                 new DataBindType("AVC","Service.AVC"),
                 new DataBindType("CVC","Service.CVC"),
@@ -59,19 +64,11 @@ namespace CallTracker.Model
         public ContactStatistics Contacts { get; set; }
         public DateTime ContactDate { get { return Contacts.StartDate; } }
         public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
-
         [ProtoMember(13)]
         public BookingModel Booking { get; set; }
 
-        public string ICONNote { get; set; }
+        public string ICONNote { get { return Main.NoteGen.GenerateNoteManually(this); } set { ; } }
 
-        //public PropertyChangedEventArgs nestedProperty { get; set; }
-
-        //public void OnnestedPropertyChanged()
-        //{
-        //    Console.WriteLine("hi");
-        //}
-        
         public CustomerContact()
         {
             Name = String.Empty;
@@ -81,7 +78,6 @@ namespace CallTracker.Model
             CMBS = String.Empty;
             ICON = String.Empty;
             Note = String.Empty;
-            ICONNote = String.Empty;
 
             Address = new ContactAddress();
             Service = new ServiceModel();
@@ -89,16 +85,22 @@ namespace CallTracker.Model
             Contacts = new ContactStatistics();
             Booking = new BookingModel();
 
-            //((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
         }
 
-        //void CustomerContact_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        //{
-        //    nestedProperty = e;
-        //}
+        public event PropertyChangedEventHandler NestedChange;
+
+
+        void CustomerContact_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(NestedChange != null)
+                NestedChange(sender, e);
+        }
+
         public CustomerContact(int _id)
         {
-
             Id = _id;
             Name = String.Empty;
             Username = String.Empty;
@@ -107,7 +109,6 @@ namespace CallTracker.Model
             CMBS = String.Empty;
             ICON = String.Empty;
             Note = String.Empty;
-            ICONNote = String.Empty;
 
             Address = new ContactAddress();
             Service = new ServiceModel();
@@ -115,11 +116,12 @@ namespace CallTracker.Model
             Contacts = new ContactStatistics();
             Booking = new BookingModel();
 
-            Contacts.StartDate = DateTime.Today;
-            Contacts.StartTime = DateTime.Now.TimeOfDay;
+            Contacts.StartDate = DateTime.Today.ToLocalTime();
+            Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();
 
-            //((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
-
+            ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
         }
     }
     //[ImplementPropertyChanged]

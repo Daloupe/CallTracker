@@ -73,8 +73,8 @@
             this._DTV = new System.Windows.Forms.CheckBox();
             this._MTV = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
             this._Note = new System.Windows.Forms.RichTextBox();
+            this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
             this._Icon = new CallTracker.View.BorderedTextBox();
             this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._Cmbs = new CallTracker.View.BorderedTextBox();
@@ -83,8 +83,8 @@
             this._Name = new CallTracker.View.BorderedTextBox();
             this._Mobile = new CallTracker.View.BorderedTextBox();
             this._Address = new CallTracker.View.BorderedTextBox();
-            this.borderedTextBox3 = new CallTracker.View.BorderedTextBox();
             this._PR = new CallTracker.View.BorderedTextBox();
+            this._NPR = new CallTracker.View.BorderedTextBox();
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -165,6 +165,7 @@
             // HfcPanel
             // 
             this.HfcPanel.BackColor = System.Drawing.Color.Moccasin;
+            this.HfcPanel.Controls.Add(this._PR);
             this.HfcPanel.Controls.Add(this.label7);
             this.HfcPanel.Controls.Add(this.dateTimePicker1);
             this.HfcPanel.Controls.Add(this._BookingTimeSlot);
@@ -174,8 +175,7 @@
             this.HfcPanel.Controls.Add(this.label20);
             this.HfcPanel.Controls.Add(this._Severity);
             this.HfcPanel.Controls.Add(this.label15);
-            this.HfcPanel.Controls.Add(this.borderedTextBox3);
-            this.HfcPanel.Controls.Add(this._PR);
+            this.HfcPanel.Controls.Add(this._NPR);
             this.HfcPanel.Controls.Add(this.label22);
             this.HfcPanel.Controls.Add(this.label8);
             this.HfcPanel.Controls.Add(this.comboBox1);
@@ -686,6 +686,17 @@
             this.flowLayoutPanel4.Size = new System.Drawing.Size(331, 238);
             this.flowLayoutPanel4.TabIndex = 29;
             // 
+            // _Note
+            // 
+            this._Note.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this._Note.Location = new System.Drawing.Point(0, 111);
+            this._Note.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this._Note.Name = "_Note";
+            this._Note.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this._Note.Size = new System.Drawing.Size(331, 75);
+            this._Note.TabIndex = 1;
+            this._Note.Text = "";
+            // 
             // MainPanel
             // 
             this.MainPanel.Controls.Add(this.flowLayoutPanel4);
@@ -698,17 +709,6 @@
             this.MainPanel.Size = new System.Drawing.Size(579, 216);
             this.MainPanel.TabIndex = 30;
             this.MainPanel.WrapContents = false;
-            // 
-            // _Note
-            // 
-            this._Note.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._Note.Location = new System.Drawing.Point(0, 111);
-            this._Note.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this._Note.Name = "_Note";
-            this._Note.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this._Note.Size = new System.Drawing.Size(331, 75);
-            this._Note.TabIndex = 1;
-            this._Note.Text = "";
             // 
             // _Icon
             // 
@@ -810,31 +810,29 @@
             this._Address.TabIndex = 7;
             this._Address.Text = "16 everterrace st";
             // 
-            // borderedTextBox3
-            // 
-            this.borderedTextBox3.BorderColor = System.Drawing.Color.Gray;
-            this.borderedTextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.borderedTextBox3.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.NPR", true));
-            this.borderedTextBox3.Font = new System.Drawing.Font("Verdana", 7F);
-            this.borderedTextBox3.Location = new System.Drawing.Point(95, 148);
-            this.borderedTextBox3.Name = "borderedTextBox3";
-            this.borderedTextBox3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.borderedTextBox3.Size = new System.Drawing.Size(80, 19);
-            this.borderedTextBox3.TabIndex = 36;
-            this.borderedTextBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // _PR
             // 
             this._PR.BorderColor = System.Drawing.Color.Gray;
             this._PR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._PR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._PR.Font = new System.Drawing.Font("Verdana", 7F);
             this._PR.Location = new System.Drawing.Point(5, 148);
             this._PR.Name = "_PR";
             this._PR.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._PR.Size = new System.Drawing.Size(75, 19);
-            this._PR.TabIndex = 9;
+            this._PR.Size = new System.Drawing.Size(80, 19);
+            this._PR.TabIndex = 48;
             this._PR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // _NPR
+            // 
+            this._NPR.BorderColor = System.Drawing.Color.Gray;
+            this._NPR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._NPR.Font = new System.Drawing.Font("Verdana", 7F);
+            this._NPR.Location = new System.Drawing.Point(95, 148);
+            this._NPR.Name = "_NPR";
+            this._NPR.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._NPR.Size = new System.Drawing.Size(80, 19);
+            this._NPR.TabIndex = 36;
+            this._NPR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // EditContact
             // 
@@ -874,7 +872,6 @@
         private System.Windows.Forms.Panel HfcPanel;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
-        private BorderedTextBox _PR;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
@@ -909,7 +906,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
         private System.Windows.Forms.FlowLayoutPanel MainPanel;
         public System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
-        private BorderedTextBox borderedTextBox3;
+        private BorderedTextBox _NPR;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.CheckBox _NVF;
         private System.Windows.Forms.Label label21;
@@ -923,5 +920,6 @@
         private System.Windows.Forms.ComboBox _BookingTimeSlot;
         public System.Windows.Forms.BindingSource customerContactsBindingSource;
         private System.Windows.Forms.RichTextBox _Note;
+        private BorderedTextBox _PR;
     }
 }

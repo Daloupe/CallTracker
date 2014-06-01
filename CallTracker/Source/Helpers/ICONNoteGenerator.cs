@@ -104,11 +104,11 @@ namespace CallTracker.Helpers
     public class ICONNoteGenerator
     {
         private List<NoteItem> NoteItems;
-        private Main MainForm;
+       // private Main MainForm;
 
-        public ICONNoteGenerator(Main _mainForm)
+        public ICONNoteGenerator()//Main _mainForm)
         {
-            MainForm = _mainForm;
+            //MainForm = _mainForm;
 
             Dictionary<string, string> Symptoms= new Dictionary<string, string>
             {
@@ -142,53 +142,55 @@ namespace CallTracker.Helpers
             NoteItems.Add(new AltNoteItemString("Booking.GetDate", PRAltNotes));
         }
 
-        public void OnContactChange(object sender, EventArgs args)
-        {
-            CustomerContact contact = ((BindingSource)sender).Current as CustomerContact;
-            foreach (var noteItem in NoteItems)
-                if (noteItem.GetType() != typeof(NoteItemHeading))
-                    noteItem.Value = FindProperty.FollowPropertyPath(contact, noteItem.Name);
-            //contact.ICONNote = GenerateNote();
-        }
+        //public void OnContactChange(object sender, EventArgs args)
+        //{
+        //    CustomerContact contact = ((BindingSource)sender).Current as CustomerContact;
+        //    foreach (var noteItem in NoteItems)
+        //        if (noteItem.GetType() != typeof(NoteItemHeading))
+        //            noteItem.Value = FindProperty.FollowPropertyPath(contact, noteItem.Name);
+        //    //contact.ICONNote = GenerateNote();
+        //}
 
-        public void OnDataFieldChange(object sender, ListChangedEventArgs args)
-        {
-            if (args.ListChangedType != ListChangedType.ItemChanged)
-                return;
+        //public void OnDataFieldChange(object sender, ListChangedEventArgs args)
+        //{
+        //    if (args.ListChangedType != ListChangedType.ItemChanged)
+        //        return;
 
-            CustomerContact contact = ((BindingSource)sender).Current as CustomerContact;
+        //    CustomerContact contact = ((BindingSource)sender).Current as CustomerContact;
 
-            NoteItem _item = NoteItems.Find(x => x.Name == args.PropertyDescriptor.Name);
-            if (_item != null)
-            {
-                _item.Value = args.PropertyDescriptor.GetValue(contact).ToString();
-                //contact.ICONNote = GenerateNote();
-            }
-        }
+        //    NoteItem _item = NoteItems.Find(x => x.Name == args.PropertyDescriptor.Name);
+        //    if (_item != null)
+        //    {
+        //        _item.Value = args.PropertyDescriptor.GetValue(contact).ToString();
+        //        //contact.ICONNote = GenerateNote();
+        //    }
+        //}
 
-        public string GenerateNote()
-        {
-            StringBuilder sb = new StringBuilder();
+        //public string GenerateNote()
+        //{
+        //    StringBuilder sb = new StringBuilder();
 
-            foreach(var noteItem in NoteItems)
-                if (!String.IsNullOrEmpty(noteItem.Value))
-                    sb.AppendLine(noteItem.GenerateString());
-                else if (noteItem.GetType() == typeof(NoteItemHeading))
-                    sb.AppendLine(noteItem.GenerateString());
+        //    foreach(var noteItem in NoteItems)
+        //        if (!String.IsNullOrEmpty(noteItem.Value))
+        //            sb.AppendLine(noteItem.GenerateString());
+        //        else if (noteItem.GetType() == typeof(NoteItemHeading))
+        //            sb.AppendLine(noteItem.GenerateString());
                     
 
-            return sb.ToString();
-        }
+        //    return sb.ToString();
+        //}
 
 
         public string GenerateNoteManually(CustomerContact _contact)
         {
+            CustomerContact contact = _contact;
+
             foreach (var noteItem in NoteItems)
                 if (noteItem.GetType() != typeof(NoteItemHeading))
                 {
-                    noteItem.Value = FindProperty.FollowPropertyPath(_contact, noteItem.Name);
+                    noteItem.Value = FindProperty.FollowPropertyPath(contact, noteItem.Name);
                     if (noteItem.GetType() == typeof(AltNoteItemString))
-                        ((AltNoteItemString)noteItem).GenerateNote(_contact);
+                        ((AltNoteItemString)noteItem).GenerateNote(contact);
                 }
 
             //if (_contact.Fault.Outcome == Enum.GetName(typeof(Outcomes), Outcomes.PR))
