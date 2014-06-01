@@ -59,9 +59,19 @@ namespace CallTracker.Model
         public ContactStatistics Contacts { get; set; }
         public DateTime ContactDate { get { return Contacts.StartDate; } }
         public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
-        [ProtoMember(13)]
-        public Dictionary<string, string> ICONNote { get; set; }
 
+        [ProtoMember(13)]
+        public BookingModel Booking { get; set; }
+
+        public string ICONNote { get; set; }
+
+        //public PropertyChangedEventArgs nestedProperty { get; set; }
+
+        //public void OnnestedPropertyChanged()
+        //{
+        //    Console.WriteLine("hi");
+        //}
+        
         public CustomerContact()
         {
             Name = String.Empty;
@@ -70,23 +80,25 @@ namespace CallTracker.Model
             Mobile = String.Empty;
             CMBS = String.Empty;
             ICON = String.Empty;
+            Note = String.Empty;
+            ICONNote = String.Empty;
 
             Address = new ContactAddress();
             Service = new ServiceModel();
             Fault = new FaultModel();
             Contacts = new ContactStatistics();
+            Booking = new BookingModel();
 
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Situation");
-            sb.AppendLine("- ");
-            sb.AppendLine("Action");
-            sb.AppendLine("- ");
-            sb.AppendLine("Outcome");
-            sb.AppendLine("- ");
-            Note = sb.ToString();
+            //((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
         }
+
+        //void CustomerContact_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        //{
+        //    nestedProperty = e;
+        //}
         public CustomerContact(int _id)
         {
+
             Id = _id;
             Name = String.Empty;
             Username = String.Empty;
@@ -94,23 +106,20 @@ namespace CallTracker.Model
             Mobile = String.Empty;
             CMBS = String.Empty;
             ICON = String.Empty;
+            Note = String.Empty;
+            ICONNote = String.Empty;
 
             Address = new ContactAddress();
             Service = new ServiceModel();
             Fault = new FaultModel();
             Contacts = new ContactStatistics();
+            Booking = new BookingModel();
 
             Contacts.StartDate = DateTime.Today;
             Contacts.StartTime = DateTime.Now.TimeOfDay;
 
-            StringBuilder sb = new StringBuilder();
-            sb.AppendLine("Situation");
-            sb.AppendLine("- ");
-            sb.AppendLine("Action");
-            sb.AppendLine("- ");
-            sb.AppendLine("Outcome");
-            sb.AppendLine("- ");
-            Note = sb.ToString();
+            //((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
+
         }
     }
     //[ImplementPropertyChanged]

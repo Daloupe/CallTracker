@@ -28,6 +28,8 @@ namespace CallTracker.Model
     {
         public FaultModel()
         {
+            PR = String.Empty;
+            NPR = String.Empty;
             Severity = String.Empty;
             Symptom = String.Empty;
             Outcome = String.Empty;
@@ -36,6 +38,8 @@ namespace CallTracker.Model
 
         [ProtoMember(1)]
         public string PR { get; set; }
+        [ProtoMember(8)]
+        public string NPR { get; set; }
         [ProtoMember(2)]
         public string INC { get; set; }
         [ProtoMember(3)]
@@ -48,9 +52,6 @@ namespace CallTracker.Model
         public string Outcome { get; set; }
         [ProtoMember(7)]
         public BookingModel Booking { get; set; }
-
-        [ProtoMember(8)]
-        public string NPR { get; set; }
 
         public static List<string> FaultSeverity = new List<string>
         {
@@ -70,7 +71,7 @@ namespace CallTracker.Model
 
     public enum Outcomes
     {
-        PR, ARO, CM, PC, CPE, NFF
+        PR, ARO, CM, CPE, NFF
     }
 
 }

@@ -36,7 +36,7 @@
             this._Label.BackColor = System.Drawing.Color.DarkSlateGray;
             this._Label.Dock = System.Windows.Forms.DockStyle.Fill;
             this._Label.Font = new System.Drawing.Font("Verdana", 6.5F, System.Drawing.FontStyle.Bold);
-            this._Label.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Label.ForeColor = System.Drawing.SystemColors.ControlLight;
             this._Label.Location = new System.Drawing.Point(2, 2);
             this._Label.Margin = new System.Windows.Forms.Padding(0);
             this._Label.Name = "_Label";

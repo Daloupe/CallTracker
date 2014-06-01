@@ -14,12 +14,6 @@ namespace CallTracker.View
         public NBFPanel()
         {
             InitializeComponent();
-            serviceModelBindingSource.DataSourceChanged += serviceModelBindingSource_DataSourceChanged;
-        }
-
-        void serviceModelBindingSource_DataSourceChanged(object sender, EventArgs e)
-        {
-            Console.WriteLine("NBF changed data");
         }
 
         public override void SetDataSource(object _source)

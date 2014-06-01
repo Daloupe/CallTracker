@@ -12,8 +12,18 @@ namespace CallTracker.Model
         public BookingType Type { get; set; }
         [ProtoMember(2)]
         public DateTime Date { get; set; }
+        public string GetDate
+        {
+            get { return Date.ToShortDateString() + " " + Timeslot; }
+        }
         [ProtoMember(3)]
-        public BookingTimeslot Timeslot { get; set; }
+        public string Timeslot { get; set; }
+
+        public BookingModel()
+        {
+            Date = DateTime.Today;
+            Timeslot = String.Empty;
+        }
     }
 
     public enum BookingType

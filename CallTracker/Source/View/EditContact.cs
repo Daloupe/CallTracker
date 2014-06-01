@@ -47,8 +47,34 @@ namespace CallTracker.View
             ONCPanel = new ONCPanel();
             DTVPanel = new DTVPanel();
             MTVPanel = new MTVPanel();
+
+            ContextMenu cm = new ContextMenu();
+            MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
+            cm1.Tag = "Note";
+            cm1.Checked = true;
+            MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
+            cm2.Tag = "ICONNote";
+            cm.MenuItems.Add(cm1);
+            cm.MenuItems.Add(cm2);
+            _Note.ContextMenu = cm;
         }
 
+        public void SwitchNote(object sender, EventArgs e)
+        {
+            MenuItem cm = (MenuItem)sender;
+            foreach (MenuItem item in cm.GetContextMenu().MenuItems)
+            {
+                if(item == cm)
+                    item.Checked = true;
+                else
+                    item.Checked = false;
+            }
+            _Note.DataBindings.Clear();
+            string tag = cm.Tag.ToString();
+            _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
+            if (tag == "ICONNote")
+                _Note.Text = MainForm.NoteGen.GenerateNoteManually(DataStore.Contacts[customerContactsBindingSource.Position]);
+        }
         //protected override CreateParams CreateParams
         //{
         //    get
@@ -64,14 +90,15 @@ namespace CallTracker.View
             MainForm = _parent;
             DataStore = _parent.DataStore;
 
-            customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
-            customerContactsBindingSource.PositionChanged += MainForm.NoteGen.OnContactChange;
-            customerContactsBindingSource.DataSource = DataStore.Contacts;
-            customerContactsBindingSource.Position = DataStore.Contacts.Count;
-            customerContactsBindingSource.ListChanged += MainForm.NoteGen.OnDataFieldChange;
-
             _Severity.DataSource = Enum.GetValues(typeof(FaultSeverity));
             _Outcome.DataSource = Enum.GetValues(typeof(Outcomes));
+            _BookingTimeSlot.DataSource = Enum.GetValues(typeof(BookingTimeslot));
+
+            customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
+            //customerContactsBindingSource.PositionChanged += MainForm.NoteGen.OnContactChange;
+            //customerContactsBindingSource.ListChanged += MainForm.NoteGen.OnDataFieldChange;
+            customerContactsBindingSource.DataSource = DataStore.Contacts;
+            customerContactsBindingSource.Position = DataStore.Contacts.Count;
         }
 
         // Contact Navigator ////////////////////////////////////////////////////////////////////////////////

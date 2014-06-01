@@ -33,7 +33,8 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.callHistoryPanel1 = new CallTracker.View.CallHistoryPanel();
             this.label6 = new System.Windows.Forms.Label();
-            this.propertyLock = new System.Windows.Forms.CheckBox();
+            this._Cancel = new System.Windows.Forms.Button();
+            this._ClearHistory = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -45,11 +46,11 @@
             this._Done.BackColor = System.Drawing.Color.LightGray;
             this._Done.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._Done.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Done.Location = new System.Drawing.Point(506, 197);
+            this._Done.Location = new System.Drawing.Point(425, 197);
             this._Done.Name = "_Done";
             this._Done.Size = new System.Drawing.Size(75, 22);
             this._Done.TabIndex = 10;
-            this._Done.Text = "Done";
+            this._Done.Text = "Load Call";
             this._Done.UseVisualStyleBackColor = false;
             this._Done.Click += new System.EventHandler(this._Done_Click);
             // 
@@ -118,31 +119,39 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "//Call History";
             // 
-            // propertyLock
+            // _Cancel
             // 
-            this.propertyLock.BackColor = System.Drawing.Color.Transparent;
-            this.propertyLock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.propertyLock.CheckAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.propertyLock.Checked = true;
-            this.propertyLock.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.propertyLock.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.propertyLock.Image = global::CallTracker.Properties.Resources.padlock_small;
-            this.propertyLock.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.propertyLock.Location = new System.Drawing.Point(360, 197);
-            this.propertyLock.Name = "propertyLock";
-            this.propertyLock.Padding = new System.Windows.Forms.Padding(3);
-            this.propertyLock.Size = new System.Drawing.Size(38, 22);
-            this.propertyLock.TabIndex = 14;
-            this.propertyLock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.propertyLock.UseVisualStyleBackColor = false;
-            this.propertyLock.CheckedChanged += new System.EventHandler(this.propertyLock_CheckedChanged);
+            this._Cancel.BackColor = System.Drawing.Color.LightGray;
+            this._Cancel.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this._Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Cancel.Location = new System.Drawing.Point(506, 197);
+            this._Cancel.Name = "_Cancel";
+            this._Cancel.Size = new System.Drawing.Size(75, 22);
+            this._Cancel.TabIndex = 15;
+            this._Cancel.Text = "Done";
+            this._Cancel.UseVisualStyleBackColor = false;
+            this._Cancel.Click += new System.EventHandler(this.Cancel_Click);
+            // 
+            // _ClearHistory
+            // 
+            this._ClearHistory.BackColor = System.Drawing.Color.LightGray;
+            this._ClearHistory.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this._ClearHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._ClearHistory.Location = new System.Drawing.Point(269, 197);
+            this._ClearHistory.Name = "_ClearHistory";
+            this._ClearHistory.Size = new System.Drawing.Size(87, 22);
+            this._ClearHistory.TabIndex = 16;
+            this._ClearHistory.Text = "Clear History";
+            this._ClearHistory.UseVisualStyleBackColor = false;
+            this._ClearHistory.Click += new System.EventHandler(this._ClearHistory_Click);
             // 
             // CallHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.Controls.Add(this.propertyLock);
+            this.Controls.Add(this._ClearHistory);
+            this.Controls.Add(this._Cancel);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this._Done);
@@ -164,8 +173,9 @@
         private System.Windows.Forms.Button _Done;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.CheckBox propertyLock;
         private System.Windows.Forms.DataGridView dataGridView1;
         private CallHistoryPanel callHistoryPanel1;
+        private System.Windows.Forms.Button _Cancel;
+        private System.Windows.Forms.Button _ClearHistory;
     }
 }

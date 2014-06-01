@@ -46,13 +46,10 @@ namespace CallTracker.View
 
             NoteGen = new ICONNoteGenerator(this);
 
-
             editLogins = new EditLogins();
             editGridLinks = new EditGridLinks();
             editSmartPasteBinds = new EditSmartPasteBinds();
-
             callHistory = new CallHistory();
-
             helpKeyCommands = new HelpKeyCommands();
             editContact = new EditContact(this);
 
@@ -66,16 +63,6 @@ namespace CallTracker.View
             editContact.BringToFront();
             editContact.Visible = true;
         }
-
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
-                return cp;
-            }
-        } 
 
         private void SetAppLocation()
         {
@@ -126,12 +113,6 @@ namespace CallTracker.View
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void DeleteCallDataMenuItem_Click(object sender, EventArgs e)
-        {
-            DataStore.Contacts = new BindingList<CustomerContact>();
-            editContact.DeleteCalls();
         }
 
         private ViewControlBase _VisibleSetting;
@@ -219,5 +200,15 @@ namespace CallTracker.View
             editContact.toolStripProgressBar1.Maximum = _steps + 1;
             UpdateProgressBar();
         }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                return cp;
+            }
+        } 
     }
 }

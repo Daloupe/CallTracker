@@ -36,7 +36,7 @@
             this.HfcPanel = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this._BookingTimeSlot = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this._Outcome = new System.Windows.Forms.ComboBox();
             this._Symptom = new System.Windows.Forms.ComboBox();
@@ -73,8 +73,8 @@
             this._DTV = new System.Windows.Forms.CheckBox();
             this._MTV = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
-            this._Note = new System.Windows.Forms.TextBox();
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this._Note = new System.Windows.Forms.RichTextBox();
             this._Icon = new CallTracker.View.BorderedTextBox();
             this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._Cmbs = new CallTracker.View.BorderedTextBox();
@@ -85,7 +85,6 @@
             this._Address = new CallTracker.View.BorderedTextBox();
             this.borderedTextBox3 = new CallTracker.View.BorderedTextBox();
             this._PR = new CallTracker.View.BorderedTextBox();
-            this.customerServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -100,7 +99,6 @@
             this.flowLayoutPanel4.SuspendLayout();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // FaultPanel
@@ -157,7 +155,7 @@
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.Size = new System.Drawing.Size(180, 330);
-            this.splitContainer2.SplitterDistance = 136;
+            this.splitContainer2.SplitterDistance = 134;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
@@ -169,7 +167,7 @@
             this.HfcPanel.BackColor = System.Drawing.Color.Moccasin;
             this.HfcPanel.Controls.Add(this.label7);
             this.HfcPanel.Controls.Add(this.dateTimePicker1);
-            this.HfcPanel.Controls.Add(this.comboBox4);
+            this.HfcPanel.Controls.Add(this._BookingTimeSlot);
             this.HfcPanel.Controls.Add(this.label21);
             this.HfcPanel.Controls.Add(this._Outcome);
             this.HfcPanel.Controls.Add(this._Symptom);
@@ -183,7 +181,7 @@
             this.HfcPanel.Controls.Add(this.comboBox1);
             this.HfcPanel.Controls.Add(this.label6);
             this.HfcPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.HfcPanel.Location = new System.Drawing.Point(0, -76);
+            this.HfcPanel.Location = new System.Drawing.Point(0, -78);
             this.HfcPanel.Margin = new System.Windows.Forms.Padding(0);
             this.HfcPanel.Name = "HfcPanel";
             this.HfcPanel.Size = new System.Drawing.Size(180, 212);
@@ -202,7 +200,9 @@
             // 
             // dateTimePicker1
             // 
+            this.dateTimePicker1.Checked = false;
             this.dateTimePicker1.CustomFormat = "";
+            this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Booking.Date", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(5, 88);
             this.dateTimePicker1.MaxDate = new System.DateTime(2019, 12, 25, 23, 59, 59, 0);
@@ -212,19 +212,20 @@
             this.dateTimePicker1.TabIndex = 45;
             this.dateTimePicker1.Value = new System.DateTime(2014, 12, 30, 5, 11, 0, 0);
             // 
-            // comboBox4
+            // _BookingTimeSlot
             // 
-            this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this._BookingTimeSlot.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Booking.TimeSlot", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._BookingTimeSlot.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this._BookingTimeSlot.FormattingEnabled = true;
+            this._BookingTimeSlot.Items.AddRange(new object[] {
             "AM",
             "PM",
             "EVE"});
-            this.comboBox4.Location = new System.Drawing.Point(112, 88);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(62, 20);
-            this.comboBox4.TabIndex = 46;
-            this.comboBox4.Text = "AM";
+            this._BookingTimeSlot.Location = new System.Drawing.Point(112, 88);
+            this._BookingTimeSlot.Name = "_BookingTimeSlot";
+            this._BookingTimeSlot.Size = new System.Drawing.Size(62, 20);
+            this._BookingTimeSlot.TabIndex = 46;
+            this._BookingTimeSlot.Text = "AM";
             // 
             // label21
             // 
@@ -239,7 +240,7 @@
             // 
             // _Outcome
             // 
-            this._Outcome.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.Outcome", true));
+            this._Outcome.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.Outcome", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Outcome.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this._Outcome.FormattingEnabled = true;
             this._Outcome.Location = new System.Drawing.Point(112, 186);
@@ -249,7 +250,7 @@
             // 
             // _Symptom
             // 
-            this._Symptom.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.Symptom", true));
+            this._Symptom.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.Symptom", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Symptom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._Symptom.FormattingEnabled = true;
             this._Symptom.Location = new System.Drawing.Point(54, 186);
@@ -270,7 +271,7 @@
             // 
             // _Severity
             // 
-            this._Severity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.Severity", true));
+            this._Severity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.Severity", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Severity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._Severity.FormattingEnabled = true;
             this._Severity.Location = new System.Drawing.Point(6, 187);
@@ -314,7 +315,6 @@
             // 
             // comboBox1
             // 
-            this.comboBox1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.customerServiceBindingSource, "Equipment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
@@ -686,22 +686,6 @@
             this.flowLayoutPanel4.Size = new System.Drawing.Size(331, 238);
             this.flowLayoutPanel4.TabIndex = 29;
             // 
-            // _Note
-            // 
-            this._Note.BackColor = System.Drawing.Color.GhostWhite;
-            this._Note.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._Note.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Note", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Note.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Note.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(34)))), ((int)(((byte)(44)))));
-            this._Note.Location = new System.Drawing.Point(0, 111);
-            this._Note.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
-            this._Note.Multiline = true;
-            this._Note.Name = "_Note";
-            this._Note.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this._Note.Size = new System.Drawing.Size(331, 75);
-            this._Note.TabIndex = 10;
-            this._Note.Text = "This is some test text.";
-            // 
             // MainPanel
             // 
             this.MainPanel.Controls.Add(this.flowLayoutPanel4);
@@ -714,6 +698,17 @@
             this.MainPanel.Size = new System.Drawing.Size(579, 216);
             this.MainPanel.TabIndex = 30;
             this.MainPanel.WrapContents = false;
+            // 
+            // _Note
+            // 
+            this._Note.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this._Note.Location = new System.Drawing.Point(0, 111);
+            this._Note.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this._Note.Name = "_Note";
+            this._Note.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this._Note.Size = new System.Drawing.Size(331, 75);
+            this._Note.TabIndex = 1;
+            this._Note.Text = "";
             // 
             // _Icon
             // 
@@ -832,7 +827,7 @@
             // 
             this._PR.BorderColor = System.Drawing.Color.Gray;
             this._PR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._PR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.PR", true));
+            this._PR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._PR.Font = new System.Drawing.Font("Verdana", 7F);
             this._PR.Location = new System.Drawing.Point(5, 148);
             this._PR.Name = "_PR";
@@ -840,10 +835,6 @@
             this._PR.Size = new System.Drawing.Size(75, 19);
             this._PR.TabIndex = 9;
             this._PR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // customerServiceBindingSource
-            // 
-            this.customerServiceBindingSource.DataSource = typeof(CallTracker.Model.ServiceModel);
             // 
             // EditContact
             // 
@@ -869,17 +860,14 @@
             this.flowLayoutPanel1.PerformLayout();
             this.ServiceTypePanel.ResumeLayout(false);
             this.flowLayoutPanel4.ResumeLayout(false);
-            this.flowLayoutPanel4.PerformLayout();
             this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.customerServiceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.BindingSource customerServiceBindingSource;
         private System.Windows.Forms.Panel FaultPanel;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
@@ -924,7 +912,6 @@
         private BorderedTextBox borderedTextBox3;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.CheckBox _NVF;
-        private System.Windows.Forms.TextBox _Note;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox _Outcome;
         private System.Windows.Forms.ComboBox _Symptom;
@@ -933,7 +920,8 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox _BookingTimeSlot;
         public System.Windows.Forms.BindingSource customerContactsBindingSource;
+        private System.Windows.Forms.RichTextBox _Note;
     }
 }

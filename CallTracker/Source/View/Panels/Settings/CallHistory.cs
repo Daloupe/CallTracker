@@ -14,6 +14,8 @@ namespace CallTracker.View
 {
     public partial class CallHistory : ViewControlBase
     {
+        private int CurrentPosition;
+
         public CallHistory()
         {
             InitializeComponent();
@@ -44,6 +46,7 @@ namespace CallTracker.View
 
         protected override void _Done_Click(object sender, EventArgs e)
         {
+            CurrentPosition = MainForm.editContact.customerContactsBindingSource.Position;
             base._Done_Click(sender, e);
         }
 
@@ -55,6 +58,29 @@ namespace CallTracker.View
         private void propertyLock_CheckedChanged(object sender, EventArgs e)
         {
             //flowLayoutPanel1.Enabled = !propertyLock.Checked;
+        }
+
+        public override void ShowSetting()
+        {
+            base.ShowSetting();
+            CurrentPosition = MainForm.editContact.customerContactsBindingSource.Position;
+        }
+
+        public override void HideSetting()
+        {
+            base.HideSetting();
+            MainForm.editContact.customerContactsBindingSource.Position = CurrentPosition;
+        }
+
+        private void Cancel_Click(object sender, EventArgs e)
+        {
+            base._Done_Click(sender, e);
+        }
+
+        private void _ClearHistory_Click(object sender, EventArgs e)
+        {
+            MainForm.DataStore.Contacts = new BindingList<CustomerContact>();
+            MainForm.editContact.DeleteCalls();
         }
     }
 }

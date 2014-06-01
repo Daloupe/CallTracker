@@ -1,5 +1,8 @@
 To Do:
 
+Swappable Note Screen
+ - Right Click on Note to switch it to ICON note display.
+
 Main GUI
  | Have Settings windows show in main gui, rather than their own popup.
  - Add status bar to display warnings.
@@ -46,6 +49,8 @@ Contact Statistics
 Call History
  | Gridview displays: Date, Time, Name, DN, Affected Service.
  | Edit Panel displays: Note, Mobile.
+ | Cancel resets databind position.
+ | Clear History moved to Call History screen.
 
  IPCC Interaction
  - Find a way to send messages to IPCC's controls.

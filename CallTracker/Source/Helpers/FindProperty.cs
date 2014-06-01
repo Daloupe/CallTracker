@@ -11,6 +11,7 @@ namespace CallTracker.Helpers
         // Object Methods ///////////////////////////////////////////////////////////////////////////////////////
         public static string FollowPropertyPath(object _value, string _path)
         {
+           // Console.WriteLine(_path);
             if (String.IsNullOrEmpty(_path))
                 return null;
 
@@ -26,7 +27,7 @@ namespace CallTracker.Helpers
                 }
             }
 
-            return _value.ToString();
+            return _value == null ? String.Empty : _value.ToString();
         }
 
         public static string FollowPropertyPath(object _value, string _path, string _altPath)
@@ -50,7 +51,7 @@ namespace CallTracker.Helpers
             if (String.IsNullOrEmpty(output.ToString()) && !String.IsNullOrEmpty(_altPath))
                 output = FollowPropertyPath(_value, _altPath);
 
-            return output.ToString();
+            return output == null ? String.Empty : _value.ToString();
         }
     }
 }

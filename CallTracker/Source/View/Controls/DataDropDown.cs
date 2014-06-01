@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace CallTracker.View
 {
     [DefaultBindingProperty("DataText")]
-    public partial class DataDropDown : DataControlBase
+    public partial class DataDropDown : IDataField
     {
         public DataDropDown()
         {
