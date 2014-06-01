@@ -10,15 +10,11 @@ using System.Windows.Forms;
 namespace CallTracker.View
 {
     [DefaultBindingProperty("DataText")]
-    public partial class DataDropDown : UserControl
+    public partial class DataDropDown : DataControlBase
     {
         public DataDropDown()
         {
             InitializeComponent();
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         }
 
         [Category("A1")]

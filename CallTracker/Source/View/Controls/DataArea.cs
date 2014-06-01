@@ -10,19 +10,16 @@ using System.Windows.Forms;
 namespace CallTracker.View
 {
     [DefaultBindingProperty("TextField")]
-    public partial class DataArea : UserControl
+    public partial class DataArea : IDataField
     {
         public DataArea()
         {
             InitializeComponent();
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+
         }
 
         [Category("A1")]
-        public string LabelText 
+        public string LabelText
         {
             get { return _Label.Text; }
             set { _Label.Text = value; }

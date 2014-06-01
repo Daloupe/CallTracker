@@ -57,7 +57,8 @@ namespace CallTracker.Model
         public FaultModel Fault { get; set; }
         [ProtoMember(12)]
         public ContactStatistics Contacts { get; set; }
-
+        public DateTime ContactDate { get { return Contacts.StartDate; } }
+        public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
         [ProtoMember(13)]
         public Dictionary<string, string> ICONNote { get; set; }
 
@@ -74,6 +75,33 @@ namespace CallTracker.Model
             Service = new ServiceModel();
             Fault = new FaultModel();
             Contacts = new ContactStatistics();
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Situation");
+            sb.AppendLine("- ");
+            sb.AppendLine("Action");
+            sb.AppendLine("- ");
+            sb.AppendLine("Outcome");
+            sb.AppendLine("- ");
+            Note = sb.ToString();
+        }
+        public CustomerContact(int _id)
+        {
+            Id = _id;
+            Name = String.Empty;
+            Username = String.Empty;
+            DN = String.Empty;
+            Mobile = String.Empty;
+            CMBS = String.Empty;
+            ICON = String.Empty;
+
+            Address = new ContactAddress();
+            Service = new ServiceModel();
+            Fault = new FaultModel();
+            Contacts = new ContactStatistics();
+
+            Contacts.StartDate = DateTime.Today;
+            Contacts.StartTime = DateTime.Now.TimeOfDay;
 
             StringBuilder sb = new StringBuilder();
             sb.AppendLine("Situation");

@@ -27,6 +27,7 @@ namespace CallTracker.View
         {
             InitializeComponent();
             MainForm = _mainform;
+            Location = MainForm.ControlOffset;
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.UserPaint, true);
@@ -97,17 +98,13 @@ namespace CallTracker.View
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            CustomerContact newContact = new CustomerContact();
-            newContact.Id = DataStore.Contacts.Count;
-            newContact.Contacts.StartDate = DateTime.Today;
-            newContact.Contacts.StartTime = DateTime.Now.TimeOfDay;
-
-            DataStore.Contacts.Add(newContact);     
+            DataStore.Contacts.Add(new CustomerContact(1));
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
         }
 
         public void DeleteCalls()
         {
+            DataStore.Contacts.Add(new CustomerContact(1));
             customerContactsBindingSource.DataSource = DataStore.Contacts;
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
         }

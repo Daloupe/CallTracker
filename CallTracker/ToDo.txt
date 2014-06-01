@@ -13,12 +13,12 @@ Contact GUI
  | Hook up affected products check boxes.
 
 Note Writer
- - Add info to Note based on entered info and Symptom.
- - Note class subscribes to OnPropertyChange of CustomerContact.
- - Event searches property name in a List<NoteItem>, and uses reflection to fill it's value field.
- - GenerateNote() foreaches NoteItems, appending strings constructed by replacing "[value]" in NoteItem.Note with NoteItem.Value. Items with null value are skipped.
- - Fields like Symptom will need to be stored as full string rather than "NDT".
- ? Can dataGridViews hide certain memebers?
+ | Add info to Note based on entered info and Symptom.
+ | Note class subscribes to OnPropertyChange of CustomerContact.
+ | Event searches property name in a List<NoteItem>, and uses reflection to fill it's value field.
+ | GenerateNote() foreaches NoteItems, appending strings constructed by replacing "[value]" in NoteItem.Note with NoteItem.Value. Items with null value are skipped.
+ | Fields like Symptom will need to be stored as full string rather than "NDT".
+ Y Can dataGridViews hide certain memebers?
  ? Can lists hold interfaced items?
 
 ARO GUI
@@ -41,11 +41,11 @@ Event Tracking
  - Timestamp each interaction with CT, so as to get an idea of the order in which systems are accessed.
 
 Contact Statistics
- - Timestamp each contact.
+ | Timestamp each contact.
 
 Call History
- - Gridview displays: Date, Time, Name, DN, Affected Service.
- - Edit Panel displays: Note, Mobile.
+ | Gridview displays: Date, Time, Name, DN, Affected Service.
+ | Edit Panel displays: Note, Mobile.
 
  IPCC Interaction
  - Find a way to send messages to IPCC's controls.

@@ -42,6 +42,7 @@
             this.viewKeyCommandsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
             this.MenuPanel = new System.Windows.Forms.Panel();
+            this.callHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -104,7 +105,8 @@
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loginsViewMenuItem,
             this.gridLinksViewMenuItem,
-            this.pasteBindsViewMenuItem});
+            this.pasteBindsViewMenuItem,
+            this.callHistoryToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(41, 18);
             this.viewToolStripMenuItem.Text = "View";
@@ -177,6 +179,13 @@
             this.MenuPanel.Size = new System.Drawing.Size(586, 20);
             this.MenuPanel.TabIndex = 27;
             // 
+            // callHistoryToolStripMenuItem
+            // 
+            this.callHistoryToolStripMenuItem.Name = "callHistoryToolStripMenuItem";
+            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.callHistoryToolStripMenuItem.Text = "Call History";
+            this.callHistoryToolStripMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -220,5 +229,6 @@
         private System.Windows.Forms.Panel AppPanel;
         private System.Windows.Forms.Panel MenuPanel;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem callHistoryToolStripMenuItem;
     }
 }

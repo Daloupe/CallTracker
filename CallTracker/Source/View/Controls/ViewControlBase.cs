@@ -11,7 +11,6 @@ namespace CallTracker.View
 {
     public partial class ViewControlBase : UserControl
     {
-    
         public ToolStripMenuItem MenuControl { get; protected set; }
         protected Main MainForm { get; set; }
 
@@ -20,6 +19,8 @@ namespace CallTracker.View
             MenuControl = _menuItem;
             MenuControl.Tag = this;
             MainForm = _parent;
+
+            Location = MainForm.ControlOffset;
 
             this.Visible = true;
             this.SendToBack();

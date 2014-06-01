@@ -28,7 +28,9 @@ namespace CallTracker.View
         internal EditGridLinks editGridLinks;
         internal EditSmartPasteBinds editSmartPasteBinds;
         internal EditContact editContact;
+        internal CallHistory callHistory;
         internal HelpKeyCommands helpKeyCommands;
+        public Point ControlOffset = new Point(0, 18);
 
         public Main()
         {
@@ -41,26 +43,23 @@ namespace CallTracker.View
 
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
-            //SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
             NoteGen = new ICONNoteGenerator(this);
 
-            Point offset = new Point(0, 18);
+
             editLogins = new EditLogins();
-            editLogins.Location = offset;
             editGridLinks = new EditGridLinks();
-            editGridLinks.Location = offset;
             editSmartPasteBinds = new EditSmartPasteBinds();
-            editSmartPasteBinds.Location = offset;
+
+            callHistory = new CallHistory();
 
             helpKeyCommands = new HelpKeyCommands();
-            helpKeyCommands.Location = offset;
             editContact = new EditContact(this);
-            editContact.Location = offset;
 
             Controls.Add(editLogins);
             Controls.Add(editGridLinks);
             Controls.Add(editSmartPasteBinds);
+            Controls.Add(callHistory);
             Controls.Add(helpKeyCommands);
             Controls.Add(editContact);
 
@@ -100,7 +99,7 @@ namespace CallTracker.View
             editLogins.Init(this, loginsViewMenuItem);
             editSmartPasteBinds.Init(this, pasteBindsViewMenuItem);
             editGridLinks.Init(this, gridLinksViewMenuItem);
-
+            callHistory.Init(this, callHistoryToolStripMenuItem);
             helpKeyCommands.Init(this, viewKeyCommandsMenuItem);
 
             IETabActivator.OnAction += UpdateProgressBar;
@@ -132,7 +131,6 @@ namespace CallTracker.View
         private void DeleteCallDataMenuItem_Click(object sender, EventArgs e)
         {
             DataStore.Contacts = new BindingList<CustomerContact>();
-            DataStore.Contacts.Add(new CustomerContact() { Id = DataStore.Contacts.Count });
             editContact.DeleteCalls();
         }
 

@@ -91,6 +91,12 @@
     <Compile Include="Source\View\Controls\DataDropDown.Designer.cs">
       <DependentUpon>DataDropDown.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\View\Controls\DataControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\DataControlBase.Designer.cs">
+      <DependentUpon>DataControlBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Controls\PanelHeading.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -120,6 +126,12 @@
     </Compile>
     <Compile Include="Source\View\Panels\Product\DTVPanel.Designer.cs">
       <DependentUpon>DTVPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Settings\CallHistoryPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Settings\CallHistoryPanel.Designer.cs">
+      <DependentUpon>CallHistoryPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Panels\Product\PanelBase.cs">
       <SubType>UserControl</SubType>
@@ -166,6 +178,9 @@
     <EmbeddedResource Include="Source\View\Controls\DataDropDown.resx">
       <DependentUpon>DataDropDown.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\DataControlBase.resx">
+      <DependentUpon>DataControlBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\PanelHeading.resx">
       <DependentUpon>PanelHeading.cs</DependentUpon>
     </EmbeddedResource>
@@ -180,6 +195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Product\DTVPanel.resx">
       <DependentUpon>DTVPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Settings\CallHistoryPanel.resx">
+      <DependentUpon>CallHistoryPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Product\PanelBase.resx">
       <DependentUpon>PanelBase.cs</DependentUpon>

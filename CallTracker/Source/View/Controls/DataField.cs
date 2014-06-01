@@ -9,20 +9,27 @@ using System.Windows.Forms;
 
 namespace CallTracker.View
 {
+    public partial class IDataField : UserControl
+    {
+        protected string propertyName;
+        [Category("A1")]
+        public string PropertyName
+        {
+            get { return propertyName; }
+            set { propertyName = value; }
+        }
+    }
     [DefaultBindingProperty("TextField")]
-    public partial class DataField : UserControl
+    public partial class DataField : IDataField
     {
         public DataField()
         {
             InitializeComponent();
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            
         }
 
         [Category("A1")]
-        public string LabelText 
+        public string LabelText
         {
             get { return _Label.Text; }
             set { _Label.Text = value; }
@@ -33,6 +40,8 @@ namespace CallTracker.View
             get { return _Label.Width; }
             set { _Label.Width = value; }
         }
+
+        
 
         [Bindable(true)]
         [Browsable(false)]
