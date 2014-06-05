@@ -114,6 +114,9 @@ namespace CallTracker.View
         // Contact Navigator ////////////////////////////////////////////////////////////////////////////////
         void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
+            _Note.DataBindings.Clear();
+            _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, "Note", true, DataSourceUpdateMode.OnPropertyChanged));
+
             MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;      
             MainForm.SelectedContact = DataStore.Contacts[customerContactsBindingSource.Position];
             MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;

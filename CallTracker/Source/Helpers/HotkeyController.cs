@@ -7,12 +7,13 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using System.Diagnostics;
+using System.Threading;
 
 using Shortcut;
 using WatiN.Core;
-using WatiN.Core.Constraints;
-using WatiN.Core.Interfaces;
-using SHDocVw;
+//using WatiN.Core.Constraints;
+//using WatiN.Core.Interfaces;
+//using SHDocVw;
 
 using CallTracker.View;
 using CallTracker.Model;
@@ -64,9 +65,10 @@ namespace CallTracker.Helpers
                 HotKeyManager.AddOrReplaceHotkey(GridLinkHotKey.Value, Modifiers.Win, GridLinkHotKey.Key, OnGridLinks);
 
             Settings.Instance.AutoMoveMousePointerToTopLeft = false;
-            Settings.Instance.AttachToBrowserTimeOut = 20;
-            Settings.Instance.WaitForCompleteTimeOut = 20;
-            Settings.Instance.WaitUntilExistsTimeOut = 20;
+            Settings.Instance.AutoCloseDialogs = false;
+            Settings.Instance.AttachToBrowserTimeOut = 10;
+            Settings.Instance.WaitForCompleteTimeOut = 10;
+            Settings.Instance.WaitUntilExistsTimeOut = 10;
         }
 
         public void Dispose()
@@ -88,25 +90,24 @@ namespace CallTracker.Helpers
             {Keys.NumPad5, "5"},
             {Keys.NumPad6, "6"},
             {Keys.NumPad7, "7"},
-            {Keys.NumPad8, "8"},
+            {Keys.Q, "8"},
             {Keys.NumPad9, "9"}
         };
 
         private void OnGridLinks(HotkeyPressedEventArgs e)
         {
             parent.SetProgressBarStep(5);
-            GridLinksItem gridLink = parent.DataStore.GridLinks.GridLinkList[Convert.ToInt32(e.Name)];
-            SystemItem systemItem = parent.DataStore.GridLinks.SystemItems.Find(s => s.System == gridLink.System);
+            SystemItem systemItem = parent.DataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name));
             
             OnAction();
-            if (gridLink.System == "MAD" || gridLink.System == "OPOM")
+            if (systemItem.System == "MAD" || systemItem.System == "OPOM")
             {
                 IntPtr hWnd = IntPtr.Zero;
-                hWnd = WindowHelper.FindHWNDByTitle(gridLink.System);
+                hWnd = WindowHelper.FindHWNDByTitle(systemItem.Title);
                 if (hWnd != IntPtr.Zero)
                     WindowHelper.SetForegroundWindow(hWnd);
             }
-            else if (FindIEByTitle(gridLink.System))
+            else if (FindIEByTitle(systemItem.Title))
             {
                 new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
                 if (browser.Url == systemItem.Url)
@@ -114,8 +115,8 @@ namespace CallTracker.Helpers
             }
             else
             {
-                CreateNewIE(systemItem.Url);
-                AutoLogin();
+                if(CreateNewIE(systemItem.Url, systemItem.Title))
+                    AutoLogin();     
             }
             parent.UpdateProgressBar(0);
         }
@@ -275,7 +276,7 @@ namespace CallTracker.Helpers
 
             //check if each if needs returns.
 
-            if (Regex.IsMatch(text, @"^[AVCSNIG]{3}\d{13}"))
+            if (Regex.IsMatch(text, @"^[AVCSNIG]{3}\d{12}"))
             {
                 string firstThree = text.Substring(0, 3);
                 PropertyInfo prop = parent.SelectedContact.Service.GetType().GetProperty(firstThree);
@@ -360,16 +361,45 @@ namespace CallTracker.Helpers
             return true;
         }
 
-        public void CreateNewIE(string _url)
+        private bool FindIEByUrl(string _url)
+        {
+            //browser = Browser.AttachTo<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase)));
+            if (!Browser.Exists<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase))))
+                return false;
+
+            if (PreviousIEMatch != _url)
+            {
+                if (browser != null)
+                    browser.Dispose();
+                browser = Browser.AttachToNoWait<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase)));
+                browser.AutoClose = false;
+                PreviousIEMatch = _url;
+            }
+
+            return true;
+        }
+
+        public bool CreateNewIE(string _url, string _title)
         {
             OnAction();
             if (browser != null)
                 browser.Dispose();
 
             OnAction();
-            browser = new IE(_url);
-            browser.AutoClose = false;
-            PreviousIEMatch = browser.Title;      
+            using (Process m_Proc = System.Diagnostics.Process.Start("IExplore.exe", _url))
+            {
+                try
+                {
+                    browser = Browser.AttachToNoWait<IE>(Find.ByTitle(_title));
+                    browser.AutoClose = false;
+                    PreviousIEMatch = _title;
+                    return true;
+                }
+                catch (WatiN.Core.Exceptions.BrowserNotFoundException)
+                {
+                    return false; 
+                }
+            }
         }
     }
 
