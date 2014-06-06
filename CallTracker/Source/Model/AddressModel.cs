@@ -68,6 +68,17 @@ namespace CallTracker.Model
             set 
             {
                 address = value;
+
+                //////////This will match your input more tightly and each of your groups is in its own regex group:
+
+                //////////(\w+\s\d+\s\w\s\d+)\s(\d+)\s(\w+)\s(\w*)
+                //////////or if space is OK instead of "whitespace":
+
+                //////////(\w+ \d+ \w \d+) (\d+) (\w+) (\w*)
+                //////////Group 1: BLOOKKOKATU 20 A 773
+                //////////Group 2: 00810
+                //////////Group 3: HELSINKI
+                //////////Group 4: SUOMI (optional - doesn't have to match)
                 //MatchCollection address = Regex.Matches(value, @"[Unit|Level]?([-|/]?:\d+)?\w+");
 
                 //for (var i = 0; i < address.Count; i++)

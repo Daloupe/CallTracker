@@ -17,6 +17,7 @@ using WatiN.Core;
 
 using CallTracker.View;
 using CallTracker.Model;
+using Utilities.RegularExpressions;
 
 namespace CallTracker.Helpers
 {
@@ -275,47 +276,52 @@ namespace CallTracker.Helpers
             string firstchar = text.Substring(0, 1);
 
             //check if each if needs returns.
-
-            if (Regex.IsMatch(text, @"^[AVCSNIG]{3}\d{12}"))
+            
+            if (Char.IsLetter(text, 0))
             {
-                string firstThree = text.Substring(0, 3);
-                PropertyInfo prop = parent.SelectedContact.Service.GetType().GetProperty(firstThree);
-                prop.SetValue(parent.SelectedContact.Service, text, null);
-                
-            }
-            else if (Char.IsLetter(text, 0))
-            {
-                if (Regex.IsMatch(text, @"(\b[A-Z][a-z]+(-|\s)?){2,}"))
+                if (new BRASPattern().IsMatch(text))
+                {
+                    PropertyInfo prop = parent.SelectedContact.Service.GetType().GetProperty("Bras");
+                    prop.SetValue(parent.SelectedContact.Service, text, null);
+                }
+                else if (new CommonNBNPattern().IsMatch(text))
+                {
+                    string firstThree = text.Substring(0, 3);
+                    PropertyInfo prop = parent.SelectedContact.Service.GetType().GetProperty(firstThree);
+                    prop.SetValue(parent.SelectedContact.Service, text, null); 
+                }
+                else if (new NamePattern().IsMatch(text))
                     parent.SelectedContact.Name = text;
-                else if (Regex.IsMatch(text, @"\A[a-z]+([a-z]?[0-9]?\.?_?)*\z") || Regex.IsMatch(text, @"\A[A-Z]+([A-Z]?[0-9]?\.?_?)*\z"))
+                else if (new UsernameLowerPattern().IsMatch(text) ||
+                         new UsernameUpperPattern().IsMatch(text))
                     parent.SelectedContact.Username = text;
-                else if (Regex.Matches(text, @"\w+").Count > 3)
+                else if (new AddressPattern().Matches(text).Count > 3)
                     parent.SelectedContact.Address.Address = text;
             }
 
             else if ((firstchar == "0" && textlen == 10) || (text.Substring(0, 2) == "61" && textlen == 11))
             {
-                if (Regex.IsMatch(text, @"^(0|61)4\d{8}$"))
+                if (new MobilePattern().IsMatch(text))
                     parent.SelectedContact.Mobile = text;
-                else if (Regex.IsMatch(text, @"^(0|61)[2378]\d{8}$"))
+                else if (new DNPattern().IsMatch(text))
                     parent.SelectedContact.DN = text;
             }
 
             else if (firstchar == "2" || firstchar == "3" || firstchar == "4")
             {
-                if (Regex.IsMatch(text, @"^\d\d(?i)[A-Z]{2}_?\d\d\d\z"))
+                if (new NodePattern().IsMatch(text))
                     parent.SelectedContact.Service.Node = text;
-                else if (Regex.IsMatch(text, @"\A3[1-3]-??\d{5}(-|0|\s)\d\z"))
+                else if (new CMBSPattern().IsMatch(text))
                     parent.SelectedContact.CMBS = text;
             }
 
             else if (firstchar == "1" && textlen == 8)
                 parent.SelectedContact.Fault.PR = text;
 
-            else if (Regex.IsMatch(text, @"\A(1|5|8|9)\d{13}\z"))
+            else if (new ICONPattern().IsMatch(text))
                 parent.SelectedContact.ICON = text;
 
-            else if (Regex.Matches(text, @"\w+").Count > 3)
+            else if (new AddressPattern().Matches(text).Count > 3)
                 parent.SelectedContact.Address.Address = text;//[Unit|Level]?([-|/]?:\d+)?\w+
          
             else

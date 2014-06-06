@@ -66,6 +66,8 @@ namespace CallTracker.View
             _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
             if (tag == "ICONNote")
                 _Note.DataBindings[0].ReadValue();
+
+ 
         }
         //protected override CreateParams CreateParams
         //{

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallTracker", "CallTracker\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shortcut", "Shortcut\Shortcut.csproj", "{5DEADF0B-DC7B-430F-982E-647F7B05455D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexAssembly", "RegexAssembly\RegexAssembly.csproj", "{391A87E7-B716-4C1C-9FF2-FACEA8B54820}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,12 @@ Global
 		{5DEADF0B-DC7B-430F-982E-647F7B05455D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DEADF0B-DC7B-430F-982E-647F7B05455D}.Release|x86.ActiveCfg = Release|x86
 		{5DEADF0B-DC7B-430F-982E-647F7B05455D}.Release|x86.Build.0 = Release|x86
+		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.Release|Any CPU.Build.0 = Release|Any CPU
+		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
