@@ -10,6 +10,8 @@ using System.Reflection;
 
 using ProtoBuf;
 using System.Text.RegularExpressions;
+using Utilities.RegularExpressions;
+
 
 namespace CallTracker.Model
 {
@@ -18,18 +20,20 @@ namespace CallTracker.Model
     public class ContactAddress
     {
         [ProtoMember(1)]
-        public string Unit { get; set; }
+        public string PropertyType { get; set; }
         [ProtoMember(2)]
-        public string Number { get; set; }
+        public string UnitNumber { get; set; }
         [ProtoMember(3)]
-        public string Street { get; set; }
+        public string PropertyNumber { get; set; }
         [ProtoMember(4)]
-        public string Type { get; set; }
+        public string StreetName { get; set; }
         [ProtoMember(5)]
-        public string Suburb { get; set; }
+        public string StreetType { get; set; }
         [ProtoMember(6)]
-        public string State { get; set; }
+        public string Suburb { get; set; }
         [ProtoMember(7)]
+        public string State { get; set; }
+        [ProtoMember(8)]
         public string Postcode { get; set; }
 
         protected Dictionary<Func<string>, string> AddressFields;
@@ -38,10 +42,11 @@ namespace CallTracker.Model
         {
             AddressFields = new Dictionary<Func<string>, string>
             {
-                {() => Unit, "/"},
-                {() => Number, " "},
-                {() => Street, " "},
-                {() => Type, " "},
+                {() => PropertyType, ""},
+                {() => UnitNumber, "/"},
+                {() => PropertyNumber, " "},
+                {() => StreetName, " "},
+                {() => StreetType, " "},
                 {() => Suburb, " "},
                 {() => State, " "},
                 {() => Postcode, ""}
@@ -51,62 +56,25 @@ namespace CallTracker.Model
         private string address;
         public string Address
         {
-            get
-            {
-                return address;
-                //StringBuilder _address = new StringBuilder();
-
-                //foreach (var field in AddressFields)
-                //{
-                //    string key = field.Key.Invoke();
-                //    if (!String.IsNullOrEmpty(key))
-                //        _address.Append(key + field.Value);
-                //}
-
-                //return _address.ToString();
-            }
+            get { return address; }
             set 
             {
+                AddressPattern rgxAddress = new AddressPattern();
+                Match AddressMatch = rgxAddress.Match(value);
+                if (AddressMatch.Success == false)
+                    return;
+                PropertyType = AddressMatch.Groups[0].Value;
+                UnitNumber = AddressMatch.Groups[1].Value;
+                PropertyNumber = AddressMatch.Groups[2].Value;
+                StreetName = AddressMatch.Groups[3].Value;
+                StreetType = AddressMatch.Groups[4].Value;
+                Suburb = AddressMatch.Groups[5].Value;
+                State = AddressMatch.Groups[6].Value;
+                Postcode = AddressMatch.Groups[7].Value;
+
                 address = value;
-
-                //////////This will match your input more tightly and each of your groups is in its own regex group:
-
-                //////////(\w+\s\d+\s\w\s\d+)\s(\d+)\s(\w+)\s(\w*)
-                //////////or if space is OK instead of "whitespace":
-
-                //////////(\w+ \d+ \w \d+) (\d+) (\w+) (\w*)
-                //////////Group 1: BLOOKKOKATU 20 A 773
-                //////////Group 2: 00810
-                //////////Group 3: HELSINKI
-                //////////Group 4: SUOMI (optional - doesn't have to match)
-                //MatchCollection address = Regex.Matches(value, @"[Unit|Level]?([-|/]?:\d+)?\w+");
-
-                //for (var i = 0; i < address.Count; i++)
-                //{
-
-                //    if (address[i].Value == "Unit" || address[i].Value == "Level")
-                //    {
-                //        i++;
-                //        continue;
-                //    }
-                //    else if (char.IsDigit(address[i].Value, 0) && char.IsDigit(address[i + 1].Value, 0))
-                //        continue;
-
-                //    PropertyInfo prop = this.GetType().GetProperty(PropList[i]);
-                //    prop.SetValue(this, address[i].Value, null);
-
-                //}
-                //if (address != null)
-                //    if (address[0].Value == "Unit" || address[0].Value == "Level")
-                //        Number = address[0].Value;
-                //Street = address[1].Value;
-                //Type = address[2].Value;
-                //Suburb = address[3].Value;
-            }
-
-            
+            }            
         }
-       
     }
 
     public enum AddressType

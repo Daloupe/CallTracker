@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Input;
 using System.Diagnostics;
 using System.Threading;
+using System.ComponentModel;
 
 using Shortcut;
 using WatiN.Core;
@@ -44,6 +45,7 @@ namespace CallTracker.Helpers
         private static IE browser;
         private static string PreviousIEMatch;
         private static HotKeyManager HotKeyManager;
+        private static PropertyDescriptorCollection props;
 
         public Stopwatch sw = new Stopwatch();
 
@@ -70,6 +72,9 @@ namespace CallTracker.Helpers
             Settings.Instance.AttachToBrowserTimeOut = 10;
             Settings.Instance.WaitForCompleteTimeOut = 10;
             Settings.Instance.WaitUntilExistsTimeOut = 10;
+
+            props = TypeDescriptor.GetProperties(parent.SelectedContact.Service);
+
         }
 
         public void Dispose()
@@ -266,6 +271,20 @@ namespace CallTracker.Helpers
             query.Submit(browser);
         }
 
+        private AddressPattern rgxAddress = new AddressPattern();
+        private DigitPattern rgxDigit = new DigitPattern();
+        private NodePattern rgxNode = new NodePattern();
+        private CMBSPattern rgxCMBS = new CMBSPattern();
+        private ICONPattern rgxICON = new ICONPattern();
+        private DNPattern rgxDN = new DNPattern();
+        private MobilePattern rgxMobile = new MobilePattern();
+        private AlphaPattern rgxAlpha = new AlphaPattern();
+        private NamePattern rgxName = new NamePattern();
+        private UsernameLowerPattern rgxUNLower = new UsernameLowerPattern();
+        private UsernameUpperPattern rgxUNUpper = new UsernameUpperPattern();
+        private CommonNBNPattern rgxNBN = new CommonNBNPattern();
+        private BRASPattern rgxBras = new BRASPattern();
+
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
         private void OnSmartCopy(HotkeyPressedEventArgs e)
         {
@@ -276,56 +295,97 @@ namespace CallTracker.Helpers
             string firstchar = text.Substring(0, 1);
 
             //check if each if needs returns.
+            //parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
             
-            if (Char.IsLetter(text, 0))
+            if(new DigitPattern().IsMatch(text))
             {
-                if (new BRASPattern().IsMatch(text))
+                if (firstchar == "1" && textlen == 8)                  parent.SelectedContact.Fault.PR = text;
+                else if ((firstchar == "0" && textlen == 10) 
+                     || (text.Substring(0, 2) == "61" && textlen == 11))
                 {
-                    PropertyInfo prop = parent.SelectedContact.Service.GetType().GetProperty("Bras");
-                    prop.SetValue(parent.SelectedContact.Service, text, null);
+                    if (new MobilePattern().IsMatch(text))             parent.SelectedContact.Mobile = text;
+                    else if (new DNPattern().IsMatch(text))            parent.SelectedContact.DN = text;
                 }
-                else if (new CommonNBNPattern().IsMatch(text))
-                {
-                    string firstThree = text.Substring(0, 3);
-                    PropertyInfo prop = parent.SelectedContact.Service.GetType().GetProperty(firstThree);
-                    prop.SetValue(parent.SelectedContact.Service, text, null); 
-                }
-                else if (new NamePattern().IsMatch(text))
-                    parent.SelectedContact.Name = text;
-                else if (new UsernameLowerPattern().IsMatch(text) ||
-                         new UsernameUpperPattern().IsMatch(text))
-                    parent.SelectedContact.Username = text;
-                else if (new AddressPattern().Matches(text).Count > 3)
-                    parent.SelectedContact.Address.Address = text;
+                else if (new CMBSPattern().IsMatch(text))              parent.SelectedContact.CMBS = text;
+                else if (new ICONPattern().IsMatch(text))              parent.SelectedContact.ICON = text;
+                else                                                   parent.SelectedContact.Note += text;
             }
-
-            else if ((firstchar == "0" && textlen == 10) || (text.Substring(0, 2) == "61" && textlen == 11))
+            else if (new AlphaPattern().IsMatch(text))
             {
-                if (new MobilePattern().IsMatch(text))
-                    parent.SelectedContact.Mobile = text;
-                else if (new DNPattern().IsMatch(text))
-                    parent.SelectedContact.DN = text;
+                if (new NamePattern().IsMatch(text))                   parent.SelectedContact.Name = text;
+                else if (new UsernameLowerPattern().IsMatch(text) 
+                      || new UsernameUpperPattern().IsMatch(text))     parent.SelectedContact.Username = text;
+                else                                                   parent.SelectedContact.Note += text;
             }
-
-            else if (firstchar == "2" || firstchar == "3" || firstchar == "4")
-            {
-                if (new NodePattern().IsMatch(text))
-                    parent.SelectedContact.Service.Node = text;
-                else if (new CMBSPattern().IsMatch(text))
-                    parent.SelectedContact.CMBS = text;
-            }
-
-            else if (firstchar == "1" && textlen == 8)
-                parent.SelectedContact.Fault.PR = text;
-
-            else if (new ICONPattern().IsMatch(text))
-                parent.SelectedContact.ICON = text;
-
-            else if (new AddressPattern().Matches(text).Count > 3)
-                parent.SelectedContact.Address.Address = text;//[Unit|Level]?([-|/]?:\d+)?\w+
-         
             else
-                parent.SelectedContact.Note += text;
+            {
+                if (Char.IsLetter(text, 0))
+                {
+                    if (new BRASPattern().IsMatch(text))               parent.SelectedContact.Service.Bras = text;
+                    else if (new CommonNBNPattern().IsMatch(text))     parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
+                    else if (new UsernameLowerPattern().IsMatch(text) 
+                        ||   new UsernameUpperPattern().IsMatch(text)) parent.SelectedContact.Username = text;
+                    else if (new AddressPattern().IsMatch(text))
+                    {
+                        parent.SelectedContact.Address.Address = text;
+                    }
+                }
+                else
+                {
+                    if (new NodePattern().IsMatch(text))               parent.SelectedContact.Service.Node = text;
+                    else if (new CMBSPattern().IsMatch(text))          parent.SelectedContact.CMBS = text;
+                    else if (new AddressPattern().IsMatch(text))
+                    {
+                        parent.SelectedContact.Address.Address = text;
+                    }
+                    else                                               parent.SelectedContact.Note += text;
+                }      
+            }
+
+
+
+            //if (Char.IsLetter(text, 0))
+            //{
+            //    if (new BRASPattern().IsMatch(text))
+            //        parent.SelectedContact.Service.Bras = text;
+            //    else if (new CommonNBNPattern().IsMatch(text))
+            //        parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
+            //    else if (new NamePattern().IsMatch(text))
+            //        parent.SelectedContact.Name = text;
+            //    else if (new UsernameLowerPattern().IsMatch(text) ||
+            //             new UsernameUpperPattern().IsMatch(text))
+            //        parent.SelectedContact.Username = text;
+            //    else if (new AddressPattern().Matches(text).Count > 3)
+            //        parent.SelectedContact.Address.Address = text;
+            //}
+
+            //else if ((firstchar == "0" && textlen == 10) || (text.Substring(0, 2) == "61" && textlen == 11))
+            //{
+            //    if (new MobilePattern().IsMatch(text))
+            //        parent.SelectedContact.Mobile = text;
+            //    else if (new DNPattern().IsMatch(text))
+            //        parent.SelectedContact.DN = text;
+            //}
+
+            //else if (firstchar == "2" || firstchar == "3" || firstchar == "4")
+            //{
+            //    if (new NodePattern().IsMatch(text))
+            //        parent.SelectedContact.Service.Node = text;
+            //    else if (new CMBSPattern().IsMatch(text))
+            //        parent.SelectedContact.CMBS = text;
+            //}
+
+            //else if (firstchar == "1" && textlen == 8)
+            //    parent.SelectedContact.Fault.PR = text;
+
+            //else if (new ICONPattern().IsMatch(text))
+            //    parent.SelectedContact.ICON = text;
+
+            //else if (new AddressPattern().Matches(text).Count > 3)
+            //    parent.SelectedContact.Address.Address = text;//[Unit|Level]?([-|/]?:\d+)?\w+
+
+            //else
+            //    parent.SelectedContact.Note += text;
         }
 
         // Browser Methods ///////////////////////////////////////////////////////////////////////////////////////

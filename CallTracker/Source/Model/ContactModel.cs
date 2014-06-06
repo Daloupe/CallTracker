@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Reflection;
 
 using PropertyChanged;
 using ProtoBuf;
@@ -122,6 +123,48 @@ namespace CallTracker.Model
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
+        }
+
+        public object GetProperty(string property)
+        {
+            if (String.IsNullOrEmpty(property)) return null;
+
+            Type currentType = this.GetType();
+            object value = this;
+
+            foreach (string propertyName in property.Split('.'))
+            {
+                PropertyInfo prop = currentType.GetProperty(propertyName);
+                if (prop != null)
+                {
+                    value = prop.GetValue(value, null);
+                    currentType = prop.PropertyType;
+                }
+            }
+            return value;
+        }
+
+        public void SetProperty(string property, string value)
+        {
+            if (String.IsNullOrEmpty(property)) return;
+
+            Type currentType = this.GetType();
+            PropertyInfo currentObject = null;
+            object nestedObject = this;
+
+            string[] propSplit = property.Split('.');
+
+            for(int i = 0; i < propSplit.Length; i++)
+            {
+                currentObject = currentType.GetProperty(propSplit[i]);
+                if (currentObject != null)
+                    currentType = currentObject.PropertyType;
+                if(i < propSplit.Length - 1)
+                    nestedObject = currentObject.GetValue(nestedObject, null);
+            }
+
+            if (currentObject != null)
+                currentObject.SetValue(nestedObject, value, null);
         }
     }
     //[ImplementPropertyChanged]

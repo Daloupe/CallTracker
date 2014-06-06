@@ -7,6 +7,8 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 using System.ComponentModel;
 
+using System.Diagnostics;
+
 using ProtoBuf;
 using PropertyChanged;
 
@@ -64,6 +66,52 @@ namespace CallTracker.View
 
             editContact.BringToFront();
             editContact.Visible = true;
+
+
+            
+
+            ////PropertyDescriptor property = TypeDescriptor.GetProperties(SelectedContact)["Name"];
+            ////object value = "";
+
+            ////            // SetValue
+            ////Stopwatch setValue = new Stopwatch();
+            ////    setValue.Start();
+            ////        property.SetValue(SelectedContact, "Jesse");
+             
+            ////    setValue.Stop();
+            ////Console.WriteLine(setValue.Elapsed);
+            
+
+            ////// GetValue
+            ////Stopwatch getValue = new Stopwatch();
+            ////getValue.Start();
+            ////value = property.GetValue(SelectedContact);
+            ////getValue.Stop();
+            ////Console.WriteLine(value.ToString());
+            ////Console.WriteLine(getValue.Elapsed);
+
+
+            //HyperTypeDescriptionProvider.Add(typeof(CustomerContact));
+
+            //PropertyDescriptor property = TypeDescriptor.GetProperties(SelectedContact)["Name"];
+            //object value = "";
+
+            //// SetValue
+            //Stopwatch setValue = new Stopwatch();
+            //setValue.Start();
+            //property.SetValue(SelectedContact, "Jesse");
+
+            //setValue.Stop();
+            //Console.WriteLine(setValue.Elapsed);
+
+
+            //// GetValue
+            //StopwatchgetValue = new Stopwatch();
+            //getValue.Start();
+            //value = property.GetValue(SelectedContact);
+            //getValue.Stop();
+            //Console.WriteLine(value.ToString());
+            //Console.WriteLine(getValue.Elapsed);
         }
 
         private void SetAppLocation()

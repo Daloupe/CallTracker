@@ -24,6 +24,18 @@ namespace CallTracker.Model
             Node = String.Empty;
         }
 
+        public object GetValue(string property)
+        {
+            PropertyInfo prop = this.GetType().GetProperty(property);
+            return prop.GetValue(this, null);
+        }
+
+        public void SetValue(string property, string value)
+        {
+            PropertyInfo prop = this.GetType().GetProperty(property);
+            prop.SetValue(this, value, null);
+        }
+
         [ProtoMember(1)]
         public string Equipment { get; set; }
         [ProtoMember(2)]

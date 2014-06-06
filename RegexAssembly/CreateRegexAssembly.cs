@@ -7,31 +7,51 @@ namespace RegexAssembly
 {
     public class CreateRegexAssembly
     {
-        public static readonly AssemblyName ASSEMBLYNAME = new AssemblyName("RegexLib, Version=1.0.0.1001, Culture=neutral, PublicKeyToken=null");
-        public const string NAMESUFFIX = "Pattern";
-        public const string NAMESPACE = "Utilities.RegularExpressions";
+        private static readonly AssemblyName ASSEMBLYNAME = new AssemblyName("RegexLib, Version=1.0.0.1001, Culture=neutral, PublicKeyToken=null");
+        private static readonly string NAMESUFFIX = "Pattern";
+        private static readonly string NAMESPACE = "Utilities.RegularExpressions";
 
         public static void Main()
         {
             List<MyRegex> RegexList = new List<MyRegex>
             {
-                new MyRegex("Name", @"(\b[A-Z][a-z]+(-|\s)?){2,}", RegexOptions.IgnoreCase),
-                new MyRegex("UsernameLower", @"\A[a-z]+[a-z0-9._]*[a-z0-9]+(@optusnet.com.au)?\Z"),
-                new MyRegex("UsernameUpper", @"\A[A-Z]+[A-Z0-9._]*[A-Z0-9]+(@optusnet.com.au)?\Z"),
-                new MyRegex("Address", @"\w+", RegexOptions.IgnoreCase),
-                new MyRegex("BRAS", @"\A[a-z]{3}\d{3}\.[a-z]{2}\Z"),
-                new MyRegex("CommonNBN", @"\A[AVCSNIG]{3}\d{12}\Z"),
-                new MyRegex("Mobile", @"^(0|61)4\d{8}$"),
-                new MyRegex("DN", @"^(0|61)[2378]\d{8}$"),
-                new MyRegex("Node", @"^\d\d(?i)[A-Z]{2}_?\d\d\d\z"),
-                new MyRegex("CMBS", @"\A3[1-3]-??\d{5}(-|0|\s)\d\z"),
-                new MyRegex("ICON", @"\A(1|5|8|9)\d{13}\z")
+                new MyRegex("Alpha",    @"^[a-z\-\s]+$", RegexOptions.IgnoreCase),
+                new MyRegex("AlphaNum", @"^[a-z0-9\-\s]+$", RegexOptions.IgnoreCase),
+                new MyRegex("Digit",    @"^[0-9\-\s]+$"),
+                new MyRegex("UsernameLower", @"^[a-z]+[a-z0-9._]*[a-z0-9]+(@optusnet.com.au)?$"),
+                new MyRegex("UsernameUpper", @"^[A-Z]+[A-Z0-9._]*[A-Z0-9]+(@optusnet.com.au)?$"),
+                new MyRegex("BRAS",     @"^[a-z]{3}\d{3}\.[a-z]{2}$"),
+                new MyRegex("CommonNBN",@"^([AVCSNIG]{3})" +    // Data Type
+                                        @"(\d{12})$"),          // Id
+                new MyRegex("Mobile",   @"^(0|61)"+             // Prefix
+                                        @"(4\d{8})$"),          // Number
+                new MyRegex("DN",       @"^(0|61)" +            // Prefix
+                                        @"([2378]\d{8})$"),     // Number
+                new MyRegex("Node",     @"^(\d{2})([a-z]{2})_?(\d{3})$", RegexOptions.IgnoreCase),
+                new MyRegex("CMBS",     @"^(3[1-3])" +          // State
+                                        @"-?" +                 // Divider
+                                        @"(\d{6})" +            // Account
+                                        @"(?:(-|0|\s))?"+       // Divider
+                                        @"(\d)$"),              // Flip
+                new MyRegex("ICON",     @"^(1|5|8|9)\d{13}$"),
+                new MyRegex("Name",     @"^(?:([a-z]+\.)\s)?" + // Title (Followed by a ".")
+                                        @"([a-z]+)" +           // First Name
+                                        @"(?:\s?(\-?[a-z]+))*"  // Surnames
+                                        , RegexOptions.IgnoreCase),
+                new MyRegex("Address",  @"(?:(Unit|Lot|Level|Floor)\s(\d+)(?:\/|\\)?\s)?" + // Unit Number
+                                        @"(\d+)" +              // Property Number
+                                        @"\s([a-z]+)" +         // Street Name
+                                        @"\s([a-z]+)\.?" +      // Street Type
+                                        @"\s([a-z]+),?" +       // Suburb
+                                        @"\s?([a-z]+)?,?" +     // State (Optional)
+                                        @"\s?(\d{4})?"          // Postcode (Optional)
+                                        , RegexOptions.IgnoreCase),
             };
 
             Regex.CompileToAssembly(CreateCompilationInfo(RegexList), ASSEMBLYNAME);
         }
 
-        public static RegexCompilationInfo[] CreateCompilationInfo(List<MyRegex> regexList)
+        private static RegexCompilationInfo[] CreateCompilationInfo(List<MyRegex> regexList)
         {
             RegexCompilationInfo[] regexes = new RegexCompilationInfo[regexList.Count];
 
