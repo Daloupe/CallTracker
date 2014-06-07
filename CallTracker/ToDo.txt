@@ -1,5 +1,8 @@
 To Do:
 
+ - Gridlinks edit panes.
+ - "Advanced" Field on smart paste Bind window takes string of path to property.
+
 Swappable Note Screen
  - Right Click on Note to switch it to ICON note display.
 
@@ -111,20 +114,6 @@ BindSmartPaste GUI
  | Name prefills with Element name.
 
 
-
-
-
-
-
- 00:00:00.0000132
-mas123.ba
-00:00:00.0000317
-mas123.ba
-00:00:00.0000128
-mas123.ba
-00:00:00.0000321
-mas123.ba
-00:00:00.0000132
 
 
 
