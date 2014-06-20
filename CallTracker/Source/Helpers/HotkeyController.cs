@@ -96,7 +96,7 @@ namespace CallTracker.Helpers
             {Keys.NumPad5, "5"},
             {Keys.NumPad6, "6"},
             {Keys.NumPad7, "7"},
-            {Keys.Q, "8"},
+            {Keys.NumPad8, "8"},
             {Keys.NumPad9, "9"}
         };
 
@@ -156,6 +156,8 @@ namespace CallTracker.Helpers
         {
             if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
                 return;
+            //if (!FindIEByHWND(WindowHelper.GetActiveWindowHWND()))
+            //    return;
 
             string url = browser.Url;
             string title = browser.Title;
@@ -180,6 +182,8 @@ namespace CallTracker.Helpers
         {
             if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
                 return;
+            //if (!FindIEByHWND(WindowHelper.GetActiveWindowHWND()))
+            //    return;
 
             string url = browser.Url;
             string title = browser.Title;
@@ -271,19 +275,19 @@ namespace CallTracker.Helpers
             query.Submit(browser);
         }
 
-        private AddressPattern rgxAddress = new AddressPattern();
-        private DigitPattern rgxDigit = new DigitPattern();
-        private NodePattern rgxNode = new NodePattern();
-        private CMBSPattern rgxCMBS = new CMBSPattern();
-        private ICONPattern rgxICON = new ICONPattern();
-        private DNPattern rgxDN = new DNPattern();
-        private MobilePattern rgxMobile = new MobilePattern();
-        private AlphaPattern rgxAlpha = new AlphaPattern();
-        private NamePattern rgxName = new NamePattern();
-        private UsernameLowerPattern rgxUNLower = new UsernameLowerPattern();
-        private UsernameUpperPattern rgxUNUpper = new UsernameUpperPattern();
-        private CommonNBNPattern rgxNBN = new CommonNBNPattern();
-        private BRASPattern rgxBras = new BRASPattern();
+        //private AddressPattern rgxAddress = new AddressPattern();
+        //private DigitPattern rgxDigit = new DigitPattern();
+        //private NodePattern rgxNode = new NodePattern();
+        //private CMBSPattern rgxCMBS = new CMBSPattern();
+        //private ICONPattern rgxICON = new ICONPattern();
+        //private DNPattern rgxDN = new DNPattern();
+        //private MobilePattern rgxMobile = new MobilePattern();
+        //private AlphaPattern rgxAlpha = new AlphaPattern();
+        //private NamePattern rgxName = new NamePattern();
+        //private UsernameLowerPattern rgxUNLower = new UsernameLowerPattern();
+        //private UsernameUpperPattern rgxUNUpper = new UsernameUpperPattern();
+        //private CommonNBNPattern rgxNBN = new CommonNBNPattern();
+        //private BRASPattern rgxBras = new BRASPattern();
 
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
         private void OnSmartCopy(HotkeyPressedEventArgs e)
@@ -325,19 +329,13 @@ namespace CallTracker.Helpers
                     else if (new CommonNBNPattern().IsMatch(text))     parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
                     else if (new UsernameLowerPattern().IsMatch(text) 
                         ||   new UsernameUpperPattern().IsMatch(text)) parent.SelectedContact.Username = text;
-                    else if (new AddressPattern().IsMatch(text))
-                    {
-                        parent.SelectedContact.Address.Address = text;
-                    }
+                    else if (new AddressPattern().IsMatch(text))       parent.SelectedContact.Address.Address = text;
                 }
                 else
                 {
                     if (new NodePattern().IsMatch(text))               parent.SelectedContact.Service.Node = text;
                     else if (new CMBSPattern().IsMatch(text))          parent.SelectedContact.CMBS = text;
-                    else if (new AddressPattern().IsMatch(text))
-                    {
-                        parent.SelectedContact.Address.Address = text;
-                    }
+                    else if (new AddressPattern().IsMatch(text))       parent.SelectedContact.Address.Address = text;
                     else                                               parent.SelectedContact.Note += text;
                 }      
             }

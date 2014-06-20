@@ -3,14 +3,10 @@ To Do:
  - Gridlinks edit panes.
  - "Advanced" Field on smart paste Bind window takes string of path to property.
 
-Swappable Note Screen
- - Right Click on Note to switch it to ICON note display.
-
 Main GUI
  | Have Settings windows show in main gui, rather than their own popup.
  - Add status bar to display warnings.
  - Start inputting system variables.
- - Right Click menu on Note to switch between On-Call Notes, and ICON Note.
  - Key Command Help extends window height.
 
 Contact GUI
@@ -45,6 +41,9 @@ Silent Search
 
 Event Tracking
  - Timestamp each interaction with CT, so as to get an idea of the order in which systems are accessed.
+
+Swappable Note Screen
+ | Right Click on Note to switch it to ICON note display.
 
 Contact Statistics
  | Timestamp each contact.
@@ -112,6 +111,15 @@ BindSmartPaste GUI
  | System AutoCompletes based on other SmartPaste systems.
  | System prefills if other SmartPasteBinds share a URL/Title.
  | Name prefills with Element name.
+
+
+
+
+
+
+
+
+
 
 
 

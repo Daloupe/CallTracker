@@ -15,19 +15,20 @@ namespace CallTracker.Helpers
             if (String.IsNullOrEmpty(_path))
                 return null;
 
-            Type currentType = _value.GetType();
+            object output = _value;
+            Type currentType = output.GetType();
 
             foreach (string propertyName in _path.Split('.'))
             {
                 PropertyInfo property = currentType.GetProperty(propertyName);
                 if (property != null)
                 {
-                    _value = property.GetValue(_value, null);
+                    output = property.GetValue(output, null);
                     currentType = property.PropertyType;
                 }
             }
 
-            return _value == null ? String.Empty : _value.ToString();
+            return output == null ? String.Empty : output.ToString();
         }
 
         public static string FollowPropertyPath(object _value, string _path, string _altPath)
@@ -35,8 +36,8 @@ namespace CallTracker.Helpers
             if (String.IsNullOrEmpty(_path))
                 return null;
 
-            Type currentType = _value.GetType();
             object output = _value;
+            Type currentType = output.GetType();  
 
             foreach (string propertyName in _path.Split('.'))
             {
@@ -51,7 +52,7 @@ namespace CallTracker.Helpers
             if (String.IsNullOrEmpty(output.ToString()) && !String.IsNullOrEmpty(_altPath))
                 output = FollowPropertyPath(_value, _altPath);
 
-            return output == null ? String.Empty : _value.ToString();
+            return output == null ? String.Empty : output.ToString();
         }
     }
 }
