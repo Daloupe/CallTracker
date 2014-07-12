@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Source\Helpers\EnumExtensions.cs" />
     <Compile Include="Source\Helpers\FindProperty.cs" />
     <Compile Include="Source\Helpers\ICONNoteGenerator.cs" />
     <Compile Include="Source\Helpers\IETabActivator.cs" />
@@ -132,6 +133,12 @@
     <Compile Include="Source\View\Panels\Product\DTVPanel.Designer.cs">
       <DependentUpon>DTVPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\View\Panels\Product\NFVPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Product\NFVPanel.Designer.cs">
+      <DependentUpon>NFVPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Panels\Settings\CallHistoryPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -177,6 +184,7 @@
     <Compile Include="Source\View\Controls\ViewControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Source\View\ServiceView.cs" />
     <EmbeddedResource Include="Source\View\Controls\DataArea.resx">
       <DependentUpon>DataArea.cs</DependentUpon>
     </EmbeddedResource>
@@ -200,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Product\DTVPanel.resx">
       <DependentUpon>DTVPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Product\NFVPanel.resx">
+      <DependentUpon>NFVPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Settings\CallHistoryPanel.resx">
       <DependentUpon>CallHistoryPanel.cs</DependentUpon>

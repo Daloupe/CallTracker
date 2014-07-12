@@ -14,7 +14,7 @@ namespace CallTracker.View
         public PanelBase()
         {
             InitializeComponent();
-            
+
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
             SetStyle(ControlStyles.UserPaint, true);

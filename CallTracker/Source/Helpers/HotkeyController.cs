@@ -64,7 +64,7 @@ namespace CallTracker.Helpers
             HotKeyManager.AddOrReplaceHotkey("AutoFill", Modifiers.Win | Modifiers.Control, Keys.V, OnAutoFill);
             HotKeyManager.AddOrReplaceHotkey("AddARO", Modifiers.Win | Modifiers.Shift, Keys.C, OnAddARO);
             foreach (var DataPasteHotkey in DataPasteHotkeys)
-                HotKeyManager.AddOrReplaceHotkey(DataPasteHotkey.Value, Modifiers.Shift | Modifiers.Control, DataPasteHotkey.Key, OnDataPaste);
+                HotKeyManager.AddOrReplaceHotkey(DataPasteHotkey.Value, Modifiers.Control | Modifiers.Shift, DataPasteHotkey.Key, OnDataPaste);
             foreach (var GridLinkHotKey in GridLinkHotkeys)
                 HotKeyManager.AddOrReplaceHotkey(GridLinkHotKey.Value, Modifiers.Win, GridLinkHotKey.Key, OnGridLinks);
 
@@ -85,13 +85,17 @@ namespace CallTracker.Helpers
             if (browser != null)
                 browser.Dispose();
         }
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
         // ARO //////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void OnAddARO(HotkeyPressedEventArgs e)
         {
             Main.ShowPopupForm<AddAROForm>();
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Grid Links ///////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         private Dictionary<Keys, string> GridLinkHotkeys = new Dictionary<Keys, string>()
         {
             {Keys.NumPad0, "0"},
@@ -133,7 +137,9 @@ namespace CallTracker.Helpers
             parent.UpdateProgressBar(0);
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Data Paste ///////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         private Dictionary<Keys, string> DataPasteHotkeys = new Dictionary<Keys, string>()
         {
             {Keys.D1, "ICON"},
@@ -153,17 +159,18 @@ namespace CallTracker.Helpers
             if (!String.IsNullOrEmpty(dataToPaste))
             {
                 Clipboard.SetText(dataToPaste);
-                SendKeys.Send("^(v)");
+                SendKeys.SendWait("+^");
+                SendKeys.SendWait("^v");              
             } 
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
         // Smart Paste ///////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
         private void OnSmartPaste(HotkeyPressedEventArgs e)
         {
-            if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
+            if (!FindBrowser())
                 return;
-            //if (!FindIEByHWND(WindowHelper.GetActiveWindowHWND()))
-            //    return;
 
             string url = browser.Url;
             string title = browser.Title;
@@ -186,15 +193,13 @@ namespace CallTracker.Helpers
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
         {
-            if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
+            if (!FindBrowser())
                 return;
-            //if (!FindIEByHWND(WindowHelper.GetActiveWindowHWND()))
-            //    return;
 
             string url = browser.Url;
             string title = browser.Title;
             string element = browser.ActiveElement.IdOrName;
-
+            
             if(String.IsNullOrEmpty(element))
             {
                 WindowHelper.SetForegroundWindow(parent.Handle);
@@ -224,10 +229,12 @@ namespace CallTracker.Helpers
             Main.ShowPopupForm<BindSmartPasteForm>().SelectQuery(ElementMatch);
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
         // AutoFill /////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void OnAutoFill(HotkeyPressedEventArgs e)
         {
-            if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
+            if (!FindBrowser())
                 return;
 
             string url = browser.Url;
@@ -246,7 +253,9 @@ namespace CallTracker.Helpers
                 bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, bind.AltData));
         }
 
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Auto Login ///////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void OnAutoLogin(HotkeyPressedEventArgs e)
         {
             parent.SetProgressBarStep(2);
@@ -257,7 +266,7 @@ namespace CallTracker.Helpers
         private void AutoLogin()
         {
             OnAction();
-            if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
+            if (!FindBrowser())
                 return;
 
             string title = browser.Title;
@@ -281,27 +290,17 @@ namespace CallTracker.Helpers
             query.Submit(browser);
         }
 
-        //private AddressPattern rgxAddress = new AddressPattern();
-        //private DigitPattern rgxDigit = new DigitPattern();
-        //private NodePattern rgxNode = new NodePattern();
-        //private CMBSPattern rgxCMBS = new CMBSPattern();
-        //private ICONPattern rgxICON = new ICONPattern();
-        //private DNPattern rgxDN = new DNPattern();
-        //private MobilePattern rgxMobile = new MobilePattern();
-        //private AlphaPattern rgxAlpha = new AlphaPattern();
-        //private NamePattern rgxName = new NamePattern();
-        //private UsernameLowerPattern rgxUNLower = new UsernameLowerPattern();
-        //private UsernameUpperPattern rgxUNUpper = new UsernameUpperPattern();
-        //private CommonNBNPattern rgxNBN = new CommonNBNPattern();
-        //private BRASPattern rgxBras = new BRASPattern();
-
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void OnSmartCopy(HotkeyPressedEventArgs e)
         {
             string oldClip = Clipboard.GetText();
             SendKeys.SendWait("^(c)");
             string text = Clipboard.GetText().Trim();
             int textlen = text.Length;
+            if (textlen == 0)
+                return;
             string firstchar = text.Substring(0, 1);
 
             //check if each if needs returns.
@@ -345,54 +344,25 @@ namespace CallTracker.Helpers
                     else                                               parent.SelectedContact.Note += text;
                 }      
             }
-
-
-
-            //if (Char.IsLetter(text, 0))
-            //{
-            //    if (new BRASPattern().IsMatch(text))
-            //        parent.SelectedContact.Service.Bras = text;
-            //    else if (new CommonNBNPattern().IsMatch(text))
-            //        parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
-            //    else if (new NamePattern().IsMatch(text))
-            //        parent.SelectedContact.Name = text;
-            //    else if (new UsernameLowerPattern().IsMatch(text) ||
-            //             new UsernameUpperPattern().IsMatch(text))
-            //        parent.SelectedContact.Username = text;
-            //    else if (new AddressPattern().Matches(text).Count > 3)
-            //        parent.SelectedContact.Address.Address = text;
-            //}
-
-            //else if ((firstchar == "0" && textlen == 10) || (text.Substring(0, 2) == "61" && textlen == 11))
-            //{
-            //    if (new MobilePattern().IsMatch(text))
-            //        parent.SelectedContact.Mobile = text;
-            //    else if (new DNPattern().IsMatch(text))
-            //        parent.SelectedContact.DN = text;
-            //}
-
-            //else if (firstchar == "2" || firstchar == "3" || firstchar == "4")
-            //{
-            //    if (new NodePattern().IsMatch(text))
-            //        parent.SelectedContact.Service.Node = text;
-            //    else if (new CMBSPattern().IsMatch(text))
-            //        parent.SelectedContact.CMBS = text;
-            //}
-
-            //else if (firstchar == "1" && textlen == 8)
-            //    parent.SelectedContact.Fault.PR = text;
-
-            //else if (new ICONPattern().IsMatch(text))
-            //    parent.SelectedContact.ICON = text;
-
-            //else if (new AddressPattern().Matches(text).Count > 3)
-            //    parent.SelectedContact.Address.Address = text;//[Unit|Level]?([-|/]?:\d+)?\w+
-
-            //else
-            //    parent.SelectedContact.Note += text;
         }
 
-        // Browser Methods ///////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Browser Methods //////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        private bool FindBrowser()
+        {
+            if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
+            {
+                MessageBox.Show("Unable to find page by title");
+                if (!FindIEByHWND(WindowHelper.GetActiveWindowHWND()))
+                {
+                    MessageBox.Show("Unable to find page by HWND");
+                    return false;
+                }
+            }
+            return true;
+        }
+        
         private bool FindIEByHWND(IntPtr _HWND)
         {
             string currentHWND = _HWND.ToString();
@@ -414,7 +384,11 @@ namespace CallTracker.Helpers
 
         private bool FindIEByTitle(string _title)
         {
-            string currentTitle = Regex.Split(_title, " -( Windows)? Internet Explorer")[0];
+            //string currentTitle = Regex.Split(_title, " -( Windows)? Internet Explorer")[0];
+            //string currentTitle = Regex.Match(_title, @"(?:[/:\w\.\s]+ - )?([/:\w\.\s]+)(?: - [/:\w\.\s]+)?").Groups[1].Value;
+
+            string currentTitle = Regex.Match(_title, @"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?").Groups[1].Value;
+
 
             if (!Browser.Exists<IE>(Find.ByTitle(currentTitle)))
                 return false;

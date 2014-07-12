@@ -9,26 +9,16 @@ using System.Windows.Forms;
 
 namespace CallTracker.View
 {
-    public partial class LATPanel : PanelBase
+    public partial class NFVPanel : PanelBase
     {
-        public LATPanel()
+        public NFVPanel()
         {
             InitializeComponent();
-
-            //Symptoms = new List<string>
-            //{
-            //    "NDT",
-            //    "COS",
-            //    "NRR",
-            //    "DTN",
-            //    "DRP"
-            //};
         }
 
         public override void SetDataSource(object _source)
         {
             serviceModelBindingSource.DataSource = _source;
         }
-
     }
 }

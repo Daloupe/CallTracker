@@ -18,8 +18,8 @@ namespace RegexAssembly
                 new MyRegex("Alpha",    @"^[a-z\-\s]+$", RegexOptions.IgnoreCase),
                 new MyRegex("AlphaNum", @"^[a-z0-9\-\s]+$", RegexOptions.IgnoreCase),
                 new MyRegex("Digit",    @"^[0-9\-\s]+$"),
-                new MyRegex("UsernameLower", @"^[a-z]+[a-z0-9._]*[a-z0-9]+(@optusnet.com.au)?$"),
-                new MyRegex("UsernameUpper", @"^[A-Z]+[A-Z0-9._]*[A-Z0-9]+(@optusnet.com.au)?$"),
+                new MyRegex("UsernameLower", @"^[a-z]+[a-z0-9._]*[a-z0-9]+(?:@optusnet.com.au)?$"),
+                new MyRegex("UsernameUpper", @"^[A-Z]+[A-Z0-9._]*[A-Z0-9]+(?:@optusnet.com.au)?$"),
                 new MyRegex("BRAS",     @"^[a-z]{3}\d{3}\.[a-z]{2}$"),
                 new MyRegex("CommonNBN",@"^([AVCSNIG]{3})" +                // Data Type
                                         @"(\d{12})$"),                      // Id
@@ -31,7 +31,7 @@ namespace RegexAssembly
                 new MyRegex("CMBS",     @"^(3[1-3])" +                      // State
                                         @"-?" +                             // Divider
                                         @"(\d{6})" +                        // Account
-                                        @"(?:(-|0|\s))?"+                   // Divider
+                                        @"(?:-|0|\s)?"+                   // Divider
                                         @"(\d)$"),                          // Flip
                 new MyRegex("ICON",     @"^(1|5|8|9)\d{13}$"),
                 new MyRegex("Name",     @"^(?:([a-z]+\.)\s)?" +             // Title (Followed by a ".")

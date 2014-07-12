@@ -1,6 +1,6 @@
 ﻿namespace CallTracker.View
 {
-    partial class NBFPanel
+    partial class NFVPanel
     {
         /// <summary> 
         /// Required designer variable.
@@ -160,7 +160,7 @@
             // panelHeading1
             // 
             this.panelHeading1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.panelHeading1.LabelText = "//NBN Internet";
+            this.panelHeading1.LabelText = "//NBN Voice";
             this.panelHeading1.Location = new System.Drawing.Point(0, 0);
             this.panelHeading1.Margin = new System.Windows.Forms.Padding(0);
             this.panelHeading1.Name = "panelHeading1";
@@ -168,7 +168,7 @@
             this.panelHeading1.Size = new System.Drawing.Size(180, 17);
             this.panelHeading1.TabIndex = 47;
             // 
-            // NBFPanel
+            // NFVPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -181,7 +181,7 @@
             this.Controls.Add(this.dataField3);
             this.Controls.Add(this.dataField2);
             this.Controls.Add(this.dataField1);
-            this.Name = "NBFPanel";
+            this.Name = "NFVPanel";
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 

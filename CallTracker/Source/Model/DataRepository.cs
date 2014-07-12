@@ -80,7 +80,7 @@ namespace CallTracker.Model
         public static void SaveFile(DataRepository _dataStore)
         {
             DataRepository dataStore = _dataStore;
-
+            
             EncryptData(dataStore);
             using (var file = File.Create("Data.bin"))
                 Serializer.Serialize<DataRepository>(file, dataStore);

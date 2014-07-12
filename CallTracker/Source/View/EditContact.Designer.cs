@@ -47,6 +47,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
+            this._ServiceMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this._ServiceMenuLAT = new System.Windows.Forms.ToolStripMenuItem();
+            this._ServiceMenuLIP = new System.Windows.Forms.ToolStripMenuItem();
+            this._ServiceMenuONC = new System.Windows.Forms.ToolStripMenuItem();
+            this._ServiceMenuNFV = new System.Windows.Forms.ToolStripMenuItem();
+            this._ServiceMenuNBF = new System.Windows.Forms.ToolStripMenuItem();
+            this._ServiceMenuDTV = new System.Windows.Forms.ToolStripMenuItem();
+            this._ServiceMenuMTV = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
@@ -69,7 +77,7 @@
             this._LAT = new System.Windows.Forms.CheckBox();
             this._LIP = new System.Windows.Forms.CheckBox();
             this._ONC = new System.Windows.Forms.CheckBox();
-            this._NVF = new System.Windows.Forms.CheckBox();
+            this._NFV = new System.Windows.Forms.CheckBox();
             this._NBF = new System.Windows.Forms.CheckBox();
             this._DTV = new System.Windows.Forms.CheckBox();
             this._MTV = new System.Windows.Forms.CheckBox();
@@ -86,7 +94,6 @@
             this._Address = new CallTracker.View.BorderedTextBox();
             this._PR = new CallTracker.View.BorderedTextBox();
             this._NPR = new CallTracker.View.BorderedTextBox();
-            this.faultModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -94,6 +101,7 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.HfcPanel.SuspendLayout();
+            this._ServiceMenu.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
@@ -102,7 +110,6 @@
             this.flowLayoutPanel4.SuspendLayout();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // FaultPanel
@@ -132,7 +139,7 @@
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer1.Panel2MinSize = 0;
             this.splitContainer1.Size = new System.Drawing.Size(275, 330);
-            this.splitContainer1.SplitterDistance = 120;
+            this.splitContainer1.SplitterDistance = 181;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 24;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -155,10 +162,11 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.Ivory;
+            this.splitContainer2.Panel2.ContextMenuStrip = this._ServiceMenu;
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(120, 330);
+            this.splitContainer2.Size = new System.Drawing.Size(181, 330);
             this.splitContainer2.SplitterDistance = 134;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 0;
@@ -188,7 +196,7 @@
             this.HfcPanel.Location = new System.Drawing.Point(0, -78);
             this.HfcPanel.Margin = new System.Windows.Forms.Padding(0);
             this.HfcPanel.Name = "HfcPanel";
-            this.HfcPanel.Size = new System.Drawing.Size(120, 212);
+            this.HfcPanel.Size = new System.Drawing.Size(181, 212);
             this.HfcPanel.TabIndex = 22;
             // 
             // label7
@@ -341,6 +349,69 @@
             this.label6.TabIndex = 4;
             this.label6.Text = "Customer PR:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // _ServiceMenu
+            // 
+            this._ServiceMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._ServiceMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._ServiceMenuLAT,
+            this._ServiceMenuLIP,
+            this._ServiceMenuONC,
+            this._ServiceMenuNFV,
+            this._ServiceMenuNBF,
+            this._ServiceMenuDTV,
+            this._ServiceMenuMTV});
+            this._ServiceMenu.Name = "contextMenuStrip1";
+            this._ServiceMenu.Size = new System.Drawing.Size(95, 158);
+            // 
+            // _ServiceMenuLAT
+            // 
+            this._ServiceMenuLAT.Name = "_ServiceMenuLAT";
+            this._ServiceMenuLAT.Size = new System.Drawing.Size(94, 22);
+            this._ServiceMenuLAT.Text = "LAT";
+            this._ServiceMenuLAT.Click += new System.EventHandler(this._ServiceMenu_Click);
+            // 
+            // _ServiceMenuLIP
+            // 
+            this._ServiceMenuLIP.Name = "_ServiceMenuLIP";
+            this._ServiceMenuLIP.Size = new System.Drawing.Size(94, 22);
+            this._ServiceMenuLIP.Text = "LIP";
+            this._ServiceMenuLIP.Click += new System.EventHandler(this._ServiceMenu_Click);
+            // 
+            // _ServiceMenuONC
+            // 
+            this._ServiceMenuONC.Name = "_ServiceMenuONC";
+            this._ServiceMenuONC.Size = new System.Drawing.Size(94, 22);
+            this._ServiceMenuONC.Text = "ONC";
+            this._ServiceMenuONC.Click += new System.EventHandler(this._ServiceMenu_Click);
+            // 
+            // _ServiceMenuNFV
+            // 
+            this._ServiceMenuNFV.Name = "_ServiceMenuNFV";
+            this._ServiceMenuNFV.Size = new System.Drawing.Size(94, 22);
+            this._ServiceMenuNFV.Text = "NFV";
+            this._ServiceMenuNFV.Click += new System.EventHandler(this._ServiceMenu_Click);
+            // 
+            // _ServiceMenuNBF
+            // 
+            this._ServiceMenuNBF.Name = "_ServiceMenuNBF";
+            this._ServiceMenuNBF.Size = new System.Drawing.Size(94, 22);
+            this._ServiceMenuNBF.Text = "NBF";
+            this._ServiceMenuNBF.Click += new System.EventHandler(this._ServiceMenu_Click);
+            // 
+            // _ServiceMenuDTV
+            // 
+            this._ServiceMenuDTV.Name = "_ServiceMenuDTV";
+            this._ServiceMenuDTV.Size = new System.Drawing.Size(94, 22);
+            this._ServiceMenuDTV.Text = "DTV";
+            this._ServiceMenuDTV.Click += new System.EventHandler(this._ServiceMenu_Click);
+            // 
+            // _ServiceMenuMTV
+            // 
+            this._ServiceMenuMTV.Name = "_ServiceMenuMTV";
+            this._ServiceMenuMTV.Size = new System.Drawing.Size(94, 22);
+            this._ServiceMenuMTV.Text = "MTV";
+            this._ServiceMenuMTV.Click += new System.EventHandler(this._ServiceMenu_Click);
             // 
             // flowLayoutPanel2
             // 
@@ -568,10 +639,10 @@
             this.ServiceTypePanel.Controls.Add(this._LAT);
             this.ServiceTypePanel.Controls.Add(this._LIP);
             this.ServiceTypePanel.Controls.Add(this._ONC);
-            this.ServiceTypePanel.Controls.Add(this._NVF);
-            this.ServiceTypePanel.Controls.Add(this._NBF);
             this.ServiceTypePanel.Controls.Add(this._DTV);
             this.ServiceTypePanel.Controls.Add(this._MTV);
+            this.ServiceTypePanel.Controls.Add(this._NFV);
+            this.ServiceTypePanel.Controls.Add(this._NBF);
             this.ServiceTypePanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.ServiceTypePanel.Location = new System.Drawing.Point(334, 0);
             this.ServiceTypePanel.Margin = new System.Windows.Forms.Padding(0);
@@ -583,7 +654,7 @@
             // 
             // _LAT
             // 
-            this._LAT.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.LAT", true));
+            this._LAT.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.LAT", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._LAT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._LAT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._LAT.Location = new System.Drawing.Point(5, 8);
@@ -595,10 +666,12 @@
             this._LAT.Text = "LAT";
             this._LAT.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._LAT.UseVisualStyleBackColor = true;
+            this._LAT.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this._LAT.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // _LIP
             // 
-            this._LIP.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.LIP", true));
+            this._LIP.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.LIP", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._LIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._LIP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._LIP.Location = new System.Drawing.Point(5, 38);
@@ -610,10 +683,12 @@
             this._LIP.Text = "LIP";
             this._LIP.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._LIP.UseVisualStyleBackColor = true;
+            this._LIP.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this._LIP.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // _ONC
             // 
-            this._ONC.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.ONC", true));
+            this._ONC.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.ONC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ONC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._ONC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._ONC.Location = new System.Drawing.Point(5, 68);
@@ -625,28 +700,32 @@
             this._ONC.Text = "ONC";
             this._ONC.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._ONC.UseVisualStyleBackColor = true;
+            this._ONC.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this._ONC.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
-            // _NVF
+            // _NFV
             // 
-            this._NVF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.NVF", true));
-            this._NVF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._NVF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._NVF.Location = new System.Drawing.Point(5, 98);
-            this._NVF.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this._NVF.Name = "_NVF";
-            this._NVF.Size = new System.Drawing.Size(47, 20);
-            this._NVF.TabIndex = 6;
-            this._NVF.Tag = "8";
-            this._NVF.Text = "NVF";
-            this._NVF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this._NVF.UseVisualStyleBackColor = true;
+            this._NFV.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.NFV", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._NFV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._NFV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._NFV.Location = new System.Drawing.Point(5, 158);
+            this._NFV.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this._NFV.Name = "_NFV";
+            this._NFV.Size = new System.Drawing.Size(47, 20);
+            this._NFV.TabIndex = 6;
+            this._NFV.Tag = "8";
+            this._NFV.Text = "NFV";
+            this._NFV.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this._NFV.UseVisualStyleBackColor = true;
+            this._NFV.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this._NFV.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // _NBF
             // 
-            this._NBF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.NBN", true));
+            this._NBF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.NBF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._NBF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._NBF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._NBF.Location = new System.Drawing.Point(5, 128);
+            this._NBF.Location = new System.Drawing.Point(5, 188);
             this._NBF.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this._NBF.Name = "_NBF";
             this._NBF.Size = new System.Drawing.Size(47, 20);
@@ -655,13 +734,15 @@
             this._NBF.Text = "NBF";
             this._NBF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._NBF.UseVisualStyleBackColor = true;
+            this._NBF.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this._NBF.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // _DTV
             // 
-            this._DTV.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.DTV", true));
+            this._DTV.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.DTV", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._DTV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._DTV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._DTV.Location = new System.Drawing.Point(5, 158);
+            this._DTV.Location = new System.Drawing.Point(5, 98);
             this._DTV.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this._DTV.Name = "_DTV";
             this._DTV.Size = new System.Drawing.Size(47, 20);
@@ -670,13 +751,15 @@
             this._DTV.Text = "DTV";
             this._DTV.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._DTV.UseVisualStyleBackColor = true;
+            this._DTV.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this._DTV.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // _MTV
             // 
-            this._MTV.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.MTV", true));
+            this._MTV.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.MTV", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._MTV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._MTV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._MTV.Location = new System.Drawing.Point(5, 188);
+            this._MTV.Location = new System.Drawing.Point(5, 128);
             this._MTV.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this._MTV.Name = "_MTV";
             this._MTV.Size = new System.Drawing.Size(47, 20);
@@ -685,6 +768,8 @@
             this._MTV.Text = "MTV";
             this._MTV.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._MTV.UseVisualStyleBackColor = true;
+            this._MTV.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this._MTV.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // flowLayoutPanel4
             // 
@@ -827,6 +912,7 @@
             // 
             this._PR.BorderColor = System.Drawing.Color.Gray;
             this._PR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._PR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._PR.Font = new System.Drawing.Font("Verdana", 7F);
             this._PR.Location = new System.Drawing.Point(5, 148);
             this._PR.Name = "_PR";
@@ -839,6 +925,7 @@
             // 
             this._NPR.BorderColor = System.Drawing.Color.Gray;
             this._NPR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._NPR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.NPR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._NPR.Font = new System.Drawing.Font("Verdana", 7F);
             this._NPR.Location = new System.Drawing.Point(95, 148);
             this._NPR.Name = "_NPR";
@@ -846,10 +933,6 @@
             this._NPR.Size = new System.Drawing.Size(80, 19);
             this._NPR.TabIndex = 36;
             this._NPR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // faultModelBindingSource
-            // 
-            this.faultModelBindingSource.DataSource = typeof(CallTracker.Model.FaultModel);
             // 
             // EditContact
             // 
@@ -869,6 +952,7 @@
             this.splitContainer2.ResumeLayout(false);
             this.HfcPanel.ResumeLayout(false);
             this.HfcPanel.PerformLayout();
+            this._ServiceMenu.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
@@ -879,7 +963,6 @@
             this.flowLayoutPanel4.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -927,7 +1010,7 @@
         public System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private BorderedTextBox _NPR;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.CheckBox _NVF;
+        private System.Windows.Forms.CheckBox _NFV;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox _Outcome;
         private System.Windows.Forms.ComboBox _Symptom;
@@ -942,6 +1025,13 @@
         private BorderedTextBox _PR;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.BindingSource faultModelBindingSource;
+        private System.Windows.Forms.ContextMenuStrip _ServiceMenu;
+        private System.Windows.Forms.ToolStripMenuItem _ServiceMenuLAT;
+        private System.Windows.Forms.ToolStripMenuItem _ServiceMenuLIP;
+        private System.Windows.Forms.ToolStripMenuItem _ServiceMenuONC;
+        private System.Windows.Forms.ToolStripMenuItem _ServiceMenuNFV;
+        private System.Windows.Forms.ToolStripMenuItem _ServiceMenuNBF;
+        private System.Windows.Forms.ToolStripMenuItem _ServiceMenuDTV;
+        private System.Windows.Forms.ToolStripMenuItem _ServiceMenuMTV;
     }
 }

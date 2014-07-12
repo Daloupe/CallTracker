@@ -131,7 +131,7 @@ namespace CallTracker.View
 
         private void Main_Load(object sender, EventArgs e)
         {
-            editContact.Init(this);
+            editContact.Init();
 
             editLogins.Init(this, loginsViewMenuItem);
             editSmartPasteBinds.Init(this, pasteBindsViewMenuItem);

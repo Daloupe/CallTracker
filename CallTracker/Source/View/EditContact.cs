@@ -13,20 +13,18 @@ namespace CallTracker.View
 {
     public partial class EditContact : UserControl
     {
-        internal DataRepository DataStore;
-        private List<CheckBox> Products;
-        internal NBFPanel NVFPanel;
-        internal NBFPanel NBFPanel;
-        internal LATPanel LATPanel;
-        internal LIPPanel LIPPanel;
-        internal ONCPanel ONCPanel;
-        internal DTVPanel DTVPanel;
-        internal MTVPanel MTVPanel;
+        private DataRepository DataStore;
+        //private Dictionary<string, PanelBase> ServicePanels;
+        public static Dictionary<ServiceTypes, ServiceView> ServiceViews;
+        private Main MainForm;
 
         public EditContact(Main _mainform)
         {
             InitializeComponent();
+
             MainForm = _mainform;
+            DataStore = MainForm.DataStore;
+
             Location = MainForm.ControlOffset;
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
@@ -36,122 +34,142 @@ namespace CallTracker.View
             splitContainer2.MouseWheel += splitContainer2_MouseWheel;
             HfcPanel.MouseEnter += splitContainer2_MouseEnter;
 
-            Products = new List<CheckBox>
-            {
-                _LAT, _LIP, _ONC, _NVF, _NBF, _DTV, _MTV
-            };
+            //ServicePanels = new Dictionary<string,PanelBase>
+            //{
+            //    {"LAT", new LATPanel(_ServiceMenuLAT)},
+            //    {"LIP", new LIPPanel(_ServiceMenuLIP)},
+            //    {"ONC", new ONCPanel(_ServiceMenuONC)},
+            //    {"NFV", new NBFPanel(_ServiceMenuNBF)},
+            //    {"NBF", new NBFPanel(_ServiceMenuNBF)},
+            //    {"DTV", new DTVPanel(_ServiceMenuDTV)},
+            //    {"MTV", new MTVPanel(_ServiceMenuMTV)}
+            //};
 
-            NVFPanel = new NBFPanel();
-            NBFPanel = new NBFPanel();
-            LATPanel = new LATPanel();
-            LIPPanel = new LIPPanel();
-            ONCPanel = new ONCPanel();
-            DTVPanel = new DTVPanel();
-            MTVPanel = new MTVPanel();
-            
-        }
-
-        public void SwitchNote(object sender, EventArgs e)
-        {
-            MenuItem cm = (MenuItem)sender;
-            foreach (MenuItem item in cm.GetContextMenu().MenuItems)
+            ServiceViews = new Dictionary<ServiceTypes, ServiceView>
             {
-                if(item == cm)
-                    item.Checked = true;
-                else
-                    item.Checked = false;
+                {ServiceTypes.LAT, new ServiceView(new LATPanel(), 
+                                        new List<string>
+                                        {
+                                            "NDT",
+                                            "COS",
+                                            "NRR",
+                                            "DTN",
+                                            "DRP"
+                                        }, 
+                                        _ServiceMenuLAT,
+                                        _LAT,
+                                        "LAT", 
+                                        "LAT", 
+                                        "3")},
+                {ServiceTypes.LIP, new ServiceView(new LIPPanel(), 
+                                        new List<string>{
+                                            "NDT",
+                                            "COS",
+                                            "NRR",
+                                            "DTN",
+                                            "DRP"}, 
+                                        _ServiceMenuLIP,
+                                        _LIP,
+                                        "LAT", 
+                                        "LIP", 
+                                        "3")},
+                {ServiceTypes.ONC, new ServiceView(new ONCPanel(), 
+                                        new List<string>{
+                                            "CCI",
+                                            "DTR",
+                                            "DRP",
+                                            "LIC"}, 
+                                        _ServiceMenuONC, 
+                                        _ONC,
+                                        "ONC", 
+                                        "ONC", 
+                                        "7")},
+                {ServiceTypes.NFV, new ServiceView(new NFVPanel(), 
+                                        new List<string>{
+                                            "NDT",
+                                            "COS",
+                                            "NRR",
+                                            "DTN"}, 
+                                        _ServiceMenuNFV, 
+                                        _NFV,
+                                        "NBN", 
+                                        "NVF", 
+                                        "7")},
+                {ServiceTypes.NBF, new ServiceView(new NBFPanel(), 
+                                        new List<string>{
+                                            "CCI",
+                                            "DTR",
+                                            "DRP",
+                                            "LIC"},
+                                        _ServiceMenuNBF,
+                                        _NBF,
+                                        "NBN", 
+                                        "NBF", 
+                                        "7")},
+                {ServiceTypes.DTV, new ServiceView(new DTVPanel(), 
+                                        new List<string>{
+                                            "MSG",
+                                            "NPI",
+                                            "PPX",
+                                            "DRP"}, 
+                                        _ServiceMenuDTV, 
+                                        _DTV,
+                                        "DTV", 
+                                        "DTV", 
+                                        "6")},
+                {ServiceTypes.MTV, new ServiceView(new MTVPanel(), 
+                                        new List<string>{
+                                            "NPI",
+                                            "PPX"}, 
+                                        _ServiceMenuMTV, 
+                                        _MTV,
+                                        "DLC", 
+                                        "MTV", 
+                                        "$")},
+                {ServiceTypes.NONE, null}
+            };        
+            foreach(var view in ServiceViews)
+            {
+                if (view.Key != ServiceTypes.NONE)
+                    view.Value.ContextMenuItem.Tag = view.Value.CheckBox.Tag = view.Value.ServiceType = view.Key;
             }
-            _Note.DataBindings.Clear();
-            string tag = cm.Tag.ToString();
-            _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
-            if (tag == "ICONNote")
-                _Note.DataBindings[0].ReadValue();
-
- 
         }
-        //protected override CreateParams CreateParams
-        //{
-        //    get
-        //    {
-        //        var parms = base.CreateParams;
-        //        parms.Style &= ~0x02000000;  // Turn off WS_CLIPCHILDREN
-        //        return parms;
-        //    }
-        //}
-        Main MainForm;
-        public void Init(Main _parent)
+
+        public void Init()
         {
-            MainForm = _parent;
-            DataStore = _parent.DataStore;
-
-
+            customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
+            customerContactsBindingSource.DataSource = DataStore.Contacts;
+            customerContactsBindingSource.Position = DataStore.Contacts.Count;
 
             _Severity.DataSource = Enum.GetValues(typeof(FaultSeverity));
             _Outcome.DataSource = Enum.GetValues(typeof(Outcomes));
             _BookingTimeSlot.DataSource = Enum.GetValues(typeof(BookingTimeslot));
 
-            customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
-            customerContactsBindingSource.DataSource = DataStore.Contacts;
-            customerContactsBindingSource.Position = DataStore.Contacts.Count;
-
-
-            //_LAT.DataBindings.Add(new Binding("Checked", customerContactsBindingSource, "Fault.LAT", true, DataSourceUpdateMode.OnPropertyChanged));
-            //_LIP.DataBindings.Add(new Binding("Checked", customerContactsBindingSource, "Fault.LIP", true, DataSourceUpdateMode.OnPropertyChanged));
-            //_ONC.DataBindings.Add(new Binding("Checked", customerContactsBindingSource, "Fault.ONC", true, DataSourceUpdateMode.OnPropertyChanged));
-            //_NBF.DataBindings.Add(new Binding("Checked", customerContactsBindingSource, "Fault.NBN", true, DataSourceUpdateMode.OnPropertyChanged));
-            //_NVF.DataBindings.Add(new Binding("Checked", customerContactsBindingSource, "Fault.NFV", true, DataSourceUpdateMode.OnPropertyChanged));
-            //_DTV.DataBindings.Add(new Binding("Checked", customerContactsBindingSource, "Fault.DTV", true, DataSourceUpdateMode.OnPropertyChanged));
-            //_MTV.DataBindings.Add(new Binding("Checked", customerContactsBindingSource, "Fault.MTV", true, DataSourceUpdateMode.OnPropertyChanged));
-
-            _NPR.DataBindings.Add(new Binding("Text", customerContactsBindingSource, "Fault.NPR", true, DataSourceUpdateMode.OnPropertyChanged));
-            _PR.DataBindings.Add(new Binding("Text", customerContactsBindingSource, "Fault.PR", true, DataSourceUpdateMode.OnPropertyChanged));
-
-
-            ContextMenu cm = new ContextMenu();
-            MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
-            cm1.Tag = "Note";
-            cm1.Checked = true;
-            MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
-            cm2.Tag = "ICONNote";
-            cm.MenuItems.Add(cm1);
-            cm.MenuItems.Add(cm2);
-            _Note.ContextMenu = cm;
+            CreateNoteMenu();
         }
 
-        void customerContactsBindingSource_ListChanged(object sender, ListChangedEventArgs e)
-        {
-            Console.WriteLine(e.ListChangedType);
-        }
-
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Contact Navigator ////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
             _Note.DataBindings.Clear();
             _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, "Note", true, DataSourceUpdateMode.OnPropertyChanged));
 
-            MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;      
+            MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
             MainForm.SelectedContact = DataStore.Contacts[customerContactsBindingSource.Position];
             MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
-           //// ((INotifyPropertyChanged)con.Fault).PropertyChanged += con.CustomerContact_PropertyChanged;
-           // short tPb = MainForm.SelectedContact.Fault.AffectedServices;
-           // short tag;
-           // foreach(var product in Products)
-           // {
-           //     product.CheckedChanged -= _Product_CheckedChanged;
-           //     tag = Convert.ToInt16(product.Tag);
-           //     if ((tPb & tag) == tag)
-           //         product.Checked = true;
-           //     else
-           //         product.Checked = false;
 
-           //     product.CheckedChanged += _Product_CheckedChanged;
-           // }
-
-           // ProductBit = MainForm.SelectedContact.Fault.AffectedServices;  
+            CurrentService = ServiceViews[MainForm.SelectedContact.Fault.AffectedServiceType];
         }
 
         void SelectedContact_NestedChange(object sender, PropertyChangedEventArgs e)
         {
+            // Swap Panels
+            if(e.PropertyName == "AffectedServices")
+                UpdateCurrentPanel();
+
+            // Update Note
             if(_Note.DataBindings.Count > 0)
                 _Note.DataBindings[0].ReadValue();
         }
@@ -169,178 +187,131 @@ namespace CallTracker.View
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
         }
 
-        // Product Codes ////////////////////////////////////////////////////////////////////////////////
-        //private void _LAT_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    //if (_LIP.Checked)
-        //    //    _LIP.Checked = !_LAT.Checked;
-
-        //    //_Product_CheckedChanged(sender, e);
-        //}
-
-        //private void _LIP_CheckedChanged(object sender, EventArgs e)
-        //{
-        //    //if (_LAT.Checked)
-        //    //    _LAT.Checked = !_LIP.Checked;
-
-        //    //_Product_CheckedChanged(sender, e);      
-        //}
-
-        private PanelBase currentPanel;
-        private PanelBase CurrentPanel
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Product Codes ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        private ServiceView currentService;
+        private ServiceView CurrentService
         {
-            get {return currentPanel;}
-            set 
+            get { return currentService; }
+            set
             {
-                if(currentPanel != null)
-                    currentPanel.RemoveEvents(splitContainer2_MouseEnter);
-                currentPanel = value;
+                if (value == currentService)
+                    return;
 
-                if (currentPanel != null)
-                    currentPanel.ConnectEvents(splitContainer2_MouseEnter);
-            }
-        }
-        //private short productBit;
-        //public short ProductBit
-        //{
-        //    get
-        //    {
-        //        return productBit;
-        //    }
-        //    set
-        //    {
-        //        productBit = value;
-        //        if (MainForm.SelectedContact != null)
-        //            MainForm.SelectedContact.Fault.AffectedServices = productBit;
-
-        //        if ((productBit & 1) == 1)
-        //        {
-        //            _Symptom.DataSource = LATSymptoms;
-        //            if (!splitContainer2.Panel2.Controls.Contains(LATPanel))
-        //            {
-        //                splitContainer2.Panel2.Controls.Add(LATPanel);
-        //                splitContainer2.Panel2.Controls.Remove(CurrentPanel);
-        //                CurrentPanel = LATPanel;
-        //            }
-        //        }
-        //        else if ((productBit & 2) == 2)
-        //        {
-        //            _Symptom.DataSource = LATSymptoms;
-        //            if (!splitContainer2.Panel2.Controls.Contains(LIPPanel))
-        //            {
-        //                splitContainer2.Panel2.Controls.Add(LIPPanel);
-        //                splitContainer2.Panel2.Controls.Remove(CurrentPanel);
-        //                CurrentPanel = LIPPanel;
-        //            }
-        //        }
-        //        else if ((productBit & 4) == 4)
-        //        {
-        //            _Symptom.DataSource = ONCSymptoms;
-        //            if (!splitContainer2.Panel2.Controls.Contains(ONCPanel))
-        //            {
-        //                splitContainer2.Panel2.Controls.Add(ONCPanel);
-        //                splitContainer2.Panel2.Controls.Remove(CurrentPanel);
-        //                CurrentPanel = ONCPanel;
-        //            }
-        //        }
-        //        else if ((productBit & 8) == 8)
-        //        {
-        //            _Symptom.DataSource = NVFSymptoms;
-        //            if (!splitContainer2.Panel2.Controls.Contains(NVFPanel))
-        //            {
-        //                splitContainer2.Panel2.Controls.Add(NVFPanel);
-        //                splitContainer2.Panel2.Controls.Remove(CurrentPanel);
-        //                CurrentPanel = NVFPanel;
-        //            }
-        //        }
-        //        else if ((productBit & 16) == 16)
-        //        {
-        //            _Symptom.DataSource = NBFSymptoms;
-        //            if (!splitContainer2.Panel2.Controls.Contains(NBFPanel))
-        //            {
-        //                splitContainer2.Panel2.Controls.Add(NBFPanel);
-        //                splitContainer2.Panel2.Controls.Remove(CurrentPanel);
-        //                CurrentPanel = NBFPanel;
-        //            }
-        //        }
-        //        else if ((productBit & 32) == 32)
-        //        {
-        //            _Symptom.DataSource = DTVSymptoms;
-        //            if(!splitContainer2.Panel2.Controls.Contains(DTVPanel))
-        //            {
-        //                splitContainer2.Panel2.Controls.Add(DTVPanel);
-        //                splitContainer2.Panel2.Controls.Remove(CurrentPanel);
-        //                CurrentPanel = DTVPanel;
-        //            }              
-        //        }
-        //        else if ((productBit & 64) == 64)
-        //        {
-        //            _Symptom.DataSource = MTVSymptoms;
-        //            if (!splitContainer2.Panel2.Controls.Contains(MTVPanel))
-        //            {
-        //                splitContainer2.Panel2.Controls.Add(MTVPanel);
-        //                splitContainer2.Panel2.Controls.Remove(CurrentPanel);
-        //                CurrentPanel = MTVPanel;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            _Symptom.DataSource = null;
-        //            splitContainer2.Panel2.Controls.Clear();
-        //            CurrentPanel = null;
-        //        }
-
-        //        if (CurrentPanel != null)
-        //            CurrentPanel.SetDataSource(MainForm.SelectedContact.Service);
-        //    }
-        //}
-        private void _Product_CheckedChanged(object sender, EventArgs e)
-        {
-            //CheckBox checkbox = (CheckBox)sender;
-            //short tag = Convert.ToInt16(checkbox.Tag);
-            //if (tag == 1)
-            //{
-            //    if (_LIP.Checked)
-            //        _LIP.Checked = !_LAT.Checked;
-            //}
-            //else if (tag == 2)
-            //    if (_LAT.Checked)
-            //        _LAT.Checked = !_LIP.Checked;
-
-            //if (checkbox.Checked)
-            //    ProductBit += Convert.ToInt16(checkbox.Tag);   
-            //else
-            //    ProductBit -= Convert.ToInt16(checkbox.Tag);
-
-            ////if tag > CurrProduct, don't Add/Remove.
-            //    //if tag > CurrProduct, ignore/
-
-            ////Console.WriteLine(GetIntBinaryString(ProductBit));
-        }
-
-        static string GetIntBinaryString(int n)
-        {
-            char[] b = new char[16];
-            int pos = 15;
-            int i = 0;
-
-            while (i < 16)
-            {
-                if ((n & (1 << i)) != 0)
+                if (currentService != null)
                 {
-                    b[pos] = '1';
+                    splitContainer2.Panel2.Controls.Remove(currentService.Panel);
+                    currentService.ContextMenuItem.Checked = false;
+                    currentService.Panel.RemoveEvents(splitContainer2_MouseEnter);
+                    currentService.CheckBox.ForeColor = Color.Black;
+                }
+
+                currentService = value;
+
+                if (currentService != null)
+                {
+                    _Symptom.DataSource = currentService.Symptoms;
+                    splitContainer2.Panel2.Controls.Add(currentService.Panel);
+                    currentService.ContextMenuItem.Checked = true;
+                    currentService.Panel.ConnectEvents(splitContainer2_MouseEnter);
+                    currentService.Panel.SetDataSource(MainForm.SelectedContact.Service);
+                    MainForm.SelectedContact.Fault.AffectedServiceType = currentService.ServiceType;
+                    currentService.CheckBox.Checked = true;
+                    currentService.CheckBox.ForeColor = Color.DarkRed;
                 }
                 else
                 {
-                    b[pos] = '0';
+                    MainForm.SelectedContact.Fault.AffectedServiceType = ServiceTypes.NONE;
                 }
-                pos--;
-                i++;
+              
             }
-            return new string(b);
         }
 
-        // Splitter ////////////////////////////////////////////////////////////////////////////////
+        private void UpdateCurrentPanel()
+        {
+            if (ServiceLock)
+                return;
+
+            ServiceTypes affectedServices = (MainForm.SelectedContact.Fault.AffectedServices);
+
+            foreach (ServiceTypes service in Enum.GetValues(typeof(ServiceTypes)))
+            {
+                if ((affectedServices & service) != 0 || affectedServices == 0)
+                {                  
+                    CurrentService = ServiceViews[service];                
+                    break;
+                }
+            }
+        }
+
+        private bool ServiceLock;
+
+        private void _ServiceMenu_Click(object sender, EventArgs e)
+        {
+            ServiceLock = true;
+            CurrentService = ServiceViews[(ServiceTypes)((ToolStripMenuItem)sender).Tag];
+        }
+
+        private void OnMouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right && !HandlingRightClick)
+            {
+                HandlingRightClick = true;
+                ServiceLock = true;
+                CurrentService = ServiceViews[(ServiceTypes)((CheckBox)sender).Tag];
+            }
+        }
+
+        private void OnMouseUp(object sender, MouseEventArgs e)
+        {
+            HandlingRightClick = false;
+            CheckBox cb = (CheckBox)sender;
+            if (CurrentService != null && CurrentService.CheckBox.Checked == false)
+            {
+                ServiceLock = false;
+                UpdateCurrentPanel();
+            }
+        }
+
+        private bool HandlingRightClick { get; set; }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Note /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public void SwitchNote(object sender, EventArgs e)
+        {
+            MenuItem cm = (MenuItem)sender;
+            foreach (MenuItem item in cm.GetContextMenu().MenuItems)
+            {
+                if (item == cm)
+                    item.Checked = true;
+                else
+                    item.Checked = false;
+            }
+            _Note.DataBindings.Clear();
+            string tag = cm.Tag.ToString();
+            _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
+            if (tag == "ICONNote")
+                _Note.DataBindings[0].ReadValue();
+        }
+
+        public void CreateNoteMenu()
+        {
+            ContextMenu cm = new ContextMenu();
+            MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
+            cm1.Tag = "Note";
+            cm1.Checked = true;
+            MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
+            cm2.Tag = "ICONNote";
+            cm.MenuItems.Add(cm1);
+            cm.MenuItems.Add(cm2);
+            _Note.ContextMenu = cm;
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Splitter /////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         private const int SPLITTER_1_MIN = 0;
         private const int SPLITTER_1_MAX = 180;
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
@@ -403,7 +374,9 @@ namespace CallTracker.View
             splitContainer2.Focus();
         }
 
-        // Misc ////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Misc /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void PaintGrayBorder(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawRectangle(Pens.WhiteSmoke,
@@ -414,51 +387,8 @@ namespace CallTracker.View
             base.OnPaint(e);
         }
 
-        public static List<string> LATSymptoms = new List<string>
-        {
-            "NDT",
-            "COS",
-            "NRR",
-            "DTN",
-            "DRP"
-        };
 
-        public static List<string> ONCSymptoms = new List<string>
-        {
-            "CCI",
-            "DTR",
-            "DRP",
-            "LIC"
-        };
 
-        public static List<string> NVFSymptoms = new List<string>
-        {
-            "NDT",
-            "COS",
-            "NRR",
-            "DTN"
-        };
 
-        public static List<string> NBFSymptoms = new List<string>
-        {
-            "CCI",
-            "DTR",
-            "DRP",
-            "LIC"
-        };
-
-        public static List<string> DTVSymptoms = new List<string>
-        {
-            "MSG",
-            "NPI",
-            "PPX",
-            "DRP"
-        };
-
-        public static List<string> MTVSymptoms = new List<string>
-        {
-            "NPI",
-            "PPX"
-        };
     }
 }

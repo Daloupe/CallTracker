@@ -2,6 +2,10 @@ To Do:
 
 Main GUI
  | Have Settings windows show in main gui, rather than their own popup.
+ | Right Click Service area to flip services.
+ | Fixed DataPaste not pasting into ie.
+ | Fixed WaTiN not finding brower by title.
+ | Complexified address detection to allow for multiple worded streets and suburbs.
  - Add status bar to display warnings.
  - Start inputting system variables.
  - Key Command Help extends window height.
@@ -110,6 +114,7 @@ BindSmartPaste GUI
  | System prefills if other SmartPasteBinds share a URL/Title.
  | Name prefills with Element name.
  | Enabled typed input if object path is known.
+ | Regex Replace strings can be inserted after that seperated with |.
 
 
 

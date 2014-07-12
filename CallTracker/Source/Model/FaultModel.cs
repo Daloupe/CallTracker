@@ -6,43 +6,45 @@ using System.ComponentModel;
 using ProtoBuf;
 using PropertyChanged;
 
+using CallTracker.Helpers;
+using CallTracker.View;
+
 namespace CallTracker.Model
 {
-    //[ImplementPropertyChanged]
-    //public class Person
-    //{
-    //    public string GivenNames { get; set; }
-    //    public string FamilyName { get; set; }
-
-    //    public string FullName
-    //    {
-    //        get
-    //        {
-    //            return string.Format("{0} {1}", GivenNames, FamilyName);
-    //        }
-    //    }
-    //}
-
     [ImplementPropertyChanged]
     [ProtoContract]
     public class FaultModel
     {
         [ProtoMember(1)]
         public string NPR { get; set; }
-        [ProtoMember(8)]
-        public string PR { get; set; }
         [ProtoMember(2)]
-        public string INC { get; set; }
+        public string PR { get; set; }
         [ProtoMember(3)]
+        public string INC { get; set; }
+
         public ServiceTypes AffectedServices { get; set; }
-        [ProtoMember(4)]
-        public string Severity { get; set; }
         [ProtoMember(5)]
+        private int AffectedServicesSerialized
+        {
+            get { return (int)AffectedServices; }
+            set { AffectedServices = (ServiceTypes)value; }
+        }
+        [ProtoMember(6), DefaultValue(ServiceTypes.NONE)]
+        public ServiceTypes AffectedServiceType { get; set; }
+
+        
+        [ProtoMember(10)]
+        public string Severity { get; set; }
+        [ProtoMember(11)]
         public string Symptom { get; set; }
-        [ProtoMember(6)]
+        [ProtoMember(12)]
         public string Outcome { get; set; }
-        [ProtoMember(7)]
-        public BookingModel Booking { get; set; }
+        public string ProductCode { get { return AffectedServiceType != ServiceTypes.NONE ? EditContact.ServiceViews[AffectedServiceType].ProductCode : String.Empty; } }
+        public string ProblemStyle { get { return AffectedServiceType != ServiceTypes.NONE ? EditContact.ServiceViews[AffectedServiceType].ProblemStyle : String.Empty; } }
+        public string SymptomGroup { get { return AffectedServiceType != ServiceTypes.NONE ? EditContact.ServiceViews[AffectedServiceType].SymptomGroup : String.Empty; } }
+
+        [ProtoMember(15)]
+        public BookingModel Booking { get; set; }       
 
         public static List<string> FaultSeverity = new List<string>
         {
@@ -56,62 +58,57 @@ namespace CallTracker.Model
             Severity = String.Empty;
             Symptom = String.Empty;
             Outcome = String.Empty;
-            AffectedServices = ServiceTypes.LAT;
-            //AffectedProducts = new List<AffectedProduct>();
-            //AffectedProducts.Add(new AffectedProduct(AffectedService.LAT, true));
-            //AffectedProducts.Add(new AffectedProduct(AffectedService.LIP, false));
-            //AffectedProducts.Add(new AffectedProduct(AffectedService.ONC, false));
-            //AffectedProducts.Add(new AffectedProduct(AffectedService.NVF, false));
-            //AffectedProducts.Add(new AffectedProduct(AffectedService.NBF, false));
-            //AffectedProducts.Add(new AffectedProduct(AffectedService.DTV, false));
-            //AffectedProducts.Add(new AffectedProduct(AffectedService.MTV, false));
-
-            //AffectedProducts = new AffectedProduct[7]
-            //    {
-            //        new AffectedProduct(AffectedService.LAT, true),
-            //        new AffectedProduct(AffectedService.LIP, false),
-            //        new AffectedProduct(AffectedService.ONC, false),
-            //        new AffectedProduct(AffectedService.NVF, false),
-            //        new AffectedProduct(AffectedService.NBF, false),
-            //        new AffectedProduct(AffectedService.DTV, false),
-            //        new AffectedProduct(AffectedService.MTV, false)
-            //    };
+            AffectedServices = AffectedServiceType = ServiceTypes.NONE;
         }
 
         public bool LAT
         {
-            get { return (AffectedServices & ServiceTypes.LAT) != 0 ? true : false; }
-            set { AffectedServices = AffectedServices.Change(ServiceTypes.LAT, value); }
+            get { return AffectedServices.Has(ServiceTypes.LAT); }
+            set 
+            {
+                if (value)
+                    AffectedServices = RemoveNBN(AffectedServices.Remove(ServiceTypes.LIP)
+                                                                 .Add(ServiceTypes.LAT));
+                else
+                    AffectedServices = RemoveNBN(AffectedServices.Remove(ServiceTypes.LAT));        
+            }
         }
 
         public bool LIP
         {
             get { return AffectedServices.Has(ServiceTypes.LIP); }
-            set { AffectedServices = AffectedServices.Change(ServiceTypes.LIP, value); }
+            set 
+            {
+                if (value)
+                    AffectedServices = RemoveNBN(AffectedServices.Remove(ServiceTypes.LAT)
+                                                                 .Add(ServiceTypes.LIP)); 
+                else
+                    AffectedServices = RemoveNBN(AffectedServices.Remove(ServiceTypes.LIP));    
+            }
         }
 
         public bool ONC
         {
             get { return AffectedServices.Has(ServiceTypes.ONC); }
-            set { AffectedServices = AffectedServices.Change(ServiceTypes.ONC, value); }
+            set { AffectedServices = RemoveNBN(AffectedServices.Change(ServiceTypes.ONC, value)); }
         }
 
         public bool DTV
         {
             get { return AffectedServices.Has(ServiceTypes.DTV); }
-            set { AffectedServices = AffectedServices.Change(ServiceTypes.DTV, value); }
+            set { AffectedServices = RemoveNBN(AffectedServices.Change(ServiceTypes.DTV, value)); }
         }
 
-        public bool NBN
+        public bool NBF
         {
-            get { return AffectedServices.Has(ServiceTypes.NBN); }
-            set { AffectedServices = AffectedServices.Change(ServiceTypes.NBN, value); }
+            get { return AffectedServices.Has(ServiceTypes.NBF); }
+            set { AffectedServices = RemoveHFC(AffectedServices.Change(ServiceTypes.NBF, value)); }
         }
 
-        public bool NVF
+        public bool NFV
         {
-            get { return AffectedServices.Has(ServiceTypes.NVF); }
-            set { AffectedServices = AffectedServices.Change(ServiceTypes.NVF, value); }
+            get { return AffectedServices.Has(ServiceTypes.NFV); }
+            set { AffectedServices = RemoveHFC(AffectedServices.Change(ServiceTypes.NFV, value)); }
         }
 
         public bool MTV
@@ -119,82 +116,32 @@ namespace CallTracker.Model
             get { return AffectedServices.Has(ServiceTypes.MTV); }
             set { AffectedServices = AffectedServices.Change(ServiceTypes.MTV, value); }
         }
+
+        public ServiceTypes RemoveNBN(ServiceTypes services)
+        {
+            return services.Remove(ServiceTypes.NBF)
+                           .Remove(ServiceTypes.NFV);
+        }
+
+        public ServiceTypes RemoveHFC(ServiceTypes services)
+        {
+            return services.Remove(ServiceTypes.LAT)
+                           .Remove(ServiceTypes.LIP)
+                           .Remove(ServiceTypes.ONC)
+                           .Remove(ServiceTypes.DTV);
+        }
     }
 
-    public static class EnumerationExtensions
+    public enum ServiceTypes
     {
-
-        public static bool Has<T>(this System.Enum type, T value)
-        {
-            try
-            {
-                return (((int)(object)type & (int)(object)value) == (int)(object)value);
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public static bool Is<T>(this System.Enum type, T value)
-        {
-            try
-            {
-                return (int)(object)type == (int)(object)value;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-
-        public static T Add<T>(this System.Enum type, T value)
-        {
-            try
-            {
-                return (T)(object)(((int)(object)type | (int)(object)value));
-            }
-            catch (Exception ex)
-            {
-                throw new ArgumentException(
-                    string.Format(
-                        "Could not append value from enumerated type '{0}'.",
-                        typeof(T).Name
-                        ), ex);
-            }
-        }
-
-
-        public static T Remove<T>(this System.Enum type, T value)
-        {
-            try
-            {
-                return (T)(object)(((int)(object)type & ~(int)(object)value));
-            }
-            catch (Exception ex)
-            {
-                throw new ArgumentException(
-                    string.Format(
-                        "Could not remove value from enumerated type '{0}'.",
-                        typeof(T).Name
-                        ), ex);
-            }
-        }
-
-        public static T Change<T>(this System.Enum type, T value, bool action)
-        {
-            if (action == true)
-                return type.Add(value);
-            else
-                return type.Remove(value);
-        }
-
-    }
-
-    public enum AffectedService
-    {
-        LAT, LIP, ONC, NVF, NBF, DTV, MTV, NIL
+        NONE = 0,
+        LAT = 1,
+        LIP = 1 << 2,
+        ONC = 1 << 3,
+        NFV = 1 << 4,
+        NBF = 1 << 5,
+        DTV = 1 << 6,
+        MTV = 1 << 7
     }
 
     public enum FaultSeverity
@@ -207,19 +154,4 @@ namespace CallTracker.Model
         PR, ARO, CM, CPE, NFF
     }
 
-    //public class AffectedProduct
-    //{
-    //    public AffectedService Name { get; set; }
-    //    public bool Selected { get; set; }
-    //    public AffectedProduct(AffectedService _name, bool _selected)
-    //    {
-    //        Name = _name;
-    //        Selected = _selected;
-    //    }
-    //    public AffectedProduct()
-    //    {
-    //        Name = AffectedService.NIL;
-    //        Selected = false;
-    //    }
-    //}
 }

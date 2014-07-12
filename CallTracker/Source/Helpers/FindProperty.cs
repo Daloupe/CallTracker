@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using System.Text.RegularExpressions;
+
+using Utilities.RegularExpressions;
 
 namespace CallTracker.Helpers
 {
@@ -11,14 +14,15 @@ namespace CallTracker.Helpers
         // Object Methods ///////////////////////////////////////////////////////////////////////////////////////
         public static string FollowPropertyPath(object _value, string _path)
         {
-           // Console.WriteLine(_path);
             if (String.IsNullOrEmpty(_path))
                 return null;
 
             object output = _value;
             Type currentType = output.GetType();
 
-            foreach (string propertyName in _path.Split('.'))
+            DataSplit pathSplit = new DataSplit(_path);
+
+            foreach (string propertyName in pathSplit.Path)
             {
                 PropertyInfo property = currentType.GetProperty(propertyName);
                 if (property != null)
@@ -27,32 +31,94 @@ namespace CallTracker.Helpers
                     currentType = property.PropertyType;
                 }
             }
+
+            if (pathSplit.HasRegex())
+                output = pathSplit.RegexReplace(output.ToString());
 
             return output == null ? String.Empty : output.ToString();
         }
 
         public static string FollowPropertyPath(object _value, string _path, string _altPath)
         {
-            if (String.IsNullOrEmpty(_path))
-                return null;
+            string output = FollowPropertyPath(_value, _path);
 
-            object output = _value;
-            Type currentType = output.GetType();  
-
-            foreach (string propertyName in _path.Split('.'))
-            {
-                PropertyInfo property = currentType.GetProperty(propertyName);
-                if (property != null)
-                {
-                    output = property.GetValue(output, null);
-                    currentType = property.PropertyType;
-                }
-            }
-
-            if (String.IsNullOrEmpty(output.ToString()) && !String.IsNullOrEmpty(_altPath))
+            if (String.IsNullOrEmpty(output) && !String.IsNullOrEmpty(_altPath))
                 output = FollowPropertyPath(_value, _altPath);
 
-            return output == null ? String.Empty : output.ToString();
+            return output;
         }
+
+        public class DataSplit
+        {
+            public string[] Path;
+            public string ReplacePattern;
+            public Regex Pattern;
+
+            public DataSplit(string path)
+            {
+                string[] split = path.Split('|');
+                Path = split[0].TrimEnd(' ').Split('.');
+                ReplacePattern = split[1].TrimStart(' ');
+                Pattern = RegexLookup[Path.Last()];
+            }
+
+            public bool HasRegex()
+            {   
+                return !String.IsNullOrEmpty(ReplacePattern) && Pattern != null;
+            }
+
+            public string RegexReplace(string input)
+            {
+                return Pattern.Replace(input, ReplacePattern);
+            }
+        }
+
+        static Dictionary<string, Regex> RegexLookup = new Dictionary<string, Regex>{
+            {"CMBS", new CMBSPattern()},
+            {"Name", new NamePattern()},
+            {"DN", new DNPattern()},
+            {"Mobile", new MobilePattern()}
+        };
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//public static string FollowPropertyPath(object _value, string _path, string _altPath)
+//        {
+//            if (String.IsNullOrEmpty(_path))
+//                return null;
+
+//            object output = _value;
+//            Type currentType = output.GetType();
+
+//            DataSplit pathSplit = new DataSplit(_path);
+
+//            foreach (string propertyName in pathSplit.Path)
+//            {
+//                PropertyInfo property = currentType.GetProperty(propertyName);
+//                if (property != null)
+//                {
+//                    output = property.GetValue(output, null);
+//                    currentType = property.PropertyType;
+//                }
+//            }
+
+//            if(pathSplit.HasRegex())
+//                output = pathSplit.RegexReplace(output.ToString());
+
+//            if (String.IsNullOrEmpty(output.ToString()) && !String.IsNullOrEmpty(_altPath))
+//                output = FollowPropertyPath(_value, _altPath);
+
+//            return output == null ? String.Empty : output.ToString();
+//        }

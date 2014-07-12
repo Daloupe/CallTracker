@@ -238,7 +238,7 @@ namespace CallTracker.View
             this.checkBox4.Size = new System.Drawing.Size(47, 20);
             this.checkBox4.TabIndex = 6;
             this.checkBox4.Tag = "8";
-            this.checkBox4.Text = "NVF";
+            this.checkBox4.Text = "NFV";
             this.checkBox4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
