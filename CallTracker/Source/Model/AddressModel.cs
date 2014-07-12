@@ -36,23 +36,23 @@ namespace CallTracker.Model
         [ProtoMember(8)]
         public string Postcode { get; set; }
 
-        protected Dictionary<Func<string>, string> AddressFields;
+        //protected Dictionary<Func<string>, string> AddressFields;
         
         public ContactAddress()
         {
-            AddressFields = new Dictionary<Func<string>, string>
-            {
-                {() => PropertyType, ""},
-                {() => UnitNumber, "/"},
-                {() => PropertyNumber, " "},
-                {() => StreetName, " "},
-                {() => StreetType, " "},
-                {() => Suburb, " "},
-                {() => State, " "},
-                {() => Postcode, ""}
-            };
+            //AddressFields = new Dictionary<Func<string>, string>
+            //{
+            //    {() => PropertyType, ""},
+            //    {() => UnitNumber, "/"},
+            //    {() => PropertyNumber, " "},
+            //    {() => StreetName, " "},
+            //    {() => StreetType, " "},
+            //    {() => Suburb, " "},
+            //    {() => State, " "},
+            //    {() => Postcode, ""}
+            //};
         }
-        private List<string> PropList = new List<string>() {"Number", "Street", "Type", "Suburb", "State", "Postcode" };
+        //private List<string> PropList = new List<string>() {"Number", "Street", "Type", "Suburb", "State", "Postcode" };
         private string address;
         public string Address
         {

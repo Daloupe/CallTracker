@@ -86,6 +86,7 @@
             this._Address = new CallTracker.View.BorderedTextBox();
             this._PR = new CallTracker.View.BorderedTextBox();
             this._NPR = new CallTracker.View.BorderedTextBox();
+            this.faultModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -101,6 +102,7 @@
             this.flowLayoutPanel4.SuspendLayout();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // FaultPanel
@@ -581,6 +583,7 @@
             // 
             // _LAT
             // 
+            this._LAT.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.LAT", true));
             this._LAT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._LAT.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._LAT.Location = new System.Drawing.Point(5, 8);
@@ -592,10 +595,10 @@
             this._LAT.Text = "LAT";
             this._LAT.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._LAT.UseVisualStyleBackColor = true;
-            this._LAT.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _LIP
             // 
+            this._LIP.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.LIP", true));
             this._LIP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._LIP.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._LIP.Location = new System.Drawing.Point(5, 38);
@@ -607,10 +610,10 @@
             this._LIP.Text = "LIP";
             this._LIP.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._LIP.UseVisualStyleBackColor = true;
-            this._LIP.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _ONC
             // 
+            this._ONC.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.ONC", true));
             this._ONC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._ONC.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._ONC.Location = new System.Drawing.Point(5, 68);
@@ -622,10 +625,10 @@
             this._ONC.Text = "ONC";
             this._ONC.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._ONC.UseVisualStyleBackColor = true;
-            this._ONC.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _NVF
             // 
+            this._NVF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.NVF", true));
             this._NVF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._NVF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._NVF.Location = new System.Drawing.Point(5, 98);
@@ -637,10 +640,10 @@
             this._NVF.Text = "NVF";
             this._NVF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._NVF.UseVisualStyleBackColor = true;
-            this._NVF.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _NBF
             // 
+            this._NBF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.NBN", true));
             this._NBF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._NBF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._NBF.Location = new System.Drawing.Point(5, 128);
@@ -652,10 +655,10 @@
             this._NBF.Text = "NBF";
             this._NBF.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._NBF.UseVisualStyleBackColor = true;
-            this._NBF.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _DTV
             // 
+            this._DTV.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.DTV", true));
             this._DTV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._DTV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._DTV.Location = new System.Drawing.Point(5, 158);
@@ -667,10 +670,10 @@
             this._DTV.Text = "DTV";
             this._DTV.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._DTV.UseVisualStyleBackColor = true;
-            this._DTV.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // _MTV
             // 
+            this._MTV.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.MTV", true));
             this._MTV.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._MTV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._MTV.Location = new System.Drawing.Point(5, 188);
@@ -682,7 +685,6 @@
             this._MTV.Text = "MTV";
             this._MTV.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this._MTV.UseVisualStyleBackColor = true;
-            this._MTV.CheckedChanged += new System.EventHandler(this._Product_CheckedChanged);
             // 
             // flowLayoutPanel4
             // 
@@ -845,6 +847,10 @@
             this._NPR.TabIndex = 36;
             this._NPR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // faultModelBindingSource
+            // 
+            this.faultModelBindingSource.DataSource = typeof(CallTracker.Model.FaultModel);
+            // 
             // EditContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -873,6 +879,7 @@
             this.flowLayoutPanel4.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.faultModelBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -935,5 +942,6 @@
         private BorderedTextBox _PR;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.BindingSource faultModelBindingSource;
     }
 }

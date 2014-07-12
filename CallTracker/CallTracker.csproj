@@ -82,6 +82,7 @@
     <Compile Include="Source\Helpers\FindProperty.cs" />
     <Compile Include="Source\Helpers\ICONNoteGenerator.cs" />
     <Compile Include="Source\Helpers\IETabActivator.cs" />
+    <Compile Include="Source\Model\AROModel.cs" />
     <Compile Include="Source\Model\IEInteractBase.cs" />
     <Compile Include="Source\View\Controls\DataArea.cs">
       <SubType>UserControl</SubType>

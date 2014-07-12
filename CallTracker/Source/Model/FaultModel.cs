@@ -34,7 +34,7 @@ namespace CallTracker.Model
         [ProtoMember(2)]
         public string INC { get; set; }
         [ProtoMember(3)]
-        public short AffectedServices { get; set; }
+        public ServiceTypes AffectedServices { get; set; }
         [ProtoMember(4)]
         public string Severity { get; set; }
         [ProtoMember(5)]
@@ -56,7 +56,7 @@ namespace CallTracker.Model
             Severity = String.Empty;
             Symptom = String.Empty;
             Outcome = String.Empty;
-            AffectedServices = 1;
+            AffectedServices = ServiceTypes.LAT;
             //AffectedProducts = new List<AffectedProduct>();
             //AffectedProducts.Add(new AffectedProduct(AffectedService.LAT, true));
             //AffectedProducts.Add(new AffectedProduct(AffectedService.LIP, false));
@@ -77,6 +77,119 @@ namespace CallTracker.Model
             //        new AffectedProduct(AffectedService.MTV, false)
             //    };
         }
+
+        public bool LAT
+        {
+            get { return (AffectedServices & ServiceTypes.LAT) != 0 ? true : false; }
+            set { AffectedServices = AffectedServices.Change(ServiceTypes.LAT, value); }
+        }
+
+        public bool LIP
+        {
+            get { return AffectedServices.Has(ServiceTypes.LIP); }
+            set { AffectedServices = AffectedServices.Change(ServiceTypes.LIP, value); }
+        }
+
+        public bool ONC
+        {
+            get { return AffectedServices.Has(ServiceTypes.ONC); }
+            set { AffectedServices = AffectedServices.Change(ServiceTypes.ONC, value); }
+        }
+
+        public bool DTV
+        {
+            get { return AffectedServices.Has(ServiceTypes.DTV); }
+            set { AffectedServices = AffectedServices.Change(ServiceTypes.DTV, value); }
+        }
+
+        public bool NBN
+        {
+            get { return AffectedServices.Has(ServiceTypes.NBN); }
+            set { AffectedServices = AffectedServices.Change(ServiceTypes.NBN, value); }
+        }
+
+        public bool NVF
+        {
+            get { return AffectedServices.Has(ServiceTypes.NVF); }
+            set { AffectedServices = AffectedServices.Change(ServiceTypes.NVF, value); }
+        }
+
+        public bool MTV
+        {
+            get { return AffectedServices.Has(ServiceTypes.MTV); }
+            set { AffectedServices = AffectedServices.Change(ServiceTypes.MTV, value); }
+        }
+    }
+
+    public static class EnumerationExtensions
+    {
+
+        public static bool Has<T>(this System.Enum type, T value)
+        {
+            try
+            {
+                return (((int)(object)type & (int)(object)value) == (int)(object)value);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public static bool Is<T>(this System.Enum type, T value)
+        {
+            try
+            {
+                return (int)(object)type == (int)(object)value;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
+        public static T Add<T>(this System.Enum type, T value)
+        {
+            try
+            {
+                return (T)(object)(((int)(object)type | (int)(object)value));
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(
+                    string.Format(
+                        "Could not append value from enumerated type '{0}'.",
+                        typeof(T).Name
+                        ), ex);
+            }
+        }
+
+
+        public static T Remove<T>(this System.Enum type, T value)
+        {
+            try
+            {
+                return (T)(object)(((int)(object)type & ~(int)(object)value));
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException(
+                    string.Format(
+                        "Could not remove value from enumerated type '{0}'.",
+                        typeof(T).Name
+                        ), ex);
+            }
+        }
+
+        public static T Change<T>(this System.Enum type, T value, bool action)
+        {
+            if (action == true)
+                return type.Add(value);
+            else
+                return type.Remove(value);
+        }
+
     }
 
     public enum AffectedService
