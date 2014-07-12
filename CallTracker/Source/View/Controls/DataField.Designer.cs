@@ -57,11 +57,13 @@
             this._DataField.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this._DataField.Size = new System.Drawing.Size(140, 19);
             this._DataField.TabIndex = 27;
+            this._DataField.TextChanged += new System.EventHandler(this._DataField_TextChanged);
             // 
             // DataField
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.Controls.Add(this._DataField);
             this.Controls.Add(this._Label);
             this.Font = new System.Drawing.Font("Verdana", 7F);
@@ -77,6 +79,6 @@
         #endregion
 
         private System.Windows.Forms.Label _Label;
-        private CallTracker.View.BorderedTextBox _DataField;
+        public BorderedTextBox _DataField;
     }
 }

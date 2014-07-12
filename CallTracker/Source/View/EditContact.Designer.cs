@@ -48,6 +48,7 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
@@ -92,6 +93,7 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.HfcPanel.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -128,7 +130,7 @@
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer1.Panel2MinSize = 0;
             this.splitContainer1.Size = new System.Drawing.Size(275, 330);
-            this.splitContainer1.SplitterDistance = 180;
+            this.splitContainer1.SplitterDistance = 120;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 24;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -154,7 +156,7 @@
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(180, 330);
+            this.splitContainer2.Size = new System.Drawing.Size(120, 330);
             this.splitContainer2.SplitterDistance = 134;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 0;
@@ -184,7 +186,7 @@
             this.HfcPanel.Location = new System.Drawing.Point(0, -78);
             this.HfcPanel.Margin = new System.Windows.Forms.Padding(0);
             this.HfcPanel.Name = "HfcPanel";
-            this.HfcPanel.Size = new System.Drawing.Size(180, 212);
+            this.HfcPanel.Size = new System.Drawing.Size(120, 212);
             this.HfcPanel.TabIndex = 22;
             // 
             // label7
@@ -341,11 +343,19 @@
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.BackColor = System.Drawing.Color.LightCyan;
+            this.flowLayoutPanel2.Controls.Add(this.panel1);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(1, 56);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Padding = new System.Windows.Forms.Padding(3);
             this.flowLayoutPanel2.Size = new System.Drawing.Size(183, 216);
             this.flowLayoutPanel2.TabIndex = 22;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(6, 6);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 202);
+            this.panel1.TabIndex = 0;
             // 
             // bindingNavigator1
             // 
@@ -853,6 +863,7 @@
             this.splitContainer2.ResumeLayout(false);
             this.HfcPanel.ResumeLayout(false);
             this.HfcPanel.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
@@ -875,7 +886,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
         private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
@@ -923,5 +933,7 @@
         public System.Windows.Forms.BindingSource customerContactsBindingSource;
         private System.Windows.Forms.RichTextBox _Note;
         private BorderedTextBox _PR;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Panel panel1;
     }
 }

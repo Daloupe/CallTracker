@@ -61,17 +61,8 @@ namespace CallTracker.Model
             {
                 AddressPattern rgxAddress = new AddressPattern();
                 Match AddressMatch = rgxAddress.Match(value);
-                if (AddressMatch.Success == false)
-                    return;
-                Console.WriteLine("0 " + AddressMatch.Groups[0].Value);
-                Console.WriteLine("1 " + AddressMatch.Groups[1].Value);
-                Console.WriteLine("2 " + AddressMatch.Groups[2].Value);
-                Console.WriteLine("3 " + AddressMatch.Groups[3].Value);
-                Console.WriteLine("4 " + AddressMatch.Groups[4].Value);
-                Console.WriteLine("5 " + AddressMatch.Groups[5].Value);
-                Console.WriteLine("6 " + AddressMatch.Groups[6].Value);
-                Console.WriteLine("7 " + AddressMatch.Groups[7].Value);
-                Console.WriteLine("8 " + AddressMatch.Groups[8].Value);
+                //if (AddressMatch.Success == false)
+                //    return;
                 PropertyType = AddressMatch.Groups[1].Value;
                 UnitNumber = AddressMatch.Groups[2].Value;
                 PropertyNumber = AddressMatch.Groups[3].Value;
