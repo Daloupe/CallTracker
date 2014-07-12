@@ -19,12 +19,14 @@ namespace CallTracker.View
         public EditGridLinks()
         {
             InitializeComponent();
+            dataGridView1.AutoGenerateColumns = false;
         }
 
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
-
+            
+            systemItemBindingSource.DataSource = MainForm.DataStore.GridLinks.SystemItems;
             gridLinksBindingSource.DataSource = MainForm.DataStore.GridLinks.GridLinkList;
 
             for (var x = 0; x <10; x++)

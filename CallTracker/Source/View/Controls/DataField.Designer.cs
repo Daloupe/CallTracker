@@ -77,6 +77,6 @@
         #endregion
 
         private System.Windows.Forms.Label _Label;
-        public BorderedTextBox _DataField;
+        private CallTracker.View.BorderedTextBox _DataField;
     }
 }

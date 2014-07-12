@@ -256,6 +256,12 @@
     <None Include="Source\Model\Archive\PocoPerson.cs" />
     <Compile Include="Source\Model\ServiceModel.cs" />
     <Compile Include="Source\Model\StatisticsModel.cs" />
+    <Compile Include="Source\View\Popups\AddAROForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\AddAROForm.Designer.cs">
+      <DependentUpon>AddAROForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Popups\BindSmartPasteForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -305,6 +311,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Source\View\Popups\AddAROForm.resx">
+      <DependentUpon>AddAROForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Popups\BindSmartPasteForm.resx">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
     </EmbeddedResource>

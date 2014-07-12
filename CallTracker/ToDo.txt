@@ -1,8 +1,5 @@
 To Do:
 
- - Gridlinks edit panes.
- - "Advanced" Field on smart paste Bind window takes string of path to property.
-
 Main GUI
  | Have Settings windows show in main gui, rather than their own popup.
  - Add status bar to display warnings.
@@ -59,6 +56,7 @@ Call History
 
  GridLinks
  | Detect Login page and Autologin/ Detect Log in Required Page (ie Wobs).
+ | Gridlinks edit panes.
  - Pull Systems from Login information.
  - GridLinks on an empty IE page should load it in that window.
 
@@ -111,6 +109,7 @@ BindSmartPaste GUI
  | System AutoCompletes based on other SmartPaste systems.
  | System prefills if other SmartPasteBinds share a URL/Title.
  | Name prefills with Element name.
+ | Enabled typed input if object path is known.
 
 
 

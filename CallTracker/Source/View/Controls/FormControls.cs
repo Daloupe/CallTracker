@@ -3,6 +3,7 @@ using System.Drawing;
 
 namespace CallTracker.View
 {
+
     public class BorderedTextBox : TextBox
     {
         private Color _borderColor = Color.Gray;

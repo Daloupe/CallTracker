@@ -9,16 +9,6 @@ using System.Windows.Forms;
 
 namespace CallTracker.View
 {
-    public partial class IDataField : UserControl
-    {
-        protected string propertyName;
-        [Category("A1")]
-        public string PropertyName
-        {
-            get { return propertyName; }
-            set { propertyName = value; }
-        }
-    }
     [DefaultBindingProperty("TextField")]
     public partial class DataField : IDataField
     {
@@ -49,6 +39,16 @@ namespace CallTracker.View
         {
             get { return _DataField.Text; }
             set { _DataField.Text = value; }
+        }
+    }
+    public partial class IDataField : UserControl
+    {
+        protected string propertyName;
+        [Category("A1")]
+        public string PropertyName
+        {
+            get { return propertyName; }
+            set { propertyName = value; }
         }
     }
 }
