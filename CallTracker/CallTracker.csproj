@@ -85,6 +85,7 @@
     <Compile Include="Source\Helpers\IETabActivator.cs" />
     <Compile Include="Source\Model\AROModel.cs" />
     <Compile Include="Source\Model\IEInteractBase.cs" />
+    <Compile Include="Source\Model\Resource Models\RatePlanModel.cs" />
     <Compile Include="Source\View\Controls\DataArea.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,6 +139,12 @@
     </Compile>
     <Compile Include="Source\View\Panels\Product\NFVPanel.Designer.cs">
       <DependentUpon>NFVPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Resources\LATRatecodes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Resources\LATRatecodes.Designer.cs">
+      <DependentUpon>LATRatecodes.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Panels\Settings\CallHistoryPanel.cs">
       <SubType>UserControl</SubType>
@@ -212,6 +219,9 @@
     <EmbeddedResource Include="Source\View\Panels\Product\NFVPanel.resx">
       <DependentUpon>NFVPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Resources\LATRatecodes.resx">
+      <DependentUpon>LATRatecodes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Settings\CallHistoryPanel.resx">
       <DependentUpon>CallHistoryPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -243,6 +253,7 @@
     <None Include="Properties\DataSources\CallTracker.Model.GridLinksModel.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.LoginsModel.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.PasteBind.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.Rateplan.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.ServiceModel.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.SystemItem.datasource" />
     <None Include="Source\Helpers\Archive\Converters.cs" />

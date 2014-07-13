@@ -32,8 +32,51 @@ namespace CallTracker.Model
         }
     }
 
+    abstract class DataRepository<T>
+    {
+        protected string Filename;
+
+        public virtual T ReadFile()
+        {
+            T dataStore;
+
+            if (!File.Exists(Filename))
+                File.Create(Filename).Close();
+            using (var file = File.OpenRead(Filename))
+                dataStore = Serializer.Deserialize<T>(file);
+
+            return dataStore;
+        }
+
+        public virtual void SaveFile(T _dataStore)
+        {
+            T dataStore = _dataStore;
+
+            using (var file = File.Create(Filename))
+                Serializer.Serialize<T>(file, dataStore);
+        }
+
+        public virtual void DecryptData(T _dataStore)
+        {
+            T dataStore = _dataStore;
+
+            string key = StringCipher.Encrypt(Environment.UserName, "2point71828");
+            //foreach (var login in dataStore.Logins)
+            //    login.Password = StringCipher.Decrypt(login.Password, key);
+        }
+
+        public virtual void EncryptData(T _dataStore)
+        {
+            T dataStore = _dataStore;
+
+            //foreach (var login in dataStore.Logins)
+            //    login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt(Environment.UserName, "2point71828"));
+
+        }
+    }
+
     [ProtoContract]
-    internal class DataRepository
+    internal class UserDataStore : DataRepository<UserDataStore>
     {
         [ProtoMember(1)]
         internal TriggerList<PasteBind> PasteBinds { get; set; }
@@ -44,27 +87,27 @@ namespace CallTracker.Model
         [ProtoMember(4)]
         internal GridLinksModel GridLinks { get; set; }
 
-        //public List<T> Remove
-
-        public DataRepository()
+        public UserDataStore()
         {
+            Filename = "Data.bin";
+
             PasteBinds = new TriggerList<PasteBind>();
             Contacts = new BindingList<CustomerContact>();
             Logins = new BindingList<LoginsModel>();
             GridLinks = new GridLinksModel();
         }
 
-        public static DataRepository ReadFile()
+        public override UserDataStore ReadFile()
         {
-            DataRepository dataStore;
+            UserDataStore dataStore;
 
-            if (!File.Exists("Data.bin"))
-                File.Create("Data.bin").Close();    
-            using (var file = File.OpenRead("Data.bin"))
-                dataStore = Serializer.Deserialize<DataRepository>(file);
-            
+            if (!File.Exists(Filename))
+                File.Create(Filename).Close();
+            using (var file = File.OpenRead(Filename))
+                dataStore = Serializer.Deserialize<UserDataStore>(file);
+
             DecryptData(dataStore);
-            
+
             CustomerContact newContact = new CustomerContact();
             newContact.Id = dataStore.Contacts.Count;
             newContact.Contacts.StartDate = DateTime.Today;
@@ -77,31 +120,45 @@ namespace CallTracker.Model
             return dataStore;
         }
 
-        public static void SaveFile(DataRepository _dataStore)
+        public override void SaveFile(UserDataStore _dataStore)
         {
-            DataRepository dataStore = _dataStore;
-            
+            UserDataStore dataStore = _dataStore;
+
             EncryptData(dataStore);
-            using (var file = File.Create("Data.bin"))
-                Serializer.Serialize<DataRepository>(file, dataStore);
+            using (var file = File.Create(Filename))
+                Serializer.Serialize<UserDataStore>(file, dataStore);
         }
 
-        private static void DecryptData(DataRepository _dataStore)
+        public override void DecryptData(UserDataStore _dataStore) 
         {
-            DataRepository dataStore = _dataStore;
+            UserDataStore dataStore = _dataStore;
 
             string key = StringCipher.Encrypt(Environment.UserName, "2point71828");
             foreach (var login in dataStore.Logins)
                 login.Password = StringCipher.Decrypt(login.Password, key);
         }
 
-        private static void EncryptData(DataRepository _dataStore)
+        public override void EncryptData(UserDataStore _dataStore)
         {
-            DataRepository dataStore = _dataStore;
+            UserDataStore dataStore = _dataStore;
 
             foreach (var login in dataStore.Logins)
                 login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt(Environment.UserName, "2point71828"));
 
         }
+    }
+
+    [ProtoContract]
+    internal class ResourceData : DataRepository<ResourceData>
+    {
+        [ProtoMember(1)]
+        internal BindingList<RateplanModel> LATRatePlans { get; set; }
+
+        public ResourceData()
+        {
+            Filename = "Resources.bin";
+            LATRatePlans = new BindingList<RateplanModel>();
+        }
+
     }
 }

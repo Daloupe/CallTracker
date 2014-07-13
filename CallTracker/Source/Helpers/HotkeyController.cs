@@ -42,8 +42,8 @@ namespace CallTracker.Helpers
                 // public static string FollowPropertyPath(object value, string path)
                 // public static string FollowPropertyPath(object value, string path, string altPath)
         private static Main parent;
-        private static IE browser;
-        private static string PreviousIEMatch;
+        public static IE browser;
+        public static string PreviousIEMatch;
         private static HotKeyManager HotKeyManager;
         private static PropertyDescriptorCollection props;
 
@@ -123,17 +123,10 @@ namespace CallTracker.Helpers
                 if (hWnd != IntPtr.Zero)
                     WindowHelper.SetForegroundWindow(hWnd);
             }
-            else if (FindIEByTitle(systemItem.Title))
-            {
-                new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
-                if (browser.Url == systemItem.Url)
-                    AutoLogin();
-            }
             else
-            {
-                if(CreateNewIE(systemItem.Url, systemItem.Title))
-                    AutoLogin();     
-            }
+                if(NavigateOrNewIE(systemItem.Title, systemItem.Url))
+                    AutoLogin();
+
             parent.UpdateProgressBar(0);
         }
 
@@ -349,7 +342,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Browser Methods //////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private bool FindBrowser()
+        public bool FindBrowser()
         {
             if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
             {
@@ -362,8 +355,8 @@ namespace CallTracker.Helpers
             }
             return true;
         }
-        
-        private bool FindIEByHWND(IntPtr _HWND)
+
+        public static bool FindIEByHWND(IntPtr _HWND)
         {
             string currentHWND = _HWND.ToString();
 
@@ -382,7 +375,7 @@ namespace CallTracker.Helpers
             return true;
         }
 
-        private bool FindIEByTitle(string _title)
+        public static bool FindIEByTitle(string _title)
         {
             //string currentTitle = Regex.Split(_title, " -( Windows)? Internet Explorer")[0];
             //string currentTitle = Regex.Match(_title, @"(?:[/:\w\.\s]+ - )?([/:\w\.\s]+)(?: - [/:\w\.\s]+)?").Groups[1].Value;
@@ -405,7 +398,7 @@ namespace CallTracker.Helpers
             return true;
         }
 
-        private bool FindIEByUrl(string _url)
+        public static bool FindIEByUrl(string _url)
         {
             //browser = Browser.AttachTo<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase)));
             if (!Browser.Exists<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase))))
@@ -423,7 +416,7 @@ namespace CallTracker.Helpers
             return true;
         }
 
-        public bool CreateNewIE(string _url, string _title)
+        public static bool CreateNewIE(string _url, string _title)
         {
             OnAction();
             if (browser != null)
@@ -444,6 +437,22 @@ namespace CallTracker.Helpers
                     return false; 
                 }
             }
+        }
+
+        public static bool NavigateOrNewIE(string title, string url)
+        {
+            if (FindIEByTitle(title))
+            {
+                new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
+                if (browser.Url == url)
+                    return true;
+            }
+            else
+            {
+                if (CreateNewIE(url, title))
+                    return true;
+            }
+            return false;
         }
     }
 

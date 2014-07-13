@@ -22,7 +22,9 @@ namespace CallTracker.View
     {
         internal CustomerContact SelectedContact { get; set; }
 
-        internal DataRepository DataStore;
+        internal UserDataStore DataStore = new UserDataStore();
+        internal ResourceData ResourceStore = new ResourceData();
+
         private HotkeyController HotKeys;
         internal static ICONNoteGenerator NoteGen = new ICONNoteGenerator();
 
@@ -33,6 +35,9 @@ namespace CallTracker.View
         internal CallHistory callHistory;
         internal HelpKeyCommands helpKeyCommands;
 
+        internal LATRatecodes latRateCodes;
+
+        private AutoCompleteStringCollection systemAutoCompleteSource = new AutoCompleteStringCollection();
 
         public Point ControlOffset = new Point(0, 18);
 
@@ -42,7 +47,8 @@ namespace CallTracker.View
             SelectedContact = new CustomerContact();
 
             SetAppLocation();
-            DataStore = DataRepository.ReadFile();
+            DataStore = DataStore.ReadFile();
+            ResourceStore = ResourceStore.ReadFile();
             HotKeys = new HotkeyController(this);
 
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -55,6 +61,8 @@ namespace CallTracker.View
             editSmartPasteBinds = new EditSmartPasteBinds();
             callHistory = new CallHistory();
             helpKeyCommands = new HelpKeyCommands();
+
+            latRateCodes = new LATRatecodes();
             
 
             Controls.Add(editLogins);
@@ -63,55 +71,10 @@ namespace CallTracker.View
             Controls.Add(callHistory);
             Controls.Add(helpKeyCommands);
             Controls.Add(editContact);
+            Controls.Add(latRateCodes);
 
             editContact.BringToFront();
             editContact.Visible = true;
-
-
-            
-
-            ////PropertyDescriptor property = TypeDescriptor.GetProperties(SelectedContact)["Name"];
-            ////object value = "";
-
-            ////            // SetValue
-            ////Stopwatch setValue = new Stopwatch();
-            ////    setValue.Start();
-            ////        property.SetValue(SelectedContact, "Jesse");
-             
-            ////    setValue.Stop();
-            ////Console.WriteLine(setValue.Elapsed);
-            
-
-            ////// GetValue
-            ////Stopwatch getValue = new Stopwatch();
-            ////getValue.Start();
-            ////value = property.GetValue(SelectedContact);
-            ////getValue.Stop();
-            ////Console.WriteLine(value.ToString());
-            ////Console.WriteLine(getValue.Elapsed);
-
-
-            //HyperTypeDescriptionProvider.Add(typeof(CustomerContact));
-
-            //PropertyDescriptor property = TypeDescriptor.GetProperties(SelectedContact)["Name"];
-            //object value = "";
-
-            //// SetValue
-            //Stopwatch setValue = new Stopwatch();
-            //setValue.Start();
-            //property.SetValue(SelectedContact, "Jesse");
-
-            //setValue.Stop();
-            //Console.WriteLine(setValue.Elapsed);
-
-
-            //// GetValue
-            //StopwatchgetValue = new Stopwatch();
-            //getValue.Start();
-            //value = property.GetValue(SelectedContact);
-            //getValue.Stop();
-            //Console.WriteLine(value.ToString());
-            //Console.WriteLine(getValue.Elapsed);
         }
 
         private void SetAppLocation()
@@ -138,15 +101,19 @@ namespace CallTracker.View
             editGridLinks.Init(this, gridLinksViewMenuItem);
             callHistory.Init(this, callHistoryToolStripMenuItem);
             helpKeyCommands.Init(this, viewKeyCommandsMenuItem);
+            latRateCodes.Init(this, LATRatecodeMenuItem);
 
             IETabActivator.OnAction += UpdateProgressBar;
             HotkeyController.OnAction += UpdateProgressBar;
+
+
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Save();
-            DataRepository.SaveFile(DataStore);
+            DataStore.SaveFile(DataStore);
+            ResourceStore.SaveFile(ResourceStore);
             HotKeys.Dispose();
         }
 
@@ -259,6 +226,25 @@ namespace CallTracker.View
                 cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
                 return cp;
             }
-        } 
+        }
+
+        
+        private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Return)
+            {
+                settingMenuItem_Click(LATRatecodeMenuItem, new EventArgs());
+                latRateCodes.Search(((ToolStripTextBox)sender).Text);
+                LatRatecodeSearch.PerformClick();
+                
+            };
+        }
+
+        public void UpdateAutoComplete()
+        {
+            LatRatecodeSearch.AutoCompleteCustomSource = systemAutoCompleteSource;
+            systemAutoCompleteSource.Clear();
+            systemAutoCompleteSource.AddRange(ResourceStore.LATRatePlans.Select(p => p.RateCode).ToArray());
+        }
     }
 }

@@ -13,9 +13,9 @@ namespace CallTracker.Model
 {
     [ProtoContract]
     [ImplementPropertyChanged]
-    public class CustomerContact : INotifyPropertyChanged
+    public class CustomerContact //: INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        //public event PropertyChangedEventHandler PropertyChanged;
 
         public static List<DataBindType> PropertyStrings = new List<DataBindType>()
             {

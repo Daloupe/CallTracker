@@ -1,4 +1,105 @@
-﻿using System;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Reflection;
+//using System.Text.RegularExpressions;
+
+//using Utilities.RegularExpressions;
+
+//namespace CallTracker.Helpers
+//{
+//    static class FindProperty
+//    {
+//        // Object Methods ///////////////////////////////////////////////////////////////////////////////////////
+//        public static string FollowPropertyPath(object _value, string _path)
+//        {
+//            // Console.WriteLine(_path);
+//            if (String.IsNullOrEmpty(_path))
+//                return null;
+
+//            object output = _value;
+//            Type currentType = output.GetType();
+
+//            DataSplit pathSplit = new DataSplit(_path);
+
+//            foreach (string propertyName in pathSplit.Path)
+//            {
+//                PropertyInfo property = currentType.GetProperty(propertyName);
+//                if (property != null)
+//                {
+//                    output = property.GetValue(output, null);
+//                    currentType = property.PropertyType;
+//                }
+//            }
+
+//            return output == null ? String.Empty : output.ToString();
+//        }
+
+//        public static string FollowPropertyPath(object _value, string _path, string _altPath)
+//        {
+//            if (String.IsNullOrEmpty(_path))
+//                return null;
+
+//            object output = _value;
+//            Type currentType = output.GetType();
+
+//            DataSplit pathSplit = new DataSplit(_path);
+
+//            foreach (string propertyName in pathSplit.Path)
+//            {
+//                PropertyInfo property = currentType.GetProperty(propertyName);
+//                if (property != null)
+//                {
+//                    output = property.GetValue(output, null);
+//                    currentType = property.PropertyType;
+//                }
+//            }
+
+//            if (String.IsNullOrEmpty(output.ToString()) && !String.IsNullOrEmpty(_altPath))
+//                output = FollowPropertyPath(_value, _altPath);
+
+//            return output == null ? String.Empty : output.ToString();
+//        }
+
+//        public class DataSplit
+//        {
+//            public string[] Path;
+//            //public string ReplacePattern;
+//            public Regex Pattern;
+
+//            public DataSplit(string path)
+//            {
+//                string[] split = path.Split('|');
+//                Path = split[0].Trim().Split('.');
+//                Console.WriteLine(Path.LastOrDefault());
+//                if (RegexLookup.ContainsKey(Path.Last()))
+//                    Pattern = RegexLookup[Path.Last()];
+//                //if(split.Length > 1)
+//                  //  ReplacePattern = split[1].TrimStart(' ');                
+//            }
+
+//            //public bool HasRegex()
+//            //{
+//            //    return !String.IsNullOrEmpty(ReplacePattern) && Pattern != null;
+//            //}
+
+//            //public string RegexReplace(string input)
+//            //{
+//            //    return Pattern.Replace(input, ReplacePattern);
+//            //}
+//        }
+
+//        public static Dictionary<string, Regex> RegexLookup = new Dictionary<string, Regex>{
+//            {"CMBS", new CMBSPattern()},
+//            {"Name", new NamePattern()},
+//            {"DN", new DNPattern()},
+//            {"Mobile", new MobilePattern()}
+//        };
+//    }
+//}
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,8 +133,8 @@ namespace CallTracker.Helpers
                 }
             }
 
-            if (pathSplit.HasRegex())
-                output = pathSplit.RegexReplace(output.ToString());
+            //if (pathSplit.HasRegex())
+            //  output = pathSplit.RegexReplace(output.ToString());
 
             return output == null ? String.Empty : output.ToString();
         }
@@ -51,24 +152,26 @@ namespace CallTracker.Helpers
         public class DataSplit
         {
             public string[] Path;
-            public string ReplacePattern;
-            public Regex Pattern;
+            private string ReplacePattern;
+            private Regex Pattern;
 
             public DataSplit(string path)
             {
                 string[] split = path.Split('|');
                 Path = split[0].TrimEnd(' ').Split('.');
-                ReplacePattern = split[1].TrimStart(' ');
-                Pattern = RegexLookup[Path.Last()];
+                if (split.Length > 1)
+                    ReplacePattern = split[1].TrimStart(' ');
             }
 
             public bool HasRegex()
-            {   
-                return !String.IsNullOrEmpty(ReplacePattern) && Pattern != null;
+            {
+                return !String.IsNullOrEmpty(ReplacePattern);
             }
 
             public string RegexReplace(string input)
             {
+                if (RegexLookup.ContainsKey(Path.Last()))
+                    Pattern = RegexLookup[Path.Last()];
                 return Pattern.Replace(input, ReplacePattern);
             }
         }

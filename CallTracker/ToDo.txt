@@ -6,6 +6,7 @@ Main GUI
  | Fixed DataPaste not pasting into ie.
  | Fixed WaTiN not finding brower by title.
  | Complexified address detection to allow for multiple worded streets and suburbs.
+ | Added searchable Lat Rateplans interface.
  - Add status bar to display warnings.
  - Start inputting system variables.
  - Key Command Help extends window height.
@@ -124,59 +125,300 @@ BindSmartPaste GUI
 
 
 
+Icon Search title: http://icon.optus.com.au/ - Customer Search/Prospect
+-------------------------------------------------------------------
+Login Diff:
+>>>> Visible Text <<<<
+Ext: 37297
+
+Login:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             36
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad136
+Name:  btnLogin
+Advanced (Class):            [NAME:btnLogin]
+ID:          135092
+Text:
+Position:              11, 17
+Size:       39, 39
+ControlClick Coords:       19, 24
+Style:     0x5601000B
+ExStyle:                0x00000000
+Handle:                0x00020FB4
+
+Logout:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             35
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad135
+Name:  btnLogout
+Advanced (Class):            [NAME:btnLogout]
+ID:          135090
+Text:
+Position:              59, 17
+Size:       39, 39
+ControlClick Coords:       25, 22
+Style:     0x5E01000B
+ExStyle:                0x00000000
+Handle:                0x00020FB2
+
+Ready:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             34
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad134
+Name:  btnReady
+Advanced (Class):            [NAME:btnReady]
+ID:          69562
+Text:
+Position:              121, 17
+Size:       39, 39
+ControlClick Coords:       15, 30
+Style:     0x5E01000B
+ExStyle:                0x00000000
+Handle:                0x00010FBA
+
+Not Ready:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             33
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad133
+Name:  btnNotReady
+Advanced (Class):            [NAME:btnNotReady]
+ID:          69560
+Text:
+Position:              170, 17
+Size:       39, 39
+ControlClick Coords:       27, 26
+Style:     0x5E01000B
+ExStyle:                0x00000000
+Handle:                0x00010FB8
+
+Work Ready:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             32
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad132
+Name:  btnWorkReady
+Advanced (Class):            [NAME:btnWorkReady]
+ID:          69558
+Text:
+Position:              217, 17
+Size:       39, 39
+ControlClick Coords:       7, 24
+Style:     0x5E01000B
+ExStyle:                0x00000000
+Handle:                0x00010FB6
+
+Dial:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             19
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad119
+Name:  btnDial
+Advanced (Class):            [NAME:btnDial]
+ID:          69516
+Text:
+Position:              277, 17
+Size:       39, 39
+ControlClick Coords:       11, 31
+Style:     0x5E01000B
+ExStyle:                0x00000000
+Handle:                0x00010F8C
+
+Release:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             17
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad117
+Name:  btnRelease
+Advanced (Class):            [NAME:btnRelease]
+ID:          69512
+Text:
+Position:              373, 17
+Size:       39, 39
+ControlClick Coords:       9, 25
+Style:     0x5E01000B
+ExStyle:                0x00000000
+Handle:                0x00010F88
+
+Hold:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             30
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad130
+Name:  btnHold
+Advanced (Class):            [NAME:btnHold]
+ID:          69548
+Text:
+Position:              435, 17
+Size:       39, 39
+ControlClick Coords:       14, 29
+Style:     0x5E01000B
+ExStyle:                0x00000000
+Handle:                0x00010FAC
+
+Retrieve:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             31
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad131
+Name:  btnRetrieve
+Advanced (Class):            [NAME:btnRetrieve]
+ID:          69550
+Text:
+Position:              484, 17
+Size:       39, 39
+ControlClick Coords:       25, 23
+Style:     0x5E01000B
+ExStyle:                0x00000000
+Handle:                0x00010FAE
+
+Alternate:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             28
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad128
+Name:  btnAlternate
+Advanced (Class):            [NAME:btnAlternate]
+ID:          69542
+Text:
+Position:              547, 17
+Size:       39, 39
+ControlClick Coords:       26, 35
+Style:     0x5E01000B
+ExStyle:                0x00000000
+Handle:                0x00010FA6
+
+Reconnect:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             29
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad129
+Name:  btnReconnect
+Advanced (Class):            [NAME:btnReconnect]
+ID:          69544
+Text:
+Position:              596, 17
+Size:       39, 39
+ControlClick Coords:       16, 38
+Style:     0x5E01000B
+ExStyle:                0x00000000
+Handle:                0x00010FA8
+
+Transfer:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             27
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad127
+Name:  btnTransfer
+Advanced (Class):            [NAME:btnTransfer]
+ID:          69538
+Text:
+Position:              708, 17
+Size:       39, 39
+ControlClick Coords:       13, 27
+Style:     0x5E01000B
+ExStyle:                0x00000000
+Handle:                0x00010FA2
+
+
+>>>> Window <<<<
+Title:      IPCC Agent Desktop for Fusion: v5.2.1 (c2)
+Class:     WindowsForms10.Window.8.app.0.1ca0192_r17_ad1
+Position:              84, 4
+Size:       1086, 340
+Style:     0x16CE0000
+ExStyle:                0x00050100
+Handle:                0x00090F34
+[cid:image001.png@01CF9E01.804BF050]
+
+
+Login:
+>>>> Window <<<<
+Title:      CTI Login
+Class:     WindowsForms10.Window.8.app.0.1ca0192_r17_ad1
+Position:              476, 69
+Size:       301, 210
+Style:     0x16C00000
+ExStyle:                0x00050101
+Handle:                0x00631764
+
+Password:
+>>>> Control <<<<
+Class:     WindowsForms10.EDIT.app.0.1ca0192_r17_ad1
+Instance:             2
+ClassnameNN:  WindowsForms10.EDIT.app.0.1ca0192_r17_ad12
+Name:  txtPasswd
+Advanced (Class):            [NAME:txtPasswd]
+ID:          4855866
+Text:
+Position:              120, 97
+Size:       88, 20
+ControlClick Coords:       21, 12
+Style:     0x560100E0
+ExStyle:                0x00000200
+Handle:                0x004A183A
+
+OK:
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             2
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad12
+Name:  btnOK
+Advanced (Class):            [NAME:btnOK]
+ID:          6166008
+Text:      OK
+Position:              224, 56
+Size:       64, 24
+ControlClick Coords:       22, 18
+Style:     0x5601000B
+ExStyle:                0x00000000
+Handle:                0x005E15F8
 
 
 
 
+Dial:
+>>>> Window <<<<
+Title:      CTI Dial Pad
+Class:     WindowsForms10.Window.8.app.0.1ca0192_r17_ad1
+Position:              491, 56
+Size:       678, 340
+Style:     0x16CB0000
+ExStyle:                0x00050101
+Handle:                0x00EB11B0
 
+Number:
+>>>> Control <<<<
+Class:     WindowsForms10.COMBOBOX.app.0.1ca0192_r17_ad1
+Instance:             1
+ClassnameNN:  WindowsForms10.COMBOBOX.app.0.1ca0192_r17_ad11
+Name:  dialedNumberComboBox
+Advanced (Class):            [NAME:dialedNumberComboBox]
+ID:          332936
+Text:
+Position:              8, 32
+Size:       160, 21
+ControlClick Coords:       25, 20
+Style:     0x56010242
+ExStyle:                0x00000000
+Handle:                0x00051488
 
- Old msart paste:
- if (Char.IsLetter(text, 0))
-            {
-                if (Regex.IsMatch(text, @"\A[a-z]{3}\d{3}\.[a-z]{2}\Z"))
-                {
-                    PropertyInfo prop = parent.SelectedContact.Service.GetType().GetProperty("BRAS");
-                    prop.SetValue(parent.SelectedContact.Service, text, null);
-                }
-                else if (Regex.IsMatch(text, @"\A[AVCSNIG]{3}\d{12}\Z"))
-                {
-                    string firstThree = text.Substring(0, 3);
-                    PropertyInfo prop = parent.SelectedContact.Service.GetType().GetProperty(firstThree);
-                    prop.SetValue(parent.SelectedContact.Service, text, null); 
-                }
-                else if (Regex.IsMatch(text, @"(\b[A-Z][a-z]+(-|\s)?){2,}"))
-                    parent.SelectedContact.Name = text;
-                else if (new UsernamePattern().IsMatch(text) ||
-                         Regex.IsMatch(text, @"\A[A-Z]+[A-Z0-9._]*[A-Z0-9]+(@optusnet.com.au)?\Z"))
-                    parent.SelectedContact.Username = text;
-                else if (Regex.Matches(text, @"\w+").Count > 3)
-                    parent.SelectedContact.Address.Address = text;
-            }
+Warm xfer:
 
-            else if ((firstchar == "0" && textlen == 10) || (text.Substring(0, 2) == "61" && textlen == 11))
-            {
-                if (Regex.IsMatch(text, @"^(0|61)4\d{8}$"))
-                    parent.SelectedContact.Mobile = text;
-                else if (Regex.IsMatch(text, @"^(0|61)[2378]\d{8}$"))
-                    parent.SelectedContact.DN = text;
-            }
-
-            else if (firstchar == "2" || firstchar == "3" || firstchar == "4")
-            {
-                if (Regex.IsMatch(text, @"^\d\d(?i)[A-Z]{2}_?\d\d\d\z"))
-                    parent.SelectedContact.Service.Node = text;
-                else if (Regex.IsMatch(text, @"\A3[1-3]-??\d{5}(-|0|\s)\d\z"))
-                    parent.SelectedContact.CMBS = text;
-            }
-
-            else if (firstchar == "1" && textlen == 8)
-                parent.SelectedContact.Fault.PR = text;
-
-            else if (Regex.IsMatch(text, @"\A(1|5|8|9)\d{13}\z"))
-                parent.SelectedContact.ICON = text;
-
-            else if (Regex.Matches(text, @"\w+").Count > 3)
-                parent.SelectedContact.Address.Address = text;//[Unit|Level]?([-|/]?:\d+)?\w+
-         
-            else
-                parent.SelectedContact.Note += text;
+>>>> Control <<<<
+Class:     WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1
+Instance:             16
+ClassnameNN:  WindowsForms10.BUTTON.app.0.1ca0192_r17_ad116
+Name:  btnDial
+Advanced (Class):            [NAME:btnDial]
+ID:          7804020
+Text:      Warm Transf
+Position:              192, 64
+Size:       80, 24
+ControlClick Coords:       41, 10
+Style:     0x5601000B
+ExStyle:                0x00000000
+Handle:                0x00771474

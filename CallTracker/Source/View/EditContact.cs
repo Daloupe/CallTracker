@@ -13,7 +13,7 @@ namespace CallTracker.View
 {
     public partial class EditContact : UserControl
     {
-        private DataRepository DataStore;
+        private UserDataStore DataStore;
         //private Dictionary<string, PanelBase> ServicePanels;
         public static Dictionary<ServiceTypes, ServiceView> ServiceViews;
         private Main MainForm;
@@ -145,7 +145,18 @@ namespace CallTracker.View
             _Outcome.DataSource = Enum.GetValues(typeof(Outcomes));
             _BookingTimeSlot.DataSource = Enum.GetValues(typeof(BookingTimeslot));
 
-            CreateNoteMenu();
+            
+                ContextMenu cm = new ContextMenu();
+                MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
+                cm1.Tag = "Note";
+                cm1.Checked = true;
+                MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
+                cm2.Tag = "ICONNote";
+                cm.MenuItems.Add(cm1);
+                cm.MenuItems.Add(cm2);
+                _Note.ContextMenu = cm;
+            
+            //CreateNoteMenu();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -230,8 +241,8 @@ namespace CallTracker.View
 
         private void UpdateCurrentPanel()
         {
-            if (ServiceLock)
-                return;
+            //if (ServiceLock)
+            //    return;
 
             ServiceTypes affectedServices = (MainForm.SelectedContact.Fault.AffectedServices);
 
@@ -245,11 +256,11 @@ namespace CallTracker.View
             }
         }
 
-        private bool ServiceLock;
+        //private bool ServiceLock;
 
         private void _ServiceMenu_Click(object sender, EventArgs e)
         {
-            ServiceLock = true;
+            //ServiceLock = true;
             CurrentService = ServiceViews[(ServiceTypes)((ToolStripMenuItem)sender).Tag];
         }
 
@@ -258,7 +269,7 @@ namespace CallTracker.View
             if (e.Button == MouseButtons.Right && !HandlingRightClick)
             {
                 HandlingRightClick = true;
-                ServiceLock = true;
+                //ServiceLock = true;
                 CurrentService = ServiceViews[(ServiceTypes)((CheckBox)sender).Tag];
             }
         }
@@ -266,12 +277,12 @@ namespace CallTracker.View
         private void OnMouseUp(object sender, MouseEventArgs e)
         {
             HandlingRightClick = false;
-            CheckBox cb = (CheckBox)sender;
-            if (CurrentService != null && CurrentService.CheckBox.Checked == false)
-            {
-                ServiceLock = false;
-                UpdateCurrentPanel();
-            }
+            //CheckBox cb = (CheckBox)sender;
+            //if (CurrentService != null && CurrentService.CheckBox.Checked == false)
+            //{
+            //    ServiceLock = false;
+            //    UpdateCurrentPanel();
+            //}
         }
 
         private bool HandlingRightClick { get; set; }
@@ -296,18 +307,18 @@ namespace CallTracker.View
                 _Note.DataBindings[0].ReadValue();
         }
 
-        public void CreateNoteMenu()
-        {
-            ContextMenu cm = new ContextMenu();
-            MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
-            cm1.Tag = "Note";
-            cm1.Checked = true;
-            MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
-            cm2.Tag = "ICONNote";
-            cm.MenuItems.Add(cm1);
-            cm.MenuItems.Add(cm2);
-            _Note.ContextMenu = cm;
-        }
+        //public void CreateNoteMenu()
+        //{
+        //    ContextMenu cm = new ContextMenu();
+        //    MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
+        //    cm1.Tag = "Note";
+        //    cm1.Checked = true;
+        //    MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
+        //    cm2.Tag = "ICONNote";
+        //    cm.MenuItems.Add(cm1);
+        //    cm.MenuItems.Add(cm2);
+        //    _Note.ContextMenu = cm;
+        //}
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Splitter /////////////////////////////////////////////////////////////////////////////////////////
