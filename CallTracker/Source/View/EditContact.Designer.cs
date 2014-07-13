@@ -933,7 +933,7 @@
             this.MainPanel.Location = new System.Drawing.Point(3, 3);
             this.MainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(579, 216);
+            this.MainPanel.Size = new System.Drawing.Size(578, 216);
             this.MainPanel.TabIndex = 30;
             this.MainPanel.WrapContents = false;
             // 
@@ -946,7 +946,7 @@
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "EditContact";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(585, 222);
+            this.Size = new System.Drawing.Size(584, 222);
             this.FaultPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

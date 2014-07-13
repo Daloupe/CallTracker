@@ -39,7 +39,7 @@ namespace CallTracker.View
 
         private AutoCompleteStringCollection systemAutoCompleteSource = new AutoCompleteStringCollection();
 
-        public Point ControlOffset = new Point(0, 18);
+        public Point ControlOffset = new Point(1, 18);
 
         public Main()
         {
