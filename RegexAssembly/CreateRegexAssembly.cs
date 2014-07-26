@@ -47,6 +47,15 @@ namespace RegexAssembly
                                         @"(?:[,\s]+?([a-z]+))?" +           // State (Optional)
                                         @"(?:[,\s]+?(\d{4}))?"              // Postcode (Optional)
                                         , RegexOptions.IgnoreCase),
+                new MyRegex("Address2", @"(?:(Unit|Lot|Level|Floor|P.?O.? Box)\s)?" +  // Property Type
+                                        @"(?:(\d+)(?:/|\\|\s))?" +         // Unit Number
+                                        @"(\d+)" +                          // Property Number
+                                        @"\s([a-z]+(?:(?:\s|-)[a-z]+)?)" +                     // Street Name
+                                        @"\s(st|rd|ave|hwy|cct|ct|cl|gr|street|road|avenue|highway|circuit|court|close|grove)\.?" +                  // Street Type
+                                        @"\s([a-z]+(?:(?:\s|-)[a-z]+)?)" +                     // Suburb
+                                        @"\s?(Victoria|Tasmania|Queensland|New South Wales|(?:South|Western) Australia|(?:Northern|Australian Captial) Territory|VIC|NSW|SA|WA|NT|TAS|ACT|QLD)?" +           // State (Optional)
+                                        @"\s?(\d{4})?"              // Postcode (Optional)
+                                        , RegexOptions.IgnoreCase),
             };
 
             Regex.CompileToAssembly(CreateCompilationInfo(RegexList), ASSEMBLYNAME);

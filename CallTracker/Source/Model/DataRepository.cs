@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.ComponentModel;
-
+using System.Data;
 //using CallTracker.Model;
 using CallTracker.Helpers;
+using CallTracker.DataSets;
 
 using ProtoBuf;
+using ProtoBuf.Data;
 
 namespace CallTracker.Model
 {
@@ -158,6 +160,77 @@ namespace CallTracker.Model
         {
             Filename = "Resources.bin";
             LATRatePlans = new BindingList<RateplanModel>();
+        }
+
+    }
+
+    [ProtoContract]
+    internal class ServicesData
+    {
+        private string Filename;
+        [ProtoMember(1)]
+        internal ServicesDataSet servicesDataSet { get; set; }
+
+
+        public ServicesData()
+        {
+            Filename = "Services.bin";
+            servicesDataSet = new ServicesDataSet();
+        }
+
+        public void WriteData()
+        {
+            using (Stream stream = File.OpenWrite(Filename))
+            using (IDataReader reader = servicesDataSet.Services.CreateDataReader())
+            {
+                DataSerializer.Serialize(stream, reader);
+            }
+        }
+
+        public void ReadData()
+        {
+            if (!File.Exists(Filename))
+            {
+                File.Create(Filename).Close();
+                WriteData();
+            }
+            using (Stream stream = File.OpenRead(Filename))
+            using (IDataReader reader = DataSerializer.Deserialize(stream))
+            {
+                servicesDataSet.Services.Load(reader);
+            }
+        }
+
+        public void CreateNewServices()
+        {
+            foreach (string service in Enum.GetNames(typeof(ServiceTypes)))
+            {
+                if (service == "NONE")
+                    continue;
+                ServicesDataSet.ServicesRow NewService = servicesDataSet.Services.NewServicesRow();
+                NewService.Name = service;
+                Console.WriteLine("id: {0}, name:{1}", NewService.ServiceID, NewService.Name);
+                servicesDataSet.Services.AddServicesRow(NewService);
+
+                foreach (string department in Enum.GetNames(typeof(DepartmentTypes)))
+                {
+                    ServicesDataSet.DepartmentsRow NewDepartment = servicesDataSet.Departments.NewDepartmentsRow();
+                    NewDepartment.Name = department;
+                    NewDepartment.ServiceID = NewService.ServiceID;
+                    NewDepartment.InternalContact = 52500;
+                    NewDepartment.ExternalContact = 1800555241;
+                    NewDepartment.ContactHours = "Mon-Fri: 8-7 \n Sat: 9-5 \n Sun: Closed";
+                    Console.WriteLine("id: {0}, name:{1}", NewDepartment.DepartmentID, NewDepartment.Name);
+                    servicesDataSet.Departments.AddDepartmentsRow(NewDepartment);
+                }
+            };
+            
+            //var deptQuery =
+            //    (from dept in servicesDataSet.Departments
+            //    where dept.Name == "CustomerCare" &&
+            //          dept.ServiceID == servicesDataSet.Services.First(x => x.Name == "ONC").ServiceID
+            //    select dept).FirstOrDefault();
+            //Console.WriteLine("id: {0}, name:{1}, service:{2}", servicesDataSet.Relations[0].RelationName, deptQuery.Name ,servicesDataSet.Services.First(x => x.ServiceID == deptQuery.ServiceID).Name);
         }
 
     }

@@ -1,5 +1,12 @@
 To Do:
 
+Priorities
+| Add abilty to bind drop downs and buttons. (type is auto detected).
+	- Need to find out what the different affecetd service drop downs in IFMS are called.
+- Store selected product from context menu in global variable, context sensitive items reference this before displaying or acting.
+	- Transfer departments tooltip displays internal contact, external contact, and opening hours.
+- Transpose objects to relational data tables.
+
 Main GUI
  | Have Settings windows show in main gui, rather than their own popup.
  | Right Click Service area to flip services.
@@ -7,9 +14,18 @@ Main GUI
  | Fixed WaTiN not finding brower by title.
  | Complexified address detection to allow for multiple worded streets and suburbs.
  | Added searchable Lat Rateplans interface.
+ | Rateplans are searchable just be being in focus.
+ | Added Daatsets to start tying the data together.
+ | Ensured the datatables are serialzing.
+ | Added a service select combo to the resources menu.
+ - Rather then having lots of nested menus, changing the selected service will update the menu items.
+ - Make input to rate code search auto capitilize.
+ - Ensure the rate code datagrid is gettng focus when the page opens up.
  - Add status bar to display warnings.
  - Start inputting system variables.
  - Key Command Help extends window height.
+ - Side panle needs to ghost when dragging.
+ - rate code needs to allow keyboard input to prioritize insertion of new records.
 
 Contact GUI
  | Double click splitters to toggle panels.
@@ -94,6 +110,7 @@ General GUI
 	 | If no element is found, pop up a box advising that it can't be bound.
 	 | Datagrid resets binding when datasource changes.
 	 | Store element constraint to avoid unneccessary .Exists.
+	 - Binds are reorderable.
 
 	Autologin
 	 | Add field for form name.

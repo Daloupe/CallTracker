@@ -54,23 +54,49 @@ namespace CallTracker.Model
 
             FindByName = String.IsNullOrEmpty(_activeElement.Id);
 
-            Form form = _activeElement.Ancestor<Form>();
-            if (form.Exists)
+            if (_activeElement.Ancestor<Form>().Exists)
             {
+                Form form = _activeElement.Ancestor<Form>();
                 FormElement = form.IdOrName;
 
-                if (String.IsNullOrEmpty(FormElement))
-                    return;
-
-                if (String.IsNullOrEmpty(form.Id))
-                    IEFormConstraint = ConstraintByName;
-                else
-                    IEFormConstraint = ConstraintById;
-
-                FindInForm = true;
+                if (!String.IsNullOrEmpty(FormElement))
+                {
+                    FindInForm = true;
+                    if (String.IsNullOrEmpty(form.Name))
+                        IEFormConstraint = ConstraintByName;
+                    else
+                        IEFormConstraint = ConstraintById;
+                }            
             }
+
+            switch(_activeElement.GetAttributeValue("type"))
+            {
+                case "text":
+                    FindAsTextField = true;
+                    break;
+                case "button":
+                    ClickButton = true;
+                    break;
+                case "submit":
+                    ClickButton = true;            
+                    break;
+                case "select-one":
+                    SelectFromList = true;
+                    break;
+                default:
+                    break;
+            }
+
+            //switch (_activeElement.TagName)
+            //{
+            //    case "button":
+            //        ClickButton = true;
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
     }
 
-    
+
 }

@@ -182,6 +182,7 @@ namespace CallTracker.Helpers
 
             if (query != null)
                 query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data, query.AltData));
+            PreviousIEMatch = browser.Title;
         }
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
@@ -192,7 +193,9 @@ namespace CallTracker.Helpers
             string url = browser.Url;
             string title = browser.Title;
             string element = browser.ActiveElement.IdOrName;
-            
+
+            Console.WriteLine(browser.ActiveElement.GetAttributeValue("type"));
+
             if(String.IsNullOrEmpty(element))
             {
                 WindowHelper.SetForegroundWindow(parent.Handle);
@@ -244,6 +247,21 @@ namespace CallTracker.Helpers
 
             foreach (PasteBind bind in query)
                 bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, bind.AltData));
+
+            //if(browser.Url.Contains("IFMS"))
+            //{
+            //    IFMSAutofill.Go(parent, url, title);
+            //}
+
+            PreviousIEMatch = browser.Title;
+            //PasteBind selector = new PasteBind("Google", "https://www.google.com.au/", "Google", browser.Button(Find.ByName("btnG")));
+            //selector.FindByName = true;
+
+            //selector.FindInForm = false;
+            //selector.ClickButton = true;
+            ////browser.NativeDocument.Body.SetFocus(); // set focus befor u click
+            //selector.Paste(browser, "btnG", "gbqfb");
+            
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -281,6 +299,7 @@ namespace CallTracker.Helpers
             query.Paste(browser, query.UsernameElement, query.Username);
             query.Paste(browser, query.PasswordElement, query.Password);
             query.Submit(browser);
+            PreviousIEMatch = browser.Title;
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -327,13 +346,13 @@ namespace CallTracker.Helpers
                     else if (new CommonNBNPattern().IsMatch(text))     parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
                     else if (new UsernameLowerPattern().IsMatch(text) 
                         ||   new UsernameUpperPattern().IsMatch(text)) parent.SelectedContact.Username = text;
-                    else if (new AddressPattern().IsMatch(text))       parent.SelectedContact.Address.Address = text;
+                    else if (new Address2Pattern().IsMatch(text))       parent.SelectedContact.Address.Address = text;
                 }
                 else
                 {
                     if (new NodePattern().IsMatch(text))               parent.SelectedContact.Service.Node = text;
                     else if (new CMBSPattern().IsMatch(text))          parent.SelectedContact.CMBS = text;
-                    else if (new AddressPattern().IsMatch(text))       parent.SelectedContact.Address.Address = text;
+                    else if (new Address2Pattern().IsMatch(text))       parent.SelectedContact.Address.Address = text;
                     else                                               parent.SelectedContact.Note += text;
                 }      
             }

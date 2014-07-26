@@ -14,19 +14,23 @@ using PropertyChanged;
 
 using CallTracker.Model;
 using CallTracker.Helpers;
+using CallTracker.Data;
 
 namespace CallTracker.View
 {
     [ImplementPropertyChanged]
     public partial class Main : Form
     {
+        internal static ICONNoteGenerator NoteGen = new ICONNoteGenerator();
+        public static string SelectedMenuProduct = String.Empty;
+
+        public Point ControlOffset = new Point(1, 18);
+
         internal CustomerContact SelectedContact { get; set; }
 
         internal UserDataStore DataStore = new UserDataStore();
         internal ResourceData ResourceStore = new ResourceData();
-
-        private HotkeyController HotKeys;
-        internal static ICONNoteGenerator NoteGen = new ICONNoteGenerator();
+        internal ServicesData ServicesStore = new ServicesData();
 
         internal EditLogins editLogins;
         internal EditGridLinks editGridLinks;
@@ -34,36 +38,35 @@ namespace CallTracker.View
         internal EditContact editContact;
         internal CallHistory callHistory;
         internal HelpKeyCommands helpKeyCommands;
-
         internal LATRatecodes latRateCodes;
+        internal DatabaseView databaseView;
 
+        private HotkeyController HotKeys;
         private AutoCompleteStringCollection systemAutoCompleteSource = new AutoCompleteStringCollection();
-
-        public Point ControlOffset = new Point(1, 18);
 
         public Main()
         {
             InitializeComponent();
-            SelectedContact = new CustomerContact();
 
             SetAppLocation();
-            DataStore = DataStore.ReadFile();
-            ResourceStore = ResourceStore.ReadFile();
-            HotKeys = new HotkeyController(this);
-
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
 
-            editContact = new EditContact(this);
+            SelectedContact = new CustomerContact();
+            
+            DataStore = DataStore.ReadFile();
+            ResourceStore = ResourceStore.ReadFile();
+            ServicesStore.ReadData();
+            ServicesStore.CreateNewServices();
 
+            editContact = new EditContact(this);
             editLogins = new EditLogins();
             editGridLinks = new EditGridLinks();
             editSmartPasteBinds = new EditSmartPasteBinds();
             callHistory = new CallHistory();
             helpKeyCommands = new HelpKeyCommands();
-
             latRateCodes = new LATRatecodes();
-            
+            databaseView = new DatabaseView();
 
             Controls.Add(editLogins);
             Controls.Add(editGridLinks);
@@ -72,9 +75,12 @@ namespace CallTracker.View
             Controls.Add(helpKeyCommands);
             Controls.Add(editContact);
             Controls.Add(latRateCodes);
+            Controls.Add(databaseView);
 
             editContact.BringToFront();
             editContact.Visible = true;
+
+            HotKeys = new HotkeyController(this);
         }
 
         private void SetAppLocation()
@@ -102,11 +108,14 @@ namespace CallTracker.View
             callHistory.Init(this, callHistoryToolStripMenuItem);
             helpKeyCommands.Init(this, viewKeyCommandsMenuItem);
             latRateCodes.Init(this, LATRatecodeMenuItem);
+            databaseView.Init(this, databaseEditorToolStripMenuItem);
 
             IETabActivator.OnAction += UpdateProgressBar;
             HotkeyController.OnAction += UpdateProgressBar;
 
-
+            toolStripServiceSelector.ComboBox.BindingContext = this.BindingContext;
+            toolStripServiceSelector.ComboBox.DataSource = Enum.GetValues(typeof(ServiceTypes));
+            
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -114,6 +123,7 @@ namespace CallTracker.View
             Properties.Settings.Default.Save();
             DataStore.SaveFile(DataStore);
             ResourceStore.SaveFile(ResourceStore);
+            ServicesStore.WriteData();
             HotKeys.Dispose();
         }
 
@@ -153,8 +163,12 @@ namespace CallTracker.View
 
         private void settingMenuItem_Click(object sender, EventArgs e)
         {
+            
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
+
             VisibleSetting = item.Tag as ViewControlBase;
+            if(item.HasDropDownItems)
+                item.DropDownItems[0].PerformClick();
         }
 
         public static T ShowPopupForm<T>() where T : Form, new()
@@ -235,8 +249,7 @@ namespace CallTracker.View
             {
                 settingMenuItem_Click(LATRatecodeMenuItem, new EventArgs());
                 latRateCodes.Search(((ToolStripTextBox)sender).Text);
-                LatRatecodeSearch.PerformClick();
-                
+                LatRatecodeSearch.PerformClick();           
             };
         }
 
@@ -246,5 +259,22 @@ namespace CallTracker.View
             systemAutoCompleteSource.Clear();
             systemAutoCompleteSource.AddRange(ResourceStore.LATRatePlans.Select(p => p.RateCode).ToArray());
         }
+
+        private void LATRatecodeMenuItem_CheckedChanged(object sender, EventArgs e)
+        {         
+            ((ToolStripMenuItem)sender).HideDropDown();
+            ((ToolStripMenuItem)sender).Invalidate(); 
+        }
+
+        private void LATRatecodeMenuItem_CheckedChanged_1(object sender, EventArgs e)
+        {
+            //((ToolStripMenuItem)sender).OwnerItem.PerformClick();//.GetCurrentParent().ContextMenuStrip.AutoClose ^= true;
+        }
+
+        private void toolStripServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ((ToolStripComboBox)sender).GetCurrentParent().Focus();
+        }
+
     }
 }

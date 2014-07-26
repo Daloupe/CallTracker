@@ -1,6 +1,6 @@
 ﻿namespace CallTracker.View
 {
-    partial class LATRatecodes
+    partial class DatabaseView
     {
         /// <summary> 
         /// Required designer variable.
@@ -35,20 +35,25 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ratePlanCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.rateCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.planNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cOSLATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cOSLIPDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nILATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nILIPDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rateplanBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._ClearHistory = new System.Windows.Forms.Button();
+            this.departmentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.databaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
             this._Cancel = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new CallTracker.View.BorderedTextBox();
+            this._DatabaseSelect = new System.Windows.Forms.ComboBox();
+            this.servicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.departmentIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serviceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.internalContactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.externalContactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contactHoursDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rateplanBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -98,14 +103,15 @@
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.rateCodeDataGridViewTextBoxColumn,
-            this.planNameDataGridViewTextBoxColumn,
-            this.cOSLATDataGridViewTextBoxColumn,
-            this.cOSLIPDataGridViewTextBoxColumn,
-            this.nILATDataGridViewTextBoxColumn,
-            this.nILIPDataGridViewTextBoxColumn});
+            this.departmentIDDataGridViewTextBoxColumn,
+            this.serviceIDDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.internalContactDataGridViewTextBoxColumn,
+            this.externalContactDataGridViewTextBoxColumn,
+            this.contactHoursDataGridViewTextBoxColumn});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.dataGridView1.DataSource = this.rateplanBindingSource;
+            this.dataGridView1.DataMember = "Departments";
+            this.dataGridView1.DataSource = this.databaseBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(4, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -119,67 +125,20 @@
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyDown);
             // 
-            // rateCodeDataGridViewTextBoxColumn
+            // departmentsBindingSource
             // 
-            this.rateCodeDataGridViewTextBoxColumn.DataPropertyName = "RateCode";
-            this.rateCodeDataGridViewTextBoxColumn.HeaderText = "Rate Code";
-            this.rateCodeDataGridViewTextBoxColumn.Name = "rateCodeDataGridViewTextBoxColumn";
-            this.rateCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.departmentsBindingSource.DataMember = "Departments";
+            this.departmentsBindingSource.DataSource = this.databaseBindingSource;
             // 
-            // planNameDataGridViewTextBoxColumn
+            // databaseBindingSource
             // 
-            this.planNameDataGridViewTextBoxColumn.DataPropertyName = "PlanName";
-            this.planNameDataGridViewTextBoxColumn.FillWeight = 350F;
-            this.planNameDataGridViewTextBoxColumn.HeaderText = "Plan Name";
-            this.planNameDataGridViewTextBoxColumn.Name = "planNameDataGridViewTextBoxColumn";
-            this.planNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.databaseBindingSource.DataSource = this.servicesDataSet;
+            this.databaseBindingSource.Position = 0;
             // 
-            // cOSLATDataGridViewTextBoxColumn
+            // servicesDataSet
             // 
-            this.cOSLATDataGridViewTextBoxColumn.DataPropertyName = "COSLAT";
-            this.cOSLATDataGridViewTextBoxColumn.HeaderText = "Change: Lat";
-            this.cOSLATDataGridViewTextBoxColumn.Name = "cOSLATDataGridViewTextBoxColumn";
-            this.cOSLATDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cOSLIPDataGridViewTextBoxColumn
-            // 
-            this.cOSLIPDataGridViewTextBoxColumn.DataPropertyName = "COSLIP";
-            this.cOSLIPDataGridViewTextBoxColumn.HeaderText = "Change: Lip";
-            this.cOSLIPDataGridViewTextBoxColumn.Name = "cOSLIPDataGridViewTextBoxColumn";
-            this.cOSLIPDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nILATDataGridViewTextBoxColumn
-            // 
-            this.nILATDataGridViewTextBoxColumn.DataPropertyName = "NILAT";
-            this.nILATDataGridViewTextBoxColumn.HeaderText = "Install: Lat";
-            this.nILATDataGridViewTextBoxColumn.Name = "nILATDataGridViewTextBoxColumn";
-            this.nILATDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nILATDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nILIPDataGridViewTextBoxColumn
-            // 
-            this.nILIPDataGridViewTextBoxColumn.DataPropertyName = "NILIP";
-            this.nILIPDataGridViewTextBoxColumn.HeaderText = "Install: Lip";
-            this.nILIPDataGridViewTextBoxColumn.Name = "nILIPDataGridViewTextBoxColumn";
-            this.nILIPDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nILIPDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // rateplanBindingSource
-            // 
-            this.rateplanBindingSource.DataSource = typeof(CallTracker.Model.RateplanModel);
-            // 
-            // _ClearHistory
-            // 
-            this._ClearHistory.BackColor = System.Drawing.Color.LightGray;
-            this._ClearHistory.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
-            this._ClearHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._ClearHistory.Location = new System.Drawing.Point(92, 198);
-            this._ClearHistory.Name = "_ClearHistory";
-            this._ClearHistory.Size = new System.Drawing.Size(57, 22);
-            this._ClearHistory.TabIndex = 16;
-            this._ClearHistory.Text = "Search";
-            this._ClearHistory.UseVisualStyleBackColor = false;
-            this._ClearHistory.Click += new System.EventHandler(this._Search_Click);
+            this.servicesDataSet.DataSetName = "ServicesDataSet";
+            this.servicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // _Cancel
             // 
@@ -201,37 +160,85 @@
             this.label6.ForeColor = System.Drawing.Color.Gainsboro;
             this.label6.Location = new System.Drawing.Point(374, 200);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(123, 17);
+            this.label6.Size = new System.Drawing.Size(131, 17);
             this.label6.TabIndex = 13;
-            this.label6.Text = "LAT Ratecodes";
+            this.label6.Text = "Database Editor";
             // 
-            // textBox1
+            // _DatabaseSelect
             // 
-            this.textBox1.BorderColor = System.Drawing.Color.Gray;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(4, 198);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(85, 22);
-            this.textBox1.TabIndex = 19;
+            this._DatabaseSelect.FormattingEnabled = true;
+            this._DatabaseSelect.Location = new System.Drawing.Point(3, 198);
+            this._DatabaseSelect.Name = "_DatabaseSelect";
+            this._DatabaseSelect.Size = new System.Drawing.Size(183, 20);
+            this._DatabaseSelect.TabIndex = 18;
+            this._DatabaseSelect.SelectedIndexChanged += new System.EventHandler(this._DatabaseSelect_SelectedIndexChanged);
             // 
-            // LATRatecodes
+            // servicesBindingSource
+            // 
+            this.servicesBindingSource.DataMember = "Services";
+            this.servicesBindingSource.DataSource = this.databaseBindingSource;
+            // 
+            // departmentIDDataGridViewTextBoxColumn
+            // 
+            this.departmentIDDataGridViewTextBoxColumn.DataPropertyName = "DepartmentID";
+            this.departmentIDDataGridViewTextBoxColumn.HeaderText = "DepartmentID";
+            this.departmentIDDataGridViewTextBoxColumn.Name = "departmentIDDataGridViewTextBoxColumn";
+            this.departmentIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // serviceIDDataGridViewTextBoxColumn
+            // 
+            this.serviceIDDataGridViewTextBoxColumn.DataPropertyName = "ServiceID";
+            this.serviceIDDataGridViewTextBoxColumn.HeaderText = "ServiceID";
+            this.serviceIDDataGridViewTextBoxColumn.Name = "serviceIDDataGridViewTextBoxColumn";
+            this.serviceIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // internalContactDataGridViewTextBoxColumn
+            // 
+            this.internalContactDataGridViewTextBoxColumn.DataPropertyName = "InternalContact";
+            this.internalContactDataGridViewTextBoxColumn.HeaderText = "InternalContact";
+            this.internalContactDataGridViewTextBoxColumn.Name = "internalContactDataGridViewTextBoxColumn";
+            this.internalContactDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // externalContactDataGridViewTextBoxColumn
+            // 
+            this.externalContactDataGridViewTextBoxColumn.DataPropertyName = "ExternalContact";
+            this.externalContactDataGridViewTextBoxColumn.HeaderText = "ExternalContact";
+            this.externalContactDataGridViewTextBoxColumn.Name = "externalContactDataGridViewTextBoxColumn";
+            this.externalContactDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // contactHoursDataGridViewTextBoxColumn
+            // 
+            this.contactHoursDataGridViewTextBoxColumn.DataPropertyName = "ContactHours";
+            this.contactHoursDataGridViewTextBoxColumn.HeaderText = "ContactHours";
+            this.contactHoursDataGridViewTextBoxColumn.Name = "contactHoursDataGridViewTextBoxColumn";
+            this.contactHoursDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // DatabaseView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this._DatabaseSelect);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this._ClearHistory);
             this.Controls.Add(this._Cancel);
             this.Controls.Add(this.label6);
             this.Font = new System.Drawing.Font("Verdana", 7F);
-            this.Name = "LATRatecodes";
+            this.Name = "DatabaseView";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(584, 222);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rateplanBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.departmentsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.databaseBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicesBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,20 +248,22 @@
 
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button _Cancel;
-        private System.Windows.Forms.Button _ClearHistory;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.BindingSource rateplanBindingSource;
+        private System.Windows.Forms.BindingSource databaseBindingSource;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showInstallCodesToolStripMenuItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rateCodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn planNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cOSLATDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cOSLIPDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nILATDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nILIPDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem ratePlanCalculatorToolStripMenuItem;
-        private BorderedTextBox textBox1;
+        private System.Windows.Forms.ComboBox _DatabaseSelect;
+        private System.Windows.Forms.BindingSource departmentsBindingSource;
+        private DataSets.ServicesDataSet servicesDataSet;
+        private System.Windows.Forms.BindingSource servicesBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn departmentIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn serviceIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn internalContactDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn externalContactDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contactHoursDataGridViewTextBoxColumn;
     }
 }

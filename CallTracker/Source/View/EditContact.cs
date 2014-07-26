@@ -8,9 +8,12 @@ using System.Text;
 using System.Windows.Forms;
 
 using CallTracker.Model;
+using CallTracker.Data;
+using CallTracker.Helpers;
 
 namespace CallTracker.View
 {
+
     public partial class EditContact : UserControl
     {
         private UserDataStore DataStore;
@@ -24,7 +27,7 @@ namespace CallTracker.View
 
             MainForm = _mainform;
             DataStore = MainForm.DataStore;
-
+            
             Location = MainForm.ControlOffset;
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
@@ -48,79 +51,49 @@ namespace CallTracker.View
             ServiceViews = new Dictionary<ServiceTypes, ServiceView>
             {
                 {ServiceTypes.LAT, new ServiceView(new LATPanel(), 
-                                        new List<string>
-                                        {
-                                            "NDT",
-                                            "COS",
-                                            "NRR",
-                                            "DTN",
-                                            "DRP"
-                                        }, 
+                                       new string[]{"Phone", "HFC"}, 
                                         _ServiceMenuLAT,
                                         _LAT,
                                         "LAT", 
                                         "LAT", 
                                         "3")},
                 {ServiceTypes.LIP, new ServiceView(new LIPPanel(), 
-                                        new List<string>{
-                                            "NDT",
-                                            "COS",
-                                            "NRR",
-                                            "DTN",
-                                            "DRP"}, 
+                                        new string[]{"Phone", "HFC"}, 
                                         _ServiceMenuLIP,
                                         _LIP,
                                         "LAT", 
                                         "LIP", 
                                         "3")},
                 {ServiceTypes.ONC, new ServiceView(new ONCPanel(), 
-                                        new List<string>{
-                                            "CCI",
-                                            "DTR",
-                                            "DRP",
-                                            "LIC"}, 
+                                        new string[]{"Internet", "HFC"}, 
                                         _ServiceMenuONC, 
                                         _ONC,
                                         "ONC", 
                                         "ONC", 
                                         "7")},
                 {ServiceTypes.NFV, new ServiceView(new NFVPanel(), 
-                                        new List<string>{
-                                            "NDT",
-                                            "COS",
-                                            "NRR",
-                                            "DTN"}, 
+                                        new string[]{"Phone"}, 
                                         _ServiceMenuNFV, 
                                         _NFV,
                                         "NBN", 
                                         "NVF", 
                                         "7")},
                 {ServiceTypes.NBF, new ServiceView(new NBFPanel(), 
-                                        new List<string>{
-                                            "CCI",
-                                            "DTR",
-                                            "DRP",
-                                            "LIC"},
+                                        new string[]{"Internet"},
                                         _ServiceMenuNBF,
                                         _NBF,
                                         "NBN", 
                                         "NBF", 
                                         "7")},
                 {ServiceTypes.DTV, new ServiceView(new DTVPanel(), 
-                                        new List<string>{
-                                            "MSG",
-                                            "NPI",
-                                            "PPX",
-                                            "DRP"}, 
+                                        new string[]{"TV", "Foxtel"}, 
                                         _ServiceMenuDTV, 
                                         _DTV,
                                         "DTV", 
                                         "DTV", 
                                         "6")},
                 {ServiceTypes.MTV, new ServiceView(new MTVPanel(), 
-                                        new List<string>{
-                                            "NPI",
-                                            "PPX"}, 
+                                        new string[]{"TV", "Fetch"}, 
                                         _ServiceMenuMTV, 
                                         _MTV,
                                         "DLC", 
@@ -268,7 +241,12 @@ namespace CallTracker.View
         {
             if (e.Button == MouseButtons.Right && !HandlingRightClick)
             {
+                CheckBox cb = (CheckBox)sender;
                 HandlingRightClick = true;
+                if(cb.Checked == false)
+                {
+                    cb.Checked = true;
+                }
                 //ServiceLock = true;
                 CurrentService = ServiceViews[(ServiceTypes)((CheckBox)sender).Tag];
             }
@@ -397,9 +375,16 @@ namespace CallTracker.View
               ((Control)sender).Height - 1);
             base.OnPaint(e);
         }
+    }
 
-
-
-
+    public class EnumList
+    {
+        public static IEnumerable<KeyValuePair<T, string>> Of<T>()
+        {
+            return Enum.GetValues(typeof(T))
+                .Cast<T>()
+                .Select(p => new KeyValuePair<T, string>(p, p.ToString()))
+                .ToList();
+        }
     }
 }

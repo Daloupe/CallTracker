@@ -49,14 +49,14 @@
             this._AsTextFields = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this._FindByName = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this._FormElement = new CallTracker.View.BorderedTextBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new CallTracker.View.BorderedTextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.propertyLock = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.loginsModelBindingSource)).BeginInit();
@@ -275,7 +275,6 @@
             // _AsTextFields
             // 
             this._AsTextFields.AutoSize = true;
-            this._AsTextFields.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.loginsModelBindingSource, "FindAsTextField", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._AsTextFields.Location = new System.Drawing.Point(6, 144);
             this._AsTextFields.Name = "_AsTextFields";
             this._AsTextFields.Size = new System.Drawing.Size(98, 16);
@@ -286,7 +285,6 @@
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.loginsModelBindingSource, "TypeText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox4.Location = new System.Drawing.Point(6, 166);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(80, 16);
@@ -304,6 +302,17 @@
             this._FindByName.TabIndex = 25;
             this._FindByName.Text = "Find By Name";
             this._FindByName.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.loginsModelBindingSource, "FindInForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox3.Location = new System.Drawing.Point(6, 210);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(118, 16);
+            this.checkBox3.TabIndex = 18;
+            this.checkBox3.Text = "Find Within Form";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
@@ -335,16 +344,16 @@
             this._FormElement.Size = new System.Drawing.Size(189, 19);
             this._FormElement.TabIndex = 19;
             // 
-            // checkBox3
+            // checkBox1
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.loginsModelBindingSource, "FindInForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox3.Location = new System.Drawing.Point(6, 210);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(118, 16);
-            this.checkBox3.TabIndex = 18;
-            this.checkBox3.Text = "Find Within Form";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.loginsModelBindingSource, "SubmitAsForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox1.Location = new System.Drawing.Point(6, 274);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(112, 16);
+            this.checkBox1.TabIndex = 16;
+            this.checkBox1.Text = "Submit As Form";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // panel3
             // 
@@ -375,17 +384,6 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(189, 19);
             this.textBox4.TabIndex = 13;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.loginsModelBindingSource, "SubmitAsForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox1.Location = new System.Drawing.Point(6, 274);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(112, 16);
-            this.checkBox1.TabIndex = 16;
-            this.checkBox1.Text = "Submit As Form";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label6
             // 

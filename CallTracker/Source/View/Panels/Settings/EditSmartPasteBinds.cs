@@ -27,6 +27,8 @@ namespace CallTracker.View
         {
             base.Init(_parent, _menuItem);
 
+            _ElementType.DataSource = Enum.GetValues(typeof(ElementTypes));
+
             MainForm.DataStore.PasteBinds.Changed += OnListChanged;
 
             pasteBindBindingSource.DataSource = MainForm.DataStore.PasteBinds;
@@ -51,7 +53,7 @@ namespace CallTracker.View
                                       this.pasteBindBindingSource,
                                       "AltData",
                                       true,
-                                      DataSourceUpdateMode.OnPropertyChanged));       
+                                      DataSourceUpdateMode.OnPropertyChanged));
         }
         public void SelectQuery(PasteBind _query)
         {

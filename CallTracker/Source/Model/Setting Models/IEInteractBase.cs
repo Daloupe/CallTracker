@@ -15,8 +15,8 @@ namespace CallTracker.Model
     // Which is called in a generic function through reflection to enable IEType to select the element type.
 
     [ProtoContract]
-    [ProtoInclude(9, typeof(LoginsModel))]
-    [ProtoInclude(10, typeof(PasteBind))]
+    [ProtoInclude(15, typeof(LoginsModel))]
+    [ProtoInclude(16, typeof(PasteBind))]
     public class IEInteractBase
     {
         public IEInteractBase()
@@ -35,9 +35,11 @@ namespace CallTracker.Model
             FormElement = String.Empty;
 
             FindInForm = false;
-            TypeText = false;
             FindByName = false;
-            FindAsTextField = false;
+            //FindAsTextField = false;
+            //TypeText = false;
+            //ClickButton = false;
+            //SelectFromList = false;
         }
 
         [ProtoMember(1)]
@@ -74,19 +76,21 @@ namespace CallTracker.Model
         }
         protected bool findInForm { get; set; }
         
-        [ProtoMember(6)]
-        public bool TypeText
-        {
-            get { return typeText; }
-            set
-            {
-                typeText = value;
-                if (typeText)
-                    IEMethod = MethodTypeText;
-                else
-                    IEMethod = MethodValue;
-            }
-        }
+        //[ProtoMember(6)]
+        //public bool TypeText
+        //{
+        //    get { return typeText; }
+        //    set
+        //    {
+        //        typeText = value;
+        //        if (typeText)
+        //        {
+        //            IEMethod = MethodTypeText;
+        //        }
+        //        else
+        //            IEMethod = MethodValue;
+        //    }
+        //}
         protected bool typeText { get; set; }
         
         [ProtoMember(7)]
@@ -104,26 +108,115 @@ namespace CallTracker.Model
         }
         protected bool findByName { get; set; }
         
-        [ProtoMember(8)]
-        public bool FindAsTextField
-        {
-            get { return findAsTextField; }
+        //[ProtoMember(8)]
+        //public bool FindAsTextField
+        //{
+        //    get { return findAsTextField; }
+        //    set
+        //    {
+        //        findAsTextField = value;
+        //        if (findAsTextField)
+        //        {
+        //            SelectFromList = false;
+        //            ClickButton = false;
+        //            IEType = typeof(TextField);
+        //            TypeText = typeText;
+        //        }
+        //        else
+        //        {
+        //            IEType = typeof(Element);
+        //            IEMethod = MethodSetAttributeValue;
+        //        }
+        //    }
+        //}
+        //protected bool findAsTextField { get; set; }
+
+        //[ProtoMember(9)]
+        //public bool SelectFromList
+        //{
+        //    get { return selectFromList; }
+        //    set
+        //    {
+        //        selectFromList = value;
+
+        //        if (selectFromList)
+        //        {
+        //            FindAsTextField = false;
+        //            TypeText = false;
+        //            ClickButton = false;
+        //            IEType = typeof(SelectList);
+        //            IEMethod = MethodSelectFromList;
+        //        }
+        //        else
+        //        {
+        //            IEType = typeof(Element);
+        //            IEMethod = MethodSetAttributeValue;
+        //        }
+        //    }
+        //}
+        //protected bool selectFromList { get; set; }
+
+        //[ProtoMember(10)]
+        //public bool ClickButton
+        //{
+        //    get { return clickButton; }
+        //    set
+        //    {
+        //        clickButton = value;
+
+        //        if (clickButton)
+        //        {
+        //            FindAsTextField = false;
+        //            TypeText = false;
+        //            SelectFromList = false;
+        //            IEType = typeof(Button);
+        //            IEMethod = MethodClickButton;
+        //        }
+        //        else
+        //        {
+        //            IEType = typeof(Element);
+        //            IEMethod = MethodSetAttributeValue;
+        //        }
+        //    }
+        //}
+        //protected bool clickButton { get; set; }
+
+        [ProtoMember(11)]
+        public ElementTypes ElementType 
+        { 
+            get 
+            { 
+                return elementType; 
+            } 
             set
             {
-                findAsTextField = value;
-                if (findAsTextField)
+                elementType = value;
+                switch (elementType)
                 {
-                    IEType = typeof(TextField);
-                    TypeText = typeText;
-                }
-                else
-                {
-                    IEType = typeof(Element);
-                    IEMethod = MethodSetAttributeValue;
-                }
+                    case ElementTypes.Textfield:
+                        IEType = typeof(TextField);
+                        IEMethod = MethodValue;
+                        break;
+                    case ElementTypes.TypedTextfield:
+                        IEType = typeof(TextField);
+                        IEMethod = MethodTypeText;
+                        break;
+                    case ElementTypes.Button:
+                        IEType = typeof(Button);
+                        IEMethod = MethodClickButton;
+                        break;
+                    case ElementTypes.Dropdown:
+                        IEType = typeof(SelectList);
+                        IEMethod = MethodSelectFromList;
+                        break;
+                    default:
+                        IEType = typeof(Element);
+                        IEMethod = MethodSetAttributeValue;
+                        break;
+                }   
             }
         }
-        protected bool findAsTextField { get; set; }
+        protected ElementTypes elementType { get; set; }
 
         public virtual void Paste(Browser _browser, string _element, string _value)
         {
@@ -135,7 +228,11 @@ namespace CallTracker.Model
         {
             Element elem = IEContext(_browser).ElementOfType<T>(IEConstraint(_element));
             if (elem.Exists)
+            {
+                elem.FindNativeElement().SetFocus();
                 IEMethod(elem, _value);
+                _browser.WaitForComplete(3000);
+            }
         }
 
         protected Func<Browser, IElementContainer> IEContext;
@@ -153,7 +250,18 @@ namespace CallTracker.Model
         protected static Action<Element, string> MethodTypeText = new Action<Element, string>((e, s) => ((TextField)e).TypeText(s));
         protected static Action<Element, string> MethodValue = new Action<Element, string>((e, s) => ((TextField)e).Value = s);
         protected static Action<Element, string> MethodSetAttributeValue = new Action<Element, string>((e, s) => e.SetAttributeValue("value", s));
+        protected static Action<Element, string> MethodSelectFromList = new Action<Element, string>((e, s) => ((SelectList)e).Select(s));
+        protected static Action<Element, string> MethodClickButton = new Action<Element, string>((e, s) => ((Button)e).Click());
     }     
+
+    public enum ElementTypes
+    {
+        Input,
+        Textfield,
+        TypedTextfield,
+        Button,
+        Dropdown
+    }
 }
 
 

@@ -18,6 +18,7 @@ namespace CallTracker.Model
     [ProtoContract]
     public class ServiceModel
     {
+  
         public ServiceModel()
         {
             Equipment = String.Empty;

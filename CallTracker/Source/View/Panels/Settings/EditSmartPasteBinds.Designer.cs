@@ -38,18 +38,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this._Data = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this._AltData = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this._AsTextFields = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this._ElementType = new System.Windows.Forms.ComboBox();
             this._FindByName = new System.Windows.Forms.CheckBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this._Data = new System.Windows.Forms.ComboBox();
-            this._AltData = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -168,19 +168,19 @@
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Controls.Add(this.textBox2);
-            this.flowLayoutPanel1.Controls.Add(this._AsTextFields);
-            this.flowLayoutPanel1.Controls.Add(this.checkBox4);
+            this.flowLayoutPanel1.Controls.Add(this.label5);
+            this.flowLayoutPanel1.Controls.Add(this._ElementType);
             this.flowLayoutPanel1.Controls.Add(this._FindByName);
-            this.flowLayoutPanel1.Controls.Add(this.checkBox3);
             this.flowLayoutPanel1.Controls.Add(this.panel3);
             this.flowLayoutPanel1.Controls.Add(this.label7);
             this.flowLayoutPanel1.Controls.Add(this._FormElement);
+            this.flowLayoutPanel1.Controls.Add(this.checkBox3);
             this.flowLayoutPanel1.Enabled = false;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(-1, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(205, 327);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(205, 384);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // label2
@@ -212,26 +212,45 @@
             this.panel1.Size = new System.Drawing.Size(200, 1);
             this.panel1.TabIndex = 21;
             // 
-            // label7
+            // label4
             // 
-            this.label7.Location = new System.Drawing.Point(6, 283);
-            this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(189, 10);
-            this.label7.TabIndex = 20;
-            this.label7.Text = "Form Element:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+            this.label4.Location = new System.Drawing.Point(6, 77);
+            this.label4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(189, 10);
+            this.label4.TabIndex = 26;
+            this.label4.Text = "Data:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // checkBox3
+            // _Data
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindInForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox3.Location = new System.Drawing.Point(6, 254);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(118, 16);
-            this.checkBox3.TabIndex = 18;
-            this.checkBox3.Text = "Find Within Form";
-            this.checkBox3.UseVisualStyleBackColor = true;
+            this._Data.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this._Data.FormattingEnabled = true;
+            this._Data.Location = new System.Drawing.Point(6, 90);
+            this._Data.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this._Data.Name = "_Data";
+            this._Data.Size = new System.Drawing.Size(190, 20);
+            this._Data.TabIndex = 16;
+            // 
+            // label8
+            // 
+            this.label8.Location = new System.Drawing.Point(6, 110);
+            this.label8.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(189, 10);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Alternate Data:";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // _AltData
+            // 
+            this._AltData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this._AltData.FormattingEnabled = true;
+            this._AltData.Location = new System.Drawing.Point(6, 123);
+            this._AltData.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this._AltData.Name = "_AltData";
+            this._AltData.Size = new System.Drawing.Size(190, 20);
+            this._AltData.TabIndex = 18;
             // 
             // panel2
             // 
@@ -252,33 +271,32 @@
             this.label3.Text = "Element:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // _AsTextFields
+            // label5
             // 
-            this._AsTextFields.AutoSize = true;
-            this._AsTextFields.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindAsTextField", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._AsTextFields.Location = new System.Drawing.Point(6, 188);
-            this._AsTextFields.Name = "_AsTextFields";
-            this._AsTextFields.Size = new System.Drawing.Size(98, 16);
-            this._AsTextFields.TabIndex = 17;
-            this._AsTextFields.Text = "As TextFields";
-            this._AsTextFields.UseVisualStyleBackColor = true;
+            this.label5.Location = new System.Drawing.Point(6, 185);
+            this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(189, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Type:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // checkBox4
+            // _ElementType
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "TypeText", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox4.Location = new System.Drawing.Point(6, 210);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(80, 16);
-            this.checkBox4.TabIndex = 24;
-            this.checkBox4.Text = "Type Text";
-            this.checkBox4.UseVisualStyleBackColor = true;
+            this._ElementType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.pasteBindBindingSource, "ElementType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._ElementType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this._ElementType.FormattingEnabled = true;
+            this._ElementType.Location = new System.Drawing.Point(6, 201);
+            this._ElementType.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this._ElementType.Name = "_ElementType";
+            this._ElementType.Size = new System.Drawing.Size(190, 20);
+            this._ElementType.TabIndex = 16;
             // 
             // _FindByName
             // 
             this._FindByName.AutoSize = true;
             this._FindByName.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindByName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._FindByName.Location = new System.Drawing.Point(6, 232);
+            this._FindByName.Location = new System.Drawing.Point(6, 224);
             this._FindByName.Name = "_FindByName";
             this._FindByName.Size = new System.Drawing.Size(100, 16);
             this._FindByName.TabIndex = 25;
@@ -288,51 +306,32 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(6, 279);
+            this.panel3.Location = new System.Drawing.Point(6, 249);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 1);
             this.panel3.TabIndex = 23;
             // 
-            // _Data
+            // label7
             // 
-            this._Data.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this._Data.FormattingEnabled = true;
-            this._Data.Location = new System.Drawing.Point(6, 90);
-            this._Data.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this._Data.Name = "_Data";
-            this._Data.Size = new System.Drawing.Size(190, 20);
-            this._Data.TabIndex = 16;
+            this.label7.Location = new System.Drawing.Point(6, 253);
+            this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(189, 10);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Form Element:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.BottomRight;
             // 
-            // _AltData
+            // checkBox3
             // 
-            this._AltData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this._AltData.FormattingEnabled = true;
-            this._AltData.Location = new System.Drawing.Point(6, 123);
-            this._AltData.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this._AltData.Name = "_AltData";
-            this._AltData.Size = new System.Drawing.Size(190, 20);
-            this._AltData.TabIndex = 18;
-            // 
-            // label4
-            // 
-            this.label4.Location = new System.Drawing.Point(6, 77);
-            this.label4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(189, 10);
-            this.label4.TabIndex = 26;
-            this.label4.Text = "Data:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(6, 110);
-            this.label8.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(189, 10);
-            this.label8.TabIndex = 27;
-            this.label8.Text = "Alternate Data:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindInForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBox3.Location = new System.Drawing.Point(6, 288);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(118, 16);
+            this.checkBox3.TabIndex = 18;
+            this.checkBox3.Text = "Find Within Form";
+            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // systemDataGridViewTextBoxColumn
             // 
@@ -388,7 +387,7 @@
             this._FormElement.BorderColor = System.Drawing.Color.Gray;
             this._FormElement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._FormElement.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "FormElement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._FormElement.Location = new System.Drawing.Point(6, 296);
+            this._FormElement.Location = new System.Drawing.Point(6, 266);
             this._FormElement.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._FormElement.Name = "_FormElement";
             this._FormElement.Size = new System.Drawing.Size(189, 19);
@@ -443,11 +442,11 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
         private BorderedTextBox textBox2;
-        private System.Windows.Forms.CheckBox _AsTextFields;
-        private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox _FindByName;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox _ElementType;
     }
 }
