@@ -84,6 +84,8 @@ namespace CallTracker.View
             MainForm = _parent;
             DataStore = _parent.DataStore;
 
+
+
             _Severity.DataSource = Enum.GetValues(typeof(FaultSeverity));
             _Outcome.DataSource = Enum.GetValues(typeof(Outcomes));
             _BookingTimeSlot.DataSource = Enum.GetValues(typeof(BookingTimeslot));

@@ -65,6 +65,10 @@
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this._SetDefaults = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.titleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.urlDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.systemItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLinksBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -78,6 +82,7 @@
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // _Done
@@ -107,7 +112,7 @@
             this.comboBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(2, 30);
+            this.comboBox1.Location = new System.Drawing.Point(2, 31);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(82, 20);
             this.comboBox1.TabIndex = 13;
@@ -119,11 +124,11 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(1, 109);
+            this.panel1.Location = new System.Drawing.Point(1, 111);
             this.panel1.Margin = new System.Windows.Forms.Padding(1);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(2);
-            this.panel1.Size = new System.Drawing.Size(86, 52);
+            this.panel1.Size = new System.Drawing.Size(86, 53);
             this.panel1.TabIndex = 15;
             // 
             // label1
@@ -156,14 +161,14 @@
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.panel6, 2, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(163, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(317, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(265, 217);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(264, 220);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
             // panel10
@@ -172,7 +177,7 @@
             this.panel10.Controls.Add(this.label10);
             this.panel10.Controls.Add(this.comboBox0);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(89, 163);
+            this.panel10.Location = new System.Drawing.Point(89, 166);
             this.panel10.Margin = new System.Windows.Forms.Padding(1);
             this.panel10.Name = "panel10";
             this.panel10.Padding = new System.Windows.Forms.Padding(2);
@@ -214,7 +219,7 @@
             this.panel7.Margin = new System.Windows.Forms.Padding(1);
             this.panel7.Name = "panel7";
             this.panel7.Padding = new System.Windows.Forms.Padding(2);
-            this.panel7.Size = new System.Drawing.Size(87, 52);
+            this.panel7.Size = new System.Drawing.Size(86, 53);
             this.panel7.TabIndex = 17;
             // 
             // label7
@@ -225,7 +230,7 @@
             this.label7.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(2, 2);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 25);
+            this.label7.Size = new System.Drawing.Size(82, 25);
             this.label7.TabIndex = 14;
             this.label7.Text = "9";
             this.label7.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -236,9 +241,9 @@
             this.comboBox9.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Location = new System.Drawing.Point(2, 30);
+            this.comboBox9.Location = new System.Drawing.Point(2, 31);
             this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(83, 20);
+            this.comboBox9.Size = new System.Drawing.Size(82, 20);
             this.comboBox9.TabIndex = 13;
             this.comboBox9.ValueMember = "System";
             // 
@@ -248,11 +253,11 @@
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.comboBox5);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(89, 55);
+            this.panel5.Location = new System.Drawing.Point(89, 56);
             this.panel5.Margin = new System.Windows.Forms.Padding(1);
             this.panel5.Name = "panel5";
             this.panel5.Padding = new System.Windows.Forms.Padding(2);
-            this.panel5.Size = new System.Drawing.Size(86, 52);
+            this.panel5.Size = new System.Drawing.Size(86, 53);
             this.panel5.TabIndex = 16;
             // 
             // label5
@@ -274,7 +279,7 @@
             this.comboBox5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(2, 30);
+            this.comboBox5.Location = new System.Drawing.Point(2, 31);
             this.comboBox5.Name = "comboBox5";
             this.comboBox5.Size = new System.Drawing.Size(82, 20);
             this.comboBox5.TabIndex = 13;
@@ -290,7 +295,7 @@
             this.panel8.Margin = new System.Windows.Forms.Padding(1);
             this.panel8.Name = "panel8";
             this.panel8.Padding = new System.Windows.Forms.Padding(2);
-            this.panel8.Size = new System.Drawing.Size(86, 52);
+            this.panel8.Size = new System.Drawing.Size(86, 53);
             this.panel8.TabIndex = 18;
             // 
             // label8
@@ -312,7 +317,7 @@
             this.comboBox7.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(2, 30);
+            this.comboBox7.Location = new System.Drawing.Point(2, 31);
             this.comboBox7.Name = "comboBox7";
             this.comboBox7.Size = new System.Drawing.Size(82, 20);
             this.comboBox7.TabIndex = 13;
@@ -328,7 +333,7 @@
             this.panel9.Margin = new System.Windows.Forms.Padding(1);
             this.panel9.Name = "panel9";
             this.panel9.Padding = new System.Windows.Forms.Padding(2);
-            this.panel9.Size = new System.Drawing.Size(86, 52);
+            this.panel9.Size = new System.Drawing.Size(86, 53);
             this.panel9.TabIndex = 19;
             // 
             // label9
@@ -350,7 +355,7 @@
             this.comboBox8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(2, 30);
+            this.comboBox8.Location = new System.Drawing.Point(2, 31);
             this.comboBox8.Name = "comboBox8";
             this.comboBox8.Size = new System.Drawing.Size(82, 20);
             this.comboBox8.TabIndex = 13;
@@ -362,11 +367,11 @@
             this.panel4.Controls.Add(this.label4);
             this.panel4.Controls.Add(this.comboBox4);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(1, 55);
+            this.panel4.Location = new System.Drawing.Point(1, 56);
             this.panel4.Margin = new System.Windows.Forms.Padding(1);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(2);
-            this.panel4.Size = new System.Drawing.Size(86, 52);
+            this.panel4.Size = new System.Drawing.Size(86, 53);
             this.panel4.TabIndex = 16;
             // 
             // label4
@@ -388,7 +393,7 @@
             this.comboBox4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(2, 30);
+            this.comboBox4.Location = new System.Drawing.Point(2, 31);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(82, 20);
             this.comboBox4.TabIndex = 13;
@@ -400,11 +405,11 @@
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.comboBox3);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(177, 109);
+            this.panel3.Location = new System.Drawing.Point(177, 111);
             this.panel3.Margin = new System.Windows.Forms.Padding(1);
             this.panel3.Name = "panel3";
             this.panel3.Padding = new System.Windows.Forms.Padding(2);
-            this.panel3.Size = new System.Drawing.Size(87, 52);
+            this.panel3.Size = new System.Drawing.Size(86, 53);
             this.panel3.TabIndex = 16;
             // 
             // label3
@@ -415,7 +420,7 @@
             this.label3.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(2, 2);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 25);
+            this.label3.Size = new System.Drawing.Size(82, 25);
             this.label3.TabIndex = 14;
             this.label3.Text = "3";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -426,9 +431,9 @@
             this.comboBox3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(2, 30);
+            this.comboBox3.Location = new System.Drawing.Point(2, 31);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(83, 20);
+            this.comboBox3.Size = new System.Drawing.Size(82, 20);
             this.comboBox3.TabIndex = 13;
             this.comboBox3.ValueMember = "System";
             // 
@@ -438,11 +443,11 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.comboBox2);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(89, 109);
+            this.panel2.Location = new System.Drawing.Point(89, 111);
             this.panel2.Margin = new System.Windows.Forms.Padding(1);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(2);
-            this.panel2.Size = new System.Drawing.Size(86, 52);
+            this.panel2.Size = new System.Drawing.Size(86, 53);
             this.panel2.TabIndex = 16;
             // 
             // label2
@@ -464,7 +469,7 @@
             this.comboBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(2, 30);
+            this.comboBox2.Location = new System.Drawing.Point(2, 31);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(82, 20);
             this.comboBox2.TabIndex = 13;
@@ -476,11 +481,11 @@
             this.panel6.Controls.Add(this.label6);
             this.panel6.Controls.Add(this.comboBox6);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(177, 55);
+            this.panel6.Location = new System.Drawing.Point(177, 56);
             this.panel6.Margin = new System.Windows.Forms.Padding(1);
             this.panel6.Name = "panel6";
             this.panel6.Padding = new System.Windows.Forms.Padding(2);
-            this.panel6.Size = new System.Drawing.Size(87, 52);
+            this.panel6.Size = new System.Drawing.Size(86, 53);
             this.panel6.TabIndex = 16;
             // 
             // label6
@@ -491,7 +496,7 @@
             this.label6.Font = new System.Drawing.Font("Verdana", 14F, System.Drawing.FontStyle.Bold);
             this.label6.Location = new System.Drawing.Point(2, 2);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 25);
+            this.label6.Size = new System.Drawing.Size(82, 25);
             this.label6.TabIndex = 14;
             this.label6.Text = "6";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -502,9 +507,9 @@
             this.comboBox6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.comboBox6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Location = new System.Drawing.Point(2, 30);
+            this.comboBox6.Location = new System.Drawing.Point(2, 31);
             this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(83, 20);
+            this.comboBox6.Size = new System.Drawing.Size(82, 20);
             this.comboBox6.TabIndex = 13;
             this.comboBox6.ValueMember = "System";
             // 
@@ -524,7 +529,7 @@
             this._SetDefaults.BackColor = System.Drawing.Color.LightGray;
             this._SetDefaults.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._SetDefaults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._SetDefaults.Location = new System.Drawing.Point(6, 3);
+            this._SetDefaults.Location = new System.Drawing.Point(239, 197);
             this._SetDefaults.Name = "_SetDefaults";
             this._SetDefaults.Size = new System.Drawing.Size(75, 22);
             this._SetDefaults.TabIndex = 18;
@@ -532,15 +537,62 @@
             this._SetDefaults.UseVisualStyleBackColor = false;
             this._SetDefaults.Click += new System.EventHandler(this._SetDefaults_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.systemDataGridViewTextBoxColumn,
+            this.titleDataGridViewTextBoxColumn,
+            this.urlDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.systemItemBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 2);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView1.RowTemplate.Height = 18;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(311, 189);
+            this.dataGridView1.TabIndex = 19;
+            // 
+            // systemDataGridViewTextBoxColumn
+            // 
+            this.systemDataGridViewTextBoxColumn.DataPropertyName = "System";
+            this.systemDataGridViewTextBoxColumn.FillWeight = 70F;
+            this.systemDataGridViewTextBoxColumn.HeaderText = "System";
+            this.systemDataGridViewTextBoxColumn.Name = "systemDataGridViewTextBoxColumn";
+            this.systemDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // titleDataGridViewTextBoxColumn
+            // 
+            this.titleDataGridViewTextBoxColumn.DataPropertyName = "Title";
+            this.titleDataGridViewTextBoxColumn.HeaderText = "Title";
+            this.titleDataGridViewTextBoxColumn.MinimumWidth = 70;
+            this.titleDataGridViewTextBoxColumn.Name = "titleDataGridViewTextBoxColumn";
+            // 
+            // urlDataGridViewTextBoxColumn
+            // 
+            this.urlDataGridViewTextBoxColumn.DataPropertyName = "Url";
+            this.urlDataGridViewTextBoxColumn.FillWeight = 300F;
+            this.urlDataGridViewTextBoxColumn.HeaderText = "Url";
+            this.urlDataGridViewTextBoxColumn.MinimumWidth = 100;
+            this.urlDataGridViewTextBoxColumn.Name = "urlDataGridViewTextBoxColumn";
+            this.urlDataGridViewTextBoxColumn.Width = 300;
+            // 
             // EditGridLinks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.Controls.Add(this._SetDefaults);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this._Done);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this._Done);
+            this.Controls.Add(this._SetDefaults);
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "EditGridLinks";
             this.Padding = new System.Windows.Forms.Padding(3);
@@ -558,6 +610,7 @@
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -601,5 +654,9 @@
         private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button _SetDefaults;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn systemDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn titleDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn urlDataGridViewTextBoxColumn;
     }
 }

@@ -38,13 +38,14 @@ namespace RegexAssembly
                                         @"([a-z]+)" +           // First Name
                                         @"(?:\s?(\-?[a-z]+))*"  // Surnames
                                         , RegexOptions.IgnoreCase),
-                new MyRegex("Address",  @"(?:(Unit|Lot|Level|Floor)\s(\d+)(?:\/|\\)?\s)?" + // Unit Number
-                                        @"(\d+)" +              // Property Number
-                                        @"\s([a-z]+)" +         // Street Name
-                                        @"\s([a-z]+)\.?" +      // Street Type
-                                        @"\s([a-z]+),?" +       // Suburb
-                                        @"\s?([a-z]+)?,?" +     // State (Optional)
-                                        @"\s?(\d{4})?"          // Postcode (Optional)
+                new MyRegex("Address",  @"(?:(Unit|Lot|Level|Floor)\s)?" +  // Property Type
+                                        @"(?:(\d+)(?:/|\\|\s)?)?" +         // Unit Number
+                                        @"(\d+)" +                          // Property Number
+                                        @"\s([a-z]+)" +                     // Street Name
+                                        @"\s([a-z]+)\.?" +                  // Street Type
+                                        @"\s([a-z]+)" +                   // Suburb
+                                        @"(?:[,\s]+?([a-z]+))?" +                 // State (Optional)
+                                        @"(?:[,\s]+?(\d{4}))?"                      // Postcode (Optional)
                                         , RegexOptions.IgnoreCase),
             };
 

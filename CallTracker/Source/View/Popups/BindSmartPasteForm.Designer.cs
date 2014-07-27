@@ -34,31 +34,31 @@ namespace CallTracker.View
             this.components = new System.ComponentModel.Container();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
+            this._System = new CallTracker.View.BorderedTextBox();
+            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
+            this.textBox1 = new CallTracker.View.BorderedTextBox();
             this._TitleLabel = new System.Windows.Forms.Label();
+            this._Title = new CallTracker.View.BorderedTextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this._Element = new CallTracker.View.BorderedTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this._Url = new CallTracker.View.BorderedTextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this._Data = new CallTracker.View.BorderedCombobox();
             this.label5 = new System.Windows.Forms.Label();
+            this._AltData = new CallTracker.View.BorderedCombobox();
             this._Cancel = new System.Windows.Forms.Button();
             this.customerContactBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this._System = new CallTracker.View.BorderedTextBox();
-            this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.textBox1 = new CallTracker.View.BorderedTextBox();
-            this._Title = new CallTracker.View.BorderedTextBox();
-            this._Element = new CallTracker.View.BorderedTextBox();
-            this._Url = new CallTracker.View.BorderedTextBox();
-            this._Data = new CallTracker.View.BorderedCombobox();
-            this._AltData = new CallTracker.View.BorderedCombobox();
             this.bindSmartPasteToolStripMenuItem = new System.Windows.Forms.ToolStripTextBox();
             this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -94,6 +94,22 @@ namespace CallTracker.View
             this.label4.TabIndex = 8;
             this.label4.Text = "System:";
             // 
+            // _System
+            // 
+            this._System.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this._System.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this._System.BorderColor = System.Drawing.Color.Gray;
+            this._System.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._System.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "System", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._System.Location = new System.Drawing.Point(64, 6);
+            this._System.Name = "_System";
+            this._System.Size = new System.Drawing.Size(161, 19);
+            this._System.TabIndex = 9;
+            // 
+            // pasteBindBindingSource
+            // 
+            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
+            // 
             // label6
             // 
             this.label6.Location = new System.Drawing.Point(3, 31);
@@ -103,6 +119,16 @@ namespace CallTracker.View
             this.label6.Size = new System.Drawing.Size(55, 19);
             this.label6.TabIndex = 12;
             this.label6.Text = "Name:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderColor = System.Drawing.Color.Gray;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox1.Location = new System.Drawing.Point(64, 31);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(161, 19);
+            this.textBox1.TabIndex = 13;
             // 
             // _TitleLabel
             // 
@@ -114,6 +140,17 @@ namespace CallTracker.View
             this._TitleLabel.TabIndex = 0;
             this._TitleLabel.Text = "Title:";
             // 
+            // _Title
+            // 
+            this._Title.BorderColor = System.Drawing.Color.Gray;
+            this._Title.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Title.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Title", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Title.Dock = System.Windows.Forms.DockStyle.Right;
+            this._Title.Location = new System.Drawing.Point(64, 56);
+            this._Title.Name = "_Title";
+            this._Title.Size = new System.Drawing.Size(161, 19);
+            this._Title.TabIndex = 1;
+            // 
             // label2
             // 
             this.label2.Location = new System.Drawing.Point(3, 81);
@@ -123,6 +160,17 @@ namespace CallTracker.View
             this.label2.Size = new System.Drawing.Size(55, 19);
             this.label2.TabIndex = 4;
             this.label2.Text = "Element:";
+            // 
+            // _Element
+            // 
+            this._Element.BorderColor = System.Drawing.Color.Gray;
+            this._Element.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Element.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Element", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Element.Dock = System.Windows.Forms.DockStyle.Right;
+            this._Element.Location = new System.Drawing.Point(64, 81);
+            this._Element.Name = "_Element";
+            this._Element.Size = new System.Drawing.Size(161, 19);
+            this._Element.TabIndex = 3;
             // 
             // label1
             // 
@@ -134,6 +182,18 @@ namespace CallTracker.View
             this.label1.TabIndex = 2;
             this.label1.Text = "URL:";
             // 
+            // _Url
+            // 
+            this._Url.BorderColor = System.Drawing.Color.Gray;
+            this._Url.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Url.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Url.Dock = System.Windows.Forms.DockStyle.Right;
+            this._Url.Location = new System.Drawing.Point(64, 106);
+            this._Url.Multiline = true;
+            this._Url.Name = "_Url";
+            this._Url.Size = new System.Drawing.Size(161, 44);
+            this._Url.TabIndex = 5;
+            // 
             // label3
             // 
             this.label3.Location = new System.Drawing.Point(3, 156);
@@ -144,6 +204,16 @@ namespace CallTracker.View
             this.label3.TabIndex = 6;
             this.label3.Text = "Data:";
             // 
+            // _Data
+            // 
+            this._Data.BorderColor = System.Drawing.Color.Gray;
+            this._Data.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Data.FormattingEnabled = true;
+            this._Data.Location = new System.Drawing.Point(64, 156);
+            this._Data.Name = "_Data";
+            this._Data.Size = new System.Drawing.Size(162, 20);
+            this._Data.TabIndex = 7;
+            // 
             // label5
             // 
             this.label5.Location = new System.Drawing.Point(3, 182);
@@ -153,6 +223,16 @@ namespace CallTracker.View
             this.label5.Size = new System.Drawing.Size(55, 19);
             this.label5.TabIndex = 10;
             this.label5.Text = "Alt Data:";
+            // 
+            // _AltData
+            // 
+            this._AltData.BorderColor = System.Drawing.Color.Gray;
+            this._AltData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this._AltData.FormattingEnabled = true;
+            this._AltData.Location = new System.Drawing.Point(64, 182);
+            this._AltData.Name = "_AltData";
+            this._AltData.Size = new System.Drawing.Size(162, 20);
+            this._AltData.TabIndex = 11;
             // 
             // _Cancel
             // 
@@ -211,86 +291,6 @@ namespace CallTracker.View
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // _System
-            // 
-            this._System.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this._System.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this._System.BorderColor = System.Drawing.Color.Gray;
-            this._System.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._System.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "System", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._System.Location = new System.Drawing.Point(64, 6);
-            this._System.Name = "_System";
-            this._System.Size = new System.Drawing.Size(161, 19);
-            this._System.TabIndex = 9;
-            // 
-            // pasteBindBindingSource
-            // 
-            this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderColor = System.Drawing.Color.Gray;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox1.Location = new System.Drawing.Point(64, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(161, 19);
-            this.textBox1.TabIndex = 13;
-            // 
-            // _Title
-            // 
-            this._Title.BorderColor = System.Drawing.Color.Gray;
-            this._Title.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Title.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Title", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Title.Dock = System.Windows.Forms.DockStyle.Right;
-            this._Title.Location = new System.Drawing.Point(64, 56);
-            this._Title.Name = "_Title";
-            this._Title.Size = new System.Drawing.Size(161, 19);
-            this._Title.TabIndex = 1;
-            // 
-            // _Element
-            // 
-            this._Element.BorderColor = System.Drawing.Color.Gray;
-            this._Element.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Element.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Element", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Element.Dock = System.Windows.Forms.DockStyle.Right;
-            this._Element.Location = new System.Drawing.Point(64, 81);
-            this._Element.Name = "_Element";
-            this._Element.Size = new System.Drawing.Size(161, 19);
-            this._Element.TabIndex = 3;
-            // 
-            // _Url
-            // 
-            this._Url.BorderColor = System.Drawing.Color.Gray;
-            this._Url.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Url.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Url.Dock = System.Windows.Forms.DockStyle.Right;
-            this._Url.Location = new System.Drawing.Point(64, 106);
-            this._Url.Multiline = true;
-            this._Url.Name = "_Url";
-            this._Url.Size = new System.Drawing.Size(161, 44);
-            this._Url.TabIndex = 5;
-            // 
-            // _Data
-            // 
-            this._Data.BorderColor = System.Drawing.Color.Gray;
-            this._Data.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Data.FormattingEnabled = true;
-            this._Data.Location = new System.Drawing.Point(64, 156);
-            this._Data.Name = "_Data";
-            this._Data.Size = new System.Drawing.Size(162, 20);
-            this._Data.TabIndex = 7;
-            // 
-            // _AltData
-            // 
-            this._AltData.BorderColor = System.Drawing.Color.Gray;
-            this._AltData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this._AltData.FormattingEnabled = true;
-            this._AltData.Location = new System.Drawing.Point(64, 182);
-            this._AltData.Name = "_AltData";
-            this._AltData.Size = new System.Drawing.Size(162, 20);
-            this._AltData.TabIndex = 11;
-            // 
             // bindSmartPasteToolStripMenuItem
             // 
             this.bindSmartPasteToolStripMenuItem.BackColor = System.Drawing.Color.LightGray;
@@ -324,11 +324,11 @@ namespace CallTracker.View
             this.Load += new System.EventHandler(this.BindSmartPasteForm_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

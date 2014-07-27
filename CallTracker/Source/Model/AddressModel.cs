@@ -61,16 +61,16 @@ namespace CallTracker.Model
             {
                 AddressPattern rgxAddress = new AddressPattern();
                 Match AddressMatch = rgxAddress.Match(value);
-                if (AddressMatch.Success == false)
-                    return;
-                PropertyType = AddressMatch.Groups[0].Value;
-                UnitNumber = AddressMatch.Groups[1].Value;
-                PropertyNumber = AddressMatch.Groups[2].Value;
-                StreetName = AddressMatch.Groups[3].Value;
-                StreetType = AddressMatch.Groups[4].Value;
-                Suburb = AddressMatch.Groups[5].Value;
-                State = AddressMatch.Groups[6].Value;
-                Postcode = AddressMatch.Groups[7].Value;
+                //if (AddressMatch.Success == false)
+                //    return;
+                PropertyType = AddressMatch.Groups[1].Value;
+                UnitNumber = AddressMatch.Groups[2].Value;
+                PropertyNumber = AddressMatch.Groups[3].Value;
+                StreetName = AddressMatch.Groups[4].Value;
+                StreetType = AddressMatch.Groups[5].Value;
+                Suburb = AddressMatch.Groups[6].Value;
+                State = AddressMatch.Groups[7].Value;
+                Postcode = AddressMatch.Groups[8].Value;
 
                 address = value;
             }            
