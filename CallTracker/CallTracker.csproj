@@ -93,11 +93,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Data\Equipment.cs" />
     <Compile Include="Source\Data\ServiceResources.cs" />
-    <None Include="DataSets\ServicesDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServicesDataSet.xsd</DependentUpon>
-    </None>
     <Compile Include="Source\Data\Symptoms.cs" />
     <Compile Include="Source\Helpers\EnumExtensions.cs" />
     <Compile Include="Source\Helpers\FindProperty.cs" />
