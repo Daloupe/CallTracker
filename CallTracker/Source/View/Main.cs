@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.ComponentModel;
+using System.Text;
 
 using System.Diagnostics;
 
@@ -194,6 +195,109 @@ namespace CallTracker.View
             return findForm.First();
         }
 
+        private void toolStripServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ToolStripComboBox input = (ToolStripComboBox)sender;
+            Console.WriteLine(input.Text);
+            input.GetCurrentParent().Focus();
+
+            if (input.Text == "NONE")
+                return;
+
+            var queries = from a in ServicesStore.servicesDataSet.Departments
+                          join b in ServicesStore.servicesDataSet.DepartmentNames on a.DepartmentNameId equals b.Id
+                          join c in ServicesStore.servicesDataSet.Services on a.ServiceId equals c.Id
+                          where c.Name == input.Text
+                          select new
+                          {
+                              a.InternalContact,
+                              a.ExternalContact,
+                              a.ContactHours,
+                              b.NameShort
+                          };
+
+            foreach (var query in queries)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Internal: ");
+                sb.AppendLine(query.InternalContact.ToString());
+                sb.Append("External: ");
+                sb.AppendLine(query.ExternalContact.ToString());
+                sb.AppendLine(query.ContactHours);
+
+                string menu = StringHelpers.JoinCamelCase(query.NameShort) + "ToolStripMenuItem";
+
+                foreach (ToolStripMenuItem item in transfersToolStripMenuItem.DropDownItems.OfType<ToolStripMenuItem>())
+                    if (item.Name == menu)
+                    {
+                        item.ToolTipText = sb.ToString();
+                        item.Tag = query.InternalContact.ToString();
+                    }
+            }
+        }
+
+        private void transfer_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+
+            string title = "IPCC Agent Desktop for Fusion: v5.2.1 (c2)";
+            Point buttonOffsets = new Point() { X = 630, Y = 20 };
+
+            IntPtr hwnd = WindowHelper.ActivateWindowByTitle(title);
+            WindowHelper.Rect rect = new WindowHelper.Rect();
+            WindowHelper.GetWindowRect(hwnd, ref rect);
+            Point transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
+
+            Cursor.Position = transfer;
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            WindowHelper.mouse_event(WindowHelper.MOUSEEVENTF_LEFTDOWN | WindowHelper.MOUSEEVENTF_LEFTUP, (uint)X, (uint)Y, 0, 0);
+
+            ////////////////////////////////////////////
+
+            title = "CTI Dial Pad";
+            buttonOffsets = new Point() { X = 20, Y = 45 };
+
+            hwnd = WindowHelper.ActivateWindowByTitle(title);
+            WindowHelper.GetWindowRect(hwnd, ref rect);
+            transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
+
+            Cursor.Position = transfer;
+            X = Cursor.Position.X;
+            Y = Cursor.Position.Y;
+            WindowHelper.mouse_event(WindowHelper.MOUSEEVENTF_LEFTDOWN | WindowHelper.MOUSEEVENTF_LEFTUP, (uint)X, (uint)Y, 0, 0);
+
+            SendKeys.Send(item.Tag.ToString());
+        }
+
+        private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                settingMenuItem_Click(LATRatecodeMenuItem, new EventArgs());
+                latRateCodes.Search(((ToolStripTextBox)sender).Text);
+                LatRatecodeSearch.PerformClick();
+            };
+        }
+
+        public void UpdateAutoComplete()
+        {
+            LatRatecodeSearch.AutoCompleteCustomSource = systemAutoCompleteSource;
+            systemAutoCompleteSource.Clear();
+            systemAutoCompleteSource.AddRange(ResourceStore.LATRatePlans.Select(p => p.RateCode).ToArray());
+        }
+
+        private void LATRatecodeMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            ((ToolStripMenuItem)sender).HideDropDown();
+            ((ToolStripMenuItem)sender).Invalidate();
+        }
+
+        private void LATRatecodeMenuItem_CheckedChanged_1(object sender, EventArgs e)
+        {
+            //((ToolStripMenuItem)sender).OwnerItem.PerformClick();//.GetCurrentParent().ContextMenuStrip.AutoClose ^= true;
+        }
+
         // Move Window ////////////////////////////////////////////////////////////////////////////////////
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -248,41 +352,6 @@ namespace CallTracker.View
                 cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
                 return cp;
             }
-        }
-
-        
-        private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Return)
-            {
-                settingMenuItem_Click(LATRatecodeMenuItem, new EventArgs());
-                latRateCodes.Search(((ToolStripTextBox)sender).Text);
-                LatRatecodeSearch.PerformClick();           
-            };
-        }
-
-        public void UpdateAutoComplete()
-        {
-            LatRatecodeSearch.AutoCompleteCustomSource = systemAutoCompleteSource;
-            systemAutoCompleteSource.Clear();
-            systemAutoCompleteSource.AddRange(ResourceStore.LATRatePlans.Select(p => p.RateCode).ToArray());
-        }
-
-        private void LATRatecodeMenuItem_CheckedChanged(object sender, EventArgs e)
-        {         
-            ((ToolStripMenuItem)sender).HideDropDown();
-            ((ToolStripMenuItem)sender).Invalidate(); 
-        }
-
-        private void LATRatecodeMenuItem_CheckedChanged_1(object sender, EventArgs e)
-        {
-            //((ToolStripMenuItem)sender).OwnerItem.PerformClick();//.GetCurrentParent().ContextMenuStrip.AutoClose ^= true;
-        }
-
-        private void toolStripServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ((ToolStripComboBox)sender).GetCurrentParent().Focus();
-        }
-
+        }        
     }
 }

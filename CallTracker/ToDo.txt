@@ -3,9 +3,10 @@ To Do:
 Priorities
 | Add abilty to bind drop downs and buttons. (type is auto detected).
 	- Need to find out what the different affecetd service drop downs in IFMS are called.
-- Store selected product from context menu in global variable, context sensitive items reference this before displaying or acting.
-	- Transfer departments tooltip displays internal contact, external contact, and opening hours.
+| Store selected product from context menu in global variable, context sensitive items reference this before displaying or acting.
+	| Transfer departments tooltip displays internal contact, external contact, and opening hours.
 | Transpose objects to relational data tables.
+| Implement transfer clicks.
 
 Main GUI
  | Have Settings windows show in main gui, rather than their own popup.
@@ -26,7 +27,7 @@ Main GUI
  - Start inputting system variables.
  - Key Command Help extends window height.
  - Side panle needs to ghost when dragging.
- - rate code needs to allow keyboard input to prioritize insertion of new records.
+ | rate code needs to allow keyboard input to prioritize insertion of new records.
 
 Contact GUI
  | Double click splitters to toggle panels.
@@ -341,7 +342,7 @@ Style:     0x5E01000B
 ExStyle:                0x00000000
 Handle:                0x00010FA2
 
-
+624, 13
 >>>> Window <<<<
 Title:      IPCC Agent Desktop for Fusion: v5.2.1 (c2)
 Class:     WindowsForms10.Window.8.app.0.1ca0192_r17_ad1

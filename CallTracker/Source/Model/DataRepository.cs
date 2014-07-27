@@ -276,7 +276,7 @@ namespace CallTracker.Model
                     NewDepartment.ServiceId = newRow.Id;
                     NewDepartment.InternalContact = 52500;
                     NewDepartment.ExternalContact = 1800555241;
-                    NewDepartment.ContactHours = "Mon-Fri: 8-7 \n Sat: 9-5 \n Sun: Closed";
+                    NewDepartment.ContactHours = "Mon-Fri: 8-7 \nSat: 9-5 \nSun: Closed";
                     //Console.WriteLine("id: {0}, name:{1}", NewDepartment.DepartmentID, NewDepartment.Name);
                     servicesDataSet.Departments.AddDepartmentsRow(NewDepartment);
                 }

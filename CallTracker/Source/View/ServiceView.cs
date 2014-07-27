@@ -29,7 +29,6 @@ namespace CallTracker.View
 
         public ServiceView(PanelBase panel, string[] symptoms, ToolStripMenuItem menuItem, CheckBox checkBox, string ifmsProductCode, string ifmsProduct2Code, string ifmsServiceCode)
         {
-            Console.WriteLine(Data.Symptoms.Phone[0].ToString());
             Panel = panel;
             Symptoms = FindProperty.GetLists(symptoms, SymptomClass.GetType());
             ContextMenuItem = menuItem;

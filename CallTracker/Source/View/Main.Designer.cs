@@ -34,6 +34,9 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridLinksViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteBindsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,10 +45,10 @@
             this.resourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripServiceSelector = new System.Windows.Forms.ToolStripComboBox();
             this.transfersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.custCareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.techSupportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.retentionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CustCareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FaultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RetentionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dispatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nIMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -68,9 +71,7 @@
             this.clearanceCodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
             this.MenuPanel = new System.Windows.Forms.Panel();
-            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteBindsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databaseEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -114,7 +115,7 @@
             // callHistoryToolStripMenuItem
             // 
             this.callHistoryToolStripMenuItem.Name = "callHistoryToolStripMenuItem";
-            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.callHistoryToolStripMenuItem.Text = "Call History";
             this.callHistoryToolStripMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
@@ -126,33 +127,57 @@
             this.gridLinksViewMenuItem,
             this.advancedToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.viewToolStripMenuItem.Text = "Settings";
             // 
             // loginsViewMenuItem
             // 
             this.loginsViewMenuItem.Name = "loginsViewMenuItem";
-            this.loginsViewMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.loginsViewMenuItem.Size = new System.Drawing.Size(121, 22);
             this.loginsViewMenuItem.Text = "Logins";
             this.loginsViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
             // gridLinksViewMenuItem
             // 
             this.gridLinksViewMenuItem.Name = "gridLinksViewMenuItem";
-            this.gridLinksViewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gridLinksViewMenuItem.Size = new System.Drawing.Size(121, 22);
             this.gridLinksViewMenuItem.Text = "Grid Links";
             this.gridLinksViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            // 
+            // advancedToolStripMenuItem
+            // 
+            this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pasteBindsViewMenuItem,
+            this.databaseEditorToolStripMenuItem});
+            this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
+            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
+            this.advancedToolStripMenuItem.Text = "Advanced";
+            // 
+            // pasteBindsViewMenuItem
+            // 
+            this.pasteBindsViewMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pasteBindsViewMenuItem.Name = "pasteBindsViewMenuItem";
+            this.pasteBindsViewMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.pasteBindsViewMenuItem.Text = "Smart Paste Binds";
+            this.pasteBindsViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            // 
+            // databaseEditorToolStripMenuItem
+            // 
+            this.databaseEditorToolStripMenuItem.Name = "databaseEditorToolStripMenuItem";
+            this.databaseEditorToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.databaseEditorToolStripMenuItem.Text = "Database Editor";
+            this.databaseEditorToolStripMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(127, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -206,10 +231,11 @@
             // transfersToolStripMenuItem
             // 
             this.transfersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.custCareToolStripMenuItem,
-            this.techSupportToolStripMenuItem,
-            this.salesToolStripMenuItem,
-            this.retentionToolStripMenuItem,
+            this.CustCareToolStripMenuItem,
+            this.FaultsToolStripMenuItem,
+            this.SalesToolStripMenuItem,
+            this.FSToolStripMenuItem,
+            this.RetentionToolStripMenuItem,
             this.toolStripSeparator1,
             this.dispatchToolStripMenuItem,
             this.nIMToolStripMenuItem});
@@ -217,45 +243,49 @@
             this.transfersToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.transfersToolStripMenuItem.Text = "Numbers to Know";
             // 
-            // custCareToolStripMenuItem
+            // CustCareToolStripMenuItem
             // 
-            this.custCareToolStripMenuItem.Name = "custCareToolStripMenuItem";
-            this.custCareToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.custCareToolStripMenuItem.Text = "Cust Care";
+            this.CustCareToolStripMenuItem.Name = "CustCareToolStripMenuItem";
+            this.CustCareToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.CustCareToolStripMenuItem.Text = "Cust Care";
+            this.CustCareToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
             // 
-            // techSupportToolStripMenuItem
+            // FaultsToolStripMenuItem
             // 
-            this.techSupportToolStripMenuItem.Name = "techSupportToolStripMenuItem";
-            this.techSupportToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.techSupportToolStripMenuItem.Text = "Tech Support";
+            this.FaultsToolStripMenuItem.Name = "FaultsToolStripMenuItem";
+            this.FaultsToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.FaultsToolStripMenuItem.Text = "Tech Support";
+            this.FaultsToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
             // 
-            // salesToolStripMenuItem
+            // SalesToolStripMenuItem
             // 
-            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.salesToolStripMenuItem.Text = "Sales";
+            this.SalesToolStripMenuItem.Name = "SalesToolStripMenuItem";
+            this.SalesToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.SalesToolStripMenuItem.Text = "Sales";
+            this.SalesToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
             // 
-            // retentionToolStripMenuItem
+            // RetentionToolStripMenuItem
             // 
-            this.retentionToolStripMenuItem.Name = "retentionToolStripMenuItem";
-            this.retentionToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.retentionToolStripMenuItem.Text = "Retention";
+            this.RetentionToolStripMenuItem.Name = "RetentionToolStripMenuItem";
+            this.RetentionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.RetentionToolStripMenuItem.Text = "Retention";
+            this.RetentionToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(140, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
             // 
             // dispatchToolStripMenuItem
             // 
             this.dispatchToolStripMenuItem.Name = "dispatchToolStripMenuItem";
-            this.dispatchToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.dispatchToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.dispatchToolStripMenuItem.Text = "Dispatch";
             // 
             // nIMToolStripMenuItem
             // 
             this.nIMToolStripMenuItem.Name = "nIMToolStripMenuItem";
-            this.nIMToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.nIMToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.nIMToolStripMenuItem.Text = "NIM";
             // 
             // ratecodesToolStripMenuItem
@@ -274,7 +304,7 @@
             this.LATRatecodeMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LatRatecodeSearch});
             this.LATRatecodeMenuItem.Name = "LATRatecodeMenuItem";
-            this.LATRatecodeMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.LATRatecodeMenuItem.Size = new System.Drawing.Size(152, 22);
             this.LATRatecodeMenuItem.Text = "LAT/LIP";
             this.LATRatecodeMenuItem.CheckedChanged += new System.EventHandler(this.LATRatecodeMenuItem_CheckedChanged_1);
             this.LATRatecodeMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
@@ -299,13 +329,13 @@
             // oNCToolStripMenuItem1
             // 
             this.oNCToolStripMenuItem1.Name = "oNCToolStripMenuItem1";
-            this.oNCToolStripMenuItem1.Size = new System.Drawing.Size(113, 22);
+            this.oNCToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.oNCToolStripMenuItem1.Text = "ONC";
             // 
             // dTVToolStripMenuItem1
             // 
             this.dTVToolStripMenuItem1.Name = "dTVToolStripMenuItem1";
-            this.dTVToolStripMenuItem1.Size = new System.Drawing.Size(113, 22);
+            this.dTVToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.dTVToolStripMenuItem1.Text = "DTV";
             // 
             // toolStripMenuItem2
@@ -378,7 +408,7 @@
             // 
             this.toolStripTextBox2.AutoToolTip = true;
             this.toolStripTextBox2.Name = "toolStripTextBox2";
-            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 21);
+            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 23);
             this.toolStripTextBox2.ToolTipText = "Ratecode Search";
             // 
             // toolStripMenuItem4
@@ -416,29 +446,12 @@
             this.MenuPanel.TabIndex = 27;
             this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
-            // advancedToolStripMenuItem
+            // FSToolStripMenuItem
             // 
-            this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pasteBindsViewMenuItem,
-            this.databaseEditorToolStripMenuItem});
-            this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
-            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.advancedToolStripMenuItem.Text = "Advanced";
-            // 
-            // pasteBindsViewMenuItem
-            // 
-            this.pasteBindsViewMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pasteBindsViewMenuItem.Name = "pasteBindsViewMenuItem";
-            this.pasteBindsViewMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.pasteBindsViewMenuItem.Text = "Smart Paste Binds";
-            this.pasteBindsViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
-            // 
-            // databaseEditorToolStripMenuItem
-            // 
-            this.databaseEditorToolStripMenuItem.Name = "databaseEditorToolStripMenuItem";
-            this.databaseEditorToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.databaseEditorToolStripMenuItem.Text = "Database Editor";
-            this.databaseEditorToolStripMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            this.FSToolStripMenuItem.Name = "FSToolStripMenuItem";
+            this.FSToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.FSToolStripMenuItem.Text = "Financial Services";
+            this.FSToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
             // 
             // Main
             // 
@@ -479,10 +492,10 @@
         private System.Windows.Forms.Panel MenuPanel;
         private System.Windows.Forms.ToolStripMenuItem resourcesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transfersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem custCareToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem techSupportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem retentionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CustCareToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FaultsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SalesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RetentionToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem dispatchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nIMToolStripMenuItem;
@@ -512,5 +525,6 @@
         private System.Windows.Forms.ToolStripMenuItem advancedToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteBindsViewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem databaseEditorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FSToolStripMenuItem;
     }
 }

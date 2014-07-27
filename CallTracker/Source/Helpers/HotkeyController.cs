@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Diagnostics;
 using System.Threading;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 using Shortcut;
 using WatiN.Core;
@@ -57,6 +58,7 @@ namespace CallTracker.Helpers
 
             HotKeyManager = new HotKeyManager();
 
+            HotKeyManager.AddOrReplaceHotkey("wintest", Modifiers.Win, Keys.N, OnTest);
             HotKeyManager.AddOrReplaceHotkey("SmartCopy", Modifiers.Win, Keys.C, OnSmartCopy);
             HotKeyManager.AddOrReplaceHotkey("SmartPaste", Modifiers.Win, Keys.V, OnSmartPaste);
             HotKeyManager.AddOrReplaceHotkey("BindSmartPaste", Modifiers.Win | Modifiers.Shift, Keys.B, OnBindSmartPaste);
@@ -85,6 +87,22 @@ namespace CallTracker.Helpers
             if (browser != null)
                 browser.Dispose();
         }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // TEST  //////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        private void OnTest(HotkeyPressedEventArgs e)
+        {
+           Console.WriteLine(WindowHelper.GetActiveWindowTitle());
+           //IntPtr hwndChild = IntPtr.Zero;
+           ////Console.WriteLine();
+           //WindowScrape.Types.HwndObject wind = WindowScrape.Types.HwndObject.GetWindowByTitle(WindowHelper.GetActiveWindowTitle());
+
+           //wind.GetChild("Button", "1").SendMessage(WindowScrape.Constants.WM.BN_CLICKED, (uint)0, (uint)0);
+           //WindowHelper.ActivateWindowByTitle("WordPad");
+        }
+
+
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // ARO //////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -194,7 +212,7 @@ namespace CallTracker.Helpers
             string title = browser.Title;
             string element = browser.ActiveElement.IdOrName;
 
-            Console.WriteLine(browser.ActiveElement.GetAttributeValue("type"));
+            //Console.WriteLine(browser.ActiveElement.GetAttributeValue("type"));
 
             if(String.IsNullOrEmpty(element))
             {
