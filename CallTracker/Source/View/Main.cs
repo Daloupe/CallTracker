@@ -198,7 +198,6 @@ namespace CallTracker.View
         private void toolStripServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
             ToolStripComboBox input = (ToolStripComboBox)sender;
-            Console.WriteLine(input.Text);
             input.GetCurrentParent().Focus();
 
             if (input.Text == "NONE")

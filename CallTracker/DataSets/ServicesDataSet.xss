@@ -7,15 +7,15 @@
 <DiagramLayout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ex:showrelationlabel="False" ViewPortX="423" ViewPortY="-33" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:Services" ZOrder="10" X="433" Y="-12" Height="95" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="91" />
-    <Shape ID="DesignTable:Departments" ZOrder="9" X="434" Y="151" Height="129" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="125" />
-    <Shape ID="DesignTable:Symptoms" ZOrder="8" X="1133" Y="25" Height="96" Width="135" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="92" />
-    <Shape ID="DesignTable:SymptomGroupMatch" ZOrder="7" X="951" Y="7" Height="62" Width="138" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="58" />
-    <Shape ID="DesignTable:ProductCodes" ZOrder="6" X="602" Y="89" Height="61" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="57" />
-    <Shape ID="DesignTable:SymptomGroups" ZOrder="5" X="771" Y="5" Height="62" Width="145" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="58" />
-    <Shape ID="DesignTable:ServiceSymptomGroup" ZOrder="4" X="601" Y="-15" Height="62" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="58" />
-    <Shape ID="DesignTable:SeverityCodes" ZOrder="3" X="771" Y="90" Height="62" Width="143" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="58" />
-    <Shape ID="DesignTable:Outcomes" ZOrder="2" X="952" Y="89" Height="79" Width="139" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="75" />
-    <Shape ID="DesignTable:DepartmentNames" ZOrder="1" X="433" Y="294" Height="79" Width="151" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="75" />
+    <Shape ID="DesignTable:Departments" ZOrder="9" X="434" Y="151" Height="144" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="140" />
+    <Shape ID="DesignTable:Symptoms" ZOrder="8" X="1115" Y="-8" Height="106" Width="135" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
+    <Shape ID="DesignTable:SymptomGroupMatch" ZOrder="7" X="951" Y="-8" Height="68" Width="138" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
+    <Shape ID="DesignTable:ProductCodes" ZOrder="6" X="602" Y="96" Height="68" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
+    <Shape ID="DesignTable:SymptomGroups" ZOrder="5" X="779" Y="-11" Height="87" Width="145" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
+    <Shape ID="DesignTable:ServiceSymptomGroup" ZOrder="4" X="601" Y="-15" Height="68" Width="150" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
+    <Shape ID="DesignTable:SeverityCodes" ZOrder="3" X="780" Y="95" Height="68" Width="143" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
+    <Shape ID="DesignTable:Outcomes" ZOrder="1" X="952" Y="98" Height="87" Width="139" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
+    <Shape ID="DesignTable:DepartmentNames" ZOrder="2" X="433" Y="309" Height="68" Width="151" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:Departments_Services" ZOrder="17" LineWidth="11">
@@ -33,12 +33,20 @@
     <Connector ID="DesignRelation:Departments_DepartmentNames" ZOrder="16" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>513</X>
-          <Y>280</Y>
+          <X>584</X>
+          <Y>287</Y>
         </Point>
         <Point>
-          <X>513</X>
-          <Y>294</Y>
+          <X>614</X>
+          <Y>287</Y>
+        </Point>
+        <Point>
+          <X>614</X>
+          <Y>312</Y>
+        </Point>
+        <Point>
+          <X>584</X>
+          <Y>312</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -50,11 +58,11 @@
         </Point>
         <Point>
           <X>583</X>
-          <Y>121</Y>
+          <Y>128</Y>
         </Point>
         <Point>
           <X>602</X>
-          <Y>121</Y>
+          <Y>128</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -74,11 +82,11 @@
       <RoutePoints>
         <Point>
           <X>751</X>
-          <Y>35</Y>
+          <Y>19</Y>
         </Point>
         <Point>
-          <X>771</X>
-          <Y>35</Y>
+          <X>779</X>
+          <Y>19</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -86,11 +94,11 @@
       <RoutePoints>
         <Point>
           <X>951</X>
-          <Y>40</Y>
+          <Y>9</Y>
         </Point>
         <Point>
-          <X>916</X>
-          <Y>40</Y>
+          <X>924</X>
+          <Y>9</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -98,11 +106,11 @@
       <RoutePoints>
         <Point>
           <X>1089</X>
-          <Y>57</Y>
+          <Y>9</Y>
         </Point>
         <Point>
-          <X>1133</X>
-          <Y>57</Y>
+          <X>1115</X>
+          <Y>9</Y>
         </Point>
       </RoutePoints>
     </Connector>
