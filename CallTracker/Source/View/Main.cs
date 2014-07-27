@@ -142,32 +142,40 @@ namespace CallTracker.View
             this.Close();
         }
 
-        private ViewControlBase _VisibleSetting;
-        public ViewControlBase VisibleSetting 
+        private ViewControlBase visibleSetting;
+        private ViewControlBase VisibleSetting 
         {
-            get { return _VisibleSetting; }
+            get { return visibleSetting; }
             set
             {
                 if (value != null)
                     value.ShowSetting();
 
-                if (_VisibleSetting != null)
-                    _VisibleSetting.HideSetting();
+                if (visibleSetting != null)
+                    visibleSetting.HideSetting();
 
-                if (_VisibleSetting == value)
-                    _VisibleSetting = null;
+                if (visibleSetting == value)
+                    visibleSetting = null;
                 else
-                    _VisibleSetting = value;
+                    visibleSetting = value;
             }
         }
 
-        private void settingMenuItem_Click(object sender, EventArgs e)
+        public void NullVisibleSetting()
         {
-            
-            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            VisibleSetting = null;
+        }
 
-            VisibleSetting = item.Tag as ViewControlBase;
-            if(item.HasDropDownItems)
+        private void settingMenuItem_Click(object sender, EventArgs e)
+        {      
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            
+            ViewControlBase view = (ViewControlBase)item.Tag;
+            if (view == VisibleSetting)
+                view = null;
+            VisibleSetting = view;
+
+            if (item.HasDropDownItems)
                 item.DropDownItems[0].PerformClick();
         }
 

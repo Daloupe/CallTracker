@@ -35,21 +35,21 @@ namespace CallTracker.View
 
         protected virtual void _Done_Click(object sender, EventArgs e)
         {
-            MainForm.VisibleSetting = null;
+            MainForm.NullVisibleSetting();
         }
 
         public virtual void HideSetting()
         {
-            MenuControl.Checked = false;
             this.SendToBack();
             this.Visible = false;
+            MenuControl.Checked = false;
         }
 
         public virtual void ShowSetting()
         {
-            MenuControl.Checked = true;
             this.BringToFront();
             this.Visible = true;
+            MenuControl.Checked = true;
         }
 
         protected virtual void PaintBorder(object sender, PaintEventArgs e)

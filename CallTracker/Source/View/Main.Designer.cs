@@ -34,7 +34,6 @@
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loginsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridLinksViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteBindsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,6 +68,8 @@
             this.clearanceCodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
             this.MenuPanel = new System.Windows.Forms.Panel();
+            this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteBindsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databaseEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
@@ -123,8 +124,7 @@
             this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.loginsViewMenuItem,
             this.gridLinksViewMenuItem,
-            this.pasteBindsViewMenuItem,
-            this.databaseEditorToolStripMenuItem});
+            this.advancedToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.viewToolStripMenuItem.Text = "Settings";
@@ -139,17 +139,9 @@
             // gridLinksViewMenuItem
             // 
             this.gridLinksViewMenuItem.Name = "gridLinksViewMenuItem";
-            this.gridLinksViewMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.gridLinksViewMenuItem.Text = "Grid Link Binds";
+            this.gridLinksViewMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.gridLinksViewMenuItem.Text = "Grid Links";
             this.gridLinksViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
-            // 
-            // pasteBindsViewMenuItem
-            // 
-            this.pasteBindsViewMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pasteBindsViewMenuItem.Name = "pasteBindsViewMenuItem";
-            this.pasteBindsViewMenuItem.Size = new System.Drawing.Size(163, 22);
-            this.pasteBindsViewMenuItem.Text = "Smart Paste Binds";
-            this.pasteBindsViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
@@ -424,6 +416,23 @@
             this.MenuPanel.TabIndex = 27;
             this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
+            // advancedToolStripMenuItem
+            // 
+            this.advancedToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pasteBindsViewMenuItem,
+            this.databaseEditorToolStripMenuItem});
+            this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
+            this.advancedToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.advancedToolStripMenuItem.Text = "Advanced";
+            // 
+            // pasteBindsViewMenuItem
+            // 
+            this.pasteBindsViewMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pasteBindsViewMenuItem.Name = "pasteBindsViewMenuItem";
+            this.pasteBindsViewMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.pasteBindsViewMenuItem.Text = "Smart Paste Binds";
+            this.pasteBindsViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            // 
             // databaseEditorToolStripMenuItem
             // 
             this.databaseEditorToolStripMenuItem.Name = "databaseEditorToolStripMenuItem";
@@ -487,7 +496,6 @@
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loginsViewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gridLinksViewMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pasteBindsViewMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem customerCareToolStripMenuItem;
@@ -501,6 +509,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem clearanceCodesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem advancedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteBindsViewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem databaseEditorToolStripMenuItem;
     }
 }

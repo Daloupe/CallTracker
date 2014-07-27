@@ -48,12 +48,6 @@ namespace CallTracker.Model
             {
                 datas[i].Invoke(valuesInRow[i+1]);
             }
-            //    RateCode = valuesInRow[0];
-            //PlanName = valuesInRow[1];
-            //COSLAT = valuesInRow[2];
-            //COSLIP = valuesInRow[3];
-            //NILAT = valuesInRow[4];
-            //NILIP = String.Empty;
         }
     }
 }

@@ -154,12 +154,12 @@ namespace CallTracker.Model
     internal class ResourceData : DataRepository<ResourceData>
     {
         [ProtoMember(1)]
-        internal BindingList<RateplanModel> LATRatePlans { get; set; }
+        internal SortableBindingList<RateplanModel> LATRatePlans { get; set; }
 
         public ResourceData()
         {
             Filename = "Resources.bin";
-            LATRatePlans = new BindingList<RateplanModel>();
+            LATRatePlans = new SortableBindingList<RateplanModel>();
         }
 
     }

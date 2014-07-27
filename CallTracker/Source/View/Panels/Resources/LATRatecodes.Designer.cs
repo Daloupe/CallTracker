@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showInstallCodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,7 +43,7 @@
             this.nILATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nILIPDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rateplanBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._ClearHistory = new System.Windows.Forms.Button();
+            this._Search = new System.Windows.Forms.Button();
             this._Cancel = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.textBox1 = new CallTracker.View.BorderedTextBox();
@@ -91,6 +92,8 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
@@ -106,9 +109,9 @@
             this.nILIPDataGridViewTextBoxColumn});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.DataSource = this.rateplanBindingSource;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
             this.dataGridView1.Location = new System.Drawing.Point(4, 2);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 30;
@@ -116,6 +119,9 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(577, 193);
             this.dataGridView1.TabIndex = 17;
+            this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit_1);
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting_1);
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
             this.dataGridView1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dataGridView1_KeyDown);
             // 
@@ -124,7 +130,6 @@
             this.rateCodeDataGridViewTextBoxColumn.DataPropertyName = "RateCode";
             this.rateCodeDataGridViewTextBoxColumn.HeaderText = "Rate Code";
             this.rateCodeDataGridViewTextBoxColumn.Name = "rateCodeDataGridViewTextBoxColumn";
-            this.rateCodeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // planNameDataGridViewTextBoxColumn
             // 
@@ -132,28 +137,24 @@
             this.planNameDataGridViewTextBoxColumn.FillWeight = 350F;
             this.planNameDataGridViewTextBoxColumn.HeaderText = "Plan Name";
             this.planNameDataGridViewTextBoxColumn.Name = "planNameDataGridViewTextBoxColumn";
-            this.planNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // cOSLATDataGridViewTextBoxColumn
             // 
             this.cOSLATDataGridViewTextBoxColumn.DataPropertyName = "COSLAT";
             this.cOSLATDataGridViewTextBoxColumn.HeaderText = "Change: Lat";
             this.cOSLATDataGridViewTextBoxColumn.Name = "cOSLATDataGridViewTextBoxColumn";
-            this.cOSLATDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // cOSLIPDataGridViewTextBoxColumn
             // 
             this.cOSLIPDataGridViewTextBoxColumn.DataPropertyName = "COSLIP";
             this.cOSLIPDataGridViewTextBoxColumn.HeaderText = "Change: Lip";
             this.cOSLIPDataGridViewTextBoxColumn.Name = "cOSLIPDataGridViewTextBoxColumn";
-            this.cOSLIPDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nILATDataGridViewTextBoxColumn
             // 
             this.nILATDataGridViewTextBoxColumn.DataPropertyName = "NILAT";
             this.nILATDataGridViewTextBoxColumn.HeaderText = "Install: Lat";
             this.nILATDataGridViewTextBoxColumn.Name = "nILATDataGridViewTextBoxColumn";
-            this.nILATDataGridViewTextBoxColumn.ReadOnly = true;
             this.nILATDataGridViewTextBoxColumn.Visible = false;
             // 
             // nILIPDataGridViewTextBoxColumn
@@ -161,25 +162,24 @@
             this.nILIPDataGridViewTextBoxColumn.DataPropertyName = "NILIP";
             this.nILIPDataGridViewTextBoxColumn.HeaderText = "Install: Lip";
             this.nILIPDataGridViewTextBoxColumn.Name = "nILIPDataGridViewTextBoxColumn";
-            this.nILIPDataGridViewTextBoxColumn.ReadOnly = true;
             this.nILIPDataGridViewTextBoxColumn.Visible = false;
             // 
             // rateplanBindingSource
             // 
             this.rateplanBindingSource.DataSource = typeof(CallTracker.Model.RateplanModel);
             // 
-            // _ClearHistory
+            // _Search
             // 
-            this._ClearHistory.BackColor = System.Drawing.Color.LightGray;
-            this._ClearHistory.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
-            this._ClearHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._ClearHistory.Location = new System.Drawing.Point(92, 198);
-            this._ClearHistory.Name = "_ClearHistory";
-            this._ClearHistory.Size = new System.Drawing.Size(57, 22);
-            this._ClearHistory.TabIndex = 16;
-            this._ClearHistory.Text = "Search";
-            this._ClearHistory.UseVisualStyleBackColor = false;
-            this._ClearHistory.Click += new System.EventHandler(this._Search_Click);
+            this._Search.BackColor = System.Drawing.Color.LightGray;
+            this._Search.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this._Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Search.Location = new System.Drawing.Point(92, 198);
+            this._Search.Name = "_Search";
+            this._Search.Size = new System.Drawing.Size(57, 22);
+            this._Search.TabIndex = 16;
+            this._Search.Text = "Search";
+            this._Search.UseVisualStyleBackColor = false;
+            this._Search.Click += new System.EventHandler(this._Search_Click);
             // 
             // _Cancel
             // 
@@ -222,7 +222,7 @@
             this.BackColor = System.Drawing.Color.LightSlateGray;
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this._ClearHistory);
+            this.Controls.Add(this._Search);
             this.Controls.Add(this._Cancel);
             this.Controls.Add(this.label6);
             this.Font = new System.Drawing.Font("Verdana", 7F);
@@ -241,7 +241,7 @@
 
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button _Cancel;
-        private System.Windows.Forms.Button _ClearHistory;
+        private System.Windows.Forms.Button _Search;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource rateplanBindingSource;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;

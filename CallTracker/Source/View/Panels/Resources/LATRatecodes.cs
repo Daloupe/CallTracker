@@ -5,8 +5,8 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
-
 
 using CallTracker.View;
 using CallTracker.Model;
@@ -28,7 +28,7 @@ namespace CallTracker.View
             base.Init(_parent, _menuItem);
             rateplanBindingSource.ListChanged += rateplanBindingSource_ListChanged;
             rateplanBindingSource.DataSource = MainForm.ResourceStore.LATRatePlans;
-            dataGridView1.DataSource = rateplanBindingSource;        
+            dataGridView1.DataSource = rateplanBindingSource;
         }
 
 
@@ -68,6 +68,11 @@ namespace CallTracker.View
         {
             string searchValue = textBox1.Text;
 
+            SearchForString(searchValue);
+        }
+
+        private void SearchForString(string _input)
+        {
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.ClearSelection();
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -75,7 +80,7 @@ namespace CallTracker.View
                 if (row.Cells[0].Value != null)
                 {
                     string cellValue = row.Cells[0].Value.ToString();
-                    if (cellValue.Substring(0,Math.Min(searchValue.Length, cellValue.Length)).Equals(searchValue))
+                    if (cellValue.Substring(0, Math.Min(_input.Length, cellValue.Length)).Equals(_input))
                     {
                         row.Selected = true;
                         dataGridView1.FirstDisplayedScrollingRowIndex = row.Index;
@@ -106,7 +111,7 @@ namespace CallTracker.View
             int iRow = 3;
             while (iRow < rowsInClipboard.Length)
             {
-                rateplanBindingSource.Insert(dataGridView1.SelectedRows[0].Index, new RateplanModel(rowsInClipboard[iRow]));
+                rateplanBindingSource.Insert(dataGridView1.SelectedRows[0].Index, new RateplanModel(rowsInClipboard[iRow]));            
                 iRow += 1;
             }
 
@@ -167,8 +172,27 @@ namespace CallTracker.View
             }
             Search(searchString);
             lastKeyPress = nextKeyPress;
+            e.Handled = true;
         }
 
+        private void dataGridView1_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.Value != null && e.ColumnIndex != 1)
+            {
+                e.Value = e.Value.ToString().ToUpper();
+                e.FormattingApplied = true;
+            }
+        }
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            dataGridView1.KeyPress -= dataGridView1_KeyDown;
+        }
+
+        private void dataGridView1_CellEndEdit_1(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1.KeyPress += dataGridView1_KeyDown;
+        }
 
         //// PasteInData pastes clipboard data into the grid passed to it.
         //static void PasteInData(ref DataGridView dgv)

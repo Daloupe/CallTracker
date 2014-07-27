@@ -5,7 +5,7 @@ Priorities
 	- Need to find out what the different affecetd service drop downs in IFMS are called.
 - Store selected product from context menu in global variable, context sensitive items reference this before displaying or acting.
 	- Transfer departments tooltip displays internal contact, external contact, and opening hours.
-- Transpose objects to relational data tables.
+| Transpose objects to relational data tables.
 
 Main GUI
  | Have Settings windows show in main gui, rather than their own popup.
@@ -18,8 +18,9 @@ Main GUI
  | Added Daatsets to start tying the data together.
  | Ensured the datatables are serialzing.
  | Added a service select combo to the resources menu.
- - Rather then having lots of nested menus, changing the selected service will update the menu items.
- - Make input to rate code search auto capitilize.
+ | Fixed menus not closing once reclicked.
+ | Rather then having lots of nested menus, changing the selected service will update the menu items.
+ | Make input to rate code search auto capitilize.
  - Ensure the rate code datagrid is gettng focus when the page opens up.
  - Add status bar to display warnings.
  - Start inputting system variables.

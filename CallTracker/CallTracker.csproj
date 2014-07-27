@@ -103,6 +103,7 @@
     <Compile Include="Source\Helpers\FindProperty.cs" />
     <Compile Include="Source\Helpers\ICONNoteGenerator.cs" />
     <Compile Include="Source\Helpers\IETabActivator.cs" />
+    <Compile Include="Source\Helpers\ListHelpers.cs" />
     <Compile Include="Source\Helpers\StringHelpers.cs" />
     <Compile Include="Source\Model\EnumData.cs" />
     <Compile Include="Source\Model\Setting Models\AROModel.cs" />
