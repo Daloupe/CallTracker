@@ -57,7 +57,7 @@ namespace CallTracker.View
             DataStore = DataStore.ReadFile();
             ResourceStore = ResourceStore.ReadFile();
             ServicesStore.ReadData();
-            ServicesStore.CreateNewServices();
+            //ServicesStore.CreateNewServices();
 
             editContact = new EditContact(this);
             editLogins = new EditLogins();

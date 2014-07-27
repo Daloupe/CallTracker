@@ -181,7 +181,7 @@ namespace CallTracker.Model
         public void WriteData()
         {
             using (Stream stream = File.OpenWrite(Filename))
-            using (IDataReader reader = servicesDataSet.Services.CreateDataReader())
+            using (IDataReader reader = servicesDataSet.CreateDataReader())
             {
                 DataSerializer.Serialize(stream, reader);
             }
@@ -192,44 +192,98 @@ namespace CallTracker.Model
             if (!File.Exists(Filename))
             {
                 File.Create(Filename).Close();
+                CreateNewServices();
                 WriteData();
             }
-            using (Stream stream = File.OpenRead(Filename))
-            using (IDataReader reader = DataSerializer.Deserialize(stream))
+            else
             {
-                servicesDataSet.Services.Load(reader);
+                using (Stream stream = File.OpenRead(Filename))
+                using (IDataReader reader = DataSerializer.Deserialize(stream))
+                {
+                    DataTable[] dtarray = new DataTable[servicesDataSet.Tables.Count];
+                    servicesDataSet.Tables.CopyTo(dtarray, 0);
+                    servicesDataSet.Load(reader, LoadOption.OverwriteChanges, dtarray);
+                }
             }
         }
 
         public void CreateNewServices()
         {
-            foreach (string service in Enum.GetNames(typeof(ServiceTypes)))
+            foreach (string name in Enum.GetNames(typeof(ProductCodes)))
             {
-                if (service == "NONE")
-                    continue;
-                ServicesDataSet.ServicesRow NewService = servicesDataSet.Services.NewServicesRow();
-                NewService.Name = service;
-                Console.WriteLine("id: {0}, name:{1}", NewService.ServiceID, NewService.Name);
-                servicesDataSet.Services.AddServicesRow(NewService);
+                ServicesDataSet.ProductCodesRow newRow = servicesDataSet.ProductCodes.NewProductCodesRow();
+                newRow.IFMSCode = name;
+                servicesDataSet.ProductCodes.AddProductCodesRow(newRow);
+            }
 
-                foreach (string department in Enum.GetNames(typeof(DepartmentTypes)))
+            foreach (string name in Enum.GetNames(typeof(SymptomGroups)))
+            {
+                ServicesDataSet.SymptomGroupsRow newRow = servicesDataSet.SymptomGroups.NewSymptomGroupsRow();
+                newRow.IFMSCode = name;
+                servicesDataSet.SymptomGroups.AddSymptomGroupsRow(newRow);
+            }
+
+            foreach (var item in DataLists.SymptomsList)
+            {
+                ServicesDataSet.SymptomsRow newRow = servicesDataSet.Symptoms.NewSymptomsRow();
+                newRow.IFMSCode = Enum.GetName(typeof(SymptomsEnum), item.Key);
+                newRow.ICONNote = item.Value;
+                servicesDataSet.Symptoms.AddSymptomsRow(newRow);
+            }
+
+            foreach (string name in Enum.GetNames(typeof(FaultSeverity)))
+            {
+                ServicesDataSet.SeverityCodesRow newRow = servicesDataSet.SeverityCodes.NewSeverityCodesRow();
+                newRow.IFMSCode = name;
+                servicesDataSet.SeverityCodes.AddSeverityCodesRow(newRow);
+            }
+
+            foreach (string name in Enum.GetNames(typeof(Outcomes)))
+            {
+                ServicesDataSet.OutcomesRow newRow = servicesDataSet.Outcomes.NewOutcomesRow();
+                newRow.Acronym = name;
+                servicesDataSet.Outcomes.AddOutcomesRow(newRow);
+            }
+
+            foreach (var item in DataLists.DepartmentsList)
+            {
+                ServicesDataSet.DepartmentNamesRow newRow = servicesDataSet.DepartmentNames.NewDepartmentNamesRow();
+                newRow.NameShort = item.Key;
+                newRow.NameLong = item.Value;
+                servicesDataSet.DepartmentNames.AddDepartmentNamesRow(newRow);
+            }
+
+            foreach (string name in Enum.GetNames(typeof(ServiceTypes)))
+            {
+                if (name == "NONE")
+                    continue;
+                ServicesDataSet.ServicesRow newRow = servicesDataSet.Services.NewServicesRow();
+                newRow.Name = name;
+                //Console.WriteLine("id: {0}, name:{1}", newRow.ServiceID, newRow.Name);
+                servicesDataSet.Services.AddServicesRow(newRow);
+
+                foreach (var item in servicesDataSet.DepartmentNames)
                 {
                     ServicesDataSet.DepartmentsRow NewDepartment = servicesDataSet.Departments.NewDepartmentsRow();
-                    NewDepartment.Name = department;
-                    NewDepartment.ServiceID = NewService.ServiceID;
+                    NewDepartment.DepartmentNameID = item.DepartmentNameID;
+                    NewDepartment.ServiceID = newRow.ServiceID;
                     NewDepartment.InternalContact = 52500;
                     NewDepartment.ExternalContact = 1800555241;
                     NewDepartment.ContactHours = "Mon-Fri: 8-7 \n Sat: 9-5 \n Sun: Closed";
-                    Console.WriteLine("id: {0}, name:{1}", NewDepartment.DepartmentID, NewDepartment.Name);
+                    //Console.WriteLine("id: {0}, name:{1}", NewDepartment.DepartmentID, NewDepartment.Name);
                     servicesDataSet.Departments.AddDepartmentsRow(NewDepartment);
                 }
             };
-            
+            //servicesDataSet.Services.First(x => x.Name == "LAT").ProductCodeID = 
+
+
             //var deptQuery =
             //    (from dept in servicesDataSet.Departments
-            //    where dept.Name == "CustomerCare" &&
-            //          dept.ServiceID == servicesDataSet.Services.First(x => x.Name == "ONC").ServiceID
-            //    select dept).FirstOrDefault();
+            //     where dept.Name == "CustomerCare" &&
+            //           dept.ServiceID == servicesDataSet.Services.First(x => x.Name == "ONC").ServiceID
+            //     select dept).FirstOrDefault();
+            //ServicesDataSet.DepartmentsRow smth = (ServicesDataSet.ServicesRow)servicesDataSet.Departments..GetParentRow("FK_Services_Departments");
+            //Console.WriteLine(smth.Name);
             //Console.WriteLine("id: {0}, name:{1}, service:{2}", servicesDataSet.Relations[0].RelationName, deptQuery.Name ,servicesDataSet.Services.First(x => x.ServiceID == deptQuery.ServiceID).Name);
         }
 

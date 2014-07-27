@@ -16,7 +16,6 @@ namespace CallTracker.View
 {
     public partial class DatabaseView : ViewControlBase
     {
-
         public DatabaseView()
         {
             InitializeComponent();
@@ -29,16 +28,94 @@ namespace CallTracker.View
             //databaseBindingSource.ListChanged += rateplanBindingSource_ListChanged;
 
             databaseBindingSource.DataSource = MainForm.ServicesStore.servicesDataSet;
-            dataGridView1.AutoGenerateColumns = true;
+
             dataGridView1.DataSource = databaseBindingSource;
             List<string> tables = new List<string>();
             foreach(DataTable table in MainForm.ServicesStore.servicesDataSet.Tables)
-            {
                 tables.Add(table.TableName);
-            }
             _DatabaseSelect.DataSource = tables;
         }
 
+        private void _DatabaseSelect_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Columns.Clear();
+            dataGridView1.AutoGenerateColumns = true;    
+            dataGridView1.DataMember = ((ComboBox)sender).Text;
+
+            if (dataGridView1.DataMember == "Services")
+            {
+                //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+                dataGridView1.Columns.Remove("ServiceID");
+                dataGridView1.Columns.Remove("ProductCodeID");
+
+                DataGridViewComboBoxColumn dtcol = new DataGridViewComboBoxColumn();
+                dtcol.Name = "ProductCodeID";
+                dtcol.HeaderText = "Product Code";
+                dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dtcol.Width = 120;
+                dtcol.SortMode = DataGridViewColumnSortMode.Automatic;
+                dtcol.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+                dtcol.DataSource = MainForm.ServicesStore.servicesDataSet.ProductCodes.ToList();
+                dtcol.DisplayMember = "IFMSCode";
+                dtcol.ValueMember = "ProductCodeID";
+                dataGridView1.Columns.Insert(1, dtcol);
+                dtcol.DataPropertyName = "ProductCodeID";
+
+                dataGridView1.Columns["Name"].HeaderText = "Service";
+                dataGridView1.Columns["Name"].MinimumWidth = 150;
+                dataGridView1.Columns["ProblemStyle"].HeaderText = "Problem Style";
+                dataGridView1.Columns["ProblemStyle"].Width = 120;
+                
+                //dataGridView1.AutoResizeColumns();
+            }
+            else if (dataGridView1.DataMember == "Departments")
+            {
+                //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                dataGridView1.Columns.Remove("ServiceID");
+                dataGridView1.Columns.Remove("DepartmentID");
+                dataGridView1.Columns.Remove("DepartmentNameID");
+
+                DataGridViewComboBoxColumn dtcol = new DataGridViewComboBoxColumn();
+                dtcol.Name = "DepartmentID";
+                dtcol.HeaderText = "Department";
+                dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dtcol.Width = 115;
+                dtcol.SortMode = DataGridViewColumnSortMode.Automatic;
+                dtcol.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+                dtcol.ReadOnly = true;
+                dtcol.DataSource = MainForm.ServicesStore.servicesDataSet.DepartmentNames.ToList();
+                dtcol.DisplayMember = "NameLong";
+                dtcol.ValueMember = "DepartmentNameID";
+                dataGridView1.Columns.Insert(0, dtcol);
+                dtcol.DataPropertyName = "DepartmentNameID";
+
+                dtcol = new DataGridViewComboBoxColumn();
+                dtcol.Name = "ServiceID";
+                dtcol.HeaderText = "Service";
+                dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dtcol.Width = 50;
+                dtcol.SortMode = DataGridViewColumnSortMode.Automatic;
+                dtcol.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+                dtcol.ReadOnly = true;
+                dtcol.DataSource = MainForm.ServicesStore.servicesDataSet.Services.ToList();
+                dtcol.DisplayMember = "ProblemStyle";
+                dtcol.ValueMember = "ServiceID";
+                dataGridView1.Columns.Insert(1, dtcol);
+                dtcol.DataPropertyName = "ServiceID";
+
+                dataGridView1.Columns["InternalContact"].HeaderText = "Internal";
+                dataGridView1.Columns["InternalContact"].Width = 60;
+                dataGridView1.Columns["InternalContact"].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridView1.Columns["ExternalContact"].HeaderText = "External";
+                dataGridView1.Columns["ExternalContact"].Width = 85;
+                dataGridView1.Columns["ExternalContact"].SortMode = DataGridViewColumnSortMode.NotSortable;
+                dataGridView1.Columns["ContactHours"].HeaderText = "Contact Hours";
+                dataGridView1.Columns["ContactHours"].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+                dataGridView1.Sort(dtcol, ListSortDirection.Ascending);
+            }
+        }
 
         protected override void _Done_Click(object sender, EventArgs e)
         {
@@ -177,10 +254,7 @@ namespace CallTracker.View
         //    lastKeyPress = nextKeyPress;
         }
 
-        private void _DatabaseSelect_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            dataGridView1.DataMember = ((ComboBox)sender).Text;
-        }
+
 
 
         //// PasteInData pastes clipboard data into the grid passed to it.
