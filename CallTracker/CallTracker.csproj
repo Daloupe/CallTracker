@@ -84,11 +84,16 @@
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DataSets\ServicesDataSet1.Designer.cs">
+    <Compile Include="DataSets\ServicesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
     </Compile>
+    <None Include="DataSets\ServicesDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServicesDataSet.xsd</DependentUpon>
+    </None>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Data\Equipment.cs" />
@@ -98,6 +103,7 @@
     <Compile Include="Source\Helpers\FindProperty.cs" />
     <Compile Include="Source\Helpers\ICONNoteGenerator.cs" />
     <Compile Include="Source\Helpers\IETabActivator.cs" />
+    <Compile Include="Source\Helpers\StringHelpers.cs" />
     <Compile Include="Source\Model\EnumData.cs" />
     <Compile Include="Source\Model\Setting Models\AROModel.cs" />
     <Compile Include="Source\Model\Setting Models\IEInteractBase.cs" />
@@ -288,7 +294,7 @@
     <None Include="DataSets\ServicesDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ServicesDataSet1.Designer.cs</LastGenOutput>
+      <LastGenOutput>ServicesDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="DataSets\ServicesDataSet.xss">
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>

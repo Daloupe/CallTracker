@@ -28,28 +28,27 @@ namespace CallTracker.View
             //databaseBindingSource.ListChanged += rateplanBindingSource_ListChanged;
 
             databaseBindingSource.DataSource = MainForm.ServicesStore.servicesDataSet;
-
+            dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = databaseBindingSource;
             List<string> tables = new List<string>();
             foreach(DataTable table in MainForm.ServicesStore.servicesDataSet.Tables)
-                tables.Add(table.TableName);
+                tables.Add(StringHelpers.SeperateCamelCase(table.TableName));
             _DatabaseSelect.DataSource = tables;
         }
 
         private void _DatabaseSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
             dataGridView1.Columns.Clear();
-            dataGridView1.AutoGenerateColumns = true;    
-            dataGridView1.DataMember = ((ComboBox)sender).Text;
+            dataGridView1.DataMember = StringHelpers.JoinCamelCase(((ComboBox)sender).Text);
+            if(dataGridView1.Columns.Contains("Id"))
+                dataGridView1.Columns.Remove("Id");
 
             if (dataGridView1.DataMember == "Services")
             {
-                //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
-                dataGridView1.Columns.Remove("ServiceID");
-                dataGridView1.Columns.Remove("ProductCodeID");
+                dataGridView1.Columns.Remove("ProductCodeId");
 
                 DataGridViewComboBoxColumn dtcol = new DataGridViewComboBoxColumn();
-                dtcol.Name = "ProductCodeID";
+                dtcol.Name = "ProductCodeId";
                 dtcol.HeaderText = "Product Code";
                 dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                 dtcol.Width = 120;
@@ -57,9 +56,9 @@ namespace CallTracker.View
                 dtcol.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
                 dtcol.DataSource = MainForm.ServicesStore.servicesDataSet.ProductCodes.ToList();
                 dtcol.DisplayMember = "IFMSCode";
-                dtcol.ValueMember = "ProductCodeID";
+                dtcol.ValueMember = "Id";
                 dataGridView1.Columns.Insert(1, dtcol);
-                dtcol.DataPropertyName = "ProductCodeID";
+                dtcol.DataPropertyName = "ProductCodeId";
 
                 dataGridView1.Columns["Name"].HeaderText = "Service";
                 dataGridView1.Columns["Name"].MinimumWidth = 150;
@@ -72,12 +71,11 @@ namespace CallTracker.View
             {
                 //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                dataGridView1.Columns.Remove("ServiceID");
-                dataGridView1.Columns.Remove("DepartmentID");
-                dataGridView1.Columns.Remove("DepartmentNameID");
+                dataGridView1.Columns.Remove("ServiceId");
+                dataGridView1.Columns.Remove("DepartmentNameId");
 
                 DataGridViewComboBoxColumn dtcol = new DataGridViewComboBoxColumn();
-                dtcol.Name = "DepartmentID";
+                dtcol.Name = "Id";
                 dtcol.HeaderText = "Department";
                 dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                 dtcol.Width = 115;
@@ -86,12 +84,12 @@ namespace CallTracker.View
                 dtcol.ReadOnly = true;
                 dtcol.DataSource = MainForm.ServicesStore.servicesDataSet.DepartmentNames.ToList();
                 dtcol.DisplayMember = "NameLong";
-                dtcol.ValueMember = "DepartmentNameID";
+                dtcol.ValueMember = "Id";
                 dataGridView1.Columns.Insert(0, dtcol);
-                dtcol.DataPropertyName = "DepartmentNameID";
+                dtcol.DataPropertyName = "DepartmentNameId";
 
                 dtcol = new DataGridViewComboBoxColumn();
-                dtcol.Name = "ServiceID";
+                dtcol.Name = "ServiceId";
                 dtcol.HeaderText = "Service";
                 dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                 dtcol.Width = 50;
@@ -100,9 +98,9 @@ namespace CallTracker.View
                 dtcol.ReadOnly = true;
                 dtcol.DataSource = MainForm.ServicesStore.servicesDataSet.Services.ToList();
                 dtcol.DisplayMember = "ProblemStyle";
-                dtcol.ValueMember = "ServiceID";
+                dtcol.ValueMember = "Id";
                 dataGridView1.Columns.Insert(1, dtcol);
-                dtcol.DataPropertyName = "ServiceID";
+                dtcol.DataPropertyName = "ServiceId";
 
                 dataGridView1.Columns["InternalContact"].HeaderText = "Internal";
                 dataGridView1.Columns["InternalContact"].Width = 60;

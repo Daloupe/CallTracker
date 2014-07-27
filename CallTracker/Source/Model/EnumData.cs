@@ -71,7 +71,7 @@ namespace CallTracker.Model
         I, D, N, H
     }
 
-    public enum SymptomGroups
+    public enum SymptomGroups : int
     {
         Phone = 3, Onnet = 6, LNP = 7
     }

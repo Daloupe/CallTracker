@@ -191,8 +191,8 @@ namespace CallTracker.Model
         {
             if (!File.Exists(Filename))
             {
-                File.Create(Filename).Close();
                 CreateNewServices();
+                File.Create(Filename).Close();
                 WriteData();
             }
             else
@@ -219,7 +219,8 @@ namespace CallTracker.Model
             foreach (string name in Enum.GetNames(typeof(SymptomGroups)))
             {
                 ServicesDataSet.SymptomGroupsRow newRow = servicesDataSet.SymptomGroups.NewSymptomGroupsRow();
-                newRow.IFMSCode = name;
+                newRow.IFMSCode = (int)Enum.Parse(typeof(SymptomGroups), name);
+                newRow.Tooltip = name;
                 servicesDataSet.SymptomGroups.AddSymptomGroupsRow(newRow);
             }
 
@@ -259,14 +260,20 @@ namespace CallTracker.Model
                     continue;
                 ServicesDataSet.ServicesRow newRow = servicesDataSet.Services.NewServicesRow();
                 newRow.Name = name;
+                if (servicesDataSet.ProductCodes.FirstOrDefault(x => x.IFMSCode == name) != null)
+                    newRow.ProductCodeId = servicesDataSet.ProductCodes.FirstOrDefault(x => x.IFMSCode == name).Id;
+                else
+                    newRow.ProductCodeId = 0;
+                newRow.ProblemStyle = name;
+                //newRow.ProductCodeID = 0;
                 //Console.WriteLine("id: {0}, name:{1}", newRow.ServiceID, newRow.Name);
                 servicesDataSet.Services.AddServicesRow(newRow);
 
                 foreach (var item in servicesDataSet.DepartmentNames)
                 {
                     ServicesDataSet.DepartmentsRow NewDepartment = servicesDataSet.Departments.NewDepartmentsRow();
-                    NewDepartment.DepartmentNameID = item.DepartmentNameID;
-                    NewDepartment.ServiceID = newRow.ServiceID;
+                    NewDepartment.DepartmentNameId = item.Id;
+                    NewDepartment.ServiceId = newRow.Id;
                     NewDepartment.InternalContact = 52500;
                     NewDepartment.ExternalContact = 1800555241;
                     NewDepartment.ContactHours = "Mon-Fri: 8-7 \n Sat: 9-5 \n Sun: Closed";

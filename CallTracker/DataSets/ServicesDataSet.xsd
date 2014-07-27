@@ -15,9 +15,9 @@
         <xs:element name="Services" msprop:Generator_TableClassName="ServicesDataTable" msprop:Generator_TableVarName="tableServices" msprop:Generator_TablePropName="Services" msprop:Generator_RowDeletingName="ServicesRowDeleting" msprop:Generator_RowChangingName="ServicesRowChanging" msprop:Generator_RowEvHandlerName="ServicesRowChangeEventHandler" msprop:Generator_RowDeletedName="ServicesRowDeleted" msprop:Generator_UserTableName="Services" msprop:Generator_RowChangedName="ServicesRowChanged" msprop:Generator_RowEvArgName="ServicesRowChangeEvent" msprop:Generator_RowClassName="ServicesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ServiceID" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnServiceID" msprop:Generator_ColumnPropNameInRow="ServiceID" msprop:Generator_ColumnPropNameInTable="ServiceIDColumn" msprop:Generator_UserColumnName="ServiceID" type="xs:int" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" />
               <xs:element name="Name" msdata:Caption="ServiceName" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" default="" minOccurs="0" />
-              <xs:element name="ProductCodeID" msprop:Generator_ColumnVarNameInTable="columnProductCodeID" msprop:Generator_ColumnPropNameInRow="ProductCodeID" msprop:Generator_ColumnPropNameInTable="ProductCodeIDColumn" msprop:Generator_UserColumnName="ProductCodeID" type="xs:int" minOccurs="0" />
+              <xs:element name="ProductCodeId" msprop:Generator_ColumnVarNameInTable="columnProductCodeId" msprop:Generator_ColumnPropNameInRow="ProductCodeId" msprop:Generator_ColumnPropNameInTable="ProductCodeIdColumn" msprop:Generator_UserColumnName="ProductCodeId" type="xs:short" minOccurs="0" />
               <xs:element name="ProblemStyle" msprop:Generator_ColumnVarNameInTable="columnProblemStyle" msprop:Generator_ColumnPropNameInRow="ProblemStyle" msprop:Generator_ColumnPropNameInTable="ProblemStyleColumn" msprop:Generator_UserColumnName="ProblemStyle" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
@@ -25,9 +25,9 @@
         <xs:element name="Departments" msprop:Generator_TableClassName="DepartmentsDataTable" msprop:Generator_TableVarName="tableDepartments" msprop:Generator_TablePropName="Departments" msprop:Generator_RowDeletingName="DepartmentsRowDeleting" msprop:Generator_RowChangingName="DepartmentsRowChanging" msprop:Generator_RowEvHandlerName="DepartmentsRowChangeEventHandler" msprop:Generator_RowDeletedName="DepartmentsRowDeleted" msprop:Generator_UserTableName="Departments" msprop:Generator_RowChangedName="DepartmentsRowChanged" msprop:Generator_RowEvArgName="DepartmentsRowChangeEvent" msprop:Generator_RowClassName="DepartmentsRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="DepartmentID" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnDepartmentID" msprop:Generator_ColumnPropNameInRow="DepartmentID" msprop:Generator_ColumnPropNameInTable="DepartmentIDColumn" msprop:Generator_UserColumnName="DepartmentID" type="xs:int" minOccurs="0" />
-              <xs:element name="ServiceID" msprop:Generator_ColumnVarNameInTable="columnServiceID" msprop:Generator_ColumnPropNameInRow="ServiceID" msprop:Generator_ColumnPropNameInTable="ServiceIDColumn" msprop:Generator_UserColumnName="ServiceID" type="xs:int" minOccurs="0" />
-              <xs:element name="DepartmentNameID" msprop:Generator_ColumnVarNameInTable="columnDepartmentNameID" msprop:Generator_ColumnPropNameInRow="DepartmentNameID" msprop:Generator_ColumnPropNameInTable="DepartmentNameIDColumn" msprop:Generator_UserColumnName="DepartmentNameID" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="ServiceId" msprop:Generator_ColumnVarNameInTable="columnServiceId" msprop:Generator_ColumnPropNameInRow="ServiceId" msprop:Generator_ColumnPropNameInTable="ServiceIdColumn" msprop:Generator_UserColumnName="ServiceId" type="xs:short" minOccurs="0" />
+              <xs:element name="DepartmentNameId" msprop:Generator_ColumnVarNameInTable="columnDepartmentNameId" msprop:Generator_ColumnPropNameInRow="DepartmentNameId" msprop:Generator_ColumnPropNameInTable="DepartmentNameIdColumn" msprop:Generator_UserColumnName="DepartmentNameId" type="xs:short" minOccurs="0" />
               <xs:element name="InternalContact" msprop:Generator_ColumnVarNameInTable="columnInternalContact" msprop:Generator_ColumnPropNameInRow="InternalContact" msprop:Generator_ColumnPropNameInTable="InternalContactColumn" msprop:Generator_UserColumnName="InternalContact" type="xs:int" minOccurs="0" />
               <xs:element name="ExternalContact" msprop:Generator_ColumnVarNameInTable="columnExternalContact" msprop:Generator_ColumnPropNameInRow="ExternalContact" msprop:Generator_ColumnPropNameInTable="ExternalContactColumn" msprop:Generator_UserColumnName="ExternalContact" type="xs:int" minOccurs="0" />
               <xs:element name="ContactHours" msprop:Generator_ColumnVarNameInTable="columnContactHours" msprop:Generator_ColumnPropNameInRow="ContactHours" msprop:Generator_ColumnPropNameInTable="ContactHoursColumn" msprop:Generator_UserColumnName="ContactHours" type="xs:string" minOccurs="0" />
@@ -37,7 +37,7 @@
         <xs:element name="Symptoms" msprop:Generator_TableClassName="SymptomsDataTable" msprop:Generator_TableVarName="tableSymptoms" msprop:Generator_TablePropName="Symptoms" msprop:Generator_RowDeletingName="SymptomsRowDeleting" msprop:Generator_RowChangingName="SymptomsRowChanging" msprop:Generator_RowEvHandlerName="SymptomsRowChangeEventHandler" msprop:Generator_RowDeletedName="SymptomsRowDeleted" msprop:Generator_UserTableName="Symptoms" msprop:Generator_RowChangedName="SymptomsRowChanged" msprop:Generator_RowEvArgName="SymptomsRowChangeEvent" msprop:Generator_RowClassName="SymptomsRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="SymptomID" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnSymptomID" msprop:Generator_ColumnPropNameInRow="SymptomID" msprop:Generator_ColumnPropNameInTable="SymptomIDColumn" msprop:Generator_UserColumnName="SymptomID" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
               <xs:element name="Name" msdata:Caption="SymptomName" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
               <xs:element name="IFMSCode" msdata:Caption="Acronym" msprop:Generator_ColumnVarNameInTable="columnIFMSCode" msprop:Generator_ColumnPropNameInRow="IFMSCode" msprop:Generator_ColumnPropNameInTable="IFMSCodeColumn" msprop:Generator_UserColumnName="IFMSCode" type="xs:string" minOccurs="0" />
               <xs:element name="ICONNote" msprop:Generator_ColumnVarNameInTable="columnICONNote" msprop:Generator_ColumnPropNameInRow="ICONNote" msprop:Generator_ColumnPropNameInTable="ICONNoteColumn" msprop:Generator_UserColumnName="ICONNote" type="xs:string" minOccurs="0" />
@@ -47,15 +47,15 @@
         <xs:element name="SymptomGroupMatch" msprop:Generator_TableClassName="SymptomGroupMatchDataTable" msprop:Generator_TableVarName="tableSymptomGroupMatch" msprop:Generator_TablePropName="SymptomGroupMatch" msprop:Generator_RowDeletingName="SymptomGroupMatchRowDeleting" msprop:Generator_RowChangingName="SymptomGroupMatchRowChanging" msprop:Generator_RowEvHandlerName="SymptomGroupMatchRowChangeEventHandler" msprop:Generator_RowDeletedName="SymptomGroupMatchRowDeleted" msprop:Generator_UserTableName="SymptomGroupMatch" msprop:Generator_RowChangedName="SymptomGroupMatchRowChanged" msprop:Generator_RowEvArgName="SymptomGroupMatchRowChangeEvent" msprop:Generator_RowClassName="SymptomGroupMatchRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="SymptomGroupID" msdata:Caption="ServiceID" msprop:Generator_ColumnVarNameInTable="columnSymptomGroupID" msprop:Generator_ColumnPropNameInRow="SymptomGroupID" msprop:Generator_ColumnPropNameInTable="SymptomGroupIDColumn" msprop:Generator_UserColumnName="SymptomGroupID" type="xs:int" minOccurs="0" />
-              <xs:element name="SymptomID" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnSymptomID" msprop:Generator_ColumnPropNameInRow="SymptomID" msprop:Generator_ColumnPropNameInTable="SymptomIDColumn" msprop:Generator_UserColumnName="SymptomID" type="xs:int" minOccurs="0" />
+              <xs:element name="SymptomGroupId" msdata:Caption="ServiceID" msprop:Generator_ColumnVarNameInTable="columnSymptomGroupId" msprop:Generator_ColumnPropNameInRow="SymptomGroupId" msprop:Generator_ColumnPropNameInTable="SymptomGroupIdColumn" msprop:Generator_UserColumnName="SymptomGroupId" type="xs:short" minOccurs="0" />
+              <xs:element name="SymptomId" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnSymptomId" msprop:Generator_ColumnPropNameInRow="SymptomId" msprop:Generator_ColumnPropNameInTable="SymptomIdColumn" msprop:Generator_UserColumnName="SymptomId" type="xs:short" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
         <xs:element name="ProductCodes" msprop:Generator_TableClassName="ProductCodesDataTable" msprop:Generator_TableVarName="tableProductCodes" msprop:Generator_TablePropName="ProductCodes" msprop:Generator_RowDeletingName="ProductCodesRowDeleting" msprop:Generator_RowChangingName="ProductCodesRowChanging" msprop:Generator_RowEvHandlerName="ProductCodesRowChangeEventHandler" msprop:Generator_RowDeletedName="ProductCodesRowDeleted" msprop:Generator_UserTableName="ProductCodes" msprop:Generator_RowChangedName="ProductCodesRowChanged" msprop:Generator_RowEvArgName="ProductCodesRowChangeEvent" msprop:Generator_RowClassName="ProductCodesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ProductCodeID" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnProductCodeID" msprop:Generator_ColumnPropNameInRow="ProductCodeID" msprop:Generator_ColumnPropNameInTable="ProductCodeIDColumn" msprop:Generator_UserColumnName="ProductCodeID" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
               <xs:element name="IFMSCode" msprop:Generator_ColumnVarNameInTable="columnIFMSCode" msprop:Generator_ColumnPropNameInRow="IFMSCode" msprop:Generator_ColumnPropNameInTable="IFMSCodeColumn" msprop:Generator_UserColumnName="IFMSCode" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
@@ -63,23 +63,24 @@
         <xs:element name="SymptomGroups" msprop:Generator_TableClassName="SymptomGroupsDataTable" msprop:Generator_TableVarName="tableSymptomGroups" msprop:Generator_TablePropName="SymptomGroups" msprop:Generator_RowDeletingName="SymptomGroupsRowDeleting" msprop:Generator_RowChangingName="SymptomGroupsRowChanging" msprop:Generator_RowEvHandlerName="SymptomGroupsRowChangeEventHandler" msprop:Generator_RowDeletedName="SymptomGroupsRowDeleted" msprop:Generator_UserTableName="SymptomGroups" msprop:Generator_RowChangedName="SymptomGroupsRowChanged" msprop:Generator_RowEvArgName="SymptomGroupsRowChangeEvent" msprop:Generator_RowClassName="SymptomGroupsRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="SymptomGroupID" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnSymptomGroupID" msprop:Generator_ColumnPropNameInRow="SymptomGroupID" msprop:Generator_ColumnPropNameInTable="SymptomGroupIDColumn" msprop:Generator_UserColumnName="SymptomGroupID" type="xs:int" minOccurs="0" />
-              <xs:element name="IFMSCode" msprop:Generator_ColumnVarNameInTable="columnIFMSCode" msprop:Generator_ColumnPropNameInRow="IFMSCode" msprop:Generator_ColumnPropNameInTable="IFMSCodeColumn" msprop:Generator_UserColumnName="IFMSCode" type="xs:string" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="IFMSCode" msprop:Generator_ColumnVarNameInTable="columnIFMSCode" msprop:Generator_ColumnPropNameInRow="IFMSCode" msprop:Generator_ColumnPropNameInTable="IFMSCodeColumn" msprop:Generator_UserColumnName="IFMSCode" type="xs:int" minOccurs="0" />
+              <xs:element name="Tooltip" msprop:Generator_ColumnVarNameInTable="columnTooltip" msprop:Generator_ColumnPropNameInRow="Tooltip" msprop:Generator_ColumnPropNameInTable="TooltipColumn" msprop:Generator_UserColumnName="Tooltip" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
         <xs:element name="ServiceSymptomGroup" msprop:Generator_TableClassName="ServiceSymptomGroupDataTable" msprop:Generator_TableVarName="tableServiceSymptomGroup" msprop:Generator_TablePropName="ServiceSymptomGroup" msprop:Generator_RowDeletingName="ServiceSymptomGroupRowDeleting" msprop:Generator_RowChangingName="ServiceSymptomGroupRowChanging" msprop:Generator_RowEvHandlerName="ServiceSymptomGroupRowChangeEventHandler" msprop:Generator_RowDeletedName="ServiceSymptomGroupRowDeleted" msprop:Generator_UserTableName="ServiceSymptomGroup" msprop:Generator_RowChangedName="ServiceSymptomGroupRowChanged" msprop:Generator_RowEvArgName="ServiceSymptomGroupRowChangeEvent" msprop:Generator_RowClassName="ServiceSymptomGroupRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ServiceID" msprop:Generator_ColumnVarNameInTable="columnServiceID" msprop:Generator_ColumnPropNameInRow="ServiceID" msprop:Generator_ColumnPropNameInTable="ServiceIDColumn" msprop:Generator_UserColumnName="ServiceID" type="xs:int" minOccurs="0" />
-              <xs:element name="SymptomGroupID" msprop:Generator_ColumnVarNameInTable="columnSymptomGroupID" msprop:Generator_ColumnPropNameInRow="SymptomGroupID" msprop:Generator_ColumnPropNameInTable="SymptomGroupIDColumn" msprop:Generator_UserColumnName="SymptomGroupID" type="xs:int" minOccurs="0" />
+              <xs:element name="ServiceId" msprop:Generator_ColumnVarNameInTable="columnServiceId" msprop:Generator_ColumnPropNameInRow="ServiceId" msprop:Generator_ColumnPropNameInTable="ServiceIdColumn" msprop:Generator_UserColumnName="ServiceId" type="xs:short" minOccurs="0" />
+              <xs:element name="SymptomGroupId" msprop:Generator_ColumnVarNameInTable="columnSymptomGroupId" msprop:Generator_ColumnPropNameInRow="SymptomGroupId" msprop:Generator_ColumnPropNameInTable="SymptomGroupIdColumn" msprop:Generator_UserColumnName="SymptomGroupId" type="xs:short" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
         <xs:element name="SeverityCodes" msprop:Generator_TableClassName="SeverityCodesDataTable" msprop:Generator_TableVarName="tableSeverityCodes" msprop:Generator_TablePropName="SeverityCodes" msprop:Generator_RowDeletingName="SeverityCodesRowDeleting" msprop:Generator_RowChangingName="SeverityCodesRowChanging" msprop:Generator_RowEvHandlerName="SeverityCodesRowChangeEventHandler" msprop:Generator_RowDeletedName="SeverityCodesRowDeleted" msprop:Generator_UserTableName="SeverityCodes" msprop:Generator_RowChangedName="SeverityCodesRowChanged" msprop:Generator_RowEvArgName="SeverityCodesRowChangeEvent" msprop:Generator_RowClassName="SeverityCodesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="SeverityCodeID" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnSeverityCodeID" msprop:Generator_ColumnPropNameInRow="SeverityCodeID" msprop:Generator_ColumnPropNameInTable="SeverityCodeIDColumn" msprop:Generator_UserColumnName="SeverityCodeID" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
               <xs:element name="IFMSCode" msprop:Generator_ColumnVarNameInTable="columnIFMSCode" msprop:Generator_ColumnPropNameInRow="IFMSCode" msprop:Generator_ColumnPropNameInTable="IFMSCodeColumn" msprop:Generator_UserColumnName="IFMSCode" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
@@ -87,7 +88,7 @@
         <xs:element name="Outcomes" msprop:Generator_TableClassName="OutcomesDataTable" msprop:Generator_TableVarName="tableOutcomes" msprop:Generator_TablePropName="Outcomes" msprop:Generator_RowDeletingName="OutcomesRowDeleting" msprop:Generator_RowChangingName="OutcomesRowChanging" msprop:Generator_RowEvHandlerName="OutcomesRowChangeEventHandler" msprop:Generator_RowDeletedName="OutcomesRowDeleted" msprop:Generator_UserTableName="Outcomes" msprop:Generator_RowChangedName="OutcomesRowChanged" msprop:Generator_RowEvArgName="OutcomesRowChangeEvent" msprop:Generator_RowClassName="OutcomesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="OutcomeID" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnOutcomeID" msprop:Generator_ColumnPropNameInRow="OutcomeID" msprop:Generator_ColumnPropNameInTable="OutcomeIDColumn" msprop:Generator_UserColumnName="OutcomeID" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
               <xs:element name="Acronym" msprop:Generator_ColumnVarNameInTable="columnAcronym" msprop:Generator_ColumnPropNameInRow="Acronym" msprop:Generator_ColumnPropNameInTable="AcronymColumn" msprop:Generator_UserColumnName="Acronym" type="xs:string" minOccurs="0" />
               <xs:element name="Tooltip" msprop:Generator_ColumnVarNameInTable="columnTooltip" msprop:Generator_ColumnPropNameInRow="Tooltip" msprop:Generator_ColumnPropNameInTable="TooltipColumn" msprop:Generator_UserColumnName="Tooltip" type="xs:string" minOccurs="0" />
             </xs:sequence>
@@ -96,7 +97,7 @@
         <xs:element name="DepartmentNames" msprop:Generator_TableClassName="DepartmentNamesDataTable" msprop:Generator_TableVarName="tableDepartmentNames" msprop:Generator_TablePropName="DepartmentNames" msprop:Generator_RowDeletingName="DepartmentNamesRowDeleting" msprop:Generator_RowChangingName="DepartmentNamesRowChanging" msprop:Generator_RowEvHandlerName="DepartmentNamesRowChangeEventHandler" msprop:Generator_RowDeletedName="DepartmentNamesRowDeleted" msprop:Generator_UserTableName="DepartmentNames" msprop:Generator_RowChangedName="DepartmentNamesRowChanged" msprop:Generator_RowEvArgName="DepartmentNamesRowChangeEvent" msprop:Generator_RowClassName="DepartmentNamesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="DepartmentNameID" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnDepartmentNameID" msprop:Generator_ColumnPropNameInRow="DepartmentNameID" msprop:Generator_ColumnPropNameInTable="DepartmentNameIDColumn" msprop:Generator_UserColumnName="DepartmentNameID" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
               <xs:element name="NameShort" msprop:Generator_ColumnVarNameInTable="columnNameShort" msprop:Generator_ColumnPropNameInRow="NameShort" msprop:Generator_ColumnPropNameInTable="NameShortColumn" msprop:Generator_UserColumnName="NameShort" type="xs:string" minOccurs="0" />
               <xs:element name="NameLong" msprop:Generator_ColumnVarNameInTable="columnNameLong" msprop:Generator_ColumnPropNameInRow="NameLong" msprop:Generator_ColumnPropNameInTable="NameLongColumn" msprop:Generator_UserColumnName="NameLong" type="xs:string" minOccurs="0" />
             </xs:sequence>
@@ -106,62 +107,46 @@
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:Services" />
-      <xs:field xpath="mstns:ServiceID" />
+      <xs:field xpath="mstns:Id" />
     </xs:unique>
     <xs:unique name="Departments_Constraint1" msdata:ConstraintName="Constraint1">
       <xs:selector xpath=".//mstns:Departments" />
-      <xs:field xpath="mstns:DepartmentID" />
+      <xs:field xpath="mstns:Id" />
     </xs:unique>
     <xs:unique name="Symptoms_Constraint1" msdata:ConstraintName="Constraint1">
       <xs:selector xpath=".//mstns:Symptoms" />
-      <xs:field xpath="mstns:SymptomID" />
-    </xs:unique>
-    <xs:unique name="SymptomGroupMatch_Constraint1" msdata:ConstraintName="Constraint1">
-      <xs:selector xpath=".//mstns:SymptomGroupMatch" />
-      <xs:field xpath="mstns:SymptomGroupID" />
-    </xs:unique>
-    <xs:unique name="Constraint2">
-      <xs:selector xpath=".//mstns:SymptomGroupMatch" />
-      <xs:field xpath="mstns:SymptomID" />
+      <xs:field xpath="mstns:Id" />
     </xs:unique>
     <xs:unique name="ProductCodes_Constraint1" msdata:ConstraintName="Constraint1">
       <xs:selector xpath=".//mstns:ProductCodes" />
-      <xs:field xpath="mstns:ProductCodeID" />
+      <xs:field xpath="mstns:Id" />
     </xs:unique>
     <xs:unique name="SymptomGroups_Constraint1" msdata:ConstraintName="Constraint1">
       <xs:selector xpath=".//mstns:SymptomGroups" />
-      <xs:field xpath="mstns:SymptomGroupID" />
-    </xs:unique>
-    <xs:unique name="ServiceSymptomGroup_Constraint1" msdata:ConstraintName="Constraint1">
-      <xs:selector xpath=".//mstns:ServiceSymptomGroup" />
-      <xs:field xpath="mstns:SymptomGroupID" />
-    </xs:unique>
-    <xs:unique name="ServiceSymptomGroup_Constraint2" msdata:ConstraintName="Constraint2">
-      <xs:selector xpath=".//mstns:ServiceSymptomGroup" />
-      <xs:field xpath="mstns:ServiceID" />
+      <xs:field xpath="mstns:Id" />
     </xs:unique>
     <xs:unique name="SeverityCodes_Constraint1" msdata:ConstraintName="Constraint1">
       <xs:selector xpath=".//mstns:SeverityCodes" />
-      <xs:field xpath="mstns:SeverityCodeID" />
+      <xs:field xpath="mstns:Id" />
     </xs:unique>
     <xs:unique name="Outcomes_Constraint1" msdata:ConstraintName="Constraint1">
       <xs:selector xpath=".//mstns:Outcomes" />
-      <xs:field xpath="mstns:OutcomeID" />
+      <xs:field xpath="mstns:Id" />
     </xs:unique>
     <xs:unique name="DepartmentNames_Constraint1" msdata:ConstraintName="Constraint1">
       <xs:selector xpath=".//mstns:DepartmentNames" />
-      <xs:field xpath="mstns:DepartmentNameID" />
+      <xs:field xpath="mstns:Id" />
     </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="Symptoms_ServiceSymptoms" msdata:parent="Symptoms" msdata:child="SymptomGroupMatch" msdata:parentkey="SymptomID" msdata:childkey="SymptomID" msprop:Generator_UserChildTable="SymptomGroupMatch" msprop:Generator_ChildPropName="GetSymptomGroupMatchRows" msprop:Generator_UserRelationName="Symptoms_ServiceSymptoms" msprop:Generator_ParentPropName="SymptomsRow" msprop:Generator_RelationVarName="relationSymptoms_ServiceSymptoms" msprop:Generator_UserParentTable="Symptoms" />
-      <msdata:Relationship name="ProductCodes_Services" msdata:parent="ProductCodes" msdata:child="Services" msdata:parentkey="ProductCodeID" msdata:childkey="ProductCodeID" msprop:Generator_UserChildTable="Services" msprop:Generator_ChildPropName="GetServicesRows" msprop:Generator_UserRelationName="ProductCodes_Services" msprop:Generator_RelationVarName="relationProductCodes_Services" msprop:Generator_UserParentTable="ProductCodes" msprop:Generator_ParentPropName="ProductCodesRow" />
-      <msdata:Relationship name="SymptomGroups_ServiceSymptoms" msdata:parent="SymptomGroups" msdata:child="SymptomGroupMatch" msdata:parentkey="SymptomGroupID" msdata:childkey="SymptomGroupID" msprop:Generator_UserChildTable="SymptomGroupMatch" msprop:Generator_ChildPropName="GetSymptomGroupMatchRows" msprop:Generator_UserRelationName="SymptomGroups_ServiceSymptoms" msprop:Generator_RelationVarName="relationSymptomGroups_ServiceSymptoms" msprop:Generator_UserParentTable="SymptomGroups" msprop:Generator_ParentPropName="SymptomGroupsRow" />
-      <msdata:Relationship name="SymptomGroups_ServiceSymptomGroup" msdata:parent="SymptomGroups" msdata:child="ServiceSymptomGroup" msdata:parentkey="SymptomGroupID" msdata:childkey="SymptomGroupID" msprop:Generator_UserChildTable="ServiceSymptomGroup" msprop:Generator_ChildPropName="GetServiceSymptomGroupRows" msprop:Generator_UserRelationName="SymptomGroups_ServiceSymptomGroup" msprop:Generator_ParentPropName="SymptomGroupsRow" msprop:Generator_RelationVarName="relationSymptomGroups_ServiceSymptomGroup" msprop:Generator_UserParentTable="SymptomGroups" />
-      <msdata:Relationship name="Services_ServiceSymptomGroup" msdata:parent="Services" msdata:child="ServiceSymptomGroup" msdata:parentkey="ServiceID" msdata:childkey="ServiceID" msprop:Generator_UserChildTable="ServiceSymptomGroup" msprop:Generator_ChildPropName="GetServiceSymptomGroupRows" msprop:Generator_UserRelationName="Services_ServiceSymptomGroup" msprop:Generator_ParentPropName="ServicesRow" msprop:Generator_RelationVarName="relationServices_ServiceSymptomGroup" msprop:Generator_UserParentTable="Services" />
-      <msdata:Relationship name="FK_Services_Departments" msdata:parent="Departments" msdata:child="Services" msdata:parentkey="ServiceID" msdata:childkey="ServiceID" msprop:Generator_UserChildTable="Services" msprop:Generator_ChildPropName="GetServicesRows" msprop:Generator_UserRelationName="FK_Services_Departments" msprop:Generator_ParentPropName="DepartmentsRow" msprop:Generator_RelationVarName="relationFK_Services_Departments" msprop:Generator_UserParentTable="Departments" />
-      <msdata:Relationship name="Departments_DepartmentNames" msdata:parent="Departments" msdata:child="DepartmentNames" msdata:parentkey="DepartmentNameID" msdata:childkey="DepartmentNameID" msprop:Generator_UserChildTable="DepartmentNames" msprop:Generator_ChildPropName="GetDepartmentNamesRows" msprop:Generator_UserRelationName="Departments_DepartmentNames" msprop:Generator_ParentPropName="DepartmentsRow" msprop:Generator_RelationVarName="relationDepartments_DepartmentNames" msprop:Generator_UserParentTable="Departments" />
+      <msdata:Relationship name="Departments_Services" msdata:parent="Departments" msdata:child="Services" msdata:parentkey="ServiceId" msdata:childkey="Id" msprop:Generator_UserChildTable="Services" msprop:Generator_ChildPropName="GetServicesRows" msprop:Generator_UserRelationName="Departments_Services" msprop:Generator_ParentPropName="DepartmentsRow" msprop:Generator_RelationVarName="relationDepartments_Services" msprop:Generator_UserParentTable="Departments" />
+      <msdata:Relationship name="Departments_DepartmentNames" msdata:parent="Departments" msdata:child="DepartmentNames" msdata:parentkey="DepartmentNameId" msdata:childkey="Id" msprop:Generator_UserChildTable="DepartmentNames" msprop:Generator_ChildPropName="GetDepartmentNamesRows" msprop:Generator_UserRelationName="Departments_DepartmentNames" msprop:Generator_RelationVarName="relationDepartments_DepartmentNames" msprop:Generator_UserParentTable="Departments" msprop:Generator_ParentPropName="DepartmentsRow" />
+      <msdata:Relationship name="Services_ProductCodes" msdata:parent="Services" msdata:child="ProductCodes" msdata:parentkey="ProductCodeId" msdata:childkey="Id" msprop:Generator_UserChildTable="ProductCodes" msprop:Generator_ChildPropName="GetProductCodesRows" msprop:Generator_UserRelationName="Services_ProductCodes" msprop:Generator_RelationVarName="relationServices_ProductCodes" msprop:Generator_UserParentTable="Services" msprop:Generator_ParentPropName="ServicesRow" />
+      <msdata:Relationship name="ServiceSymptomGroup_Services" msdata:parent="ServiceSymptomGroup" msdata:child="Services" msdata:parentkey="ServiceId" msdata:childkey="Id" msprop:Generator_UserChildTable="Services" msprop:Generator_ChildPropName="GetServicesRows" msprop:Generator_UserRelationName="ServiceSymptomGroup_Services" msprop:Generator_ParentPropName="ServiceSymptomGroupRow" msprop:Generator_RelationVarName="relationServiceSymptomGroup_Services" msprop:Generator_UserParentTable="ServiceSymptomGroup" />
+      <msdata:Relationship name="ServiceSymptomGroup_SymptomGroups" msdata:parent="ServiceSymptomGroup" msdata:child="SymptomGroups" msdata:parentkey="SymptomGroupId" msdata:childkey="Id" msprop:Generator_UserChildTable="SymptomGroups" msprop:Generator_ChildPropName="GetSymptomGroupsRows" msprop:Generator_UserRelationName="ServiceSymptomGroup_SymptomGroups" msprop:Generator_ParentPropName="ServiceSymptomGroupRow" msprop:Generator_RelationVarName="relationServiceSymptomGroup_SymptomGroups" msprop:Generator_UserParentTable="ServiceSymptomGroup" />
+      <msdata:Relationship name="SymptomGroupMatch_SymptomGroups" msdata:parent="SymptomGroupMatch" msdata:child="SymptomGroups" msdata:parentkey="SymptomGroupId" msdata:childkey="Id" msprop:Generator_UserChildTable="SymptomGroups" msprop:Generator_ChildPropName="GetSymptomGroupsRows" msprop:Generator_UserRelationName="SymptomGroupMatch_SymptomGroups" msprop:Generator_RelationVarName="relationSymptomGroupMatch_SymptomGroups" msprop:Generator_UserParentTable="SymptomGroupMatch" msprop:Generator_ParentPropName="SymptomGroupMatchRow" />
+      <msdata:Relationship name="SymptomGroupMatch_Symptoms" msdata:parent="SymptomGroupMatch" msdata:child="Symptoms" msdata:parentkey="SymptomId" msdata:childkey="Id" msprop:Generator_UserChildTable="Symptoms" msprop:Generator_ChildPropName="GetSymptomsRows" msprop:Generator_UserRelationName="SymptomGroupMatch_Symptoms" msprop:Generator_ParentPropName="SymptomGroupMatchRow" msprop:Generator_RelationVarName="relationSymptomGroupMatch_Symptoms" msprop:Generator_UserParentTable="SymptomGroupMatch" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

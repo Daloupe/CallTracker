@@ -466,11 +466,11 @@ namespace CallTracker.DataSets {
                         this.tableServices.IdColumn}, false);
             this.Relations.Add(this.relationDepartments_Services);
             this.relationDepartments_DepartmentNames = new global::System.Data.DataRelation("Departments_DepartmentNames", new global::System.Data.DataColumn[] {
-                        this.tableDepartments.DepartmentNameIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableDepartments.DepartmentNameIdColumn}, new global::System.Data.DataColumn[] {
                         this.tableDepartmentNames.IdColumn}, false);
             this.Relations.Add(this.relationDepartments_DepartmentNames);
             this.relationServices_ProductCodes = new global::System.Data.DataRelation("Services_ProductCodes", new global::System.Data.DataColumn[] {
-                        this.tableServices.ProductCodeIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableServices.ProductCodeIdColumn}, new global::System.Data.DataColumn[] {
                         this.tableProductCodes.IdColumn}, false);
             this.Relations.Add(this.relationServices_ProductCodes);
             this.relationServiceSymptomGroup_Services = new global::System.Data.DataRelation("ServiceSymptomGroup_Services", new global::System.Data.DataColumn[] {
@@ -647,7 +647,7 @@ namespace CallTracker.DataSets {
             
             private global::System.Data.DataColumn columnName;
             
-            private global::System.Data.DataColumn columnProductCodeID;
+            private global::System.Data.DataColumn columnProductCodeId;
             
             private global::System.Data.DataColumn columnProblemStyle;
             
@@ -702,9 +702,9 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn ProductCodeIDColumn {
+            public global::System.Data.DataColumn ProductCodeIdColumn {
                 get {
-                    return this.columnProductCodeID;
+                    return this.columnProductCodeId;
                 }
             }
             
@@ -753,12 +753,12 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ServicesRow AddServicesRow(string Name, short ProductCodeID, string ProblemStyle) {
+            public ServicesRow AddServicesRow(string Name, short ProductCodeId, string ProblemStyle) {
                 ServicesRow rowServicesRow = ((ServicesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Name,
-                        ProductCodeID,
+                        ProductCodeId,
                         ProblemStyle};
                 rowServicesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowServicesRow);
@@ -791,7 +791,7 @@ namespace CallTracker.DataSets {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnName = base.Columns["Name"];
-                this.columnProductCodeID = base.Columns["ProductCodeID"];
+                this.columnProductCodeId = base.Columns["ProductCodeId"];
                 this.columnProblemStyle = base.Columns["ProblemStyle"];
             }
             
@@ -802,8 +802,8 @@ namespace CallTracker.DataSets {
                 base.Columns.Add(this.columnId);
                 this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnName);
-                this.columnProductCodeID = new global::System.Data.DataColumn("ProductCodeID", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnProductCodeID);
+                this.columnProductCodeId = new global::System.Data.DataColumn("ProductCodeId", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProductCodeId);
                 this.columnProblemStyle = new global::System.Data.DataColumn("ProblemStyle", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProblemStyle);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
@@ -950,7 +950,7 @@ namespace CallTracker.DataSets {
             
             private global::System.Data.DataColumn columnServiceId;
             
-            private global::System.Data.DataColumn columnDepartmentNameID;
+            private global::System.Data.DataColumn columnDepartmentNameId;
             
             private global::System.Data.DataColumn columnInternalContact;
             
@@ -1009,9 +1009,9 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn DepartmentNameIDColumn {
+            public global::System.Data.DataColumn DepartmentNameIdColumn {
                 get {
-                    return this.columnDepartmentNameID;
+                    return this.columnDepartmentNameId;
                 }
             }
             
@@ -1076,12 +1076,12 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public DepartmentsRow AddDepartmentsRow(short ServiceId, short DepartmentNameID, int InternalContact, int ExternalContact, string ContactHours) {
+            public DepartmentsRow AddDepartmentsRow(short ServiceId, short DepartmentNameId, int InternalContact, int ExternalContact, string ContactHours) {
                 DepartmentsRow rowDepartmentsRow = ((DepartmentsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         ServiceId,
-                        DepartmentNameID,
+                        DepartmentNameId,
                         InternalContact,
                         ExternalContact,
                         ContactHours};
@@ -1109,7 +1109,7 @@ namespace CallTracker.DataSets {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnServiceId = base.Columns["ServiceId"];
-                this.columnDepartmentNameID = base.Columns["DepartmentNameID"];
+                this.columnDepartmentNameId = base.Columns["DepartmentNameId"];
                 this.columnInternalContact = base.Columns["InternalContact"];
                 this.columnExternalContact = base.Columns["ExternalContact"];
                 this.columnContactHours = base.Columns["ContactHours"];
@@ -1122,8 +1122,8 @@ namespace CallTracker.DataSets {
                 base.Columns.Add(this.columnId);
                 this.columnServiceId = new global::System.Data.DataColumn("ServiceId", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnServiceId);
-                this.columnDepartmentNameID = new global::System.Data.DataColumn("DepartmentNameID", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDepartmentNameID);
+                this.columnDepartmentNameId = new global::System.Data.DataColumn("DepartmentNameId", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDepartmentNameId);
                 this.columnInternalContact = new global::System.Data.DataColumn("InternalContact", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnInternalContact);
                 this.columnExternalContact = new global::System.Data.DataColumn("ExternalContact", typeof(int), null, global::System.Data.MappingType.Element);
@@ -2095,6 +2095,8 @@ namespace CallTracker.DataSets {
             
             private global::System.Data.DataColumn columnIFMSCode;
             
+            private global::System.Data.DataColumn columnTooltip;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SymptomGroupsDataTable() {
@@ -2146,6 +2148,14 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TooltipColumn {
+                get {
+                    return this.columnTooltip;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2181,11 +2191,12 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SymptomGroupsRow AddSymptomGroupsRow(string IFMSCode) {
+            public SymptomGroupsRow AddSymptomGroupsRow(int IFMSCode, string Tooltip) {
                 SymptomGroupsRow rowSymptomGroupsRow = ((SymptomGroupsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        IFMSCode};
+                        IFMSCode,
+                        Tooltip};
                 rowSymptomGroupsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSymptomGroupsRow);
                 return rowSymptomGroupsRow;
@@ -2210,6 +2221,7 @@ namespace CallTracker.DataSets {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnIFMSCode = base.Columns["IFMSCode"];
+                this.columnTooltip = base.Columns["Tooltip"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2217,8 +2229,10 @@ namespace CallTracker.DataSets {
             private void InitClass() {
                 this.columnId = new global::System.Data.DataColumn("Id", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnId);
-                this.columnIFMSCode = new global::System.Data.DataColumn("IFMSCode", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnIFMSCode = new global::System.Data.DataColumn("IFMSCode", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIFMSCode);
+                this.columnTooltip = new global::System.Data.DataColumn("Tooltip", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTooltip);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, false));
                 this.columnId.AutoIncrement = true;
@@ -3476,17 +3490,17 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short ProductCodeID {
+            public short ProductCodeId {
                 get {
                     try {
-                        return ((short)(this[this.tableServices.ProductCodeIDColumn]));
+                        return ((short)(this[this.tableServices.ProductCodeIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ProductCodeID\' in table \'Services\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProductCodeId\' in table \'Services\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableServices.ProductCodeIDColumn] = value;
+                    this[this.tableServices.ProductCodeIdColumn] = value;
                 }
             }
             
@@ -3542,14 +3556,14 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsProductCodeIDNull() {
-                return this.IsNull(this.tableServices.ProductCodeIDColumn);
+            public bool IsProductCodeIdNull() {
+                return this.IsNull(this.tableServices.ProductCodeIdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetProductCodeIDNull() {
-                this[this.tableServices.ProductCodeIDColumn] = global::System.Convert.DBNull;
+            public void SetProductCodeIdNull() {
+                this[this.tableServices.ProductCodeIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3624,17 +3638,17 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short DepartmentNameID {
+            public short DepartmentNameId {
                 get {
                     try {
-                        return ((short)(this[this.tableDepartments.DepartmentNameIDColumn]));
+                        return ((short)(this[this.tableDepartments.DepartmentNameIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DepartmentNameID\' in table \'Departments\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DepartmentNameId\' in table \'Departments\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDepartments.DepartmentNameIDColumn] = value;
+                    this[this.tableDepartments.DepartmentNameIdColumn] = value;
                 }
             }
             
@@ -3712,14 +3726,14 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsDepartmentNameIDNull() {
-                return this.IsNull(this.tableDepartments.DepartmentNameIDColumn);
+            public bool IsDepartmentNameIdNull() {
+                return this.IsNull(this.tableDepartments.DepartmentNameIdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetDepartmentNameIDNull() {
-                this[this.tableDepartments.DepartmentNameIDColumn] = global::System.Convert.DBNull;
+            public void SetDepartmentNameIdNull() {
+                this[this.tableDepartments.DepartmentNameIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4126,10 +4140,10 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string IFMSCode {
+            public int IFMSCode {
                 get {
                     try {
-                        return ((string)(this[this.tableSymptomGroups.IFMSCodeColumn]));
+                        return ((int)(this[this.tableSymptomGroups.IFMSCodeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'IFMSCode\' in table \'SymptomGroups\' is DBNull.", e);
@@ -4137,6 +4151,22 @@ namespace CallTracker.DataSets {
                 }
                 set {
                     this[this.tableSymptomGroups.IFMSCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Tooltip {
+                get {
+                    try {
+                        return ((string)(this[this.tableSymptomGroups.TooltipColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Tooltip\' in table \'SymptomGroups\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSymptomGroups.TooltipColumn] = value;
                 }
             }
             
@@ -4184,6 +4214,18 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetIFMSCodeNull() {
                 this[this.tableSymptomGroups.IFMSCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTooltipNull() {
+                return this.IsNull(this.tableSymptomGroups.TooltipColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTooltipNull() {
+                this[this.tableSymptomGroups.TooltipColumn] = global::System.Convert.DBNull;
             }
         }
         
