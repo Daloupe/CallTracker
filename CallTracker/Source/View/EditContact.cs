@@ -375,6 +375,22 @@ namespace CallTracker.View
               ((Control)sender).Height - 1);
             base.OnPaint(e);
         }
+
+        private void _Dial_click(object sender, EventArgs e)
+        {
+            WindowHelper.IPPCAutomation(((ToolStripMenuItem)sender).GetCurrentParent().Tag.ToString(), new Point() { X = 285, Y = 20 });
+        }
+
+        private void _Transfer_click(object sender, EventArgs e)
+        {
+            WindowHelper.IPPCAutomation(((ToolStripMenuItem)sender).GetCurrentParent().Tag.ToString(), new Point() { X = 630, Y = 20 });
+        }
+
+        private void _DialContextMenu_clicked(object sender, MouseEventArgs e)
+        {
+            if(e.Button == System.Windows.Forms.MouseButtons.Right)
+                _DialContextMenu.Tag = ((TextBox)sender).Text;
+        }
     }
 
     public class EnumList

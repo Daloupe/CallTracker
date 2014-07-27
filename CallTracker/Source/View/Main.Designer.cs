@@ -48,6 +48,7 @@
             this.CustCareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FaultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RetentionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dispatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,7 +72,7 @@
             this.clearanceCodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
             this.MenuPanel = new System.Windows.Forms.Panel();
-            this.FSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearanceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -264,6 +265,13 @@
             this.SalesToolStripMenuItem.Text = "Sales";
             this.SalesToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
             // 
+            // FSToolStripMenuItem
+            // 
+            this.FSToolStripMenuItem.Name = "FSToolStripMenuItem";
+            this.FSToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.FSToolStripMenuItem.Text = "Financial Services";
+            this.FSToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
+            // 
             // RetentionToolStripMenuItem
             // 
             this.RetentionToolStripMenuItem.Name = "RetentionToolStripMenuItem";
@@ -340,6 +348,8 @@
             // 
             // toolStripMenuItem2
             // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearanceCodeToolStripMenuItem});
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 22);
             this.toolStripMenuItem2.Text = "Bookmarks";
@@ -446,12 +456,11 @@
             this.MenuPanel.TabIndex = 27;
             this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
-            // FSToolStripMenuItem
+            // clearanceCodeToolStripMenuItem
             // 
-            this.FSToolStripMenuItem.Name = "FSToolStripMenuItem";
-            this.FSToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.FSToolStripMenuItem.Text = "Financial Services";
-            this.FSToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
+            this.clearanceCodeToolStripMenuItem.Name = "clearanceCodeToolStripMenuItem";
+            this.clearanceCodeToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.clearanceCodeToolStripMenuItem.Text = "Clearance Codes";
             // 
             // Main
             // 
@@ -526,5 +535,6 @@
         private System.Windows.Forms.ToolStripMenuItem pasteBindsViewMenuItem;
         private System.Windows.Forms.ToolStripMenuItem databaseEditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearanceCodeToolStripMenuItem;
     }
 }

@@ -77,6 +77,9 @@
             this._Username = new CallTracker.View.BorderedTextBox();
             this._DnLabel = new System.Windows.Forms.Label();
             this._Dn = new CallTracker.View.BorderedTextBox();
+            this._DialContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.dialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.transferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
             this._Name = new CallTracker.View.BorderedTextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -107,6 +110,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this._DialContextMenu.SuspendLayout();
             this.ServiceTypePanel.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.MainPanel.SuspendLayout();
@@ -680,6 +684,7 @@
             // 
             this._Dn.BorderColor = System.Drawing.Color.Gray;
             this._Dn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Dn.ContextMenuStrip = this._DialContextMenu;
             this._Dn.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "DN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Dn.Font = new System.Drawing.Font("Verdana", 7F);
             this._Dn.Location = new System.Drawing.Point(238, 31);
@@ -689,6 +694,29 @@
             this._Dn.TabIndex = 4;
             this._Dn.Text = "0294813386";
             this._Dn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._Dn.MouseDown += new System.Windows.Forms.MouseEventHandler(this._DialContextMenu_clicked);
+            // 
+            // _DialContextMenu
+            // 
+            this._DialContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dialToolStripMenuItem,
+            this.transferToolStripMenuItem});
+            this._DialContextMenu.Name = "_DialContextMenu";
+            this._DialContextMenu.Size = new System.Drawing.Size(118, 48);
+            // 
+            // dialToolStripMenuItem
+            // 
+            this.dialToolStripMenuItem.Name = "dialToolStripMenuItem";
+            this.dialToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.dialToolStripMenuItem.Text = "Dial";
+            this.dialToolStripMenuItem.Click += new System.EventHandler(this._Dial_click);
+            // 
+            // transferToolStripMenuItem
+            // 
+            this.transferToolStripMenuItem.Name = "transferToolStripMenuItem";
+            this.transferToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.transferToolStripMenuItem.Text = "Transfer";
+            this.transferToolStripMenuItem.Click += new System.EventHandler(this._Transfer_click);
             // 
             // label3
             // 
@@ -728,6 +756,7 @@
             // 
             this._Mobile.BorderColor = System.Drawing.Color.Gray;
             this._Mobile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Mobile.ContextMenuStrip = this._DialContextMenu;
             this._Mobile.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Mobile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Mobile.Font = new System.Drawing.Font("Verdana", 7F);
             this._Mobile.Location = new System.Drawing.Point(238, 56);
@@ -737,6 +766,7 @@
             this._Mobile.TabIndex = 6;
             this._Mobile.Text = "0402758780";
             this._Mobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._Mobile.MouseDown += new System.Windows.Forms.MouseEventHandler(this._DialContextMenu_clicked);
             // 
             // label5
             // 
@@ -963,6 +993,7 @@
             this.bindingNavigator1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
+            this._DialContextMenu.ResumeLayout(false);
             this.ServiceTypePanel.ResumeLayout(false);
             this.flowLayoutPanel4.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
@@ -1036,5 +1067,8 @@
         private System.Windows.Forms.ToolStripMenuItem _ServiceMenuNBF;
         private System.Windows.Forms.ToolStripMenuItem _ServiceMenuDTV;
         private System.Windows.Forms.ToolStripMenuItem _ServiceMenuMTV;
+        private System.Windows.Forms.ContextMenuStrip _DialContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem dialToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem transferToolStripMenuItem;
     }
 }

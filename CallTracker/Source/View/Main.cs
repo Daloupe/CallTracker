@@ -236,38 +236,10 @@ namespace CallTracker.View
             }
         }
 
-        private void transfer_Click(object sender, EventArgs e)
+        public void transfer_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
-
-            string title = "IPCC Agent Desktop for Fusion: v5.2.1 (c2)";
-            Point buttonOffsets = new Point() { X = 630, Y = 20 };
-
-            IntPtr hwnd = WindowHelper.ActivateWindowByTitle(title);
-            WindowHelper.Rect rect = new WindowHelper.Rect();
-            WindowHelper.GetWindowRect(hwnd, ref rect);
-            Point transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
-
-            Cursor.Position = transfer;
-            int X = Cursor.Position.X;
-            int Y = Cursor.Position.Y;
-            WindowHelper.mouse_event(WindowHelper.MOUSEEVENTF_LEFTDOWN | WindowHelper.MOUSEEVENTF_LEFTUP, (uint)X, (uint)Y, 0, 0);
-
-            ////////////////////////////////////////////
-
-            title = "CTI Dial Pad";
-            buttonOffsets = new Point() { X = 20, Y = 45 };
-
-            hwnd = WindowHelper.ActivateWindowByTitle(title);
-            WindowHelper.GetWindowRect(hwnd, ref rect);
-            transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
-
-            Cursor.Position = transfer;
-            X = Cursor.Position.X;
-            Y = Cursor.Position.Y;
-            WindowHelper.mouse_event(WindowHelper.MOUSEEVENTF_LEFTDOWN | WindowHelper.MOUSEEVENTF_LEFTUP, (uint)X, (uint)Y, 0, 0);
-
-            SendKeys.Send(item.Tag.ToString());
+            WindowHelper.IPPCAutomation(item.Tag.ToString(), new Point() { X = 630, Y = 20 });
         }
 
         private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)

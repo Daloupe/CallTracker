@@ -7,6 +7,9 @@ Priorities
 	| Transfer departments tooltip displays internal contact, external contact, and opening hours.
 | Transpose objects to relational data tables.
 | Implement transfer clicks.
+| Updated PasteBind to easily allow for dropdowns and buttons.
+| Context menu for DN and Mobile lets you transfer or dial.
+- Finalize a way to input ifms fill logic.
 
 Main GUI
  | Have Settings windows show in main gui, rather than their own popup.

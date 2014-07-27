@@ -2,7 +2,9 @@
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Drawing;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace CallTracker.Helpers
 {
@@ -10,13 +12,13 @@ namespace CallTracker.Helpers
     {
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
-
-        [DllImport("user32.dll")]
-        private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
-
+        
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll")]
+        private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
         public static string GetActiveWindowTitle()
         {
@@ -77,7 +79,7 @@ namespace CallTracker.Helpers
         public static extern int SendMessage(IntPtr hWnd, uint msg, int wParam, IntPtr lParam);
 
         [DllImport("user32.dll", SetLastError = true)]
-                public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className,  string  windowTitle);
+        public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className,  string  windowTitle);
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
@@ -86,5 +88,37 @@ namespace CallTracker.Helpers
         public const int MOUSEEVENTF_LEFTUP = 0x04;
         public const int MOUSEEVENTF_RIGHTDOWN = 0x08;
         public const int MOUSEEVENTF_RIGHTUP = 0x10;
+
+        public static void IPPCAutomation(string _number, Point _buttonOffsets)
+        {
+            string title = "IPCC Agent Desktop for Fusion: v5.2.1 (c2)";
+            Point buttonOffsets = _buttonOffsets;
+
+            IntPtr hwnd = ActivateWindowByTitle(title);
+            Rect rect = new Rect();
+            GetWindowRect(hwnd, ref rect);
+            Point transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
+
+            Cursor.Position = transfer;
+            int X = Cursor.Position.X;
+            int Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, (uint)X, (uint)Y, 0, 0);
+
+            ////////////////////////////////////////////
+
+            title = "CTI Dial Pad";
+            buttonOffsets = new Point() { X = 20, Y = 45 };
+
+            hwnd = ActivateWindowByTitle(title);
+            GetWindowRect(hwnd, ref rect);
+            transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
+
+            Cursor.Position = transfer;
+            X = Cursor.Position.X;
+            Y = Cursor.Position.Y;
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, (uint)X, (uint)Y, 0, 0);
+
+            SendKeys.Send(_number);
+        }
     }
 }
