@@ -1,0 +1,98 @@
+﻿0.28.3
+
+0.28.2
+| Changes to Name weren't updating ICONNote.
+| Updated help to include info on how ot use regex replace with numbers. eg $1${2}0$3.
+
+0.28.1
+| Most DataGrids now edit fields on click, rather than double click.
+/ Name is it's own class with First, Last, and Full as fields.
+| Named Regexes from HotkeyController are now public static in their relevant models rather than created new on each smartcopy.
+
+0.27.8
+| Update database editor to replace id's on match tables.
+| Refactored database editor's column updating code.
+| Put States and Streets into Database.
+| "+" can be used in PasteBind Data field to indicate concatenation of 2+ data sources seperated with a space. EG "CMBS|$1$2 $3 +Mobile|61$2"
+
+// TO DO //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Bugs:
+ - Side panel needs to ghost when dragging.
+ - Ensure the rate code datagrid is gettnig focus when the page opens up.
+ - Name Regex not properly capturing "." after title.
+ - Will Regex replace support $1$20$3 where 0 is intended as the number?
+
+Under The Hood
+- Update panels to reference binding source. May be able to avoid having to use the nested events in ContactModel.
+- Input ICON note generator strings into database.
+- Add ICON dropdowns to database.
+- Utilize database data.
+	- Edit Contacts.
+		- Service Panels.
+		- Symptoms.
+		- Outcomes.
+		- Equipment.
+ - Right click Call Navigation to bring up Call History.
+ - Add Outcomes tooltip.
+ - Add status bar to display warnings.
+ - Key Command Help extends window height.
+
+Short Term:
+- IFMS Staple to parent/Clear and Close/Dispatch.
+- WOBS scrape appointment data.
+- PR Template smart copy.
+	- Fills in NBN fields.
+	- Extracts CM callback info(For ICON Outcome entry).
+	- Extracts Testing Done info(For ICON Action entry.
+	- Extracts Outcome info(For ICON Outcome entry).
+
+Long Term:
+- Chrome support.
+- MAD support. 
+	- Create Tester: Popup with Texbox Name, Input, and Application Name fields, pressing OK triggers test.
+- ARO GUI.
+- Glance GUI.
+
+Potential:
+- Realtime KPI's. Smartcopy roster and use call/login information to provide realtime stats.
+- Map user interaction with Event Tracking.
+- Call statistics. Pull Call history from multiple users and compile call type information.
+
+
+
+
+
+
+
+
+Features:
+| Call History
+| Smart Copy
+| Smart Paste
+	| Context Sensitive pastes
+	| Alternate data
+	| Regex replace and data concatenation
+| ICON Note generator
+| Form Prefills
+	/ ICON
+	/ IFMS
+		/ Creation
+		- Dispatch
+		- Staple
+		- Clear and Close
+	- Templates
+| Context sensitive resources
+	| Searchable Ratecode Lists
+	- Links
+	- Nexus Articles
+| IPCC Control
+	| Transfers
+| Auto Login
+	| Encrypted logins
+| Grid Links
+| Data Paste
+- ARO Tracker
+- Breaks Tracker
+- Realtime KPI's
+- Call type business intelligence
