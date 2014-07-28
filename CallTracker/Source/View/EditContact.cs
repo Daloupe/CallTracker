@@ -138,14 +138,13 @@ namespace CallTracker.View
 
         void SelectedContact_NestedChange(object sender, PropertyChangedEventArgs e)
         {
-            // Update Note
-            if (_Note.DataBindings.Count > 0)
-                _Note.DataBindings[0].ReadValue();
-
             // Swap Panels
             if(e.PropertyName == "AffectedServices")
                 UpdateCurrentPanel();
 
+            // Update Note
+            if (_Note.DataBindings.Count > 0)
+                _Note.DataBindings[0].ReadValue();
         }
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)

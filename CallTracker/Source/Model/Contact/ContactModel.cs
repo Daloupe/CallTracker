@@ -13,9 +13,9 @@ namespace CallTracker.Model
 {
     [ProtoContract]
     [ImplementPropertyChanged]
-    public class CustomerContact //: INotifyPropertyChanged
+    public class CustomerContact : INotifyPropertyChanged
     {
-        //public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public static List<DataBindType> PropertyStrings = new List<DataBindType>()
             {
@@ -125,7 +125,7 @@ namespace CallTracker.Model
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
         }
 
-        public object GetProp(string property)
+        public object GetProperty(string property)
         {
             if (String.IsNullOrEmpty(property)) return null;
 
@@ -144,7 +144,7 @@ namespace CallTracker.Model
             return value;
         }
 
-        public void SetProp(string property, string value)
+        public void SetProperty(string property, string value)
         {
             if (String.IsNullOrEmpty(property)) return;
 

@@ -18,5 +18,10 @@ namespace CallTracker.Helpers
         {
             return _input.Replace(" ", "");
         }
+
+        public static string RemoveColons(string _input)
+        {
+            return _input.Replace(":", "");
+        }
     }
 }

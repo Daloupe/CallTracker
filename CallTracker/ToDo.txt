@@ -4,43 +4,55 @@ Future
 - Chrome support.
 - MAD support. Setup the ability to input an inputs name and send message straight to application.
 - Update panels to reference binding source. May be able to avoid having to use the nested events in ContactModel.
+- PR Template smart copy.
+	- Fills in NBN fields.
+	- Extracts CM callback info(For ICON Outcome entry).
+	- Extracts Testing Done info(For ICON Action entry.
+	- Extracts Outcome info(For ICON Outcome entry).
 
 Priorities
 | Add abilty to bind drop downs and buttons. (type is auto detected).
-	- Need to find out what the different affecetd service drop downs in IFMS are called.
 | Store selected product from context menu in global variable, context sensitive items reference this before displaying or acting.
 	| Transfer departments tooltip displays internal contact, external contact, and opening hours.
 | Transpose objects to relational data tables.
 | Implement transfer clicks.
 | Updated PasteBind to easily allow for dropdowns and buttons.
 | Context menu for DN and Mobile lets you transfer or dial.
-- Finalize a way to input ifms fill logic.
-| Notes aren't saving.
-	| Fixed issue of records not saving when changing between them. BindingSource on the call history needed to be added and removed as required.
+/ Finalize a way to input ifms fill logic.
+	| Added IFMSAutoFill class to specify the logic, until an interface can be made.
 - Input ICON note generator strings into database.
 - Add ICON dropdowns to database.
 - Utilize database data.
 
+Bug Fixes
+ | Pastebinds modified with a regex string don't show in the EditPasteBind section.
+ | Notes aren't saving.
+	| Fixed issue of records not saving when changing between them. BindingSource on the call history needed to be added and removed as required.
+ | Fixed menus not closing once reclicked.
+ | Fixed DataPaste not pasting into ie.
+ | Fixed WaTiN not finding brower by title.
+ - Side panel needs to ghost when dragging.
+
 Main GUI
  | Have Settings windows show in main gui, rather than their own popup.
  | Right Click Service area to flip services.
- | Fixed DataPaste not pasting into ie.
- | Fixed WaTiN not finding brower by title.
  | Complexified address detection to allow for multiple worded streets and suburbs.
  | Added searchable Lat Rateplans interface.
  | Rateplans are searchable just be being in focus.
  | Added Daatsets to start tying the data together.
  | Ensured the datatables are serialzing.
  | Added a service select combo to the resources menu.
- | Fixed menus not closing once reclicked.
  | Rather then having lots of nested menus, changing the selected service will update the menu items.
  | Make input to rate code search auto capitilize.
  - Ensure the rate code datagrid is gettng focus when the page opens up.
  - Add status bar to display warnings.
- - Start inputting system variables.
  - Key Command Help extends window height.
- - Side panel needs to ghost when dragging.
- | rate code needs to allow keyboard input to prioritize insertion of new records.
+ | Rate code needs to allow keyboard input to prioritize insertion of new records.
+ - Add Equipment to database an link them to products. Have equipment dropdown populate appropriatly.
+ | Added version info to Help menu.
+ - Right click Call Navigation to bring up Call History.
+ - Add Outcomes tooltip.
+
 
 Contact GUI
  | Double click splitters to toggle panels.
@@ -88,7 +100,7 @@ Call History
  | Clear History moved to Call History screen.
 
  IPCC Interaction
- - Find a way to send messages to IPCC's controls.
+ / Find a way to send messages to IPCC's controls.
 
  GridLinks
  | Detect Login page and Autologin/ Detect Log in Required Page (ie Wobs).

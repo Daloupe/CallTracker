@@ -33,8 +33,8 @@ namespace CallTracker.Helpers
                 }
             }
 
-            //if (pathSplit.HasRegex())
-            //  output = pathSplit.RegexReplace(output.ToString());
+            if (pathSplit.HasRegex())
+                output = pathSplit.RegexReplace(output.ToString());
 
             return output == null ? String.Empty : output.ToString();
         }

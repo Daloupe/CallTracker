@@ -99,17 +99,18 @@
     <Compile Include="Source\Data\Equipment.cs" />
     <Compile Include="Source\Data\ServiceResources.cs" />
     <Compile Include="Source\Data\Symptoms.cs" />
-    <Compile Include="Source\Helpers\EnumExtensions.cs" />
+    <Compile Include="Source\Helpers\Type\EnumExtensions.cs" />
     <Compile Include="Source\Helpers\FindProperty.cs" />
     <Compile Include="Source\Helpers\ICONNoteGenerator.cs" />
-    <Compile Include="Source\Helpers\IETabActivator.cs" />
-    <Compile Include="Source\Helpers\ListHelpers.cs" />
-    <Compile Include="Source\Helpers\StringHelpers.cs" />
+    <Compile Include="Source\Helpers\Windows\IETabActivator.cs" />
+    <Compile Include="Source\Helpers\IFMSAutoFill.cs" />
+    <Compile Include="Source\Helpers\Type\ListHelpers.cs" />
+    <Compile Include="Source\Helpers\Type\StringHelpers.cs" />
     <Compile Include="Source\Model\EnumData.cs" />
-    <Compile Include="Source\Model\Setting Models\AROModel.cs" />
-    <Compile Include="Source\Model\Setting Models\IEInteractBase.cs" />
-    <Compile Include="Source\Model\Setting Models\ElementBinds.cs" />
-    <Compile Include="Source\Model\Resource Models\RatePlanModel.cs" />
+    <Compile Include="Source\Model\Settings\AROModel.cs" />
+    <Compile Include="Source\Model\Settings\IEInteractBase.cs" />
+    <Compile Include="Source\Model\Settings\ElementBinds.cs" />
+    <Compile Include="Source\Model\Resource\RatePlanModel.cs" />
     <Compile Include="Source\View\Controls\DataArea.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -313,29 +314,24 @@
     <None Include="DataSets\ServicesDataSet.xss">
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Source\Helpers\Archive\Converters.cs" />
-    <None Include="Source\Helpers\Archive\DialogCloser.cs" />
-    <Compile Include="Source\Helpers\WindowHelper.cs" />
+    <Compile Include="Source\Helpers\Windows\WindowHelper.cs" />
     <Compile Include="Source\Helpers\HotkeyController.cs" />
-    <None Include="Source\Helpers\Archive\IClosableViewModel.cs" />
-    <None Include="Source\Helpers\Archive\RelayCommand.cs" />
-    <None Include="Source\Helpers\Archive\HotKeyManager.cs" />
     <Compile Include="Source\Helpers\SimpleEncrypt.cs" />
-    <Compile Include="Source\Model\Contact Models\AddressModel.cs" />
-    <Compile Include="Source\Model\Contact Models\BookingModel.cs" />
-    <Compile Include="Source\Model\Contact Models\ContactModel.cs" />
+    <Compile Include="Source\Model\Contact\AddressModel.cs" />
+    <Compile Include="Source\Model\Contact\BookingModel.cs" />
+    <Compile Include="Source\Model\Contact\ContactModel.cs" />
     <None Include="Source\Model\Archive\DataBindType.cs" />
     <Compile Include="Source\Model\DataRepository.cs" />
-    <Compile Include="Source\Model\Contact Models\FaultModel.cs" />
-    <Compile Include="Source\Model\Setting Models\GridLinksModel.cs" />
-    <Compile Include="Source\Model\Setting Models\LoginsModel.cs" />
+    <Compile Include="Source\Model\Contact\FaultModel.cs" />
+    <Compile Include="Source\Model\Settings\GridLinksModel.cs" />
+    <Compile Include="Source\Model\Settings\LoginsModel.cs" />
     <None Include="Source\Model\Archive\PasteBindModel.cs" />
     <None Include="Source\Model\Archive\Person.cs" />
     <None Include="Source\Model\Archive\PersonelBusinessObject.cs" />
     <None Include="Source\Model\Archive\PocoCustomer.cs" />
     <None Include="Source\Model\Archive\PocoPerson.cs" />
-    <Compile Include="Source\Model\Contact Models\ServiceModel.cs" />
-    <Compile Include="Source\Model\Contact Models\StatisticsModel.cs" />
+    <Compile Include="Source\Model\Contact\ServiceModel.cs" />
+    <Compile Include="Source\Model\Contact\StatisticsModel.cs" />
     <Compile Include="Source\View\Popups\AddAROForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -429,6 +425,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Change Log.txt" />
     <Content Include="FodyWeavers.xml" />
     <Content Include="RequiredData.txt" />
     <Content Include="Resources\bindingNavigatorDeleteItem.Image.png" />

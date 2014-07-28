@@ -59,6 +59,7 @@
             this.oNCToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dTVToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearanceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,7 @@
             this.clearanceCodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
             this.MenuPanel = new System.Windows.Forms.Panel();
-            this.clearanceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -195,7 +196,8 @@
             // 
             this.helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewKeyCommandsMenuItem});
+            this.viewKeyCommandsMenuItem,
+            this.versionStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 17);
             this.helpToolStripMenuItem.Text = "Help";
@@ -312,7 +314,7 @@
             this.LATRatecodeMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.LatRatecodeSearch});
             this.LATRatecodeMenuItem.Name = "LATRatecodeMenuItem";
-            this.LATRatecodeMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LATRatecodeMenuItem.Size = new System.Drawing.Size(113, 22);
             this.LATRatecodeMenuItem.Text = "LAT/LIP";
             this.LATRatecodeMenuItem.CheckedChanged += new System.EventHandler(this.LATRatecodeMenuItem_CheckedChanged_1);
             this.LATRatecodeMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
@@ -337,13 +339,13 @@
             // oNCToolStripMenuItem1
             // 
             this.oNCToolStripMenuItem1.Name = "oNCToolStripMenuItem1";
-            this.oNCToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.oNCToolStripMenuItem1.Size = new System.Drawing.Size(113, 22);
             this.oNCToolStripMenuItem1.Text = "ONC";
             // 
             // dTVToolStripMenuItem1
             // 
             this.dTVToolStripMenuItem1.Name = "dTVToolStripMenuItem1";
-            this.dTVToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.dTVToolStripMenuItem1.Size = new System.Drawing.Size(113, 22);
             this.dTVToolStripMenuItem1.Text = "DTV";
             // 
             // toolStripMenuItem2
@@ -353,6 +355,12 @@
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 22);
             this.toolStripMenuItem2.Text = "Bookmarks";
+            // 
+            // clearanceCodeToolStripMenuItem
+            // 
+            this.clearanceCodeToolStripMenuItem.Name = "clearanceCodeToolStripMenuItem";
+            this.clearanceCodeToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.clearanceCodeToolStripMenuItem.Text = "Clearance Codes";
             // 
             // toolStripSeparator3
             // 
@@ -456,11 +464,12 @@
             this.MenuPanel.TabIndex = 27;
             this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
-            // clearanceCodeToolStripMenuItem
+            // versionStripMenuItem
             // 
-            this.clearanceCodeToolStripMenuItem.Name = "clearanceCodeToolStripMenuItem";
-            this.clearanceCodeToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.clearanceCodeToolStripMenuItem.Text = "Clearance Codes";
+            this.versionStripMenuItem.Enabled = false;
+            this.versionStripMenuItem.Name = "versionStripMenuItem";
+            this.versionStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.versionStripMenuItem.Text = "Version 0.0.0";
             // 
             // Main
             // 
@@ -536,5 +545,6 @@
         private System.Windows.Forms.ToolStripMenuItem databaseEditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem FSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearanceCodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem versionStripMenuItem;
     }
 }

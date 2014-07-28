@@ -45,74 +45,56 @@ namespace CallTracker.View
 
             if (dataGridView1.DataMember == "Services")
             {
-                dataGridView1.Columns.Remove("ProductCodeId");
-
-                DataGridViewComboBoxColumn dtcol = new DataGridViewComboBoxColumn();
-                dtcol.Name = "ProductCodeId";
-                dtcol.HeaderText = "Product Code";
-                dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                dtcol.Width = 120;
-                dtcol.SortMode = DataGridViewColumnSortMode.Automatic;
-                dtcol.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
-                dtcol.DataSource = MainForm.ServicesStore.servicesDataSet.ProductCodes.ToList();
-                dtcol.DisplayMember = "IFMSCode";
-                dtcol.ValueMember = "Id";
-                dataGridView1.Columns.Insert(1, dtcol);
-                dtcol.DataPropertyName = "ProductCodeId";
-
-                dataGridView1.Columns["Name"].HeaderText = "Service";
-                dataGridView1.Columns["Name"].MinimumWidth = 150;
-                dataGridView1.Columns["ProblemStyle"].HeaderText = "Problem Style";
-                dataGridView1.Columns["ProblemStyle"].Width = 120;
-                
-                //dataGridView1.AutoResizeColumns();
+                ReplaceWithComboBoxColumn("ProductCodeId", "Product Code", "ProductCodeId", "IFMSCode", "Id", 120, MainForm.ServicesStore.servicesDataSet.ProductCodes.ToList(), false, 1);
+                ChangeColumn("Name", "Service", 150);
+                ChangeColumn("ProblemStyle", "Problem Style", 120);
             }
             else if (dataGridView1.DataMember == "Departments")
             {
-                //dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                ReplaceWithComboBoxColumn("DepartmentNameId", "Department", "DepartmentNameId", "NameLong", "Id", 115, MainForm.ServicesStore.servicesDataSet.DepartmentNames.ToList(), true);
+                ReplaceWithComboBoxColumn("ServiceId", "Service", "ServiceId", "ProblemStyle", "Id", 115, MainForm.ServicesStore.servicesDataSet.Services.ToList(), true, 1);
+                ChangeColumn("InternalContact", "Internal", 60, DataGridViewColumnSortMode.NotSortable);
+                ChangeColumn("ExternalContact", "External", 85, DataGridViewColumnSortMode.NotSortable);
+                ChangeColumn("ContactHours", "Contact Hours", 0, DataGridViewColumnSortMode.NotSortable);
 
-                dataGridView1.Columns.Remove("ServiceId");
-                dataGridView1.Columns.Remove("DepartmentNameId");
-
-                DataGridViewComboBoxColumn dtcol = new DataGridViewComboBoxColumn();
-                dtcol.Name = "Id";
-                dtcol.HeaderText = "Department";
-                dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                dtcol.Width = 115;
-                dtcol.SortMode = DataGridViewColumnSortMode.Automatic;
-                dtcol.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
-                dtcol.ReadOnly = true;
-                dtcol.DataSource = MainForm.ServicesStore.servicesDataSet.DepartmentNames.ToList();
-                dtcol.DisplayMember = "NameLong";
-                dtcol.ValueMember = "Id";
-                dataGridView1.Columns.Insert(0, dtcol);
-                dtcol.DataPropertyName = "DepartmentNameId";
-
-                dtcol = new DataGridViewComboBoxColumn();
-                dtcol.Name = "ServiceId";
-                dtcol.HeaderText = "Service";
-                dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                dtcol.Width = 50;
-                dtcol.SortMode = DataGridViewColumnSortMode.Automatic;
-                dtcol.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
-                dtcol.ReadOnly = true;
-                dtcol.DataSource = MainForm.ServicesStore.servicesDataSet.Services.ToList();
-                dtcol.DisplayMember = "ProblemStyle";
-                dtcol.ValueMember = "Id";
-                dataGridView1.Columns.Insert(1, dtcol);
-                dtcol.DataPropertyName = "ServiceId";
-
-                dataGridView1.Columns["InternalContact"].HeaderText = "Internal";
-                dataGridView1.Columns["InternalContact"].Width = 60;
-                dataGridView1.Columns["InternalContact"].SortMode = DataGridViewColumnSortMode.NotSortable;
-                dataGridView1.Columns["ExternalContact"].HeaderText = "External";
-                dataGridView1.Columns["ExternalContact"].Width = 85;
-                dataGridView1.Columns["ExternalContact"].SortMode = DataGridViewColumnSortMode.NotSortable;
-                dataGridView1.Columns["ContactHours"].HeaderText = "Contact Hours";
-                dataGridView1.Columns["ContactHours"].SortMode = DataGridViewColumnSortMode.NotSortable;
-
-                dataGridView1.Sort(dtcol, ListSortDirection.Ascending);
+                dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
             }
+            else if (dataGridView1.DataMember == "ServiceEquipmentMatch")
+            {
+                ReplaceWithComboBoxColumn("EquipmentId", "Equipment", "EquipmentId", "Description", "Id", 150, MainForm.ServicesStore.servicesDataSet.Equipment.ToList());
+                ReplaceWithComboBoxColumn("ServiceId", "Service", "ServiceId", "ProblemStyle", "Id", 80, MainForm.ServicesStore.servicesDataSet.Services.ToList(), false, 1);
+
+                dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
+            }
+        }
+
+        private DataGridViewComboBoxColumn ReplaceWithComboBoxColumn(string _columnName, string _columnHeader, string _idColumnName, string _displayMember, string _valueMember, int _width, object _dataSource, bool _readOnly = false, int _columnIndex = 0)
+        {
+            dataGridView1.Columns.Remove(_columnName);
+
+            DataGridViewComboBoxColumn dtcol = new DataGridViewComboBoxColumn();
+            dtcol.Name = _columnName;
+            dtcol.HeaderText = _columnHeader;
+            dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dtcol.Width = _width;
+            dtcol.SortMode = DataGridViewColumnSortMode.Automatic;
+            dtcol.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+            dtcol.ReadOnly = _readOnly;
+            dtcol.DataSource = _dataSource;
+            dtcol.DisplayMember = _displayMember;
+            dtcol.ValueMember = _valueMember;
+            dataGridView1.Columns.Insert(_columnIndex, dtcol);
+            dtcol.DataPropertyName = _idColumnName;
+
+            return dtcol;
+        }
+
+        private void ChangeColumn(string _columnName, string _columnHeader, int _width, DataGridViewColumnSortMode _sortable = DataGridViewColumnSortMode.Automatic)
+        {
+            dataGridView1.Columns[_columnName].HeaderText = _columnHeader;
+            if(_width != 0)
+                dataGridView1.Columns[_columnName].Width = _width;
+            dataGridView1.Columns[_columnName].SortMode = _sortable;
         }
 
         protected override void _Done_Click(object sender, EventArgs e)

@@ -38,7 +38,7 @@ namespace CallTracker.View
             _Data.DisplayMember = "Name";
             _Data.ValueMember = "Path";
             _Data.DataBindings.Add(new Binding(
-                                      "SelectedValue",
+                                      "Text",
                                       this.pasteBindBindingSource,
                                       "Data",
                                       true,
@@ -49,7 +49,7 @@ namespace CallTracker.View
             _AltData.DisplayMember = "Name";
             _AltData.ValueMember = "Path";
             _AltData.DataBindings.Add(new Binding(
-                                      "SelectedValue",
+                                      "Text",
                                       this.pasteBindBindingSource,
                                       "AltData",
                                       true,

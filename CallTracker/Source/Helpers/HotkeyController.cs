@@ -77,7 +77,6 @@ namespace CallTracker.Helpers
             Settings.Instance.WaitUntilExistsTimeOut = 10;
 
             props = TypeDescriptor.GetProperties(parent.SelectedContact.Service);
-
         }
 
         public void Dispose()
@@ -361,7 +360,7 @@ namespace CallTracker.Helpers
                 if (Char.IsLetter(text, 0))
                 {
                     if (new BRASPattern().IsMatch(text))               parent.SelectedContact.Service.Bras = text;
-                    else if (new CommonNBNPattern().IsMatch(text))     parent.SelectedContact.SetProp("Service." + text.Substring(0, 3), text);
+                    else if (new CommonNBNPattern().IsMatch(text))     parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
                     else if (new UsernameLowerPattern().IsMatch(text) 
                         ||   new UsernameUpperPattern().IsMatch(text)) parent.SelectedContact.Username = text;
                     else if (new Address2Pattern().IsMatch(text))       parent.SelectedContact.Address.Address = text;

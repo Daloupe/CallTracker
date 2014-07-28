@@ -6,3 +6,6 @@ Data:
 - Symptom groups + symptoms
 - ICON note classificaitons
 - Transfer numbers + hours
+
+Test:
+- Transfer menu + dn/mobile right click.

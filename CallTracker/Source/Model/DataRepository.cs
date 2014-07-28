@@ -220,7 +220,7 @@ namespace CallTracker.Model
             {
                 ServicesDataSet.SymptomGroupsRow newRow = servicesDataSet.SymptomGroups.NewSymptomGroupsRow();
                 newRow.IFMSCode = (int)Enum.Parse(typeof(SymptomGroups), name);
-                newRow.Tooltip = name;
+                newRow.Description = name;
                 servicesDataSet.SymptomGroups.AddSymptomGroupsRow(newRow);
             }
 

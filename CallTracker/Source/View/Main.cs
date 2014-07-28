@@ -19,7 +19,7 @@ using CallTracker.Data;
 
 namespace CallTracker.View
 {
-    //[ImplementPropertyChanged]
+    [ImplementPropertyChanged]
     public partial class Main : Form
     {
         internal static ICONNoteGenerator NoteGen = new ICONNoteGenerator();
@@ -80,6 +80,8 @@ namespace CallTracker.View
 
             editContact.BringToFront();
             editContact.Visible = true;
+
+            versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
 
             HotKeys = new HotkeyController(this);
         }
