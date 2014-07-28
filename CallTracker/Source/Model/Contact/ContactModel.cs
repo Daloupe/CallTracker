@@ -51,7 +51,7 @@ namespace CallTracker.Model
         [ProtoMember(1)]
         public int Id { get; set; }
         [ProtoMember(2)]
-        public string Name { get; set; }
+        public NameModel Name { get; set; }
         [ProtoMember(3)]
         public string Username { get; set; }
         [ProtoMember(4)]
@@ -81,7 +81,7 @@ namespace CallTracker.Model
 
         public CustomerContact()
         {
-            Name = String.Empty;
+            Name = new NameModel();
             Username = String.Empty;
             DN = String.Empty;
             Mobile = String.Empty;
@@ -112,7 +112,7 @@ namespace CallTracker.Model
         public CustomerContact(int _id)
         {
             Id = _id;
-            Name = String.Empty;
+            Name = new NameModel();
             Username = String.Empty;
             DN = String.Empty;
             Mobile = String.Empty;

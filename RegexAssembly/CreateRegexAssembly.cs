@@ -34,10 +34,10 @@ namespace RegexAssembly
                                         @"(?:-|0|\s)?"+                     // Divider
                                         @"(\d)$"),                          // Flip
                 new MyRegex("ICON",     @"^(1|5|8|9)\d{13}$"),
-                new MyRegex("Name",     @"^(?:([a-z]+\.)\s)?" +             // Title (Followed by a ".")
+                new MyRegex("Name",     @"(?:(Mr|Mrs|miss|dr)\.?)?\s?" +             // Title (Followed by a ".")
                                         @"([a-z]+)" +                       // First Name
-                                        @"(?:\s?(\-?[a-z]+))*"              // Surnames
-                                        , RegexOptions.IgnoreCase),
+                                        @"\s([a-z]+(?:(?:-)[a-z]+)?)"              // Surnames
+                                        , RegexOptions.IgnoreCase | RegexOptions.Singleline),
                 new MyRegex("Address",  @"(?:(Unit|Lot|Level|Floor)\s)?" +  // Property Type
                                         @"(?:(\d+)(?:/|\\|\s)?)?" +         // Unit Number
                                         @"(\d+)" +                          // Property Number

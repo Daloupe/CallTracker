@@ -350,7 +350,7 @@ namespace CallTracker.Helpers
             }
             else if (new AlphaPattern().IsMatch(text))
             {
-                if (NameModel.Pattern.IsMatch(text))                        parent.SelectedContact.Name = text;
+                if (NameModel.Pattern.IsMatch(text))                        parent.SelectedContact.Name.Full = text;
                 else if (CustomerContact.UNLowerPattern.IsMatch(text)
                       || CustomerContact.UNLowerPattern.IsMatch(text))      parent.SelectedContact.Username = text;
                 else                                                        parent.SelectedContact.Note += text;

@@ -28,15 +28,15 @@ namespace CallTracker.Model
         public string Full 
         { 
             get 
-            { 
-                return First + " " + Last; 
+            {
+                return Title + " " + First + " " + Last; 
             } 
             set 
             {
                 Match match = Pattern.Match(value);
-                Title = match.Groups[0].Value;
-                First = match.Groups[1].Value;
-                Last = match.Groups[2].Value;
+                Title = match.Groups[1].Value;
+                First = match.Groups[2].Value;
+                Last = match.Groups[3].Value;
             } 
         }
 
