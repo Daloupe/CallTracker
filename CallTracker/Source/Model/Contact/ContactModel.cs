@@ -96,6 +96,7 @@ namespace CallTracker.Model
             Booking = new BookingModel();
 
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Name).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
         }
@@ -130,6 +131,7 @@ namespace CallTracker.Model
             Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();
 
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Name).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
         }

@@ -53,6 +53,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
@@ -75,7 +76,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this._Done = new System.Windows.Forms.Button();
             this.pasteBindBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
@@ -378,11 +378,23 @@
             this.panel4.Size = new System.Drawing.Size(228, 154);
             this.panel4.TabIndex = 25;
             // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Verdana", 6.75F);
+            this.label3.ForeColor = System.Drawing.Color.Maroon;
+            this.label3.Location = new System.Drawing.Point(4, 98);
+            this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.label3.Size = new System.Drawing.Size(221, 53);
+            this.label3.TabIndex = 26;
+            this.label3.Text = "Advanced: Data field supports regex replace(\"|\") and data concatenation(\"+\"). eg " +
+    "\"CMBS|$1${2}0$3 +Mobile|61$2\" pastes \"3112345607 61400123456\"";
+            // 
             // pictureBox6
             // 
             this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox6.Location = new System.Drawing.Point(9, 66);
+            this.pictureBox6.Location = new System.Drawing.Point(9, 54);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(57, 40);
             this.pictureBox6.TabIndex = 20;
@@ -392,7 +404,7 @@
             // 
             this.pictureBox7.BackgroundImage = global::CallTracker.Properties.Resources.Shift;
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox7.Location = new System.Drawing.Point(92, 66);
+            this.pictureBox7.Location = new System.Drawing.Point(92, 54);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(58, 40);
             this.pictureBox7.TabIndex = 24;
@@ -402,7 +414,7 @@
             // 
             this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
             this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox5.Location = new System.Drawing.Point(177, 65);
+            this.pictureBox5.Location = new System.Drawing.Point(177, 53);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(43, 40);
             this.pictureBox5.TabIndex = 21;
@@ -412,7 +424,7 @@
             // 
             this.label20.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold);
             this.label20.ForeColor = System.Drawing.Color.Maroon;
-            this.label20.Location = new System.Drawing.Point(150, 66);
+            this.label20.Location = new System.Drawing.Point(150, 54);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(28, 40);
             this.label20.TabIndex = 25;
@@ -448,7 +460,7 @@
             // 
             this.label19.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold);
             this.label19.ForeColor = System.Drawing.Color.Maroon;
-            this.label19.Location = new System.Drawing.Point(66, 66);
+            this.label19.Location = new System.Drawing.Point(66, 54);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(28, 40);
             this.label19.TabIndex = 22;
@@ -622,18 +634,6 @@
             // pasteBindBindingSource
             // 
             this.pasteBindBindingSource.DataSource = typeof(CallTracker.Model.PasteBind);
-            // 
-            // label3
-            // 
-            this.label3.Font = new System.Drawing.Font("Verdana", 6.75F);
-            this.label3.ForeColor = System.Drawing.Color.Maroon;
-            this.label3.Location = new System.Drawing.Point(4, 110);
-            this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.label3.Size = new System.Drawing.Size(221, 39);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "Advanced: Modify output with Regex.       eg:  Typing \"CMBS | $1$2 $3\" will paste" +
-    " 31-123456-7 into 31123456 7";
             // 
             // HelpKeyCommands
             // 

@@ -733,7 +733,7 @@
             // 
             this._Name.BorderColor = System.Drawing.Color.Gray;
             this._Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Name.Full", true));
+            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Name.Full", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Name.Font = new System.Drawing.Font("Verdana", 7F);
             this._Name.Location = new System.Drawing.Point(57, 56);
             this._Name.Name = "_Name";

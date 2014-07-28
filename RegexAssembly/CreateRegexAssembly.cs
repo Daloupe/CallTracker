@@ -28,7 +28,7 @@ namespace RegexAssembly
                 new MyRegex("DN",       @"^(0|61)" +                        // Prefix
                                         @"([2378]\d{8})$"),                 // Number
                 new MyRegex("Node",     @"^(\d{2})([a-z]{2})_?(\d{3})$", RegexOptions.IgnoreCase),
-                new MyRegex("CMBS",     @"^(3[1-3])" +                      // State
+                new MyRegex("CMBS",     @"(3[1-3])" +                      // State
                                         @"-?" +                             // Divider
                                         @"(\d{6})" +                        // Account
                                         @"(?:-|0|\s)?"+                     // Divider
@@ -37,7 +37,7 @@ namespace RegexAssembly
                 new MyRegex("Name",     @"(?:(Mr|Mrs|miss|dr)\.?)?\s?" +             // Title (Followed by a ".")
                                         @"([a-z]+)" +                       // First Name
                                         @"\s([a-z]+(?:(?:-)[a-z]+)?)"              // Surnames
-                                        , RegexOptions.IgnoreCase | RegexOptions.Singleline),
+                                        , RegexOptions.IgnoreCase),
                 new MyRegex("Address",  @"(?:(Unit|Lot|Level|Floor)\s)?" +  // Property Type
                                         @"(?:(\d+)(?:/|\\|\s)?)?" +         // Unit Number
                                         @"(\d+)" +                          // Property Number

@@ -25,11 +25,12 @@ namespace CallTracker.Model
         public string First { get; set; }
         [ProtoMember(3)]
         public string Last { get; set; }
+        [ProtoMember(4)]
         public string Full 
         { 
             get 
             {
-                return Title + " " + First + " " + Last; 
+                return full;
             } 
             set 
             {
@@ -37,8 +38,11 @@ namespace CallTracker.Model
                 Title = match.Groups[1].Value;
                 First = match.Groups[2].Value;
                 Last = match.Groups[3].Value;
+
+                full = value;
             } 
         }
+        private string full { get; set; }
 
         public NameModel()
         {

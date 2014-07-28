@@ -130,7 +130,7 @@ namespace CallTracker.Helpers
 
             NoteItems = new List<NoteItem>();
             NoteItems.Add(new NoteItemHeading("Situation", "{0}:"));
-            NoteItems.Add(new NoteItemString("Name", "- Spoke with {0}"));
+            NoteItems.Add(new NoteItemString("Name.Full", "- Spoke with {0}"));
             NoteItems.Add(new NoteItemAcronym("Fault.Symptom", "- Customer is experiencing {0}", Symptoms));
             NoteItems.Add(new NoteItemHeading("Action", "{0}:"));
             NoteItems.Add(new NoteItemString("Fault.NPR", "- Area Outage PR#{0} is currently open."));
