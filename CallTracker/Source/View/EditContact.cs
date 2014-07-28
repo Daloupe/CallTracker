@@ -37,17 +37,6 @@ namespace CallTracker.View
             splitContainer2.MouseWheel += splitContainer2_MouseWheel;
             HfcPanel.MouseEnter += splitContainer2_MouseEnter;
 
-            //ServicePanels = new Dictionary<string,PanelBase>
-            //{
-            //    {"LAT", new LATPanel(_ServiceMenuLAT)},
-            //    {"LIP", new LIPPanel(_ServiceMenuLIP)},
-            //    {"ONC", new ONCPanel(_ServiceMenuONC)},
-            //    {"NFV", new NBFPanel(_ServiceMenuNBF)},
-            //    {"NBF", new NBFPanel(_ServiceMenuNBF)},
-            //    {"DTV", new DTVPanel(_ServiceMenuDTV)},
-            //    {"MTV", new MTVPanel(_ServiceMenuMTV)}
-            //};
-
             ServiceViews = new Dictionary<ServiceTypes, ServiceView>
             {
                 {ServiceTypes.LAT, new ServiceView(new LATPanel(), 
@@ -136,26 +125,27 @@ namespace CallTracker.View
         // Contact Navigator ////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
-        {
-            _Note.DataBindings.Clear();
-            _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, "Note", true, DataSourceUpdateMode.OnPropertyChanged));
-
+        {        
             MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
             MainForm.SelectedContact = DataStore.Contacts[customerContactsBindingSource.Position];
             MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
 
             CurrentService = ServiceViews[MainForm.SelectedContact.Fault.AffectedServiceType];
+
+            //_Note.DataBindings.Clear();
+            //_Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, "Note", true, DataSourceUpdateMode.OnPropertyChanged));
         }
 
         void SelectedContact_NestedChange(object sender, PropertyChangedEventArgs e)
         {
+            // Update Note
+            if (_Note.DataBindings.Count > 0)
+                _Note.DataBindings[0].ReadValue();
+
             // Swap Panels
             if(e.PropertyName == "AffectedServices")
                 UpdateCurrentPanel();
 
-            // Update Note
-            if(_Note.DataBindings.Count > 0)
-                _Note.DataBindings[0].ReadValue();
         }
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
@@ -217,7 +207,7 @@ namespace CallTracker.View
             //if (ServiceLock)
             //    return;
 
-            ServiceTypes affectedServices = (MainForm.SelectedContact.Fault.AffectedServices);
+            ServiceTypes affectedServices = MainForm.SelectedContact.Fault.AffectedServices;
 
             foreach (ServiceTypes service in Enum.GetValues(typeof(ServiceTypes)))
             {

@@ -1,5 +1,10 @@
 To Do:
 
+Future
+- Chrome support.
+- MAD support. Setup the ability to input an inputs name and send message straight to application.
+- Update panels to reference binding source. May be able to avoid having to use the nested events in ContactModel.
+
 Priorities
 | Add abilty to bind drop downs and buttons. (type is auto detected).
 	- Need to find out what the different affecetd service drop downs in IFMS are called.
@@ -10,6 +15,11 @@ Priorities
 | Updated PasteBind to easily allow for dropdowns and buttons.
 | Context menu for DN and Mobile lets you transfer or dial.
 - Finalize a way to input ifms fill logic.
+| Notes aren't saving.
+	| Fixed issue of records not saving when changing between them. BindingSource on the call history needed to be added and removed as required.
+- Input ICON note generator strings into database.
+- Add ICON dropdowns to database.
+- Utilize database data.
 
 Main GUI
  | Have Settings windows show in main gui, rather than their own popup.
@@ -29,7 +39,7 @@ Main GUI
  - Add status bar to display warnings.
  - Start inputting system variables.
  - Key Command Help extends window height.
- - Side panle needs to ghost when dragging.
+ - Side panel needs to ghost when dragging.
  | rate code needs to allow keyboard input to prioritize insertion of new records.
 
 Contact GUI

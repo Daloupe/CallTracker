@@ -19,7 +19,7 @@ using CallTracker.Data;
 
 namespace CallTracker.View
 {
-    [ImplementPropertyChanged]
+    //[ImplementPropertyChanged]
     public partial class Main : Form
     {
         internal static ICONNoteGenerator NoteGen = new ICONNoteGenerator();

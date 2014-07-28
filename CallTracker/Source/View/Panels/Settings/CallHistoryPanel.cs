@@ -14,7 +14,6 @@ namespace CallTracker.View
         public CallHistoryPanel()
         {
             InitializeComponent();
-            
         }
 
         public void SetBindingSource(BindingSource _source)
@@ -32,7 +31,7 @@ namespace CallTracker.View
                 }
         }
 
-        public void RemoveBindingSource(BindingSource _source)
+        public void RemoveBindingSource()
         {
             foreach (var control in Controls)
                 if (control.GetType().BaseType == typeof(IDataField))

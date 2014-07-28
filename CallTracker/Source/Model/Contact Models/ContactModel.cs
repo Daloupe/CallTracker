@@ -125,7 +125,7 @@ namespace CallTracker.Model
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
         }
 
-        public object GetProperty(string property)
+        public object GetProp(string property)
         {
             if (String.IsNullOrEmpty(property)) return null;
 
@@ -144,7 +144,7 @@ namespace CallTracker.Model
             return value;
         }
 
-        public void SetProperty(string property, string value)
+        public void SetProp(string property, string value)
         {
             if (String.IsNullOrEmpty(property)) return;
 
@@ -154,12 +154,12 @@ namespace CallTracker.Model
 
             string[] propSplit = property.Split('.');
 
-            for(int i = 0; i < propSplit.Length; i++)
+            for (int i = 0; i < propSplit.Length; i++)
             {
                 currentObject = currentType.GetProperty(propSplit[i]);
                 if (currentObject != null)
                     currentType = currentObject.PropertyType;
-                if(i < propSplit.Length - 1)
+                if (i < propSplit.Length - 1)
                     nestedObject = currentObject.GetValue(nestedObject, null);
             }
 

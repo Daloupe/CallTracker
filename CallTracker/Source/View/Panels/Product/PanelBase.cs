@@ -26,6 +26,15 @@ namespace CallTracker.View
 
         }
 
+        //public virtual void SetBindingSource(BindingSource _source)
+        //{
+        //    serviceModelBindingSource = _source;
+        //}
+        //public virtual void RemoveBindingSource(BindingSource _source)
+        //{
+        //    serviceModelBindingSource.Clear();
+        //}
+
         public virtual void ConnectEvents(EventHandler action)
         {
             foreach (Control control in Controls)

@@ -224,33 +224,42 @@
     <Compile Include="Source\View\ServiceView.cs" />
     <EmbeddedResource Include="Source\View\Controls\DataArea.resx">
       <DependentUpon>DataArea.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\DataDropDown.resx">
       <DependentUpon>DataDropDown.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\DataControlBase.resx">
       <DependentUpon>DataControlBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\PanelHeading.resx">
       <DependentUpon>PanelHeading.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Help\HelpKeyCommands.resx">
       <DependentUpon>HelpKeyCommands.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\DataField.resx">
       <DependentUpon>DataField.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Product\MTVPanel.resx">
       <DependentUpon>MTVPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Product\DTVPanel.resx">
       <DependentUpon>DTVPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Product\NFVPanel.resx">
       <DependentUpon>NFVPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Resources\DatabaseView.resx">
       <DependentUpon>DatabaseView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Resources\LATRatecodes.resx">
       <DependentUpon>LATRatecodes.cs</DependentUpon>
@@ -260,9 +269,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Product\PanelBase.resx">
       <DependentUpon>PanelBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Product\ONCPanel.resx">
       <DependentUpon>ONCPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Product\LIPPanel.resx">
       <DependentUpon>LIPPanel.cs</DependentUpon>
@@ -275,9 +286,11 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Settings\CallHistory.resx">
       <DependentUpon>CallHistory.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\ViewControlBase.resx">
       <DependentUpon>ViewControlBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\DataSources\CallTracker.Model.ContactAddress.datasource" />
     <None Include="Properties\DataSources\CallTracker.Model.CustomerContact.datasource" />
@@ -386,6 +399,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\EditContact.resx">
       <DependentUpon>EditContact.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Settings\EditGridLinks.resx">
       <DependentUpon>EditGridLinks.cs</DependentUpon>
@@ -398,6 +412,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -415,6 +430,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <Content Include="RequiredData.txt" />
     <Content Include="Resources\bindingNavigatorDeleteItem.Image.png" />
     <None Include="Resources\help.jpg" />
     <None Include="Resources\c.png" />

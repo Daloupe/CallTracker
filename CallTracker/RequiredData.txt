@@ -1,0 +1,8 @@
+﻿HTML:
+- IFMS element names of multiple affeceted service drop downs
+- ICON note drop downs elements
+
+Data:
+- Symptom groups + symptoms
+- ICON note classificaitons
+- Transfer numbers + hours

@@ -39,6 +39,7 @@
             // 
             // dataField1
             // 
+            this.dataField1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.dataField1.Font = new System.Drawing.Font("Verdana", 7F);
             this.dataField1.LabelText = "DN:";
             this.dataField1.LabelWidth = 40;
@@ -53,6 +54,7 @@
             // 
             // dataField2
             // 
+            this.dataField2.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.dataField2.Font = new System.Drawing.Font("Verdana", 7F);
             this.dataField2.LabelText = "Mob:";
             this.dataField2.LabelWidth = 40;
@@ -67,6 +69,7 @@
             // 
             // dataField3
             // 
+            this.dataField3.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.dataField3.Font = new System.Drawing.Font("Verdana", 7F);
             this.dataField3.LabelText = "CMBS:";
             this.dataField3.LabelWidth = 40;
@@ -81,6 +84,7 @@
             // 
             // dataField4
             // 
+            this.dataField4.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.dataField4.Font = new System.Drawing.Font("Verdana", 7F);
             this.dataField4.LabelText = "ICON:";
             this.dataField4.LabelWidth = 40;
@@ -95,6 +99,7 @@
             // 
             // dataField5
             // 
+            this.dataField5.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.dataField5.Font = new System.Drawing.Font("Verdana", 7F);
             this.dataField5.LabelText = "UN:";
             this.dataField5.LabelWidth = 40;
@@ -124,6 +129,7 @@
             // 
             // dataField6
             // 
+            this.dataField6.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.dataField6.Font = new System.Drawing.Font("Verdana", 7F);
             this.dataField6.LabelText = "PR:";
             this.dataField6.LabelWidth = 40;

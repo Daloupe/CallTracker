@@ -39,10 +39,8 @@ namespace CallTracker.View
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
-            callHistoryPanel1.SetBindingSource(MainForm.editContact.customerContactsBindingSource);
             dataGridView1.DataSource = MainForm.editContact.customerContactsBindingSource;
         }
-
 
         protected override void _Done_Click(object sender, EventArgs e)
         {
@@ -62,12 +60,14 @@ namespace CallTracker.View
 
         public override void ShowSetting()
         {
+            callHistoryPanel1.SetBindingSource(MainForm.editContact.customerContactsBindingSource);
             base.ShowSetting();
             CurrentPosition = MainForm.editContact.customerContactsBindingSource.Position;
         }
 
         public override void HideSetting()
         {
+            callHistoryPanel1.RemoveBindingSource();
             base.HideSetting();
             MainForm.editContact.customerContactsBindingSource.Position = CurrentPosition;
         }
