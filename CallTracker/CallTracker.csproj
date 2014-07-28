@@ -320,16 +320,10 @@
     <Compile Include="Source\Model\Contact\AddressModel.cs" />
     <Compile Include="Source\Model\Contact\BookingModel.cs" />
     <Compile Include="Source\Model\Contact\ContactModel.cs" />
-    <None Include="Source\Model\Archive\DataBindType.cs" />
     <Compile Include="Source\Model\DataRepository.cs" />
     <Compile Include="Source\Model\Contact\FaultModel.cs" />
     <Compile Include="Source\Model\Settings\GridLinksModel.cs" />
     <Compile Include="Source\Model\Settings\LoginsModel.cs" />
-    <None Include="Source\Model\Archive\PasteBindModel.cs" />
-    <None Include="Source\Model\Archive\Person.cs" />
-    <None Include="Source\Model\Archive\PersonelBusinessObject.cs" />
-    <None Include="Source\Model\Archive\PocoCustomer.cs" />
-    <None Include="Source\Model\Archive\PocoPerson.cs" />
     <Compile Include="Source\Model\Contact\ServiceModel.cs" />
     <Compile Include="Source\Model\Contact\StatisticsModel.cs" />
     <Compile Include="Source\View\Popups\AddAROForm.cs">

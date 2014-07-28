@@ -31,7 +31,7 @@ namespace RegexAssembly
                 new MyRegex("CMBS",     @"^(3[1-3])" +                      // State
                                         @"-?" +                             // Divider
                                         @"(\d{6})" +                        // Account
-                                        @"(?:-|0|\s)?"+                   // Divider
+                                        @"(?:-|0|\s)?"+                     // Divider
                                         @"(\d)$"),                          // Flip
                 new MyRegex("ICON",     @"^(1|5|8|9)\d{13}$"),
                 new MyRegex("Name",     @"^(?:([a-z]+\.)\s)?" +             // Title (Followed by a ".")
