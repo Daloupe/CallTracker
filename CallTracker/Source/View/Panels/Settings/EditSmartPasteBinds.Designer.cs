@@ -144,6 +144,7 @@
             this.nameDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.pasteBindBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;

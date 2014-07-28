@@ -2,7 +2,7 @@
     
     
     public partial class ServicesDataSet {
-        partial class ServiceSymptomGroupDataTable
+        partial class ServiceSymptomGroupMatchDataTable
         {
         }
     

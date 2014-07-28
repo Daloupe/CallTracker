@@ -30,13 +30,13 @@ namespace CallTracker.DataSets {
         
         private SymptomsDataTable tableSymptoms;
         
-        private SymptomGroupMatchDataTable tableSymptomGroupMatch;
+        private SymptomGroupSymptomMatchDataTable tableSymptomGroupSymptomMatch;
         
         private ProductCodesDataTable tableProductCodes;
         
         private SymptomGroupsDataTable tableSymptomGroups;
         
-        private ServiceSymptomGroupDataTable tableServiceSymptomGroup;
+        private ServiceSymptomGroupMatchDataTable tableServiceSymptomGroupMatch;
         
         private SeverityCodesDataTable tableSeverityCodes;
         
@@ -107,8 +107,8 @@ namespace CallTracker.DataSets {
                 if ((ds.Tables["Symptoms"] != null)) {
                     base.Tables.Add(new SymptomsDataTable(ds.Tables["Symptoms"]));
                 }
-                if ((ds.Tables["SymptomGroupMatch"] != null)) {
-                    base.Tables.Add(new SymptomGroupMatchDataTable(ds.Tables["SymptomGroupMatch"]));
+                if ((ds.Tables["SymptomGroupSymptomMatch"] != null)) {
+                    base.Tables.Add(new SymptomGroupSymptomMatchDataTable(ds.Tables["SymptomGroupSymptomMatch"]));
                 }
                 if ((ds.Tables["ProductCodes"] != null)) {
                     base.Tables.Add(new ProductCodesDataTable(ds.Tables["ProductCodes"]));
@@ -116,8 +116,8 @@ namespace CallTracker.DataSets {
                 if ((ds.Tables["SymptomGroups"] != null)) {
                     base.Tables.Add(new SymptomGroupsDataTable(ds.Tables["SymptomGroups"]));
                 }
-                if ((ds.Tables["ServiceSymptomGroup"] != null)) {
-                    base.Tables.Add(new ServiceSymptomGroupDataTable(ds.Tables["ServiceSymptomGroup"]));
+                if ((ds.Tables["ServiceSymptomGroupMatch"] != null)) {
+                    base.Tables.Add(new ServiceSymptomGroupMatchDataTable(ds.Tables["ServiceSymptomGroupMatch"]));
                 }
                 if ((ds.Tables["SeverityCodes"] != null)) {
                     base.Tables.Add(new SeverityCodesDataTable(ds.Tables["SeverityCodes"]));
@@ -192,9 +192,9 @@ namespace CallTracker.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SymptomGroupMatchDataTable SymptomGroupMatch {
+        public SymptomGroupSymptomMatchDataTable SymptomGroupSymptomMatch {
             get {
-                return this.tableSymptomGroupMatch;
+                return this.tableSymptomGroupSymptomMatch;
             }
         }
         
@@ -222,9 +222,9 @@ namespace CallTracker.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public ServiceSymptomGroupDataTable ServiceSymptomGroup {
+        public ServiceSymptomGroupMatchDataTable ServiceSymptomGroupMatch {
             get {
-                return this.tableServiceSymptomGroup;
+                return this.tableServiceSymptomGroupMatch;
             }
         }
         
@@ -374,8 +374,8 @@ namespace CallTracker.DataSets {
                 if ((ds.Tables["Symptoms"] != null)) {
                     base.Tables.Add(new SymptomsDataTable(ds.Tables["Symptoms"]));
                 }
-                if ((ds.Tables["SymptomGroupMatch"] != null)) {
-                    base.Tables.Add(new SymptomGroupMatchDataTable(ds.Tables["SymptomGroupMatch"]));
+                if ((ds.Tables["SymptomGroupSymptomMatch"] != null)) {
+                    base.Tables.Add(new SymptomGroupSymptomMatchDataTable(ds.Tables["SymptomGroupSymptomMatch"]));
                 }
                 if ((ds.Tables["ProductCodes"] != null)) {
                     base.Tables.Add(new ProductCodesDataTable(ds.Tables["ProductCodes"]));
@@ -383,8 +383,8 @@ namespace CallTracker.DataSets {
                 if ((ds.Tables["SymptomGroups"] != null)) {
                     base.Tables.Add(new SymptomGroupsDataTable(ds.Tables["SymptomGroups"]));
                 }
-                if ((ds.Tables["ServiceSymptomGroup"] != null)) {
-                    base.Tables.Add(new ServiceSymptomGroupDataTable(ds.Tables["ServiceSymptomGroup"]));
+                if ((ds.Tables["ServiceSymptomGroupMatch"] != null)) {
+                    base.Tables.Add(new ServiceSymptomGroupMatchDataTable(ds.Tables["ServiceSymptomGroupMatch"]));
                 }
                 if ((ds.Tables["SeverityCodes"] != null)) {
                     base.Tables.Add(new SeverityCodesDataTable(ds.Tables["SeverityCodes"]));
@@ -458,10 +458,10 @@ namespace CallTracker.DataSets {
                     this.tableSymptoms.InitVars();
                 }
             }
-            this.tableSymptomGroupMatch = ((SymptomGroupMatchDataTable)(base.Tables["SymptomGroupMatch"]));
+            this.tableSymptomGroupSymptomMatch = ((SymptomGroupSymptomMatchDataTable)(base.Tables["SymptomGroupSymptomMatch"]));
             if ((initTable == true)) {
-                if ((this.tableSymptomGroupMatch != null)) {
-                    this.tableSymptomGroupMatch.InitVars();
+                if ((this.tableSymptomGroupSymptomMatch != null)) {
+                    this.tableSymptomGroupSymptomMatch.InitVars();
                 }
             }
             this.tableProductCodes = ((ProductCodesDataTable)(base.Tables["ProductCodes"]));
@@ -476,10 +476,10 @@ namespace CallTracker.DataSets {
                     this.tableSymptomGroups.InitVars();
                 }
             }
-            this.tableServiceSymptomGroup = ((ServiceSymptomGroupDataTable)(base.Tables["ServiceSymptomGroup"]));
+            this.tableServiceSymptomGroupMatch = ((ServiceSymptomGroupMatchDataTable)(base.Tables["ServiceSymptomGroupMatch"]));
             if ((initTable == true)) {
-                if ((this.tableServiceSymptomGroup != null)) {
-                    this.tableServiceSymptomGroup.InitVars();
+                if ((this.tableServiceSymptomGroupMatch != null)) {
+                    this.tableServiceSymptomGroupMatch.InitVars();
                 }
             }
             this.tableSeverityCodes = ((SeverityCodesDataTable)(base.Tables["SeverityCodes"]));
@@ -549,14 +549,14 @@ namespace CallTracker.DataSets {
             base.Tables.Add(this.tableDepartments);
             this.tableSymptoms = new SymptomsDataTable();
             base.Tables.Add(this.tableSymptoms);
-            this.tableSymptomGroupMatch = new SymptomGroupMatchDataTable();
-            base.Tables.Add(this.tableSymptomGroupMatch);
+            this.tableSymptomGroupSymptomMatch = new SymptomGroupSymptomMatchDataTable();
+            base.Tables.Add(this.tableSymptomGroupSymptomMatch);
             this.tableProductCodes = new ProductCodesDataTable();
             base.Tables.Add(this.tableProductCodes);
             this.tableSymptomGroups = new SymptomGroupsDataTable();
             base.Tables.Add(this.tableSymptomGroups);
-            this.tableServiceSymptomGroup = new ServiceSymptomGroupDataTable();
-            base.Tables.Add(this.tableServiceSymptomGroup);
+            this.tableServiceSymptomGroupMatch = new ServiceSymptomGroupMatchDataTable();
+            base.Tables.Add(this.tableServiceSymptomGroupMatch);
             this.tableSeverityCodes = new SeverityCodesDataTable();
             base.Tables.Add(this.tableSeverityCodes);
             this.tableOutcomes = new OutcomesDataTable();
@@ -584,19 +584,19 @@ namespace CallTracker.DataSets {
                         this.tableProductCodes.IdColumn}, false);
             this.Relations.Add(this.relationServices_ProductCodes);
             this.relationServiceSymptomGroup_Services = new global::System.Data.DataRelation("ServiceSymptomGroup_Services", new global::System.Data.DataColumn[] {
-                        this.tableServiceSymptomGroup.ServiceIdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableServiceSymptomGroupMatch.ServiceIdColumn}, new global::System.Data.DataColumn[] {
                         this.tableServices.IdColumn}, false);
             this.Relations.Add(this.relationServiceSymptomGroup_Services);
             this.relationServiceSymptomGroup_SymptomGroups = new global::System.Data.DataRelation("ServiceSymptomGroup_SymptomGroups", new global::System.Data.DataColumn[] {
-                        this.tableServiceSymptomGroup.SymptomGroupIdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableServiceSymptomGroupMatch.SymptomGroupIdColumn}, new global::System.Data.DataColumn[] {
                         this.tableSymptomGroups.IdColumn}, false);
             this.Relations.Add(this.relationServiceSymptomGroup_SymptomGroups);
             this.relationSymptomGroupMatch_SymptomGroups = new global::System.Data.DataRelation("SymptomGroupMatch_SymptomGroups", new global::System.Data.DataColumn[] {
-                        this.tableSymptomGroupMatch.SymptomGroupIdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSymptomGroupSymptomMatch.SymptomGroupIdColumn}, new global::System.Data.DataColumn[] {
                         this.tableSymptomGroups.IdColumn}, false);
             this.Relations.Add(this.relationSymptomGroupMatch_SymptomGroups);
             this.relationSymptomGroupMatch_Symptoms = new global::System.Data.DataRelation("SymptomGroupMatch_Symptoms", new global::System.Data.DataColumn[] {
-                        this.tableSymptomGroupMatch.SymptomIdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSymptomGroupSymptomMatch.SymptomIdColumn}, new global::System.Data.DataColumn[] {
                         this.tableSymptoms.IdColumn}, false);
             this.Relations.Add(this.relationSymptomGroupMatch_Symptoms);
             this.relationServicesEquipmentMatch_Equipment = new global::System.Data.DataRelation("ServicesEquipmentMatch_Equipment", new global::System.Data.DataColumn[] {
@@ -629,7 +629,7 @@ namespace CallTracker.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeSymptomGroupMatch() {
+        private bool ShouldSerializeSymptomGroupSymptomMatch() {
             return false;
         }
         
@@ -647,7 +647,7 @@ namespace CallTracker.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeServiceSymptomGroup() {
+        private bool ShouldSerializeServiceSymptomGroupMatch() {
             return false;
         }
         
@@ -758,7 +758,7 @@ namespace CallTracker.DataSets {
         public delegate void SymptomsRowChangeEventHandler(object sender, SymptomsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void SymptomGroupMatchRowChangeEventHandler(object sender, SymptomGroupMatchRowChangeEvent e);
+        public delegate void SymptomGroupSymptomMatchRowChangeEventHandler(object sender, SymptomGroupSymptomMatchRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void ProductCodesRowChangeEventHandler(object sender, ProductCodesRowChangeEvent e);
@@ -767,7 +767,7 @@ namespace CallTracker.DataSets {
         public delegate void SymptomGroupsRowChangeEventHandler(object sender, SymptomGroupsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void ServiceSymptomGroupRowChangeEventHandler(object sender, ServiceSymptomGroupRowChangeEvent e);
+        public delegate void ServiceSymptomGroupMatchRowChangeEventHandler(object sender, ServiceSymptomGroupMatchRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void SeverityCodesRowChangeEventHandler(object sender, SeverityCodesRowChangeEvent e);
@@ -1714,7 +1714,7 @@ namespace CallTracker.DataSets {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SymptomGroupMatchDataTable : global::System.Data.TypedTableBase<SymptomGroupMatchRow> {
+        public partial class SymptomGroupSymptomMatchDataTable : global::System.Data.TypedTableBase<SymptomGroupSymptomMatchRow> {
             
             private global::System.Data.DataColumn columnSymptomGroupId;
             
@@ -1722,8 +1722,8 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SymptomGroupMatchDataTable() {
-                this.TableName = "SymptomGroupMatch";
+            public SymptomGroupSymptomMatchDataTable() {
+                this.TableName = "SymptomGroupSymptomMatch";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -1731,7 +1731,7 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal SymptomGroupMatchDataTable(global::System.Data.DataTable table) {
+            internal SymptomGroupSymptomMatchDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -1748,7 +1748,7 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected SymptomGroupMatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected SymptomGroupSymptomMatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -1780,46 +1780,46 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SymptomGroupMatchRow this[int index] {
+            public SymptomGroupSymptomMatchRow this[int index] {
                 get {
-                    return ((SymptomGroupMatchRow)(this.Rows[index]));
+                    return ((SymptomGroupSymptomMatchRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SymptomGroupMatchRowChangeEventHandler SymptomGroupMatchRowChanging;
+            public event SymptomGroupSymptomMatchRowChangeEventHandler SymptomGroupSymptomMatchRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SymptomGroupMatchRowChangeEventHandler SymptomGroupMatchRowChanged;
+            public event SymptomGroupSymptomMatchRowChangeEventHandler SymptomGroupSymptomMatchRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SymptomGroupMatchRowChangeEventHandler SymptomGroupMatchRowDeleting;
+            public event SymptomGroupSymptomMatchRowChangeEventHandler SymptomGroupSymptomMatchRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event SymptomGroupMatchRowChangeEventHandler SymptomGroupMatchRowDeleted;
+            public event SymptomGroupSymptomMatchRowChangeEventHandler SymptomGroupSymptomMatchRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddSymptomGroupMatchRow(SymptomGroupMatchRow row) {
+            public void AddSymptomGroupSymptomMatchRow(SymptomGroupSymptomMatchRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SymptomGroupMatchRow AddSymptomGroupMatchRow(short SymptomGroupId, short SymptomId) {
-                SymptomGroupMatchRow rowSymptomGroupMatchRow = ((SymptomGroupMatchRow)(this.NewRow()));
+            public SymptomGroupSymptomMatchRow AddSymptomGroupSymptomMatchRow(short SymptomGroupId, short SymptomId) {
+                SymptomGroupSymptomMatchRow rowSymptomGroupSymptomMatchRow = ((SymptomGroupSymptomMatchRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         SymptomGroupId,
                         SymptomId};
-                rowSymptomGroupMatchRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSymptomGroupMatchRow);
-                return rowSymptomGroupMatchRow;
+                rowSymptomGroupSymptomMatchRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSymptomGroupSymptomMatchRow);
+                return rowSymptomGroupSymptomMatchRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                SymptomGroupMatchDataTable cln = ((SymptomGroupMatchDataTable)(base.Clone()));
+                SymptomGroupSymptomMatchDataTable cln = ((SymptomGroupSymptomMatchDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -1827,7 +1827,7 @@ namespace CallTracker.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new SymptomGroupMatchDataTable();
+                return new SymptomGroupSymptomMatchDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1851,28 +1851,28 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SymptomGroupMatchRow NewSymptomGroupMatchRow() {
-                return ((SymptomGroupMatchRow)(this.NewRow()));
+            public SymptomGroupSymptomMatchRow NewSymptomGroupSymptomMatchRow() {
+                return ((SymptomGroupSymptomMatchRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SymptomGroupMatchRow(builder);
+                return new SymptomGroupSymptomMatchRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(SymptomGroupMatchRow);
+                return typeof(SymptomGroupSymptomMatchRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.SymptomGroupMatchRowChanged != null)) {
-                    this.SymptomGroupMatchRowChanged(this, new SymptomGroupMatchRowChangeEvent(((SymptomGroupMatchRow)(e.Row)), e.Action));
+                if ((this.SymptomGroupSymptomMatchRowChanged != null)) {
+                    this.SymptomGroupSymptomMatchRowChanged(this, new SymptomGroupSymptomMatchRowChangeEvent(((SymptomGroupSymptomMatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1880,8 +1880,8 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.SymptomGroupMatchRowChanging != null)) {
-                    this.SymptomGroupMatchRowChanging(this, new SymptomGroupMatchRowChangeEvent(((SymptomGroupMatchRow)(e.Row)), e.Action));
+                if ((this.SymptomGroupSymptomMatchRowChanging != null)) {
+                    this.SymptomGroupSymptomMatchRowChanging(this, new SymptomGroupSymptomMatchRowChangeEvent(((SymptomGroupSymptomMatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1889,8 +1889,8 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.SymptomGroupMatchRowDeleted != null)) {
-                    this.SymptomGroupMatchRowDeleted(this, new SymptomGroupMatchRowChangeEvent(((SymptomGroupMatchRow)(e.Row)), e.Action));
+                if ((this.SymptomGroupSymptomMatchRowDeleted != null)) {
+                    this.SymptomGroupSymptomMatchRowDeleted(this, new SymptomGroupSymptomMatchRowChangeEvent(((SymptomGroupSymptomMatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1898,14 +1898,14 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.SymptomGroupMatchRowDeleting != null)) {
-                    this.SymptomGroupMatchRowDeleting(this, new SymptomGroupMatchRowChangeEvent(((SymptomGroupMatchRow)(e.Row)), e.Action));
+                if ((this.SymptomGroupSymptomMatchRowDeleting != null)) {
+                    this.SymptomGroupSymptomMatchRowDeleting(this, new SymptomGroupSymptomMatchRowChangeEvent(((SymptomGroupSymptomMatchRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveSymptomGroupMatchRow(SymptomGroupMatchRow row) {
+            public void RemoveSymptomGroupSymptomMatchRow(SymptomGroupSymptomMatchRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1932,7 +1932,7 @@ namespace CallTracker.DataSets {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SymptomGroupMatchDataTable";
+                attribute2.FixedValue = "SymptomGroupSymptomMatchDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2522,7 +2522,7 @@ namespace CallTracker.DataSets {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class ServiceSymptomGroupDataTable : global::System.Data.TypedTableBase<ServiceSymptomGroupRow> {
+        public partial class ServiceSymptomGroupMatchDataTable : global::System.Data.TypedTableBase<ServiceSymptomGroupMatchRow> {
             
             private global::System.Data.DataColumn columnServiceId;
             
@@ -2530,8 +2530,8 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ServiceSymptomGroupDataTable() {
-                this.TableName = "ServiceSymptomGroup";
+            public ServiceSymptomGroupMatchDataTable() {
+                this.TableName = "ServiceSymptomGroupMatch";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -2539,7 +2539,7 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal ServiceSymptomGroupDataTable(global::System.Data.DataTable table) {
+            internal ServiceSymptomGroupMatchDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -2556,7 +2556,7 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected ServiceSymptomGroupDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ServiceSymptomGroupMatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -2588,46 +2588,46 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ServiceSymptomGroupRow this[int index] {
+            public ServiceSymptomGroupMatchRow this[int index] {
                 get {
-                    return ((ServiceSymptomGroupRow)(this.Rows[index]));
+                    return ((ServiceSymptomGroupMatchRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ServiceSymptomGroupRowChangeEventHandler ServiceSymptomGroupRowChanging;
+            public event ServiceSymptomGroupMatchRowChangeEventHandler ServiceSymptomGroupMatchRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ServiceSymptomGroupRowChangeEventHandler ServiceSymptomGroupRowChanged;
+            public event ServiceSymptomGroupMatchRowChangeEventHandler ServiceSymptomGroupMatchRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ServiceSymptomGroupRowChangeEventHandler ServiceSymptomGroupRowDeleting;
+            public event ServiceSymptomGroupMatchRowChangeEventHandler ServiceSymptomGroupMatchRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event ServiceSymptomGroupRowChangeEventHandler ServiceSymptomGroupRowDeleted;
+            public event ServiceSymptomGroupMatchRowChangeEventHandler ServiceSymptomGroupMatchRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddServiceSymptomGroupRow(ServiceSymptomGroupRow row) {
+            public void AddServiceSymptomGroupMatchRow(ServiceSymptomGroupMatchRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ServiceSymptomGroupRow AddServiceSymptomGroupRow(short ServiceId, short SymptomGroupId) {
-                ServiceSymptomGroupRow rowServiceSymptomGroupRow = ((ServiceSymptomGroupRow)(this.NewRow()));
+            public ServiceSymptomGroupMatchRow AddServiceSymptomGroupMatchRow(short ServiceId, short SymptomGroupId) {
+                ServiceSymptomGroupMatchRow rowServiceSymptomGroupMatchRow = ((ServiceSymptomGroupMatchRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ServiceId,
                         SymptomGroupId};
-                rowServiceSymptomGroupRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowServiceSymptomGroupRow);
-                return rowServiceSymptomGroupRow;
+                rowServiceSymptomGroupMatchRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowServiceSymptomGroupMatchRow);
+                return rowServiceSymptomGroupMatchRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                ServiceSymptomGroupDataTable cln = ((ServiceSymptomGroupDataTable)(base.Clone()));
+                ServiceSymptomGroupMatchDataTable cln = ((ServiceSymptomGroupMatchDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -2635,7 +2635,7 @@ namespace CallTracker.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new ServiceSymptomGroupDataTable();
+                return new ServiceSymptomGroupMatchDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2656,28 +2656,28 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ServiceSymptomGroupRow NewServiceSymptomGroupRow() {
-                return ((ServiceSymptomGroupRow)(this.NewRow()));
+            public ServiceSymptomGroupMatchRow NewServiceSymptomGroupMatchRow() {
+                return ((ServiceSymptomGroupMatchRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new ServiceSymptomGroupRow(builder);
+                return new ServiceSymptomGroupMatchRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(ServiceSymptomGroupRow);
+                return typeof(ServiceSymptomGroupMatchRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.ServiceSymptomGroupRowChanged != null)) {
-                    this.ServiceSymptomGroupRowChanged(this, new ServiceSymptomGroupRowChangeEvent(((ServiceSymptomGroupRow)(e.Row)), e.Action));
+                if ((this.ServiceSymptomGroupMatchRowChanged != null)) {
+                    this.ServiceSymptomGroupMatchRowChanged(this, new ServiceSymptomGroupMatchRowChangeEvent(((ServiceSymptomGroupMatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2685,8 +2685,8 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.ServiceSymptomGroupRowChanging != null)) {
-                    this.ServiceSymptomGroupRowChanging(this, new ServiceSymptomGroupRowChangeEvent(((ServiceSymptomGroupRow)(e.Row)), e.Action));
+                if ((this.ServiceSymptomGroupMatchRowChanging != null)) {
+                    this.ServiceSymptomGroupMatchRowChanging(this, new ServiceSymptomGroupMatchRowChangeEvent(((ServiceSymptomGroupMatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2694,8 +2694,8 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.ServiceSymptomGroupRowDeleted != null)) {
-                    this.ServiceSymptomGroupRowDeleted(this, new ServiceSymptomGroupRowChangeEvent(((ServiceSymptomGroupRow)(e.Row)), e.Action));
+                if ((this.ServiceSymptomGroupMatchRowDeleted != null)) {
+                    this.ServiceSymptomGroupMatchRowDeleted(this, new ServiceSymptomGroupMatchRowChangeEvent(((ServiceSymptomGroupMatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2703,14 +2703,14 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.ServiceSymptomGroupRowDeleting != null)) {
-                    this.ServiceSymptomGroupRowDeleting(this, new ServiceSymptomGroupRowChangeEvent(((ServiceSymptomGroupRow)(e.Row)), e.Action));
+                if ((this.ServiceSymptomGroupMatchRowDeleting != null)) {
+                    this.ServiceSymptomGroupMatchRowDeleting(this, new ServiceSymptomGroupMatchRowChangeEvent(((ServiceSymptomGroupMatchRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveServiceSymptomGroupRow(ServiceSymptomGroupRow row) {
+            public void RemoveServiceSymptomGroupMatchRow(ServiceSymptomGroupMatchRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -2737,7 +2737,7 @@ namespace CallTracker.DataSets {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "ServiceSymptomGroupDataTable";
+                attribute2.FixedValue = "ServiceSymptomGroupMatchDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -4770,9 +4770,9 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ServiceSymptomGroupRow ServiceSymptomGroupRow {
+            public ServiceSymptomGroupMatchRow ServiceSymptomGroupMatchRow {
                 get {
-                    return ((ServiceSymptomGroupRow)(this.GetParentRow(this.Table.ParentRelations["ServiceSymptomGroup_Services"])));
+                    return ((ServiceSymptomGroupMatchRow)(this.GetParentRow(this.Table.ParentRelations["ServiceSymptomGroup_Services"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["ServiceSymptomGroup_Services"]);
@@ -5123,9 +5123,9 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SymptomGroupMatchRow SymptomGroupMatchRow {
+            public SymptomGroupSymptomMatchRow SymptomGroupSymptomMatchRow {
                 get {
-                    return ((SymptomGroupMatchRow)(this.GetParentRow(this.Table.ParentRelations["SymptomGroupMatch_Symptoms"])));
+                    return ((SymptomGroupSymptomMatchRow)(this.GetParentRow(this.Table.ParentRelations["SymptomGroupMatch_Symptoms"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["SymptomGroupMatch_Symptoms"]);
@@ -5184,15 +5184,15 @@ namespace CallTracker.DataSets {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SymptomGroupMatchRow : global::System.Data.DataRow {
+        public partial class SymptomGroupSymptomMatchRow : global::System.Data.DataRow {
             
-            private SymptomGroupMatchDataTable tableSymptomGroupMatch;
+            private SymptomGroupSymptomMatchDataTable tableSymptomGroupSymptomMatch;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal SymptomGroupMatchRow(global::System.Data.DataRowBuilder rb) : 
+            internal SymptomGroupSymptomMatchRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableSymptomGroupMatch = ((SymptomGroupMatchDataTable)(this.Table));
+                this.tableSymptomGroupSymptomMatch = ((SymptomGroupSymptomMatchDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5200,14 +5200,15 @@ namespace CallTracker.DataSets {
             public short SymptomGroupId {
                 get {
                     try {
-                        return ((short)(this[this.tableSymptomGroupMatch.SymptomGroupIdColumn]));
+                        return ((short)(this[this.tableSymptomGroupSymptomMatch.SymptomGroupIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SymptomGroupId\' in table \'SymptomGroupMatch\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SymptomGroupId\' in table \'SymptomGroupSymptomMatch\' is DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
-                    this[this.tableSymptomGroupMatch.SymptomGroupIdColumn] = value;
+                    this[this.tableSymptomGroupSymptomMatch.SymptomGroupIdColumn] = value;
                 }
             }
             
@@ -5216,39 +5217,39 @@ namespace CallTracker.DataSets {
             public short SymptomId {
                 get {
                     try {
-                        return ((short)(this[this.tableSymptomGroupMatch.SymptomIdColumn]));
+                        return ((short)(this[this.tableSymptomGroupSymptomMatch.SymptomIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SymptomId\' in table \'SymptomGroupMatch\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SymptomId\' in table \'SymptomGroupSymptomMatch\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSymptomGroupMatch.SymptomIdColumn] = value;
+                    this[this.tableSymptomGroupSymptomMatch.SymptomIdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSymptomGroupIdNull() {
-                return this.IsNull(this.tableSymptomGroupMatch.SymptomGroupIdColumn);
+                return this.IsNull(this.tableSymptomGroupSymptomMatch.SymptomGroupIdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSymptomGroupIdNull() {
-                this[this.tableSymptomGroupMatch.SymptomGroupIdColumn] = global::System.Convert.DBNull;
+                this[this.tableSymptomGroupSymptomMatch.SymptomGroupIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSymptomIdNull() {
-                return this.IsNull(this.tableSymptomGroupMatch.SymptomIdColumn);
+                return this.IsNull(this.tableSymptomGroupSymptomMatch.SymptomIdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSymptomIdNull() {
-                this[this.tableSymptomGroupMatch.SymptomIdColumn] = global::System.Convert.DBNull;
+                this[this.tableSymptomGroupSymptomMatch.SymptomIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5420,9 +5421,9 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ServiceSymptomGroupRow ServiceSymptomGroupRow {
+            public ServiceSymptomGroupMatchRow ServiceSymptomGroupMatchRow {
                 get {
-                    return ((ServiceSymptomGroupRow)(this.GetParentRow(this.Table.ParentRelations["ServiceSymptomGroup_SymptomGroups"])));
+                    return ((ServiceSymptomGroupMatchRow)(this.GetParentRow(this.Table.ParentRelations["ServiceSymptomGroup_SymptomGroups"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["ServiceSymptomGroup_SymptomGroups"]);
@@ -5431,9 +5432,9 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SymptomGroupMatchRow SymptomGroupMatchRow {
+            public SymptomGroupSymptomMatchRow SymptomGroupMatchRow {
                 get {
-                    return ((SymptomGroupMatchRow)(this.GetParentRow(this.Table.ParentRelations["SymptomGroupMatch_SymptomGroups"])));
+                    return ((SymptomGroupSymptomMatchRow)(this.GetParentRow(this.Table.ParentRelations["SymptomGroupMatch_SymptomGroups"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["SymptomGroupMatch_SymptomGroups"]);
@@ -5480,15 +5481,15 @@ namespace CallTracker.DataSets {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class ServiceSymptomGroupRow : global::System.Data.DataRow {
+        public partial class ServiceSymptomGroupMatchRow : global::System.Data.DataRow {
             
-            private ServiceSymptomGroupDataTable tableServiceSymptomGroup;
+            private ServiceSymptomGroupMatchDataTable tableServiceSymptomGroupMatch;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal ServiceSymptomGroupRow(global::System.Data.DataRowBuilder rb) : 
+            internal ServiceSymptomGroupMatchRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableServiceSymptomGroup = ((ServiceSymptomGroupDataTable)(this.Table));
+                this.tableServiceSymptomGroupMatch = ((ServiceSymptomGroupMatchDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5496,14 +5497,14 @@ namespace CallTracker.DataSets {
             public short ServiceId {
                 get {
                     try {
-                        return ((short)(this[this.tableServiceSymptomGroup.ServiceIdColumn]));
+                        return ((short)(this[this.tableServiceSymptomGroupMatch.ServiceIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ServiceId\' in table \'ServiceSymptomGroup\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ServiceId\' in table \'ServiceSymptomGroupMatch\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableServiceSymptomGroup.ServiceIdColumn] = value;
+                    this[this.tableServiceSymptomGroupMatch.ServiceIdColumn] = value;
                 }
             }
             
@@ -5512,39 +5513,40 @@ namespace CallTracker.DataSets {
             public short SymptomGroupId {
                 get {
                     try {
-                        return ((short)(this[this.tableServiceSymptomGroup.SymptomGroupIdColumn]));
+                        return ((short)(this[this.tableServiceSymptomGroupMatch.SymptomGroupIdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SymptomGroupId\' in table \'ServiceSymptomGroup\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SymptomGroupId\' in table \'ServiceSymptomGroupMatch\' is DBNu" +
+                                "ll.", e);
                     }
                 }
                 set {
-                    this[this.tableServiceSymptomGroup.SymptomGroupIdColumn] = value;
+                    this[this.tableServiceSymptomGroupMatch.SymptomGroupIdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsServiceIdNull() {
-                return this.IsNull(this.tableServiceSymptomGroup.ServiceIdColumn);
+                return this.IsNull(this.tableServiceSymptomGroupMatch.ServiceIdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetServiceIdNull() {
-                this[this.tableServiceSymptomGroup.ServiceIdColumn] = global::System.Convert.DBNull;
+                this[this.tableServiceSymptomGroupMatch.ServiceIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsSymptomGroupIdNull() {
-                return this.IsNull(this.tableServiceSymptomGroup.SymptomGroupIdColumn);
+                return this.IsNull(this.tableServiceSymptomGroupMatch.SymptomGroupIdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSymptomGroupIdNull() {
-                this[this.tableServiceSymptomGroup.SymptomGroupIdColumn] = global::System.Convert.DBNull;
+                this[this.tableServiceSymptomGroupMatch.SymptomGroupIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6329,22 +6331,22 @@ namespace CallTracker.DataSets {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class SymptomGroupMatchRowChangeEvent : global::System.EventArgs {
+        public class SymptomGroupSymptomMatchRowChangeEvent : global::System.EventArgs {
             
-            private SymptomGroupMatchRow eventRow;
+            private SymptomGroupSymptomMatchRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SymptomGroupMatchRowChangeEvent(SymptomGroupMatchRow row, global::System.Data.DataRowAction action) {
+            public SymptomGroupSymptomMatchRowChangeEvent(SymptomGroupSymptomMatchRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public SymptomGroupMatchRow Row {
+            public SymptomGroupSymptomMatchRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -6431,22 +6433,22 @@ namespace CallTracker.DataSets {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class ServiceSymptomGroupRowChangeEvent : global::System.EventArgs {
+        public class ServiceSymptomGroupMatchRowChangeEvent : global::System.EventArgs {
             
-            private ServiceSymptomGroupRow eventRow;
+            private ServiceSymptomGroupMatchRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ServiceSymptomGroupRowChangeEvent(ServiceSymptomGroupRow row, global::System.Data.DataRowAction action) {
+            public ServiceSymptomGroupMatchRowChangeEvent(ServiceSymptomGroupMatchRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ServiceSymptomGroupRow Row {
+            public ServiceSymptomGroupMatchRow Row {
                 get {
                     return this.eventRow;
                 }

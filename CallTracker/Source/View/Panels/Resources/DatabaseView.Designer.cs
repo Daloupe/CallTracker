@@ -55,12 +55,12 @@
             this.toolStripSeparator1,
             this.ratePlanCalculatorToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(172, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 76);
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
@@ -68,19 +68,19 @@
             // 
             this.showInstallCodesToolStripMenuItem.CheckOnClick = true;
             this.showInstallCodesToolStripMenuItem.Name = "showInstallCodesToolStripMenuItem";
-            this.showInstallCodesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.showInstallCodesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.showInstallCodesToolStripMenuItem.Text = "Show Install Codes";
             this.showInstallCodesToolStripMenuItem.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(168, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // ratePlanCalculatorToolStripMenuItem
             // 
             this.ratePlanCalculatorToolStripMenuItem.Name = "ratePlanCalculatorToolStripMenuItem";
-            this.ratePlanCalculatorToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.ratePlanCalculatorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ratePlanCalculatorToolStripMenuItem.Text = "Rate Plan Calculator";
             this.ratePlanCalculatorToolStripMenuItem.Click += new System.EventHandler(this.ratePlanCalculatorToolStripMenuItem_Click);
             // 
@@ -99,6 +99,7 @@
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Default;
             this.dataGridView1.DataSource = this.databaseBindingSource;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(4, 2);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(0);
             this.dataGridView1.Name = "dataGridView1";

@@ -4,11 +4,6 @@ Future
 - Chrome support.
 - MAD support. Setup the ability to input an inputs name and send message straight to application.
 - Update panels to reference binding source. May be able to avoid having to use the nested events in ContactModel.
-- PR Template smart copy.
-	- Fills in NBN fields.
-	- Extracts CM callback info(For ICON Outcome entry).
-	- Extracts Testing Done info(For ICON Action entry.
-	- Extracts Outcome info(For ICON Outcome entry).
 
 Priorities
 | Add abilty to bind drop downs and buttons. (type is auto detected).

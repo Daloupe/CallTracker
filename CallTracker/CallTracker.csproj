@@ -84,16 +84,21 @@
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DataSets\ServicesDataSet.Designer.cs">
+    <None Include="DataSets\ServicesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
-    </Compile>
+    </None>
     <None Include="DataSets\ServicesDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
     </None>
+    <Compile Include="DataSets\ServicesDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServicesDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Data\Equipment.cs" />
@@ -309,7 +314,7 @@
     <None Include="DataSets\ServicesDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ServicesDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>ServicesDataSet2.Designer.cs</LastGenOutput>
     </None>
     <None Include="DataSets\ServicesDataSet.xss">
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>

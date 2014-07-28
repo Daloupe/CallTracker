@@ -66,6 +66,20 @@ namespace CallTracker.View
 
                 dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
             }
+            else if (dataGridView1.DataMember == "ServiceSymptomGroupMatch")
+            {
+                ReplaceWithComboBoxColumn("ServiceId", "Service", "ServiceId", "ProblemStyle", "Id", 80, MainForm.ServicesStore.servicesDataSet.Services.ToList());
+                ReplaceWithComboBoxColumn("SymptomGroupId", "Symptom Group", "SymptomGroupId", "IFMSCode", "Id", 80, MainForm.ServicesStore.servicesDataSet.SymptomGroups.ToList(),false, 1);
+
+                dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            }
+            else if (dataGridView1.DataMember == "SymptomGroupSymptomMatch")
+            {
+                ReplaceWithComboBoxColumn("SymptomGroupId", "Symptom Group", "SymptomGroupId", "IFMSCode", "Id", 80, MainForm.ServicesStore.servicesDataSet.SymptomGroups.ToList());
+                ReplaceWithComboBoxColumn("SymptomId", "Symptom", "SymptomId", "IFMSCode", "Id", 80, MainForm.ServicesStore.servicesDataSet.Symptoms.ToList(), false, 1);
+
+                dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
+            }
         }
 
         private DataGridViewComboBoxColumn ReplaceWithComboBoxColumn(string _columnName, string _columnHeader, string _idColumnName, string _displayMember, string _valueMember, int _width, object _dataSource, bool _readOnly = false, int _columnIndex = 0)
