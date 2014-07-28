@@ -83,6 +83,6 @@ namespace CallTracker.Model
     
     public enum Outcomes
     {
-        PR, ARO, CM, CPE, NFF, XFR
+        PR, ARO, FIX, CPE, NFF, CM, XFR
     }
 }

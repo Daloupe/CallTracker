@@ -337,40 +337,40 @@ namespace CallTracker.Helpers
             
             if(new DigitPattern().IsMatch(text))
             {
-                if (firstchar == "1" && textlen == 8)                  parent.SelectedContact.Fault.PR = text;
+                if (firstchar == "1" && textlen == 8)                       parent.SelectedContact.Fault.PR = text;
                 else if ((firstchar == "0" && textlen == 10) 
                      || (text.Substring(0, 2) == "61" && textlen == 11))
                 {
-                    if (new MobilePattern().IsMatch(text))             parent.SelectedContact.Mobile = text;
-                    else if (new DNPattern().IsMatch(text))            parent.SelectedContact.DN = text;
+                    if (CustomerContact.MobilePattern.IsMatch(text))        parent.SelectedContact.Mobile = text;
+                    else if (CustomerContact.DNPattern.IsMatch(text))       parent.SelectedContact.DN = text;
                 }
-                else if (new CMBSPattern().IsMatch(text))              parent.SelectedContact.CMBS = text;
-                else if (new ICONPattern().IsMatch(text))              parent.SelectedContact.ICON = text;
-                else                                                   parent.SelectedContact.Note += text;
+                else if (CustomerContact.CMBSPattern.IsMatch(text))         parent.SelectedContact.CMBS = text;
+                else if (CustomerContact.ICONPattern.IsMatch(text))         parent.SelectedContact.ICON = text;
+                else                                                        parent.SelectedContact.Note += text;
             }
             else if (new AlphaPattern().IsMatch(text))
             {
-                if (new NamePattern().IsMatch(text))                   parent.SelectedContact.Name = text;
-                else if (new UsernameLowerPattern().IsMatch(text) 
-                      || new UsernameUpperPattern().IsMatch(text))     parent.SelectedContact.Username = text;
-                else                                                   parent.SelectedContact.Note += text;
+                if (NameModel.Pattern.IsMatch(text))                        parent.SelectedContact.Name = text;
+                else if (CustomerContact.UNLowerPattern.IsMatch(text)
+                      || CustomerContact.UNLowerPattern.IsMatch(text))      parent.SelectedContact.Username = text;
+                else                                                        parent.SelectedContact.Note += text;
             }
             else
             {
                 if (Char.IsLetter(text, 0))
                 {
-                    if (new BRASPattern().IsMatch(text))               parent.SelectedContact.Service.Bras = text;
-                    else if (new CommonNBNPattern().IsMatch(text))     parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
-                    else if (new UsernameLowerPattern().IsMatch(text) 
-                        ||   new UsernameUpperPattern().IsMatch(text)) parent.SelectedContact.Username = text;
-                    else if (new Address2Pattern().IsMatch(text))       parent.SelectedContact.Address.Address = text;
+                    if (new BRASPattern().IsMatch(text))                    parent.SelectedContact.Service.Bras = text;
+                    else if (new CommonNBNPattern().IsMatch(text))          parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
+                    else if (CustomerContact.UNLowerPattern.IsMatch(text)
+                        ||   CustomerContact.UNLowerPattern.IsMatch(text))  parent.SelectedContact.Username = text;
+                    else if (ContactAddress.Pattern.IsMatch(text))          parent.SelectedContact.Address.Address = text;
                 }
                 else
                 {
-                    if (new NodePattern().IsMatch(text))               parent.SelectedContact.Service.Node = text;
-                    else if (new CMBSPattern().IsMatch(text))          parent.SelectedContact.CMBS = text;
-                    else if (new Address2Pattern().IsMatch(text))       parent.SelectedContact.Address.Address = text;
-                    else                                               parent.SelectedContact.Note += text;
+                    if (new NodePattern().IsMatch(text))                    parent.SelectedContact.Service.Node = text;
+                    else if (CustomerContact.CMBSPattern.IsMatch(text))     parent.SelectedContact.CMBS = text;
+                    else if (ContactAddress.Pattern.IsMatch(text))          parent.SelectedContact.Address.Address = text;
+                    else                                                    parent.SelectedContact.Note += text;
                 }      
             }
         }

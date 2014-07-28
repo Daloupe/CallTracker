@@ -84,16 +84,6 @@
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <None Include="DataSets\ServicesDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServicesDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DataSets\ServicesDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ServicesDataSet.xsd</DependentUpon>
-    </None>
     <Compile Include="DataSets\ServicesDataSet2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -111,6 +101,7 @@
     <Compile Include="Source\Helpers\IFMSAutoFill.cs" />
     <Compile Include="Source\Helpers\Type\ListHelpers.cs" />
     <Compile Include="Source\Helpers\Type\StringHelpers.cs" />
+    <Compile Include="Source\Model\Contact\NameModel.cs" />
     <Compile Include="Source\Model\EnumData.cs" />
     <Compile Include="Source\Model\Settings\AROModel.cs" />
     <Compile Include="Source\Model\Settings\IEInteractBase.cs" />

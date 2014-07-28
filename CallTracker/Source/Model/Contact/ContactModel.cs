@@ -7,8 +7,10 @@ using System.Reflection;
 
 using PropertyChanged;
 using ProtoBuf;
+using Utilities.RegularExpressions;
 
 using CallTracker.View;
+
 namespace CallTracker.Model
 {
     [ProtoContract]
@@ -16,6 +18,13 @@ namespace CallTracker.Model
     public class CustomerContact : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public static DNPattern DNPattern = new DNPattern();
+        public static ICONPattern ICONPattern = new ICONPattern();
+        public static CMBSPattern CMBSPattern = new CMBSPattern();
+        public static MobilePattern MobilePattern = new MobilePattern();
+        public static UsernameUpperPattern UNUpperPattern = new UsernameUpperPattern();
+        public static UsernameLowerPattern UNLowerPattern = new UsernameLowerPattern();
 
         public static List<DataBindType> PropertyStrings = new List<DataBindType>()
             {
@@ -167,6 +176,7 @@ namespace CallTracker.Model
                 currentObject.SetValue(nestedObject, value, null);
         }
     }
+
     //[ImplementPropertyChanged]
     //public class ContactsList : List<CustomerContact>
     //{

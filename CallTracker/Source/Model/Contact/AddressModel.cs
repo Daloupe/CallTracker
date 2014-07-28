@@ -19,6 +19,8 @@ namespace CallTracker.Model
     [ProtoContract]
     public class ContactAddress
     {
+        public static Address2Pattern Pattern = new Address2Pattern();
+
         [ProtoMember(1)]
         public string PropertyType { get; set; }
         [ProtoMember(2)]
@@ -55,8 +57,7 @@ namespace CallTracker.Model
                 State = String.Empty;
                 Postcode = String.Empty;
 
-                Address2Pattern rgxAddress = new Address2Pattern();
-                Match AddressMatch = rgxAddress.Match(value);
+                Match AddressMatch = Pattern.Match(value);
                 //if (AddressMatch.Success == false)
                 //    return;
                 PropertyType = AddressMatch.Groups[1].Value;
