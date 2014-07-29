@@ -125,6 +125,9 @@
     <Compile Include="Source\View\Controls\DataControlBase.Designer.cs">
       <DependentUpon>DataControlBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\View\Controls\ContextualToolStripMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\View\Controls\PanelHeading.cs">
       <SubType>UserControl</SubType>
     </Compile>

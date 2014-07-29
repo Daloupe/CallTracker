@@ -81,6 +81,8 @@ namespace CallTracker.View
             editContact.BringToFront();
             editContact.Visible = true;
 
+            transfersToolStripMenuItem.UpdateObject = new TransfersMenuItem(ServicesStore.servicesDataSet);
+
             versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
 
             HotKeys = new HotkeyController(this);
@@ -169,7 +171,7 @@ namespace CallTracker.View
             VisibleSetting = null;
         }
 
-        private void settingMenuItem_Click(object sender, EventArgs e)
+        public void settingMenuItem_Click(object sender, EventArgs e)
         {      
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
             
@@ -199,41 +201,18 @@ namespace CallTracker.View
 
         private void toolStripServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ToolStripComboBox input = (ToolStripComboBox)sender;
-            input.GetCurrentParent().Focus();
+            ((ToolStripComboBox)sender).GetCurrentParent().Focus();
+            foreach (ContextualToolStripMenuItem item in resourcesToolStripMenuItem.DropDownItems.OfType<ContextualToolStripMenuItem>())
+                item.dirty = true;
+        }
 
-            if (input.Text == "NONE")
-                return;
-
-            var queries = from a in ServicesStore.servicesDataSet.Departments
-                          join b in ServicesStore.servicesDataSet.DepartmentNames on a.DepartmentNameId equals b.Id
-                          join c in ServicesStore.servicesDataSet.Services on a.ServiceId equals c.Id
-                          where c.Name == input.Text
-                          select new
-                          {
-                              a.InternalContact,
-                              a.ExternalContact,
-                              a.ContactHours,
-                              b.NameShort
-                          };
-
-            foreach (var query in queries)
+        private void resourcesToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
+        {
+            ContextualToolStripMenuItem menuItem = (ContextualToolStripMenuItem)sender;
+            if (menuItem.dirty == true)
             {
-                StringBuilder sb = new StringBuilder();
-                sb.Append("Internal: ");
-                sb.AppendLine(query.InternalContact.ToString());
-                sb.Append("External: ");
-                sb.AppendLine(query.ExternalContact.ToString());
-                sb.AppendLine(query.ContactHours);
-
-                string menu = StringHelpers.JoinCamelCase(query.NameShort) + "ToolStripMenuItem";
-
-                foreach (ToolStripMenuItem item in transfersToolStripMenuItem.DropDownItems.OfType<ToolStripMenuItem>())
-                    if (item.Name == menu)
-                    {
-                        item.ToolTipText = sb.ToString();
-                        item.Tag = query.InternalContact.ToString();
-                    }
+                menuItem.UpdateMenu(toolStripServiceSelector.Text);
+                menuItem.dirty = false;
             }
         }
 
@@ -325,6 +304,6 @@ namespace CallTracker.View
                 cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
                 return cp;
             }
-        }        
+        } 
     }
 }

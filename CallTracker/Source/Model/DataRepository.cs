@@ -209,6 +209,7 @@ namespace CallTracker.Model
 
         public void CreateNewServices()
         {
+            //string s = servicesDataSet.Departments[0].ServicesRow.Name.IFMSCode;
             foreach (string name in Enum.GetNames(typeof(ProductCodes)))
             {
                 ServicesDataSet.ProductCodesRow newRow = servicesDataSet.ProductCodes.NewProductCodesRow();
@@ -293,6 +294,5 @@ namespace CallTracker.Model
             //Console.WriteLine(smth.Name);
             //Console.WriteLine("id: {0}, name:{1}, service:{2}", servicesDataSet.Relations[0].RelationName, deptQuery.Name ,servicesDataSet.Services.First(x => x.ServiceID == deptQuery.ServiceID).Name);
         }
-
     }
 }

@@ -380,6 +380,28 @@ namespace CallTracker.View
             if(e.Button == System.Windows.Forms.MouseButtons.Right)
                 _DialContextMenu.Tag = ((TextBox)sender).Text;
         }
+
+        private void _PRMenu_Clicked(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                if (((TextBox)sender).Name == "_NPR")
+                {
+                    dispatchToolStripMenuItem.Enabled = false;
+                    stapleToParentToolStripMenuItem.Enabled = false;
+                    clearAndCloseToolStripMenuItem.Enabled = false;
+                }
+                else
+                {
+                    dispatchToolStripMenuItem.Enabled = true;
+                    stapleToParentToolStripMenuItem.Enabled = true;
+                    clearAndCloseToolStripMenuItem.Enabled = true;
+                }
+        }
+
+        private void callHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainForm.settingMenuItem_Click(MainForm.callHistoryToolStripMenuItem, e);
+        }
     }
 
     public class EnumList

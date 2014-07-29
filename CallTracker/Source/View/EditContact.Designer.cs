@@ -35,6 +35,12 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.HfcPanel = new System.Windows.Forms.Panel();
             this._PR = new CallTracker.View.BorderedTextBox();
+            this._PRContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.viewPRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.dispatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stapleToParentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearAndCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -61,6 +67,8 @@
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this._CallHistoryContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.callHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
@@ -104,11 +112,13 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.HfcPanel.SuspendLayout();
+            this._PRContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
             this._ServiceMenu.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            this._CallHistoryContextMenu.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this._DialContextMenu.SuspendLayout();
             this.ServiceTypePanel.SuspendLayout();
@@ -207,6 +217,7 @@
             // 
             this._PR.BorderColor = System.Drawing.Color.Gray;
             this._PR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._PR.ContextMenuStrip = this._PRContextMenu;
             this._PR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._PR.Font = new System.Drawing.Font("Verdana", 7F);
             this._PR.Location = new System.Drawing.Point(5, 148);
@@ -215,6 +226,47 @@
             this._PR.Size = new System.Drawing.Size(80, 19);
             this._PR.TabIndex = 48;
             this._PR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._PR.MouseDown += new System.Windows.Forms.MouseEventHandler(this._PRMenu_Clicked);
+            // 
+            // _PRContextMenu
+            // 
+            this._PRContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewPRToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.dispatchToolStripMenuItem,
+            this.stapleToParentToolStripMenuItem,
+            this.clearAndCloseToolStripMenuItem});
+            this._PRContextMenu.Name = "_PRContextMenu";
+            this._PRContextMenu.Size = new System.Drawing.Size(153, 98);
+            // 
+            // viewPRToolStripMenuItem
+            // 
+            this.viewPRToolStripMenuItem.Name = "viewPRToolStripMenuItem";
+            this.viewPRToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewPRToolStripMenuItem.Text = "View PR";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // dispatchToolStripMenuItem
+            // 
+            this.dispatchToolStripMenuItem.Name = "dispatchToolStripMenuItem";
+            this.dispatchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dispatchToolStripMenuItem.Text = "Dispatch";
+            // 
+            // stapleToParentToolStripMenuItem
+            // 
+            this.stapleToParentToolStripMenuItem.Name = "stapleToParentToolStripMenuItem";
+            this.stapleToParentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stapleToParentToolStripMenuItem.Text = "Staple to Parent";
+            // 
+            // clearAndCloseToolStripMenuItem
+            // 
+            this.clearAndCloseToolStripMenuItem.Name = "clearAndCloseToolStripMenuItem";
+            this.clearAndCloseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearAndCloseToolStripMenuItem.Text = "Clear and Close";
             // 
             // customerContactsBindingSource
             // 
@@ -329,6 +381,7 @@
             // 
             this._NPR.BorderColor = System.Drawing.Color.Gray;
             this._NPR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._NPR.ContextMenuStrip = this._PRContextMenu;
             this._NPR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.NPR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._NPR.Font = new System.Drawing.Font("Verdana", 7F);
             this._NPR.Location = new System.Drawing.Point(95, 148);
@@ -337,6 +390,7 @@
             this._NPR.Size = new System.Drawing.Size(80, 19);
             this._NPR.TabIndex = 36;
             this._NPR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._NPR.MouseDown += new System.Windows.Forms.MouseEventHandler(this._PRMenu_Clicked);
             // 
             // label22
             // 
@@ -471,6 +525,7 @@
             this.bindingNavigator1.AutoSize = false;
             this.bindingNavigator1.BackColor = System.Drawing.Color.LightGray;
             this.bindingNavigator1.BindingSource = this.customerContactsBindingSource;
+            this.bindingNavigator1.ContextMenuStrip = this._CallHistoryContextMenu;
             this.bindingNavigator1.CountItem = null;
             this.bindingNavigator1.DeleteItem = null;
             this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -497,6 +552,20 @@
             this.bindingNavigator1.Size = new System.Drawing.Size(331, 29);
             this.bindingNavigator1.TabIndex = 3;
             this.bindingNavigator1.Text = "bindingNavigator1";
+            // 
+            // _CallHistoryContextMenu
+            // 
+            this._CallHistoryContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.callHistoryToolStripMenuItem});
+            this._CallHistoryContextMenu.Name = "_CallHistoryContextMenu";
+            this._CallHistoryContextMenu.Size = new System.Drawing.Size(153, 48);
+            // 
+            // callHistoryToolStripMenuItem
+            // 
+            this.callHistoryToolStripMenuItem.Name = "callHistoryToolStripMenuItem";
+            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.callHistoryToolStripMenuItem.Text = "Call History";
+            this.callHistoryToolStripMenuItem.Click += new System.EventHandler(this.callHistoryToolStripMenuItem_Click);
             // 
             // bindingNavigatorMovePreviousItem
             // 
@@ -702,19 +771,19 @@
             this.dialToolStripMenuItem,
             this.transferToolStripMenuItem});
             this._DialContextMenu.Name = "_DialContextMenu";
-            this._DialContextMenu.Size = new System.Drawing.Size(118, 48);
+            this._DialContextMenu.Size = new System.Drawing.Size(116, 48);
             // 
             // dialToolStripMenuItem
             // 
             this.dialToolStripMenuItem.Name = "dialToolStripMenuItem";
-            this.dialToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.dialToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.dialToolStripMenuItem.Text = "Dial";
             this.dialToolStripMenuItem.Click += new System.EventHandler(this._Dial_click);
             // 
             // transferToolStripMenuItem
             // 
             this.transferToolStripMenuItem.Name = "transferToolStripMenuItem";
-            this.transferToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.transferToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.transferToolStripMenuItem.Text = "Transfer";
             this.transferToolStripMenuItem.Click += new System.EventHandler(this._Transfer_click);
             // 
@@ -985,12 +1054,14 @@
             this.splitContainer2.ResumeLayout(false);
             this.HfcPanel.ResumeLayout(false);
             this.HfcPanel.PerformLayout();
+            this._PRContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
             this._ServiceMenu.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            this._CallHistoryContextMenu.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this._DialContextMenu.ResumeLayout(false);
@@ -1070,5 +1141,13 @@
         private System.Windows.Forms.ContextMenuStrip _DialContextMenu;
         private System.Windows.Forms.ToolStripMenuItem dialToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transferToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip _PRContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem viewPRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem dispatchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stapleToParentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearAndCloseToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip _CallHistoryContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem callHistoryToolStripMenuItem;
     }
 }

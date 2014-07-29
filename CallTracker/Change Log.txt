@@ -1,4 +1,11 @@
-﻿0.28.3
+﻿0.28.4
+| Updated Database with correct relations.
+| Created ContextualToolTipMenuItem type which has an Update method to changes it's items based on whether it's dirty or not.
+| Created UpdateObject TransferMenuItem and updated query code to reflect database changes - no joins, just a simple query.
+
+0.28.3
+| Added PR Context Menu.
+| Added Call Navigation Context Menu to bring up Call History.
 
 0.28.2
 | Changes to Name weren't updating ICONNote.
@@ -33,7 +40,6 @@ Under The Hood
 		- Symptoms.
 		- Outcomes.
 		- Equipment.
- - Right click Call Navigation to bring up Call History.
  - Add Outcomes tooltip.
  - Add status bar to display warnings.
  - Key Command Help extends window height.
