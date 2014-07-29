@@ -45,11 +45,15 @@
             this.versionStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resourcesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripServiceSelector = new System.Windows.Forms.ToolStripComboBox();
-            this.ratecodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LATRatecodeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LatRatecodeSearch = new System.Windows.Forms.ToolStripTextBox();
-            this.oNCToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.dTVToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.transfersToolStripMenuItem = new ContextualToolStripMenuItem();
+            this.CustCareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FaultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RetentionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.dispatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nIMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.clearanceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -65,15 +69,11 @@
             this.clearanceCodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
             this.MenuPanel = new System.Windows.Forms.Panel();
-            this.transfersToolStripMenuItem = new ContextualToolStripMenuItem();
-            this.CustCareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FaultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.RetentionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.dispatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nIMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ratecodesToolStripMenuItem = new ContextualToolStripMenuItem();
+            this.LATRatecodeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LatRatecodeSearch = new System.Windows.Forms.ToolStripTextBox();
+            this.oNCToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.dTVToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this._MainMenu.SuspendLayout();
             this.AppPanel.SuspendLayout();
             this.MenuPanel.SuspendLayout();
@@ -238,55 +238,76 @@
             this.toolStripServiceSelector.Size = new System.Drawing.Size(121, 20);
             this.toolStripServiceSelector.SelectedIndexChanged += new System.EventHandler(this.toolStripServiceSelector_SelectedIndexChanged);
             // 
-            // ratecodesToolStripMenuItem
+            // transfersToolStripMenuItem
             // 
-            this.ratecodesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.LATRatecodeMenuItem,
-            this.oNCToolStripMenuItem1,
-            this.dTVToolStripMenuItem1});
-            this.ratecodesToolStripMenuItem.Name = "ratecodesToolStripMenuItem";
-            this.ratecodesToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ratecodesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.ratecodesToolStripMenuItem.Text = "Ratecodes";
+            this.transfersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CustCareToolStripMenuItem,
+            this.FaultsToolStripMenuItem,
+            this.SalesToolStripMenuItem,
+            this.FSToolStripMenuItem,
+            this.RetentionToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.dispatchToolStripMenuItem,
+            this.nIMToolStripMenuItem});
+            this.transfersToolStripMenuItem.Name = "transfersToolStripMenuItem";
+            this.transfersToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.transfersToolStripMenuItem.Text = "Numbers To Know";
+            this.transfersToolStripMenuItem.UpdateObject = null;
+            this.transfersToolStripMenuItem.DropDownOpening += new System.EventHandler(this.resourcesToolStripMenuItem_DropDownOpening);
             // 
-            // LATRatecodeMenuItem
+            // CustCareToolStripMenuItem
             // 
-            this.LATRatecodeMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.LatRatecodeSearch});
-            this.LATRatecodeMenuItem.Name = "LATRatecodeMenuItem";
-            this.LATRatecodeMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.LATRatecodeMenuItem.Text = "LAT/LIP";
-            this.LATRatecodeMenuItem.CheckedChanged += new System.EventHandler(this.LATRatecodeMenuItem_CheckedChanged_1);
-            this.LATRatecodeMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            this.CustCareToolStripMenuItem.Name = "CustCareToolStripMenuItem";
+            this.CustCareToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.CustCareToolStripMenuItem.Text = "Cust Care";
+            this.CustCareToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
             // 
-            // LatRatecodeSearch
+            // FaultsToolStripMenuItem
             // 
-            this.LatRatecodeSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.LatRatecodeSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.LatRatecodeSearch.AutoSize = false;
-            this.LatRatecodeSearch.AutoToolTip = true;
-            this.LatRatecodeSearch.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.LatRatecodeSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.LatRatecodeSearch.Font = new System.Drawing.Font("Verdana", 7F);
-            this.LatRatecodeSearch.HideSelection = false;
-            this.LatRatecodeSearch.MaxLength = 5;
-            this.LatRatecodeSearch.Name = "LatRatecodeSearch";
-            this.LatRatecodeSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.LatRatecodeSearch.Size = new System.Drawing.Size(100, 19);
-            this.LatRatecodeSearch.ToolTipText = "Ratecode Search";
-            this.LatRatecodeSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyDown);
+            this.FaultsToolStripMenuItem.Name = "FaultsToolStripMenuItem";
+            this.FaultsToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.FaultsToolStripMenuItem.Text = "Tech Support";
+            this.FaultsToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
             // 
-            // oNCToolStripMenuItem1
+            // SalesToolStripMenuItem
             // 
-            this.oNCToolStripMenuItem1.Name = "oNCToolStripMenuItem1";
-            this.oNCToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.oNCToolStripMenuItem1.Text = "ONC";
+            this.SalesToolStripMenuItem.Name = "SalesToolStripMenuItem";
+            this.SalesToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.SalesToolStripMenuItem.Text = "Sales";
+            this.SalesToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
             // 
-            // dTVToolStripMenuItem1
+            // FSToolStripMenuItem
             // 
-            this.dTVToolStripMenuItem1.Name = "dTVToolStripMenuItem1";
-            this.dTVToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
-            this.dTVToolStripMenuItem1.Text = "DTV";
+            this.FSToolStripMenuItem.Name = "FSToolStripMenuItem";
+            this.FSToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.FSToolStripMenuItem.Text = "Financial Services";
+            this.FSToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
+            // 
+            // RetentionToolStripMenuItem
+            // 
+            this.RetentionToolStripMenuItem.Name = "RetentionToolStripMenuItem";
+            this.RetentionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.RetentionToolStripMenuItem.Text = "Retention";
+            this.RetentionToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
+            // 
+            // dispatchToolStripMenuItem
+            // 
+            this.dispatchToolStripMenuItem.Name = "dispatchToolStripMenuItem";
+            this.dispatchToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.dispatchToolStripMenuItem.Text = "Dispatch";
+            this.dispatchToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
+            // 
+            // nIMToolStripMenuItem
+            // 
+            this.nIMToolStripMenuItem.Name = "nIMToolStripMenuItem";
+            this.nIMToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.nIMToolStripMenuItem.Text = "NIM";
+            this.nIMToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -366,7 +387,7 @@
             // 
             this.toolStripTextBox2.AutoToolTip = true;
             this.toolStripTextBox2.Name = "toolStripTextBox2";
-            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 21);
+            this.toolStripTextBox2.Size = new System.Drawing.Size(100, 23);
             this.toolStripTextBox2.ToolTipText = "Ratecode Search";
             // 
             // toolStripMenuItem4
@@ -404,75 +425,54 @@
             this.MenuPanel.TabIndex = 27;
             this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
-            // transfersToolStripMenuItem
+            // ratecodesToolStripMenuItem
             // 
-            this.transfersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CustCareToolStripMenuItem,
-            this.FaultsToolStripMenuItem,
-            this.SalesToolStripMenuItem,
-            this.FSToolStripMenuItem,
-            this.RetentionToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.dispatchToolStripMenuItem,
-            this.nIMToolStripMenuItem});
-            this.transfersToolStripMenuItem.Name = "transfersToolStripMenuItem";
-            this.transfersToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.transfersToolStripMenuItem.Text = "Numbers To Know";
-            this.transfersToolStripMenuItem.DropDownOpening += new System.EventHandler(this.resourcesToolStripMenuItem_DropDownOpening);
+            this.ratecodesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LATRatecodeMenuItem,
+            this.oNCToolStripMenuItem1,
+            this.dTVToolStripMenuItem1});
+            this.ratecodesToolStripMenuItem.Name = "ratecodesToolStripMenuItem";
+            this.ratecodesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.ratecodesToolStripMenuItem.Text = "Ratecodes";
+            this.ratecodesToolStripMenuItem.UpdateObject = null;
             // 
-            // CustCareToolStripMenuItem
+            // LATRatecodeMenuItem
             // 
-            this.CustCareToolStripMenuItem.Name = "CustCareToolStripMenuItem";
-            this.CustCareToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.CustCareToolStripMenuItem.Text = "Cust Care";
-            this.CustCareToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
+            this.LATRatecodeMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LatRatecodeSearch});
+            this.LATRatecodeMenuItem.Name = "LATRatecodeMenuItem";
+            this.LATRatecodeMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.LATRatecodeMenuItem.Text = "LAT/LIP";
+            this.LATRatecodeMenuItem.CheckedChanged += new System.EventHandler(this.LATRatecodeMenuItem_CheckedChanged);
+            this.LATRatecodeMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
-            // FaultsToolStripMenuItem
+            // LatRatecodeSearch
             // 
-            this.FaultsToolStripMenuItem.Name = "FaultsToolStripMenuItem";
-            this.FaultsToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.FaultsToolStripMenuItem.Text = "Tech Support";
-            this.FaultsToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
+            this.LatRatecodeSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.LatRatecodeSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.LatRatecodeSearch.AutoSize = false;
+            this.LatRatecodeSearch.AutoToolTip = true;
+            this.LatRatecodeSearch.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.LatRatecodeSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.LatRatecodeSearch.Font = new System.Drawing.Font("Verdana", 7F);
+            this.LatRatecodeSearch.HideSelection = false;
+            this.LatRatecodeSearch.MaxLength = 5;
+            this.LatRatecodeSearch.Name = "LatRatecodeSearch";
+            this.LatRatecodeSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.LatRatecodeSearch.Size = new System.Drawing.Size(100, 19);
+            this.LatRatecodeSearch.ToolTipText = "Ratecode Search";
             // 
-            // SalesToolStripMenuItem
+            // oNCToolStripMenuItem1
             // 
-            this.SalesToolStripMenuItem.Name = "SalesToolStripMenuItem";
-            this.SalesToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.SalesToolStripMenuItem.Text = "Sales";
-            this.SalesToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
+            this.oNCToolStripMenuItem1.Name = "oNCToolStripMenuItem1";
+            this.oNCToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.oNCToolStripMenuItem1.Text = "ONC";
             // 
-            // FSToolStripMenuItem
+            // dTVToolStripMenuItem1
             // 
-            this.FSToolStripMenuItem.Name = "FSToolStripMenuItem";
-            this.FSToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.FSToolStripMenuItem.Text = "Financial Services";
-            this.FSToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
-            // 
-            // RetentionToolStripMenuItem
-            // 
-            this.RetentionToolStripMenuItem.Name = "RetentionToolStripMenuItem";
-            this.RetentionToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.RetentionToolStripMenuItem.Text = "Retention";
-            this.RetentionToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
-            // 
-            // dispatchToolStripMenuItem
-            // 
-            this.dispatchToolStripMenuItem.Name = "dispatchToolStripMenuItem";
-            this.dispatchToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.dispatchToolStripMenuItem.Text = "Dispatch";
-            this.dispatchToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
-            // 
-            // nIMToolStripMenuItem
-            // 
-            this.nIMToolStripMenuItem.Name = "nIMToolStripMenuItem";
-            this.nIMToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.nIMToolStripMenuItem.Text = "NIM";
-            this.nIMToolStripMenuItem.Click += new System.EventHandler(this.transfer_Click);
+            this.dTVToolStripMenuItem1.Name = "dTVToolStripMenuItem1";
+            this.dTVToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.dTVToolStripMenuItem1.Text = "DTV";
             // 
             // Main
             // 
@@ -512,10 +512,6 @@
         private System.Windows.Forms.Panel AppPanel;
         private System.Windows.Forms.Panel MenuPanel;
         private System.Windows.Forms.ToolStripMenuItem resourcesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ratecodesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem LATRatecodeMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem oNCToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem dTVToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem linksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contextMenuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
@@ -529,7 +525,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
-        private System.Windows.Forms.ToolStripTextBox LatRatecodeSearch;
         private System.Windows.Forms.ToolStripComboBox toolStripServiceSelector;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
@@ -549,5 +544,10 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem dispatchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nIMToolStripMenuItem;
+        private ContextualToolStripMenuItem ratecodesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LATRatecodeMenuItem;
+        private System.Windows.Forms.ToolStripTextBox LatRatecodeSearch;
+        private System.Windows.Forms.ToolStripMenuItem oNCToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem dTVToolStripMenuItem1;
     }
 }

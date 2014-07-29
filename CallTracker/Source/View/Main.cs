@@ -22,7 +22,6 @@ namespace CallTracker.View
     [ImplementPropertyChanged]
     public partial class Main : Form
     {
-        internal static ICONNoteGenerator NoteGen = new ICONNoteGenerator();
         public static string SelectedMenuProduct = String.Empty;
 
         public Point ControlOffset = new Point(1, 18);
@@ -32,6 +31,8 @@ namespace CallTracker.View
         internal UserDataStore DataStore = new UserDataStore();
         internal ResourceData ResourceStore = new ResourceData();
         internal ServicesData ServicesStore = new ServicesData();
+
+        internal static ICONNoteGenerator NoteGen;
 
         internal EditLogins editLogins;
         internal EditGridLinks editGridLinks;
@@ -85,6 +86,7 @@ namespace CallTracker.View
 
             versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
 
+            NoteGen = new ICONNoteGenerator(ServicesStore.servicesDataSet);
             HotKeys = new HotkeyController(this);
         }
 
@@ -209,11 +211,7 @@ namespace CallTracker.View
         private void resourcesToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
             ContextualToolStripMenuItem menuItem = (ContextualToolStripMenuItem)sender;
-            if (menuItem.dirty == true)
-            {
-                menuItem.UpdateMenu(toolStripServiceSelector.Text);
-                menuItem.dirty = false;
-            }
+            menuItem.UpdateMenu(toolStripServiceSelector.Text);
         }
 
         public void transfer_Click(object sender, EventArgs e)

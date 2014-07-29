@@ -103,6 +103,14 @@ namespace CallTracker.View
             customerContactsBindingSource.DataSource = DataStore.Contacts;
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
 
+            if (customerContactsBindingSource.Count == 0)
+            {
+                flowLayoutPanel1.Enabled = false;
+                ServiceTypePanel.Enabled = false;
+                FaultPanel.Enabled = false;
+                _Note.Enabled = false;
+            }
+
             _Severity.DataSource = Enum.GetValues(typeof(FaultSeverity));
             _Outcome.DataSource = Enum.GetValues(typeof(Outcomes));
             _BookingTimeSlot.DataSource = Enum.GetValues(typeof(BookingTimeslot));
@@ -125,13 +133,36 @@ namespace CallTracker.View
         // Contact Navigator ////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
-        {        
-            MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
-            MainForm.SelectedContact = DataStore.Contacts[customerContactsBindingSource.Position];
-            MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
+        {
+            if (customerContactsBindingSource.Count == 0)
+            {
+                flowLayoutPanel1.Enabled = false;
+                ServiceTypePanel.Enabled = false;
+                FaultPanel.Enabled = false;
+                _Note.Enabled = false;
 
-            CurrentService = ServiceViews[MainForm.SelectedContact.Fault.AffectedServiceType];
+                _Note.DataBindings.Clear();
 
+                CurrentService = ServiceViews[ServiceTypes.NONE];
+            }
+            else
+            {
+                flowLayoutPanel1.Enabled = true;
+                ServiceTypePanel.Enabled = true;
+                FaultPanel.Enabled = true;
+                _Note.Enabled = true;
+
+                MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
+                MainForm.SelectedContact = DataStore.Contacts[customerContactsBindingSource.Position];
+                MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
+
+                if(_Note.DataBindings.Count == 0)
+                    foreach (MenuItem item in _Note.ContextMenu.MenuItems)
+                        if (item.Checked == true)
+                            _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, item.Tag.ToString(), true, DataSourceUpdateMode.OnPropertyChanged));
+
+                CurrentService = ServiceViews[MainForm.SelectedContact.Fault.AffectedServiceType];
+            }
             //_Note.DataBindings.Clear();
             //_Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, "Note", true, DataSourceUpdateMode.OnPropertyChanged));
         }
@@ -155,7 +186,7 @@ namespace CallTracker.View
 
         public void DeleteCalls()
         {
-            DataStore.Contacts.Add(new CustomerContact(1));
+            //DataStore.Contacts.Add(new CustomerContact(1));
             customerContactsBindingSource.DataSource = DataStore.Contacts;
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
         }

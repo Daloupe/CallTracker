@@ -44,7 +44,7 @@ namespace CallTracker.Helpers
                 // public static string FollowPropertyPath(object value, string path, string altPath)
         private static Main parent;
         public static IE browser;
-        public static string PreviousIEMatch;
+        //public static string PreviousIEMatch;
         private static HotKeyManager HotKeyManager;
         private static PropertyDescriptorCollection props;
 
@@ -199,7 +199,8 @@ namespace CallTracker.Helpers
 
             if (query != null)
                 query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data, query.AltData));
-            PreviousIEMatch = browser.Title;
+
+            browser.Dispose();
         }
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
@@ -240,6 +241,8 @@ namespace CallTracker.Helpers
 
             parent.editSmartPasteBinds.SelectQuery(ElementMatch);
             Main.ShowPopupForm<BindSmartPasteForm>().SelectQuery(ElementMatch);
+
+            browser.Dispose();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -265,20 +268,11 @@ namespace CallTracker.Helpers
             foreach (PasteBind bind in query)
                 bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, bind.AltData));
 
-            //if(browser.Url.Contains("IFMS"))
-            //{
-            //    IFMSAutofill.Go(parent, url, title);
-            //}
+            if (browser.Url.Contains("http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F001_CreatePR"))
+                IFMSAutofill.Go(parent, url, title);
 
-            PreviousIEMatch = browser.Title;
-            //PasteBind selector = new PasteBind("Google", "https://www.google.com.au/", "Google", browser.Button(Find.ByName("btnG")));
-            //selector.FindByName = true;
-
-            //selector.FindInForm = false;
-            //selector.ClickButton = true;
-            ////browser.NativeDocument.Body.SetFocus(); // set focus befor u click
-            //selector.Paste(browser, "btnG", "gbqfb");
-            
+            //PreviousIEMatch = browser.Title;
+            browser.Dispose();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -316,7 +310,9 @@ namespace CallTracker.Helpers
             query.Paste(browser, query.UsernameElement, query.Username);
             query.Paste(browser, query.PasswordElement, query.Password);
             query.Submit(browser);
-            PreviousIEMatch = browser.Title;
+            //PreviousIEMatch = browser.Title;
+
+            browser.Dispose();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -324,8 +320,9 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void OnSmartCopy(HotkeyPressedEventArgs e)
         {
-            string oldClip = Clipboard.GetText();
-            SendKeys.SendWait("^(c)");
+            //string oldClip = Clipboard.GetText();
+            SendKeys.SendWait("^");
+            SendKeys.SendWait("^c");
             string text = Clipboard.GetText().Trim();
             int textlen = text.Length;
             if (textlen == 0)
@@ -344,13 +341,14 @@ namespace CallTracker.Helpers
                     if (CustomerContact.MobilePattern.IsMatch(text))        parent.SelectedContact.Mobile = text;
                     else if (CustomerContact.DNPattern.IsMatch(text))       parent.SelectedContact.DN = text;
                 }
-                else if (CustomerContact.CMBSPattern.IsMatch(text))         parent.SelectedContact.CMBS = text;
+                else if (CustomerContact.CMBSPattern.IsMatch(text)) parent.SelectedContact.CMBS = text;
                 else if (CustomerContact.ICONPattern.IsMatch(text))         parent.SelectedContact.ICON = text;
+                else if (FaultModel.ITCasePattern.IsMatch(text))            parent.SelectedContact.Fault.ITCase = text;
                 else                                                        parent.SelectedContact.Note += text;
             }
             else if (new AlphaPattern().IsMatch(text))
             {
-                if (NameModel.Pattern.IsMatch(text))                        parent.SelectedContact.Name.Full = text;
+                if (NameModel.Pattern.IsMatch(text))                        parent.SelectedContact.Name = text;
                 else if (CustomerContact.UNLowerPattern.IsMatch(text)
                       || CustomerContact.UNLowerPattern.IsMatch(text))      parent.SelectedContact.Username = text;
                 else                                                        parent.SelectedContact.Note += text;
@@ -399,55 +397,51 @@ namespace CallTracker.Helpers
             if (!Browser.Exists<IE>(Find.By("hwnd", currentHWND)))
                 return false;
 
-            if (PreviousIEMatch != currentHWND)
-            {
-                if (browser != null)
-                    browser.Dispose();
+            //if (PreviousIEMatch != currentHWND)
+            //{
+                //if (browser != null)
+                //    browser.Dispose();
                 browser = Browser.AttachToNoWait<IE>(Find.By("hwnd", currentHWND));
                 browser.AutoClose = false;
-                PreviousIEMatch = currentHWND;
-            }
+                //PreviousIEMatch = currentHWND;
+            //}
 
             return true;
         }
 
         public static bool FindIEByTitle(string _title)
         {
-            //string currentTitle = Regex.Split(_title, " -( Windows)? Internet Explorer")[0];
-            //string currentTitle = Regex.Match(_title, @"(?:[/:\w\.\s]+ - )?([/:\w\.\s]+)(?: - [/:\w\.\s]+)?").Groups[1].Value;
-
             string currentTitle = Regex.Match(_title, @"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?").Groups[1].Value;
 
 
             if (!Browser.Exists<IE>(Find.ByTitle(currentTitle)))
                 return false;
 
-            if (PreviousIEMatch != currentTitle)
-            {
-                if (browser != null)
-                    browser.Dispose();
+            //if (PreviousIEMatch != currentTitle)
+            //{
+                //if (browser != null)
+                //    browser.Dispose();
                 browser = Browser.AttachToNoWait<IE>(Find.ByTitle(currentTitle));
                 browser.AutoClose = false;
-                PreviousIEMatch = currentTitle;
-            }
+                //PreviousIEMatch = currentTitle;
+            //}
 
             return true;
         }
 
         public static bool FindIEByUrl(string _url)
         {
-            //browser = Browser.AttachTo<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase)));
             if (!Browser.Exists<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase))))
                 return false;
 
-            if (PreviousIEMatch != _url)
-            {
-                if (browser != null)
-                    browser.Dispose();
+            //if (PreviousIEMatch != _url)
+            ////{
+            //    if (browser != null)
+            //        browser.Dispose();
                 browser = Browser.AttachToNoWait<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase)));
                 browser.AutoClose = false;
-                PreviousIEMatch = _url;
-            }
+                //PreviousIEMatch = _url;
+            //}
 
             return true;
         }
@@ -465,7 +459,7 @@ namespace CallTracker.Helpers
                 {
                     browser = Browser.AttachToNoWait<IE>(Find.ByTitle(_title));
                     browser.AutoClose = false;
-                    PreviousIEMatch = _title;
+                    //PreviousIEMatch = _title;
                     return true;
                 }
                 catch (WatiN.Core.Exceptions.BrowserNotFoundException)
@@ -488,6 +482,7 @@ namespace CallTracker.Helpers
                 if (CreateNewIE(url, title))
                     return true;
             }
+            browser.Dispose();
             return false;
         }
     }

@@ -34,14 +34,12 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.HfcPanel = new System.Windows.Forms.Panel();
-            this._PR = new CallTracker.View.BorderedTextBox();
             this._PRContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.viewPRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.dispatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stapleToParentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearAndCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this._BookingTimeSlot = new System.Windows.Forms.ComboBox();
@@ -51,7 +49,6 @@
             this.label20 = new System.Windows.Forms.Label();
             this._Severity = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
-            this._NPR = new CallTracker.View.BorderedTextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -78,22 +75,15 @@
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
-            this._Icon = new CallTracker.View.BorderedTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this._Cmbs = new CallTracker.View.BorderedTextBox();
             this._UnLabel = new System.Windows.Forms.Label();
-            this._Username = new CallTracker.View.BorderedTextBox();
             this._DnLabel = new System.Windows.Forms.Label();
-            this._Dn = new CallTracker.View.BorderedTextBox();
             this._DialContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
-            this._Name = new CallTracker.View.BorderedTextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this._Mobile = new CallTracker.View.BorderedTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this._Address = new CallTracker.View.BorderedTextBox();
             this.ServiceTypePanel = new System.Windows.Forms.FlowLayoutPanel();
             this._LAT = new System.Windows.Forms.CheckBox();
             this._LIP = new System.Windows.Forms.CheckBox();
@@ -105,6 +95,18 @@
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this._Note = new System.Windows.Forms.RichTextBox();
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this._ITCase = new System.Windows.Forms.Label();
+            this._Icon = new CallTracker.View.BorderedTextBox();
+            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._Cmbs = new CallTracker.View.BorderedTextBox();
+            this._Username = new CallTracker.View.BorderedTextBox();
+            this._Dn = new CallTracker.View.BorderedTextBox();
+            this._Name = new CallTracker.View.BorderedTextBox();
+            this._Mobile = new CallTracker.View.BorderedTextBox();
+            this._Address = new CallTracker.View.BorderedTextBox();
+            this.borderedTextBox1 = new CallTracker.View.BorderedTextBox();
+            this._PR = new CallTracker.View.BorderedTextBox();
+            this._NPR = new CallTracker.View.BorderedTextBox();
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -113,7 +115,6 @@
             this.splitContainer2.SuspendLayout();
             this.HfcPanel.SuspendLayout();
             this._PRContextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
             this._ServiceMenu.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -124,6 +125,7 @@
             this.ServiceTypePanel.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.MainPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // FaultPanel
@@ -153,7 +155,7 @@
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer1.Panel2MinSize = 0;
             this.splitContainer1.Size = new System.Drawing.Size(275, 330);
-            this.splitContainer1.SplitterDistance = 181;
+            this.splitContainer1.SplitterDistance = 180;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 24;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -180,8 +182,8 @@
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(181, 330);
-            this.splitContainer2.SplitterDistance = 134;
+            this.splitContainer2.Size = new System.Drawing.Size(180, 330);
+            this.splitContainer2.SplitterDistance = 183;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
@@ -191,11 +193,12 @@
             // HfcPanel
             // 
             this.HfcPanel.BackColor = System.Drawing.Color.Moccasin;
+            this.HfcPanel.Controls.Add(this.borderedTextBox1);
+            this.HfcPanel.Controls.Add(this._ITCase);
             this.HfcPanel.Controls.Add(this._PR);
             this.HfcPanel.Controls.Add(this.label7);
             this.HfcPanel.Controls.Add(this.dateTimePicker1);
             this.HfcPanel.Controls.Add(this._BookingTimeSlot);
-            this.HfcPanel.Controls.Add(this.label21);
             this.HfcPanel.Controls.Add(this._Outcome);
             this.HfcPanel.Controls.Add(this._Symptom);
             this.HfcPanel.Controls.Add(this.label20);
@@ -206,27 +209,13 @@
             this.HfcPanel.Controls.Add(this.label8);
             this.HfcPanel.Controls.Add(this.comboBox1);
             this.HfcPanel.Controls.Add(this.label6);
+            this.HfcPanel.Controls.Add(this.label21);
             this.HfcPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.HfcPanel.Location = new System.Drawing.Point(0, -78);
+            this.HfcPanel.Location = new System.Drawing.Point(0, -29);
             this.HfcPanel.Margin = new System.Windows.Forms.Padding(0);
             this.HfcPanel.Name = "HfcPanel";
-            this.HfcPanel.Size = new System.Drawing.Size(181, 212);
+            this.HfcPanel.Size = new System.Drawing.Size(180, 212);
             this.HfcPanel.TabIndex = 22;
-            // 
-            // _PR
-            // 
-            this._PR.BorderColor = System.Drawing.Color.Gray;
-            this._PR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._PR.ContextMenuStrip = this._PRContextMenu;
-            this._PR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._PR.Font = new System.Drawing.Font("Verdana", 7F);
-            this._PR.Location = new System.Drawing.Point(5, 148);
-            this._PR.Name = "_PR";
-            this._PR.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._PR.Size = new System.Drawing.Size(80, 19);
-            this._PR.TabIndex = 48;
-            this._PR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._PR.MouseDown += new System.Windows.Forms.MouseEventHandler(this._PRMenu_Clicked);
             // 
             // _PRContextMenu
             // 
@@ -237,46 +226,41 @@
             this.stapleToParentToolStripMenuItem,
             this.clearAndCloseToolStripMenuItem});
             this._PRContextMenu.Name = "_PRContextMenu";
-            this._PRContextMenu.Size = new System.Drawing.Size(153, 98);
+            this._PRContextMenu.Size = new System.Drawing.Size(158, 98);
             // 
             // viewPRToolStripMenuItem
             // 
             this.viewPRToolStripMenuItem.Name = "viewPRToolStripMenuItem";
-            this.viewPRToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewPRToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.viewPRToolStripMenuItem.Text = "View PR";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(154, 6);
             // 
             // dispatchToolStripMenuItem
             // 
             this.dispatchToolStripMenuItem.Name = "dispatchToolStripMenuItem";
-            this.dispatchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dispatchToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.dispatchToolStripMenuItem.Text = "Dispatch";
             // 
             // stapleToParentToolStripMenuItem
             // 
             this.stapleToParentToolStripMenuItem.Name = "stapleToParentToolStripMenuItem";
-            this.stapleToParentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.stapleToParentToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.stapleToParentToolStripMenuItem.Text = "Staple to Parent";
             // 
             // clearAndCloseToolStripMenuItem
             // 
             this.clearAndCloseToolStripMenuItem.Name = "clearAndCloseToolStripMenuItem";
-            this.clearAndCloseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.clearAndCloseToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
             this.clearAndCloseToolStripMenuItem.Text = "Clear and Close";
-            // 
-            // customerContactsBindingSource
-            // 
-            this.customerContactsBindingSource.AllowNew = true;
-            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(4, 71);
+            this.label7.Location = new System.Drawing.Point(3, 71);
             this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(162, 16);
@@ -290,7 +274,7 @@
             this.dateTimePicker1.CustomFormat = "";
             this.dateTimePicker1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Booking.Date", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(5, 88);
+            this.dateTimePicker1.Location = new System.Drawing.Point(3, 88);
             this.dateTimePicker1.MaxDate = new System.DateTime(2019, 12, 25, 23, 59, 59, 0);
             this.dateTimePicker1.MinDate = new System.DateTime(2012, 5, 30, 0, 0, 0, 0);
             this.dateTimePicker1.Name = "dateTimePicker1";
@@ -360,7 +344,7 @@
             this._Severity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.Severity", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Severity.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._Severity.FormattingEnabled = true;
-            this._Severity.Location = new System.Drawing.Point(6, 187);
+            this._Severity.Location = new System.Drawing.Point(3, 187);
             this._Severity.Name = "_Severity";
             this._Severity.Size = new System.Drawing.Size(35, 20);
             this._Severity.TabIndex = 39;
@@ -377,28 +361,13 @@
             this.label15.Text = "/";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // _NPR
-            // 
-            this._NPR.BorderColor = System.Drawing.Color.Gray;
-            this._NPR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._NPR.ContextMenuStrip = this._PRContextMenu;
-            this._NPR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.NPR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._NPR.Font = new System.Drawing.Font("Verdana", 7F);
-            this._NPR.Location = new System.Drawing.Point(95, 148);
-            this._NPR.Name = "_NPR";
-            this._NPR.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._NPR.Size = new System.Drawing.Size(80, 19);
-            this._NPR.TabIndex = 36;
-            this._NPR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._NPR.MouseDown += new System.Windows.Forms.MouseEventHandler(this._PRMenu_Clicked);
-            // 
             // label22
             // 
             this.label22.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(94, 134);
+            this.label22.Location = new System.Drawing.Point(101, 136);
             this.label22.Margin = new System.Windows.Forms.Padding(0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(82, 13);
+            this.label22.Size = new System.Drawing.Size(70, 13);
             this.label22.TabIndex = 37;
             this.label22.Text = "Network PR:";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -406,7 +375,7 @@
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(5, 114);
+            this.label8.Location = new System.Drawing.Point(3, 114);
             this.label8.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.label8.Name = "label8";
             this.label8.Padding = new System.Windows.Forms.Padding(0, 3, 0, 3);
@@ -431,7 +400,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(7, 134);
+            this.label6.Location = new System.Drawing.Point(6, 136);
             this.label6.Margin = new System.Windows.Forms.Padding(0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 13);
@@ -558,12 +527,12 @@
             this._CallHistoryContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.callHistoryToolStripMenuItem});
             this._CallHistoryContextMenu.Name = "_CallHistoryContextMenu";
-            this._CallHistoryContextMenu.Size = new System.Drawing.Size(153, 48);
+            this._CallHistoryContextMenu.Size = new System.Drawing.Size(136, 26);
             // 
             // callHistoryToolStripMenuItem
             // 
             this.callHistoryToolStripMenuItem.Name = "callHistoryToolStripMenuItem";
-            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.callHistoryToolStripMenuItem.Text = "Call History";
             this.callHistoryToolStripMenuItem.Click += new System.EventHandler(this.callHistoryToolStripMenuItem_Click);
             // 
@@ -608,7 +577,7 @@
             this.toolStripProgressBar1.ForeColor = System.Drawing.Color.DarkSlateGray;
             this.toolStripProgressBar1.Margin = new System.Windows.Forms.Padding(1, 3, 1, 2);
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(148, 21);
+            this.toolStripProgressBar1.Size = new System.Drawing.Size(155, 21);
             this.toolStripProgressBar1.Step = 1;
             this.toolStripProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             // 
@@ -627,8 +596,8 @@
             this.bindingNavigatorAddNewItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(80, 22);
-            this.bindingNavigatorAddNewItem.Text = "Next Call";
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(74, 22);
+            this.bindingNavigatorAddNewItem.Text = "New Call";
             this.bindingNavigatorAddNewItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bindingNavigatorAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
@@ -671,24 +640,6 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "ICON:";
             // 
-            // _Icon
-            // 
-            this._Icon.AccessibleDescription = "accDes";
-            this._Icon.AccessibleName = "accName";
-            this._Icon.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
-            this._Icon.BorderColor = System.Drawing.Color.Gray;
-            this._Icon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Icon.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "ICON", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Icon.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Icon.ForeColor = System.Drawing.SystemColors.WindowText;
-            this._Icon.Location = new System.Drawing.Point(57, 6);
-            this._Icon.Name = "_Icon";
-            this._Icon.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Icon.Size = new System.Drawing.Size(133, 19);
-            this._Icon.TabIndex = 1;
-            this._Icon.Text = "12345678912345";
-            this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -699,20 +650,6 @@
             this.label1.Size = new System.Drawing.Size(42, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "CMBS:";
-            // 
-            // _Cmbs
-            // 
-            this._Cmbs.BorderColor = System.Drawing.Color.Gray;
-            this._Cmbs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Cmbs.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "CMBS", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Cmbs.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Cmbs.Location = new System.Drawing.Point(238, 6);
-            this._Cmbs.Name = "_Cmbs";
-            this._Cmbs.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Cmbs.Size = new System.Drawing.Size(84, 19);
-            this._Cmbs.TabIndex = 2;
-            this._Cmbs.Text = "12345678";
-            this._Cmbs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // _UnLabel
             // 
@@ -725,19 +662,6 @@
             this._UnLabel.TabIndex = 2;
             this._UnLabel.Text = "UN:";
             // 
-            // _Username
-            // 
-            this._Username.BorderColor = System.Drawing.Color.Gray;
-            this._Username.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Username.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Username", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Username.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Username.Location = new System.Drawing.Point(57, 31);
-            this._Username.Name = "_Username";
-            this._Username.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Username.Size = new System.Drawing.Size(133, 19);
-            this._Username.TabIndex = 3;
-            this._Username.Text = "ramachandra.yello16";
-            // 
             // _DnLabel
             // 
             this._DnLabel.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -749,41 +673,25 @@
             this._DnLabel.TabIndex = 0;
             this._DnLabel.Text = "DN:";
             // 
-            // _Dn
-            // 
-            this._Dn.BorderColor = System.Drawing.Color.Gray;
-            this._Dn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Dn.ContextMenuStrip = this._DialContextMenu;
-            this._Dn.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "DN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Dn.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Dn.Location = new System.Drawing.Point(238, 31);
-            this._Dn.Name = "_Dn";
-            this._Dn.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Dn.Size = new System.Drawing.Size(84, 19);
-            this._Dn.TabIndex = 4;
-            this._Dn.Text = "0294813386";
-            this._Dn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._Dn.MouseDown += new System.Windows.Forms.MouseEventHandler(this._DialContextMenu_clicked);
-            // 
             // _DialContextMenu
             // 
             this._DialContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dialToolStripMenuItem,
             this.transferToolStripMenuItem});
             this._DialContextMenu.Name = "_DialContextMenu";
-            this._DialContextMenu.Size = new System.Drawing.Size(116, 48);
+            this._DialContextMenu.Size = new System.Drawing.Size(118, 48);
             // 
             // dialToolStripMenuItem
             // 
             this.dialToolStripMenuItem.Name = "dialToolStripMenuItem";
-            this.dialToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.dialToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.dialToolStripMenuItem.Text = "Dial";
             this.dialToolStripMenuItem.Click += new System.EventHandler(this._Dial_click);
             // 
             // transferToolStripMenuItem
             // 
             this.transferToolStripMenuItem.Name = "transferToolStripMenuItem";
-            this.transferToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.transferToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
             this.transferToolStripMenuItem.Text = "Transfer";
             this.transferToolStripMenuItem.Click += new System.EventHandler(this._Transfer_click);
             // 
@@ -798,18 +706,6 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Name:";
             // 
-            // _Name
-            // 
-            this._Name.BorderColor = System.Drawing.Color.Gray;
-            this._Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Name.Full", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Name.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Name.Location = new System.Drawing.Point(57, 56);
-            this._Name.Name = "_Name";
-            this._Name.Size = new System.Drawing.Size(133, 19);
-            this._Name.TabIndex = 5;
-            this._Name.Text = "Ramachandran Yelloduba";
-            // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -821,22 +717,6 @@
             this.label4.TabIndex = 10;
             this.label4.Text = "Mobile:";
             // 
-            // _Mobile
-            // 
-            this._Mobile.BorderColor = System.Drawing.Color.Gray;
-            this._Mobile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Mobile.ContextMenuStrip = this._DialContextMenu;
-            this._Mobile.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Mobile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Mobile.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Mobile.Location = new System.Drawing.Point(238, 56);
-            this._Mobile.Name = "_Mobile";
-            this._Mobile.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Mobile.Size = new System.Drawing.Size(84, 19);
-            this._Mobile.TabIndex = 6;
-            this._Mobile.Text = "0402758780";
-            this._Mobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._Mobile.MouseDown += new System.Windows.Forms.MouseEventHandler(this._DialContextMenu_clicked);
-            // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -847,19 +727,6 @@
             this.label5.Size = new System.Drawing.Size(51, 17);
             this.label5.TabIndex = 12;
             this.label5.Text = "Address:";
-            // 
-            // _Address
-            // 
-            this._Address.BorderColor = System.Drawing.Color.Gray;
-            this._Address.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Address.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Address.Address", true));
-            this._Address.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Address.Location = new System.Drawing.Point(57, 81);
-            this._Address.Name = "_Address";
-            this._Address.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._Address.Size = new System.Drawing.Size(265, 19);
-            this._Address.TabIndex = 7;
-            this._Address.Text = "16 everterrace st";
             // 
             // ServiceTypePanel
             // 
@@ -1036,6 +903,168 @@
             this.MainPanel.TabIndex = 30;
             this.MainPanel.WrapContents = false;
             // 
+            // _ITCase
+            // 
+            this._ITCase.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._ITCase.Location = new System.Drawing.Point(3, 53);
+            this._ITCase.Margin = new System.Windows.Forms.Padding(0);
+            this._ITCase.Name = "_ITCase";
+            this._ITCase.Size = new System.Drawing.Size(53, 14);
+            this._ITCase.TabIndex = 49;
+            this._ITCase.Text = "IT Case:";
+            this._ITCase.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // _Icon
+            // 
+            this._Icon.AccessibleDescription = "accDes";
+            this._Icon.AccessibleName = "accName";
+            this._Icon.AccessibleRole = System.Windows.Forms.AccessibleRole.Text;
+            this._Icon.BorderColor = System.Drawing.Color.Gray;
+            this._Icon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Icon.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "ICON", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Icon.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Icon.ForeColor = System.Drawing.SystemColors.WindowText;
+            this._Icon.Location = new System.Drawing.Point(57, 6);
+            this._Icon.Name = "_Icon";
+            this._Icon.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Icon.Size = new System.Drawing.Size(133, 19);
+            this._Icon.TabIndex = 1;
+            this._Icon.Text = "12345678912345";
+            this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // customerContactsBindingSource
+            // 
+            this.customerContactsBindingSource.AllowNew = true;
+            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
+            // _Cmbs
+            // 
+            this._Cmbs.BorderColor = System.Drawing.Color.Gray;
+            this._Cmbs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Cmbs.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "CMBS", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Cmbs.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Cmbs.Location = new System.Drawing.Point(238, 6);
+            this._Cmbs.Name = "_Cmbs";
+            this._Cmbs.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Cmbs.Size = new System.Drawing.Size(84, 19);
+            this._Cmbs.TabIndex = 2;
+            this._Cmbs.Text = "12345678";
+            this._Cmbs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // _Username
+            // 
+            this._Username.BorderColor = System.Drawing.Color.Gray;
+            this._Username.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Username.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Username", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Username.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Username.Location = new System.Drawing.Point(57, 31);
+            this._Username.Name = "_Username";
+            this._Username.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Username.Size = new System.Drawing.Size(133, 19);
+            this._Username.TabIndex = 3;
+            this._Username.Text = "ramachandra.yello16";
+            // 
+            // _Dn
+            // 
+            this._Dn.BorderColor = System.Drawing.Color.Gray;
+            this._Dn.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Dn.ContextMenuStrip = this._DialContextMenu;
+            this._Dn.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "DN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Dn.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Dn.Location = new System.Drawing.Point(238, 31);
+            this._Dn.Name = "_Dn";
+            this._Dn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Dn.Size = new System.Drawing.Size(84, 19);
+            this._Dn.TabIndex = 4;
+            this._Dn.Text = "0294813386";
+            this._Dn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._Dn.MouseDown += new System.Windows.Forms.MouseEventHandler(this._DialContextMenu_clicked);
+            // 
+            // _Name
+            // 
+            this._Name.BorderColor = System.Drawing.Color.Gray;
+            this._Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Name", true));
+            this._Name.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Name.Location = new System.Drawing.Point(57, 56);
+            this._Name.Name = "_Name";
+            this._Name.Size = new System.Drawing.Size(133, 19);
+            this._Name.TabIndex = 5;
+            this._Name.Text = "Ramachandran Yelloduba";
+            // 
+            // _Mobile
+            // 
+            this._Mobile.BorderColor = System.Drawing.Color.Gray;
+            this._Mobile.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Mobile.ContextMenuStrip = this._DialContextMenu;
+            this._Mobile.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Mobile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Mobile.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Mobile.Location = new System.Drawing.Point(238, 56);
+            this._Mobile.Name = "_Mobile";
+            this._Mobile.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Mobile.Size = new System.Drawing.Size(84, 19);
+            this._Mobile.TabIndex = 6;
+            this._Mobile.Text = "0402758780";
+            this._Mobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._Mobile.MouseDown += new System.Windows.Forms.MouseEventHandler(this._DialContextMenu_clicked);
+            // 
+            // _Address
+            // 
+            this._Address.BorderColor = System.Drawing.Color.Gray;
+            this._Address.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Address.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Address.Address", true));
+            this._Address.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Address.Location = new System.Drawing.Point(57, 81);
+            this._Address.Name = "_Address";
+            this._Address.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._Address.Size = new System.Drawing.Size(265, 19);
+            this._Address.TabIndex = 7;
+            this._Address.Text = "16 everterrace st";
+            // 
+            // borderedTextBox1
+            // 
+            this.borderedTextBox1.BorderColor = System.Drawing.Color.Gray;
+            this.borderedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.borderedTextBox1.ContextMenuStrip = this._PRContextMenu;
+            this.borderedTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.ITCase", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.borderedTextBox1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.borderedTextBox1.Location = new System.Drawing.Point(53, 51);
+            this.borderedTextBox1.Name = "borderedTextBox1";
+            this.borderedTextBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.borderedTextBox1.Size = new System.Drawing.Size(121, 19);
+            this.borderedTextBox1.TabIndex = 50;
+            this.borderedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // _PR
+            // 
+            this._PR.BorderColor = System.Drawing.Color.Gray;
+            this._PR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._PR.ContextMenuStrip = this._PRContextMenu;
+            this._PR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._PR.Font = new System.Drawing.Font("Verdana", 7F);
+            this._PR.Location = new System.Drawing.Point(3, 150);
+            this._PR.Name = "_PR";
+            this._PR.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._PR.Size = new System.Drawing.Size(80, 19);
+            this._PR.TabIndex = 48;
+            this._PR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._PR.MouseDown += new System.Windows.Forms.MouseEventHandler(this._PRMenu_Clicked);
+            // 
+            // _NPR
+            // 
+            this._NPR.BorderColor = System.Drawing.Color.Gray;
+            this._NPR.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._NPR.ContextMenuStrip = this._PRContextMenu;
+            this._NPR.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.NPR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._NPR.Font = new System.Drawing.Font("Verdana", 7F);
+            this._NPR.Location = new System.Drawing.Point(94, 150);
+            this._NPR.Name = "_NPR";
+            this._NPR.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this._NPR.Size = new System.Drawing.Size(80, 19);
+            this._NPR.TabIndex = 36;
+            this._NPR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._NPR.MouseDown += new System.Windows.Forms.MouseEventHandler(this._PRMenu_Clicked);
+            // 
             // EditContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1055,7 +1084,6 @@
             this.HfcPanel.ResumeLayout(false);
             this.HfcPanel.PerformLayout();
             this._PRContextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
             this._ServiceMenu.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
@@ -1068,6 +1096,7 @@
             this.ServiceTypePanel.ResumeLayout(false);
             this.flowLayoutPanel4.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1149,5 +1178,7 @@
         private System.Windows.Forms.ToolStripMenuItem clearAndCloseToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip _CallHistoryContextMenu;
         private System.Windows.Forms.ToolStripMenuItem callHistoryToolStripMenuItem;
+        private BorderedTextBox borderedTextBox1;
+        private System.Windows.Forms.Label _ITCase;
     }
 }

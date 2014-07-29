@@ -51,7 +51,20 @@ namespace CallTracker.Model
         [ProtoMember(1)]
         public int Id { get; set; }
         [ProtoMember(2)]
-        public NameModel Name { get; set; }
+        public string Name 
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+                NameSplit.Full = name;
+            }
+        }
+        public string name { get; set; }
+        public NameModel NameSplit { get; set; }
         [ProtoMember(3)]
         public string Username { get; set; }
         [ProtoMember(4)]
@@ -81,7 +94,8 @@ namespace CallTracker.Model
 
         public CustomerContact()
         {
-            Name = new NameModel();
+            NameSplit = new NameModel();
+            Name = String.Empty;
             Username = String.Empty;
             DN = String.Empty;
             Mobile = String.Empty;
@@ -96,7 +110,7 @@ namespace CallTracker.Model
             Booking = new BookingModel();
 
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
-            ((INotifyPropertyChanged)Name).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)NameSplit).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
         }
@@ -113,7 +127,8 @@ namespace CallTracker.Model
         public CustomerContact(int _id)
         {
             Id = _id;
-            Name = new NameModel();
+            NameSplit = new NameModel();
+            Name = String.Empty;
             Username = String.Empty;
             DN = String.Empty;
             Mobile = String.Empty;
@@ -131,7 +146,7 @@ namespace CallTracker.Model
             Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();
 
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
-            ((INotifyPropertyChanged)Name).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)NameSplit).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
         }

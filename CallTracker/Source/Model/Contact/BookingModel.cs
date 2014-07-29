@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 using ProtoBuf;
 using PropertyChanged;
 
@@ -14,7 +16,7 @@ namespace CallTracker.Model
         public DateTime Date { get; set; }
         public string GetDate
         {
-            get { return Date.ToShortDateString() + " " + Timeslot; }
+            get { return Date.ToShortDateString() + " " + Timeslots[Timeslot].Split(new char[1] { "-"[0] })[0].Trim(); }
         }
         [ProtoMember(3)]
         public string Timeslot { get; set; }
@@ -22,8 +24,15 @@ namespace CallTracker.Model
         public BookingModel()
         {
             Date = DateTime.Today;
-            Timeslot = String.Empty;
+            Timeslot = "AM";
         }
+
+        public Dictionary<string, string> Timeslots = new Dictionary<string, string>
+        {
+            {"AM", "7:31 - 12:00"},
+            {"PM", "12:00 - 16:00"},
+            {"EVE", "16:00 - 18:00"}
+        };
     }
 
     public enum BookingType

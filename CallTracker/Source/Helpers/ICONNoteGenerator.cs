@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using CallTracker.Model;
 using CallTracker.View;
+using CallTracker.DataSets;
 
 namespace CallTracker.Helpers
 {
@@ -78,12 +79,15 @@ namespace CallTracker.Helpers
         public NoteItemAcronym(string _name, string _note, Dictionary<string, string> _acronymLookup)
             : base(_name, _note)
         {
-            AcronymLookup = _acronymLookup;
+            AcronymLookup = _acronymLookup ?? new Dictionary<string,string>();
         }
 
         public override string GenerateString()
         {
-            return String.Format(Note, AcronymLookup[Value]);
+            if(AcronymLookup.ContainsKey(Value))
+                return String.Format(Note, AcronymLookup[Value]);
+
+            return String.Format(Note, " ");
         }
     }
 
@@ -106,7 +110,7 @@ namespace CallTracker.Helpers
         private List<NoteItem> NoteItems;
        // private Main MainForm;
 
-        public ICONNoteGenerator()//Main _mainForm)
+        public ICONNoteGenerator(ServicesDataSet ds)
         {
             //MainForm = _mainForm;
 
@@ -130,8 +134,8 @@ namespace CallTracker.Helpers
 
             NoteItems = new List<NoteItem>();
             NoteItems.Add(new NoteItemHeading("Situation", "{0}:"));
-            NoteItems.Add(new NoteItemString("Name.Full", "- Spoke with {0}"));
-            NoteItems.Add(new NoteItemAcronym("Fault.Symptom", "- Customer is experiencing {0}", Symptoms));
+            NoteItems.Add(new NoteItemString("Name", "- Spoke with {0}"));
+            NoteItems.Add(new NoteItemAcronym("Fault.Symptom", "- Customer is experiencing {0}", ds.Symptoms.ToDictionary(x => x.IFMSCode, x => x.Description)));
             NoteItems.Add(new NoteItemHeading("Action", "{0}:"));
             NoteItems.Add(new NoteItemString("Fault.NPR", "- Area Outage PR#{0} is currently open."));
             NoteItems.Add(new NoteItemString("Service.DownloadSpeed", "- Speed test shows download speed of {0}mbps."));
@@ -207,7 +211,6 @@ namespace CallTracker.Helpers
                     sb.AppendLine(noteItem.GenerateString());
                 else if (noteItem.GetType() == typeof(NoteItemHeading))
                     sb.AppendLine(noteItem.GenerateString());
-
 
             return sb.ToString();
         }

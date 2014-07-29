@@ -1,11 +1,2355 @@
 ﻿HTML:
-- IFMS element names of multiple affeceted service drop downs
-- ICON note drop downs elements
+| IFMS element names of multiple affected service drop downs
+| ICON note drop downs elements
 
 Data:
-- Symptom groups + symptoms
-- ICON note classificaitons
+| Symptom groups + symptoms
+| ICON note classificaitons
 - Transfer numbers + hours
+| Get a grab of HFC/NBN/CIP generated templates.
 
 Test:
-- Transfer menu + dn/mobile right click.
+| Transfer menu + dn/mobile right click.
+
+// Outcome ///////////////////////////////////////////////////////////////
+Bugs:
+
+General
+- AffectedService comboboxes didn't work properly after deleting old calls in call history(but not the current one).
+| Add field for IT Case
+| ICON note generator doesn't work for DTV or MTV or some ONC codes.
+| Don't auto create call on open. Disable all fields until user clicks New Call.
+- Add Ratecodes to database. Add field for info eg "Doesn't require SO/PG recording codes"
+- Perhaps Prefill should paste other data in between each drop down to allow time for page to load (in case WaTin doesn't detect page hasn't finished)
+
+Smart Copy
+| ICON account number REGEX needs to split last section off as a group.
+- "15 Myrtle gr Preston Vic 3072" Isn't seperating Preston and Vic
+| 11567333000153 going to CMBS.
+/ Smart copy sometimes doesn't work first time. Focus problem? Send mouse click?
+	| Smart paste seems to work first time. Try send ctrl key before the copy command.
+	* Alt get window hwnd and send keys directly - Ctrl Up - Ctrl Down - C - Ctrl Up
+		* Need to find a way to get HWND for tab.
+		* Perhaps if the last ctrl up isn't sent it will allow multiple pastes without lifting the ctrl key.
+Smart Paste
+| Fault.ProblemStyle gives LIP instead of LAT. ProductCode should be LIP.
+| Name Paste not working as not sending Name.Full
+/ SmartPasteBind not working when IFMS create first opens - Doing a spb in another page first then works though. Perhaps The saved page variable is confusing it "PreviousWindow/HWND/Title".
+	| Remove previoustitle checks.
+	* Perhaps use url for previoustitle instead of title. Or intercept all clicks, check for active window title on each.
+
+Gridlinks
+/ Gridlinks sometimes doens't find ICON, progress bar sticks at 50% - works after gridlinking another page, so perhaps same issue ie if previosly saved page closes, previoustitle needs to be deleted. Short term fix is to relocate page every time.
+	| Remove previoustitle checks.
+/ Gridlinks might be causing display issues on IE.
+	| Dispose of browser object after every call.
+- Gridlinks is still a bit too slow.
+
+IPCC Control
+| Transfer option only clickign on top right hand corner of IPPC. Doesn't seem to be adding the offsets.
+	
+
+Data:
+- ICON note classificaitons
+	Page
+	- http://icon.optus.com.au/icon/Activity/NewActivity.aspx
+	- Activity - New activity and notes
+	- ImageButtonSave
+	DropDowns
+	- usr_NewActivityDetails_DropDownListProduct
+	- usr_NewActivityDetails_DropDownListCallDriver
+	- usr_NewActivityDetails_DropDownListReason
+	- usr_NewActivityDetails_DropDownListOutcome
+	Note
+	- usr_NewActivityDetails_txtNoteSubject
+	- usr_NewActivityDetails_txtNoteBody
+	- usr_NewActivityDetails_TextBoxCallContactName
+	SMS
+	- usr_NewActivityReceipt_RadioButtonReceiptMethod_0 (SMS. Email = 1, None = 2)
+	- usr_NewActivityReceipt_txtMsgBody
+	Select from available
+	- usr_NewActivityReceipt_lstAvailContact
+	- usr_NewActivityReceipt_btnSelectMSN
+	Insert new
+	- usr_NewActivityReceipt_txt_OtherSMS
+	- usr_NewActivityReceipt_chb_StoreSMS ("Stor in contact Details)
+	- usr_NewActivityReceipt_RadioButtonListOptOutInSMS_1 (Opt Out)
+- IFMS
+	Page
+	- IFMS: F001 Create
+	- http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F001_CreatePR.aspx?CustSeqNo=2443866&SDClass=CUST
+	- ctl00_cphPage_tx_ProblemStyle
+	- ctl00_cphPage_tx_ProductCode
+	- ctl00_cphPage_tx_ReportPerson
+	- ctl00_cphPage_tx_Phone
+	- ctl00_cphPage_tx_Severity
+	- ctl00_cphPage_tx_Symptom
+	- ctl00_cphPage_tx_SymptomCode
+	- ctl00_cphPage_tx_Description
+	- ctl00_cphPage_btn_Submit
+	- ctl00_cphPage_tx_TruckRollStatus
+	- ctl00_cphPage_tx_ScheduleStartTime
+	DropDowns
+	- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_ddAffectedServices
+		A
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Phone1_tx_affsvc_phA
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddPhone
+		CBM
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_EquipNo
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_Button2
+		SUMM
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Generic1_tx_GenericValue
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddGen
+		USER
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Generic1_tx_GenericValue
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddGen
+		IUN
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Acct1_tx_affsvc_number
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddACCT
+		STU/STB
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_EquipNo
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_SMC
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_Button2
+		NREF
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Generic1_tx_GenericValue
+		- ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddGen
+	Severity
+	- I Interruption
+	- D Degredation
+	- H Hazerdous Condition
+	- N No Impact
+	Symptom Group
+	- 3 Local Telephony
+	- 4 Network Vision
+	- 5 Local Feature
+	- 6 iDTV
+	- 7 OptusNet
+	- 9 LNP Service
+	- $ Digital Life
+
+
+
+
+	//// template grabs ///////////////
+
+	HFC
+Name: JEFFREY PORTER
+Contact Number: 0409135193
+Symptoms: Intermittant PPX and No Signal.
+Configuration: Standard stb
+Testing/Outcome: Issue was worse tonite and coincided with the modem going offline, confirmed via scamps. Services have come back online for now. No PTWs/AROs.
+Issue/Root Cause: RF tap down
+Next Action: Booked tech.
+Callback Window FAQ: 2014-07-30 AM
+
+NBN
+Name: David Suggett
+Contact Number: 0474118687
+Symptoms: No lights on PLA
+Testing/Outcome: Tried alternate power socket.
+Configuration: DLINK PLA
+dsuggett
+Issue/Root Cause: Faulty PLA
+AVC ID: na
+CVC ID: na
+BRAS: na
+CSA ID: na
+NNI ID: na
+SIP Server: 1
+Next Action: Ordered Replacement PLA
+Callback Window CRQ: 2014-07-30 AM
+
+CIP
+IFMS Number: 12471439
+Info. Provided: Please submit a cut over request.
+Name: VIJAY WIJAYAKUMAR
+Contact Number: 0421097565
+Callback Window CRQ: 2014-07-30 AM
+
+
+
+
+
+
+
+	///// Creation Codes ////////
+
+	MTV - $ - Digital Life
+Creation Codes:
+
+Problem Style:
+
+DGL
+
+DSLD or Mobile Account
+
+DLC
+
+Cable Account
+
+
+Product Code:
+
+MTV
+
+Severity Code:
+
+Choose relevant severity
+
+Symptom Type:
+
+$
+
+Symptom Code:
+
+Choose the relevant Code:
+ARO
+
+Area Outage
+
+VID
+
+Video Programming Error
+
+CHP
+
+Pay Ch Problem
+
+COL
+
+Colour Problem
+
+CPE
+
+Customer Premise Equipment Pro
+
+CPS
+
+Channel Problem - Single
+
+EPG
+
+Incorrect EPG
+
+FLA
+
+Flashing
+
+FTA
+
+FTA Channel Problem
+
+GHO
+
+Ghosting
+
+IGP
+
+Interactive Games Problem
+
+LIP
+
+Lines In Picture
+
+LOD
+
+Loss of data
+
+MSG
+
+On-Screen Message
+
+NPI
+
+No Picture
+
+PAL
+
+Parental Lock
+
+PFZ
+
+Picture Freezing
+
+PPV
+
+Unable to order PPV
+
+PPX
+
+Picture Pixelizing
+
+PRR
+
+Password Requires Reset
+
+REM
+
+Remote Problem
+
+ROL
+
+Rolling
+
+SCR
+
+Scrambled Picture
+
+STB
+
+Set Top Box Problem
+
+SVO
+
+Unable to order SVOD
+
+SWP
+
+Snowy With Picture
+
+UAD
+
+Unable to access data
+
+UCD
+
+Unable to change details
+
+USG
+
+Usage Query
+
+UTR
+
+Unable to record
+
+UTS
+
+Unable to schedule
+
+UTV
+
+Unable to view
+
+AUD
+
+Audio Problem
+
+
+
+DTV – 6 - iDTV
+AUD - Audio Problem
+
+
+Used for faults where the Customer reports difficulties with the sound on their Optus Digital TV service.
+
+NOT TO BE USED FOR:
+
+ *   Problems affecting more one channel only (see CPS<http://nexus.optus.com.au/content.php?cID=5983#cps>)
+
+CAB - Main Cable Down
+
+
+Used for faults where the Customer, or another Party (e.g. Police, Fire, Truck Driver, Bystander) reports that an Optus Main Cable (easily confirmed by asking whether it is the thick cable which runs from pole to pole) has been broken and is down on the ground or road. Also used for reports of major damage to the Optus Main Cable (e.g. Fire damage, etc.)
+
+NOT TO BE USED FOR:
+
+ *   Reports regarding a Drop Cable (see DRP<http://nexus.optus.com.au/content.php?cID=5983#drp>)
+
+CHP - Pay Channel Problem
+
+
+Used for faults where the customer reports they are having problems ordering a pay per view
+
+COL - Colour Problem
+
+
+Used for faults where the Customer reports that the picture is affected by a color problem.
+This issue can include inverted colors (i.e. photo-negative), color bleed (i.e. colors in the picture blurring over lines), etc.
+
+NOT TO BE USED FOR:
+
+ *   Faults where the picture is scrambled (see SCR<http://nexus.optus.com.au/content.php?cID=5983#scr>)
+ *   Faults where the picture is snowy (see SWP<http://nexus.optus.com.au/content.php?cID=5983#swp>)
+ *   Faults where the picture is ghosted (see GHO<http://nexus.optus.com.au/content.php?cID=5983#gho>)
+
+See also: Nil
+
+CPS - Channel Problem - Single
+
+
+Used when one channel is being affected by a particular problem and no other channels are affected.
+
+NOT TO BE USED FOR:
+
+ *   Problems affecting more than one channel (see relevant code)
+
+DRP - Drop Cable Down
+
+
+Used for faults where the Customer, or another Party (e.g. Police, Fire, Truck Driver, Bystander) reports that an Optus Drop Cable (easily confirmed by asking whether it is the thick cable which runs from a telegraph pole to the house) has been broken and is down on the ground or road.
+Also used for reports of major damage to the Optus Drop Cable (e.g. Fire damage, etc.), or for reports of the Optus Drop Cable being dangerously low.
+
+NOT TO BE USED FOR:
+
+ *   Reports regarding the Main Cable (see CAB<http://nexus.optus.com.au/content.php?cID=5983#cab>)
+
+FLA - Flashing
+
+
+Used for faults where the Customer reports that the picture is flashing.
+Flashing is when the brightness of the picture fluctuates.
+
+NOT TO BE USED FOR:
+
+ *   Faults where the picture is rolling (see ROL<http://nexus.optus.com.au/content.php?cID=5983#rol>)
+ *   Faults where the picture is scrambled (see SCR<http://nexus.optus.com.au/content.php?cID=5983#scr>)
+ *   Faults where the picture is freezing (see PFZ<http://nexus.optus.com.au/content.php?cID=5983#pfz>)
+ *   Faults where the picture is pixelising (see PPX<http://nexus.optus.com.au/content.php?cID=5983#ppx>)
+
+FTA - FTA Channel Problem
+
+
+Used for faults where customer reports that they are having problems receiving FTA (ABC, Seven, Nine, Ten & SBS) channels only
+
+NOT TO BE USED FOR:
+
+ *   Problems with all channels (see relevant symptom code)
+
+GHO - Ghosting
+
+
+Used for faults where the Customer reports that the picture is ghosting.
+Ghosting is where the picture has an outline or identical image just to it's left or right, which can be a white or grey shade or almost photo-negative.
+
+NOT TO BE USED FOR:
+
+ *   Faults where the picture is snowy (see SWP<http://nexus.optus.com.au/content.php?cID=5983#swp>)
+ *   Faults where the picture has lines through it (see LIP<http://nexus.optus.com.au/content.php?cID=5983#lip>)
+
+IAD - Interactive Ads Problem
+
+
+Used for faults where the customer is reporting faults when using the Interactive Ads Service
+
+NOT TO BE USED FOR:
+
+ *   Faults where the customer is reporting problems with a single channel (see CPS<http://nexus.optus.com.au/content.php?cID=5983#cps>)
+
+IGP - Interactive Games Problem
+
+
+Used for faults where the customer is reporting faults when using the Interactive Games Service
+
+NOT TO BE USED FOR:
+
+ *   Faults where the customer is reporting problems with a single channel (see CPS<http://nexus.optus.com.au/content.php?cID=5983#cps>)
+
+IPR - Interactive Program Guide Problem
+
+
+Used for faults relating to the Interactive Program Guide.
+
+NOT TO BE USED FOR:
+•  Faults where the customer is reporting problems with a single channel (see CPS<http://nexus.optus.com.au/content.php?cID=5983#cps>)
+
+
+IQR - IQ Box Recording Proble
+
+
+Used for faults relating to Recording on the IQ Box.
+
+NOT TO BE USED FOR:
+•  Faults where the customer is reporting problems with recording on their own Equipment (see VCR<http://nexus.optus.com.au/content.php?cID=5983#vcr>)
+
+IVB - Interactive Voting Problem
+
+
+Used for faults where the Customer reports that they are having problems when trying to vote
+
+NOT TO BE USED FOR:
+•  Error messages unrelated to voting
+•  Return path problems
+•  Faults where the customer is reporting problems with a single channel (see CPS<http://nexus.optus.com.au/content.php?cID=5983#cps>)
+
+IWP - Interactive Weather Problem
+
+
+Used for faults where the Customer reports that they are having problems with Interactive Weather
+
+NOT TO BE USED FOR:
+•  Error messages unrelated to Interactive Weather
+•  Return path problems
+•  Faults where the customer is reporting problems with a single channel (see CPS<http://nexus.optus.com.au/content.php?cID=5983#cps>)
+
+LIP - Lines In Picture
+
+
+Used for faults where the Customer reports that the picture is affected by lines.
+These lines may be diagonal, horizontal or vertical.
+
+NOT TO BE USED FOR:
+
+ *   Faults where the picture is snowy (see SWP<http://nexus.optus.com.au/content.php?cID=5983#swp>)
+ *   Faults where the picture is ghosted (see GHO<http://nexus.optus.com.au/content.php?cID=5983#gho>)
+
+MSG - Error Message on Screen
+
+
+Used for faults where the Customer reports an on-screen message.
+This message may be an Optus Digital TV Message, or a message generated by a piece of the Customer's CPE
+
+NOT TO BE USED FOR:
+
+ *   Faults where the On-Screen Message is a Manufacturer's Logo or a message advising "No Signal" (or similar) (see NPI<http://nexus.optus.com.au/content.php?cID=5983#npi>)
+
+NWP - News Active Problem
+
+
+Used for faults where the Customer reports that they are having problems with the News Active Service.
+
+NOT TO BE USED FOR:
+
+ *   Faults where the customer is reporting problems with a single channel (see CPS)
+
+NEW - New Install Problem
+
+
+Used for faults which adhere to the New Install Procedure. (See New Install Fault Procedure<http://nexus.optus.com.au/content.php?cID=5607>)
+
+NPI - No Picture
+
+
+Used for faults where the Customer reports that they are unable to view any picture through their Optus Digital TV service.
+These faults may include, but not be limited to:
+
+ *   A black screen,
+ *   A blue screen,
+ *   A manufacturer logo appearing on screen,
+ *   An on-screen message stating "No Signal" or similar
+ *   A snowy screen (with no discernible picture)
+
+NOT TO BE USED FOR:
+
+ *   Faults with an On-Screen Message other than a Manufacturer's Logo or a message advising "No Signal" (or similar) (see MSG<http://nexus.optus.com.au/content.php?cID=5983#msg>)
+
+NVO - Video on Demand Problem
+
+
+Used for faults where the customer is reporting a problem with a Video on Demand order.
+These faults may include, but not be limited to:
+
+ *   Unable to order a Video on Demand movie
+ *   Unable to view an ordered Video on Demand movie
+
+NOT TO BE USED FOR:
+
+ *   Faults where the customer is reporting problems with a single channel (see CPS<http://nexus.optus.com.au/content.php?cID=5983#cps>)
+
+PFZ - Picture Freezing
+
+
+Used for faults where the customer is reporting that their picture keeps freezing.
+These faults may include, but not be limited to:
+
+ *   Picture completely frozen
+ *   Picture intermittently freezing
+
+NOT TO BE USED FOR:
+
+ *   Faults where the customer is reporting problems with pixelising picture (see PPX<http://nexus.optus.com.au/content.php?cID=5983#ppx>)
+ *   Faults where the customer is reporting problems with a single channel (see CPS<http://nexus.optus.com.au/content.php?cID=5983#cps>)
+
+PPV - Pay Per View (Main Event) Problem
+
+
+Used for faults where the customer is reporting a problem with a Main Event order.
+These faults may include, but not be limited to:
+
+ *   Unable to order a Main Event
+ *   Unable to view an ordered Main Event
+
+NOT TO BE USED FOR:
+
+ *   Faults where the customer is reporting problems with a single channel (see CPS<http://nexus.optus.com.au/content.php?cID=5983#cps>)
+
+PPX - Picture Pixelistion
+
+
+Used for faults where the customer is reporting that their picture is pixelising (coloured squares).
+These faults may include, but not be limited to:
+
+ *   Part or entire screen displaying coloured squares
+
+NOT TO BE USED FOR:
+
+ *   Faults where the customer is reporting problems with a frozen picture (see PFZ<http://nexus.optus.com.au/content.php?cID=5983#pfz>)
+ *   Faults where the customer is reporting problems with a single channel (see CPS<http://nexus.optus.com.au/content.php?cID=5983#cps>)
+
+RBP - Radio Broadcast Problem
+
+
+Used for faults where the customer is reporting a problem with the Radio Broadcast channels.
+These faults may include, but not be limited to:
+
+ *   Unable to listen to Radio channels but other channels are OK
+
+NOT TO BE USED FOR:
+
+ *   Faults where the customer is reporting problems with a single channel (see CPS<http://nexus.optus.com.au/content.php?cID=5983#cps>)
+
+REM - Remote Problem
+
+
+Used for faults where the Customer reports difficulties using their Remote Control
+
+NOT TO BE USED FOR:
+
+ *   Faults where the difficulty is also evident when changing channels, etc. through the STB keypad. (See relevant symptom code)
+
+ROL - Rolling
+
+
+Used for faults where the Customer reports that the picture is rolling.
+Rolling is where the picture scrolls up, down, left, right or diagonally at varying speeds.
+
+NOT TO BE USED FOR:
+
+ *   Faults where the picture is flashing (see FLA<http://nexus.optus.com.au/content.php?cID=5983#fla>)
+ *   Faults where the picture is scrambled (see SCR<http://nexus.optus.com.au/content.php?cID=5983#scr>)
+
+SCR - Scrambled Channels
+
+
+Used for faults where the Customer reports that they are receiving all channels but some or all are in the wrong order.
+
+NOT TO BE USED FOR:
+
+ *   Faults where the picture has any other degradation or interruption issue (see relevant symptom code)
+
+SMC - Smart card problems
+
+
+Used for faults where the Customer reports that their Smart Card is not working.
+
+NOT TO BE USED FOR:
+
+ *   Faults where the customer is reporting a non Smart Card Error Message on screen (see MSG<http://nexus.optus.com.au/content.php?cID=5983#msg>)
+
+STB - Set Top Box
+
+
+Used for faults where the STB is directly involved.
+These faults may include, but not be limited to:
+
+ *   No Power to the STB,
+ *   Red Dot On STB,
+ *   Problems regarding the STU Temperature
+
+NOT TO BE USED FOR:
+
+ *   Faults which are impacting the Audio and/or Video output of the STB, and are defined under a different symptom code (see relevant symptom code).
+
+SWP - Snowy With Picture
+
+
+Used for faults where the Customer reports that they are able to make out a picture, however that picture is degraded by snow or similar interference.
+
+These faults may include, but not be limited to:
+
+ *   Pixelisation,
+ *   Coloured square dots on the screen,
+
+NOT TO BE USED FOR:
+
+ *   Faults where there is no discernible picture (see NPI<http://nexus.optus.com.au/content.php?cID=5983#npi>).
+
+TLE - Digi Path Problem
+
+
+Used for faults relating to the return path.
+
+These faults may include, but not be limited to:
+
+ *   Broken lead,
+ *   Error messages regarding the return path signal
+
+VCR - VCR/TV Tuning
+
+
+Used for faults where the Customer reports difficulties in recording Optus Digital TV content via their VCR
+
+NOT TO BE USED FOR:
+
+ *   Problems recording/rewinding etc. via the STB
+
+VID - Video Programming Error
+
+
+Used for faults where the Customer reports that the published TV guide and the actual content do not match (i.e. "The news was meant to be on at 6PM, but instead it was ...")
+
+
+
+LAT – 3 5 9
+Local Telephony (LAT) Codes
+Search for Symptom Code
+
+
+
+
+ARO - Area Outage
+
+
+Used for Network Faults involving a loss of communications to a number of Customers. (not for individual customer reports)
+
+
+BKH - Broken Handset
+
+
+Used for faults where the Customer advises that an Optus handset has failed for an unknown reason.
+This symptom code is only to be used if isolation testing has confirmed that the fault is handset-based.
+
+NOT TO BE USED FOR:
+
+ *   Faults where Isolation Testing, etc. fail to confirm that the fault is Handset-based
+(see Relevant Symptom Code for Fault Reported)
+
+
+CAB - Main Cable Down
+
+
+Used for faults where the Customer, or another Party (e.g. Police, Fire, Truck Driver, Bystander) reports that an Optus Main Cable (easily confirmed by asking whether it is the thick cable which runs from pole to pole) has been broken and is down on the ground or road.
+Also used for reports of major damage to the Optus Main Cable (e.g. Fire damage, etc.)
+
+NOT TO BE USED FOR:
+
+ *   Reports regarding a Drop Cable (see DRP<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#DRP>)
+
+
+CBT - Cannot Break Tone
+
+
+Used for faults where the Customer reports that, when making an outbound call, Dial Tone continues to be heard after numbers are dialled.
+
+
+CBY - Continuous Busy Tone
+
+
+Used for faults where it is reported that all calls to a specific number are failing to a busy tone.
+
+NOT TO BE USED FOR:
+
+ *   Calls failing to a Fast Busy Tone (see FBT<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#FBT>)
+
+
+CFU - Call Failure Unknown
+
+
+Used for faults where the inbound or outbound call(s) connects to a terminating party, but then fails to an unknown result for an unknown reason.
+
+NOT TO BE USED FOR:
+
+ *   Calls failing to an Unknown RVA (see RVA<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#RVA>)
+
+
+CLP - Clipping Conversation
+
+
+Used for faults where conversation is intermittently interrupted for a short period of time, but the connection remains.
+During the interruption periods, neither party can hear the other.
+
+NOT TO BE USED FOR:
+
+ *   Intermittent faults, where conversation in one direction is experienced,
+(i.e. Person A can hear Person B, but Person B cannot hear Person A) (see ONW<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ONW>)
+ *   Intermittent faults, where the call is disconnected mid-conversation. (See COS<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#COS>)
+
+
+CON - Congestion
+
+
+Used for faults where a lack of capacity prevents the call from connecting to the intended B-Party.
+These faults may include, but not be limited to:
+
+ *   Calls failing to a Recorded Voice Announcement stating "All Lines to the Area You are Calling are Busy" (DMS or POI Congestion)
+ *   Calls failing to a Fast Busy Tone during Peak (approx. Monday to Friday 8:00am - 10:00am and 4:00pm - 8:00pm) and confirmed via NIT or NITRO as CCU or CPX Congestion
+
+
+COS - Cut Off Speaking
+
+
+Used for faults where the call is disconnected without either party hanging up.
+
+NOT TO BE USED FOR:
+
+ *   Intermittent faults, where conversation in one direction is experienced, (i.e. Person A can hear Person B, but Person B cannot hear Person A) (see ONW<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ONW>)
+ *   Intermittent faults, where the call remains connected, but the conversation is momentarily interrupted. (See CLP<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CLP>)
+
+
+CPE - Customer Premise Equipment
+
+
+Used for faults reported with regards to the Customer's Personal Equipment.
+These faults may include, but not be limited to:
+
+ *   Difficulty viewing Caller Line Identification details via a handset other than the Optus OneTouch Display
+ *   Difficulty accessing the Call Wait or Three Way Call Features from a Non-Optus Handset (where an Optus Handset operates successfully)
+ *   Difficulty making or recieving calls from a Non-Optus Handset (where an Optus Handset operates successfully)
+ *   Difficulty with Monitored Alarm Systems or Medical Alert Systems (a.k.a. Back-To-Base Alarms, VitalCall, etc.)
+
+NOT TO BE USED FOR:
+
+ *   Difficulty sending or receiving Facsimile transmissions (see FAX<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#FAX>)
+ *   Difficulty sending or receiving Modem transmissions (see MOD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#MOD>)
+
+
+CRL - Crossed Lines
+
+
+Used for faults where a telephone call between two parties recieves interference from another telephone conversation on another telephone service in the form of an intelligible conversation.
+In a Crossed Lines connection, the two affected calls may be able to speak with each other, or the reporting Customer may only be able to hear the other conversation, but not take part.
+
+NOT TO BE USED FOR:
+
+ *   Reports where the "other conversation" is a Radio Transmission (see RAD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#RAD>)
+ *   Crossed Lines on Non-Optus handsets only (i.e. Cordless Handset) (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+DDT - Delayed Dial Tone
+
+
+Used for faults where the Customer has to wait for an unusually long period of time for Dial Tone to be heard after the handpiece is lifted.
+
+
+DOA - Dial Tone On Answer
+
+
+Used for faults where the Customer hears Dial Tone after answering the phone, when the phone has been ringing.
+
+
+DRP - Drop Cable Down
+
+
+Used for faults where the Customer, or another Party (e.g. Police, Fire, Truck Driver, Bystander) reports that an Optus Drop Cable (easily confirmed by asking whether it is the thick cable which runs from a telegraph pole to the house) has been broken and is down on the ground or road.
+Also used for reports of major damage to the Optus Drop Cable (e.g. Fire damage, etc.), or for reports of the Optus Drop Cable being dangerously low.
+
+NOT TO BE USED FOR:
+
+ *   Reports regarding the Main Cable (see CAB<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CAB>)
+
+
+DTN - Distortion
+
+
+Used for faults where the conversation on the affected service is affected by interference.
+Distortion is only evident when sound is being transmitted on the line (i.e. during periods of silence no distortion is heard, but when someone speaks, distortion is heard around their voice.)
+Distortion may be evident to both parties, or only one party.
+
+NOT TO BE USED FOR:
+
+ *   Reports where interference is apparent at all times, whether sound is being transmitted or not (see NTL<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NTL>)
+
+
+ECA - Echo A End
+
+
+Used for faults where the conversation on the affected service is affected by an echo.
+This echo may be an echo of the Customer's voice, or of the Other Party's voice.
+This echo is only heard by the Initiator of the Call (The A-Party)
+
+NOT TO BE USED FOR:
+
+ *   Calls affected by Degradation of Sound Quality (see DTN<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#DTN> or NTL<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NTL>)
+ *   Calls affected by Echo on Call, but evident to Reciever Of Call Only (see ECB<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ECB>)
+ *   Calls affected by Echo on Call, but evident to Both Parties (see ECO<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ECO>)
+
+
+ECB - Echo B End
+
+
+Used for faults where the conversation on the affected service is affected by an echo.
+This echo may be an echo of the Customer's voice, or of the Other Party's voice.
+This echo is only heard by the Reciever of the Call (The B-Party)
+
+NOT TO BE USED FOR:
+
+ *   Calls affected by Degradation of Sound Quality (see DTN<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#DTN> or NTL<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NTL>)
+ *   Calls affected by Echo on Call, but evident to Initiator Of Call Only (see ECA<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ECB>)
+ *   Calls affected by Echo on Call, but evident to Both Parties (see ECO<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ECO>)
+
+
+ECO - Echo On Call
+
+
+Used for faults where the conversation on the affected service is affected by an echo.
+This echo may be an echo of the Customer's voice, or of the Other Party's voice.
+This echo is only heard by both the Initiator of the Call (The A-Party) and the Reciever of the Call (The B-Party)
+
+NOT TO BE USED FOR:
+
+ *   Calls affected by Degradation of Sound Quality (see DTN<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#DTN> or NTL<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NTL>)
+ *   Calls affected by Echo on Call, but evident to Initiator Of Call Only (see ECA<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ECB>)
+ *   Calls affected by Echo on Call, but evident to Reciever Of Call Only (see ECB<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ECB>)
+
+
+ERR - Erratic Ring Received
+
+
+Used for faults where the telephone does not ring in a normal manner.
+
+NOT TO BE USED FOR:
+
+ *   Difficulty recieving calls, when the Customer hears no rings at all (see NRR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NRR>)
+ *   Reports of Low Ring Volume on inbound calls (see LRR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#LRR>)
+ *   Erratic Ring issues involving a Non-Optus Handset Only (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+EXT - Extension Not Working
+
+
+Used for faults where one, or more extensions in the Customer's residence have failed, but at least one socket is still operating.
+
+NOT TO BE USED FOR:
+
+ *   Issues where all sockets are affected (see NRR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NRR> or NDT<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NDT>)
+ *   Issues when a Non-Optus Handset is not operating, but the socket is operational (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+ *   Issues when an Optus Handset is not operating, but the socket is operational (see NRR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NRR>, NDT<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NDT> or BKH<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#BKH>)
+
+
+FAX - Fax Transmission Problem
+
+
+Used for faults reported with regards to sending or recieving Facsimile transmissions, or for other issues involving a Facsimile machine only.
+These faults may include, but not be limited to:
+
+ *   Difficulty transmitting a fax
+ *   Difficulty recieving a fax
+ *   Difficulty configuring the fax machine
+
+NOT TO BE USED FOR:
+
+ *   Difficulty sending or receiving Modem transmissions (see MOD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#MOD>)
+ *   Difficulty involving a piece of the Customer's private equipment, other than a Fax or Modem (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+FBT - Fast Busy Tone
+
+
+Used for faults where it is reported that all calls to a specific number are failing to a fast busy tone.
+
+NOT TO BE USED FOR:
+
+ *   Calls failing to a Standard Busy Tone (see CBY<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CBY>)
+
+
+LRR - Low Ring Received
+
+
+Used for faults where the telephone rings at an unacceptable volume.
+
+NOT TO BE USED FOR:
+
+ *   Difficulty recieving calls, when the Customer hears no rings at all (see NRR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NRR>)
+ *   Reports of Unusual Rings recieved (see ERR)<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ERR>
+ *   Low Ring issues involving a Non-Optus Handset Only (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+MOD - Modem Transmission Problem
+
+
+Used for faults reported with regards to sending or recieving Modem transmissions, or for other issues involving Modems only.
+These faults may include, but not be limited to:
+
+ *   Difficulty making a Modem connection
+ *   Difficulty recieving a Modem connection
+ *   Difficulty configuring the Modem
+ *   Speed / Reliability / Data Quality issues with regards to Modem transmissions
+
+NOT TO BE USED FOR:
+
+ *   Difficulty sending or receiving Fax transmissions (see FAX<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#FAX>)
+ *   Difficulty involving a piece of the Customer's private equipment, other than a Fax or Modem (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+NCP - No Call Progress
+
+
+Used for faults where the inbound or outbound call(s) fails to an unknown result for an unknown reason, prior to the caller entering the entire desired number
+
+NOT TO BE USED FOR:
+•  Calls failing to an Unknown RVA (see RVA<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#RVA>)
+
+
+NDT - No Dial Tone
+
+
+Used for faults where the Customer is unable to hear a dial tone when the handpiece is lifted.
+
+
+NER - Not Enough Rings Received
+
+
+Used for faults where the inbnd call does not ring for the expected period of time before failing to a busy tone.
+
+NOT TO BE USED FOR:
+•  Reports where inbound calls do not ring the prescribed number of times prior to diverting to VoiceMail (see DVE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#DVE>)
+•  Inbound Calls failing to Ring at all (see NRR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NRR> or CWA<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CWA>)
+
+
+NES - No Earpiece Sound
+
+
+Used for faults where the Customer reports that they are unable to hear any sound via the Optus Handset handpiece, but the other party is able to hear them clearly. Normally only affects one handset.
+
+NOT TO BE USED FOR:
+•  Reports where Person A can hear the Person B, but Person B is unable to hear Person B on All Handsets (see ONW<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ONW>)
+•  Reports of Low Volume on Calls (see VOL<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#VOL>)
+•  No Earpiece Sounds where the affected handset is Non-Optus (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+NEW - New Install Faults
+
+
+Used for faults which adhere to the New Install Procedure. (See New Install Fault Procedure<http://ehb.optus.com.au/ehb/localcable/serviceassurance/cfm_processes/cfm_inst_fault.html#Heading7>)
+
+
+NRR - No Rings Received
+
+
+Used for faults where the telephone does not ring at all on inbound calls, but dial tone is present when the handpiece is lifted.
+
+NOT TO BE USED FOR:
+•  Low ring volume (see LRR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#LRR>)
+•  Reports of Unusual Rings recieved (see ERR)<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ERR>
+•  Low Ring issues involving a Non-Optus Handset Only (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+NTL - Noise, Tones, or Crackling On Line
+
+
+Used for faults where the conversation on the affected service is affected by interference.
+Noise, tones or crackling on line is normally evident throughout the call, regardless of whether either party is talking.
+Noise, tones or crackling may be evident to both parties, or only one party.
+
+NOT TO BE USED FOR:
+•  Reports where interference is only apparent when sound is being transmitted (see DTN<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#DTN>)
+
+
+ONW - One Way Speech Path
+
+
+Used for faults where conversation is disrupted in one direction only, although connection is established and maintained.
+(E.g. Person A is able to hear the Person B, but Person B is unable to hear Person A.)
+
+NOT TO BE USED FOR:
+•  Intermittent interruption of conversation in both directions, and connection is maintained (see CLP<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CLP>)
+•  Intermittent faults, where the call is disconnected mid-conversation. (See COS<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#COS>)
+
+
+OVC - Cannot Use Override Codes
+
+
+Used for faults where the Customer is unable to make a call when the number dialled is prefixed with an LD Override Code.
+However, the Customer is able to connect to the desired number when it is dialled without the override code.
+
+
+POR - Porting Fault
+
+
+Used for LNP fault reports requiring escalation to Telstra. (See LNP Fault Procedure<http://ehb.optus.com.au/ehb/localcable/procedures/general/port_fault.html>)
+
+NOT TO BE USED FOR:
+
+ *   Any other carrier other than Telstra. (Use NRR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NRR>)
+
+
+RAD - Radio Interference
+
+
+Used for faults where Radio transmissions interfere with the Customer's telephone service, and are able to be heard via a handset.
+This interference may be evident to the Customer only, the Other Party only, or Both.
+
+NOT TO BE USED FOR:
+•  Reports where the interference is another telephone conversation (see CRL<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CRL>)
+
+
+ROP - Ring On Pickup
+
+
+Used for faults where the Customer's service rings after the handset has been lifted, or
+Faults where the telephone service makes an outbound call when the handset is lifted, without the Customer dialling the number (either manually, or via speed dial buttons)
+
+
+RVA - Recorded Voice Announcement
+
+
+Used for faults where the Customer fails to an unexpected Recorded Voice Announcement when making and outbound call, or
+Faults where inbound calls to the Customer fail to a Recorded Voice Announcement.
+
+NOT TO BE USED FOR:
+•  Reports where calls fail to a Congestion RVA ("All Lines to the Area You are Calling are Busy") (see CON<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CON>)
+•  Reports where the Recorded Voice Announcement is heard whilst interacting with the IVR for an Optus Feature (seeNAV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NAV>, NFV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NFV>, SLA<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLA>, SLR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLR>, SLD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLD>, SLF<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLF> or SDS<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SDS>)
+
+
+SPK - Speakerphone / Handsfree faults
+
+
+Used for faults where the Customer reports a general fault with the Optus OneTouch Display handset's Speakerphone / Handsfree function.
+
+NOT TO BE USED FOR:
+•  Difficulties with the Optus OneTouch Display LCD Screen (see DSP<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#DSP>)
+•  Difficulties with the Display on a Non-Optus Handset (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+•  Difficulties with the Visual VoiceMail Message Waiting Indicator (see MWV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#MWV>)
+•  Low / High Volume via Handpiece (see VOL<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#VOL>)
+
+
+VOL - Low/High Level Speech
+
+
+Used for faults reported where a Customer reports that the volume on the line is too loud, or too quiet.
+This can affect the Customer Only, the Other Party Only or Both Parties.
+
+NOT TO BE USED FOR:
+•  Reports of Low Ring Volume (see LRR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#LRR>)
+•  Reports of No Volume at all in One Direction (see ONW<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#ONW>)
+•  Reports of No Volume at all in Both Direction simultaneously, but with call remaining connected (see CLP<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CLP>)
+
+
+WNS - Wrong Number Switching
+
+
+Used for faults reported where a call connects to a B-Party, but not the B-Party which corresponds to the DN dialled, or not the Service expected.
+These faults may include, but not be limited to:
+•  Customer reporting that Inbnd calls to their LAT service which should be "Line 1" actually ring and connect on "Line 2" and vice versa (Binding Post Swap)
+•  Customer dials 07 3318 6534 but connects to a B-party who advises them that they have connected to 07 3311 8653
+
+Features
+
+
+CFF - Call Forward Fails
+
+
+Used for faults reported with regards to the Call Forward / Call Divert All Feature.
+These fault may include, but not be limited to:
+•  Difficulty accessing the Call Divert Feature
+•  Difficulty activating or deactivating the Call Divert Feature
+•  Difficulty setting the Target DN in the Call Divert Feature
+•  Inbound Calls failing to be Diverted to the Target DN when the Call Divert Feature is Active
+
+NOT TO BE USED FOR:
+•  Inbound Calls being Diverted to a Number other than the Target DN (see CFW<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CFW>)
+•  Difficulties involving the Selective Call Divert Feature (see SLD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLD>)
+
+
+CFW - Call Forward To Incorrect Number
+
+
+Used for faults where inbound calls are diverted, via the Call Divert or Selective Call Divert Feature, but connect to a number other than the Target DN, as set in the Call Divert / Selective Call Divert Feature.
+
+NOT TO BE USED FOR:
+•  Difficulties accessing, customising, activating or deactivating the Call Divert Feature (see CFF<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CFF>)
+•  Difficulties involving the Selective Call Divert Feature (see SLD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLD>)
+
+
+CLI - No Caller Line Identification
+
+
+Used for faults reported with regards to the Caller Line Identification Feature.
+These faults may include, but not be limited to:
+•  Difficulty sending Own Number Details on Outbound Calls
+•  Difficulty suppressing (blocking) Own Number Details on Outbound Calls
+
+NOT TO BE USED FOR:
+•  Difficulty receiving Caller Line Identification Data on Inbound Calls (see CND<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CND> or CWD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CWD>)
+
+
+CND - Calling Number Display
+
+
+Used for faults reported with regards to the Calling Number Display Feature.
+These faults are normally with regards to difficulty viewing Caller Line Identification on an inbound call from a Party who has chosen to send their CLI Data
+
+NOT TO BE USED FOR:
+•  Difficulty receiving Caller Line Identification Data on Inbound Calls during Call Waiting (see CWD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CWD>)
+•  Difficulty sending or suppressing Caller Line Identification on Outbound Calls (see CLI<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CLI>)
+•  Difficulty viewing Caller Line Identification on a Handset other than the Optus OneTouch Display (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+CRT - Call Return Fault
+
+
+Used for faults reported with regards to the Call Return Feature.
+These faults may include, but not be limited to:
+•  Difficulty accessing the Call Return Feature
+•  Difficulty making the return call via the Call Return Feature
+•  Inbound Calls failing to be recorded in the Call Return Feature
+
+NOT TO BE USED FOR:
+•  Difficulties with the Call Return Feature, accessed via VoiceMail (see VMC<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#VMC>)
+•  Difficulties viewing Caller Identification on Inbound Calls (see CND<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CND> or CWD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CWD>)
+
+
+CWA - No Access Call Waiting
+
+
+Used for faults reported with regards to the Call Waiting Feature.
+These faults may include, but not be limited to:
+•  Difficulty answering calls recieved via the Call Waiting Feature
+•  Inbound Calls failing to ring via the Call Waiting Feature
+
+NOT TO BE USED FOR:
+•  Difficulties with the Call Return Feature, accessed via VoiceMail (see VMC<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#VMC>)
+
+
+CWD - Call Waiting Display
+
+
+Used for faults reported with regards to the Calling Waiting Display Feature.
+These faults are normally with regards to difficulty viewing Caller Line Identification on an inbound call, recieved via Call Waiting, from a Party who has chosen to send their CLI Data
+
+NOT TO BE USED FOR:
+•  Difficulty receiving Caller Line Identification Data on Inbound Calls not recieved through Call Waiting (see CND<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CND>)
+•  Difficulty sending or suppressing Caller Line Identification on Outbound Calls (see CLI<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CLI>)
+•  Difficulty viewing Caller Line Identification on a Handset other than the Optus OneTouch Display (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+•  Difficulty receiving calls via Call Waiting (see CWA<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CWA>)
+
+
+DSP - Display Faults
+
+
+Used for faults where the Customer reports a general fault with the Optus OneTouch Display handset's LCD screen.
+
+NOT TO BE USED FOR:
+•  Difficulties viewing Caller Line Identification on Inbound Calls (see CND<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CND>, or CWD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CWD>)
+•  Difficulties with the Display on a Non-Optus Handset (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+•  Difficulties with the Visual VoiceMail Message Waiting Indicator (see MWV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#MWV>)
+
+
+DVE - Call Diverts Too Early
+
+
+Used for faults reported with regards to inbound calls being diverted to the VoiceMail Feature before the prescribed number of rings are heard.
+
+NOT TO BE USED FOR:
+•  Inbound Calls failing to Divert to VoiceMail at all (see NFV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NFV>)
+•  Difficulty accessing Voicemail messages (see NAV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NAV>)
+•  Difficulty with the Call Divert Feature (see CFF<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CFF> or CFW<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CFW>)
+•  Inbound Calls failing to Ring at all (see NRR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NRR> or CWA<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CWA>)
+•  Inbound Calls ringing less than the expected number of times before failing to a busy tone (i.e. No VoiceMail Feature) (see NER<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NER>)
+
+
+MWA - Message Waiting - Audio
+
+
+Used for faults reported with regards to the Audio Message Waiting Indicator, generated by the Optus VoiceMail Service.
+These faults may include, but not be limited to:
+•  Stuck Message Waiting Indicator (Audio Only),
+•  Non-functioning Message Waiting Indicator (Audio Only),
+•  Delayed Message Waiting Indicator (Audio Only),
+•  Stuck Message Waiting Indicator (Audio & Visual),
+•  Non-functioning Message Waiting Indicator (Audio & Visual),
+•  Delayed Message Waiting Indicator (Audio & Visual).
+
+NOT TO BE USED FOR:
+•  Network Faults affecting Visual Message Waiting Indicator (see MWI<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#MWI>)
+•  Difficulties with the Visual Message Waiting Indicator Only (see MWV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#MWV>)
+•  Difficulties accessing the VoiceMail System (see NAV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NAV>)
+•  Difficulties diverting to the VoiceMail System (see NFV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NFV> or DVE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#DVE>)
+
+
+MWV - Message Waiting - Visual
+
+
+Used for faults reported with regards to the Visual Message Waiting Indicator, generated by the Optus VoiceMail Service.
+These faults may include, but not be limited to:
+•  Stuck Message Waiting Indicator (Visual Only),
+•  Non-functioning Message Waiting Indicator (Visual Only),
+•  Delayed Message Waiting Indicator (Visual Only).
+
+NOT TO BE USED FOR:
+•  Difficulties with the Audio Message Waiting Indicator Only (see MWA<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#MWA>)
+•  Difficulties accessing the VoiceMail System (see NAV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NAV>)
+•  Difficulties diverting to the VoiceMail System (see NFV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NFV> or DVE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#DVE>)
+•  Difficulties involving inability to recieve Visual Message Waiting Indicator on a Non-Optus Handset (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+•  Difficulties with the Display on the Optus OneTouch Display Handset (see DSP<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#DSP>)
+
+
+NAV - No Access To Voicemail
+
+
+Used for faults reported with regards to accessing or operating the VoiceMail Feature.
+These faults may include, but not be limited to:
+•  Difficulty accessing the VoiceMail System via Local Access (*96, "VoiceMail" or "Mailbox")
+•  Difficulty accessing the VoiceMail System via Remote Access (13 33 21)
+•  Difficulty accessing VoiceMail Messages within the VoiceMail Box
+•  Difficulty saving or deleting VoiceMail Messages within the VoiceMail Box
+•  Difficulty customising the VoiceMail Box (i.e. Outgoing Message, Name Recording, Password, etc.)
+
+NOT TO BE USED FOR:
+•  Inbound Calls failing to Divert to VoiceMail at all (see NFV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NFV>)
+•  Difficulties involving the VoiceMail Call Return Feature (see VMC<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#VMC>)
+•  Difficulties involving the Wake Up Call Feature (see WUC<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#WUC>)
+
+
+NFV - No Forward To Voicemail
+
+
+Used for faults reported with regards to the Diversion of Calls to VoiceMail.
+These faults may include, but not be limited to:
+•  Inbound calls failing to divert to VoiceMail,
+•  Inbound calls being disconnected, or recieving unusual RVA when attempting to leave message.
+
+NOT TO BE USED FOR:
+•  Difficulty accessing VoiceMail Feature (see NAV<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#NAV>)
+•  Calls diverting to VoiceMail too early (see DVE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#DVE>)
+•  Difficulties involving the VoiceMail Call Return Feature (see VMC<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#VMC>)
+•  Difficulties involving the Wake Up Call Feature (see WUC<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#WUC>)
+
+
+SDS - Speed Dial Not Storing
+
+
+Used for faults reported with regards to the Speed Dial 30 Feature.
+These faults may include, but not be limited to:
+•  Difficulty accessing the Speed Dial 30 Feature
+•  Difficulty adding Speed Dial records to the Speed Dial 30 Feature
+•  Difficulty making calls using Speed Dial records via the Speed Dial 30 Feature
+
+NOT TO BE USED FOR:
+•  Calls made via the Speed Dial 30 Feature going to the wrong number (see SDW<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SDW>)
+•  Difficulties with the Memory buttons on Optus Handsets (see BKH<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#BKH>)
+•  Difficulties with the Memory buttons on Non-Optus Handsets (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+SDW - Speed Dial Incorrect Number
+
+
+Used for faults where outbound calls, made using the Speed Dial 30 Feature connect to a number other than the number stored in the relevant Speed Dial position.
+
+NOT TO BE USED FOR:
+•  Difficulties accessing the Speed Dial 30 Feature, adding Speed Dial record or making calls via Speed Dial 30 Feature (see SDS<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SDS>)
+•  Difficulties with the Memory buttons on Optus Handsets (see BKH<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#BKH>)
+•  Difficulties with the Memory buttons on Non-Optus Handsets (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+SLA - Selective Call Accept
+
+
+Used for faults reported with regards to the Selective Call Accept Feature.
+These faults may include, but not be limited to:
+•  Difficulty accessing the Selective Call Accept Feature
+•  Difficulty adding, modifying or deleting DN's from the Selective Call Accept list
+•  Difficulty activating or deactivating the Selective Call Accept Feature
+•  Inbound Calls, from DNs not listed in the Accept list connecting to the Customer's service
+•  Inbound Calls, from DNs listed in the Accept list failing to connect to the Customer's service
+
+NOT TO BE USED FOR:
+•  Difficulties involving two or more Selective Call Features (see SLF<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLF>)
+•  Difficulty receiving Caller Line Identification Data on Inbound Calls not recieved through Call Waiting (see CND<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CND>)
+•  Difficulty receiving Caller Line Identification Data on Inbound Calls recieved through Call Waiting (see CWD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CWD>)
+•  Difficulty sending or suppressing Caller Line Identification on Outbound Calls (see CLI<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CLI>)
+•  Difficulty viewing Caller Line Identification on a Handset other than the Optus OneTouch Display (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+SLD - Selective Call Divert
+
+
+Used for faults reported with regards to the Selective Call Divert Feature.
+These faults may include, but not be limited to:
+•  Difficulty accessing the Selective Call Divert Feature
+•  Difficulty adding, modifying or deleting DNs from the Selective Call Divert list
+•  Difficulty activating or deactivating the Selective Call Divert Feature
+•  Difficulty modifying the Selective Call Divert Target DN
+•  Inbound Calls, from DNs not listed in the Divert list being routed to the Selective Call Divert Target DN
+•  Inbound Calls, from DNs listed in the Divert list failing to be routed to the Selective Call Divert Target DN
+
+NOT TO BE USED FOR:
+•  Difficulties involving two or more Selective Call Features (see SLF<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLF>)
+•  Difficulty receiving Caller Line Identification Data on Inbound Calls not recieved through Call Waiting (see CND<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CND>)
+•  Difficulty receiving Caller Line Identification Data on Inbound Calls recieved through Call Waiting (see CWD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CWD>)
+•  Difficulty sending or suppressing Caller Line Identification on Outbound Calls (see CLI<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CLI>)
+•  Difficulties with Standard Call Divert Feature (see CFF<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CFF> or CFW<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CFW>)
+•  Difficulty viewing Caller Line Identification on a Handset other than the Optus OneTouch Display (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+SLF - Selective Call Features
+
+
+Used for faults reported with regards to two or more Selective Call Features (Selective Call Accept, Selective Call Reject, Selective Call Divert or Anonymous Call Reject).
+
+NOT TO BE USED FOR:
+•  Difficulty operating the Selective Call Accept Feature (see SLA<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLA>)
+•  Difficulty operating the Selective Call Reject Feature (see SLR<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLR>)
+•  Difficulty operating the Selective Call Divert Feature (see SLD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLD>)
+•  Difficulty receiving Caller Line Identification Data on Inbound Calls not recieved through Call Waiting (see CND<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CND>)
+•  Difficulty receiving Caller Line Identification Data on Inbound Calls recieved through Call Waiting (see CWD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CWD>)
+•  Difficulty sending or suppressing Caller Line Identification on Outbound Calls (see CLI<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CLI>)
+•  Difficulty viewing Caller Line Identification on a Handset other than the Optus OneTouch Display (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+SLR - Selective Call Reject
+
+
+Used for faults reported with regards to the Selective Call Reject Feature.
+These faults may include, but not be limited to:
+•  Difficulty accessing the Selective Call Reject Feature
+•  Difficulty adding, modifying or deleting DNs from the Selective Call Reject list
+•  Difficulty activating or deactivating the Selective Call Reject Feature
+•  Inbound Calls, from DNs not listed in the Reject list failing to connect to the Customer's service
+•  Inbound Calls, from DNs listed in the Reject list connecting to the Customer's service
+
+NOT TO BE USED FOR:
+•  Difficulties involving two or more Selective Call Features (see SLF<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#SLF>)
+•  Difficulty receiving Caller Line Identification Data on Inbound Calls not recieved through Call Waiting (see CND<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CND>)
+•  Difficulty receiving Caller Line Identification Data on Inbound Calls recieved through Call Waiting (see CWD<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CWD>)
+•  Difficulty sending or suppressing Caller Line Identification on Outbound Calls (see CLI<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CLI>)
+•  Difficulty viewing Caller Line Identification on a Handset other than the Optus OneTouch Display (see CPE<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CPE>)
+
+
+TWF - No Access Three Way Calls
+
+
+Used for faults reported with regards to the Three Way Call (Conference Call) Feature, mainly the inability to initiate a Three Way Call.
+
+NOT TO BE USED FOR:
+•  Three way call attempts where the third call fails to an RVA other than a Feature RVA or the Congestion RVA (see RVA<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#RVA>)
+•  Three way call attempts where the third call fails to the Congestion RVA (see CON<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CON>)
+•  Three way call attempts where the third party is constantly busy (see CBY<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CBY>)
+
+
+VMC - Call Return from VM
+
+
+Used for faults reported with regards to the Call Return Feature of the Optus VoiceMail Service.
+These faults may include, but not be limited to:
+•  Difficulty accessing the Call Return Feature
+•  Difficulty making calls via the Call Return Feature
+
+NOT TO BE USED FOR:
+•  Difficulties with the Standard Call Return Feature (see CRT<http://ehb.optus.com.au/ehb/localcallresale/procedures/lat_symp_guide.html#CRT>)
+
+
+WUC - Wake Up Call
+
+
+Used for faults reported with regards to the Wake Up Call Feature of the Optus VoiceMail Service.
+These fault may include, but not be limited to:
+•  Difficulty accessing the Wake Up Call Feature
+•  Difficulty activating or deactivating the Wake Up Call Feature
+•  Difficulty ordering a Wake Up Call
+•  Failure to recieve an ordered Wake Up Call
+
+NOT TO BE USED FOR:
+•  Reports of Nuisance Wake Up Calls (Refer to CS or LELU for Nuisance calls) (see Automated Unwelcome Wake Up Calls Procedure<http://nexus.optus.com.au/content.php?cID=7980>)
+
+
+LIP
+LIP Symptom Codes
+
+Search for Symptom Code
+
+
+
+
+ARO - Area Outage
+
+
+Used for Network Faults involving a loss of communications to a number of Customers.
+
+NOT TO BE USED FOR:
+
+ *   Individual customer reports
+
+
+BKH - Broken Handset
+
+
+Used for faults where the Customer advises that an Optus handset has failed for an unknown reason.
+This symptom code is only to be used if isolation testing has confirmed that the fault is handset-based.
+
+NOT TO BE USED FOR:
+
+ *   Faults where Isolation Testing, etc. fail to confirm that the fault is Handset-based
+(see Relevant Symptom Code for Fault Reported)
+
+
+CAB - Main Cable Down
+
+
+Used for faults where the Customer, or another Party (e.g. Police, Fire, Truck Driver, Bystander) reports that an Optus Main Cable (easily confirmed by asking whether it is the thick cable which runs from pole to pole) has been broken and is down on the ground or road.
+Also used for reports of major damage to the Optus Main Cable (e.g. Fire damage, etc.)
+
+NOT TO BE USED FOR:
+
+ *   Reports regarding a Drop Cable (see DRP <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#DRP> )
+
+
+CBT - Cannot Break Tone
+
+
+Used for faults where the Customer reports that, when making an outbound call, Dial Tone continues to be heard after numbers are dialled.
+
+
+CBY - Continuous Busy Tone
+
+
+Used for faults where it is reported that all calls to a specific number are failing to a busy tone.
+
+
+CFU - Call Failure Unknown
+
+
+Used for faults where the inbound or outbound call(s) connects to a terminating party, but then fails to an unknown result for an unknown reason.
+
+NOT TO BE USED FOR:
+
+ *   Calls failing to an Unknown RVA (see RVA <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#RVA> )
+
+
+CLP - Clipping Conversation
+
+
+Used for faults where conversation is intermittently interrupted for a short period of time, but the connection remains.
+During the interruption periods, neither party can hear the other.
+
+NOT TO BE USED FOR:
+
+ *   Intermittent faults, where conversation in one direction is experienced,
+(i.e. Person A can hear Person B, but Person B cannot hear Person A) (see ONW <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ONW> )
+ *   Intermittent faults, where the call is disconnected mid-conversation. (See COS <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#COS> )
+
+
+CON - Congestion
+
+
+Used for faults where a lack of capacity prevents the call from connecting to the intended B-Party.
+These faults may include, but not be limited to:
+
+ *   Calls failing to a Recorded Voice Announcement stating "All Lines to the Area You are Calling are Busy" (SWITCH or POI Congestion)
+
+
+COS - Cut Off Speaking
+
+
+Used for faults where the call is disconnected without either party hanging up.
+
+NOT TO BE USED FOR:
+
+ *   Intermittent faults, where conversation in one direction is experienced, (i.e. Person A can hear Person B, but Person B cannot hear Person A) (see ONW <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ONW> )
+ *   Intermittent faults, where the call remains connected, but the conversation is momentarily interrupted. (See CLP <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CLP> )
+
+
+CPE - Customer Premise Equipment
+
+
+Used for faults reported with regards to the Customer's Personal Equipment.
+These faults may include, but not be limited to:
+
+ *   Difficulty viewing Caller Line Identification details via a handset other than the Optus OneTouch Display
+ *   Difficulty accessing the Call Wait or Three Way Call Features from a Non-Optus Handset (where an Optus Handset operates successfully)
+ *   Difficulty making or recieving calls from a Non-Optus Handset (where an Optus Handset operates successfully)
+ *   Difficulty with Monitored Alarm Systems or Medical Alert Systems (a.k.a. Back-To-Base Alarms, VitalCall, etc.)
+
+NOT TO BE USED FOR:
+
+ *   Difficulty sending or receiving Facsimile transmissions (see FAX <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#FAX> )
+ *   Difficulty sending or receiving Modem transmissions (see MOD <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#MOD> )
+
+
+CRL - Crossed Lines
+
+
+Used for faults where a telephone call between two parties receives interference from another telephone conversation on another telephone service in the form of an intelligible conversation.
+In a Crossed Lines connection, the two affected calls may be able to speak with each other, or the reporting Customer may only be able to hear the other conversation, but not take part.
+
+NOT TO BE USED FOR:
+
+ *   Reports where the "other conversation" is a Radio Transmission (see RAD <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#RAD> )
+ *   Crossed Lines on Non-Optus handsets only (i.e. Cordless Handset) (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+
+DDT - Delayed Dial Tone
+
+
+Used for faults where the Customer has to wait for an unusually long period of time for Dial Tone to be heard after the handpiece is lifted.
+
+
+DOA - Dial Tone On Answer
+
+
+Used for faults where the Customer hears Dial Tone after answering the phone, when the phone has been ringing.
+
+
+DRP - Drop Cable Down
+
+
+Used for faults where the Customer, or another Party (e.g. Police, Fire, Truck Driver, Bystander) reports that an Optus Drop Cable (easily confirmed by asking whether it is the thick cable which runs from a telegraph pole to the house) has been broken and is down on the ground or road.
+Also used for reports of major damage to the Optus Drop Cable (e.g. Fire damage, etc.), or for reports of the Optus Drop Cable being dangerously low.
+
+NOT TO BE USED FOR:
+
+ *   Reports regarding the Main Cable (see CAB <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CAB> )
+
+
+DTN - Distortion
+
+
+Used for faults where the conversation on the affected service is affected by interference.
+Distortion is only evident when sound is being transmitted on the line (i.e. during periods of silence no distortion is heard, but when someone speaks, distortion is heard around their voice.)
+Distortion may be evident to both parties, or only one party.
+
+NOT TO BE USED FOR:
+
+ *   Reports where interference is apparent at all times, whether sound is being transmitted or not (see NTL <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NTL> )
+
+
+ECA - Echo A End
+
+
+Used for faults where the conversation on the affected service is affected by an echo.
+This echo may be an echo of the Customer's voice, or of the Other Party's voice.
+This echo is only heard by the Initiator of the Call (The A-Party)
+
+NOT TO BE USED FOR:
+
+ *   Calls affected by Degradation of Sound Quality (see DTN <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#DTN> or NTL <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NTL> )
+ *   Calls affected by Echo on Call, but evident to Receiver Of Call Only (see ECB <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ECB> )
+ *   Calls affected by Echo on Call, but evident to Both Parties (see ECO <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ECO> )
+
+
+ECB - Echo B End
+
+
+Used for faults where the conversation on the affected service is affected by an echo.
+This echo may be an echo of the Customer's voice, or of the Other Party's voice.
+This echo is only heard by the Receiver of the Call (The B-Party)
+
+NOT TO BE USED FOR:
+
+ *   Calls affected by Degradation of Sound Quality (see DTN <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#DTN> or NTL <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NTL> )
+ *   Calls affected by Echo on Call, but evident to Initiator Of Call Only (see ECA <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ECB> )
+ *   Calls affected by Echo on Call, but evident to Both Parties (see ECO <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ECO> )
+
+
+ECO - Echo On Call
+
+
+Used for faults where the conversation on the affected service is affected by an echo.
+This echo may be an echo of the Customer's voice, or of the Other Party's voice.
+This echo is only heard by both the Initiator of the Call (The A-Party) and the Receiver of the Call (The B-Party)
+
+NOT TO BE USED FOR:
+
+ *   Calls affected by Degradation of Sound Quality (see DTN <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#DTN> or NTL <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NTL> )
+ *   Calls affected by Echo on Call, but evident to Initiator Of Call Only (see ECA <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ECB> )
+ *   Calls affected by Echo on Call, but evident to Receiver Of Call Only (see ECB <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ECB> )
+
+
+ERR - Erratic Ring Received
+
+
+Used for faults where the telephone does not ring in a normal manner.
+
+NOT TO BE USED FOR:
+
+ *   Difficulty receiving calls, when the Customer hears no rings at all (see NRR <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NRR> )
+ *   Reports of Low Ring Volume on inbound calls (see LRR <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#LRR> )
+ *   Erratic Ring issues involving a Non-Optus Handset Only (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+
+EXT - Extension Not Working
+
+
+Used for faults where one, or more extensions in the Customer's residence have failed, but at least one socket is still operating.
+
+NOT TO BE USED FOR:
+
+ *   Issues where all sockets are affected (see NRR <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NRR> or NDT <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NDT> )
+ *   Issues when a Non-Optus Handset is not operating, but the socket is operational (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+ *   Issues when an Optus Handset is not operating, but the socket is operational (see NRR <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NRR> , NDT <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NDT> or BKH <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#BKH> )
+
+
+FAX - Fax Transmission Problem
+
+
+Used for faults reported with regards to sending or receiving Facsimile transmissions, or for other issues involving a Facsimile machine only.
+These faults may include, but not be limited to:
+
+ *   Difficulty transmitting a fax
+ *   Difficulty receiving a fax
+ *   Difficulty configuring the fax machine
+
+NOT TO BE USED FOR:
+
+ *   Difficulty sending or receiving Modem transmissions (see MOD <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#MOD> )
+ *   Difficulty involving a piece of the Customer's private equipment, other than a Fax or Modem (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+
+LDT � Lost Dial Tone
+
+
+Used for faults where the customer hears dial tone when the handpiece is lifted but after dialling a number hears silence.
+
+
+LRR - Low Ring Received
+
+
+Used for faults where the telephone rings at an unacceptable volume.
+
+NOT TO BE USED FOR:
+
+ *   Difficulty receiving calls, when the Customer hears no rings at all (see NRR <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NRR> )
+ *   Reports of Unusual Rings received (see ERR)<http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ERR>
+ *   Low Ring issues involving a Non-Optus Handset Only (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+
+MOD - Modem Transmission Problem
+
+
+Used for faults reported with regards to sending or receiving Modem transmissions, or for other issues involving Modems only.
+
+These faults may include, but not be limited to:
+
+ *   Difficulty making a Modem connection
+ *   Difficulty receiving a Modem connection
+ *   Difficulty configuring the Modem
+ *   Speed / Reliability / Data Quality issues with regards to Modem transmissions
+
+NOT TO BE USED FOR :
+
+ *   Difficulty sending or receiving Fax transmissions (see FAX <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#FAX> )
+ *   Difficulty involving a piece of the Customer's private equipment, other than a Fax or Modem (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+
+NCP - No CallProgress
+
+
+Used for faults where the inbound or outbound call(s) fails to an unknown result for an unknown reason, prior to the caller entering the entire desired number
+
+NOT TO BE USED FOR:
+
+· Calls failing to an Unknown RVA (see RVA <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#RVA> )
+
+
+NDT - No Dial Tone
+
+
+Used for faults where the Customer is unable to hear a dial tone when the handpiece is lifted.
+
+
+NER - Not Enough Rings Received
+
+
+Used for faults where the inbnd call does not ring for the expected period of time before failing to a busy tone.
+
+NOT TO BE USED FOR:
+
+· Reports where inbound calls do not ring the prescribed number of times prior to diverting to VoiceMail (see DVE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#DVE> )
+
+· Inbound Calls failing to Ring at all (see NRR <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NRR> or CWA <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CWA> )
+
+
+NES - No Earpiece Sound
+
+
+Used for faults where the Customer reports that they are unable to hear any sound via the Optus Handset handpiece, but the other party is able to hear them clearly. Normally only affects one handset.
+
+NOT TO BE USED FOR:
+
+· Reports where Person A can hear the Person B, but Person B is unable to hear Person B on All Handsets (see ONW <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ONW> )
+
+· Reports of Low Volume on Calls (see VOL <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#VOL> )
+
+· No Earpiece Sounds where the affected handset is Non-Optus (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+
+NEW - New Install Faults
+
+
+Used for faults which adhere to the New Install Procedure. (See New Install Fault Procedure <http://ehb.optus.com.au/ehb/localcable/serviceassurance/cfm_processes/cfm_inst_fault.html#Heading7> )
+
+
+NRR - No Rings Received
+
+
+Used for faults where the telephone does not ring at all on inbound calls, but dial tone is present when the handpiece is lifted.
+
+NOT TO BE USED FOR:
+
+· Low ring volume (see LRR <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#LRR> )
+
+· Reports of Unusual Rings received (see ERR)<http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ERR>
+
+· Low Ring issues involving a Non-Optus Handset Only (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+
+NTL - Noise, Tones, or Crackling On Line
+
+
+Used for faults where the conversation on the affected service is affected by interference.
+Noise, tones or crackling on line is normally evident throughout the call, regardless of whether either party is talking.
+Noise, tones or crackling may be evident to both parties, or only one party.
+
+NOT TO BE USED FOR:
+
+· Reports where interference is only apparent when sound is being transmitted (see DTN <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#DTN> )
+
+
+ONW - One Way Speech Path
+
+
+Used for faults where conversation is disrupted in one direction only, although connection is established and maintained.
+(E.g. Person A is able to hear the Person B, but Person B is unable to hear Person A.)
+
+NOT TO BE USED FOR :
+
+· Intermittent interruption of conversation in both directions, and connection is maintained (see CLP <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CLP> )
+
+· Intermittent faults, where the call is disconnected mid-conversation. (See COS <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#COS> )
+
+
+OVC - Cannot Use Override Codes
+
+
+Used for faults where the Customer is unable to make a call when the number dialled is prefixed with an LD Override Code.
+However, the Customer is able to connect to the desired number when it is dialled without the override code.
+
+
+POR - Porting Fault
+
+
+Used for LNP fault reports requiring escalation to Telstra. (See LNP Fault Procedure <http://ehb.optus.com.au/ehb/localcable/procedures/general/port_fault.html> )
+
+NOT TO BE USED FOR:
+
+ *   Any other carrier other than Telstra. (Use NRR <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NRR> )
+
+
+RAD - Radio Interference
+
+
+Used for faults where Radio transmissions interfere with the Customer's telephone service, and are able to be heard via a handset.
+This interference may be evident to the Customer only, the Other Party only, or Both.
+
+NOT TO BE USED FOR:
+
+· Reports where the interference is another telephone conversation (see CRL <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CRL> )
+
+
+ROP - Ring On Pickup
+
+
+Used for faults where the Customer's service rings after the handset has been lifted, or
+Faults where the telephone service makes an outbound call when the handset is lifted, without the Customer dialling the number (either manually, or via speed dial buttons)
+
+
+RVA - Recorded Voice Announcement
+
+
+Used for faults where the Customer fails to an unexpected Recorded Voice Announcement when making and outbound call, or
+Faults where inbound calls to the Customer fail to a Recorded Voice Announcement.
+
+NOT TO BE USED FOR:
+
+· Reports where calls fail to a Congestion RVA ("All Lines to the Area You are Calling are Busy") (see CON <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CON> )
+
+· Reports where the Recorded Voice Announcement is heard whilst interacting with the IVR for an Optus Feature (seeNAV<http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NAV>
+
+, NFV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NFV> or SDS <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#SDS> )
+
+SPK - Speakerphone / Handsfree faults
+
+
+Used for faults where the Customer reports a general fault with the Optus OneTouch Display handset's Speakerphone / Handsfree function.
+
+NOT TO BE USED FOR:
+
+· Difficulties with the Optus OneTouch Display LCD Screen (see DSP <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#DSP> )
+
+· Difficulties with the Display on a Non-Optus Handset (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+· Difficulties with the Visual VoiceMail Message Waiting Indicator (see MWV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#MWV> )
+
+· Low / High Volume via Handpiece (see VOL <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#VOL> )
+
+
+VOL - Low/High Level Speech
+
+
+Used for faults reported where a Customer reports that the volume on the line is too loud, or too quiet.
+This can affect the Customer Only, the Other Party Only or Both Parties.
+
+NOT TO BE USED FOR:
+
+· Reports of Low Ring Volume (see LRR <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#LRR> )
+
+· Reports of No Volume at all in One Direction (see ONW <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#ONW> )
+
+· Reports of No Volume at all in Both Direction simultaneously, but with call remaining connected (see CLP <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CLP> )
+
+
+WNS - Wrong Number Switching
+
+
+Used for faults reported where a call connects to a B-Party, but not the B-Party which corresponds to the DN dialled, or not the Service expected.
+These faults may include, but not be limited to:
+
+· Customer reporting that Inbnd calls to their LAT service which should be "Line 1" actually ring and connect on "Line 2" and vice versa (Binding Post Swap)
+
+· Customer dials 07 3318 6534 but connects to a B-party who advises them that they have connected to 07 3311 8653
+
+
+Features
+
+
+CFF - Call Forward Fails
+
+
+Used for faults reported with regards to the Call Forward / Call Divert All Feature.
+These fault may include, but not be limited to:
+
+· Difficulty accessing the Call Divert Feature
+
+· Difficulty activating or deactivating the Call Divert Feature
+
+· Difficulty setting the Target DN in the Call Divert Feature
+
+· Inbound Calls failing to be Diverted to the Target DN when the Call Divert Feature is Active
+
+NOT TO BE USED FOR:
+
+· Inbound Calls being Diverted to a Number other than the Target DN (see CFW <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CFW> )
+
+
+CFW - Call Forward To Incorrect Number
+
+
+Used for faults where inbound calls are diverted, via the Call Divert and connected to a number other than the Target DN, as set in the Call Divert.
+
+NOT TO BE USED FOR:
+
+· Difficulties accessing, customising, activating or deactivating the Call Divert Feature (see CFF <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CFF> )
+
+
+CLI - No Caller Line Identification
+
+
+Used for faults reported with regards to the Caller Line Identification Feature.
+These faults may include, but not be limited to:
+
+· Difficulty sending Own Number Details on Outbound Calls
+
+· Difficulty suppressing (blocking) Own Number Details on Outbound Calls
+
+NOT TO BE USED FOR:
+
+· Difficulty receiving Caller Line Identification Data on Inbound Calls (see CND <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CND> or CWD <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CWD> )
+
+
+CND - Calling Number Display
+
+
+Used for faults reported with regards to the Calling Number Display Feature.
+These faults are normally with regards to difficulty viewing Caller Line Identification on an inbound call from a Party who has chosen to send their CLI Data
+
+NOT TO BE USED FOR:
+
+· Difficulty receiving Caller Line Identification Data on Inbound Calls during Call Waiting (see CWD <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CWD> )
+
+· Difficulty sending or suppressing Caller Line Identification on Outbound Calls (see CLI <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CLI> )
+
+· Difficulty viewing Caller Line Identification on a Handset other than the Optus OneTouch Display (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+
+CRT - Call Return Fault
+
+
+Used for faults reported with regards to the Call Return Feature.
+These faults may include, but not be limited to:
+
+· Difficulty accessing the Call Return Feature
+
+· Difficulty making the return call via the Call Return Feature
+
+· Inbound Calls failing to be recorded in the Call Return Feature
+
+NOT TO BE USED FOR:
+
+· Difficulties with the Call Return Feature, accessed via VoiceMail (see VMC <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#VMC> )
+
+· Difficulties viewing Caller Identification on Inbound Calls (see CND <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CND> or CWD <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CWD> )
+
+
+CWA - No Access Call Waiting
+
+
+Used for faults reported with regards to the Call Waiting Feature.
+These faults may include, but not be limited to:
+
+· Difficulty answering calls recieved via the Call Waiting Feature
+
+· Inbound Calls failing to ring via the Call Waiting Feature
+
+NOT TO BE USED FOR:
+
+· Difficulties with the Call Return Feature, accessed via VoiceMail (see VMC <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#VMC> )
+
+
+CWD - Call Waiting Display
+
+
+Used for faults reported with regards to the Calling Waiting Display Feature.
+These faults are normally with regards to difficulty viewing Caller Line Identification on an inbound call, received via Call Waiting, from a Party who has chosen to send their CLI Data
+
+NOT TO BE USED FOR:
+
+· Difficulty receiving Caller Line Identification Data on Inbound Calls not received through Call Waiting (see CND <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CND> )
+
+· Difficulty sending or suppressing Caller Line Identification on Outbound Calls (see CLI <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CLI> )
+
+· Difficulty viewing Caller Line Identification on a Handset other than the Optus OneTouch Display (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+· Difficulty receiving calls via Call Waiting (see CWA <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CWA> )
+
+
+DSP - Display Faults
+
+
+Used for faults where the Customer reports a general fault with the Optus OneTouch Display handset's LCD screen.
+
+NOT TO BE USED FOR:
+
+· Difficulties viewing Caller Line Identification on Inbound Calls (see CND <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CND> , or CWD <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CWD> )
+
+· Difficulties with the Display on a Non-Optus Handset (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+· Difficulties with the Visual VoiceMail Message Waiting Indicator (see MWV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#MWV> )
+
+
+DVE - Call Diverts Too Early
+
+
+Used for faults reported with regards to inbound calls being diverted to the VoiceMail Feature before the prescribed number of rings are heard.
+
+NOT TO BE USED FOR:
+
+· Inbound Calls failing to Divert to VoiceMail at all (see NFV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NFV> )
+
+· Difficulty accessing Voicemail messages (see NAV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NAV> )
+
+· Difficulty with the Call Divert Feature (see CFF <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CFF> or CFW <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CFW> )
+
+· Inbound Calls failing to Ring at all (see NRR <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NRR> or CWA <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CWA> )
+
+· Inbound Calls ringing less than the expected number of times before failing to a busy tone (i.e. No VoiceMail Feature) (see NER <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NER> )
+
+
+MWA - Message Waiting - Audio
+
+
+Used for faults reported with regards to the Audio Message Waiting Indicator, generated by the Optus VoiceMail Service.
+These faults may include, but not be limited to:
+
+· Stuck Message Waiting Indicator (Audio Only),
+
+· Non-functioning Message Waiting Indicator (Audio Only),
+
+· Delayed Message Waiting Indicator (Audio Only),
+
+· Stuck Message Waiting Indicator (Audio & Visual),
+
+· Non-functioning Message Waiting Indicator (Audio & Visual),
+
+· Delayed Message Waiting Indicator (Audio & Visual).
+
+NOT TO BE USED FOR:
+
+· Network Faults affecting Visual Message Waiting Indicator (see MWI <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#MWI> )
+
+· Difficulties with the Visual Message Waiting Indicator Only (see MWV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#MWV> )
+
+· Difficulties accessing the VoiceMail System (see NAV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NAV> )
+
+· Difficulties diverting to the VoiceMail System (see NFV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NFV> or DVE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#DVE> )
+
+
+MWV - Message Waiting - Visual
+
+
+Used for faults reported with regards to the Visual Message Waiting Indicator, generated by the Optus VoiceMail Service.
+These faults may include, but not be limited to:
+
+· Stuck Message Waiting Indicator (Visual Only),
+
+· Non-functioning Message Waiting Indicator (Visual Only),
+
+· Delayed Message Waiting Indicator (Visual Only).
+
+NOT TO BE USED FOR:
+
+· Difficulties with the Audio Message Waiting Indicator Only (see MWA <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#MWA> )
+
+· Difficulties accessing the VoiceMail System (see NAV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NAV> )
+
+· Difficulties diverting to the VoiceMail System (see NFV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NFV> or DVE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#DVE> )
+
+· Difficulties involving inability to recieve Visual Message Waiting Indicator on a Non-Optus Handset (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+· Difficulties with the Display on the Optus OneTouch Display Handset (see DSP <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#DSP> )
+
+
+NAV - No Access To Voicemail
+
+
+Used for faults reported with regards to accessing or operating the VoiceMail Feature.
+These faults may include, but not be limited to:
+
+· Difficulty accessing the VoiceMail System via Local Access (*96, "VoiceMail" or "Mailbox")
+
+· Difficulty accessing the VoiceMail System via Remote Access (13 33 21)
+
+· Difficulty accessing VoiceMail Messages within the VoiceMail Box
+
+· Difficulty saving or deleting VoiceMail Messages within the VoiceMail Box
+
+· Difficulty customising the VoiceMail Box (i.e. Outgoing Message, Name Recording, Password, etc.)
+
+NOT TO BE USED FOR:
+
+· Inbound Calls failing to Divert to VoiceMail at all (see NFV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NFV> )
+
+· Difficulties involving the VoiceMail Call Return Feature (see VMC <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#VMC> )
+
+· Difficulties involving the Wake Up Call Feature (see WUC <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#WUC> )
+
+
+NFV - No Forward To Voicemail
+
+
+Used for faults reported with regards to the Diversion of Calls to VoiceMail.
+These faults may include, but not be limited to:
+
+· Inbound calls failing to divert to VoiceMail,
+
+· Inbound calls being disconnected, or receiving unusual RVA when attempting to leave message.
+
+NOT TO BE USED FOR:
+
+· Difficulty accessing VoiceMail Feature (see NAV <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#NAV> )
+
+· Calls diverting to VoiceMail too early (see DVE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#DVE> )
+
+· Difficulties involving the VoiceMail Call Return Feature (see VMC <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#VMC> )
+
+· Difficulties involving the Wake Up Call Feature (see WUC <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#WUC> )
+
+
+SDS - Speed Dial Not Storing
+
+
+Used for faults reported with regards to the Speed Dial 30 Feature.
+These faults may include, but not be limited to:
+
+· Difficulty accessing the Speed Dial 30 Feature
+
+· Difficulty adding Speed Dial records to the Speed Dial 30 Feature
+
+· Difficulty making calls using Speed Dial records via the Speed Dial 30 Feature
+
+NOT TO BE USED FOR:
+
+· Calls made via the Speed Dial 30 Feature going to the wrong number (see SDW <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#SDW> )
+
+· Difficulties with the Memory buttons on Optus Handsets (see BKH <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#BKH> )
+
+· Difficulties with the Memory buttons on Non-Optus Handsets (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+
+SDW - Speed Dial Incorrect Number
+
+
+Used for faults where outbound calls, made using the Speed Dial 30 Feature connect to a number other than the number stored in the relevant Speed Dial position.
+
+NOT TO BE USED FOR:
+
+· Difficulties accessing the Speed Dial 30 Feature, adding Speed Dial record or making calls via Speed Dial 30 Feature (see SDS <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#SDS> )
+
+· Difficulties with the Memory buttons on Optus Handsets (see BKH <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#BKH> )
+
+· Difficulties with the Memory buttons on Non-Optus Handsets (see CPE <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CPE> )
+
+
+TWF - No Access Three Way Calls
+
+
+Used for faults reported with regards to the Three Way Call (Conference Call) Feature, mainly the inability to initiate a Three Way Call.
+
+NOT TO BE USED FOR:
+
+· Three way call attempts where the third call fails to an RVA other than a Feature RVA or the Congestion RVA (see RVA <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#RVA> )
+
+· Three way call attempts where the third call fails to the Congestion RVA (see CON <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CON> )
+
+· Three way call attempts where the third party is constantly busy (see CBY <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CBY> )
+
+
+VMC - Call Return from VM
+
+
+Used for faults reported with regards to the Call Return Feature of the Optus VoiceMail Service.
+These faults may include, but not be limited to:
+
+· Difficulty accessing the Call Return Feature
+
+· Difficulty making calls via the Call Return Feature
+
+NOT TO BE USED FOR:
+
+· Difficulties with the Standard Call Return Feature (see CRT <http://nexus.optus.com.au/nexusStore/primary/ehbContent/Residential/Customer_Service_Assurance/CSA_HFC/IFMS/LIP_IFMS/LIP_Symptom_Codes/?_d=1406633146#CRT> )
+
+
+
+FBB/NBF – 5 7 9
+Search for Sympton Code
+
+
+
+
+APB
+
+Acceptable Use Policy Breach
+
+
+AUF
+
+
+Authentication Failure
+
+
+CCI
+
+
+Cannot Connect To Internet
+
+
+CNU
+
+
+Content Feed Not Updating
+
+
+CSF
+
+
+Client Software Failure
+
+
+DSS
+
+
+Optus Digital Smart Safe Problem
+
+
+EMA
+
+
+E-mail Problem
+
+
+FTP
+
+
+File Transfer Protocol
+
+
+HPP
+
+
+Home Page Problem
+
+
+ILI
+
+
+Intermittent Loss of Internet
+
+
+MAP
+
+
+My Account Problem
+
+
+MUU
+
+
+My Usage Stats Unavailable
+
+
+NEW
+
+
+New Install Problem
+
+
+OSS
+
+
+Optus Security Suite
+
+
+PNF
+
+
+Page Not Accessible
+
+
+PPP
+
+
+PPP Session Problem
+
+
+PRR
+
+
+Password Requires Reset
+
+
+PRS
+
+
+Portal Personalisation
+
+
+STT
+
+
+Slow Throughput
+
+
+ULR
+
+
+Usage Limit Reached
+
+
+ZOO
+
+
+MyZoo External Portal Problem
+
+
+
+ONC – 4 7 9
+
+Jesse Poulton
+Technical Support Consultant I | CSA VIC Team 7
+Consumer | Optus
+271 Collins Street, Melbourne VIC 3000
+t: 0390337297 | e: jesse.poulton@optus.com.au
+[cid:image001.gif@01CFAB6A.44D2EA30]<http://www.optus.com.au/>
+[cid:image002.gif@01CFAB6A.44D2EA30][cid:image003.gif@01CFAB6A.44D2EA30]<http://www.facebook.com/optus>[cid:image004.gif@01CFAB6A.44D2EA30]<http://www.twitter.com/optus>
+Psst! It's possible that this email contains information that is on the secret squirrel side of confidential. So if you received it accidentally, best let the sender know straight away and delete it. Also, we should let you know that any emails that come and go through Optus might be scanned, stored or read by Optus at its discretion. Oh, and Optus does its best to avoid errors on emails it sends, but we can't promise that it will be error free. So, please don't hold it against us.
+P Please think of the environment before printing this email.
+

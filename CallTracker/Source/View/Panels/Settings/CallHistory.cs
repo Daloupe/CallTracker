@@ -33,13 +33,14 @@ namespace CallTracker.View
             dataGridView1.Columns["Time"].ReadOnly = true;
 
             dataGridView1.Columns["Name"].DataPropertyName = "Name";
-            dataGridView1.Columns["Name"].ReadOnly = true;  
+            dataGridView1.Columns["Name"].ReadOnly = false;  
         }
 
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
-            dataGridView1.DataSource = MainForm.editContact.customerContactsBindingSource;
+            bindingSource1 = MainForm.editContact.customerContactsBindingSource;
+            dataGridView1.DataSource = bindingSource1;
         }
 
         protected override void _Done_Click(object sender, EventArgs e)
@@ -79,8 +80,15 @@ namespace CallTracker.View
 
         private void _ClearHistory_Click(object sender, EventArgs e)
         {
+            MainForm.DataStore.Contacts.Add(new CustomerContact(1));
+            MainForm.editContact.customerContactsBindingSource.Position = MainForm.DataStore.Contacts.Count;
+
+            callHistoryPanel1.RemoveBindingSource();
+            dataGridView1.DataSource = null;
             MainForm.DataStore.Contacts = new BindingList<CustomerContact>();
             MainForm.editContact.DeleteCalls();
+            dataGridView1.DataSource = MainForm.editContact.customerContactsBindingSource;
+            callHistoryPanel1.SetBindingSource(MainForm.editContact.customerContactsBindingSource);
         }
     }
 }

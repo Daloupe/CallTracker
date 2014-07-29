@@ -76,23 +76,6 @@ namespace CallTracker.Model
         }
         protected bool findInForm { get; set; }
         
-        //[ProtoMember(6)]
-        //public bool TypeText
-        //{
-        //    get { return typeText; }
-        //    set
-        //    {
-        //        typeText = value;
-        //        if (typeText)
-        //        {
-        //            IEMethod = MethodTypeText;
-        //        }
-        //        else
-        //            IEMethod = MethodValue;
-        //    }
-        //}
-        protected bool typeText { get; set; }
-        
         [ProtoMember(7)]
         public bool FindByName
         {
@@ -107,79 +90,6 @@ namespace CallTracker.Model
             }
         }
         protected bool findByName { get; set; }
-        
-        //[ProtoMember(8)]
-        //public bool FindAsTextField
-        //{
-        //    get { return findAsTextField; }
-        //    set
-        //    {
-        //        findAsTextField = value;
-        //        if (findAsTextField)
-        //        {
-        //            SelectFromList = false;
-        //            ClickButton = false;
-        //            IEType = typeof(TextField);
-        //            TypeText = typeText;
-        //        }
-        //        else
-        //        {
-        //            IEType = typeof(Element);
-        //            IEMethod = MethodSetAttributeValue;
-        //        }
-        //    }
-        //}
-        //protected bool findAsTextField { get; set; }
-
-        //[ProtoMember(9)]
-        //public bool SelectFromList
-        //{
-        //    get { return selectFromList; }
-        //    set
-        //    {
-        //        selectFromList = value;
-
-        //        if (selectFromList)
-        //        {
-        //            FindAsTextField = false;
-        //            TypeText = false;
-        //            ClickButton = false;
-        //            IEType = typeof(SelectList);
-        //            IEMethod = MethodSelectFromList;
-        //        }
-        //        else
-        //        {
-        //            IEType = typeof(Element);
-        //            IEMethod = MethodSetAttributeValue;
-        //        }
-        //    }
-        //}
-        //protected bool selectFromList { get; set; }
-
-        //[ProtoMember(10)]
-        //public bool ClickButton
-        //{
-        //    get { return clickButton; }
-        //    set
-        //    {
-        //        clickButton = value;
-
-        //        if (clickButton)
-        //        {
-        //            FindAsTextField = false;
-        //            TypeText = false;
-        //            SelectFromList = false;
-        //            IEType = typeof(Button);
-        //            IEMethod = MethodClickButton;
-        //        }
-        //        else
-        //        {
-        //            IEType = typeof(Element);
-        //            IEMethod = MethodSetAttributeValue;
-        //        }
-        //    }
-        //}
-        //protected bool clickButton { get; set; }
 
         [ProtoMember(11)]
         public ElementTypes ElementType 

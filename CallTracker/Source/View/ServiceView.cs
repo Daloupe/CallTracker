@@ -27,14 +27,14 @@ namespace CallTracker.View
         public string ProblemStyle;
         public string SymptomGroup;
 
-        public ServiceView(PanelBase panel, string[] symptoms, ToolStripMenuItem menuItem, CheckBox checkBox, string ifmsProductCode, string ifmsProduct2Code, string ifmsServiceCode)
+        public ServiceView(PanelBase panel, string[] symptoms, ToolStripMenuItem menuItem, CheckBox checkBox, string ifmsProblemStyle, string ifmsProductCode, string ifmsServiceCode)
         {
             Panel = panel;
             Symptoms = FindProperty.GetLists(symptoms, SymptomClass.GetType());
             ContextMenuItem = menuItem;
             CheckBox = checkBox;
+            ProblemStyle = ifmsProblemStyle;
             ProductCode = ifmsProductCode;
-            ProblemStyle = ifmsProduct2Code;
             SymptomGroup = ifmsServiceCode;
         }
     }

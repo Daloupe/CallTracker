@@ -12,6 +12,28 @@ namespace CallTracker.Helpers
 {
     public static class IFMSAutoFill
     {
+        public class IFMSDropdownElement
+        {
+            public string Field {get; set;}
+            public string Button {get; set;}
+            public IFMSDropdownElement(string _field, string _button)
+            {
+                Field = _field;
+                Button = _button;
+            }
+        }
+        public static Dictionary<string, IFMSDropdownElement> IFMSDropdownElements = new Dictionary<string, IFMSDropdownElement>
+        {
+            {"A", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Phone1_tx_affsvc_phA", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddPhone")},
+            {"CBM", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_EquipNo", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_Button2")},
+            {"SUMM", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Generic1_tx_GenericValue", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddGen")},
+            {"USER", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Generic1_tx_GenericValue", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddGen")},
+            {"NREF", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Generic1_tx_GenericValue", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddGen")},
+            {"IUN", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Acct1_tx_affsvc_number", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddACCT")},
+            {"STU", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_SMC", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_Button2")}, //ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_EquipNo
+            {"STB", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_SMC", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_Button2")}
+        };
+
         public static void Go(Main _mainForm)
         {
             CustomerContact data = _mainForm.SelectedContact;
@@ -37,9 +59,14 @@ namespace CallTracker.Helpers
                 firstFault = true;
 
                 DropdownTextfieldButton("CBM", StringHelpers.RemoveColons(data.Service.CMMac));
-                DropdownTextfieldButton("SUMM", data.Username);
+                DropdownTextfieldButton("USER", data.Username);
                 if(Outcome != "ARO")
                     DropdownTextfieldButton("SUMM", "RF Tap Down");
+                else if(Outcome != "PR")
+                {
+                    HotkeyController.browser.TextField(Find.ByName("ctl00_cphPage_tx_TruckRollStatus")).Value = Enum.GetName(typeof(BookingType), data.Booking.Type);
+                    HotkeyController.browser.TextField(Find.ByName("ctl00_cphPage_tx_ScheduleStartTime")).Value = data.Booking.GetDate;
+                }
             }
 
             // DTV ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,10 +90,7 @@ namespace CallTracker.Helpers
             // NBN ////////////////////////////////////////////////////////////////////////////////////////////////
             if (AffectedServices.Has(ServiceTypes.NFV) || AffectedServices.Has(ServiceTypes.NBF))
             {
-                if (firstFault == true)
-                    bundleFault = true;
-                firstFault = true;
-
+                DropdownTextfieldButton("UIN", data.Username);
                 if (!String.IsNullOrEmpty(data.Fault.INC))
                     DropdownTextfieldButton("UIN", data.Fault.INC);
             }
@@ -74,13 +98,18 @@ namespace CallTracker.Helpers
             // NFV ////////////////////////////////////////////////////////////////////////////////////////////////
             if (AffectedServices.Has(ServiceTypes.NFV))
             {
+                if (firstFault == true)
+                    bundleFault = true;
+                firstFault = true;
                 DropdownTextfieldButton("A", data.DN);             
             }
 
             // NBF ////////////////////////////////////////////////////////////////////////////////////////////////
             if (AffectedServices.Has(ServiceTypes.NBF))
             {
-                DropdownTextfieldButton("User", data.Username);
+                if (firstFault == true)
+                    bundleFault = true;
+                firstFault = true;
             }
 
             // MTV ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,7 +120,6 @@ namespace CallTracker.Helpers
                 firstFault = true;
 
                 DropdownTextfieldButton("SUMM", data.Service.MeTVSN);
-                DropdownTextfieldButton("User", data.Username);
             }
 
             // MISC ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,9 +131,9 @@ namespace CallTracker.Helpers
         {
             if(!String.IsNullOrEmpty(_field))
             {
-                HotkeyController.browser.SelectList(Find.ByName("name")).Select(_dropdown);
-                HotkeyController.browser.TextField(Find.ByName("name")).Value = _field;
-                HotkeyController.browser.Button(Find.ByName("name")).Click();
+                HotkeyController.browser.SelectList(Find.ByName("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_ddAffectedServices")).Select(_dropdown);
+                HotkeyController.browser.TextField(Find.ByName(IFMSDropdownElements[_dropdown].Field)).Value = _field;
+                HotkeyController.browser.Button(Find.ByName(IFMSDropdownElements[_dropdown].Button)).Click();
             }
         }
     }

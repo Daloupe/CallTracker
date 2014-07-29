@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this._Done = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.callHistoryPanel1 = new CallTracker.View.CallHistoryPanel();
             this.label6 = new System.Windows.Forms.Label();
             this._Cancel = new System.Windows.Forms.Button();
@@ -39,6 +41,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // _Done
@@ -96,6 +99,10 @@
             this.dataGridView1.Size = new System.Drawing.Size(353, 191);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // callHistoryPanel1
             // 
@@ -164,6 +171,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,5 +186,6 @@
         private CallHistoryPanel callHistoryPanel1;
         private System.Windows.Forms.Button _Cancel;
         private System.Windows.Forms.Button _ClearHistory;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }

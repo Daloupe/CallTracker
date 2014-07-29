@@ -53,7 +53,7 @@ namespace CallTracker.Helpers
             return hWnd;
         }
 
-        public static IntPtr ActivateWindowByTitle(string _title)
+        public static IntPtr ActivateWindowByProcessName(string _title)
         {
             var prc = Process.GetProcessesByName(_title);
             if (prc.Length > 0)
@@ -91,12 +91,14 @@ namespace CallTracker.Helpers
 
         public static void IPPCAutomation(string _number, Point _buttonOffsets)
         {
-            string title = "IPCC Agent Desktop for Fusion: v5.2.1 (c2)";
+            string title = "IPCC"; //IPCC Agent Desktop for Fusion: v5.2.1 (c2)
             Point buttonOffsets = _buttonOffsets;
 
-            IntPtr hwnd = ActivateWindowByTitle(title);
+            IntPtr hwnd = FindHWNDByTitle(title);
+            SetForegroundWindow(hwnd);
             Rect rect = new Rect();
             GetWindowRect(hwnd, ref rect);
+            Console.WriteLine("{0} {1}", rect.Top, rect.Left);
             Point transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
 
             Cursor.Position = transfer;
@@ -109,7 +111,8 @@ namespace CallTracker.Helpers
             title = "CTI Dial Pad";
             buttonOffsets = new Point() { X = 20, Y = 45 };
 
-            hwnd = ActivateWindowByTitle(title);
+            hwnd = FindHWNDByTitle(title);
+            SetForegroundWindow(hwnd);
             GetWindowRect(hwnd, ref rect);
             transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
 

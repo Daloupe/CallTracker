@@ -5,6 +5,7 @@ using System.ComponentModel;
 
 using ProtoBuf;
 using PropertyChanged;
+using Utilities.RegularExpressions;
 
 using CallTracker.Helpers;
 using CallTracker.View;
@@ -15,12 +16,16 @@ namespace CallTracker.Model
     [ProtoContract]
     public class FaultModel
     {
+        public static ITCasePattern ITCasePattern = new ITCasePattern();
+
         [ProtoMember(1)]
         public string NPR { get; set; }
         [ProtoMember(2)]
         public string PR { get; set; }
         [ProtoMember(3)]
         public string INC { get; set; }
+        [ProtoMember(4)]
+        public string ITCase { get; set; }
 
         public ServiceTypes AffectedServices { get; set; }
         [ProtoMember(5)]
@@ -43,8 +48,8 @@ namespace CallTracker.Model
         public string ProblemStyle { get { return AffectedServiceType != ServiceTypes.NONE ? EditContact.ServiceViews[AffectedServiceType].ProblemStyle : String.Empty; } }
         public string SymptomGroup { get { return AffectedServiceType != ServiceTypes.NONE ? EditContact.ServiceViews[AffectedServiceType].SymptomGroup : String.Empty; } }
 
-        [ProtoMember(15)]
-        public BookingModel Booking { get; set; }       
+        //[ProtoMember(15)]
+        //public BookingModel Booking { get; set; }       
 
         public static List<string> FaultSeverity = new List<string>
         {
@@ -55,9 +60,11 @@ namespace CallTracker.Model
         {
             PR = String.Empty;
             NPR = String.Empty;
+            ITCase = String.Empty;
             Severity = String.Empty;
             Symptom = String.Empty;
             Outcome = String.Empty;
+            //Booking = new BookingModel();
             AffectedServices = AffectedServiceType = ServiceTypes.NONE;
         }
 

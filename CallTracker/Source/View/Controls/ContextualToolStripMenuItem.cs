@@ -22,13 +22,18 @@ public class ContextualToolStripMenuItem : ToolStripMenuItem
         set 
         { 
             updateObject = value;
-            updateObject.Parent = this;
+            if(updateObject != null)
+                updateObject.Parent = this;
         }
     }
 
     public virtual void UpdateMenu(string _service) 
-    { 
-        UpdateObject.Go(_service); 
+    {
+        if (dirty == true && UpdateObject != null)
+        {
+            UpdateObject.Go(_service);
+            dirty = false;
+        }
     }
 
     public ContextualToolStripMenuItem()

@@ -110,13 +110,13 @@ namespace CallTracker.Model
 
             DecryptData(dataStore);
 
-            CustomerContact newContact = new CustomerContact();
-            newContact.Id = dataStore.Contacts.Count;
-            newContact.Contacts.StartDate = DateTime.Today;
-            newContact.Contacts.StartTime = DateTime.Now.TimeOfDay;
+            //CustomerContact newContact = new CustomerContact();
+            //newContact.Id = dataStore.Contacts.Count;
+            //newContact.Contacts.StartDate = DateTime.Today;
+            //newContact.Contacts.StartTime = DateTime.Now.TimeOfDay;
             //newContact.Fault.AffectedServices = 1;
 
-            dataStore.Contacts.Add(newContact);
+            //dataStore.Contacts.Add(newContact);
             dataStore.GridLinks.PopulateIfEmpty();
 
             return dataStore;
@@ -230,6 +230,7 @@ namespace CallTracker.Model
                 ServicesDataSet.SymptomsRow newRow = servicesDataSet.Symptoms.NewSymptomsRow();
                 newRow.IFMSCode = Enum.GetName(typeof(SymptomsEnum), item.Key);
                 newRow.ICONNote = item.Value;
+                newRow.Description = item.Value;
                 servicesDataSet.Symptoms.AddSymptomsRow(newRow);
             }
 
