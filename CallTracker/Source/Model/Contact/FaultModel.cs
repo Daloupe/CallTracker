@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 using ProtoBuf;
 using PropertyChanged;
@@ -9,6 +10,7 @@ using Utilities.RegularExpressions;
 
 using CallTracker.Helpers;
 using CallTracker.View;
+using CallTracker.DataSets;
 
 namespace CallTracker.Model
 {
@@ -34,9 +36,18 @@ namespace CallTracker.Model
             get { return (int)AffectedServices; }
             set { AffectedServices = (ServiceTypes)value; }
         }
-        [ProtoMember(6), DefaultValue(ServiceTypes.NONE)]
-        public ServiceTypes AffectedServiceType { get; set; }
 
+        [ProtoMember(6), DefaultValue(ServiceTypes.NONE)]
+        public ServiceTypes AffectedServiceType
+        {
+            get { return affectedServiceType; }
+            set 
+            { 
+                affectedServiceType = value;
+                ProductCode = Enum.GetName(typeof(ServiceTypes), affectedServiceType);
+            }
+        }
+        public ServiceTypes affectedServiceType { get; set; }
         
         [ProtoMember(10)]
         public string Severity { get; set; }
@@ -44,9 +55,53 @@ namespace CallTracker.Model
         public string Symptom { get; set; }
         [ProtoMember(12)]
         public string Outcome { get; set; }
-        public string ProductCode { get { return AffectedServiceType != ServiceTypes.NONE ? EditContact.ServiceViews[AffectedServiceType].ProductCode : String.Empty; } }
-        public string ProblemStyle { get { return AffectedServiceType != ServiceTypes.NONE ? EditContact.ServiceViews[AffectedServiceType].ProblemStyle : String.Empty; } }
-        public string SymptomGroup { get { return AffectedServiceType != ServiceTypes.NONE ? EditContact.ServiceViews[AffectedServiceType].SymptomGroup : String.Empty; } }
+        //public string ProductCode { get { return AffectedServiceType != ServiceTypes.NONE ? EditContact.ServiceViews[AffectedServiceType].ProductCode : String.Empty; } }
+        public ServicesDataSet.ServicesRow Service { get; set; }
+        public string ProductCode
+        {
+            get
+            {
+                if (AffectedServiceType != ServiceTypes.NONE && Service != null)
+                    return Service.ProductCode;
+                return String.Empty;
+            }
+            set
+            {
+                if (value != "NONE")
+                {
+                    var query = from a in Main.ServicesStore.servicesDataSet.Services
+                                where a.ProductCode == value
+                                select a;
+                    Service = query.First();
+                }
+            }
+        }
+        public string ProblemStyle 
+        { 
+            get 
+            {
+                if (AffectedServiceType == ServiceTypes.NONE)
+                    return String.Empty;
+                return (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
+                        where a.Id == Service.ProblemStyleId
+                        select a).First().IFMSCode; 
+            } 
+        }
+
+        public string SymptomGroup 
+        { 
+            get 
+            {
+                if (AffectedServiceType == ServiceTypes.NONE)
+                    return String.Empty;
+                return (from a in Main.ServicesStore.servicesDataSet.SymptomGroups
+                        from b in a.GetServiceSymptomGroupMatchRows()
+                        from c in a.GetSymptomGroupSymptomMatchRows()
+                        where b.ServiceId == Service.Id &&
+                              c.SymptomsRow.IFMSCode == Symptom
+                        select a).First().IFMSCode;
+            } 
+        }
 
         //[ProtoMember(15)]
         //public BookingModel Booking { get; set; }       

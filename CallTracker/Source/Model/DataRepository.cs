@@ -184,7 +184,9 @@ namespace CallTracker.Model
             using (IDataReader reader = servicesDataSet.CreateDataReader())
             {
                 DataSerializer.Serialize(stream, reader);
+                stream.SetLength(stream.Position);
             }
+
         }
 
         public void ReadData()
@@ -202,7 +204,7 @@ namespace CallTracker.Model
                 {
                     DataTable[] dtarray = new DataTable[servicesDataSet.Tables.Count];
                     servicesDataSet.Tables.CopyTo(dtarray, 0);
-                    servicesDataSet.Load(reader, LoadOption.OverwriteChanges, dtarray);
+                    servicesDataSet.Load(reader, LoadOption.PreserveChanges, dtarray);
                 }
             }
         }
@@ -210,17 +212,17 @@ namespace CallTracker.Model
         public void CreateNewServices()
         {
             //string s = servicesDataSet.Departments[0].ServicesRow.Name.IFMSCode;
-            foreach (string name in Enum.GetNames(typeof(ProductCodes)))
+            foreach (string name in Enum.GetNames(typeof(ProblemStyle)))
             {
-                ServicesDataSet.ProductCodesRow newRow = servicesDataSet.ProductCodes.NewProductCodesRow();
+                ServicesDataSet.ProblemStylesRow newRow = servicesDataSet.ProblemStyles.NewProblemStylesRow();
                 newRow.IFMSCode = name;
-                servicesDataSet.ProductCodes.AddProductCodesRow(newRow);
+                servicesDataSet.ProblemStyles.AddProblemStylesRow(newRow);
             }
 
             foreach (string name in Enum.GetNames(typeof(SymptomGroups)))
             {
                 ServicesDataSet.SymptomGroupsRow newRow = servicesDataSet.SymptomGroups.NewSymptomGroupsRow();
-                newRow.IFMSCode = (int)Enum.Parse(typeof(SymptomGroups), name);
+                newRow.IFMSCode = Enum.Parse(typeof(SymptomGroups), name).ToString();
                 newRow.Description = name;
                 servicesDataSet.SymptomGroups.AddSymptomGroupsRow(newRow);
             }
@@ -262,11 +264,11 @@ namespace CallTracker.Model
                     continue;
                 ServicesDataSet.ServicesRow newRow = servicesDataSet.Services.NewServicesRow();
                 newRow.Name = name;
-                if (servicesDataSet.ProductCodes.FirstOrDefault(x => x.IFMSCode == name) != null)
-                    newRow.ProductCodeId = servicesDataSet.ProductCodes.FirstOrDefault(x => x.IFMSCode == name).Id;
+                if (servicesDataSet.ProblemStyles.FirstOrDefault(x => x.IFMSCode == name) != null)
+                    newRow.ProblemStyleId = servicesDataSet.ProblemStyles.FirstOrDefault(x => x.IFMSCode == name).Id;
                 else
-                    newRow.ProductCodeId = 0;
-                newRow.ProblemStyle = name;
+                    newRow.ProblemStyleId = 0;
+                newRow.ProductCode = name;
                 //newRow.ProductCodeID = 0;
                 //Console.WriteLine("id: {0}, name:{1}", newRow.ServiceID, newRow.Name);
                 servicesDataSet.Services.AddServicesRow(newRow);

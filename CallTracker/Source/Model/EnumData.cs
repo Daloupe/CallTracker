@@ -56,7 +56,7 @@ namespace CallTracker.Model
         FinancialServices = 1 << 5
     }
 
-    public enum ProductCodes
+    public enum ProblemStyle
     {
         LAT,
         ONC,

@@ -27,11 +27,11 @@ namespace CallTracker.View
             base.Init(_parent, _menuItem);
             //databaseBindingSource.ListChanged += rateplanBindingSource_ListChanged;
 
-            databaseBindingSource.DataSource = MainForm.ServicesStore.servicesDataSet;
+            databaseBindingSource.DataSource = Main.ServicesStore.servicesDataSet;
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = databaseBindingSource;
             List<string> tables = new List<string>();
-            foreach(DataTable table in MainForm.ServicesStore.servicesDataSet.Tables)
+            foreach(DataTable table in Main.ServicesStore.servicesDataSet.Tables)
                 tables.Add(StringHelpers.SeperateCamelCase(table.TableName));
             _DatabaseSelect.DataSource = tables;
         }
@@ -45,14 +45,14 @@ namespace CallTracker.View
 
             if (dataGridView1.DataMember == "Services")
             {
-                ReplaceWithComboBoxColumn("ProductCodeId", "Product Code", "ProductCodeId", "IFMSCode", "Id", 120, MainForm.ServicesStore.servicesDataSet.ProductCodes.ToList(), false, 1);
+                ReplaceWithComboBoxColumn("ProblemStyleId", "Problem Style", "ProblemStyleId", "IFMSCode", "Id", 120, Main.ServicesStore.servicesDataSet.ProblemStyles.ToList(), false, 1);
                 ChangeColumn("Name", "Service", 150);
-                ChangeColumn("ProblemStyle", "Problem Style", 120);
+                ChangeColumn("ProductCode", "Product Code", 120);
             }
             else if (dataGridView1.DataMember == "Departments")
             {
-                ReplaceWithComboBoxColumn("DepartmentNameId", "Department", "DepartmentNameId", "NameLong", "Id", 115, MainForm.ServicesStore.servicesDataSet.DepartmentNames.ToList(), true);
-                ReplaceWithComboBoxColumn("ServiceId", "Service", "ServiceId", "ProblemStyle", "Id", 115, MainForm.ServicesStore.servicesDataSet.Services.ToList(), true, 1);
+                ReplaceWithComboBoxColumn("DepartmentNameId", "Department", "DepartmentNameId", "NameLong", "Id", 115, Main.ServicesStore.servicesDataSet.DepartmentNames.ToList(), true);
+                ReplaceWithComboBoxColumn("ServiceId", "Service", "ServiceId", "ProductCode", "Id", 115, Main.ServicesStore.servicesDataSet.Services.ToList(), true, 1);
                 ChangeColumn("InternalContact", "Internal", 60, DataGridViewColumnSortMode.NotSortable);
                 ChangeColumn("ExternalContact", "External", 85, DataGridViewColumnSortMode.NotSortable);
                 ChangeColumn("ContactHours", "Contact Hours", 0, DataGridViewColumnSortMode.NotSortable);
@@ -61,24 +61,24 @@ namespace CallTracker.View
             }
             else if (dataGridView1.DataMember == "ServiceEquipmentMatch")
             {
-                ReplaceWithComboBoxColumn("EquipmentId", "Equipment", "EquipmentId", "Description", "Id", 150, MainForm.ServicesStore.servicesDataSet.Equipment.ToList());
-                ReplaceWithComboBoxColumn("ServiceId", "Service", "ServiceId", "ProblemStyle", "Id", 80, MainForm.ServicesStore.servicesDataSet.Services.ToList(), false, 1);
+                ReplaceWithComboBoxColumn("EquipmentId", "Equipment", "EquipmentId", "Description", "Id", 150, Main.ServicesStore.servicesDataSet.Equipment.ToList());
+                ReplaceWithComboBoxColumn("ServiceId", "Service", "ServiceId", "ProductCode", "Id", 80, Main.ServicesStore.servicesDataSet.Services.ToList(), false, 1);
 
                 dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
             }
             else if (dataGridView1.DataMember == "ServiceSymptomGroupMatch")
             {
-                ReplaceWithComboBoxColumn("ServiceId", "Service", "ServiceId", "ProblemStyle", "Id", 80, MainForm.ServicesStore.servicesDataSet.Services.ToList());
-                ReplaceWithComboBoxColumn("SymptomGroupId", "Symptom Group", "SymptomGroupId", "IFMSCode", "Id", 80, MainForm.ServicesStore.servicesDataSet.SymptomGroups.ToList(),false, 1);
+                ReplaceWithComboBoxColumn("ServiceId", "Service", "ServiceId", "ProductCode", "Id", 80, Main.ServicesStore.servicesDataSet.Services.ToList());
+                ReplaceWithComboBoxColumn("SymptomGroupId", "Symptom Group", "SymptomGroupId", "IFMSCode", "Id", 80, Main.ServicesStore.servicesDataSet.SymptomGroups.ToList(),false, 1);
 
                 dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
             }
             else if (dataGridView1.DataMember == "SymptomGroupSymptomMatch")
             {
-                ReplaceWithComboBoxColumn("SymptomGroupId", "Symptom Group", "SymptomGroupId", "IFMSCode", "Id", 80, MainForm.ServicesStore.servicesDataSet.SymptomGroups.ToList());
-                ReplaceWithComboBoxColumn("SymptomId", "Symptom", "SymptomId", "IFMSCode", "Id", 80, MainForm.ServicesStore.servicesDataSet.Symptoms.ToList(), false, 1);
+                ReplaceWithComboBoxColumn("SymptomGroupId", "Symptom Group", "SymptomGroupId", "IFMSCode", "Id", 80, Main.ServicesStore.servicesDataSet.SymptomGroups.ToList());
+                ReplaceWithComboBoxColumn("SymptomId", "Symptom", "SymptomId", "IFMSCode", "Id", 80, Main.ServicesStore.servicesDataSet.Symptoms.ToList(), false, 1);
 
-                dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
+                dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
             }
         }
 
@@ -246,6 +246,19 @@ namespace CallTracker.View
         //    }
         //    Search(searchString);
         //    lastKeyPress = nextKeyPress;
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == -1)
+            {
+                dataGridView1.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
+                dataGridView1.EndEdit();
+            }else
+            {
+                dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
+                dataGridView1.BeginEdit(false);
+            }
         }
 
 

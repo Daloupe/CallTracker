@@ -30,7 +30,7 @@ namespace CallTracker.View
 
         internal UserDataStore DataStore = new UserDataStore();
         internal ResourceData ResourceStore = new ResourceData();
-        internal ServicesData ServicesStore = new ServicesData();
+        internal static ServicesData ServicesStore = new ServicesData();
 
         internal static ICONNoteGenerator NoteGen;
 
@@ -50,16 +50,15 @@ namespace CallTracker.View
         {
             InitializeComponent();
 
+            ServicesStore.ReadData();
+            DataStore = DataStore.ReadFile();
+            ResourceStore = ResourceStore.ReadFile();
+
             SetAppLocation();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
 
-            SelectedContact = new CustomerContact();
-            
-            DataStore = DataStore.ReadFile();
-            ResourceStore = ResourceStore.ReadFile();
-            ServicesStore.ReadData();
-            //ServicesStore.CreateNewServices();
+            SelectedContact = new CustomerContact(); 
 
             editContact = new EditContact(this);
             editLogins = new EditLogins();

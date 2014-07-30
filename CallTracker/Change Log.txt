@@ -1,10 +1,15 @@
-﻿0.28.5
+﻿0.28.6
+| ServiceViews now utilzies the database.
+| Hooked up Equipment and other EditContacts drop downs.
+| Added Row change events to Panels.
+
+0.28.5
 | Fixed Transfer/Window selection bug.
 | Sending Ctrl before Ctrl-C on Smart Copy.
 | Removed PreviousIEMatch checks
 	| browser object nulls after every FindIEbyX call.
 | New Calls are no longer created on open.
-| Fixed Name display in Call History- DataPropertyName couldn't be set to Name.Full, so additional value created in CustomerContact class.
+| Fixed Name display in Call History - DataPropertyName couldn't be set to Name.Full, so additional value created in CustomerContact class.
 | Prevented Call history from wigging out when datasource has no members.
 | ICON Note Generator now working for all service types.
 	| ICON symptoms pulled from database;
@@ -33,7 +38,7 @@
 
 0.28.1
 | Most DataGrids now edit fields on click, rather than double click.
-/ Name is it's own class with First, Last, and Full as fields.
+| Name is it's own class with First, Last, and Full as fields.
 | Named Regexes from HotkeyController are now public static in their relevant models rather than created new on each smartcopy.
 
 0.27.8
@@ -48,7 +53,9 @@ Bugs:
  - Side panel needs to ghost when dragging.
  - Ensure the rate code datagrid is gettnig focus when the page opens up.
  - Name Regex not properly capturing "." after title.
- - Will Regex replace support $1$20$3 where 0 is intended as the number?
+ | Will Regex replace support $1$20$3 where 0 is intended as the number?
+	| $1${2}0$3
+ - MTV ProblemStyle needs to changes based on base internet product.
 
 Under The Hood
 - Update panels to reference binding source. May be able to avoid having to use the nested events in ContactModel.
@@ -63,6 +70,7 @@ Under The Hood
  - Add Outcomes tooltip.
  - Add status bar to display warnings.
  - Key Command Help extends window height.
+ - Symptom Group is irrelevant to Service Views. It's only required in IFMS and is grabbed as the cross section between Service and Symptom.
 
 Short Term:
 - IFMS Staple to parent/Clear and Close/Dispatch.

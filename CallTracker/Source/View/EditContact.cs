@@ -39,61 +39,19 @@ namespace CallTracker.View
 
             ServiceViews = new Dictionary<ServiceTypes, ServiceView>
             {
-                {ServiceTypes.LAT, new ServiceView(new LATPanel(), 
-                                       new string[]{"Phone", "HFC"}, 
-                                        _ServiceMenuLAT,
-                                        _LAT,
-                                        "LAT", 
-                                        "LAT", 
-                                        "3")},
-                {ServiceTypes.LIP, new ServiceView(new LIPPanel(), 
-                                        new string[]{"Phone", "HFC"}, 
-                                        _ServiceMenuLIP,
-                                        _LIP,
-                                        "LAT", 
-                                        "LIP", 
-                                        "3")},
-                {ServiceTypes.ONC, new ServiceView(new ONCPanel(), 
-                                        new string[]{"Internet", "HFC"}, 
-                                        _ServiceMenuONC, 
-                                        _ONC,
-                                        "ONC", 
-                                        "ONC", 
-                                        "7")},
-                {ServiceTypes.NFV, new ServiceView(new NFVPanel(), 
-                                        new string[]{"Phone"}, 
-                                        _ServiceMenuNFV, 
-                                        _NFV,
-                                        "NBN", 
-                                        "NVF", 
-                                        "7")},
-                {ServiceTypes.NBF, new ServiceView(new NBFPanel(), 
-                                        new string[]{"Internet"},
-                                        _ServiceMenuNBF,
-                                        _NBF,
-                                        "NBN", 
-                                        "NBF", 
-                                        "7")},
-                {ServiceTypes.DTV, new ServiceView(new DTVPanel(), 
-                                        new string[]{"TV", "Foxtel"}, 
-                                        _ServiceMenuDTV, 
-                                        _DTV,
-                                        "DTV", 
-                                        "DTV", 
-                                        "6")},
-                {ServiceTypes.MTV, new ServiceView(new MTVPanel(), 
-                                        new string[]{"TV", "Fetch"}, 
-                                        _ServiceMenuMTV, 
-                                        _MTV,
-                                        "DLC", 
-                                        "MTV", 
-                                        "$")},
+                {ServiceTypes.LAT, new ServiceView(this, "LAT")},
+                {ServiceTypes.LIP, new ServiceView(this, "LIP")},
+                {ServiceTypes.ONC, new ServiceView(this, "ONC")},
+                {ServiceTypes.NFV, new ServiceView(this, "NFV")},
+                {ServiceTypes.NBF, new ServiceView(this, "NBF")},
+                {ServiceTypes.DTV, new ServiceView(this, "DTV")},
+                {ServiceTypes.MTV, new ServiceView(this, "MTV")},
                 {ServiceTypes.NONE, null}
-            };        
+            };
             foreach(var view in ServiceViews)
             {
                 if (view.Key != ServiceTypes.NONE)
-                    view.Value.ContextMenuItem.Tag = view.Value.CheckBox.Tag = view.Value.ServiceType = view.Key;
+                    view.Value.ContextMenuItem.Tag = view.Value.CheckBox.Tag = view.Key;
             }
         }
 
@@ -111,10 +69,9 @@ namespace CallTracker.View
                 _Note.Enabled = false;
             }
 
-            _Severity.DataSource = Enum.GetValues(typeof(FaultSeverity));
-            _Outcome.DataSource = Enum.GetValues(typeof(Outcomes));
+            _Severity.DataSource = Main.ServicesStore.servicesDataSet.SeverityCodes.Select(x => x.IFMSCode).ToList(); //Enum.GetValues(typeof(FaultSeverity));
+            _Outcome.DataSource = Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList(); //Enum.GetValues(typeof(Outcomes));
             _BookingTimeSlot.DataSource = Enum.GetValues(typeof(BookingTimeslot));
-
             
                 ContextMenu cm = new ContextMenu();
                 MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
@@ -205,6 +162,7 @@ namespace CallTracker.View
 
                 if (currentService != null)
                 {
+                    currentService.RemoveRowChangedEvents();
                     splitContainer2.Panel2.Controls.Remove(currentService.Panel);
                     currentService.ContextMenuItem.Checked = false;
                     currentService.Panel.RemoveEvents(splitContainer2_MouseEnter);
@@ -215,12 +173,12 @@ namespace CallTracker.View
 
                 if (currentService != null)
                 {
-                    _Symptom.DataSource = currentService.Symptoms;
+                    currentService.AddRowChangedEvents();
                     splitContainer2.Panel2.Controls.Add(currentService.Panel);
                     currentService.ContextMenuItem.Checked = true;
                     currentService.Panel.ConnectEvents(splitContainer2_MouseEnter);
                     currentService.Panel.SetDataSource(MainForm.SelectedContact.Service);
-                    MainForm.SelectedContact.Fault.AffectedServiceType = currentService.ServiceType;
+                    MainForm.SelectedContact.Fault.AffectedServiceType = (ServiceTypes)Enum.Parse(typeof(ServiceTypes), currentService.ServiceType.ProductCode);
                     currentService.CheckBox.Checked = true;
                     currentService.CheckBox.ForeColor = Color.DarkRed;
                 }
