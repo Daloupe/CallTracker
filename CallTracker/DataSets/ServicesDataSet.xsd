@@ -80,7 +80,7 @@
         <xs:element name="SeverityCodes" msprop:Generator_TableClassName="SeverityCodesDataTable" msprop:Generator_TableVarName="tableSeverityCodes" msprop:Generator_TablePropName="SeverityCodes" msprop:Generator_RowDeletingName="SeverityCodesRowDeleting" msprop:Generator_RowChangingName="SeverityCodesRowChanging" msprop:Generator_RowEvHandlerName="SeverityCodesRowChangeEventHandler" msprop:Generator_RowDeletedName="SeverityCodesRowDeleted" msprop:Generator_UserTableName="SeverityCodes" msprop:Generator_RowChangedName="SeverityCodesRowChanged" msprop:Generator_RowEvArgName="SeverityCodesRowChangeEvent" msprop:Generator_RowClassName="SeverityCodesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
               <xs:element name="IFMSCode" msprop:Generator_ColumnVarNameInTable="columnIFMSCode" msprop:Generator_ColumnPropNameInRow="IFMSCode" msprop:Generator_ColumnPropNameInTable="IFMSCodeColumn" msprop:Generator_UserColumnName="IFMSCode" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
@@ -88,8 +88,8 @@
         <xs:element name="Outcomes" msprop:Generator_TableClassName="OutcomesDataTable" msprop:Generator_TableVarName="tableOutcomes" msprop:Generator_TablePropName="Outcomes" msprop:Generator_RowDeletingName="OutcomesRowDeleting" msprop:Generator_RowChangingName="OutcomesRowChanging" msprop:Generator_RowEvHandlerName="OutcomesRowChangeEventHandler" msprop:Generator_RowDeletedName="OutcomesRowDeleted" msprop:Generator_UserTableName="Outcomes" msprop:Generator_RowChangedName="OutcomesRowChanged" msprop:Generator_RowEvArgName="OutcomesRowChangeEvent" msprop:Generator_RowClassName="OutcomesRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
-              <xs:element name="Acronym" msprop:Generator_ColumnVarNameInTable="columnAcronym" msprop:Generator_ColumnPropNameInRow="Acronym" msprop:Generator_ColumnPropNameInTable="AcronymColumn" msprop:Generator_UserColumnName="Acronym" type="xs:string" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="Acronym" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="Acronym" msprop:Generator_ColumnVarNameInTable="columnAcronym" msprop:Generator_ColumnPropNameInTable="AcronymColumn" msprop:Generator_UserColumnName="Acronym" type="xs:string" minOccurs="0" />
               <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
@@ -150,6 +150,98 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="IFMSTier1" msprop:Generator_TableClassName="IFMSTier1DataTable" msprop:Generator_TableVarName="tableIFMSTier1" msprop:Generator_TablePropName="IFMSTier1" msprop:Generator_RowDeletingName="IFMSTier1RowDeleting" msprop:Generator_RowChangingName="IFMSTier1RowChanging" msprop:Generator_RowEvHandlerName="IFMSTier1RowChangeEventHandler" msprop:Generator_RowDeletedName="IFMSTier1RowDeleted" msprop:Generator_UserTableName="IFMSTier1" msprop:Generator_RowChangedName="IFMSTier1RowChanged" msprop:Generator_RowEvArgName="IFMSTier1RowChangeEvent" msprop:Generator_RowClassName="IFMSTier1Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="Option" msprop:Generator_ColumnVarNameInTable="columnOption" msprop:Generator_ColumnPropNameInRow="Option" msprop:Generator_ColumnPropNameInTable="OptionColumn" msprop:Generator_UserColumnName="Option" type="xs:string" minOccurs="0" />
+              <xs:element name="ServiceId" msprop:Generator_ColumnVarNameInTable="columnServiceId" msprop:Generator_ColumnPropNameInRow="ServiceId" msprop:Generator_ColumnPropNameInTable="ServiceIdColumn" msprop:Generator_UserColumnName="ServiceId" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IFMSTier2" msprop:Generator_TableClassName="IFMSTier2DataTable" msprop:Generator_TableVarName="tableIFMSTier2" msprop:Generator_TablePropName="IFMSTier2" msprop:Generator_RowDeletingName="IFMSTier2RowDeleting" msprop:Generator_RowChangingName="IFMSTier2RowChanging" msprop:Generator_RowEvHandlerName="IFMSTier2RowChangeEventHandler" msprop:Generator_RowDeletedName="IFMSTier2RowDeleted" msprop:Generator_UserTableName="IFMSTier2" msprop:Generator_RowChangedName="IFMSTier2RowChanged" msprop:Generator_RowEvArgName="IFMSTier2RowChangeEvent" msprop:Generator_RowClassName="IFMSTier2Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="Option" msprop:Generator_ColumnVarNameInTable="columnOption" msprop:Generator_ColumnPropNameInRow="Option" msprop:Generator_ColumnPropNameInTable="OptionColumn" msprop:Generator_UserColumnName="Option" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IFMSTier3" msprop:Generator_TableClassName="IFMSTier3DataTable" msprop:Generator_TableVarName="tableIFMSTier3" msprop:Generator_TablePropName="IFMSTier3" msprop:Generator_RowDeletingName="IFMSTier3RowDeleting" msprop:Generator_RowChangingName="IFMSTier3RowChanging" msprop:Generator_RowEvHandlerName="IFMSTier3RowChangeEventHandler" msprop:Generator_RowDeletedName="IFMSTier3RowDeleted" msprop:Generator_UserTableName="IFMSTier3" msprop:Generator_RowChangedName="IFMSTier3RowChanged" msprop:Generator_RowEvArgName="IFMSTier3RowChangeEvent" msprop:Generator_RowClassName="IFMSTier3Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="Option" msprop:Generator_ColumnVarNameInTable="columnOption" msprop:Generator_ColumnPropNameInRow="Option" msprop:Generator_ColumnPropNameInTable="OptionColumn" msprop:Generator_UserColumnName="Option" type="xs:string" minOccurs="0" />
+              <xs:element name="SeverityId" msprop:Generator_ColumnVarNameInTable="columnSeverityId" msprop:Generator_ColumnPropNameInRow="SeverityId" msprop:Generator_ColumnPropNameInTable="SeverityIdColumn" msprop:Generator_UserColumnName="SeverityId" type="xs:short" minOccurs="0" />
+              <xs:element name="SymptomId" msprop:Generator_ColumnVarNameInTable="columnSymptomId" msprop:Generator_ColumnPropNameInRow="SymptomId" msprop:Generator_ColumnPropNameInTable="SymptomIdColumn" msprop:Generator_UserColumnName="SymptomId" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IFMSTier4" msprop:Generator_TableClassName="IFMSTier4DataTable" msprop:Generator_TableVarName="tableIFMSTier4" msprop:Generator_TablePropName="IFMSTier4" msprop:Generator_RowDeletingName="IFMSTier4RowDeleting" msprop:Generator_RowChangingName="IFMSTier4RowChanging" msprop:Generator_RowEvHandlerName="IFMSTier4RowChangeEventHandler" msprop:Generator_RowDeletedName="IFMSTier4RowDeleted" msprop:Generator_UserTableName="IFMSTier4" msprop:Generator_RowChangedName="IFMSTier4RowChanged" msprop:Generator_RowEvArgName="IFMSTier4RowChangeEvent" msprop:Generator_RowClassName="IFMSTier4Row">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="Option" msprop:Generator_ColumnVarNameInTable="columnOption" msprop:Generator_ColumnPropNameInRow="Option" msprop:Generator_ColumnPropNameInTable="OptionColumn" msprop:Generator_UserColumnName="Option" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IFMSTier1IFMSTier2Match" msprop:Generator_TableClassName="IFMSTier1IFMSTier2MatchDataTable" msprop:Generator_TableVarName="tableIFMSTier1IFMSTier2Match" msprop:Generator_TablePropName="IFMSTier1IFMSTier2Match" msprop:Generator_RowDeletingName="IFMSTier1IFMSTier2MatchRowDeleting" msprop:Generator_RowChangingName="IFMSTier1IFMSTier2MatchRowChanging" msprop:Generator_RowEvHandlerName="IFMSTier1IFMSTier2MatchRowChangeEventHandler" msprop:Generator_RowDeletedName="IFMSTier1IFMSTier2MatchRowDeleted" msprop:Generator_UserTableName="IFMSTier1IFMSTier2Match" msprop:Generator_RowChangedName="IFMSTier1IFMSTier2MatchRowChanged" msprop:Generator_RowEvArgName="IFMSTier1IFMSTier2MatchRowChangeEvent" msprop:Generator_RowClassName="IFMSTier1IFMSTier2MatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IFMSTier1Id" msprop:Generator_ColumnVarNameInTable="columnIFMSTier1Id" msprop:Generator_ColumnPropNameInRow="IFMSTier1Id" msprop:Generator_ColumnPropNameInTable="IFMSTier1IdColumn" msprop:Generator_UserColumnName="IFMSTier1Id" type="xs:short" minOccurs="0" />
+              <xs:element name="IFMSTier2Id" msprop:Generator_ColumnVarNameInTable="columnIFMSTier2Id" msprop:Generator_ColumnPropNameInRow="IFMSTier2Id" msprop:Generator_ColumnPropNameInTable="IFMSTier2IdColumn" msprop:Generator_UserColumnName="IFMSTier2Id" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IFMSTier2IFMSTier3Match" msprop:Generator_TableClassName="IFMSTier2IFMSTier3MatchDataTable" msprop:Generator_TableVarName="tableIFMSTier2IFMSTier3Match" msprop:Generator_TablePropName="IFMSTier2IFMSTier3Match" msprop:Generator_RowDeletingName="IFMSTier2IFMSTier3MatchRowDeleting" msprop:Generator_RowChangingName="IFMSTier2IFMSTier3MatchRowChanging" msprop:Generator_RowEvHandlerName="IFMSTier2IFMSTier3MatchRowChangeEventHandler" msprop:Generator_RowDeletedName="IFMSTier2IFMSTier3MatchRowDeleted" msprop:Generator_UserTableName="IFMSTier2IFMSTier3Match" msprop:Generator_RowChangedName="IFMSTier2IFMSTier3MatchRowChanged" msprop:Generator_RowEvArgName="IFMSTier2IFMSTier3MatchRowChangeEvent" msprop:Generator_RowClassName="IFMSTier2IFMSTier3MatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IFMSTier2Id" msdata:Caption="Tier1Id" msprop:Generator_ColumnVarNameInTable="columnIFMSTier2Id" msprop:Generator_ColumnPropNameInRow="IFMSTier2Id" msprop:Generator_ColumnPropNameInTable="IFMSTier2IdColumn" msprop:Generator_UserColumnName="IFMSTier2Id" type="xs:short" minOccurs="0" />
+              <xs:element name="IFMSTier3Id" msdata:Caption="Tier2Id" msprop:Generator_ColumnVarNameInTable="columnIFMSTier3Id" msprop:Generator_ColumnPropNameInRow="IFMSTier3Id" msprop:Generator_ColumnPropNameInTable="IFMSTier3IdColumn" msprop:Generator_UserColumnName="IFMSTier3Id" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IFMSTier3IFMSTier4Match" msprop:Generator_TableClassName="IFMSTier3IFMSTier4MatchDataTable" msprop:Generator_TableVarName="tableIFMSTier3IFMSTier4Match" msprop:Generator_TablePropName="IFMSTier3IFMSTier4Match" msprop:Generator_RowDeletingName="IFMSTier3IFMSTier4MatchRowDeleting" msprop:Generator_RowChangingName="IFMSTier3IFMSTier4MatchRowChanging" msprop:Generator_RowEvHandlerName="IFMSTier3IFMSTier4MatchRowChangeEventHandler" msprop:Generator_RowDeletedName="IFMSTier3IFMSTier4MatchRowDeleted" msprop:Generator_UserTableName="IFMSTier3IFMSTier4Match" msprop:Generator_RowChangedName="IFMSTier3IFMSTier4MatchRowChanged" msprop:Generator_RowEvArgName="IFMSTier3IFMSTier4MatchRowChangeEvent" msprop:Generator_RowClassName="IFMSTier3IFMSTier4MatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IFMSTier3Id" msdata:Caption="Tier1Id" msprop:Generator_ColumnVarNameInTable="columnIFMSTier3Id" msprop:Generator_ColumnPropNameInRow="IFMSTier3Id" msprop:Generator_ColumnPropNameInTable="IFMSTier3IdColumn" msprop:Generator_UserColumnName="IFMSTier3Id" type="xs:short" minOccurs="0" />
+              <xs:element name="IFMSTier4Id" msdata:Caption="Tier2Id" msprop:Generator_ColumnVarNameInTable="columnIFMSTier4Id" msprop:Generator_ColumnPropNameInRow="IFMSTier4Id" msprop:Generator_ColumnPropNameInTable="IFMSTier4IdColumn" msprop:Generator_UserColumnName="IFMSTier4Id" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="EquipmentStatuses" msprop:Generator_TableClassName="EquipmentStatusesDataTable" msprop:Generator_TableVarName="tableEquipmentStatuses" msprop:Generator_TablePropName="EquipmentStatuses" msprop:Generator_RowDeletingName="EquipmentStatusesRowDeleting" msprop:Generator_RowChangingName="EquipmentStatusesRowChanging" msprop:Generator_RowEvHandlerName="EquipmentStatusesRowChangeEventHandler" msprop:Generator_RowDeletedName="EquipmentStatusesRowDeleted" msprop:Generator_UserTableName="EquipmentStatuses" msprop:Generator_RowChangedName="EquipmentStatusesRowChanged" msprop:Generator_RowEvArgName="EquipmentStatusesRowChangeEvent" msprop:Generator_RowClassName="EquipmentStatusesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="EquipmentId" msprop:Generator_ColumnVarNameInTable="columnEquipmentId" msprop:Generator_ColumnPropNameInRow="EquipmentId" msprop:Generator_ColumnPropNameInTable="EquipmentIdColumn" msprop:Generator_UserColumnName="EquipmentId" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IFMSTier2OutcomeMatch" msprop:Generator_TableClassName="IFMSTier2OutcomeMatchDataTable" msprop:Generator_TableVarName="tableIFMSTier2OutcomeMatch" msprop:Generator_TablePropName="IFMSTier2OutcomeMatch" msprop:Generator_RowDeletingName="IFMSTier2OutcomeMatchRowDeleting" msprop:Generator_RowChangingName="IFMSTier2OutcomeMatchRowChanging" msprop:Generator_RowEvHandlerName="IFMSTier2OutcomeMatchRowChangeEventHandler" msprop:Generator_RowDeletedName="IFMSTier2OutcomeMatchRowDeleted" msprop:Generator_UserTableName="IFMSTier2OutcomeMatch" msprop:Generator_RowChangedName="IFMSTier2OutcomeMatchRowChanged" msprop:Generator_RowEvArgName="IFMSTier2OutcomeMatchRowChangeEvent" msprop:Generator_RowClassName="IFMSTier2OutcomeMatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IFMSTier2Id" msdata:Caption="Tier1Id" msprop:Generator_ColumnVarNameInTable="columnIFMSTier2Id" msprop:Generator_ColumnPropNameInRow="IFMSTier2Id" msprop:Generator_ColumnPropNameInTable="IFMSTier2IdColumn" msprop:Generator_UserColumnName="IFMSTier2Id" type="xs:short" minOccurs="0" />
+              <xs:element name="OutcomeId" msdata:Caption="Tier2Id" msprop:Generator_ColumnVarNameInTable="columnOutcomeId" msprop:Generator_ColumnPropNameInRow="OutcomeId" msprop:Generator_ColumnPropNameInTable="OutcomeIdColumn" msprop:Generator_UserColumnName="OutcomeId" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="IFMSTier4OutcomeMatch" msprop:Generator_TableClassName="IFMSTier4OutcomeMatchDataTable" msprop:Generator_TableVarName="tableIFMSTier4OutcomeMatch" msprop:Generator_TablePropName="IFMSTier4OutcomeMatch" msprop:Generator_RowDeletingName="IFMSTier4OutcomeMatchRowDeleting" msprop:Generator_RowChangingName="IFMSTier4OutcomeMatchRowChanging" msprop:Generator_RowEvHandlerName="IFMSTier4OutcomeMatchRowChangeEventHandler" msprop:Generator_RowDeletedName="IFMSTier4OutcomeMatchRowDeleted" msprop:Generator_UserTableName="IFMSTier4OutcomeMatch" msprop:Generator_RowChangedName="IFMSTier4OutcomeMatchRowChanged" msprop:Generator_RowEvArgName="IFMSTier4OutcomeMatchRowChangeEvent" msprop:Generator_RowClassName="IFMSTier4OutcomeMatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="IFMSTier4Id" msdata:Caption="Tier1Id" msprop:Generator_ColumnVarNameInTable="columnIFMSTier4Id" msprop:Generator_ColumnPropNameInRow="IFMSTier4Id" msprop:Generator_ColumnPropNameInTable="IFMSTier4IdColumn" msprop:Generator_UserColumnName="IFMSTier4Id" type="xs:short" minOccurs="0" />
+              <xs:element name="OutcomeId" msdata:Caption="Tier2Id" msprop:Generator_ColumnVarNameInTable="columnOutcomeId" msprop:Generator_ColumnPropNameInRow="OutcomeId" msprop:Generator_ColumnPropNameInTable="OutcomeIdColumn" msprop:Generator_UserColumnName="OutcomeId" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SeverityCodeSymptomMatch" msprop:Generator_TableClassName="SeverityCodeSymptomMatchDataTable" msprop:Generator_TableVarName="tableSeverityCodeSymptomMatch" msprop:Generator_TablePropName="SeverityCodeSymptomMatch" msprop:Generator_RowDeletingName="SeverityCodeSymptomMatchRowDeleting" msprop:Generator_RowChangingName="SeverityCodeSymptomMatchRowChanging" msprop:Generator_RowEvHandlerName="SeverityCodeSymptomMatchRowChangeEventHandler" msprop:Generator_RowDeletedName="SeverityCodeSymptomMatchRowDeleted" msprop:Generator_UserTableName="SeverityCodeSymptomMatch" msprop:Generator_RowChangedName="SeverityCodeSymptomMatchRowChanged" msprop:Generator_RowEvArgName="SeverityCodeSymptomMatchRowChangeEvent" msprop:Generator_RowClassName="SeverityCodeSymptomMatchRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SeverityCodeId" msdata:Caption="Tier1Id" msprop:Generator_ColumnVarNameInTable="columnSeverityCodeId" msprop:Generator_ColumnPropNameInRow="SeverityCodeId" msprop:Generator_ColumnPropNameInTable="SeverityCodeIdColumn" msprop:Generator_UserColumnName="SeverityCodeId" type="xs:short" minOccurs="0" />
+              <xs:element name="SymptomId" msdata:Caption="Tier2Id" msprop:Generator_ColumnVarNameInTable="columnSymptomId" msprop:Generator_ColumnPropNameInRow="SymptomId" msprop:Generator_ColumnPropNameInTable="SymptomIdColumn" msprop:Generator_UserColumnName="SymptomId" type="xs:short" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -200,6 +292,34 @@
       <xs:selector xpath=".//mstns:Systems" />
       <xs:field xpath="mstns:SystemId" />
     </xs:unique>
+    <xs:unique name="IFMSTier1_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:IFMSTier1" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Constraint2">
+      <xs:selector xpath=".//mstns:IFMSTier1" />
+      <xs:field xpath="mstns:ServiceId" />
+    </xs:unique>
+    <xs:unique name="IFMSTier2_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:IFMSTier2" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="IFMSTier3_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:IFMSTier3" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="IFMSTier4_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:IFMSTier4" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="EquipmentStatuses_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:EquipmentStatuses" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="EquipmentStatuses_Constraint2" msdata:ConstraintName="Constraint2">
+      <xs:selector xpath=".//mstns:EquipmentStatuses" />
+      <xs:field xpath="mstns:EquipmentId" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
@@ -212,6 +332,22 @@
       <msdata:Relationship name="DepartmentNames_Departments" msdata:parent="DepartmentNames" msdata:child="Departments" msdata:parentkey="Id" msdata:childkey="DepartmentNameId" msprop:Generator_UserChildTable="Departments" msprop:Generator_ChildPropName="GetDepartmentsRows" msprop:Generator_UserRelationName="DepartmentNames_Departments" msprop:Generator_ParentPropName="DepartmentNamesRow" msprop:Generator_RelationVarName="relationDepartmentNames_Departments" msprop:Generator_UserParentTable="DepartmentNames" />
       <msdata:Relationship name="SymptomGroups_SymptomGroupSymptomMatch" msdata:parent="SymptomGroups" msdata:child="SymptomGroupSymptomMatch" msdata:parentkey="Id" msdata:childkey="SymptomGroupId" msprop:Generator_UserChildTable="SymptomGroupSymptomMatch" msprop:Generator_ChildPropName="GetSymptomGroupSymptomMatchRows" msprop:Generator_UserRelationName="SymptomGroups_SymptomGroupSymptomMatch" msprop:Generator_ParentPropName="SymptomGroupsRow" msprop:Generator_RelationVarName="relationSymptomGroups_SymptomGroupSymptomMatch" msprop:Generator_UserParentTable="SymptomGroups" />
       <msdata:Relationship name="Symptoms_SymptomGroupSymptomMatch" msdata:parent="Symptoms" msdata:child="SymptomGroupSymptomMatch" msdata:parentkey="Id" msdata:childkey="SymptomId" msprop:Generator_UserChildTable="SymptomGroupSymptomMatch" msprop:Generator_ChildPropName="GetSymptomGroupSymptomMatchRows" msprop:Generator_UserRelationName="Symptoms_SymptomGroupSymptomMatch" msprop:Generator_RelationVarName="relationSymptoms_SymptomGroupSymptomMatch" msprop:Generator_UserParentTable="Symptoms" msprop:Generator_ParentPropName="SymptomsRow" />
+      <msdata:Relationship name="IFMSTier12_Tier1Tier2Match" msdata:parent="IFMSTier2" msdata:child="IFMSTier1IFMSTier2Match" msdata:parentkey="Id" msdata:childkey="IFMSTier2Id" msprop:Generator_UserChildTable="IFMSTier1IFMSTier2Match" msprop:Generator_ChildPropName="GetIFMSTier1IFMSTier2MatchRows" msprop:Generator_UserRelationName="IFMSTier12_Tier1Tier2Match" msprop:Generator_ParentPropName="IFMSTier2Row" msprop:Generator_RelationVarName="relationIFMSTier12_Tier1Tier2Match" msprop:Generator_UserParentTable="IFMSTier2" />
+      <msdata:Relationship name="IFMSTier12_Tier2Tier3Match" msdata:parent="IFMSTier2" msdata:child="IFMSTier2IFMSTier3Match" msdata:parentkey="Id" msdata:childkey="IFMSTier2Id" msprop:Generator_UserChildTable="IFMSTier2IFMSTier3Match" msprop:Generator_ChildPropName="GetIFMSTier2IFMSTier3MatchRows" msprop:Generator_UserRelationName="IFMSTier12_Tier2Tier3Match" msprop:Generator_ParentPropName="IFMSTier2Row" msprop:Generator_RelationVarName="relationIFMSTier12_Tier2Tier3Match" msprop:Generator_UserParentTable="IFMSTier2" />
+      <msdata:Relationship name="IFMSTier3_Tier2Tier3Match" msdata:parent="IFMSTier3" msdata:child="IFMSTier2IFMSTier3Match" msdata:parentkey="Id" msdata:childkey="IFMSTier3Id" msprop:Generator_UserChildTable="IFMSTier2IFMSTier3Match" msprop:Generator_ChildPropName="GetIFMSTier2IFMSTier3MatchRows" msprop:Generator_UserRelationName="IFMSTier3_Tier2Tier3Match" msprop:Generator_ParentPropName="IFMSTier3Row" msprop:Generator_RelationVarName="relationIFMSTier3_Tier2Tier3Match" msprop:Generator_UserParentTable="IFMSTier3" />
+      <msdata:Relationship name="IFMSTier3_Tier3Tier4Match" msdata:parent="IFMSTier3" msdata:child="IFMSTier3IFMSTier4Match" msdata:parentkey="Id" msdata:childkey="IFMSTier3Id" msprop:Generator_UserChildTable="IFMSTier3IFMSTier4Match" msprop:Generator_ChildPropName="GetIFMSTier3IFMSTier4MatchRows" msprop:Generator_UserRelationName="IFMSTier3_Tier3Tier4Match" msprop:Generator_ParentPropName="IFMSTier3Row" msprop:Generator_RelationVarName="relationIFMSTier3_Tier3Tier4Match" msprop:Generator_UserParentTable="IFMSTier3" />
+      <msdata:Relationship name="IFMSTier4_Tier3Tier4Match" msdata:parent="IFMSTier4" msdata:child="IFMSTier3IFMSTier4Match" msdata:parentkey="Id" msdata:childkey="IFMSTier4Id" msprop:Generator_UserChildTable="IFMSTier3IFMSTier4Match" msprop:Generator_ChildPropName="GetIFMSTier3IFMSTier4MatchRows" msprop:Generator_UserRelationName="IFMSTier4_Tier3Tier4Match" msprop:Generator_ParentPropName="IFMSTier4Row" msprop:Generator_RelationVarName="relationIFMSTier4_Tier3Tier4Match" msprop:Generator_UserParentTable="IFMSTier4" />
+      <msdata:Relationship name="Services_IFMSTier1" msdata:parent="Services" msdata:child="IFMSTier1" msdata:parentkey="Id" msdata:childkey="ServiceId" msprop:Generator_UserChildTable="IFMSTier1" msprop:Generator_ChildPropName="GetIFMSTier1Rows" msprop:Generator_UserRelationName="Services_IFMSTier1" msprop:Generator_ParentPropName="ServicesRow" msprop:Generator_RelationVarName="relationServices_IFMSTier1" msprop:Generator_UserParentTable="Services" />
+      <msdata:Relationship name="SeverityCodes_IFMSTier3" msdata:parent="SeverityCodes" msdata:child="IFMSTier3" msdata:parentkey="Id" msdata:childkey="SeverityId" msprop:Generator_UserChildTable="IFMSTier3" msprop:Generator_ChildPropName="GetIFMSTier3Rows" msprop:Generator_UserRelationName="SeverityCodes_IFMSTier3" msprop:Generator_ParentPropName="SeverityCodesRow" msprop:Generator_RelationVarName="relationSeverityCodes_IFMSTier3" msprop:Generator_UserParentTable="SeverityCodes" />
+      <msdata:Relationship name="Symptoms_IFMSTier3" msdata:parent="Symptoms" msdata:child="IFMSTier3" msdata:parentkey="Id" msdata:childkey="SymptomId" msprop:Generator_UserChildTable="IFMSTier3" msprop:Generator_ChildPropName="GetIFMSTier3Rows" msprop:Generator_UserRelationName="Symptoms_IFMSTier3" msprop:Generator_ParentPropName="SymptomsRow" msprop:Generator_RelationVarName="relationSymptoms_IFMSTier3" msprop:Generator_UserParentTable="Symptoms" />
+      <msdata:Relationship name="Equipment_EquipmentStatuses" msdata:parent="Equipment" msdata:child="EquipmentStatuses" msdata:parentkey="Id" msdata:childkey="EquipmentId" msprop:Generator_UserChildTable="EquipmentStatuses" msprop:Generator_ChildPropName="GetEquipmentStatusesRows" msprop:Generator_UserRelationName="Equipment_EquipmentStatuses" msprop:Generator_ParentPropName="EquipmentRow" msprop:Generator_RelationVarName="relationEquipment_EquipmentStatuses" msprop:Generator_UserParentTable="Equipment" />
+      <msdata:Relationship name="Outcomes_Tier2OutcomesMatch" msdata:parent="Outcomes" msdata:child="IFMSTier2OutcomeMatch" msdata:parentkey="Id" msdata:childkey="OutcomeId" msprop:Generator_UserChildTable="IFMSTier2OutcomeMatch" msprop:Generator_ChildPropName="GetIFMSTier2OutcomeMatchRows" msprop:Generator_UserRelationName="Outcomes_Tier2OutcomesMatch" msprop:Generator_ParentPropName="OutcomesRow" msprop:Generator_RelationVarName="relationOutcomes_Tier2OutcomesMatch" msprop:Generator_UserParentTable="Outcomes" />
+      <msdata:Relationship name="IFMSTier2_Tier2OutcomesMatch" msdata:parent="IFMSTier2" msdata:child="IFMSTier2OutcomeMatch" msdata:parentkey="Id" msdata:childkey="IFMSTier2Id" msprop:Generator_UserChildTable="IFMSTier2OutcomeMatch" msprop:Generator_ChildPropName="GetIFMSTier2OutcomeMatchRows" msprop:Generator_UserRelationName="IFMSTier2_Tier2OutcomesMatch" msprop:Generator_ParentPropName="IFMSTier2Row" msprop:Generator_RelationVarName="relationIFMSTier2_Tier2OutcomesMatch" msprop:Generator_UserParentTable="IFMSTier2" />
+      <msdata:Relationship name="IFMSTier1_Tier1Tier2Match" msdata:parent="IFMSTier1" msdata:child="IFMSTier1IFMSTier2Match" msdata:parentkey="Id" msdata:childkey="IFMSTier1Id" msprop:Generator_UserChildTable="IFMSTier1IFMSTier2Match" msprop:Generator_ChildPropName="GetIFMSTier1IFMSTier2MatchRows" msprop:Generator_UserRelationName="IFMSTier1_Tier1Tier2Match" msprop:Generator_ParentPropName="IFMSTier1Row" msprop:Generator_RelationVarName="relationIFMSTier1_Tier1Tier2Match" msprop:Generator_UserParentTable="IFMSTier1" />
+      <msdata:Relationship name="Outcomes_IFMSTier4OutcomeMatch1" msdata:parent="Outcomes" msdata:child="IFMSTier4OutcomeMatch" msdata:parentkey="Id" msdata:childkey="OutcomeId" msprop:Generator_UserChildTable="IFMSTier4OutcomeMatch" msprop:Generator_ChildPropName="GetIFMSTier4OutcomeMatchRows" msprop:Generator_UserRelationName="Outcomes_IFMSTier4OutcomeMatch1" msprop:Generator_ParentPropName="OutcomesRow" msprop:Generator_RelationVarName="relationOutcomes_IFMSTier4OutcomeMatch1" msprop:Generator_UserParentTable="Outcomes" />
+      <msdata:Relationship name="IFMSTier4_IFMSTier4OutcomeMatch1" msdata:parent="IFMSTier4" msdata:child="IFMSTier4OutcomeMatch" msdata:parentkey="Id" msdata:childkey="IFMSTier4Id" msprop:Generator_UserChildTable="IFMSTier4OutcomeMatch" msprop:Generator_ChildPropName="GetIFMSTier4OutcomeMatchRows" msprop:Generator_UserRelationName="IFMSTier4_IFMSTier4OutcomeMatch1" msprop:Generator_ParentPropName="IFMSTier4Row" msprop:Generator_RelationVarName="relationIFMSTier4_IFMSTier4OutcomeMatch1" msprop:Generator_UserParentTable="IFMSTier4" />
+      <msdata:Relationship name="Symptoms_SeverityCodeSymptomMatch" msdata:parent="Symptoms" msdata:child="SeverityCodeSymptomMatch" msdata:parentkey="Id" msdata:childkey="SymptomId" msprop:Generator_UserChildTable="SeverityCodeSymptomMatch" msprop:Generator_ChildPropName="GetSeverityCodeSymptomMatchRows" msprop:Generator_UserRelationName="Symptoms_SeverityCodeSymptomMatch" msprop:Generator_ParentPropName="SymptomsRow" msprop:Generator_RelationVarName="relationSymptoms_SeverityCodeSymptomMatch" msprop:Generator_UserParentTable="Symptoms" />
+      <msdata:Relationship name="SeverityCodes_SeverityCodeSymptomMatch" msdata:parent="SeverityCodes" msdata:child="SeverityCodeSymptomMatch" msdata:parentkey="Id" msdata:childkey="SeverityCodeId" msprop:Generator_UserChildTable="SeverityCodeSymptomMatch" msprop:Generator_ChildPropName="GetSeverityCodeSymptomMatchRows" msprop:Generator_UserRelationName="SeverityCodes_SeverityCodeSymptomMatch" msprop:Generator_ParentPropName="SeverityCodesRow" msprop:Generator_RelationVarName="relationSeverityCodes_SeverityCodeSymptomMatch" msprop:Generator_UserParentTable="SeverityCodes" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

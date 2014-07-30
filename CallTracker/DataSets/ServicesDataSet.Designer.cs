@@ -62,13 +62,19 @@ namespace CallTracker.DataSets {
         
         private IFMSTier4DataTable tableIFMSTier4;
         
-        private Tier1Tier2MatchDataTable tableTier1Tier2Match;
+        private IFMSTier1IFMSTier2MatchDataTable tableIFMSTier1IFMSTier2Match;
         
-        private Tier2Tier3MatchDataTable tableTier2Tier3Match;
+        private IFMSTier2IFMSTier3MatchDataTable tableIFMSTier2IFMSTier3Match;
         
-        private Tier3Tier4MatchDataTable tableTier3Tier4Match;
+        private IFMSTier3IFMSTier4MatchDataTable tableIFMSTier3IFMSTier4Match;
         
         private EquipmentStatusesDataTable tableEquipmentStatuses;
+        
+        private IFMSTier2OutcomeMatchDataTable tableIFMSTier2OutcomeMatch;
+        
+        private IFMSTier4OutcomeMatchDataTable tableIFMSTier4OutcomeMatch;
+        
+        private SeverityCodeSymptomMatchDataTable tableSeverityCodeSymptomMatch;
         
         private global::System.Data.DataRelation relationServiceSymptomGroup_Services;
         
@@ -88,8 +94,6 @@ namespace CallTracker.DataSets {
         
         private global::System.Data.DataRelation relationSymptoms_SymptomGroupSymptomMatch;
         
-        private global::System.Data.DataRelation relationIFMSTier1_Tier1Tier2Match;
-        
         private global::System.Data.DataRelation relationIFMSTier12_Tier1Tier2Match;
         
         private global::System.Data.DataRelation relationIFMSTier12_Tier2Tier3Match;
@@ -102,15 +106,25 @@ namespace CallTracker.DataSets {
         
         private global::System.Data.DataRelation relationServices_IFMSTier1;
         
-        private global::System.Data.DataRelation relationOutcomes_IFMSTier4;
-        
-        private global::System.Data.DataRelation relationOutcomes_IFMSTier2;
-        
         private global::System.Data.DataRelation relationSeverityCodes_IFMSTier3;
         
         private global::System.Data.DataRelation relationSymptoms_IFMSTier3;
         
         private global::System.Data.DataRelation relationEquipment_EquipmentStatuses;
+        
+        private global::System.Data.DataRelation relationOutcomes_Tier2OutcomesMatch;
+        
+        private global::System.Data.DataRelation relationIFMSTier2_Tier2OutcomesMatch;
+        
+        private global::System.Data.DataRelation relationIFMSTier1_Tier1Tier2Match;
+        
+        private global::System.Data.DataRelation relationOutcomes_IFMSTier4OutcomeMatch1;
+        
+        private global::System.Data.DataRelation relationIFMSTier4_IFMSTier4OutcomeMatch1;
+        
+        private global::System.Data.DataRelation relationSymptoms_SeverityCodeSymptomMatch;
+        
+        private global::System.Data.DataRelation relationSeverityCodes_SeverityCodeSymptomMatch;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -197,17 +211,26 @@ namespace CallTracker.DataSets {
                 if ((ds.Tables["IFMSTier4"] != null)) {
                     base.Tables.Add(new IFMSTier4DataTable(ds.Tables["IFMSTier4"]));
                 }
-                if ((ds.Tables["Tier1Tier2Match"] != null)) {
-                    base.Tables.Add(new Tier1Tier2MatchDataTable(ds.Tables["Tier1Tier2Match"]));
+                if ((ds.Tables["IFMSTier1IFMSTier2Match"] != null)) {
+                    base.Tables.Add(new IFMSTier1IFMSTier2MatchDataTable(ds.Tables["IFMSTier1IFMSTier2Match"]));
                 }
-                if ((ds.Tables["Tier2Tier3Match"] != null)) {
-                    base.Tables.Add(new Tier2Tier3MatchDataTable(ds.Tables["Tier2Tier3Match"]));
+                if ((ds.Tables["IFMSTier2IFMSTier3Match"] != null)) {
+                    base.Tables.Add(new IFMSTier2IFMSTier3MatchDataTable(ds.Tables["IFMSTier2IFMSTier3Match"]));
                 }
-                if ((ds.Tables["Tier3Tier4Match"] != null)) {
-                    base.Tables.Add(new Tier3Tier4MatchDataTable(ds.Tables["Tier3Tier4Match"]));
+                if ((ds.Tables["IFMSTier3IFMSTier4Match"] != null)) {
+                    base.Tables.Add(new IFMSTier3IFMSTier4MatchDataTable(ds.Tables["IFMSTier3IFMSTier4Match"]));
                 }
                 if ((ds.Tables["EquipmentStatuses"] != null)) {
                     base.Tables.Add(new EquipmentStatusesDataTable(ds.Tables["EquipmentStatuses"]));
+                }
+                if ((ds.Tables["IFMSTier2OutcomeMatch"] != null)) {
+                    base.Tables.Add(new IFMSTier2OutcomeMatchDataTable(ds.Tables["IFMSTier2OutcomeMatch"]));
+                }
+                if ((ds.Tables["IFMSTier4OutcomeMatch"] != null)) {
+                    base.Tables.Add(new IFMSTier4OutcomeMatchDataTable(ds.Tables["IFMSTier4OutcomeMatch"]));
+                }
+                if ((ds.Tables["SeverityCodeSymptomMatch"] != null)) {
+                    base.Tables.Add(new SeverityCodeSymptomMatchDataTable(ds.Tables["SeverityCodeSymptomMatch"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -421,9 +444,9 @@ namespace CallTracker.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Tier1Tier2MatchDataTable Tier1Tier2Match {
+        public IFMSTier1IFMSTier2MatchDataTable IFMSTier1IFMSTier2Match {
             get {
-                return this.tableTier1Tier2Match;
+                return this.tableIFMSTier1IFMSTier2Match;
             }
         }
         
@@ -431,9 +454,9 @@ namespace CallTracker.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Tier2Tier3MatchDataTable Tier2Tier3Match {
+        public IFMSTier2IFMSTier3MatchDataTable IFMSTier2IFMSTier3Match {
             get {
-                return this.tableTier2Tier3Match;
+                return this.tableIFMSTier2IFMSTier3Match;
             }
         }
         
@@ -441,9 +464,9 @@ namespace CallTracker.DataSets {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Tier3Tier4MatchDataTable Tier3Tier4Match {
+        public IFMSTier3IFMSTier4MatchDataTable IFMSTier3IFMSTier4Match {
             get {
-                return this.tableTier3Tier4Match;
+                return this.tableIFMSTier3IFMSTier4Match;
             }
         }
         
@@ -454,6 +477,36 @@ namespace CallTracker.DataSets {
         public EquipmentStatusesDataTable EquipmentStatuses {
             get {
                 return this.tableEquipmentStatuses;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public IFMSTier2OutcomeMatchDataTable IFMSTier2OutcomeMatch {
+            get {
+                return this.tableIFMSTier2OutcomeMatch;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public IFMSTier4OutcomeMatchDataTable IFMSTier4OutcomeMatch {
+            get {
+                return this.tableIFMSTier4OutcomeMatch;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SeverityCodeSymptomMatchDataTable SeverityCodeSymptomMatch {
+            get {
+                return this.tableSeverityCodeSymptomMatch;
             }
         }
         
@@ -581,17 +634,26 @@ namespace CallTracker.DataSets {
                 if ((ds.Tables["IFMSTier4"] != null)) {
                     base.Tables.Add(new IFMSTier4DataTable(ds.Tables["IFMSTier4"]));
                 }
-                if ((ds.Tables["Tier1Tier2Match"] != null)) {
-                    base.Tables.Add(new Tier1Tier2MatchDataTable(ds.Tables["Tier1Tier2Match"]));
+                if ((ds.Tables["IFMSTier1IFMSTier2Match"] != null)) {
+                    base.Tables.Add(new IFMSTier1IFMSTier2MatchDataTable(ds.Tables["IFMSTier1IFMSTier2Match"]));
                 }
-                if ((ds.Tables["Tier2Tier3Match"] != null)) {
-                    base.Tables.Add(new Tier2Tier3MatchDataTable(ds.Tables["Tier2Tier3Match"]));
+                if ((ds.Tables["IFMSTier2IFMSTier3Match"] != null)) {
+                    base.Tables.Add(new IFMSTier2IFMSTier3MatchDataTable(ds.Tables["IFMSTier2IFMSTier3Match"]));
                 }
-                if ((ds.Tables["Tier3Tier4Match"] != null)) {
-                    base.Tables.Add(new Tier3Tier4MatchDataTable(ds.Tables["Tier3Tier4Match"]));
+                if ((ds.Tables["IFMSTier3IFMSTier4Match"] != null)) {
+                    base.Tables.Add(new IFMSTier3IFMSTier4MatchDataTable(ds.Tables["IFMSTier3IFMSTier4Match"]));
                 }
                 if ((ds.Tables["EquipmentStatuses"] != null)) {
                     base.Tables.Add(new EquipmentStatusesDataTable(ds.Tables["EquipmentStatuses"]));
+                }
+                if ((ds.Tables["IFMSTier2OutcomeMatch"] != null)) {
+                    base.Tables.Add(new IFMSTier2OutcomeMatchDataTable(ds.Tables["IFMSTier2OutcomeMatch"]));
+                }
+                if ((ds.Tables["IFMSTier4OutcomeMatch"] != null)) {
+                    base.Tables.Add(new IFMSTier4OutcomeMatchDataTable(ds.Tables["IFMSTier4OutcomeMatch"]));
+                }
+                if ((ds.Tables["SeverityCodeSymptomMatch"] != null)) {
+                    base.Tables.Add(new SeverityCodeSymptomMatchDataTable(ds.Tables["SeverityCodeSymptomMatch"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -740,28 +802,46 @@ namespace CallTracker.DataSets {
                     this.tableIFMSTier4.InitVars();
                 }
             }
-            this.tableTier1Tier2Match = ((Tier1Tier2MatchDataTable)(base.Tables["Tier1Tier2Match"]));
+            this.tableIFMSTier1IFMSTier2Match = ((IFMSTier1IFMSTier2MatchDataTable)(base.Tables["IFMSTier1IFMSTier2Match"]));
             if ((initTable == true)) {
-                if ((this.tableTier1Tier2Match != null)) {
-                    this.tableTier1Tier2Match.InitVars();
+                if ((this.tableIFMSTier1IFMSTier2Match != null)) {
+                    this.tableIFMSTier1IFMSTier2Match.InitVars();
                 }
             }
-            this.tableTier2Tier3Match = ((Tier2Tier3MatchDataTable)(base.Tables["Tier2Tier3Match"]));
+            this.tableIFMSTier2IFMSTier3Match = ((IFMSTier2IFMSTier3MatchDataTable)(base.Tables["IFMSTier2IFMSTier3Match"]));
             if ((initTable == true)) {
-                if ((this.tableTier2Tier3Match != null)) {
-                    this.tableTier2Tier3Match.InitVars();
+                if ((this.tableIFMSTier2IFMSTier3Match != null)) {
+                    this.tableIFMSTier2IFMSTier3Match.InitVars();
                 }
             }
-            this.tableTier3Tier4Match = ((Tier3Tier4MatchDataTable)(base.Tables["Tier3Tier4Match"]));
+            this.tableIFMSTier3IFMSTier4Match = ((IFMSTier3IFMSTier4MatchDataTable)(base.Tables["IFMSTier3IFMSTier4Match"]));
             if ((initTable == true)) {
-                if ((this.tableTier3Tier4Match != null)) {
-                    this.tableTier3Tier4Match.InitVars();
+                if ((this.tableIFMSTier3IFMSTier4Match != null)) {
+                    this.tableIFMSTier3IFMSTier4Match.InitVars();
                 }
             }
             this.tableEquipmentStatuses = ((EquipmentStatusesDataTable)(base.Tables["EquipmentStatuses"]));
             if ((initTable == true)) {
                 if ((this.tableEquipmentStatuses != null)) {
                     this.tableEquipmentStatuses.InitVars();
+                }
+            }
+            this.tableIFMSTier2OutcomeMatch = ((IFMSTier2OutcomeMatchDataTable)(base.Tables["IFMSTier2OutcomeMatch"]));
+            if ((initTable == true)) {
+                if ((this.tableIFMSTier2OutcomeMatch != null)) {
+                    this.tableIFMSTier2OutcomeMatch.InitVars();
+                }
+            }
+            this.tableIFMSTier4OutcomeMatch = ((IFMSTier4OutcomeMatchDataTable)(base.Tables["IFMSTier4OutcomeMatch"]));
+            if ((initTable == true)) {
+                if ((this.tableIFMSTier4OutcomeMatch != null)) {
+                    this.tableIFMSTier4OutcomeMatch.InitVars();
+                }
+            }
+            this.tableSeverityCodeSymptomMatch = ((SeverityCodeSymptomMatchDataTable)(base.Tables["SeverityCodeSymptomMatch"]));
+            if ((initTable == true)) {
+                if ((this.tableSeverityCodeSymptomMatch != null)) {
+                    this.tableSeverityCodeSymptomMatch.InitVars();
                 }
             }
             this.relationServiceSymptomGroup_Services = this.Relations["ServiceSymptomGroup_Services"];
@@ -773,18 +853,22 @@ namespace CallTracker.DataSets {
             this.relationDepartmentNames_Departments = this.Relations["DepartmentNames_Departments"];
             this.relationSymptomGroups_SymptomGroupSymptomMatch = this.Relations["SymptomGroups_SymptomGroupSymptomMatch"];
             this.relationSymptoms_SymptomGroupSymptomMatch = this.Relations["Symptoms_SymptomGroupSymptomMatch"];
-            this.relationIFMSTier1_Tier1Tier2Match = this.Relations["IFMSTier1_Tier1Tier2Match"];
             this.relationIFMSTier12_Tier1Tier2Match = this.Relations["IFMSTier12_Tier1Tier2Match"];
             this.relationIFMSTier12_Tier2Tier3Match = this.Relations["IFMSTier12_Tier2Tier3Match"];
             this.relationIFMSTier3_Tier2Tier3Match = this.Relations["IFMSTier3_Tier2Tier3Match"];
             this.relationIFMSTier3_Tier3Tier4Match = this.Relations["IFMSTier3_Tier3Tier4Match"];
             this.relationIFMSTier4_Tier3Tier4Match = this.Relations["IFMSTier4_Tier3Tier4Match"];
             this.relationServices_IFMSTier1 = this.Relations["Services_IFMSTier1"];
-            this.relationOutcomes_IFMSTier4 = this.Relations["Outcomes_IFMSTier4"];
-            this.relationOutcomes_IFMSTier2 = this.Relations["Outcomes_IFMSTier2"];
             this.relationSeverityCodes_IFMSTier3 = this.Relations["SeverityCodes_IFMSTier3"];
             this.relationSymptoms_IFMSTier3 = this.Relations["Symptoms_IFMSTier3"];
             this.relationEquipment_EquipmentStatuses = this.Relations["Equipment_EquipmentStatuses"];
+            this.relationOutcomes_Tier2OutcomesMatch = this.Relations["Outcomes_Tier2OutcomesMatch"];
+            this.relationIFMSTier2_Tier2OutcomesMatch = this.Relations["IFMSTier2_Tier2OutcomesMatch"];
+            this.relationIFMSTier1_Tier1Tier2Match = this.Relations["IFMSTier1_Tier1Tier2Match"];
+            this.relationOutcomes_IFMSTier4OutcomeMatch1 = this.Relations["Outcomes_IFMSTier4OutcomeMatch1"];
+            this.relationIFMSTier4_IFMSTier4OutcomeMatch1 = this.Relations["IFMSTier4_IFMSTier4OutcomeMatch1"];
+            this.relationSymptoms_SeverityCodeSymptomMatch = this.Relations["Symptoms_SeverityCodeSymptomMatch"];
+            this.relationSeverityCodes_SeverityCodeSymptomMatch = this.Relations["SeverityCodes_SeverityCodeSymptomMatch"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -833,14 +917,20 @@ namespace CallTracker.DataSets {
             base.Tables.Add(this.tableIFMSTier3);
             this.tableIFMSTier4 = new IFMSTier4DataTable();
             base.Tables.Add(this.tableIFMSTier4);
-            this.tableTier1Tier2Match = new Tier1Tier2MatchDataTable();
-            base.Tables.Add(this.tableTier1Tier2Match);
-            this.tableTier2Tier3Match = new Tier2Tier3MatchDataTable();
-            base.Tables.Add(this.tableTier2Tier3Match);
-            this.tableTier3Tier4Match = new Tier3Tier4MatchDataTable();
-            base.Tables.Add(this.tableTier3Tier4Match);
+            this.tableIFMSTier1IFMSTier2Match = new IFMSTier1IFMSTier2MatchDataTable();
+            base.Tables.Add(this.tableIFMSTier1IFMSTier2Match);
+            this.tableIFMSTier2IFMSTier3Match = new IFMSTier2IFMSTier3MatchDataTable();
+            base.Tables.Add(this.tableIFMSTier2IFMSTier3Match);
+            this.tableIFMSTier3IFMSTier4Match = new IFMSTier3IFMSTier4MatchDataTable();
+            base.Tables.Add(this.tableIFMSTier3IFMSTier4Match);
             this.tableEquipmentStatuses = new EquipmentStatusesDataTable();
             base.Tables.Add(this.tableEquipmentStatuses);
+            this.tableIFMSTier2OutcomeMatch = new IFMSTier2OutcomeMatchDataTable();
+            base.Tables.Add(this.tableIFMSTier2OutcomeMatch);
+            this.tableIFMSTier4OutcomeMatch = new IFMSTier4OutcomeMatchDataTable();
+            base.Tables.Add(this.tableIFMSTier4OutcomeMatch);
+            this.tableSeverityCodeSymptomMatch = new SeverityCodeSymptomMatchDataTable();
+            base.Tables.Add(this.tableSeverityCodeSymptomMatch);
             this.relationServiceSymptomGroup_Services = new global::System.Data.DataRelation("ServiceSymptomGroup_Services", new global::System.Data.DataColumn[] {
                         this.tableServices.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableServiceSymptomGroupMatch.ServiceIdColumn}, false);
@@ -877,42 +967,30 @@ namespace CallTracker.DataSets {
                         this.tableSymptoms.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableSymptomGroupSymptomMatch.SymptomIdColumn}, false);
             this.Relations.Add(this.relationSymptoms_SymptomGroupSymptomMatch);
-            this.relationIFMSTier1_Tier1Tier2Match = new global::System.Data.DataRelation("IFMSTier1_Tier1Tier2Match", new global::System.Data.DataColumn[] {
-                        this.tableIFMSTier1.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTier1Tier2Match.Tier1IdColumn}, false);
-            this.Relations.Add(this.relationIFMSTier1_Tier1Tier2Match);
             this.relationIFMSTier12_Tier1Tier2Match = new global::System.Data.DataRelation("IFMSTier12_Tier1Tier2Match", new global::System.Data.DataColumn[] {
                         this.tableIFMSTier2.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTier1Tier2Match.Tier2IdColumn}, false);
+                        this.tableIFMSTier1IFMSTier2Match.IFMSTier2IdColumn}, false);
             this.Relations.Add(this.relationIFMSTier12_Tier1Tier2Match);
             this.relationIFMSTier12_Tier2Tier3Match = new global::System.Data.DataRelation("IFMSTier12_Tier2Tier3Match", new global::System.Data.DataColumn[] {
                         this.tableIFMSTier2.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTier2Tier3Match.Tier2IdColumn}, false);
+                        this.tableIFMSTier2IFMSTier3Match.IFMSTier2IdColumn}, false);
             this.Relations.Add(this.relationIFMSTier12_Tier2Tier3Match);
             this.relationIFMSTier3_Tier2Tier3Match = new global::System.Data.DataRelation("IFMSTier3_Tier2Tier3Match", new global::System.Data.DataColumn[] {
                         this.tableIFMSTier3.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTier2Tier3Match.Tier3IdColumn}, false);
+                        this.tableIFMSTier2IFMSTier3Match.IFMSTier3IdColumn}, false);
             this.Relations.Add(this.relationIFMSTier3_Tier2Tier3Match);
             this.relationIFMSTier3_Tier3Tier4Match = new global::System.Data.DataRelation("IFMSTier3_Tier3Tier4Match", new global::System.Data.DataColumn[] {
                         this.tableIFMSTier3.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTier3Tier4Match.Tier3IdColumn}, false);
+                        this.tableIFMSTier3IFMSTier4Match.IFMSTier3IdColumn}, false);
             this.Relations.Add(this.relationIFMSTier3_Tier3Tier4Match);
             this.relationIFMSTier4_Tier3Tier4Match = new global::System.Data.DataRelation("IFMSTier4_Tier3Tier4Match", new global::System.Data.DataColumn[] {
                         this.tableIFMSTier4.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableTier3Tier4Match.Tier4IdColumn}, false);
+                        this.tableIFMSTier3IFMSTier4Match.IFMSTier4IdColumn}, false);
             this.Relations.Add(this.relationIFMSTier4_Tier3Tier4Match);
             this.relationServices_IFMSTier1 = new global::System.Data.DataRelation("Services_IFMSTier1", new global::System.Data.DataColumn[] {
                         this.tableServices.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableIFMSTier1.ServiceIdColumn}, false);
             this.Relations.Add(this.relationServices_IFMSTier1);
-            this.relationOutcomes_IFMSTier4 = new global::System.Data.DataRelation("Outcomes_IFMSTier4", new global::System.Data.DataColumn[] {
-                        this.tableOutcomes.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableIFMSTier4.OutcomeIdColumn}, false);
-            this.Relations.Add(this.relationOutcomes_IFMSTier4);
-            this.relationOutcomes_IFMSTier2 = new global::System.Data.DataRelation("Outcomes_IFMSTier2", new global::System.Data.DataColumn[] {
-                        this.tableOutcomes.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableIFMSTier2.OutcomeIdColumn}, false);
-            this.Relations.Add(this.relationOutcomes_IFMSTier2);
             this.relationSeverityCodes_IFMSTier3 = new global::System.Data.DataRelation("SeverityCodes_IFMSTier3", new global::System.Data.DataColumn[] {
                         this.tableSeverityCodes.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableIFMSTier3.SeverityIdColumn}, false);
@@ -925,6 +1003,34 @@ namespace CallTracker.DataSets {
                         this.tableEquipment.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableEquipmentStatuses.EquipmentIdColumn}, false);
             this.Relations.Add(this.relationEquipment_EquipmentStatuses);
+            this.relationOutcomes_Tier2OutcomesMatch = new global::System.Data.DataRelation("Outcomes_Tier2OutcomesMatch", new global::System.Data.DataColumn[] {
+                        this.tableOutcomes.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableIFMSTier2OutcomeMatch.OutcomeIdColumn}, false);
+            this.Relations.Add(this.relationOutcomes_Tier2OutcomesMatch);
+            this.relationIFMSTier2_Tier2OutcomesMatch = new global::System.Data.DataRelation("IFMSTier2_Tier2OutcomesMatch", new global::System.Data.DataColumn[] {
+                        this.tableIFMSTier2.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableIFMSTier2OutcomeMatch.IFMSTier2IdColumn}, false);
+            this.Relations.Add(this.relationIFMSTier2_Tier2OutcomesMatch);
+            this.relationIFMSTier1_Tier1Tier2Match = new global::System.Data.DataRelation("IFMSTier1_Tier1Tier2Match", new global::System.Data.DataColumn[] {
+                        this.tableIFMSTier1.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableIFMSTier1IFMSTier2Match.IFMSTier1IdColumn}, false);
+            this.Relations.Add(this.relationIFMSTier1_Tier1Tier2Match);
+            this.relationOutcomes_IFMSTier4OutcomeMatch1 = new global::System.Data.DataRelation("Outcomes_IFMSTier4OutcomeMatch1", new global::System.Data.DataColumn[] {
+                        this.tableOutcomes.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableIFMSTier4OutcomeMatch.OutcomeIdColumn}, false);
+            this.Relations.Add(this.relationOutcomes_IFMSTier4OutcomeMatch1);
+            this.relationIFMSTier4_IFMSTier4OutcomeMatch1 = new global::System.Data.DataRelation("IFMSTier4_IFMSTier4OutcomeMatch1", new global::System.Data.DataColumn[] {
+                        this.tableIFMSTier4.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableIFMSTier4OutcomeMatch.IFMSTier4IdColumn}, false);
+            this.Relations.Add(this.relationIFMSTier4_IFMSTier4OutcomeMatch1);
+            this.relationSymptoms_SeverityCodeSymptomMatch = new global::System.Data.DataRelation("Symptoms_SeverityCodeSymptomMatch", new global::System.Data.DataColumn[] {
+                        this.tableSymptoms.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSeverityCodeSymptomMatch.SymptomIdColumn}, false);
+            this.Relations.Add(this.relationSymptoms_SeverityCodeSymptomMatch);
+            this.relationSeverityCodes_SeverityCodeSymptomMatch = new global::System.Data.DataRelation("SeverityCodes_SeverityCodeSymptomMatch", new global::System.Data.DataColumn[] {
+                        this.tableSeverityCodes.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSeverityCodeSymptomMatch.SeverityCodeIdColumn}, false);
+            this.Relations.Add(this.relationSeverityCodes_SeverityCodeSymptomMatch);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1043,25 +1149,43 @@ namespace CallTracker.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeTier1Tier2Match() {
+        private bool ShouldSerializeIFMSTier1IFMSTier2Match() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeTier2Tier3Match() {
+        private bool ShouldSerializeIFMSTier2IFMSTier3Match() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeTier3Tier4Match() {
+        private bool ShouldSerializeIFMSTier3IFMSTier4Match() {
             return false;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializeEquipmentStatuses() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeIFMSTier2OutcomeMatch() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeIFMSTier4OutcomeMatch() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeSeverityCodeSymptomMatch() {
             return false;
         }
         
@@ -1178,16 +1302,25 @@ namespace CallTracker.DataSets {
         public delegate void IFMSTier4RowChangeEventHandler(object sender, IFMSTier4RowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void Tier1Tier2MatchRowChangeEventHandler(object sender, Tier1Tier2MatchRowChangeEvent e);
+        public delegate void IFMSTier1IFMSTier2MatchRowChangeEventHandler(object sender, IFMSTier1IFMSTier2MatchRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void Tier2Tier3MatchRowChangeEventHandler(object sender, Tier2Tier3MatchRowChangeEvent e);
+        public delegate void IFMSTier2IFMSTier3MatchRowChangeEventHandler(object sender, IFMSTier2IFMSTier3MatchRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void Tier3Tier4MatchRowChangeEventHandler(object sender, Tier3Tier4MatchRowChangeEvent e);
+        public delegate void IFMSTier3IFMSTier4MatchRowChangeEventHandler(object sender, IFMSTier3IFMSTier4MatchRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void EquipmentStatusesRowChangeEventHandler(object sender, EquipmentStatusesRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void IFMSTier2OutcomeMatchRowChangeEventHandler(object sender, IFMSTier2OutcomeMatchRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void IFMSTier4OutcomeMatchRowChangeEventHandler(object sender, IFMSTier4OutcomeMatchRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void SeverityCodeSymptomMatchRowChangeEventHandler(object sender, SeverityCodeSymptomMatchRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -5741,8 +5874,6 @@ namespace CallTracker.DataSets {
             
             private global::System.Data.DataColumn columnOption;
             
-            private global::System.Data.DataColumn columnOutcomeId;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public IFMSTier2DataTable() {
@@ -5794,14 +5925,6 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OutcomeIdColumn {
-                get {
-                    return this.columnOutcomeId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5837,15 +5960,11 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public IFMSTier2Row AddIFMSTier2Row(string Option, OutcomesRow parentOutcomesRowByOutcomes_IFMSTier2) {
+            public IFMSTier2Row AddIFMSTier2Row(string Option) {
                 IFMSTier2Row rowIFMSTier2Row = ((IFMSTier2Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        Option,
-                        null};
-                if ((parentOutcomesRowByOutcomes_IFMSTier2 != null)) {
-                    columnValuesArray[2] = parentOutcomesRowByOutcomes_IFMSTier2[0];
-                }
+                        Option};
                 rowIFMSTier2Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowIFMSTier2Row);
                 return rowIFMSTier2Row;
@@ -5870,7 +5989,6 @@ namespace CallTracker.DataSets {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnOption = base.Columns["Option"];
-                this.columnOutcomeId = base.Columns["OutcomeId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5880,8 +5998,6 @@ namespace CallTracker.DataSets {
                 base.Columns.Add(this.columnId);
                 this.columnOption = new global::System.Data.DataColumn("Option", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOption);
-                this.columnOutcomeId = new global::System.Data.DataColumn("OutcomeId", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOutcomeId);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, false));
                 this.columnId.AutoIncrement = true;
@@ -6322,8 +6438,6 @@ namespace CallTracker.DataSets {
             
             private global::System.Data.DataColumn columnOption;
             
-            private global::System.Data.DataColumn columnOutcomeId;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public IFMSTier4DataTable() {
@@ -6375,14 +6489,6 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OutcomeIdColumn {
-                get {
-                    return this.columnOutcomeId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6418,15 +6524,11 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public IFMSTier4Row AddIFMSTier4Row(string Option, OutcomesRow parentOutcomesRowByOutcomes_IFMSTier4) {
+            public IFMSTier4Row AddIFMSTier4Row(string Option) {
                 IFMSTier4Row rowIFMSTier4Row = ((IFMSTier4Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        Option,
-                        null};
-                if ((parentOutcomesRowByOutcomes_IFMSTier4 != null)) {
-                    columnValuesArray[2] = parentOutcomesRowByOutcomes_IFMSTier4[0];
-                }
+                        Option};
                 rowIFMSTier4Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowIFMSTier4Row);
                 return rowIFMSTier4Row;
@@ -6451,7 +6553,6 @@ namespace CallTracker.DataSets {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnOption = base.Columns["Option"];
-                this.columnOutcomeId = base.Columns["OutcomeId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6461,8 +6562,6 @@ namespace CallTracker.DataSets {
                 base.Columns.Add(this.columnId);
                 this.columnOption = new global::System.Data.DataColumn("Option", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOption);
-                this.columnOutcomeId = new global::System.Data.DataColumn("OutcomeId", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOutcomeId);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, false));
                 this.columnId.AutoIncrement = true;
@@ -6598,16 +6697,16 @@ namespace CallTracker.DataSets {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class Tier1Tier2MatchDataTable : global::System.Data.TypedTableBase<Tier1Tier2MatchRow> {
+        public partial class IFMSTier1IFMSTier2MatchDataTable : global::System.Data.TypedTableBase<IFMSTier1IFMSTier2MatchRow> {
             
-            private global::System.Data.DataColumn columnTier1Id;
+            private global::System.Data.DataColumn columnIFMSTier1Id;
             
-            private global::System.Data.DataColumn columnTier2Id;
+            private global::System.Data.DataColumn columnIFMSTier2Id;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier1Tier2MatchDataTable() {
-                this.TableName = "Tier1Tier2Match";
+            public IFMSTier1IFMSTier2MatchDataTable() {
+                this.TableName = "IFMSTier1IFMSTier2Match";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -6615,7 +6714,7 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tier1Tier2MatchDataTable(global::System.Data.DataTable table) {
+            internal IFMSTier1IFMSTier2MatchDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -6632,24 +6731,24 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected Tier1Tier2MatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected IFMSTier1IFMSTier2MatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Tier1IdColumn {
+            public global::System.Data.DataColumn IFMSTier1IdColumn {
                 get {
-                    return this.columnTier1Id;
+                    return this.columnIFMSTier1Id;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Tier2IdColumn {
+            public global::System.Data.DataColumn IFMSTier2IdColumn {
                 get {
-                    return this.columnTier2Id;
+                    return this.columnIFMSTier2Id;
                 }
             }
             
@@ -6664,34 +6763,34 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier1Tier2MatchRow this[int index] {
+            public IFMSTier1IFMSTier2MatchRow this[int index] {
                 get {
-                    return ((Tier1Tier2MatchRow)(this.Rows[index]));
+                    return ((IFMSTier1IFMSTier2MatchRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier1Tier2MatchRowChangeEventHandler Tier1Tier2MatchRowChanging;
+            public event IFMSTier1IFMSTier2MatchRowChangeEventHandler IFMSTier1IFMSTier2MatchRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier1Tier2MatchRowChangeEventHandler Tier1Tier2MatchRowChanged;
+            public event IFMSTier1IFMSTier2MatchRowChangeEventHandler IFMSTier1IFMSTier2MatchRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier1Tier2MatchRowChangeEventHandler Tier1Tier2MatchRowDeleting;
+            public event IFMSTier1IFMSTier2MatchRowChangeEventHandler IFMSTier1IFMSTier2MatchRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier1Tier2MatchRowChangeEventHandler Tier1Tier2MatchRowDeleted;
+            public event IFMSTier1IFMSTier2MatchRowChangeEventHandler IFMSTier1IFMSTier2MatchRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddTier1Tier2MatchRow(Tier1Tier2MatchRow row) {
+            public void AddIFMSTier1IFMSTier2MatchRow(IFMSTier1IFMSTier2MatchRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier1Tier2MatchRow AddTier1Tier2MatchRow(IFMSTier1Row parentIFMSTier1RowByIFMSTier1_Tier1Tier2Match, IFMSTier2Row parentIFMSTier2RowByIFMSTier12_Tier1Tier2Match) {
-                Tier1Tier2MatchRow rowTier1Tier2MatchRow = ((Tier1Tier2MatchRow)(this.NewRow()));
+            public IFMSTier1IFMSTier2MatchRow AddIFMSTier1IFMSTier2MatchRow(IFMSTier1Row parentIFMSTier1RowByIFMSTier1_Tier1Tier2Match, IFMSTier2Row parentIFMSTier2RowByIFMSTier12_Tier1Tier2Match) {
+                IFMSTier1IFMSTier2MatchRow rowIFMSTier1IFMSTier2MatchRow = ((IFMSTier1IFMSTier2MatchRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null};
@@ -6701,15 +6800,15 @@ namespace CallTracker.DataSets {
                 if ((parentIFMSTier2RowByIFMSTier12_Tier1Tier2Match != null)) {
                     columnValuesArray[1] = parentIFMSTier2RowByIFMSTier12_Tier1Tier2Match[0];
                 }
-                rowTier1Tier2MatchRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTier1Tier2MatchRow);
-                return rowTier1Tier2MatchRow;
+                rowIFMSTier1IFMSTier2MatchRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowIFMSTier1IFMSTier2MatchRow);
+                return rowIFMSTier1IFMSTier2MatchRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                Tier1Tier2MatchDataTable cln = ((Tier1Tier2MatchDataTable)(base.Clone()));
+                IFMSTier1IFMSTier2MatchDataTable cln = ((IFMSTier1IFMSTier2MatchDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -6717,49 +6816,49 @@ namespace CallTracker.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new Tier1Tier2MatchDataTable();
+                return new IFMSTier1IFMSTier2MatchDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnTier1Id = base.Columns["Tier1Id"];
-                this.columnTier2Id = base.Columns["Tier2Id"];
+                this.columnIFMSTier1Id = base.Columns["IFMSTier1Id"];
+                this.columnIFMSTier2Id = base.Columns["IFMSTier2Id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnTier1Id = new global::System.Data.DataColumn("Tier1Id", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTier1Id);
-                this.columnTier2Id = new global::System.Data.DataColumn("Tier2Id", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTier2Id);
+                this.columnIFMSTier1Id = new global::System.Data.DataColumn("IFMSTier1Id", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIFMSTier1Id);
+                this.columnIFMSTier2Id = new global::System.Data.DataColumn("IFMSTier2Id", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIFMSTier2Id);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier1Tier2MatchRow NewTier1Tier2MatchRow() {
-                return ((Tier1Tier2MatchRow)(this.NewRow()));
+            public IFMSTier1IFMSTier2MatchRow NewIFMSTier1IFMSTier2MatchRow() {
+                return ((IFMSTier1IFMSTier2MatchRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new Tier1Tier2MatchRow(builder);
+                return new IFMSTier1IFMSTier2MatchRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(Tier1Tier2MatchRow);
+                return typeof(IFMSTier1IFMSTier2MatchRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.Tier1Tier2MatchRowChanged != null)) {
-                    this.Tier1Tier2MatchRowChanged(this, new Tier1Tier2MatchRowChangeEvent(((Tier1Tier2MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier1IFMSTier2MatchRowChanged != null)) {
+                    this.IFMSTier1IFMSTier2MatchRowChanged(this, new IFMSTier1IFMSTier2MatchRowChangeEvent(((IFMSTier1IFMSTier2MatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -6767,8 +6866,8 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.Tier1Tier2MatchRowChanging != null)) {
-                    this.Tier1Tier2MatchRowChanging(this, new Tier1Tier2MatchRowChangeEvent(((Tier1Tier2MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier1IFMSTier2MatchRowChanging != null)) {
+                    this.IFMSTier1IFMSTier2MatchRowChanging(this, new IFMSTier1IFMSTier2MatchRowChangeEvent(((IFMSTier1IFMSTier2MatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -6776,8 +6875,8 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.Tier1Tier2MatchRowDeleted != null)) {
-                    this.Tier1Tier2MatchRowDeleted(this, new Tier1Tier2MatchRowChangeEvent(((Tier1Tier2MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier1IFMSTier2MatchRowDeleted != null)) {
+                    this.IFMSTier1IFMSTier2MatchRowDeleted(this, new IFMSTier1IFMSTier2MatchRowChangeEvent(((IFMSTier1IFMSTier2MatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -6785,14 +6884,14 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.Tier1Tier2MatchRowDeleting != null)) {
-                    this.Tier1Tier2MatchRowDeleting(this, new Tier1Tier2MatchRowChangeEvent(((Tier1Tier2MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier1IFMSTier2MatchRowDeleting != null)) {
+                    this.IFMSTier1IFMSTier2MatchRowDeleting(this, new IFMSTier1IFMSTier2MatchRowChangeEvent(((IFMSTier1IFMSTier2MatchRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveTier1Tier2MatchRow(Tier1Tier2MatchRow row) {
+            public void RemoveIFMSTier1IFMSTier2MatchRow(IFMSTier1IFMSTier2MatchRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -6819,7 +6918,7 @@ namespace CallTracker.DataSets {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "Tier1Tier2MatchDataTable";
+                attribute2.FixedValue = "IFMSTier1IFMSTier2MatchDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -6865,16 +6964,16 @@ namespace CallTracker.DataSets {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class Tier2Tier3MatchDataTable : global::System.Data.TypedTableBase<Tier2Tier3MatchRow> {
+        public partial class IFMSTier2IFMSTier3MatchDataTable : global::System.Data.TypedTableBase<IFMSTier2IFMSTier3MatchRow> {
             
-            private global::System.Data.DataColumn columnTier2Id;
+            private global::System.Data.DataColumn columnIFMSTier2Id;
             
-            private global::System.Data.DataColumn columnTier3Id;
+            private global::System.Data.DataColumn columnIFMSTier3Id;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier2Tier3MatchDataTable() {
-                this.TableName = "Tier2Tier3Match";
+            public IFMSTier2IFMSTier3MatchDataTable() {
+                this.TableName = "IFMSTier2IFMSTier3Match";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -6882,7 +6981,7 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tier2Tier3MatchDataTable(global::System.Data.DataTable table) {
+            internal IFMSTier2IFMSTier3MatchDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -6899,24 +6998,24 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected Tier2Tier3MatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected IFMSTier2IFMSTier3MatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Tier2IdColumn {
+            public global::System.Data.DataColumn IFMSTier2IdColumn {
                 get {
-                    return this.columnTier2Id;
+                    return this.columnIFMSTier2Id;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Tier3IdColumn {
+            public global::System.Data.DataColumn IFMSTier3IdColumn {
                 get {
-                    return this.columnTier3Id;
+                    return this.columnIFMSTier3Id;
                 }
             }
             
@@ -6931,34 +7030,34 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier2Tier3MatchRow this[int index] {
+            public IFMSTier2IFMSTier3MatchRow this[int index] {
                 get {
-                    return ((Tier2Tier3MatchRow)(this.Rows[index]));
+                    return ((IFMSTier2IFMSTier3MatchRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier2Tier3MatchRowChangeEventHandler Tier2Tier3MatchRowChanging;
+            public event IFMSTier2IFMSTier3MatchRowChangeEventHandler IFMSTier2IFMSTier3MatchRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier2Tier3MatchRowChangeEventHandler Tier2Tier3MatchRowChanged;
+            public event IFMSTier2IFMSTier3MatchRowChangeEventHandler IFMSTier2IFMSTier3MatchRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier2Tier3MatchRowChangeEventHandler Tier2Tier3MatchRowDeleting;
+            public event IFMSTier2IFMSTier3MatchRowChangeEventHandler IFMSTier2IFMSTier3MatchRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier2Tier3MatchRowChangeEventHandler Tier2Tier3MatchRowDeleted;
+            public event IFMSTier2IFMSTier3MatchRowChangeEventHandler IFMSTier2IFMSTier3MatchRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddTier2Tier3MatchRow(Tier2Tier3MatchRow row) {
+            public void AddIFMSTier2IFMSTier3MatchRow(IFMSTier2IFMSTier3MatchRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier2Tier3MatchRow AddTier2Tier3MatchRow(IFMSTier2Row parentIFMSTier2RowByIFMSTier12_Tier2Tier3Match, IFMSTier3Row parentIFMSTier3RowByIFMSTier3_Tier2Tier3Match) {
-                Tier2Tier3MatchRow rowTier2Tier3MatchRow = ((Tier2Tier3MatchRow)(this.NewRow()));
+            public IFMSTier2IFMSTier3MatchRow AddIFMSTier2IFMSTier3MatchRow(IFMSTier2Row parentIFMSTier2RowByIFMSTier12_Tier2Tier3Match, IFMSTier3Row parentIFMSTier3RowByIFMSTier3_Tier2Tier3Match) {
+                IFMSTier2IFMSTier3MatchRow rowIFMSTier2IFMSTier3MatchRow = ((IFMSTier2IFMSTier3MatchRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null};
@@ -6968,15 +7067,15 @@ namespace CallTracker.DataSets {
                 if ((parentIFMSTier3RowByIFMSTier3_Tier2Tier3Match != null)) {
                     columnValuesArray[1] = parentIFMSTier3RowByIFMSTier3_Tier2Tier3Match[0];
                 }
-                rowTier2Tier3MatchRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTier2Tier3MatchRow);
-                return rowTier2Tier3MatchRow;
+                rowIFMSTier2IFMSTier3MatchRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowIFMSTier2IFMSTier3MatchRow);
+                return rowIFMSTier2IFMSTier3MatchRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                Tier2Tier3MatchDataTable cln = ((Tier2Tier3MatchDataTable)(base.Clone()));
+                IFMSTier2IFMSTier3MatchDataTable cln = ((IFMSTier2IFMSTier3MatchDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -6984,51 +7083,51 @@ namespace CallTracker.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new Tier2Tier3MatchDataTable();
+                return new IFMSTier2IFMSTier3MatchDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnTier2Id = base.Columns["Tier2Id"];
-                this.columnTier3Id = base.Columns["Tier3Id"];
+                this.columnIFMSTier2Id = base.Columns["IFMSTier2Id"];
+                this.columnIFMSTier3Id = base.Columns["IFMSTier3Id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnTier2Id = new global::System.Data.DataColumn("Tier2Id", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTier2Id);
-                this.columnTier3Id = new global::System.Data.DataColumn("Tier3Id", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTier3Id);
-                this.columnTier2Id.Caption = "Tier1Id";
-                this.columnTier3Id.Caption = "Tier2Id";
+                this.columnIFMSTier2Id = new global::System.Data.DataColumn("IFMSTier2Id", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIFMSTier2Id);
+                this.columnIFMSTier3Id = new global::System.Data.DataColumn("IFMSTier3Id", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIFMSTier3Id);
+                this.columnIFMSTier2Id.Caption = "Tier1Id";
+                this.columnIFMSTier3Id.Caption = "Tier2Id";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier2Tier3MatchRow NewTier2Tier3MatchRow() {
-                return ((Tier2Tier3MatchRow)(this.NewRow()));
+            public IFMSTier2IFMSTier3MatchRow NewIFMSTier2IFMSTier3MatchRow() {
+                return ((IFMSTier2IFMSTier3MatchRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new Tier2Tier3MatchRow(builder);
+                return new IFMSTier2IFMSTier3MatchRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(Tier2Tier3MatchRow);
+                return typeof(IFMSTier2IFMSTier3MatchRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.Tier2Tier3MatchRowChanged != null)) {
-                    this.Tier2Tier3MatchRowChanged(this, new Tier2Tier3MatchRowChangeEvent(((Tier2Tier3MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier2IFMSTier3MatchRowChanged != null)) {
+                    this.IFMSTier2IFMSTier3MatchRowChanged(this, new IFMSTier2IFMSTier3MatchRowChangeEvent(((IFMSTier2IFMSTier3MatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -7036,8 +7135,8 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.Tier2Tier3MatchRowChanging != null)) {
-                    this.Tier2Tier3MatchRowChanging(this, new Tier2Tier3MatchRowChangeEvent(((Tier2Tier3MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier2IFMSTier3MatchRowChanging != null)) {
+                    this.IFMSTier2IFMSTier3MatchRowChanging(this, new IFMSTier2IFMSTier3MatchRowChangeEvent(((IFMSTier2IFMSTier3MatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -7045,8 +7144,8 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.Tier2Tier3MatchRowDeleted != null)) {
-                    this.Tier2Tier3MatchRowDeleted(this, new Tier2Tier3MatchRowChangeEvent(((Tier2Tier3MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier2IFMSTier3MatchRowDeleted != null)) {
+                    this.IFMSTier2IFMSTier3MatchRowDeleted(this, new IFMSTier2IFMSTier3MatchRowChangeEvent(((IFMSTier2IFMSTier3MatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -7054,14 +7153,14 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.Tier2Tier3MatchRowDeleting != null)) {
-                    this.Tier2Tier3MatchRowDeleting(this, new Tier2Tier3MatchRowChangeEvent(((Tier2Tier3MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier2IFMSTier3MatchRowDeleting != null)) {
+                    this.IFMSTier2IFMSTier3MatchRowDeleting(this, new IFMSTier2IFMSTier3MatchRowChangeEvent(((IFMSTier2IFMSTier3MatchRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveTier2Tier3MatchRow(Tier2Tier3MatchRow row) {
+            public void RemoveIFMSTier2IFMSTier3MatchRow(IFMSTier2IFMSTier3MatchRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -7088,7 +7187,7 @@ namespace CallTracker.DataSets {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "Tier2Tier3MatchDataTable";
+                attribute2.FixedValue = "IFMSTier2IFMSTier3MatchDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -7134,16 +7233,16 @@ namespace CallTracker.DataSets {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class Tier3Tier4MatchDataTable : global::System.Data.TypedTableBase<Tier3Tier4MatchRow> {
+        public partial class IFMSTier3IFMSTier4MatchDataTable : global::System.Data.TypedTableBase<IFMSTier3IFMSTier4MatchRow> {
             
-            private global::System.Data.DataColumn columnTier3Id;
+            private global::System.Data.DataColumn columnIFMSTier3Id;
             
-            private global::System.Data.DataColumn columnTier4Id;
+            private global::System.Data.DataColumn columnIFMSTier4Id;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier3Tier4MatchDataTable() {
-                this.TableName = "Tier3Tier4Match";
+            public IFMSTier3IFMSTier4MatchDataTable() {
+                this.TableName = "IFMSTier3IFMSTier4Match";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -7151,7 +7250,7 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tier3Tier4MatchDataTable(global::System.Data.DataTable table) {
+            internal IFMSTier3IFMSTier4MatchDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -7168,24 +7267,24 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected Tier3Tier4MatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected IFMSTier3IFMSTier4MatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Tier3IdColumn {
+            public global::System.Data.DataColumn IFMSTier3IdColumn {
                 get {
-                    return this.columnTier3Id;
+                    return this.columnIFMSTier3Id;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn Tier4IdColumn {
+            public global::System.Data.DataColumn IFMSTier4IdColumn {
                 get {
-                    return this.columnTier4Id;
+                    return this.columnIFMSTier4Id;
                 }
             }
             
@@ -7200,34 +7299,34 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier3Tier4MatchRow this[int index] {
+            public IFMSTier3IFMSTier4MatchRow this[int index] {
                 get {
-                    return ((Tier3Tier4MatchRow)(this.Rows[index]));
+                    return ((IFMSTier3IFMSTier4MatchRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier3Tier4MatchRowChangeEventHandler Tier3Tier4MatchRowChanging;
+            public event IFMSTier3IFMSTier4MatchRowChangeEventHandler IFMSTier3IFMSTier4MatchRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier3Tier4MatchRowChangeEventHandler Tier3Tier4MatchRowChanged;
+            public event IFMSTier3IFMSTier4MatchRowChangeEventHandler IFMSTier3IFMSTier4MatchRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier3Tier4MatchRowChangeEventHandler Tier3Tier4MatchRowDeleting;
+            public event IFMSTier3IFMSTier4MatchRowChangeEventHandler IFMSTier3IFMSTier4MatchRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event Tier3Tier4MatchRowChangeEventHandler Tier3Tier4MatchRowDeleted;
+            public event IFMSTier3IFMSTier4MatchRowChangeEventHandler IFMSTier3IFMSTier4MatchRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddTier3Tier4MatchRow(Tier3Tier4MatchRow row) {
+            public void AddIFMSTier3IFMSTier4MatchRow(IFMSTier3IFMSTier4MatchRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier3Tier4MatchRow AddTier3Tier4MatchRow(IFMSTier3Row parentIFMSTier3RowByIFMSTier3_Tier3Tier4Match, IFMSTier4Row parentIFMSTier4RowByIFMSTier4_Tier3Tier4Match) {
-                Tier3Tier4MatchRow rowTier3Tier4MatchRow = ((Tier3Tier4MatchRow)(this.NewRow()));
+            public IFMSTier3IFMSTier4MatchRow AddIFMSTier3IFMSTier4MatchRow(IFMSTier3Row parentIFMSTier3RowByIFMSTier3_Tier3Tier4Match, IFMSTier4Row parentIFMSTier4RowByIFMSTier4_Tier3Tier4Match) {
+                IFMSTier3IFMSTier4MatchRow rowIFMSTier3IFMSTier4MatchRow = ((IFMSTier3IFMSTier4MatchRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         null};
@@ -7237,15 +7336,15 @@ namespace CallTracker.DataSets {
                 if ((parentIFMSTier4RowByIFMSTier4_Tier3Tier4Match != null)) {
                     columnValuesArray[1] = parentIFMSTier4RowByIFMSTier4_Tier3Tier4Match[0];
                 }
-                rowTier3Tier4MatchRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTier3Tier4MatchRow);
-                return rowTier3Tier4MatchRow;
+                rowIFMSTier3IFMSTier4MatchRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowIFMSTier3IFMSTier4MatchRow);
+                return rowIFMSTier3IFMSTier4MatchRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                Tier3Tier4MatchDataTable cln = ((Tier3Tier4MatchDataTable)(base.Clone()));
+                IFMSTier3IFMSTier4MatchDataTable cln = ((IFMSTier3IFMSTier4MatchDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -7253,51 +7352,51 @@ namespace CallTracker.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new Tier3Tier4MatchDataTable();
+                return new IFMSTier3IFMSTier4MatchDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnTier3Id = base.Columns["Tier3Id"];
-                this.columnTier4Id = base.Columns["Tier4Id"];
+                this.columnIFMSTier3Id = base.Columns["IFMSTier3Id"];
+                this.columnIFMSTier4Id = base.Columns["IFMSTier4Id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnTier3Id = new global::System.Data.DataColumn("Tier3Id", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTier3Id);
-                this.columnTier4Id = new global::System.Data.DataColumn("Tier4Id", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTier4Id);
-                this.columnTier3Id.Caption = "Tier1Id";
-                this.columnTier4Id.Caption = "Tier2Id";
+                this.columnIFMSTier3Id = new global::System.Data.DataColumn("IFMSTier3Id", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIFMSTier3Id);
+                this.columnIFMSTier4Id = new global::System.Data.DataColumn("IFMSTier4Id", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIFMSTier4Id);
+                this.columnIFMSTier3Id.Caption = "Tier1Id";
+                this.columnIFMSTier4Id.Caption = "Tier2Id";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier3Tier4MatchRow NewTier3Tier4MatchRow() {
-                return ((Tier3Tier4MatchRow)(this.NewRow()));
+            public IFMSTier3IFMSTier4MatchRow NewIFMSTier3IFMSTier4MatchRow() {
+                return ((IFMSTier3IFMSTier4MatchRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new Tier3Tier4MatchRow(builder);
+                return new IFMSTier3IFMSTier4MatchRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(Tier3Tier4MatchRow);
+                return typeof(IFMSTier3IFMSTier4MatchRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.Tier3Tier4MatchRowChanged != null)) {
-                    this.Tier3Tier4MatchRowChanged(this, new Tier3Tier4MatchRowChangeEvent(((Tier3Tier4MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier3IFMSTier4MatchRowChanged != null)) {
+                    this.IFMSTier3IFMSTier4MatchRowChanged(this, new IFMSTier3IFMSTier4MatchRowChangeEvent(((IFMSTier3IFMSTier4MatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -7305,8 +7404,8 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.Tier3Tier4MatchRowChanging != null)) {
-                    this.Tier3Tier4MatchRowChanging(this, new Tier3Tier4MatchRowChangeEvent(((Tier3Tier4MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier3IFMSTier4MatchRowChanging != null)) {
+                    this.IFMSTier3IFMSTier4MatchRowChanging(this, new IFMSTier3IFMSTier4MatchRowChangeEvent(((IFMSTier3IFMSTier4MatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -7314,8 +7413,8 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.Tier3Tier4MatchRowDeleted != null)) {
-                    this.Tier3Tier4MatchRowDeleted(this, new Tier3Tier4MatchRowChangeEvent(((Tier3Tier4MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier3IFMSTier4MatchRowDeleted != null)) {
+                    this.IFMSTier3IFMSTier4MatchRowDeleted(this, new IFMSTier3IFMSTier4MatchRowChangeEvent(((IFMSTier3IFMSTier4MatchRow)(e.Row)), e.Action));
                 }
             }
             
@@ -7323,14 +7422,14 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.Tier3Tier4MatchRowDeleting != null)) {
-                    this.Tier3Tier4MatchRowDeleting(this, new Tier3Tier4MatchRowChangeEvent(((Tier3Tier4MatchRow)(e.Row)), e.Action));
+                if ((this.IFMSTier3IFMSTier4MatchRowDeleting != null)) {
+                    this.IFMSTier3IFMSTier4MatchRowDeleting(this, new IFMSTier3IFMSTier4MatchRowChangeEvent(((IFMSTier3IFMSTier4MatchRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveTier3Tier4MatchRow(Tier3Tier4MatchRow row) {
+            public void RemoveIFMSTier3IFMSTier4MatchRow(IFMSTier3IFMSTier4MatchRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -7357,7 +7456,7 @@ namespace CallTracker.DataSets {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "Tier3Tier4MatchDataTable";
+                attribute2.FixedValue = "IFMSTier3IFMSTier4MatchDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -7643,6 +7742,813 @@ namespace CallTracker.DataSets {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "EquipmentStatusesDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class IFMSTier2OutcomeMatchDataTable : global::System.Data.TypedTableBase<IFMSTier2OutcomeMatchRow> {
+            
+            private global::System.Data.DataColumn columnIFMSTier2Id;
+            
+            private global::System.Data.DataColumn columnOutcomeId;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier2OutcomeMatchDataTable() {
+                this.TableName = "IFMSTier2OutcomeMatch";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal IFMSTier2OutcomeMatchDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected IFMSTier2OutcomeMatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IFMSTier2IdColumn {
+                get {
+                    return this.columnIFMSTier2Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OutcomeIdColumn {
+                get {
+                    return this.columnOutcomeId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier2OutcomeMatchRow this[int index] {
+                get {
+                    return ((IFMSTier2OutcomeMatchRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event IFMSTier2OutcomeMatchRowChangeEventHandler IFMSTier2OutcomeMatchRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event IFMSTier2OutcomeMatchRowChangeEventHandler IFMSTier2OutcomeMatchRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event IFMSTier2OutcomeMatchRowChangeEventHandler IFMSTier2OutcomeMatchRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event IFMSTier2OutcomeMatchRowChangeEventHandler IFMSTier2OutcomeMatchRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddIFMSTier2OutcomeMatchRow(IFMSTier2OutcomeMatchRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier2OutcomeMatchRow AddIFMSTier2OutcomeMatchRow(IFMSTier2Row parentIFMSTier2RowByIFMSTier2_Tier2OutcomesMatch, OutcomesRow parentOutcomesRowByOutcomes_Tier2OutcomesMatch) {
+                IFMSTier2OutcomeMatchRow rowIFMSTier2OutcomeMatchRow = ((IFMSTier2OutcomeMatchRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null};
+                if ((parentIFMSTier2RowByIFMSTier2_Tier2OutcomesMatch != null)) {
+                    columnValuesArray[0] = parentIFMSTier2RowByIFMSTier2_Tier2OutcomesMatch[0];
+                }
+                if ((parentOutcomesRowByOutcomes_Tier2OutcomesMatch != null)) {
+                    columnValuesArray[1] = parentOutcomesRowByOutcomes_Tier2OutcomesMatch[0];
+                }
+                rowIFMSTier2OutcomeMatchRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowIFMSTier2OutcomeMatchRow);
+                return rowIFMSTier2OutcomeMatchRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                IFMSTier2OutcomeMatchDataTable cln = ((IFMSTier2OutcomeMatchDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new IFMSTier2OutcomeMatchDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnIFMSTier2Id = base.Columns["IFMSTier2Id"];
+                this.columnOutcomeId = base.Columns["OutcomeId"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnIFMSTier2Id = new global::System.Data.DataColumn("IFMSTier2Id", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIFMSTier2Id);
+                this.columnOutcomeId = new global::System.Data.DataColumn("OutcomeId", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOutcomeId);
+                this.columnIFMSTier2Id.Caption = "Tier1Id";
+                this.columnOutcomeId.Caption = "Tier2Id";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier2OutcomeMatchRow NewIFMSTier2OutcomeMatchRow() {
+                return ((IFMSTier2OutcomeMatchRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new IFMSTier2OutcomeMatchRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(IFMSTier2OutcomeMatchRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.IFMSTier2OutcomeMatchRowChanged != null)) {
+                    this.IFMSTier2OutcomeMatchRowChanged(this, new IFMSTier2OutcomeMatchRowChangeEvent(((IFMSTier2OutcomeMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.IFMSTier2OutcomeMatchRowChanging != null)) {
+                    this.IFMSTier2OutcomeMatchRowChanging(this, new IFMSTier2OutcomeMatchRowChangeEvent(((IFMSTier2OutcomeMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.IFMSTier2OutcomeMatchRowDeleted != null)) {
+                    this.IFMSTier2OutcomeMatchRowDeleted(this, new IFMSTier2OutcomeMatchRowChangeEvent(((IFMSTier2OutcomeMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.IFMSTier2OutcomeMatchRowDeleting != null)) {
+                    this.IFMSTier2OutcomeMatchRowDeleting(this, new IFMSTier2OutcomeMatchRowChangeEvent(((IFMSTier2OutcomeMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveIFMSTier2OutcomeMatchRow(IFMSTier2OutcomeMatchRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ServicesDataSet ds = new ServicesDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "IFMSTier2OutcomeMatchDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class IFMSTier4OutcomeMatchDataTable : global::System.Data.TypedTableBase<IFMSTier4OutcomeMatchRow> {
+            
+            private global::System.Data.DataColumn columnIFMSTier4Id;
+            
+            private global::System.Data.DataColumn columnOutcomeId;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier4OutcomeMatchDataTable() {
+                this.TableName = "IFMSTier4OutcomeMatch";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal IFMSTier4OutcomeMatchDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected IFMSTier4OutcomeMatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn IFMSTier4IdColumn {
+                get {
+                    return this.columnIFMSTier4Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn OutcomeIdColumn {
+                get {
+                    return this.columnOutcomeId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier4OutcomeMatchRow this[int index] {
+                get {
+                    return ((IFMSTier4OutcomeMatchRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event IFMSTier4OutcomeMatchRowChangeEventHandler IFMSTier4OutcomeMatchRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event IFMSTier4OutcomeMatchRowChangeEventHandler IFMSTier4OutcomeMatchRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event IFMSTier4OutcomeMatchRowChangeEventHandler IFMSTier4OutcomeMatchRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event IFMSTier4OutcomeMatchRowChangeEventHandler IFMSTier4OutcomeMatchRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddIFMSTier4OutcomeMatchRow(IFMSTier4OutcomeMatchRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier4OutcomeMatchRow AddIFMSTier4OutcomeMatchRow(IFMSTier4Row parentIFMSTier4RowByIFMSTier4_IFMSTier4OutcomeMatch1, OutcomesRow parentOutcomesRowByOutcomes_IFMSTier4OutcomeMatch1) {
+                IFMSTier4OutcomeMatchRow rowIFMSTier4OutcomeMatchRow = ((IFMSTier4OutcomeMatchRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null};
+                if ((parentIFMSTier4RowByIFMSTier4_IFMSTier4OutcomeMatch1 != null)) {
+                    columnValuesArray[0] = parentIFMSTier4RowByIFMSTier4_IFMSTier4OutcomeMatch1[0];
+                }
+                if ((parentOutcomesRowByOutcomes_IFMSTier4OutcomeMatch1 != null)) {
+                    columnValuesArray[1] = parentOutcomesRowByOutcomes_IFMSTier4OutcomeMatch1[0];
+                }
+                rowIFMSTier4OutcomeMatchRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowIFMSTier4OutcomeMatchRow);
+                return rowIFMSTier4OutcomeMatchRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                IFMSTier4OutcomeMatchDataTable cln = ((IFMSTier4OutcomeMatchDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new IFMSTier4OutcomeMatchDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnIFMSTier4Id = base.Columns["IFMSTier4Id"];
+                this.columnOutcomeId = base.Columns["OutcomeId"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnIFMSTier4Id = new global::System.Data.DataColumn("IFMSTier4Id", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIFMSTier4Id);
+                this.columnOutcomeId = new global::System.Data.DataColumn("OutcomeId", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOutcomeId);
+                this.columnIFMSTier4Id.Caption = "Tier1Id";
+                this.columnOutcomeId.Caption = "Tier2Id";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier4OutcomeMatchRow NewIFMSTier4OutcomeMatchRow() {
+                return ((IFMSTier4OutcomeMatchRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new IFMSTier4OutcomeMatchRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(IFMSTier4OutcomeMatchRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.IFMSTier4OutcomeMatchRowChanged != null)) {
+                    this.IFMSTier4OutcomeMatchRowChanged(this, new IFMSTier4OutcomeMatchRowChangeEvent(((IFMSTier4OutcomeMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.IFMSTier4OutcomeMatchRowChanging != null)) {
+                    this.IFMSTier4OutcomeMatchRowChanging(this, new IFMSTier4OutcomeMatchRowChangeEvent(((IFMSTier4OutcomeMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.IFMSTier4OutcomeMatchRowDeleted != null)) {
+                    this.IFMSTier4OutcomeMatchRowDeleted(this, new IFMSTier4OutcomeMatchRowChangeEvent(((IFMSTier4OutcomeMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.IFMSTier4OutcomeMatchRowDeleting != null)) {
+                    this.IFMSTier4OutcomeMatchRowDeleting(this, new IFMSTier4OutcomeMatchRowChangeEvent(((IFMSTier4OutcomeMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveIFMSTier4OutcomeMatchRow(IFMSTier4OutcomeMatchRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ServicesDataSet ds = new ServicesDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "IFMSTier4OutcomeMatchDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SeverityCodeSymptomMatchDataTable : global::System.Data.TypedTableBase<SeverityCodeSymptomMatchRow> {
+            
+            private global::System.Data.DataColumn columnSeverityCodeId;
+            
+            private global::System.Data.DataColumn columnSymptomId;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SeverityCodeSymptomMatchDataTable() {
+                this.TableName = "SeverityCodeSymptomMatch";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal SeverityCodeSymptomMatchDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected SeverityCodeSymptomMatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SeverityCodeIdColumn {
+                get {
+                    return this.columnSeverityCodeId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SymptomIdColumn {
+                get {
+                    return this.columnSymptomId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SeverityCodeSymptomMatchRow this[int index] {
+                get {
+                    return ((SeverityCodeSymptomMatchRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SeverityCodeSymptomMatchRowChangeEventHandler SeverityCodeSymptomMatchRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SeverityCodeSymptomMatchRowChangeEventHandler SeverityCodeSymptomMatchRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SeverityCodeSymptomMatchRowChangeEventHandler SeverityCodeSymptomMatchRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event SeverityCodeSymptomMatchRowChangeEventHandler SeverityCodeSymptomMatchRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddSeverityCodeSymptomMatchRow(SeverityCodeSymptomMatchRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SeverityCodeSymptomMatchRow AddSeverityCodeSymptomMatchRow(SeverityCodesRow parentSeverityCodesRowBySeverityCodes_SeverityCodeSymptomMatch, SymptomsRow parentSymptomsRowBySymptoms_SeverityCodeSymptomMatch) {
+                SeverityCodeSymptomMatchRow rowSeverityCodeSymptomMatchRow = ((SeverityCodeSymptomMatchRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null};
+                if ((parentSeverityCodesRowBySeverityCodes_SeverityCodeSymptomMatch != null)) {
+                    columnValuesArray[0] = parentSeverityCodesRowBySeverityCodes_SeverityCodeSymptomMatch[0];
+                }
+                if ((parentSymptomsRowBySymptoms_SeverityCodeSymptomMatch != null)) {
+                    columnValuesArray[1] = parentSymptomsRowBySymptoms_SeverityCodeSymptomMatch[0];
+                }
+                rowSeverityCodeSymptomMatchRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSeverityCodeSymptomMatchRow);
+                return rowSeverityCodeSymptomMatchRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SeverityCodeSymptomMatchDataTable cln = ((SeverityCodeSymptomMatchDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SeverityCodeSymptomMatchDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnSeverityCodeId = base.Columns["SeverityCodeId"];
+                this.columnSymptomId = base.Columns["SymptomId"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnSeverityCodeId = new global::System.Data.DataColumn("SeverityCodeId", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSeverityCodeId);
+                this.columnSymptomId = new global::System.Data.DataColumn("SymptomId", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSymptomId);
+                this.columnSeverityCodeId.Caption = "Tier1Id";
+                this.columnSymptomId.Caption = "Tier2Id";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SeverityCodeSymptomMatchRow NewSeverityCodeSymptomMatchRow() {
+                return ((SeverityCodeSymptomMatchRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SeverityCodeSymptomMatchRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SeverityCodeSymptomMatchRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SeverityCodeSymptomMatchRowChanged != null)) {
+                    this.SeverityCodeSymptomMatchRowChanged(this, new SeverityCodeSymptomMatchRowChangeEvent(((SeverityCodeSymptomMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SeverityCodeSymptomMatchRowChanging != null)) {
+                    this.SeverityCodeSymptomMatchRowChanging(this, new SeverityCodeSymptomMatchRowChangeEvent(((SeverityCodeSymptomMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SeverityCodeSymptomMatchRowDeleted != null)) {
+                    this.SeverityCodeSymptomMatchRowDeleted(this, new SeverityCodeSymptomMatchRowChangeEvent(((SeverityCodeSymptomMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SeverityCodeSymptomMatchRowDeleting != null)) {
+                    this.SeverityCodeSymptomMatchRowDeleting(this, new SeverityCodeSymptomMatchRowChangeEvent(((SeverityCodeSymptomMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveSeverityCodeSymptomMatchRow(SeverityCodeSymptomMatchRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ServicesDataSet ds = new ServicesDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SeverityCodeSymptomMatchDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -8200,6 +9106,17 @@ namespace CallTracker.DataSets {
                     return ((IFMSTier3Row[])(base.GetChildRows(this.Table.ChildRelations["Symptoms_IFMSTier3"])));
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SeverityCodeSymptomMatchRow[] GetSeverityCodeSymptomMatchRows() {
+                if ((this.Table.ChildRelations["Symptoms_SeverityCodeSymptomMatch"] == null)) {
+                    return new SeverityCodeSymptomMatchRow[0];
+                }
+                else {
+                    return ((SeverityCodeSymptomMatchRow[])(base.GetChildRows(this.Table.ChildRelations["Symptoms_SeverityCodeSymptomMatch"])));
+                }
+            }
         }
         
         /// <summary>
@@ -8673,6 +9590,17 @@ namespace CallTracker.DataSets {
                     return ((IFMSTier3Row[])(base.GetChildRows(this.Table.ChildRelations["SeverityCodes_IFMSTier3"])));
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SeverityCodeSymptomMatchRow[] GetSeverityCodeSymptomMatchRows() {
+                if ((this.Table.ChildRelations["SeverityCodes_SeverityCodeSymptomMatch"] == null)) {
+                    return new SeverityCodeSymptomMatchRow[0];
+                }
+                else {
+                    return ((SeverityCodeSymptomMatchRow[])(base.GetChildRows(this.Table.ChildRelations["SeverityCodes_SeverityCodeSymptomMatch"])));
+                }
+            }
         }
         
         /// <summary>
@@ -8775,23 +9703,23 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public IFMSTier4Row[] GetIFMSTier4Rows() {
-                if ((this.Table.ChildRelations["Outcomes_IFMSTier4"] == null)) {
-                    return new IFMSTier4Row[0];
+            public IFMSTier2OutcomeMatchRow[] GetIFMSTier2OutcomeMatchRows() {
+                if ((this.Table.ChildRelations["Outcomes_Tier2OutcomesMatch"] == null)) {
+                    return new IFMSTier2OutcomeMatchRow[0];
                 }
                 else {
-                    return ((IFMSTier4Row[])(base.GetChildRows(this.Table.ChildRelations["Outcomes_IFMSTier4"])));
+                    return ((IFMSTier2OutcomeMatchRow[])(base.GetChildRows(this.Table.ChildRelations["Outcomes_Tier2OutcomesMatch"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public IFMSTier2Row[] GetIFMSTier2Rows() {
-                if ((this.Table.ChildRelations["Outcomes_IFMSTier2"] == null)) {
-                    return new IFMSTier2Row[0];
+            public IFMSTier4OutcomeMatchRow[] GetIFMSTier4OutcomeMatchRows() {
+                if ((this.Table.ChildRelations["Outcomes_IFMSTier4OutcomeMatch1"] == null)) {
+                    return new IFMSTier4OutcomeMatchRow[0];
                 }
                 else {
-                    return ((IFMSTier2Row[])(base.GetChildRows(this.Table.ChildRelations["Outcomes_IFMSTier2"])));
+                    return ((IFMSTier4OutcomeMatchRow[])(base.GetChildRows(this.Table.ChildRelations["Outcomes_IFMSTier4OutcomeMatch1"])));
                 }
             }
         }
@@ -9612,12 +10540,12 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier1Tier2MatchRow[] GetTier1Tier2MatchRows() {
+            public IFMSTier1IFMSTier2MatchRow[] GetIFMSTier1IFMSTier2MatchRows() {
                 if ((this.Table.ChildRelations["IFMSTier1_Tier1Tier2Match"] == null)) {
-                    return new Tier1Tier2MatchRow[0];
+                    return new IFMSTier1IFMSTier2MatchRow[0];
                 }
                 else {
-                    return ((Tier1Tier2MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier1_Tier1Tier2Match"])));
+                    return ((IFMSTier1IFMSTier2MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier1_Tier1Tier2Match"])));
                 }
             }
         }
@@ -9670,33 +10598,6 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short OutcomeId {
-                get {
-                    try {
-                        return ((short)(this[this.tableIFMSTier2.OutcomeIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OutcomeId\' in table \'IFMSTier2\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableIFMSTier2.OutcomeIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public OutcomesRow OutcomesRow {
-                get {
-                    return ((OutcomesRow)(this.GetParentRow(this.Table.ParentRelations["Outcomes_IFMSTier2"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Outcomes_IFMSTier2"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIdNull() {
                 return this.IsNull(this.tableIFMSTier2.IdColumn);
             }
@@ -9721,35 +10622,34 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOutcomeIdNull() {
-                return this.IsNull(this.tableIFMSTier2.OutcomeIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOutcomeIdNull() {
-                this[this.tableIFMSTier2.OutcomeIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier1Tier2MatchRow[] GetTier1Tier2MatchRows() {
+            public IFMSTier1IFMSTier2MatchRow[] GetIFMSTier1IFMSTier2MatchRows() {
                 if ((this.Table.ChildRelations["IFMSTier12_Tier1Tier2Match"] == null)) {
-                    return new Tier1Tier2MatchRow[0];
+                    return new IFMSTier1IFMSTier2MatchRow[0];
                 }
                 else {
-                    return ((Tier1Tier2MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier12_Tier1Tier2Match"])));
+                    return ((IFMSTier1IFMSTier2MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier12_Tier1Tier2Match"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier2Tier3MatchRow[] GetTier2Tier3MatchRows() {
+            public IFMSTier2IFMSTier3MatchRow[] GetIFMSTier2IFMSTier3MatchRows() {
                 if ((this.Table.ChildRelations["IFMSTier12_Tier2Tier3Match"] == null)) {
-                    return new Tier2Tier3MatchRow[0];
+                    return new IFMSTier2IFMSTier3MatchRow[0];
                 }
                 else {
-                    return ((Tier2Tier3MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier12_Tier2Tier3Match"])));
+                    return ((IFMSTier2IFMSTier3MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier12_Tier2Tier3Match"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier2OutcomeMatchRow[] GetIFMSTier2OutcomeMatchRows() {
+                if ((this.Table.ChildRelations["IFMSTier2_Tier2OutcomesMatch"] == null)) {
+                    return new IFMSTier2OutcomeMatchRow[0];
+                }
+                else {
+                    return ((IFMSTier2OutcomeMatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier2_Tier2OutcomesMatch"])));
                 }
             }
         }
@@ -9904,23 +10804,23 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier2Tier3MatchRow[] GetTier2Tier3MatchRows() {
+            public IFMSTier2IFMSTier3MatchRow[] GetIFMSTier2IFMSTier3MatchRows() {
                 if ((this.Table.ChildRelations["IFMSTier3_Tier2Tier3Match"] == null)) {
-                    return new Tier2Tier3MatchRow[0];
+                    return new IFMSTier2IFMSTier3MatchRow[0];
                 }
                 else {
-                    return ((Tier2Tier3MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier3_Tier2Tier3Match"])));
+                    return ((IFMSTier2IFMSTier3MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier3_Tier2Tier3Match"])));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier3Tier4MatchRow[] GetTier3Tier4MatchRows() {
+            public IFMSTier3IFMSTier4MatchRow[] GetIFMSTier3IFMSTier4MatchRows() {
                 if ((this.Table.ChildRelations["IFMSTier3_Tier3Tier4Match"] == null)) {
-                    return new Tier3Tier4MatchRow[0];
+                    return new IFMSTier3IFMSTier4MatchRow[0];
                 }
                 else {
-                    return ((Tier3Tier4MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier3_Tier3Tier4Match"])));
+                    return ((IFMSTier3IFMSTier4MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier3_Tier3Tier4Match"])));
                 }
             }
         }
@@ -9973,33 +10873,6 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short OutcomeId {
-                get {
-                    try {
-                        return ((short)(this[this.tableIFMSTier4.OutcomeIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OutcomeId\' in table \'IFMSTier4\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableIFMSTier4.OutcomeIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public OutcomesRow OutcomesRow {
-                get {
-                    return ((OutcomesRow)(this.GetParentRow(this.Table.ParentRelations["Outcomes_IFMSTier4"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Outcomes_IFMSTier4"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIdNull() {
                 return this.IsNull(this.tableIFMSTier4.IdColumn);
             }
@@ -10024,24 +10897,23 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOutcomeIdNull() {
-                return this.IsNull(this.tableIFMSTier4.OutcomeIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOutcomeIdNull() {
-                this[this.tableIFMSTier4.OutcomeIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier3Tier4MatchRow[] GetTier3Tier4MatchRows() {
+            public IFMSTier3IFMSTier4MatchRow[] GetIFMSTier3IFMSTier4MatchRows() {
                 if ((this.Table.ChildRelations["IFMSTier4_Tier3Tier4Match"] == null)) {
-                    return new Tier3Tier4MatchRow[0];
+                    return new IFMSTier3IFMSTier4MatchRow[0];
                 }
                 else {
-                    return ((Tier3Tier4MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier4_Tier3Tier4Match"])));
+                    return ((IFMSTier3IFMSTier4MatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier4_Tier3Tier4Match"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier4OutcomeMatchRow[] GetIFMSTier4OutcomeMatchRows() {
+                if ((this.Table.ChildRelations["IFMSTier4_IFMSTier4OutcomeMatch1"] == null)) {
+                    return new IFMSTier4OutcomeMatchRow[0];
+                }
+                else {
+                    return ((IFMSTier4OutcomeMatchRow[])(base.GetChildRows(this.Table.ChildRelations["IFMSTier4_IFMSTier4OutcomeMatch1"])));
                 }
             }
         }
@@ -10049,57 +10921,46 @@ namespace CallTracker.DataSets {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class Tier1Tier2MatchRow : global::System.Data.DataRow {
+        public partial class IFMSTier1IFMSTier2MatchRow : global::System.Data.DataRow {
             
-            private Tier1Tier2MatchDataTable tableTier1Tier2Match;
+            private IFMSTier1IFMSTier2MatchDataTable tableIFMSTier1IFMSTier2Match;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tier1Tier2MatchRow(global::System.Data.DataRowBuilder rb) : 
+            internal IFMSTier1IFMSTier2MatchRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTier1Tier2Match = ((Tier1Tier2MatchDataTable)(this.Table));
+                this.tableIFMSTier1IFMSTier2Match = ((IFMSTier1IFMSTier2MatchDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Tier1Id {
+            public short IFMSTier1Id {
                 get {
                     try {
-                        return ((short)(this[this.tableTier1Tier2Match.Tier1IdColumn]));
+                        return ((short)(this[this.tableIFMSTier1IFMSTier2Match.IFMSTier1IdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Tier1Id\' in table \'Tier1Tier2Match\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'IFMSTier1Id\' in table \'IFMSTier1IFMSTier2Match\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTier1Tier2Match.Tier1IdColumn] = value;
+                    this[this.tableIFMSTier1IFMSTier2Match.IFMSTier1IdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Tier2Id {
+            public short IFMSTier2Id {
                 get {
                     try {
-                        return ((short)(this[this.tableTier1Tier2Match.Tier2IdColumn]));
+                        return ((short)(this[this.tableIFMSTier1IFMSTier2Match.IFMSTier2IdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Tier2Id\' in table \'Tier1Tier2Match\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'IFMSTier2Id\' in table \'IFMSTier1IFMSTier2Match\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTier1Tier2Match.Tier2IdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public IFMSTier1Row IFMSTier1Row {
-                get {
-                    return ((IFMSTier1Row)(this.GetParentRow(this.Table.ParentRelations["IFMSTier1_Tier1Tier2Match"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["IFMSTier1_Tier1Tier2Match"]);
+                    this[this.tableIFMSTier1IFMSTier2Match.IFMSTier2IdColumn] = value;
                 }
             }
             
@@ -10116,72 +10977,83 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTier1IdNull() {
-                return this.IsNull(this.tableTier1Tier2Match.Tier1IdColumn);
+            public IFMSTier1Row IFMSTier1Row {
+                get {
+                    return ((IFMSTier1Row)(this.GetParentRow(this.Table.ParentRelations["IFMSTier1_Tier1Tier2Match"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["IFMSTier1_Tier1Tier2Match"]);
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTier1IdNull() {
-                this[this.tableTier1Tier2Match.Tier1IdColumn] = global::System.Convert.DBNull;
+            public bool IsIFMSTier1IdNull() {
+                return this.IsNull(this.tableIFMSTier1IFMSTier2Match.IFMSTier1IdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTier2IdNull() {
-                return this.IsNull(this.tableTier1Tier2Match.Tier2IdColumn);
+            public void SetIFMSTier1IdNull() {
+                this[this.tableIFMSTier1IFMSTier2Match.IFMSTier1IdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTier2IdNull() {
-                this[this.tableTier1Tier2Match.Tier2IdColumn] = global::System.Convert.DBNull;
+            public bool IsIFMSTier2IdNull() {
+                return this.IsNull(this.tableIFMSTier1IFMSTier2Match.IFMSTier2IdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIFMSTier2IdNull() {
+                this[this.tableIFMSTier1IFMSTier2Match.IFMSTier2IdColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class Tier2Tier3MatchRow : global::System.Data.DataRow {
+        public partial class IFMSTier2IFMSTier3MatchRow : global::System.Data.DataRow {
             
-            private Tier2Tier3MatchDataTable tableTier2Tier3Match;
+            private IFMSTier2IFMSTier3MatchDataTable tableIFMSTier2IFMSTier3Match;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tier2Tier3MatchRow(global::System.Data.DataRowBuilder rb) : 
+            internal IFMSTier2IFMSTier3MatchRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTier2Tier3Match = ((Tier2Tier3MatchDataTable)(this.Table));
+                this.tableIFMSTier2IFMSTier3Match = ((IFMSTier2IFMSTier3MatchDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Tier2Id {
+            public short IFMSTier2Id {
                 get {
                     try {
-                        return ((short)(this[this.tableTier2Tier3Match.Tier2IdColumn]));
+                        return ((short)(this[this.tableIFMSTier2IFMSTier3Match.IFMSTier2IdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Tier2Id\' in table \'Tier2Tier3Match\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'IFMSTier2Id\' in table \'IFMSTier2IFMSTier3Match\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTier2Tier3Match.Tier2IdColumn] = value;
+                    this[this.tableIFMSTier2IFMSTier3Match.IFMSTier2IdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Tier3Id {
+            public short IFMSTier3Id {
                 get {
                     try {
-                        return ((short)(this[this.tableTier2Tier3Match.Tier3IdColumn]));
+                        return ((short)(this[this.tableIFMSTier2IFMSTier3Match.IFMSTier3IdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Tier3Id\' in table \'Tier2Tier3Match\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'IFMSTier3Id\' in table \'IFMSTier2IFMSTier3Match\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTier2Tier3Match.Tier3IdColumn] = value;
+                    this[this.tableIFMSTier2IFMSTier3Match.IFMSTier3IdColumn] = value;
                 }
             }
             
@@ -10209,72 +11081,72 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTier2IdNull() {
-                return this.IsNull(this.tableTier2Tier3Match.Tier2IdColumn);
+            public bool IsIFMSTier2IdNull() {
+                return this.IsNull(this.tableIFMSTier2IFMSTier3Match.IFMSTier2IdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTier2IdNull() {
-                this[this.tableTier2Tier3Match.Tier2IdColumn] = global::System.Convert.DBNull;
+            public void SetIFMSTier2IdNull() {
+                this[this.tableIFMSTier2IFMSTier3Match.IFMSTier2IdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTier3IdNull() {
-                return this.IsNull(this.tableTier2Tier3Match.Tier3IdColumn);
+            public bool IsIFMSTier3IdNull() {
+                return this.IsNull(this.tableIFMSTier2IFMSTier3Match.IFMSTier3IdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTier3IdNull() {
-                this[this.tableTier2Tier3Match.Tier3IdColumn] = global::System.Convert.DBNull;
+            public void SetIFMSTier3IdNull() {
+                this[this.tableIFMSTier2IFMSTier3Match.IFMSTier3IdColumn] = global::System.Convert.DBNull;
             }
         }
         
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class Tier3Tier4MatchRow : global::System.Data.DataRow {
+        public partial class IFMSTier3IFMSTier4MatchRow : global::System.Data.DataRow {
             
-            private Tier3Tier4MatchDataTable tableTier3Tier4Match;
+            private IFMSTier3IFMSTier4MatchDataTable tableIFMSTier3IFMSTier4Match;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal Tier3Tier4MatchRow(global::System.Data.DataRowBuilder rb) : 
+            internal IFMSTier3IFMSTier4MatchRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTier3Tier4Match = ((Tier3Tier4MatchDataTable)(this.Table));
+                this.tableIFMSTier3IFMSTier4Match = ((IFMSTier3IFMSTier4MatchDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Tier3Id {
+            public short IFMSTier3Id {
                 get {
                     try {
-                        return ((short)(this[this.tableTier3Tier4Match.Tier3IdColumn]));
+                        return ((short)(this[this.tableIFMSTier3IFMSTier4Match.IFMSTier3IdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Tier3Id\' in table \'Tier3Tier4Match\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'IFMSTier3Id\' in table \'IFMSTier3IFMSTier4Match\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTier3Tier4Match.Tier3IdColumn] = value;
+                    this[this.tableIFMSTier3IFMSTier4Match.IFMSTier3IdColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short Tier4Id {
+            public short IFMSTier4Id {
                 get {
                     try {
-                        return ((short)(this[this.tableTier3Tier4Match.Tier4IdColumn]));
+                        return ((short)(this[this.tableIFMSTier3IFMSTier4Match.IFMSTier4IdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Tier4Id\' in table \'Tier3Tier4Match\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'IFMSTier4Id\' in table \'IFMSTier3IFMSTier4Match\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTier3Tier4Match.Tier4IdColumn] = value;
+                    this[this.tableIFMSTier3IFMSTier4Match.IFMSTier4IdColumn] = value;
                 }
             }
             
@@ -10302,26 +11174,26 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTier3IdNull() {
-                return this.IsNull(this.tableTier3Tier4Match.Tier3IdColumn);
+            public bool IsIFMSTier3IdNull() {
+                return this.IsNull(this.tableIFMSTier3IFMSTier4Match.IFMSTier3IdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTier3IdNull() {
-                this[this.tableTier3Tier4Match.Tier3IdColumn] = global::System.Convert.DBNull;
+            public void SetIFMSTier3IdNull() {
+                this[this.tableIFMSTier3IFMSTier4Match.IFMSTier3IdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsTier4IdNull() {
-                return this.IsNull(this.tableTier3Tier4Match.Tier4IdColumn);
+            public bool IsIFMSTier4IdNull() {
+                return this.IsNull(this.tableIFMSTier3IFMSTier4Match.IFMSTier4IdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetTier4IdNull() {
-                this[this.tableTier3Tier4Match.Tier4IdColumn] = global::System.Convert.DBNull;
+            public void SetIFMSTier4IdNull() {
+                this[this.tableIFMSTier3IFMSTier4Match.IFMSTier4IdColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -10432,6 +11304,286 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetEquipmentIdNull() {
                 this[this.tableEquipmentStatuses.EquipmentIdColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class IFMSTier2OutcomeMatchRow : global::System.Data.DataRow {
+            
+            private IFMSTier2OutcomeMatchDataTable tableIFMSTier2OutcomeMatch;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal IFMSTier2OutcomeMatchRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableIFMSTier2OutcomeMatch = ((IFMSTier2OutcomeMatchDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short IFMSTier2Id {
+                get {
+                    try {
+                        return ((short)(this[this.tableIFMSTier2OutcomeMatch.IFMSTier2IdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IFMSTier2Id\' in table \'IFMSTier2OutcomeMatch\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableIFMSTier2OutcomeMatch.IFMSTier2IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short OutcomeId {
+                get {
+                    try {
+                        return ((short)(this[this.tableIFMSTier2OutcomeMatch.OutcomeIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OutcomeId\' in table \'IFMSTier2OutcomeMatch\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableIFMSTier2OutcomeMatch.OutcomeIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public OutcomesRow OutcomesRow {
+                get {
+                    return ((OutcomesRow)(this.GetParentRow(this.Table.ParentRelations["Outcomes_Tier2OutcomesMatch"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Outcomes_Tier2OutcomesMatch"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier2Row IFMSTier2Row {
+                get {
+                    return ((IFMSTier2Row)(this.GetParentRow(this.Table.ParentRelations["IFMSTier2_Tier2OutcomesMatch"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["IFMSTier2_Tier2OutcomesMatch"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIFMSTier2IdNull() {
+                return this.IsNull(this.tableIFMSTier2OutcomeMatch.IFMSTier2IdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIFMSTier2IdNull() {
+                this[this.tableIFMSTier2OutcomeMatch.IFMSTier2IdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsOutcomeIdNull() {
+                return this.IsNull(this.tableIFMSTier2OutcomeMatch.OutcomeIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetOutcomeIdNull() {
+                this[this.tableIFMSTier2OutcomeMatch.OutcomeIdColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class IFMSTier4OutcomeMatchRow : global::System.Data.DataRow {
+            
+            private IFMSTier4OutcomeMatchDataTable tableIFMSTier4OutcomeMatch;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal IFMSTier4OutcomeMatchRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableIFMSTier4OutcomeMatch = ((IFMSTier4OutcomeMatchDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short IFMSTier4Id {
+                get {
+                    try {
+                        return ((short)(this[this.tableIFMSTier4OutcomeMatch.IFMSTier4IdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IFMSTier4Id\' in table \'IFMSTier4OutcomeMatch\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableIFMSTier4OutcomeMatch.IFMSTier4IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short OutcomeId {
+                get {
+                    try {
+                        return ((short)(this[this.tableIFMSTier4OutcomeMatch.OutcomeIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OutcomeId\' in table \'IFMSTier4OutcomeMatch\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableIFMSTier4OutcomeMatch.OutcomeIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public OutcomesRow OutcomesRow {
+                get {
+                    return ((OutcomesRow)(this.GetParentRow(this.Table.ParentRelations["Outcomes_IFMSTier4OutcomeMatch1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Outcomes_IFMSTier4OutcomeMatch1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier4Row IFMSTier4Row {
+                get {
+                    return ((IFMSTier4Row)(this.GetParentRow(this.Table.ParentRelations["IFMSTier4_IFMSTier4OutcomeMatch1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["IFMSTier4_IFMSTier4OutcomeMatch1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsIFMSTier4IdNull() {
+                return this.IsNull(this.tableIFMSTier4OutcomeMatch.IFMSTier4IdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetIFMSTier4IdNull() {
+                this[this.tableIFMSTier4OutcomeMatch.IFMSTier4IdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsOutcomeIdNull() {
+                return this.IsNull(this.tableIFMSTier4OutcomeMatch.OutcomeIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetOutcomeIdNull() {
+                this[this.tableIFMSTier4OutcomeMatch.OutcomeIdColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SeverityCodeSymptomMatchRow : global::System.Data.DataRow {
+            
+            private SeverityCodeSymptomMatchDataTable tableSeverityCodeSymptomMatch;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal SeverityCodeSymptomMatchRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSeverityCodeSymptomMatch = ((SeverityCodeSymptomMatchDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short SeverityCodeId {
+                get {
+                    try {
+                        return ((short)(this[this.tableSeverityCodeSymptomMatch.SeverityCodeIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SeverityCodeId\' in table \'SeverityCodeSymptomMatch\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSeverityCodeSymptomMatch.SeverityCodeIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short SymptomId {
+                get {
+                    try {
+                        return ((short)(this[this.tableSeverityCodeSymptomMatch.SymptomIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SymptomId\' in table \'SeverityCodeSymptomMatch\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSeverityCodeSymptomMatch.SymptomIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SymptomsRow SymptomsRow {
+                get {
+                    return ((SymptomsRow)(this.GetParentRow(this.Table.ParentRelations["Symptoms_SeverityCodeSymptomMatch"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Symptoms_SeverityCodeSymptomMatch"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SeverityCodesRow SeverityCodesRow {
+                get {
+                    return ((SeverityCodesRow)(this.GetParentRow(this.Table.ParentRelations["SeverityCodes_SeverityCodeSymptomMatch"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["SeverityCodes_SeverityCodeSymptomMatch"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSeverityCodeIdNull() {
+                return this.IsNull(this.tableSeverityCodeSymptomMatch.SeverityCodeIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSeverityCodeIdNull() {
+                this[this.tableSeverityCodeSymptomMatch.SeverityCodeIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSymptomIdNull() {
+                return this.IsNull(this.tableSeverityCodeSymptomMatch.SymptomIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSymptomIdNull() {
+                this[this.tableSeverityCodeSymptomMatch.SymptomIdColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -11085,22 +12237,22 @@ namespace CallTracker.DataSets {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class Tier1Tier2MatchRowChangeEvent : global::System.EventArgs {
+        public class IFMSTier1IFMSTier2MatchRowChangeEvent : global::System.EventArgs {
             
-            private Tier1Tier2MatchRow eventRow;
+            private IFMSTier1IFMSTier2MatchRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier1Tier2MatchRowChangeEvent(Tier1Tier2MatchRow row, global::System.Data.DataRowAction action) {
+            public IFMSTier1IFMSTier2MatchRowChangeEvent(IFMSTier1IFMSTier2MatchRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier1Tier2MatchRow Row {
+            public IFMSTier1IFMSTier2MatchRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -11119,22 +12271,22 @@ namespace CallTracker.DataSets {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class Tier2Tier3MatchRowChangeEvent : global::System.EventArgs {
+        public class IFMSTier2IFMSTier3MatchRowChangeEvent : global::System.EventArgs {
             
-            private Tier2Tier3MatchRow eventRow;
+            private IFMSTier2IFMSTier3MatchRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier2Tier3MatchRowChangeEvent(Tier2Tier3MatchRow row, global::System.Data.DataRowAction action) {
+            public IFMSTier2IFMSTier3MatchRowChangeEvent(IFMSTier2IFMSTier3MatchRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier2Tier3MatchRow Row {
+            public IFMSTier2IFMSTier3MatchRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -11153,22 +12305,22 @@ namespace CallTracker.DataSets {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class Tier3Tier4MatchRowChangeEvent : global::System.EventArgs {
+        public class IFMSTier3IFMSTier4MatchRowChangeEvent : global::System.EventArgs {
             
-            private Tier3Tier4MatchRow eventRow;
+            private IFMSTier3IFMSTier4MatchRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier3Tier4MatchRowChangeEvent(Tier3Tier4MatchRow row, global::System.Data.DataRowAction action) {
+            public IFMSTier3IFMSTier4MatchRowChangeEvent(IFMSTier3IFMSTier4MatchRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public Tier3Tier4MatchRow Row {
+            public IFMSTier3IFMSTier4MatchRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -11203,6 +12355,108 @@ namespace CallTracker.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EquipmentStatusesRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class IFMSTier2OutcomeMatchRowChangeEvent : global::System.EventArgs {
+            
+            private IFMSTier2OutcomeMatchRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier2OutcomeMatchRowChangeEvent(IFMSTier2OutcomeMatchRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier2OutcomeMatchRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class IFMSTier4OutcomeMatchRowChangeEvent : global::System.EventArgs {
+            
+            private IFMSTier4OutcomeMatchRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier4OutcomeMatchRowChangeEvent(IFMSTier4OutcomeMatchRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier4OutcomeMatchRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class SeverityCodeSymptomMatchRowChangeEvent : global::System.EventArgs {
+            
+            private SeverityCodeSymptomMatchRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SeverityCodeSymptomMatchRowChangeEvent(SeverityCodeSymptomMatchRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SeverityCodeSymptomMatchRow Row {
                 get {
                     return this.eventRow;
                 }

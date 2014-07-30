@@ -80,6 +80,72 @@ namespace CallTracker.View
 
                 dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
             }
+            else if (dataGridView1.DataMember == "IFMSTier1")
+            {
+                ReplaceWithComboBoxColumn("ServiceId", "Service", "ServiceId", "ProductCode", "Id", 80, Main.ServicesStore.servicesDataSet.Services.ToList(), false, 1);
+                dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            }
+            else if (dataGridView1.DataMember == "IFMSTier1IFMSTier2Match")
+            {
+                ReplaceWithComboBoxColumn("IFMSTier1Id", "Tier 1", "IFMSTier1Id", "Option", "Id", 250, Main.ServicesStore.servicesDataSet.IFMSTier1.ToList(), false, 0);
+                ReplaceWithComboBoxColumn("IFMSTier2Id", "Tier 2", "IFMSTier2Id", "Option", "Id", 250, Main.ServicesStore.servicesDataSet.IFMSTier2.ToList(), false, 1);
+
+                dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            }
+            else if (dataGridView1.DataMember == "IFMSTier2")
+            {
+                ReplaceWithComboBoxColumn("OutcomeId", "Outcome", "OutcomeId", "Acronym", "Id", 80, Main.ServicesStore.servicesDataSet.Outcomes.ToList(), false, 1);
+
+                dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            }
+            else if (dataGridView1.DataMember == "IFMSTier2IFMSTier3Match")
+            {
+                ReplaceWithComboBoxColumn("IFMSTier2Id", "Tier 2", "IFMSTier2Id", "Option", "Id", 250, Main.ServicesStore.servicesDataSet.IFMSTier2.ToList(), false, 0);
+                ReplaceWithComboBoxColumn("IFMSTier3Id", "Tier 3", "IFMSTier3Id", "Option", "Id", 250, Main.ServicesStore.servicesDataSet.IFMSTier3.ToList(), false, 1);
+
+                dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            }
+            else if (dataGridView1.DataMember == "IFMSTier3")
+            {
+                ReplaceWithComboBoxColumn("SeverityID", "Severity", "SeverityID", "IFMSCode", "Id", 80, Main.ServicesStore.servicesDataSet.SeverityCodes.ToList(), false, 1);
+                ReplaceWithComboBoxColumn("SymptomId", "Symptom", "SymptomId", "IFMSCode", "Id", 80, Main.ServicesStore.servicesDataSet.Symptoms.ToList(), false, 2);
+
+                dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            }
+            else if (dataGridView1.DataMember == "IFMSTier3IFMSTier4Match")
+            {
+                ReplaceWithComboBoxColumn("IFMSTier3Id", "Tier 3", "IFMSTier3Id", "Option", "Id", 250, Main.ServicesStore.servicesDataSet.IFMSTier3.ToList(), false, 0);
+                ReplaceWithComboBoxColumn("IFMSTier4Id", "Tier 4", "IFMSTier4Id", "Option", "Id", 250, Main.ServicesStore.servicesDataSet.IFMSTier4.ToList(), false, 1);
+
+                dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            }
+            else if (dataGridView1.DataMember == "IFMSTier4")
+            {
+                //ReplaceWithComboBoxColumn("OutcomeId", "Outcome", "OutcomeId", "Acronym", "Id", 80, Main.ServicesStore.servicesDataSet.Outcomes.ToList(), false, 1);
+
+                //dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            }
+            else if (dataGridView1.DataMember == "IFMSTier2OutcomeMatch")
+            {
+                ReplaceWithComboBoxColumn("IFMSTier2Id", "Tier 2", "IFMSTier2Id", "Option", "Id", 250, Main.ServicesStore.servicesDataSet.IFMSTier2.ToList(), false, 0);
+                ReplaceWithComboBoxColumn("OutcomeId", "Outcome", "OutcomeId", "Acronym", "Id", 80, Main.ServicesStore.servicesDataSet.Outcomes.ToList(), false, 1);
+
+                dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            }
+            else if (dataGridView1.DataMember == "IFMSTier4OutcomeMatch")
+            {
+                ReplaceWithComboBoxColumn("IFMSTier4Id", "Tier 4", "IFMSTier4Id", "Option", "Id", 250, Main.ServicesStore.servicesDataSet.IFMSTier4.ToList(), false, 0);
+                ReplaceWithComboBoxColumn("OutcomeId", "Outcome", "OutcomeId", "Acronym", "Id", 80, Main.ServicesStore.servicesDataSet.Outcomes.ToList(), false, 1);
+
+                dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            }
+            else if (dataGridView1.DataMember == "SeverityCodeSymptomMatch")
+            {
+                ReplaceWithComboBoxColumn("SymptomID", "Symptom", "SymptomID", "IFMSCode", "Id", 120, Main.ServicesStore.servicesDataSet.Symptoms.ToList());
+                ReplaceWithComboBoxColumn("SeverityCodeId", "Severity", "SeverityCodeId", "IFMSCode", "Id", 80, Main.ServicesStore.servicesDataSet.SeverityCodes.ToList(), false,1);         
+
+                dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            }
         }
 
         private DataGridViewComboBoxColumn ReplaceWithComboBoxColumn(string _columnName, string _columnHeader, string _idColumnName, string _displayMember, string _valueMember, int _width, object _dataSource, bool _readOnly = false, int _columnIndex = 0)
@@ -170,35 +236,6 @@ namespace CallTracker.View
         //    dataGridView1.Columns[5].Visible = ((ToolStripMenuItem)sender).Checked;
         }
 
-        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //dataGridView1.ClearSelection();
-            //databaseBindingSource.ListChanged -= rateplanBindingSource_ListChanged;
-            
-            char[] rowSplitter = { '\n', '\r' };  // Cr and Lf.
-            IDataObject dataInClipboard = Clipboard.GetDataObject();
-            string stringInClipboard =
-                dataInClipboard.GetData(DataFormats.Text).ToString();
-            string[] rowsInClipboard = stringInClipboard.Split(rowSplitter,
-                StringSplitOptions.RemoveEmptyEntries);
-            
-            int iRow = 3;
-            while (iRow < rowsInClipboard.Length)
-            {
-                databaseBindingSource.Insert(dataGridView1.SelectedRows[0].Index, new RateplanModel(rowsInClipboard[iRow]));
-                iRow += 1;
-            }
-
-            //rateplanBindingSource.RemoveAt(0);
-            //databaseBindingSource.ListChanged += rateplanBindingSource_ListChanged;
-            MainForm.UpdateAutoComplete();
-        }
-
-        //void rateplanBindingSource_ListChanged(object sender, ListChangedEventArgs e)
-        //{
-        //     MainForm.UpdateAutoComplete();
-        //}
-
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
 
@@ -258,7 +295,16 @@ namespace CallTracker.View
             {
                 dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
                 dataGridView1.BeginEdit(false);
+                
+                if(e.RowIndex != -1)
+                    contextMenuStrip1.Items[0].Tag = dataGridView1[e.ColumnIndex, e.RowIndex];
             }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            ((DataGridViewComboBoxCell)item.Tag).Value = DBNull.Value;
         }
 
 

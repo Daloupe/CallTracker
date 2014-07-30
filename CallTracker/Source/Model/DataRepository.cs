@@ -205,6 +205,12 @@ namespace CallTracker.Model
                     DataTable[] dtarray = new DataTable[servicesDataSet.Tables.Count];
                     servicesDataSet.Tables.CopyTo(dtarray, 0);
                     servicesDataSet.Load(reader, LoadOption.PreserveChanges, dtarray);
+
+                    //servicesDataSet.IFMSTier4.Columns.Remove("OutcomeId");
+                    //servicesDataSet.IFMSTier2IFMSTier3Match.Columns.Remove("Tier2Id");
+                    //servicesDataSet.IFMSTier2IFMSTier3Match.Columns.Remove("Tier3Id");
+                    //servicesDataSet.IFMSTier3IFMSTier4Match.Columns.Remove("Tier3Id");
+                    //servicesDataSet.IFMSTier3IFMSTier4Match.Columns.Remove("Tier4Id");
                 }
             }
         }

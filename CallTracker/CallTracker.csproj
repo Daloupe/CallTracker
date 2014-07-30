@@ -84,16 +84,22 @@
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DataSets\ServicesDataSet2.Designer.cs">
+    <Compile Include="DataSets\ServicesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
     </Compile>
+    <None Include="DataSets\ServicesDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServicesDataSet.xsd</DependentUpon>
+    </None>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\Data\Equipment.cs" />
     <Compile Include="Source\Data\ServiceResources.cs" />
     <Compile Include="Source\Data\Symptoms.cs" />
+    <Compile Include="Source\Helpers\ICONAutoFill.cs" />
     <Compile Include="Source\Helpers\Type\EnumExtensions.cs" />
     <Compile Include="Source\Helpers\FindProperty.cs" />
     <Compile Include="Source\Helpers\ICONNoteGenerator.cs" />
@@ -308,7 +314,7 @@
     <None Include="DataSets\ServicesDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ServicesDataSet2.Designer.cs</LastGenOutput>
+      <LastGenOutput>ServicesDataSet.Designer.cs</LastGenOutput>
     </None>
     <None Include="DataSets\ServicesDataSet.xss">
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>

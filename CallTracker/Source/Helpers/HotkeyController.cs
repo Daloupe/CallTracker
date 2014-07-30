@@ -92,15 +92,9 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void OnTest(HotkeyPressedEventArgs e)
         {
-           Console.WriteLine(WindowHelper.GetActiveWindowTitle());
-           //IntPtr hwndChild = IntPtr.Zero;
-           ////Console.WriteLine();
-           //WindowScrape.Types.HwndObject wind = WindowScrape.Types.HwndObject.GetWindowByTitle(WindowHelper.GetActiveWindowTitle());
-
-           //wind.GetChild("Button", "1").SendMessage(WindowScrape.Constants.WM.BN_CLICKED, (uint)0, (uint)0);
-           //WindowHelper.ActivateWindowByTitle("WordPad");
+           //Console.WriteLine(WindowHelper.GetActiveWindowTitle());
+           ICONAutoFill.Go(parent);
         }
-
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // ARO //////////////////////////////////////////////////////////////////////////////////////////////

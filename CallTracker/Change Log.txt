@@ -1,4 +1,7 @@
-﻿0.28.6
+﻿0.28.7
+| Created ICONAutoFill.
+
+0.28.6
 | ServiceViews now utilzies the database.
 | Hooked up Equipment and other EditContacts drop downs.
 | Added Row change events to Panels.

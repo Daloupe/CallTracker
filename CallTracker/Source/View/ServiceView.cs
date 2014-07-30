@@ -22,6 +22,7 @@ namespace CallTracker.View
 
         public BindingList<string> Equipment;
         public BindingList<string> Symptoms;
+        public BindingList<string> Severity;
 
         private EditContact Parent;
 
@@ -38,8 +39,10 @@ namespace CallTracker.View
                           select a).First();
             Symptoms = new BindingList<string>();
             Equipment = new BindingList<string>();
+            Severity = new BindingList<string>();
             UpdateSymptoms();
             UpdateEquipment();
+            UpdateSeverity();
         }
 
         public void AddRowChangedEvents()
@@ -49,9 +52,19 @@ namespace CallTracker.View
             Main.ServicesStore.servicesDataSet.ServiceSymptomGroupMatch.RowChanged += Symptoms_RowChanged;
             Main.ServicesStore.servicesDataSet.SymptomGroupSymptomMatch.RowChanged += Symptoms_RowChanged;
             Main.ServicesStore.servicesDataSet.SymptomGroups.RowChanged += Symptoms_RowChanged;
+            Main.ServicesStore.servicesDataSet.SeverityCodes.RowChanged += Severity_RowChanged;
+            Main.ServicesStore.servicesDataSet.SeverityCodeSymptomMatch.RowChanged += Severity_RowChanged;
+
+            Parent._Symptom.SelectedIndexChanged += _Symptom_SelectedIndexChanged;
 
             UpdateSymptoms();
             UpdateEquipment();
+            UpdateSeverity();
+        }
+
+        void _Symptom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateSeverity();
         }
 
         public void RemoveRowChangedEvents()
@@ -61,6 +74,10 @@ namespace CallTracker.View
             Main.ServicesStore.servicesDataSet.ServiceSymptomGroupMatch.RowChanged -= Symptoms_RowChanged;
             Main.ServicesStore.servicesDataSet.SymptomGroupSymptomMatch.RowChanged -= Symptoms_RowChanged;
             Main.ServicesStore.servicesDataSet.SymptomGroups.RowChanged -= Symptoms_RowChanged;
+            Main.ServicesStore.servicesDataSet.SeverityCodes.RowChanged -= Severity_RowChanged;
+            Main.ServicesStore.servicesDataSet.SeverityCodeSymptomMatch.RowChanged -= Severity_RowChanged;
+
+            Parent._Symptom.SelectedIndexChanged -= _Symptom_SelectedIndexChanged;
         }
 
         void Symptoms_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
@@ -71,6 +88,11 @@ namespace CallTracker.View
         void Equipment_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
         {
             UpdateEquipment();
+        }
+
+        void Severity_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
+        {
+            UpdateSeverity();
         }
 
         public void UpdateSymptoms()
@@ -103,6 +125,22 @@ namespace CallTracker.View
                 Equipment.Add(item);
 
             Parent._Equipment.DataSource = Equipment;
+        }
+
+        public void UpdateSeverity()
+        {
+            Parent._Severity.DataSource = null;
+            Severity.Clear();
+            string symp = Parent._Symptom.Text ?? "NONE";
+            var query = (from a in Main.ServicesStore.servicesDataSet.SeverityCodes
+                         from b in a.GetSeverityCodeSymptomMatchRows()
+                         where b.SymptomsRow.IFMSCode == symp
+                         select a.IFMSCode).Distinct().ToList();
+
+            foreach (var item in query)
+                Severity.Add(item);
+
+            Parent._Severity.DataSource = Severity;
         }
     }
 }

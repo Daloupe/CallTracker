@@ -69,7 +69,7 @@ namespace CallTracker.View
                 _Note.Enabled = false;
             }
 
-            _Severity.DataSource = Main.ServicesStore.servicesDataSet.SeverityCodes.Select(x => x.IFMSCode).ToList(); //Enum.GetValues(typeof(FaultSeverity));
+            //_Severity.DataSource = Main.ServicesStore.servicesDataSet.SeverityCodes.Select(x => x.IFMSCode).ToList(); //Enum.GetValues(typeof(FaultSeverity));
             _Outcome.DataSource = Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList(); //Enum.GetValues(typeof(Outcomes));
             _BookingTimeSlot.DataSource = Enum.GetValues(typeof(BookingTimeslot));
             

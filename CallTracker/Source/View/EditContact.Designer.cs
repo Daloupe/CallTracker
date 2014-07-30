@@ -45,7 +45,6 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this._BookingTimeSlot = new System.Windows.Forms.ComboBox();
             this._Outcome = new System.Windows.Forms.ComboBox();
-            this.servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
             this._Symptom = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
             this._Severity = new System.Windows.Forms.ComboBox();
@@ -108,6 +107,7 @@
             this.borderedTextBox1 = new CallTracker.View.BorderedTextBox();
             this._PR = new CallTracker.View.BorderedTextBox();
             this._NPR = new CallTracker.View.BorderedTextBox();
+            this.servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -116,7 +116,6 @@
             this.splitContainer2.SuspendLayout();
             this.HfcPanel.SuspendLayout();
             this._PRContextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).BeginInit();
             this._ServiceMenu.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -128,6 +127,7 @@
             this.flowLayoutPanel4.SuspendLayout();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // FaultPanel
@@ -319,11 +319,6 @@
             this._Outcome.Name = "_Outcome";
             this._Outcome.Size = new System.Drawing.Size(62, 20);
             this._Outcome.TabIndex = 43;
-            // 
-            // servicesDataSet
-            // 
-            this.servicesDataSet.DataSetName = "ServicesDataSet";
-            this.servicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // _Symptom
             // 
@@ -1073,6 +1068,11 @@
             this._NPR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._NPR.MouseDown += new System.Windows.Forms.MouseEventHandler(this._PRMenu_Clicked);
             // 
+            // servicesDataSet
+            // 
+            this.servicesDataSet.DataSetName = "ServicesDataSet";
+            this.servicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // EditContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1092,7 +1092,6 @@
             this.HfcPanel.ResumeLayout(false);
             this.HfcPanel.PerformLayout();
             this._PRContextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).EndInit();
             this._ServiceMenu.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
@@ -1106,6 +1105,7 @@
             this.flowLayoutPanel4.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1147,9 +1147,7 @@
         private BorderedTextBox _NPR;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.ComboBox _Outcome;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.ComboBox _Severity;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
@@ -1190,5 +1188,7 @@
         public System.Windows.Forms.ToolStripMenuItem _ServiceMenuMTV;
         internal System.Windows.Forms.ComboBox _Equipment;
         internal System.Windows.Forms.ComboBox _Symptom;
+        internal System.Windows.Forms.ComboBox _Outcome;
+        internal System.Windows.Forms.ComboBox _Severity;
     }
 }

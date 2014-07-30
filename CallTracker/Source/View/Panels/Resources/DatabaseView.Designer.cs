@@ -32,9 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.showInstallCodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ratePlanCalculatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.databaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
@@ -50,39 +47,16 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pasteToolStripMenuItem,
-            this.showInstallCodesToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.ratePlanCalculatorToolStripMenuItem});
+            this.pasteToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 48);
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.pasteToolStripMenuItem.Text = "Paste";
-            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
-            // 
-            // showInstallCodesToolStripMenuItem
-            // 
-            this.showInstallCodesToolStripMenuItem.CheckOnClick = true;
-            this.showInstallCodesToolStripMenuItem.Name = "showInstallCodesToolStripMenuItem";
-            this.showInstallCodesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.showInstallCodesToolStripMenuItem.Text = "Show Install Codes";
-            this.showInstallCodesToolStripMenuItem.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
-            // ratePlanCalculatorToolStripMenuItem
-            // 
-            this.ratePlanCalculatorToolStripMenuItem.Name = "ratePlanCalculatorToolStripMenuItem";
-            this.ratePlanCalculatorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.ratePlanCalculatorToolStripMenuItem.Text = "Rate Plan Calculator";
-            this.ratePlanCalculatorToolStripMenuItem.Click += new System.EventHandler(this.ratePlanCalculatorToolStripMenuItem_Click);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteToolStripMenuItem.Text = "Delete";
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // dataGridView1
             // 
@@ -186,9 +160,6 @@
         private System.Windows.Forms.BindingSource databaseBindingSource;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem showInstallCodesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem ratePlanCalculatorToolStripMenuItem;
         private System.Windows.Forms.ComboBox _DatabaseSelect;
         private DataSets.ServicesDataSet servicesDataSet;
     }
