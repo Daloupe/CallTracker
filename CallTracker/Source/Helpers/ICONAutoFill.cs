@@ -56,7 +56,7 @@ namespace CallTracker.Helpers
                              //from c in a.SymptomsRow.GetSeverityCodeSymptomMatchRows()
                              where b.IFMSTier2Id == tier2.Id &&
                                    //c.SeverityCodeId == severity.Id &&
-                                   b.SymptomId == symptom.Id       
+                                   a.SymptomId == symptom.Id       
                              select a;
             if (tier3query.Count() == 0)
                 return;

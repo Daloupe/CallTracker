@@ -24,6 +24,7 @@ namespace CallTracker.View
         public EditContact(Main _mainform)
         {
             InitializeComponent();
+            _OutcomeTooltip.SetToolTip(_Outcome, "Problem Report");
 
             MainForm = _mainform;
             DataStore = MainForm.DataStore;
@@ -390,6 +391,11 @@ namespace CallTracker.View
         private void callHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MainForm.settingMenuItem_Click(MainForm.callHistoryToolStripMenuItem, e);
+        }
+
+        private void _Outcome_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _OutcomeTooltip.SetToolTip(_Outcome, Main.ServicesStore.servicesDataSet.Outcomes.First(x => x.Acronym == _Outcome.Text).Description);
         }
     }
 

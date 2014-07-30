@@ -52,12 +52,12 @@
             this._DataField.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._DataField.DropDownWidth = 136;
             this._DataField.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._DataField.Font = new System.Drawing.Font("Verdana", 6.25F);
+            this._DataField.Font = new System.Drawing.Font("Verdana", 7F);
             this._DataField.FormattingEnabled = true;
             this._DataField.Location = new System.Drawing.Point(39, 3);
             this._DataField.Margin = new System.Windows.Forms.Padding(0);
             this._DataField.Name = "_DataField";
-            this._DataField.Size = new System.Drawing.Size(137, 18);
+            this._DataField.Size = new System.Drawing.Size(137, 20);
             this._DataField.TabIndex = 28;
             // 
             // DataDropDown

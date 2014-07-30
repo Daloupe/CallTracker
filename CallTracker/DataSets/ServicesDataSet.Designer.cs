@@ -76,6 +76,8 @@ namespace CallTracker.DataSets {
         
         private SeverityCodeSymptomMatchDataTable tableSeverityCodeSymptomMatch;
         
+        private EquipmentEquipmentStatusesMatchDataTable tableEquipmentEquipmentStatusesMatch;
+        
         private global::System.Data.DataRelation relationServiceSymptomGroup_Services;
         
         private global::System.Data.DataRelation relationServicesEquipmentMatch_Services;
@@ -110,8 +112,6 @@ namespace CallTracker.DataSets {
         
         private global::System.Data.DataRelation relationSymptoms_IFMSTier3;
         
-        private global::System.Data.DataRelation relationEquipment_EquipmentStatuses;
-        
         private global::System.Data.DataRelation relationOutcomes_Tier2OutcomesMatch;
         
         private global::System.Data.DataRelation relationIFMSTier2_Tier2OutcomesMatch;
@@ -125,6 +125,10 @@ namespace CallTracker.DataSets {
         private global::System.Data.DataRelation relationSymptoms_SeverityCodeSymptomMatch;
         
         private global::System.Data.DataRelation relationSeverityCodes_SeverityCodeSymptomMatch;
+        
+        private global::System.Data.DataRelation relationEquipment_EquipmentEquipmentStatusesMatch;
+        
+        private global::System.Data.DataRelation relationEquipmentStatuses_EquipmentEquipmentStatusesMatch;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -231,6 +235,9 @@ namespace CallTracker.DataSets {
                 }
                 if ((ds.Tables["SeverityCodeSymptomMatch"] != null)) {
                     base.Tables.Add(new SeverityCodeSymptomMatchDataTable(ds.Tables["SeverityCodeSymptomMatch"]));
+                }
+                if ((ds.Tables["EquipmentEquipmentStatusesMatch"] != null)) {
+                    base.Tables.Add(new EquipmentEquipmentStatusesMatchDataTable(ds.Tables["EquipmentEquipmentStatusesMatch"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -512,6 +519,16 @@ namespace CallTracker.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public EquipmentEquipmentStatusesMatchDataTable EquipmentEquipmentStatusesMatch {
+            get {
+                return this.tableEquipmentEquipmentStatusesMatch;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -654,6 +671,9 @@ namespace CallTracker.DataSets {
                 }
                 if ((ds.Tables["SeverityCodeSymptomMatch"] != null)) {
                     base.Tables.Add(new SeverityCodeSymptomMatchDataTable(ds.Tables["SeverityCodeSymptomMatch"]));
+                }
+                if ((ds.Tables["EquipmentEquipmentStatusesMatch"] != null)) {
+                    base.Tables.Add(new EquipmentEquipmentStatusesMatchDataTable(ds.Tables["EquipmentEquipmentStatusesMatch"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -844,6 +864,12 @@ namespace CallTracker.DataSets {
                     this.tableSeverityCodeSymptomMatch.InitVars();
                 }
             }
+            this.tableEquipmentEquipmentStatusesMatch = ((EquipmentEquipmentStatusesMatchDataTable)(base.Tables["EquipmentEquipmentStatusesMatch"]));
+            if ((initTable == true)) {
+                if ((this.tableEquipmentEquipmentStatusesMatch != null)) {
+                    this.tableEquipmentEquipmentStatusesMatch.InitVars();
+                }
+            }
             this.relationServiceSymptomGroup_Services = this.Relations["ServiceSymptomGroup_Services"];
             this.relationServicesEquipmentMatch_Services = this.Relations["ServicesEquipmentMatch_Services"];
             this.relationEquipment_ServiceEquipmentMatch = this.Relations["Equipment_ServiceEquipmentMatch"];
@@ -861,7 +887,6 @@ namespace CallTracker.DataSets {
             this.relationServices_IFMSTier1 = this.Relations["Services_IFMSTier1"];
             this.relationSeverityCodes_IFMSTier3 = this.Relations["SeverityCodes_IFMSTier3"];
             this.relationSymptoms_IFMSTier3 = this.Relations["Symptoms_IFMSTier3"];
-            this.relationEquipment_EquipmentStatuses = this.Relations["Equipment_EquipmentStatuses"];
             this.relationOutcomes_Tier2OutcomesMatch = this.Relations["Outcomes_Tier2OutcomesMatch"];
             this.relationIFMSTier2_Tier2OutcomesMatch = this.Relations["IFMSTier2_Tier2OutcomesMatch"];
             this.relationIFMSTier1_Tier1Tier2Match = this.Relations["IFMSTier1_Tier1Tier2Match"];
@@ -869,6 +894,8 @@ namespace CallTracker.DataSets {
             this.relationIFMSTier4_IFMSTier4OutcomeMatch1 = this.Relations["IFMSTier4_IFMSTier4OutcomeMatch1"];
             this.relationSymptoms_SeverityCodeSymptomMatch = this.Relations["Symptoms_SeverityCodeSymptomMatch"];
             this.relationSeverityCodes_SeverityCodeSymptomMatch = this.Relations["SeverityCodes_SeverityCodeSymptomMatch"];
+            this.relationEquipment_EquipmentEquipmentStatusesMatch = this.Relations["Equipment_EquipmentEquipmentStatusesMatch"];
+            this.relationEquipmentStatuses_EquipmentEquipmentStatusesMatch = this.Relations["EquipmentStatuses_EquipmentEquipmentStatusesMatch"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -931,6 +958,8 @@ namespace CallTracker.DataSets {
             base.Tables.Add(this.tableIFMSTier4OutcomeMatch);
             this.tableSeverityCodeSymptomMatch = new SeverityCodeSymptomMatchDataTable();
             base.Tables.Add(this.tableSeverityCodeSymptomMatch);
+            this.tableEquipmentEquipmentStatusesMatch = new EquipmentEquipmentStatusesMatchDataTable();
+            base.Tables.Add(this.tableEquipmentEquipmentStatusesMatch);
             this.relationServiceSymptomGroup_Services = new global::System.Data.DataRelation("ServiceSymptomGroup_Services", new global::System.Data.DataColumn[] {
                         this.tableServices.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableServiceSymptomGroupMatch.ServiceIdColumn}, false);
@@ -999,10 +1028,6 @@ namespace CallTracker.DataSets {
                         this.tableSymptoms.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableIFMSTier3.SymptomIdColumn}, false);
             this.Relations.Add(this.relationSymptoms_IFMSTier3);
-            this.relationEquipment_EquipmentStatuses = new global::System.Data.DataRelation("Equipment_EquipmentStatuses", new global::System.Data.DataColumn[] {
-                        this.tableEquipment.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableEquipmentStatuses.EquipmentIdColumn}, false);
-            this.Relations.Add(this.relationEquipment_EquipmentStatuses);
             this.relationOutcomes_Tier2OutcomesMatch = new global::System.Data.DataRelation("Outcomes_Tier2OutcomesMatch", new global::System.Data.DataColumn[] {
                         this.tableOutcomes.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableIFMSTier2OutcomeMatch.OutcomeIdColumn}, false);
@@ -1031,6 +1056,14 @@ namespace CallTracker.DataSets {
                         this.tableSeverityCodes.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableSeverityCodeSymptomMatch.SeverityCodeIdColumn}, false);
             this.Relations.Add(this.relationSeverityCodes_SeverityCodeSymptomMatch);
+            this.relationEquipment_EquipmentEquipmentStatusesMatch = new global::System.Data.DataRelation("Equipment_EquipmentEquipmentStatusesMatch", new global::System.Data.DataColumn[] {
+                        this.tableEquipment.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableEquipmentEquipmentStatusesMatch.EquipmentIdColumn}, false);
+            this.Relations.Add(this.relationEquipment_EquipmentEquipmentStatusesMatch);
+            this.relationEquipmentStatuses_EquipmentEquipmentStatusesMatch = new global::System.Data.DataRelation("EquipmentStatuses_EquipmentEquipmentStatusesMatch", new global::System.Data.DataColumn[] {
+                        this.tableEquipmentStatuses.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableEquipmentEquipmentStatusesMatch.EquipmentStatusesIdColumn}, false);
+            this.Relations.Add(this.relationEquipmentStatuses_EquipmentEquipmentStatusesMatch);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1191,6 +1224,12 @@ namespace CallTracker.DataSets {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializeEquipmentEquipmentStatusesMatch() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1321,6 +1360,9 @@ namespace CallTracker.DataSets {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void SeverityCodeSymptomMatchRowChangeEventHandler(object sender, SeverityCodeSymptomMatchRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void EquipmentEquipmentStatusesMatchRowChangeEventHandler(object sender, EquipmentEquipmentStatusesMatchRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -4165,6 +4207,8 @@ namespace CallTracker.DataSets {
             
             private global::System.Data.DataColumn columnDescription;
             
+            private global::System.Data.DataColumn columnType;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EquipmentDataTable() {
@@ -4216,6 +4260,14 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn TypeColumn {
+                get {
+                    return this.columnType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4251,11 +4303,12 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EquipmentRow AddEquipmentRow(string Description) {
+            public EquipmentRow AddEquipmentRow(string Description, string Type) {
                 EquipmentRow rowEquipmentRow = ((EquipmentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        Description};
+                        Description,
+                        Type};
                 rowEquipmentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEquipmentRow);
                 return rowEquipmentRow;
@@ -4280,6 +4333,7 @@ namespace CallTracker.DataSets {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnDescription = base.Columns["Description"];
+                this.columnType = base.Columns["Type"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4289,6 +4343,8 @@ namespace CallTracker.DataSets {
                 base.Columns.Add(this.columnId);
                 this.columnDescription = new global::System.Data.DataColumn("Description", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDescription);
+                this.columnType = new global::System.Data.DataColumn("Type", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnType);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, false));
                 this.columnId.AutoIncrement = true;
@@ -7508,8 +7564,6 @@ namespace CallTracker.DataSets {
             
             private global::System.Data.DataColumn columnStatus;
             
-            private global::System.Data.DataColumn columnEquipmentId;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EquipmentStatusesDataTable() {
@@ -7561,14 +7615,6 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn EquipmentIdColumn {
-                get {
-                    return this.columnEquipmentId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7604,15 +7650,11 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EquipmentStatusesRow AddEquipmentStatusesRow(string Status, EquipmentRow parentEquipmentRowByEquipment_EquipmentStatuses) {
+            public EquipmentStatusesRow AddEquipmentStatusesRow(string Status) {
                 EquipmentStatusesRow rowEquipmentStatusesRow = ((EquipmentStatusesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        Status,
-                        null};
-                if ((parentEquipmentRowByEquipment_EquipmentStatuses != null)) {
-                    columnValuesArray[2] = parentEquipmentRowByEquipment_EquipmentStatuses[0];
-                }
+                        Status};
                 rowEquipmentStatusesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEquipmentStatusesRow);
                 return rowEquipmentStatusesRow;
@@ -7637,7 +7679,6 @@ namespace CallTracker.DataSets {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnStatus = base.Columns["Status"];
-                this.columnEquipmentId = base.Columns["EquipmentId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7647,15 +7688,10 @@ namespace CallTracker.DataSets {
                 base.Columns.Add(this.columnId);
                 this.columnStatus = new global::System.Data.DataColumn("Status", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatus);
-                this.columnEquipmentId = new global::System.Data.DataColumn("EquipmentId", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEquipmentId);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, false));
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
-                                this.columnEquipmentId}, false));
                 this.columnId.AutoIncrement = true;
                 this.columnId.Unique = true;
-                this.columnEquipmentId.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8549,6 +8585,275 @@ namespace CallTracker.DataSets {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "SeverityCodeSymptomMatchDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class EquipmentEquipmentStatusesMatchDataTable : global::System.Data.TypedTableBase<EquipmentEquipmentStatusesMatchRow> {
+            
+            private global::System.Data.DataColumn columnEquipmentId;
+            
+            private global::System.Data.DataColumn columnEquipmentStatusesId;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EquipmentEquipmentStatusesMatchDataTable() {
+                this.TableName = "EquipmentEquipmentStatusesMatch";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal EquipmentEquipmentStatusesMatchDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected EquipmentEquipmentStatusesMatchDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EquipmentIdColumn {
+                get {
+                    return this.columnEquipmentId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn EquipmentStatusesIdColumn {
+                get {
+                    return this.columnEquipmentStatusesId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EquipmentEquipmentStatusesMatchRow this[int index] {
+                get {
+                    return ((EquipmentEquipmentStatusesMatchRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event EquipmentEquipmentStatusesMatchRowChangeEventHandler EquipmentEquipmentStatusesMatchRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event EquipmentEquipmentStatusesMatchRowChangeEventHandler EquipmentEquipmentStatusesMatchRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event EquipmentEquipmentStatusesMatchRowChangeEventHandler EquipmentEquipmentStatusesMatchRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event EquipmentEquipmentStatusesMatchRowChangeEventHandler EquipmentEquipmentStatusesMatchRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddEquipmentEquipmentStatusesMatchRow(EquipmentEquipmentStatusesMatchRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EquipmentEquipmentStatusesMatchRow AddEquipmentEquipmentStatusesMatchRow(EquipmentRow parentEquipmentRowByEquipment_EquipmentEquipmentStatusesMatch, EquipmentStatusesRow parentEquipmentStatusesRowByEquipmentStatuses_EquipmentEquipmentStatusesMatch) {
+                EquipmentEquipmentStatusesMatchRow rowEquipmentEquipmentStatusesMatchRow = ((EquipmentEquipmentStatusesMatchRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null};
+                if ((parentEquipmentRowByEquipment_EquipmentEquipmentStatusesMatch != null)) {
+                    columnValuesArray[0] = parentEquipmentRowByEquipment_EquipmentEquipmentStatusesMatch[0];
+                }
+                if ((parentEquipmentStatusesRowByEquipmentStatuses_EquipmentEquipmentStatusesMatch != null)) {
+                    columnValuesArray[1] = parentEquipmentStatusesRowByEquipmentStatuses_EquipmentEquipmentStatusesMatch[0];
+                }
+                rowEquipmentEquipmentStatusesMatchRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowEquipmentEquipmentStatusesMatchRow);
+                return rowEquipmentEquipmentStatusesMatchRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                EquipmentEquipmentStatusesMatchDataTable cln = ((EquipmentEquipmentStatusesMatchDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new EquipmentEquipmentStatusesMatchDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnEquipmentId = base.Columns["EquipmentId"];
+                this.columnEquipmentStatusesId = base.Columns["EquipmentStatusesId"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnEquipmentId = new global::System.Data.DataColumn("EquipmentId", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEquipmentId);
+                this.columnEquipmentStatusesId = new global::System.Data.DataColumn("EquipmentStatusesId", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEquipmentStatusesId);
+                this.columnEquipmentId.Caption = "Tier1Id";
+                this.columnEquipmentStatusesId.Caption = "Tier2Id";
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EquipmentEquipmentStatusesMatchRow NewEquipmentEquipmentStatusesMatchRow() {
+                return ((EquipmentEquipmentStatusesMatchRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new EquipmentEquipmentStatusesMatchRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(EquipmentEquipmentStatusesMatchRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.EquipmentEquipmentStatusesMatchRowChanged != null)) {
+                    this.EquipmentEquipmentStatusesMatchRowChanged(this, new EquipmentEquipmentStatusesMatchRowChangeEvent(((EquipmentEquipmentStatusesMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.EquipmentEquipmentStatusesMatchRowChanging != null)) {
+                    this.EquipmentEquipmentStatusesMatchRowChanging(this, new EquipmentEquipmentStatusesMatchRowChangeEvent(((EquipmentEquipmentStatusesMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.EquipmentEquipmentStatusesMatchRowDeleted != null)) {
+                    this.EquipmentEquipmentStatusesMatchRowDeleted(this, new EquipmentEquipmentStatusesMatchRowChangeEvent(((EquipmentEquipmentStatusesMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.EquipmentEquipmentStatusesMatchRowDeleting != null)) {
+                    this.EquipmentEquipmentStatusesMatchRowDeleting(this, new EquipmentEquipmentStatusesMatchRowChangeEvent(((EquipmentEquipmentStatusesMatchRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemoveEquipmentEquipmentStatusesMatchRow(EquipmentEquipmentStatusesMatchRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                ServicesDataSet ds = new ServicesDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "EquipmentEquipmentStatusesMatchDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -9882,6 +10187,22 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Type {
+                get {
+                    try {
+                        return ((string)(this[this.tableEquipment.TypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Type\' in table \'Equipment\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEquipment.TypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIdNull() {
                 return this.IsNull(this.tableEquipment.IdColumn);
             }
@@ -9906,6 +10227,18 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsTypeNull() {
+                return this.IsNull(this.tableEquipment.TypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetTypeNull() {
+                this[this.tableEquipment.TypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ServiceEquipmentMatchRow[] GetServiceEquipmentMatchRows() {
                 if ((this.Table.ChildRelations["Equipment_ServiceEquipmentMatch"] == null)) {
                     return new ServiceEquipmentMatchRow[0];
@@ -9917,12 +10250,12 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EquipmentStatusesRow[] GetEquipmentStatusesRows() {
-                if ((this.Table.ChildRelations["Equipment_EquipmentStatuses"] == null)) {
-                    return new EquipmentStatusesRow[0];
+            public EquipmentEquipmentStatusesMatchRow[] GetEquipmentEquipmentStatusesMatchRows() {
+                if ((this.Table.ChildRelations["Equipment_EquipmentEquipmentStatusesMatch"] == null)) {
+                    return new EquipmentEquipmentStatusesMatchRow[0];
                 }
                 else {
-                    return ((EquipmentStatusesRow[])(base.GetChildRows(this.Table.ChildRelations["Equipment_EquipmentStatuses"])));
+                    return ((EquipmentEquipmentStatusesMatchRow[])(base.GetChildRows(this.Table.ChildRelations["Equipment_EquipmentEquipmentStatusesMatch"])));
                 }
             }
         }
@@ -11245,33 +11578,6 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public short EquipmentId {
-                get {
-                    try {
-                        return ((short)(this[this.tableEquipmentStatuses.EquipmentIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'EquipmentId\' in table \'EquipmentStatuses\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableEquipmentStatuses.EquipmentIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EquipmentRow EquipmentRow {
-                get {
-                    return ((EquipmentRow)(this.GetParentRow(this.Table.ParentRelations["Equipment_EquipmentStatuses"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Equipment_EquipmentStatuses"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIdNull() {
                 return this.IsNull(this.tableEquipmentStatuses.IdColumn);
             }
@@ -11296,14 +11602,13 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsEquipmentIdNull() {
-                return this.IsNull(this.tableEquipmentStatuses.EquipmentIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetEquipmentIdNull() {
-                this[this.tableEquipmentStatuses.EquipmentIdColumn] = global::System.Convert.DBNull;
+            public EquipmentEquipmentStatusesMatchRow[] GetEquipmentEquipmentStatusesMatchRows() {
+                if ((this.Table.ChildRelations["EquipmentStatuses_EquipmentEquipmentStatusesMatch"] == null)) {
+                    return new EquipmentEquipmentStatusesMatchRow[0];
+                }
+                else {
+                    return ((EquipmentEquipmentStatusesMatchRow[])(base.GetChildRows(this.Table.ChildRelations["EquipmentStatuses_EquipmentEquipmentStatusesMatch"])));
+                }
             }
         }
         
@@ -11584,6 +11889,101 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetSymptomIdNull() {
                 this[this.tableSeverityCodeSymptomMatch.SymptomIdColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class EquipmentEquipmentStatusesMatchRow : global::System.Data.DataRow {
+            
+            private EquipmentEquipmentStatusesMatchDataTable tableEquipmentEquipmentStatusesMatch;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal EquipmentEquipmentStatusesMatchRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableEquipmentEquipmentStatusesMatch = ((EquipmentEquipmentStatusesMatchDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short EquipmentId {
+                get {
+                    try {
+                        return ((short)(this[this.tableEquipmentEquipmentStatusesMatch.EquipmentIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EquipmentId\' in table \'EquipmentEquipmentStatusesMatch\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEquipmentEquipmentStatusesMatch.EquipmentIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public short EquipmentStatusesId {
+                get {
+                    try {
+                        return ((short)(this[this.tableEquipmentEquipmentStatusesMatch.EquipmentStatusesIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'EquipmentStatusesId\' in table \'EquipmentEquipmentStatusesMa" +
+                                "tch\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEquipmentEquipmentStatusesMatch.EquipmentStatusesIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EquipmentRow EquipmentRow {
+                get {
+                    return ((EquipmentRow)(this.GetParentRow(this.Table.ParentRelations["Equipment_EquipmentEquipmentStatusesMatch"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Equipment_EquipmentEquipmentStatusesMatch"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EquipmentStatusesRow EquipmentStatusesRow {
+                get {
+                    return ((EquipmentStatusesRow)(this.GetParentRow(this.Table.ParentRelations["EquipmentStatuses_EquipmentEquipmentStatusesMatch"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["EquipmentStatuses_EquipmentEquipmentStatusesMatch"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEquipmentIdNull() {
+                return this.IsNull(this.tableEquipmentEquipmentStatusesMatch.EquipmentIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEquipmentIdNull() {
+                this[this.tableEquipmentEquipmentStatusesMatch.EquipmentIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsEquipmentStatusesIdNull() {
+                return this.IsNull(this.tableEquipmentEquipmentStatusesMatch.EquipmentStatusesIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetEquipmentStatusesIdNull() {
+                this[this.tableEquipmentEquipmentStatusesMatch.EquipmentStatusesIdColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12457,6 +12857,40 @@ namespace CallTracker.DataSets {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SeverityCodeSymptomMatchRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class EquipmentEquipmentStatusesMatchRowChangeEvent : global::System.EventArgs {
+            
+            private EquipmentEquipmentStatusesMatchRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EquipmentEquipmentStatusesMatchRowChangeEvent(EquipmentEquipmentStatusesMatchRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public EquipmentEquipmentStatusesMatchRow Row {
                 get {
                     return this.eventRow;
                 }

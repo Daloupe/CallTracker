@@ -19,6 +19,10 @@ namespace CallTracker.View
         public override void SetDataSource(object _source)
         {
             serviceModelBindingSource.DataSource = _source;
+            dataDropDown1.DataSource = Main.ServicesStore.servicesDataSet.EquipmentEquipmentStatusesMatch
+                                                                         .Where(x => x.EquipmentRow.Type == "Modem")
+                                                                         .Select(x => x.EquipmentStatusesRow.Status)
+                                                                         .ToList();
         }
     }
 }

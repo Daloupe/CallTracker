@@ -96,6 +96,8 @@
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this._Note = new System.Windows.Forms.RichTextBox();
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this._Icon = new CallTracker.View.BorderedTextBox();
             this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._Cmbs = new CallTracker.View.BorderedTextBox();
@@ -107,7 +109,7 @@
             this.borderedTextBox1 = new CallTracker.View.BorderedTextBox();
             this._PR = new CallTracker.View.BorderedTextBox();
             this._NPR = new CallTracker.View.BorderedTextBox();
-            this.servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
+            this._OutcomeTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -126,8 +128,8 @@
             this.ServiceTypePanel.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
             this.MainPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // FaultPanel
@@ -319,6 +321,7 @@
             this._Outcome.Name = "_Outcome";
             this._Outcome.Size = new System.Drawing.Size(62, 20);
             this._Outcome.TabIndex = 43;
+            this._Outcome.SelectedIndexChanged += new System.EventHandler(this._Outcome_SelectedIndexChanged);
             // 
             // _Symptom
             // 
@@ -410,6 +413,7 @@
             this.label6.TabIndex = 4;
             this.label6.Text = "Customer PR:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.toolTip1.SetToolTip(this.label6, "Hotkey: Ctrl-Shift-Z");
             // 
             // label21
             // 
@@ -653,6 +657,7 @@
             this.label2.Size = new System.Drawing.Size(51, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "ICON:";
+            this.toolTip1.SetToolTip(this.label2, "Hotkey: Ctrl-Shift-1");
             // 
             // label1
             // 
@@ -664,6 +669,7 @@
             this.label1.Size = new System.Drawing.Size(42, 17);
             this.label1.TabIndex = 4;
             this.label1.Text = "CMBS:";
+            this.toolTip1.SetToolTip(this.label1, "Hotkey: Ctrl-Shift-2");
             // 
             // _UnLabel
             // 
@@ -675,6 +681,7 @@
             this._UnLabel.Size = new System.Drawing.Size(51, 17);
             this._UnLabel.TabIndex = 2;
             this._UnLabel.Text = "UN:";
+            this.toolTip1.SetToolTip(this._UnLabel, "Hotkey: Ctrl-Shift-Q");
             // 
             // _DnLabel
             // 
@@ -686,6 +693,7 @@
             this._DnLabel.Size = new System.Drawing.Size(42, 17);
             this._DnLabel.TabIndex = 0;
             this._DnLabel.Text = "DN:";
+            this.toolTip1.SetToolTip(this._DnLabel, "Hotkey: Ctrl-Shift-W");
             // 
             // _DialContextMenu
             // 
@@ -719,6 +727,7 @@
             this.label3.Size = new System.Drawing.Size(51, 17);
             this.label3.TabIndex = 8;
             this.label3.Text = "Name:";
+            this.toolTip1.SetToolTip(this.label3, "Hotkey: Ctrl-Shift-A");
             // 
             // label4
             // 
@@ -730,6 +739,7 @@
             this.label4.Size = new System.Drawing.Size(42, 17);
             this.label4.TabIndex = 10;
             this.label4.Text = "Mobile:";
+            this.toolTip1.SetToolTip(this.label4, "Hotkey: Ctrl-Shift-S");
             // 
             // label5
             // 
@@ -917,6 +927,11 @@
             this.MainPanel.TabIndex = 30;
             this.MainPanel.WrapContents = false;
             // 
+            // servicesDataSet
+            // 
+            this.servicesDataSet.DataSetName = "ServicesDataSet";
+            this.servicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // _Icon
             // 
             this._Icon.AccessibleDescription = "accDes";
@@ -1068,11 +1083,6 @@
             this._NPR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._NPR.MouseDown += new System.Windows.Forms.MouseEventHandler(this._PRMenu_Clicked);
             // 
-            // servicesDataSet
-            // 
-            this.servicesDataSet.DataSetName = "ServicesDataSet";
-            this.servicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // EditContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1104,8 +1114,8 @@
             this.ServiceTypePanel.ResumeLayout(false);
             this.flowLayoutPanel4.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1190,5 +1200,7 @@
         internal System.Windows.Forms.ComboBox _Symptom;
         internal System.Windows.Forms.ComboBox _Outcome;
         internal System.Windows.Forms.ComboBox _Severity;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip _OutcomeTooltip;
     }
 }

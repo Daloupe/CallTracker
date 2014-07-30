@@ -120,7 +120,7 @@ namespace CallTracker.View
             HotkeyController.OnAction += UpdateProgressBar;
 
             toolStripServiceSelector.ComboBox.BindingContext = this.BindingContext;
-            toolStripServiceSelector.ComboBox.DataSource = Enum.GetValues(typeof(ServiceTypes));
+            toolStripServiceSelector.ComboBox.DataSource = ServicesStore.servicesDataSet.Services.Select(x => x.ProductCode).ToList();
             
         }
 

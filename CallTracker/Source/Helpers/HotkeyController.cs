@@ -323,8 +323,7 @@ namespace CallTracker.Helpers
                 return;
             string firstchar = text.Substring(0, 1);
 
-            //check if each if needs returns.
-            //parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
+            
             
             if(new DigitPattern().IsMatch(text))
             {

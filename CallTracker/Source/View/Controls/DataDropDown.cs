@@ -54,6 +54,14 @@ namespace CallTracker.View
             set { _DataField.SelectedValue = value; }
         }
 
+        //[Bindable(true)]
+        [Browsable(false)]
+        public object DataSource
+        {
+            get { return _DataField.DataSource; }
+            set { _DataField.DataSource = value; }
+        }
+
         private void PaintGrayBorder(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawRectangle(Pens.Gray,

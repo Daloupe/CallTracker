@@ -1,4 +1,9 @@
-﻿0.28.7
+﻿0.29.8
+| Fixed crash caused by selecting a transfer while service was still NONE.
+| Added Equipment Statuses to database.
+| Added Tooltip to display hotkeys for Datapastes (DN, Mobile etc).
+
+0.28.7
 | Created ICONAutoFill.
 
 0.28.6
@@ -63,17 +68,17 @@ Bugs:
 Under The Hood
 - Update panels to reference binding source. May be able to avoid having to use the nested events in ContactModel.
 - Input ICON note generator strings into database.
-- Add ICON dropdowns to database.
-- Utilize database data.
-	- Edit Contacts.
-		- Service Panels.
-		- Symptoms.
-		- Outcomes.
-		- Equipment.
+| Add ICON dropdowns to database.
+| Utilize database data.
+	| Edit Contacts.
+		| Service Panels.
+		| Symptoms.
+		| Outcomes.
+		| Equipment.
  - Add Outcomes tooltip.
  - Add status bar to display warnings.
  - Key Command Help extends window height.
- - Symptom Group is irrelevant to Service Views. It's only required in IFMS and is grabbed as the cross section between Service and Symptom.
+ | Symptom Group is irrelevant to Service Views. It's only required in IFMS and is grabbed as the cross section between Service and Symptom.
 
 Short Term:
 - IFMS Staple to parent/Clear and Close/Dispatch.
