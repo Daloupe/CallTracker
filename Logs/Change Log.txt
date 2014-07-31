@@ -1,4 +1,16 @@
-﻿0.29.8
+﻿0.29.9
+| Added Outcome field to CallHistory datagridview.
+| Added the CellClicked event from DatabaseView to other views that have datagridviews set to EditOnEvent.
+| Turned off "Unable to find window" msgboxes in HotkeyControllers, as they don't pop in front and make binding annoying.
+| Changed IFMS and ICON autofills to Find.ById instead of ByName.
+| DatabseView datagrid now set to RowHeaderSelect to prevent the entire row being copied when trying to copy a single cell.
+| Added Copy item to _Note context menu.
+| ICONNote is readonly(as changes wouldn't reflect in a smart paste anyway).
+| ICON Regex defines second group as last 6 digits.
+| Added Status Bar.
+| Added EventLogger model.
+
+0.29.8
 | Fixed crash caused by selecting a transfer while service was still NONE.
 | Added Equipment Statuses to database.
 | Added Tooltip to display hotkeys for Datapastes (DN, Mobile etc).
@@ -79,6 +91,8 @@ Under The Hood
  - Add status bar to display warnings.
  - Key Command Help extends window height.
  | Symptom Group is irrelevant to Service Views. It's only required in IFMS and is grabbed as the cross section between Service and Symptom.
+ - Change databaseview code to query a dataset and change data source each time a different table is selected.
+ | Make other settings columns sortable.
 
 Short Term:
 - IFMS Staple to parent/Clear and Close/Dispatch.

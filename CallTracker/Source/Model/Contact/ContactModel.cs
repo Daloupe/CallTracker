@@ -92,6 +92,18 @@ namespace CallTracker.Model
 
         public string ICONNote { get { return Main.NoteGen.GenerateNoteManually(this); } set { ; } }
 
+        public string GetOutcome
+        {
+            get 
+            {
+                return Fault.Outcome;
+            }
+            set
+            {
+                Fault.Outcome = value;
+            }
+        }
+
         public CustomerContact()
         {
             NameSplit = new NameModel();

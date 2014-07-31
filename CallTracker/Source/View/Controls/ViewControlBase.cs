@@ -11,6 +11,7 @@ namespace CallTracker.View
 {
     public partial class ViewControlBase : UserControl
     {
+        protected DataGridView dgv;
         public ToolStripMenuItem MenuControl { get; protected set; }
         protected Main MainForm { get; set; }
 
@@ -50,6 +51,21 @@ namespace CallTracker.View
             this.BringToFront();
             this.Visible = true;
             MenuControl.Checked = true;
+        }
+
+        protected virtual void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == -1)
+            {
+                dgv.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
+                dgv.EndEdit();
+            }
+            else
+            {
+                dgv.EditMode = DataGridViewEditMode.EditOnEnter;
+                dgv.BeginEdit(false);
+
+            }
         }
 
         protected virtual void PaintBorder(object sender, PaintEventArgs e)

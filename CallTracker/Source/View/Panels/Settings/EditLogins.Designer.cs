@@ -29,18 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this._Done = new System.Windows.Forms.Button();
-            this.textBox1 = new CallTracker.View.BorderedTextBox();
-            this.loginsModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.propertyLock = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.systemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loginsModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this._Element = new CallTracker.View.BorderedTextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new CallTracker.View.BorderedTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new CallTracker.View.BorderedTextBox();
@@ -57,43 +58,44 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.textBox4 = new CallTracker.View.BorderedTextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.propertyLock = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.loginsModelBindingSource)).BeginInit();
+            this._Done = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginsModelBindingSource)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // _Done
+            // propertyLock
             // 
-            this._Done.BackColor = System.Drawing.Color.LightGray;
-            this._Done.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
-            this._Done.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Done.Location = new System.Drawing.Point(506, 197);
-            this._Done.Name = "_Done";
-            this._Done.Size = new System.Drawing.Size(75, 22);
-            this._Done.TabIndex = 10;
-            this._Done.Text = "Done";
-            this._Done.UseVisualStyleBackColor = false;
-            this._Done.Click += new System.EventHandler(this._Done_Click);
+            this.propertyLock.BackColor = System.Drawing.Color.Transparent;
+            this.propertyLock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.propertyLock.CheckAlign = System.Drawing.ContentAlignment.BottomLeft;
+            this.propertyLock.Checked = true;
+            this.propertyLock.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.propertyLock.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.propertyLock.Image = global::CallTracker.Properties.Resources.padlock_small;
+            this.propertyLock.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.propertyLock.Location = new System.Drawing.Point(360, 197);
+            this.propertyLock.Name = "propertyLock";
+            this.propertyLock.Padding = new System.Windows.Forms.Padding(3);
+            this.propertyLock.Size = new System.Drawing.Size(38, 22);
+            this.propertyLock.TabIndex = 14;
+            this.propertyLock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.propertyLock.UseVisualStyleBackColor = false;
+            this.propertyLock.CheckedChanged += new System.EventHandler(this.propertyLock_CheckedChanged);
             // 
-            // textBox1
+            // label6
             // 
-            this.textBox1.BorderColor = System.Drawing.Color.Gray;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.loginsModelBindingSource, "Title", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox1.Location = new System.Drawing.Point(6, 48);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(189, 19);
-            this.textBox1.TabIndex = 7;
-            // 
-            // loginsModelBindingSource
-            // 
-            this.loginsModelBindingSource.DataSource = typeof(CallTracker.Model.LoginsModel);
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label6.Location = new System.Drawing.Point(3, 199);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(124, 18);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "//Edit Logins";
             // 
             // splitContainer1
             // 
@@ -118,7 +120,6 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
@@ -158,6 +159,10 @@
             this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
             this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
             this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            // 
+            // loginsModelBindingSource
+            // 
+            this.loginsModelBindingSource.DataSource = typeof(CallTracker.Model.LoginsModel);
             // 
             // flowLayoutPanel1
             // 
@@ -221,6 +226,17 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Title:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderColor = System.Drawing.Color.Gray;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.loginsModelBindingSource, "Title", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.textBox1.Location = new System.Drawing.Point(6, 48);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(189, 19);
+            this.textBox1.TabIndex = 7;
             // 
             // panel2
             // 
@@ -386,35 +402,18 @@
             this.textBox4.Size = new System.Drawing.Size(189, 19);
             this.textBox4.TabIndex = 13;
             // 
-            // label6
+            // _Done
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label6.Location = new System.Drawing.Point(3, 199);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(124, 18);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "//Edit Logins";
-            // 
-            // propertyLock
-            // 
-            this.propertyLock.BackColor = System.Drawing.Color.Transparent;
-            this.propertyLock.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.propertyLock.CheckAlign = System.Drawing.ContentAlignment.BottomLeft;
-            this.propertyLock.Checked = true;
-            this.propertyLock.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.propertyLock.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.propertyLock.Image = global::CallTracker.Properties.Resources.padlock_small;
-            this.propertyLock.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.propertyLock.Location = new System.Drawing.Point(360, 197);
-            this.propertyLock.Name = "propertyLock";
-            this.propertyLock.Padding = new System.Windows.Forms.Padding(3);
-            this.propertyLock.Size = new System.Drawing.Size(38, 22);
-            this.propertyLock.TabIndex = 14;
-            this.propertyLock.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.propertyLock.UseVisualStyleBackColor = false;
-            this.propertyLock.CheckedChanged += new System.EventHandler(this.propertyLock_CheckedChanged);
+            this._Done.BackColor = System.Drawing.Color.LightGray;
+            this._Done.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this._Done.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Done.Location = new System.Drawing.Point(506, 197);
+            this._Done.Name = "_Done";
+            this._Done.Size = new System.Drawing.Size(75, 22);
+            this._Done.TabIndex = 10;
+            this._Done.Text = "Done";
+            this._Done.UseVisualStyleBackColor = false;
+            this._Done.Click += new System.EventHandler(this._Done_Click);
             // 
             // EditLogins
             // 
@@ -429,11 +428,11 @@
             this.Name = "EditLogins";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(584, 222);
-            ((System.ComponentModel.ISupportInitialize)(this.loginsModelBindingSource)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginsModelBindingSource)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

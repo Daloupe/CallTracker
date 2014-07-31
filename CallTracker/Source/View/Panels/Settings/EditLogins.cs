@@ -17,6 +17,8 @@ namespace CallTracker.View
         public EditLogins()
         {
             InitializeComponent();
+            dgv = dataGridView1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
         }
 
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)

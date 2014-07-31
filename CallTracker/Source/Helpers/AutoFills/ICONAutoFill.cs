@@ -36,8 +36,8 @@ namespace CallTracker.Helpers
             if (tier1query.Count() == 0)
                 return;
             var tier1 = tier1query.FirstOrDefault();
-            //HotkeyController.browser.SelectList(Find.ByName("usr_NewActivityDetails_DropDownListProduct")).Select(tier1.Option);
-            Console.WriteLine("Tier1: {0}", tier1.Option);
+            HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListProduct")).Select(tier1.Option);
+            //Console.WriteLine("Tier1: {0}", tier1.Option);
 
             var tier2query = from a in Main.ServicesStore.servicesDataSet.IFMSTier2
                              from b in a.GetIFMSTier1IFMSTier2MatchRows()
@@ -48,8 +48,8 @@ namespace CallTracker.Helpers
             if (tier2query.Count() == 0)
                 return;
             var tier2 = tier2query.FirstOrDefault();
-            //HotkeyController.browser.SelectList(Find.ByName("usr_NewActivityDetails_DropDownListCallDriver")).Select(tier2.Option);
-            Console.WriteLine("Tier2: {0}", tier2.Option);
+            HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListCallDriver")).Select(tier2.Option);
+            //Console.WriteLine("Tier2: {0}", tier2.Option);
 
             var tier3query = from a in Main.ServicesStore.servicesDataSet.IFMSTier3
                              from b in a.GetIFMSTier2IFMSTier3MatchRows()
@@ -61,8 +61,8 @@ namespace CallTracker.Helpers
             if (tier3query.Count() == 0)
                 return;
             var tier3 = tier3query.FirstOrDefault();
-            //HotkeyController.browser.SelectList(Find.ByName("usr_NewActivityDetails_DropDownListReason")).Select(tier3.Option);
-            Console.WriteLine("Tier3: {0}", tier3.Option);
+            HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListReason")).Select(tier3.Option);
+            //Console.WriteLine("Tier3: {0}", tier3.Option);
 
             var tier4 = from a in Main.ServicesStore.servicesDataSet.IFMSTier4
                          from b in a.GetIFMSTier3IFMSTier4MatchRows()
@@ -73,8 +73,8 @@ namespace CallTracker.Helpers
             if (tier4.Count() == 0)
                 return;
             
-            Console.WriteLine("Tier4: {0}", tier4.First().Option);
-            //HotkeyController.browser.SelectList(Find.ByName("usr_NewActivityDetails_DropDownListOutcome")).Select(tier4.Option); 
+            //Console.WriteLine("Tier4: {0}", tier4.First().Option);
+            HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListOutcome")).Select(tier4.FirstOrDefault().Option); 
         }
     }
 }

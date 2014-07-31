@@ -33,7 +33,7 @@ namespace RegexAssembly
                                         @"(\d{6})" +                        // Account
                                         @"(?:-|0|\s)?"+                     // Divider
                                         @"(\d)$"),                          // Flip
-                new MyRegex("ICON",     @"^((?:1|5|8|9)\d{8})(\d{5})$"),
+                new MyRegex("ICON",     @"^((?:1|5|8|9)\d{7})(\d{6})$"),
                 new MyRegex("Name",     @"(?:(Mr|Mrs|miss|dr)\.?)?\s?" +             // Title (Followed by a ".")
                                         @"([a-z]+)" +                       // First Name
                                         @"\s([a-z]+(?:(?:-)[a-z]+)?)"              // Surnames

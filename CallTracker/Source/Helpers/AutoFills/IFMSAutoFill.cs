@@ -131,9 +131,9 @@ namespace CallTracker.Helpers
         {
             if(!String.IsNullOrEmpty(_field))
             {
-                HotkeyController.browser.SelectList(Find.ByName("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_ddAffectedServices")).Select(_dropdown);
-                HotkeyController.browser.TextField(Find.ByName(IFMSDropdownElements[_dropdown].Field)).Value = _field;
-                HotkeyController.browser.Button(Find.ByName(IFMSDropdownElements[_dropdown].Button)).Click();
+                HotkeyController.browser.SelectList(Find.ById("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_ddAffectedServices")).Select(_dropdown);
+                HotkeyController.browser.TextField(Find.ById(IFMSDropdownElements[_dropdown].Field)).Value = _field;
+                HotkeyController.browser.Button(Find.ById(IFMSDropdownElements[_dropdown].Button)).Click();
             }
         }
     }

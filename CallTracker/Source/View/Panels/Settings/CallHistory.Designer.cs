@@ -32,8 +32,8 @@
             this._Done = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.callHistoryPanel1 = new CallTracker.View.CallHistoryPanel();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this._Cancel = new System.Windows.Forms.Button();
             this._ClearHistory = new System.Windows.Forms.Button();
@@ -100,10 +100,6 @@
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
-            // 
             // callHistoryPanel1
             // 
             this.callHistoryPanel1.AutoScroll = true;
@@ -115,6 +111,10 @@
             this.callHistoryPanel1.Padding = new System.Windows.Forms.Padding(3);
             this.callHistoryPanel1.Size = new System.Drawing.Size(221, 191);
             this.callHistoryPanel1.TabIndex = 0;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // label6
             // 

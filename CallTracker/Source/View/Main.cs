@@ -31,6 +31,7 @@ namespace CallTracker.View
         internal UserDataStore DataStore = new UserDataStore();
         internal ResourceData ResourceStore = new ResourceData();
         internal static ServicesData ServicesStore = new ServicesData();
+        //private static EventLogger EventLog = new EventLogger();
 
         internal static ICONNoteGenerator NoteGen;
 
@@ -49,6 +50,10 @@ namespace CallTracker.View
         public Main()
         {
             InitializeComponent();
+            EventLogger.StatusLabel = _StatusLabel;
+            EventLogger.LogNewEvent("Started", EventLogLevel.Status);
+
+
 
             ServicesStore.ReadData();
             DataStore = DataStore.ReadFile();

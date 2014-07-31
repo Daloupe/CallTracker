@@ -99,20 +99,24 @@
     <Compile Include="Source\Data\Equipment.cs" />
     <Compile Include="Source\Data\ServiceResources.cs" />
     <Compile Include="Source\Data\Symptoms.cs" />
-    <Compile Include="Source\Helpers\ICONAutoFill.cs" />
+    <Compile Include="Source\Helpers\AutoFills\ICONAutoFill.cs" />
     <Compile Include="Source\Helpers\Type\EnumExtensions.cs" />
     <Compile Include="Source\Helpers\FindProperty.cs" />
     <Compile Include="Source\Helpers\ICONNoteGenerator.cs" />
     <Compile Include="Source\Helpers\Windows\IETabActivator.cs" />
-    <Compile Include="Source\Helpers\IFMSAutoFill.cs" />
+    <Compile Include="Source\Helpers\AutoFills\IFMSAutoFill.cs" />
     <Compile Include="Source\Helpers\Type\ListHelpers.cs" />
     <Compile Include="Source\Helpers\Type\StringHelpers.cs" />
     <Compile Include="Source\Model\Contact\NameModel.cs" />
     <Compile Include="Source\Model\EnumData.cs" />
+    <Compile Include="Source\Model\EventLogModel.cs" />
     <Compile Include="Source\Model\Settings\AROModel.cs" />
     <Compile Include="Source\Model\Settings\IEInteractBase.cs" />
     <Compile Include="Source\Model\Settings\ElementBinds.cs" />
     <Compile Include="Source\Model\Resource\RatePlanModel.cs" />
+    <Compile Include="Source\View\Controls\BindableToolStripStatusLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\View\Controls\DataArea.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -424,9 +428,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Change Log.txt" />
     <Content Include="FodyWeavers.xml" />
-    <Content Include="RequiredData.txt" />
     <Content Include="Resources\bindingNavigatorDeleteItem.Image.png" />
     <None Include="Resources\help.jpg" />
     <None Include="Resources\c.png" />
@@ -441,7 +443,6 @@
     <None Include="Resources\v.png" />
     <None Include="Resources\keyboard.png" />
     <None Include="Resources\Shift.png" />
-    <Content Include="ToDo.txt" />
     <None Include="Resources\Close.png" />
   </ItemGroup>
   <ItemGroup>

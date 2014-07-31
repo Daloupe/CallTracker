@@ -19,6 +19,8 @@ namespace CallTracker.View
         public EditGridLinks()
         {
             InitializeComponent();
+            dgv = dataGridView1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.AutoGenerateColumns = false;
         }
 

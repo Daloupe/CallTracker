@@ -19,21 +19,39 @@ namespace CallTracker.View
         public CallHistory()
         {
             InitializeComponent();
+            dgv = dataGridView1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
+
             dataGridView1.AutoGenerateColumns = false;
+
             dataGridView1.Columns.Add("Date", "Date");
             dataGridView1.Columns.Add("Time", "Time");
             dataGridView1.Columns.Add("Name", "Name");
 
             dataGridView1.Columns["Date"].DataPropertyName = "ContactDate";
-            dataGridView1.Columns["Date"].Width = 75;
+            dataGridView1.Columns["Date"].Width = 65;
             dataGridView1.Columns["Date"].ReadOnly = true;
 
             dataGridView1.Columns["Time"].DataPropertyName = "ContactTime";
-            dataGridView1.Columns["Time"].Width = 50;
+            dataGridView1.Columns["Time"].Width = 35;
             dataGridView1.Columns["Time"].ReadOnly = true;
 
             dataGridView1.Columns["Name"].DataPropertyName = "Name";
-            dataGridView1.Columns["Name"].ReadOnly = false;  
+            dataGridView1.Columns["Name"].Width = 155;
+            dataGridView1.Columns["Name"].ReadOnly = false;
+
+            DataGridViewComboBoxColumn dtcol = new DataGridViewComboBoxColumn();
+            dataGridView1.Columns.Add(dtcol);
+            dtcol.DataPropertyName = "GetOutcome";
+            dtcol.Name = "Outcome";
+            dtcol.HeaderText = "Outcome";
+            dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dtcol.Width = 60;
+            dtcol.SortMode = DataGridViewColumnSortMode.Automatic;
+            dtcol.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+            dtcol.ReadOnly = false;
+            dtcol.DataSource = Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList();
+
         }
 
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)

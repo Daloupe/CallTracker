@@ -373,10 +373,10 @@ namespace CallTracker.Helpers
         {
             if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
             {
-                MessageBox.Show("Unable to find page by title");
+                //MessageBox.Show("Unable to find page by title");
                 if (!FindIEByHWND(WindowHelper.GetActiveWindowHWND()))
                 {
-                    MessageBox.Show("Unable to find page by HWND");
+                    //MessageBox.Show("Unable to find page by HWND");
                     return false;
                 }
             }

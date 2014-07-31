@@ -74,15 +74,15 @@ namespace CallTracker.View
             _Outcome.DataSource = Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList(); //Enum.GetValues(typeof(Outcomes));
             _BookingTimeSlot.DataSource = Enum.GetValues(typeof(BookingTimeslot));
             
-                ContextMenu cm = new ContextMenu();
-                MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
-                cm1.Tag = "Note";
-                cm1.Checked = true;
-                MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
-                cm2.Tag = "ICONNote";
-                cm.MenuItems.Add(cm1);
-                cm.MenuItems.Add(cm2);
-                _Note.ContextMenu = cm;
+                //ContextMenu cm = new ContextMenu();
+                //MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
+                //cm1.Tag = "Note";
+                //cm1.Checked = true;
+                //MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
+                //cm2.Tag = "ICONNote";
+                //cm.MenuItems.Add(cm1);
+                //cm.MenuItems.Add(cm2);
+                //_Note.ContextMenu = cm;
             
             //CreateNoteMenu();
         }
@@ -249,8 +249,8 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public void SwitchNote(object sender, EventArgs e)
         {
-            MenuItem cm = (MenuItem)sender;
-            foreach (MenuItem item in cm.GetContextMenu().MenuItems)
+            ToolStripMenuItem cm = (ToolStripMenuItem)sender;
+            foreach (ToolStripMenuItem item in _NoteContextMenuStrip.Items.OfType<ToolStripMenuItem>())
             {
                 if (item == cm)
                     item.Checked = true;
@@ -261,21 +261,18 @@ namespace CallTracker.View
             string tag = cm.Tag.ToString();
             _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
             if (tag == "ICONNote")
+            {
                 _Note.DataBindings[0].ReadValue();
+                _Note.ReadOnly = true;
+            }
+            else
+                _Note.ReadOnly = false;
         }
 
-        //public void CreateNoteMenu()
-        //{
-        //    ContextMenu cm = new ContextMenu();
-        //    MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
-        //    cm1.Tag = "Note";
-        //    cm1.Checked = true;
-        //    MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
-        //    cm2.Tag = "ICONNote";
-        //    cm.MenuItems.Add(cm1);
-        //    cm.MenuItems.Add(cm2);
-        //    _Note.ContextMenu = cm;
-        //}
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(_Note.Text);
+        }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Splitter /////////////////////////////////////////////////////////////////////////////////////////

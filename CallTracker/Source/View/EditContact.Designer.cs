@@ -95,9 +95,15 @@
             this._NBF = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this._Note = new System.Windows.Forms.RichTextBox();
+            this._NoteContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.noteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generateICONNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this._OutcomeTooltip = new System.Windows.Forms.ToolTip(this.components);
             this._Icon = new CallTracker.View.BorderedTextBox();
             this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._Cmbs = new CallTracker.View.BorderedTextBox();
@@ -109,7 +115,6 @@
             this.borderedTextBox1 = new CallTracker.View.BorderedTextBox();
             this._PR = new CallTracker.View.BorderedTextBox();
             this._NPR = new CallTracker.View.BorderedTextBox();
-            this._OutcomeTooltip = new System.Windows.Forms.ToolTip(this.components);
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -127,6 +132,7 @@
             this._DialContextMenu.SuspendLayout();
             this.ServiceTypePanel.SuspendLayout();
             this.flowLayoutPanel4.SuspendLayout();
+            this._NoteContextMenuStrip.SuspendLayout();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
@@ -905,6 +911,7 @@
             // _Note
             // 
             this._Note.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this._Note.ContextMenuStrip = this._NoteContextMenuStrip;
             this._Note.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Note", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Note.Location = new System.Drawing.Point(0, 111);
             this._Note.Margin = new System.Windows.Forms.Padding(0, 0, 0, 3);
@@ -913,6 +920,46 @@
             this._Note.Size = new System.Drawing.Size(331, 75);
             this._Note.TabIndex = 1;
             this._Note.Text = "";
+            // 
+            // _NoteContextMenuStrip
+            // 
+            this._NoteContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.noteToolStripMenuItem,
+            this.generateICONNoteToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.copyToolStripMenuItem});
+            this._NoteContextMenuStrip.Name = "_NoteContextMenuStrip";
+            this._NoteContextMenuStrip.Size = new System.Drawing.Size(183, 98);
+            // 
+            // noteToolStripMenuItem
+            // 
+            this.noteToolStripMenuItem.Checked = true;
+            this.noteToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.noteToolStripMenuItem.Name = "noteToolStripMenuItem";
+            this.noteToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.noteToolStripMenuItem.Tag = "Note";
+            this.noteToolStripMenuItem.Text = "Call Notes";
+            this.noteToolStripMenuItem.Click += new System.EventHandler(this.SwitchNote);
+            // 
+            // generateICONNoteToolStripMenuItem
+            // 
+            this.generateICONNoteToolStripMenuItem.Name = "generateICONNoteToolStripMenuItem";
+            this.generateICONNoteToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.generateICONNoteToolStripMenuItem.Tag = "ICONNote";
+            this.generateICONNoteToolStripMenuItem.Text = "Generate ICON Note";
+            this.generateICONNoteToolStripMenuItem.Click += new System.EventHandler(this.SwitchNote);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(179, 6);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // MainPanel
             // 
@@ -1113,6 +1160,7 @@
             this._DialContextMenu.ResumeLayout(false);
             this.ServiceTypePanel.ResumeLayout(false);
             this.flowLayoutPanel4.ResumeLayout(false);
+            this._NoteContextMenuStrip.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
@@ -1202,5 +1250,10 @@
         internal System.Windows.Forms.ComboBox _Severity;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolTip _OutcomeTooltip;
+        private System.Windows.Forms.ContextMenuStrip _NoteContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem noteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem generateICONNoteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
     }
 }

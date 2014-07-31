@@ -19,6 +19,8 @@ namespace CallTracker.View
         public DatabaseView()
         {
             InitializeComponent();
+            dgv = dataGridView1;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.AutoGenerateColumns = false;
         }
 
@@ -206,21 +208,21 @@ namespace CallTracker.View
             base.HideSetting();
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == -1)
-            {
-                dataGridView1.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
-                dataGridView1.EndEdit();
-            }else
-            {
-                dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
-                dataGridView1.BeginEdit(false);
+        //private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    if (e.ColumnIndex == -1)
+        //    {
+        //        dataGridView1.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2;
+        //        dataGridView1.EndEdit();
+        //    }else
+        //    {
+        //        dataGridView1.EditMode = DataGridViewEditMode.EditOnEnter;
+        //        dataGridView1.BeginEdit(false);
                 
-                if(e.RowIndex != -1)
-                    contextMenuStrip1.Items[0].Tag = dataGridView1[e.ColumnIndex, e.RowIndex];
-            }
-        }
+        //        if(e.RowIndex != -1)
+        //            contextMenuStrip1.Items[0].Tag = dataGridView1[e.ColumnIndex, e.RowIndex];
+        //    }
+        //}
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
