@@ -1,4 +1,26 @@
-﻿0.29.9
+﻿0.33.00
+- Added Chrome support.
+
+0.32.00
+- Added MAD support. 
+	- Create Tester: Popup with Texbox Name, Input, and Application Name fields, pressing OK triggers test.
+
+0.31.00
+- Added Glance GUI.
+
+0.30.00
+- Added ARO GUI.
+
+0.29.10
+| Moved View creation and initiliazation to onload to try get the program to display as quick as possible.
+| Moved serviceview initialization to it's own method, which is only called the first time the view is actually used.
+| Moved progress bar from binding navigator to status bar.
+| Changed progressbar events to send event logs.
+| Gridlinks will now maximize any match found.
+| Reduced WaTin Timeouts.
+| CreateNewIE no longer tries to attach browser to the object.
+
+0.29.9
 | Added Outcome field to CallHistory datagridview.
 | Added the CellClicked event from DatabaseView to other views that have datagridviews set to EditOnEvent.
 | Turned off "Unable to find window" msgboxes in HotkeyControllers, as they don't pop in front and make binding annoying.

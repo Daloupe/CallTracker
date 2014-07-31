@@ -23,7 +23,7 @@ using Utilities.RegularExpressions;
 
 namespace CallTracker.Helpers
 {
-    public delegate void ActionEventHandler();
+    public delegate void ActionEventHandler(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose);
 
     public class HotkeyController : IDisposable
     {
@@ -72,9 +72,9 @@ namespace CallTracker.Helpers
 
             Settings.Instance.AutoMoveMousePointerToTopLeft = false;
             Settings.Instance.AutoCloseDialogs = false;
-            Settings.Instance.AttachToBrowserTimeOut = 10;
-            Settings.Instance.WaitForCompleteTimeOut = 10;
-            Settings.Instance.WaitUntilExistsTimeOut = 10;
+            Settings.Instance.AttachToBrowserTimeOut = 3;
+            Settings.Instance.WaitForCompleteTimeOut = 3;
+            Settings.Instance.WaitUntilExistsTimeOut = 3;
 
             props = TypeDescriptor.GetProperties(parent.SelectedContact.Service);
         }
@@ -123,22 +123,26 @@ namespace CallTracker.Helpers
 
         private void OnGridLinks(HotkeyPressedEventArgs e)
         {
-            parent.SetProgressBarStep(5);
             SystemItem systemItem = parent.DataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name));
-            
-            OnAction();
-            if (systemItem.System == "MAD" || systemItem.System == "OPOM")
-            {
-                IntPtr hWnd = IntPtr.Zero;
-                hWnd = WindowHelper.FindHWNDByTitle(systemItem.Title);
-                if (hWnd != IntPtr.Zero)
-                    WindowHelper.SetForegroundWindow(hWnd);
-            }
-            else
-                if(NavigateOrNewIE(systemItem.Title, systemItem.Url))
-                    AutoLogin();
+            parent.SetProgressBarStep(4, String.Format("Switching to: {0}", systemItem.Url), EventLogLevel.Verbose);
 
-            parent.UpdateProgressBar(0);
+            try
+            {
+                if (systemItem.System == "MAD" || systemItem.System == "OPOM")
+                {
+                    IntPtr hWnd = IntPtr.Zero;
+                    hWnd = WindowHelper.FindHWNDByTitle(systemItem.Title);
+                    if (hWnd != IntPtr.Zero)
+                        WindowHelper.SetForegroundWindow(hWnd);
+                }
+                else
+                    if (NavigateOrNewIE(systemItem.Title, systemItem.Url))
+                        AutoLogin();
+            }
+            finally
+            {
+                parent.UpdateProgressBar(0, String.Format("Switched to: {0}", systemItem.Url), EventLogLevel.ClearStatus);
+            }
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -274,14 +278,14 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void OnAutoLogin(HotkeyPressedEventArgs e)
         {
-            parent.SetProgressBarStep(2);
+            parent.SetProgressBarStep(2, "Attempting Autologin", EventLogLevel.Brief);
             AutoLogin();
-            parent.UpdateProgressBar(0);
+            parent.UpdateProgressBar(0, "Finished Autologin", EventLogLevel.ClearStatus);
         }
 
         private void AutoLogin()
         {
-            OnAction();
+            OnAction("Searching for matches");
             if (!FindBrowser())
                 return;
 
@@ -297,7 +301,7 @@ namespace CallTracker.Helpers
                                  select
                                      login)
                                  .FirstOrDefault();
-            OnAction();
+            OnAction("Actioning matches");
             if (query == null)
                 return;
 
@@ -371,12 +375,15 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public bool FindBrowser()
         {
-            if (!FindIEByTitle(WindowHelper.GetActiveWindowTitle()))
+            string title = WindowHelper.GetActiveWindowTitle();
+            if (!FindIEByTitle(title))
             {
-                //MessageBox.Show("Unable to find page by title");
-                if (!FindIEByHWND(WindowHelper.GetActiveWindowHWND()))
+                EventLogger.LogNewEvent(String.Format("Unable to find page by title: {0}", title));
+
+                IntPtr hwnd = WindowHelper.GetActiveWindowHWND();
+                if (!FindIEByHWND(hwnd))
                 {
-                    //MessageBox.Show("Unable to find page by HWND");
+                    EventLogger.LogNewEvent(String.Format("Unable to find page by HWND: {0}", hwnd.ToString()));
                     return false;
                 }
             }
@@ -439,28 +446,40 @@ namespace CallTracker.Helpers
             return true;
         }
 
+        //private static Process m_Proc;
         public static bool CreateNewIE(string _url, string _title)
         {
-            OnAction();
+            OnAction("Unhooking brower");
             if (browser != null)
                 browser.Dispose();
 
-            OnAction();
-            using (Process m_Proc = System.Diagnostics.Process.Start("IExplore.exe", _url))
-            {
-                try
-                {
-                    browser = Browser.AttachToNoWait<IE>(Find.ByTitle(_title));
-                    browser.AutoClose = false;
-                    //PreviousIEMatch = _title;
-                    return true;
-                }
-                catch (WatiN.Core.Exceptions.BrowserNotFoundException)
-                {
-                    return false; 
-                }
-            }
+            OnAction("Creating brower");
+
+            Process m_Proc = System.Diagnostics.Process.Start("IExplore.exe", _url);
+            m_Proc.Dispose();
+            //m_Proc.EnableRaisingEvents = true;
+            //m_Proc.Exited += m_Proc_Exited;
+            return true;
+            //using (Process m_Proc = System.Diagnostics.Process.Start("IExplore.exe", _url))
+            //{
+            //    try
+            //    {
+            //        browser = Browser.AttachTo<IE>(Find.ByUrl(_url)); //new IE(_url);//
+            //        browser.AutoClose = false;
+            //        //PreviousIEMatch = _title;
+            //        return true;
+            //    }
+            //    catch (WatiN.Core.Exceptions.TimeoutException)
+            //    {
+            //        return false; 
+            //    }
+            //}
         }
+
+        //static void m_Proc_Exited(object sender, EventArgs e)
+        //{
+        //    Console.WriteLine("Exited");
+        //}
 
         public static bool NavigateOrNewIE(string title, string url)
         {
@@ -475,7 +494,9 @@ namespace CallTracker.Helpers
                 if (CreateNewIE(url, title))
                     return true;
             }
-            browser.Dispose();
+
+            if (browser != null)
+                browser.Dispose();
             return false;
         }
     }

@@ -29,8 +29,15 @@ namespace CallTracker.Model
         {
             EventLog.Add(new EventLogModel(_event, _logLevel));
             File.AppendAllText("Log.txt", String.Format("\r\n{0}: {1}", DateTime.Now.ToString("dd/MM/yy hh:mm:ss"), _event));
-            if (_logLevel == EventLogLevel.Status)
+            if (_logLevel >= ((EventLogLevel)StatusLabel.Tag))
                 StatusLabel.Text = _event;
+            else if(_logLevel == EventLogLevel.ClearStatus)
+                StatusLabel.Text = String.Empty;
+        }
+
+        public static void ClearStatusBar()
+        {
+            StatusLabel.Text = String.Empty;
         }
     }
 
@@ -58,8 +65,9 @@ namespace CallTracker.Model
     }    
     public enum EventLogLevel
     {
+        ClearStatus,
+        Status,
         Brief,
-        Verbose,
-        Status
+        Verbose
     }
 }

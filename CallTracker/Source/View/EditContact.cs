@@ -27,7 +27,6 @@ namespace CallTracker.View
             _OutcomeTooltip.SetToolTip(_Outcome, "Problem Report");
 
             MainForm = _mainform;
-            DataStore = MainForm.DataStore;
             
             Location = MainForm.ControlOffset;
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
@@ -56,8 +55,10 @@ namespace CallTracker.View
             }
         }
 
-        public void Init()
+        public void OnParentLoad()
         {
+            DataStore = MainForm.DataStore;
+
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
             customerContactsBindingSource.DataSource = DataStore.Contacts;
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
@@ -69,22 +70,13 @@ namespace CallTracker.View
                 FaultPanel.Enabled = false;
                 _Note.Enabled = false;
             }
+        }
 
+        public void Init()
+        {
             //_Severity.DataSource = Main.ServicesStore.servicesDataSet.SeverityCodes.Select(x => x.IFMSCode).ToList(); //Enum.GetValues(typeof(FaultSeverity));
             _Outcome.DataSource = Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList(); //Enum.GetValues(typeof(Outcomes));
             _BookingTimeSlot.DataSource = Enum.GetValues(typeof(BookingTimeslot));
-            
-                //ContextMenu cm = new ContextMenu();
-                //MenuItem cm1 = new MenuItem("Call Notes", new EventHandler(SwitchNote));
-                //cm1.Tag = "Note";
-                //cm1.Checked = true;
-                //MenuItem cm2 = new MenuItem("Generate ICON Note", new EventHandler(SwitchNote));
-                //cm2.Tag = "ICONNote";
-                //cm.MenuItems.Add(cm1);
-                //cm.MenuItems.Add(cm2);
-                //_Note.ContextMenu = cm;
-            
-            //CreateNoteMenu();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,6 +166,9 @@ namespace CallTracker.View
 
                 if (currentService != null)
                 {
+                    if (currentService.IsInitialized == false)
+                        currentService.Init();
+
                     currentService.AddRowChangedEvents();
                     splitContainer2.Panel2.Controls.Add(currentService.Panel);
                     currentService.ContextMenuItem.Checked = true;

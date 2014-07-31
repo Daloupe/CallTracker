@@ -6,6 +6,7 @@ using Accessibility;
 using WatiN.Core;
 
 using CallTracker.View;
+using CallTracker.Model;
 
 namespace CallTracker.Helpers
 {
@@ -47,7 +48,7 @@ namespace CallTracker.Helpers
 
         internal IETabActivator(IE _browser)
         {
-            OnAction();
+            OnAction("Creating Tab Activator", EventLogLevel.Brief);
 
             _browser.BringToFront();
             _hWnd = _browser.hWnd;
@@ -127,7 +128,7 @@ namespace CallTracker.Helpers
 
         internal void ActivateByTabsUrl(string tabsUrl)
         {
-            OnAction();
+            OnAction("Activating Tab", EventLogLevel.Brief);
 
             var tabIndexToActivate = GetTabIndexToActivate(tabsUrl);
 

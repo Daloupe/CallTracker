@@ -25,24 +25,32 @@ namespace CallTracker.View
         public BindingList<string> Severity;
 
         private EditContact Parent;
+        private string ProductCode;
+
+        public bool IsInitialized = false;
 
         public ServiceView(EditContact _parent, string ifmsProductCode)
         {
             Parent = _parent;
+            ProductCode = ifmsProductCode;
+            Panel = (PanelBase)(Activator.CreateInstance(Type.GetType("CallTracker.View." + ProductCode + "Panel")));
+            ContextMenuItem = ((ToolStripMenuItem)Parent.GetType().GetField("_ServiceMenu" + ProductCode).GetValue(Parent));
+            CheckBox = ((CheckBox)Parent.GetType().GetField("_" + ProductCode).GetValue(Parent));
+        }
 
-            Panel = (PanelBase)(Activator.CreateInstance(Type.GetType("CallTracker.View." + ifmsProductCode + "Panel")));
-            ContextMenuItem = ((ToolStripMenuItem)Parent.GetType().GetField("_ServiceMenu" + ifmsProductCode).GetValue(Parent));
-            CheckBox = ((CheckBox)Parent.GetType().GetField("_" + ifmsProductCode).GetValue(Parent));
-
+        public void Init()
+        {
             ServiceType = (from a in Main.ServicesStore.servicesDataSet.Services
-                           where a.ProductCode == ifmsProductCode
-                          select a).First();
+                           where a.ProductCode == ProductCode
+                           select a).First();
             Symptoms = new BindingList<string>();
             Equipment = new BindingList<string>();
             Severity = new BindingList<string>();
             UpdateSymptoms();
             UpdateEquipment();
             UpdateSeverity();
+
+            IsInitialized = true;
         }
 
         public void AddRowChangedEvents()

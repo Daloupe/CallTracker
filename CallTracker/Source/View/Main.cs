@@ -50,48 +50,14 @@ namespace CallTracker.View
         public Main()
         {
             InitializeComponent();
+            _StatusLabel.Tag = EventLogLevel.Status;
             EventLogger.StatusLabel = _StatusLabel;
-            EventLogger.LogNewEvent("Started", EventLogLevel.Status);
-
-
-
-            ServicesStore.ReadData();
-            DataStore = DataStore.ReadFile();
-            ResourceStore = ResourceStore.ReadFile();
 
             SetAppLocation();
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             SetStyle(ControlStyles.DoubleBuffer, true);
 
-            SelectedContact = new CustomerContact(); 
-
-            editContact = new EditContact(this);
-            editLogins = new EditLogins();
-            editGridLinks = new EditGridLinks();
-            editSmartPasteBinds = new EditSmartPasteBinds();
-            callHistory = new CallHistory();
-            helpKeyCommands = new HelpKeyCommands();
-            latRateCodes = new LATRatecodes();
-            databaseView = new DatabaseView();
-
-            Controls.Add(editLogins);
-            Controls.Add(editGridLinks);
-            Controls.Add(editSmartPasteBinds);
-            Controls.Add(callHistory);
-            Controls.Add(helpKeyCommands);
-            Controls.Add(editContact);
-            Controls.Add(latRateCodes);
-            Controls.Add(databaseView);
-
-            editContact.BringToFront();
-            editContact.Visible = true;
-
-            transfersToolStripMenuItem.UpdateObject = new TransfersMenuItem(ServicesStore.servicesDataSet);
-
             versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
-
-            NoteGen = new ICONNoteGenerator(ServicesStore.servicesDataSet);
-            HotKeys = new HotkeyController(this);
         }
 
         private void SetAppLocation()
@@ -111,8 +77,43 @@ namespace CallTracker.View
 
         private void Main_Load(object sender, EventArgs e)
         {
-            editContact.Init();
+            SetProgressBarStep(2, "Loading Interface", EventLogLevel.Status);
 
+            DataStore = DataStore.ReadFile();
+
+            SelectedContact = new CustomerContact();
+
+            editContact = new EditContact(this);
+            Controls.Add(editContact);
+            editContact.OnParentLoad();
+            editContact.BringToFront();
+            editContact.Visible = true;
+        } 
+
+        private void Main_Shown(object sender, EventArgs e)
+        {
+            UpdateProgressBar("Loading Views", EventLogLevel.Status);
+
+            ServicesStore.ReadData();
+            ResourceStore = ResourceStore.ReadFile();
+
+            editLogins = new EditLogins();
+            editGridLinks = new EditGridLinks();
+            editSmartPasteBinds = new EditSmartPasteBinds();
+            callHistory = new CallHistory();
+            helpKeyCommands = new HelpKeyCommands();
+            latRateCodes = new LATRatecodes();
+            databaseView = new DatabaseView();
+
+            Controls.Add(editLogins);
+            Controls.Add(editGridLinks);
+            Controls.Add(editSmartPasteBinds);
+            Controls.Add(callHistory);
+            Controls.Add(helpKeyCommands);
+            Controls.Add(latRateCodes);
+            Controls.Add(databaseView);
+
+            editContact.Init();
             editLogins.Init(this, loginsViewMenuItem);
             editSmartPasteBinds.Init(this, pasteBindsViewMenuItem);
             editGridLinks.Init(this, gridLinksViewMenuItem);
@@ -126,7 +127,13 @@ namespace CallTracker.View
 
             toolStripServiceSelector.ComboBox.BindingContext = this.BindingContext;
             toolStripServiceSelector.ComboBox.DataSource = ServicesStore.servicesDataSet.Services.Select(x => x.ProductCode).ToList();
-            
+
+            transfersToolStripMenuItem.UpdateObject = new TransfersMenuItem(ServicesStore.servicesDataSet);
+            NoteGen = new ICONNoteGenerator(ServicesStore.servicesDataSet);
+            HotKeys = new HotkeyController(this);
+
+            this.Enabled = true;
+            UpdateProgressBar(0, "Finished Loading", EventLogLevel.ClearStatus);
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -282,20 +289,22 @@ namespace CallTracker.View
             base.OnPaint(e);
         }
 
-        public void UpdateProgressBar(int percent)
+        public void UpdateProgressBar(int percent, string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
         {
-            editContact.toolStripProgressBar1.Value = percent;
+            EventLogger.LogNewEvent(_event, _logLevel);
+            _StatusProgressBar.Value = percent;
         }
 
-        public void UpdateProgressBar()
+        public void UpdateProgressBar(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
         {
-            editContact.toolStripProgressBar1.PerformStep();
+            EventLogger.LogNewEvent(_event, _logLevel);
+           _StatusProgressBar.PerformStep();
         }
 
-        public void SetProgressBarStep(int _steps)
+        public void SetProgressBarStep(int _steps, string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
         {
-            editContact.toolStripProgressBar1.Maximum = _steps + 1;
-            UpdateProgressBar();
+            _StatusProgressBar.Maximum = _steps + 1;
+            UpdateProgressBar(_event, _logLevel);
         }
 
         protected override CreateParams CreateParams
@@ -306,6 +315,6 @@ namespace CallTracker.View
                 cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
                 return cp;
             }
-        } 
+        }
     }
 }

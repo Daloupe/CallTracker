@@ -60,9 +60,9 @@
             this.clearanceCodesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.MenuPanel = new System.Windows.Forms.Panel();
             this._StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._StatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.MenuPanel = new System.Windows.Forms.Panel();
             this.transfersToolStripMenuItem = new ContextualToolStripMenuItem();
             this.CustCareToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FaultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -360,18 +360,6 @@
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 28;
             // 
-            // MenuPanel
-            // 
-            this.MenuPanel.Controls.Add(this._MainMenu);
-            this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.MenuPanel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.MenuPanel.Location = new System.Drawing.Point(0, 0);
-            this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.MenuPanel.Name = "MenuPanel";
-            this.MenuPanel.Size = new System.Drawing.Size(584, 17);
-            this.MenuPanel.TabIndex = 27;
-            this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
-            // 
             // _StatusLabel
             // 
             this._StatusLabel.AutoSize = false;
@@ -389,6 +377,18 @@
             this._StatusProgressBar.Margin = new System.Windows.Forms.Padding(1, 3, 1, 1);
             this._StatusProgressBar.Name = "_StatusProgressBar";
             this._StatusProgressBar.Size = new System.Drawing.Size(60, 16);
+            // 
+            // MenuPanel
+            // 
+            this.MenuPanel.Controls.Add(this._MainMenu);
+            this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MenuPanel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.MenuPanel.Location = new System.Drawing.Point(0, 0);
+            this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.MenuPanel.Name = "MenuPanel";
+            this.MenuPanel.Size = new System.Drawing.Size(584, 17);
+            this.MenuPanel.TabIndex = 27;
+            this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
             // transfersToolStripMenuItem
             // 
@@ -518,6 +518,7 @@
             this.ClientSize = new System.Drawing.Size(586, 259);
             this.ControlBox = false;
             this.Controls.Add(this.AppPanel);
+            this.Enabled = false;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this._MainMenu;
@@ -528,6 +529,7 @@
             this.Text = "Call Tracker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
+            this.Shown += new System.EventHandler(this.Main_Shown);
             this._MainMenu.ResumeLayout(false);
             this._MainMenu.PerformLayout();
             this.AppPanel.ResumeLayout(false);
