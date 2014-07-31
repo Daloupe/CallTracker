@@ -52,6 +52,7 @@ namespace CallTracker.Helpers
 
             _browser.BringToFront();
             _hWnd = _browser.hWnd;
+            WindowHelper.ShowWindow(_hWnd, WindowHelper.SW_RESTORE);
             AccessibleObjectFromWindow(GetDirectUIHWND(_hWnd), OBJID.OBJID_WINDOW, ref _accessible);
 
             CheckForAccessible();

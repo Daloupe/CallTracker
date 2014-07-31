@@ -41,16 +41,20 @@ namespace CallTracker.View
 
         public virtual void HideSetting()
         {
+            //MainForm.Height = previousHeight;
             this.SendToBack();
             this.Visible = false;
             MenuControl.Checked = false;
         }
 
+        //protected int previousHeight;
         public virtual void ShowSetting()
         {
+            //previousHeight = MainForm.Height;
+            //MainForm.Height = previousHeight - 20;
             this.BringToFront();
             this.Visible = true;
-            MenuControl.Checked = true;
+            MenuControl.Checked = true;                
         }
 
         protected virtual void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)

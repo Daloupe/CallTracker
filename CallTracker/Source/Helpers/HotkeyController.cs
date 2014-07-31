@@ -133,11 +133,16 @@ namespace CallTracker.Helpers
                     IntPtr hWnd = IntPtr.Zero;
                     hWnd = WindowHelper.FindHWNDByTitle(systemItem.Title);
                     if (hWnd != IntPtr.Zero)
+                    {
+                        WindowHelper.ShowWindow(hWnd, WindowHelper.SW_RESTORE);
                         WindowHelper.SetForegroundWindow(hWnd);
+                    }
                 }
                 else
                     if (NavigateOrNewIE(systemItem.Title, systemItem.Url))
                         AutoLogin();
+
+                
             }
             finally
             {
@@ -162,6 +167,7 @@ namespace CallTracker.Helpers
 
         private void OnDataPaste(HotkeyPressedEventArgs e)
         {
+            EventLogger.LogNewEvent(String.Format("Pasting: {0}", e.Name), EventLogLevel.Brief);
             string dataToPaste = FindProperty.FollowPropertyPath(parent.SelectedContact, e.Name);
 
             if (!String.IsNullOrEmpty(dataToPaste))
@@ -177,6 +183,7 @@ namespace CallTracker.Helpers
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         private void OnSmartPaste(HotkeyPressedEventArgs e)
         {
+            EventLogger.LogNewEvent("Searching for SmartPaste Matches", EventLogLevel.Brief);
             if (!FindBrowser())
                 return;
 
@@ -196,13 +203,17 @@ namespace CallTracker.Helpers
                                .FirstOrDefault();
 
             if (query != null)
+            {
                 query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data, query.AltData));
+                EventLogger.LogNewEvent("Match Found");
+            }
 
             browser.Dispose();
         }
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)
         {
+            EventLogger.LogNewEvent("Searching for matching binds", EventLogLevel.Brief);
             if (!FindBrowser())
                 return;
 
@@ -215,7 +226,7 @@ namespace CallTracker.Helpers
             if(String.IsNullOrEmpty(element))
             {
                 WindowHelper.SetForegroundWindow(parent.Handle);
-                MessageBox.Show(parent, "Unable to bind: Unable to find element name or id");
+                EventLogger.LogNewEvent("Unable to bind: Unable to find element name or id");
                 return;
             }
 
@@ -235,6 +246,7 @@ namespace CallTracker.Helpers
                 string system = UrlOrTitleMatches.Count() > 0 ? UrlOrTitleMatches.ElementAtOrDefault(0).System : String.Empty;
                 ElementMatch = new PasteBind(system, url, title, browser.ActiveElement);
                 parent.DataStore.PasteBinds.Add(ElementMatch);
+                EventLogger.LogNewEvent("New Bind Created");
             }
 
             parent.editSmartPasteBinds.SelectQuery(ElementMatch);
@@ -248,6 +260,7 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void OnAutoFill(HotkeyPressedEventArgs e)
         {
+            EventLogger.LogNewEvent("Searching for AutoFill Matches", EventLogLevel.Brief);
             if (!FindBrowser())
                 return;
 
@@ -263,11 +276,16 @@ namespace CallTracker.Helpers
                         select
                             bind;
 
-            foreach (PasteBind bind in query)
-                bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, bind.AltData));
-
+            if (query != null)
+            {
+                EventLogger.LogNewEvent(String.Format("{0} found.", query.Count()));
+                foreach (PasteBind bind in query)
+                    bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, bind.AltData));
+            }
             if (browser.Url.Contains("http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F001_CreatePR"))
-                IFMSAutofill.Go(parent, url, title);
+                IFMSAutoFill.Go(parent);
+            if (browser.Url.Contains("http://icon.optus.com.au/icon/Activity/NewActivity.aspx"))
+                ICONAutoFill.Go(parent);
 
             //PreviousIEMatch = browser.Title;
             browser.Dispose();
@@ -319,9 +337,12 @@ namespace CallTracker.Helpers
         private void OnSmartCopy(HotkeyPressedEventArgs e)
         {
             //string oldClip = Clipboard.GetText();
-            SendKeys.SendWait("^");
+            EventLogger.LogNewEvent("Starting Smart Copy", EventLogLevel.Brief);
             SendKeys.SendWait("^c");
+            Application.DoEvents();
+            SendKeys.Flush();
             string text = Clipboard.GetText().Trim();
+            EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard.", text));
             int textlen = text.Length;
             if (textlen == 0)
                 return;
@@ -331,7 +352,7 @@ namespace CallTracker.Helpers
             
             if(new DigitPattern().IsMatch(text))
             {
-                if (firstchar == "1" && textlen == 8)                       parent.SelectedContact.Fault.PR = text;
+                if (firstchar == "1" && textlen == 8)                       parent.SelectedContact.Fault.PR = text; 
                 else if ((firstchar == "0" && textlen == 10) 
                      || (text.Substring(0, 2) == "61" && textlen == 11))
                 {
@@ -366,9 +387,10 @@ namespace CallTracker.Helpers
                     else if (CustomerContact.CMBSPattern.IsMatch(text))     parent.SelectedContact.CMBS = text;
                     else if (ContactAddress.Pattern.IsMatch(text))          parent.SelectedContact.Address.Address = text;
                     else                                                    parent.SelectedContact.Note += text;
-                }      
+                }    
             }
         }
+
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Browser Methods //////////////////////////////////////////////////////////////////////////////////

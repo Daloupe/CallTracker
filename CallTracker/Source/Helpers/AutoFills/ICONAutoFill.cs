@@ -14,6 +14,8 @@ namespace CallTracker.Helpers
     {
         public static void Go(Main _mainForm)
         {
+            EventLogger.LogNewEvent("Attempting ICON Note AutoFill", EventLogLevel.Brief);
+
             CustomerContact data = _mainForm.SelectedContact;
             ServiceTypes AffectedServices = data.Fault.AffectedServices;
             string Outcome = _mainForm.SelectedContact.Fault.Outcome;

@@ -19,19 +19,21 @@ namespace CallTracker.Model
     {
         public static List<EventLogModel> EventLog { get; set; }
         public static ToolStripStatusLabel StatusLabel { get; set; }
+        public static bool ClearMessage;
 
         static EventLogger()
         {
             EventLog = new List<EventLogModel>();
+            ClearMessage = true;
         }
 
         public static void LogNewEvent(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
         {
             EventLog.Add(new EventLogModel(_event, _logLevel));
             File.AppendAllText("Log.txt", String.Format("\r\n{0}: {1}", DateTime.Now.ToString("dd/MM/yy hh:mm:ss"), _event));
-            if (_logLevel >= ((EventLogLevel)StatusLabel.Tag))
+            if (_logLevel.CompareTo(StatusLabel.Tag) >= 0)
                 StatusLabel.Text = _event;
-            else if(_logLevel == EventLogLevel.ClearStatus)
+            else if(_logLevel == EventLogLevel.ClearStatus && ClearMessage == true)
                 StatusLabel.Text = String.Empty;
         }
 
@@ -65,9 +67,9 @@ namespace CallTracker.Model
     }    
     public enum EventLogLevel
     {
-        ClearStatus,
-        Status,
-        Brief,
-        Verbose
+        ClearStatus = 0,
+        Verbose = 1 << 1,
+        Brief = 1 << 2,
+        Status = 1 << 3
     }
 }

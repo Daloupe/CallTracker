@@ -102,26 +102,26 @@ namespace CallTracker.Model
         }
     }
     
-    public static class IFMSAutofill
-    {
-        public static void Go(Main _mainForm, string url, string title)
-        {
-            foreach (ServiceTypes product in Enum.GetValues(typeof(ServiceTypes)))
-            {
-                if (_mainForm.SelectedContact.Fault.AffectedServices.Has<ServiceTypes>(product))
-                {
-                    var query = from
-                            bind in _mainForm.DataStore.PasteBinds
-                                where
-                                    bind.Url == url ||
-                                    bind.Title.Contains(title) ||
-                                    title.Contains(bind.Title) &&
-                                    bind.Name.Contains(product.ToString())
-                                select
-                                    bind;
-                }
-            };
+    //public static class IFMSAutofill
+    //{
+    //    public static void Go(Main _mainForm, string url, string title)
+    //    {
+    //        foreach (ServiceTypes product in Enum.GetValues(typeof(ServiceTypes)))
+    //        {
+    //            if (_mainForm.SelectedContact.Fault.AffectedServices.Has<ServiceTypes>(product))
+    //            {
+    //                var query = from
+    //                        bind in _mainForm.DataStore.PasteBinds
+    //                            where
+    //                                bind.Url == url ||
+    //                                bind.Title.Contains(title) ||
+    //                                title.Contains(bind.Title) &&
+    //                                bind.Name.Contains(product.ToString())
+    //                            select
+    //                                bind;
+    //            }
+    //        };
             
-        }
-    }
+    //    }
+    //}
 }

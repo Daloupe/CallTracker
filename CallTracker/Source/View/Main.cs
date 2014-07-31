@@ -17,6 +17,16 @@ using CallTracker.Model;
 using CallTracker.Helpers;
 using CallTracker.Data;
 
+using System.Windows.Automation;
+using TestStack.White.Configuration;
+using TestStack.White.Factory;
+using TestStack.White.UIItems;
+using TestStack.White.UIItems.Finders;
+using TestStack.White.UIItems.WindowItems;
+using TestStack.White.Recording;
+using TestStack.White.UIItemEvents;
+using TestStack.White.UIItems.Actions;
+
 namespace CallTracker.View
 {
     [ImplementPropertyChanged]
@@ -24,7 +34,7 @@ namespace CallTracker.View
     {
         public static string SelectedMenuProduct = String.Empty;
 
-        public Point ControlOffset = new Point(1, 18);
+        public Point ControlOffset = new Point(0, 18);
 
         internal CustomerContact SelectedContact { get; set; }
 
@@ -77,6 +87,7 @@ namespace CallTracker.View
 
         private void Main_Load(object sender, EventArgs e)
         {
+            EventLogger.LogNewEvent("------------------------------------------------------");
             SetProgressBarStep(2, "Loading Interface", EventLogLevel.Status);
 
             DataStore = DataStore.ReadFile();
@@ -227,8 +238,17 @@ namespace CallTracker.View
 
         public void transfer_Click(object sender, EventArgs e)
         {
+
+
+            //TestStack.White.Application application = TestStack.White.Application.Attach("cmake-gui");
+            //Window window = application.GetWindow("CMake 2.8.12.1 - C:/Programming/Rust/piston-master/exam", InitializeOption.WithCache);
+
+          
+            //TestStack.White.UIItems.Panel button = window.Get<TestStack.White.UIItems.Panel>("BrowseSourceDirectoryButton");
+            //button.Click();
+
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            WindowHelper.IPPCAutomation(item.Tag.ToString(), new Point() { X = 630, Y = 20 });
+            WindowHelper.IPCCAutomation(item.Tag.ToString(), new Point() { X = 732, Y = 63 });
         }
 
         private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
@@ -253,12 +273,6 @@ namespace CallTracker.View
             ((ToolStripMenuItem)sender).HideDropDown();
             ((ToolStripMenuItem)sender).Invalidate();
         }
-
-        private void LATRatecodeMenuItem_CheckedChanged_1(object sender, EventArgs e)
-        {
-            //((ToolStripMenuItem)sender).OwnerItem.PerformClick();//.GetCurrentParent().ContextMenuStrip.AutoClose ^= true;
-        }
-
         // Move Window ////////////////////////////////////////////////////////////////////////////////////
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -315,6 +329,39 @@ namespace CallTracker.View
                 cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
                 return cp;
             }
+        }
+
+        private void _StatusContextMenu_MouseClick(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void _StatusContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Name == "clearMessagesToolStripMenuItem")
+                    EventLogger.ClearMessage = !EventLogger.ClearMessage;
+            else      
+                foreach (ToolStripMenuItem item in _StatusContextMenu.Items.OfType<ToolStripMenuItem>())
+                {
+                    if (item.Tag != null)
+                        if (item == e.ClickedItem)
+                        {
+                            item.Checked = true;
+                            _StatusLabel.Tag = Enum.Parse(typeof(EventLogLevel), e.ClickedItem.Tag.ToString());
+                        }
+                        else
+                            item.Checked = false;
+                }
+            
+        }
+
+        private void showStatusBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            if (item.Checked == true)
+                this.Height = 259;
+            else
+                this.Height = 239;
         }
     }
 }

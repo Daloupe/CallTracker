@@ -17,6 +17,13 @@ namespace CallTracker.Helpers
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
 
+        public const int SW_SHOWNORMAL = 1;
+        public const int SW_SHOWMAXIMIZED = 3;
+        public const int SW_RESTORE = 9;
+
+        [DllImport("user32.dll")]
+        public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
         [DllImport("user32.dll")]
         private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
@@ -89,7 +96,7 @@ namespace CallTracker.Helpers
         public const int MOUSEEVENTF_RIGHTDOWN = 0x08;
         public const int MOUSEEVENTF_RIGHTUP = 0x10;
 
-        public static void IPPCAutomation(string _number, Point _buttonOffsets)
+        public static void IPCCAutomation(string _number, Point _buttonOffsets)
         {
             string title = "IPCC"; //IPCC Agent Desktop for Fusion: v5.2.1 (c2)
             Point buttonOffsets = _buttonOffsets;
@@ -109,7 +116,7 @@ namespace CallTracker.Helpers
             ////////////////////////////////////////////
 
             title = "CTI Dial Pad";
-            buttonOffsets = new Point() { X = 20, Y = 45 };
+            buttonOffsets = new Point() { X = 120, Y = 65 };
 
             hwnd = FindHWNDByTitle(title);
             SetForegroundWindow(hwnd);

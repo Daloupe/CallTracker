@@ -10,6 +10,16 @@
 
 0.30.00
 - Added ARO GUI.
+- Added TestStack.White support for IPCC control.
+	- Poll Work Ready button to see if enabled.
+
+0.29.11
+| Application no longer requires focus to send clicks.
+/ Attempted to fix need to sometimes press smart copy twice. Using Application.DoEvents() after sendkeys to try push message throuhg. Also SendKeys.Flush().
+| Gridlinks will restore minimized windows.
+| AutoFill will now look for ICON.
+| Status bar level can now be set.
+| Changed IPCC Offsets.
 
 0.29.10
 | Moved View creation and initiliazation to onload to try get the program to display as quick as possible.
@@ -124,6 +134,7 @@ Short Term:
 	- Extracts CM callback info(For ICON Outcome entry).
 	- Extracts Testing Done info(For ICON Action entry.
 	- Extracts Outcome info(For ICON Outcome entry).
+- Add an Icon to Call Tracker.
 
 Long Term:
 - Chrome support.

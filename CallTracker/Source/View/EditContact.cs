@@ -349,12 +349,12 @@ namespace CallTracker.View
 
         private void _Dial_click(object sender, EventArgs e)
         {
-            WindowHelper.IPPCAutomation(((ToolStripMenuItem)sender).GetCurrentParent().Tag.ToString(), new Point() { X = 285, Y = 20 });
+            WindowHelper.IPCCAutomation(((ToolStripMenuItem)sender).GetCurrentParent().Tag.ToString(), new Point() { X = 305, Y = 63 });
         }
 
         private void _Transfer_click(object sender, EventArgs e)
         {
-            WindowHelper.IPPCAutomation(((ToolStripMenuItem)sender).GetCurrentParent().Tag.ToString(), new Point() { X = 630, Y = 20 });
+            WindowHelper.IPCCAutomation(((ToolStripMenuItem)sender).GetCurrentParent().Tag.ToString(), new Point() { X = 735, Y = 63 });
         }
 
         private void _DialContextMenu_clicked(object sender, MouseEventArgs e)

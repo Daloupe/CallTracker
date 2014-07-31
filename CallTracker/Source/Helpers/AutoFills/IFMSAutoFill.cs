@@ -30,12 +30,13 @@ namespace CallTracker.Helpers
             {"USER", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Generic1_tx_GenericValue", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddGen")},
             {"NREF", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Generic1_tx_GenericValue", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddGen")},
             {"IUN", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Acct1_tx_affsvc_number", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddACCT")},
-            {"STU", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_SMC", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_Button2")}, //ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_EquipNo
-            {"STB", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_SMC", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_Button2")}
+            {"STU", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_EquipNo", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_Button2")}, //ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_EquipNo
+            {"STB", new IFMSDropdownElement("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_EquipNo", "ctl00_cphPage_F001_Aff_Svc_ProxyPR1_Button2")}
         };
 
         public static void Go(Main _mainForm)
         {
+            EventLogger.LogNewEvent("Attempting IFMS Create AutoFill", EventLogLevel.Brief);
             CustomerContact data = _mainForm.SelectedContact;
             ServiceTypes AffectedServices = data.Fault.AffectedServices;
             string Outcome = _mainForm.SelectedContact.Fault.Outcome;

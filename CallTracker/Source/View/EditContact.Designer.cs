@@ -35,12 +35,6 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.HfcPanel = new System.Windows.Forms.Panel();
             this.borderedTextBox1 = new CallTracker.View.BorderedTextBox();
-            this._PRContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.viewPRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.dispatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stapleToParentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearAndCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._ITCase = new System.Windows.Forms.Label();
             this._PR = new CallTracker.View.BorderedTextBox();
@@ -75,8 +69,8 @@
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this._Icon = new CallTracker.View.BorderedTextBox();
@@ -114,6 +108,12 @@
             this.servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this._OutcomeTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this._PRContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.viewPRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.dispatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearAndCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stapleToParentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -121,7 +121,6 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.HfcPanel.SuspendLayout();
-            this._PRContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
             this._ServiceMenu.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -135,6 +134,7 @@
             this._NoteContextMenuStrip.SuspendLayout();
             this.MainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).BeginInit();
+            this._PRContextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // FaultPanel
@@ -164,7 +164,7 @@
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer1.Panel2MinSize = 0;
             this.splitContainer1.Size = new System.Drawing.Size(275, 330);
-            this.splitContainer1.SplitterDistance = 180;
+            this.splitContainer1.SplitterDistance = 178;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 24;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -191,7 +191,7 @@
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(180, 330);
+            this.splitContainer2.Size = new System.Drawing.Size(178, 330);
             this.splitContainer2.SplitterDistance = 134;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 0;
@@ -223,14 +223,13 @@
             this.HfcPanel.Location = new System.Drawing.Point(0, -78);
             this.HfcPanel.Margin = new System.Windows.Forms.Padding(0);
             this.HfcPanel.Name = "HfcPanel";
-            this.HfcPanel.Size = new System.Drawing.Size(180, 212);
+            this.HfcPanel.Size = new System.Drawing.Size(178, 212);
             this.HfcPanel.TabIndex = 22;
             // 
             // borderedTextBox1
             // 
             this.borderedTextBox1.BorderColor = System.Drawing.Color.Gray;
             this.borderedTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.borderedTextBox1.ContextMenuStrip = this._PRContextMenu;
             this.borderedTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.ITCase", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.borderedTextBox1.Font = new System.Drawing.Font("Verdana", 7F);
             this.borderedTextBox1.Location = new System.Drawing.Point(53, 51);
@@ -239,46 +238,6 @@
             this.borderedTextBox1.Size = new System.Drawing.Size(121, 19);
             this.borderedTextBox1.TabIndex = 50;
             this.borderedTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // _PRContextMenu
-            // 
-            this._PRContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewPRToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.dispatchToolStripMenuItem,
-            this.stapleToParentToolStripMenuItem,
-            this.clearAndCloseToolStripMenuItem});
-            this._PRContextMenu.Name = "_PRContextMenu";
-            this._PRContextMenu.Size = new System.Drawing.Size(158, 98);
-            // 
-            // viewPRToolStripMenuItem
-            // 
-            this.viewPRToolStripMenuItem.Name = "viewPRToolStripMenuItem";
-            this.viewPRToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.viewPRToolStripMenuItem.Text = "View PR";
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(154, 6);
-            // 
-            // dispatchToolStripMenuItem
-            // 
-            this.dispatchToolStripMenuItem.Name = "dispatchToolStripMenuItem";
-            this.dispatchToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.dispatchToolStripMenuItem.Text = "Dispatch";
-            // 
-            // stapleToParentToolStripMenuItem
-            // 
-            this.stapleToParentToolStripMenuItem.Name = "stapleToParentToolStripMenuItem";
-            this.stapleToParentToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.stapleToParentToolStripMenuItem.Text = "Staple to Parent";
-            // 
-            // clearAndCloseToolStripMenuItem
-            // 
-            this.clearAndCloseToolStripMenuItem.Name = "clearAndCloseToolStripMenuItem";
-            this.clearAndCloseToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.clearAndCloseToolStripMenuItem.Text = "Clear and Close";
             // 
             // customerContactsBindingSource
             // 
@@ -492,6 +451,7 @@
             this._ServiceMenuNFV,
             this._ServiceMenuNBF});
             this._ServiceMenu.Name = "contextMenuStrip1";
+            this._ServiceMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this._ServiceMenu.Size = new System.Drawing.Size(95, 158);
             // 
             // _ServiceMenuLAT
@@ -595,16 +555,20 @@
             // 
             // _CallHistoryContextMenu
             // 
+            this._CallHistoryContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
             this._CallHistoryContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.callHistoryToolStripMenuItem});
             this._CallHistoryContextMenu.Name = "_CallHistoryContextMenu";
-            this._CallHistoryContextMenu.Size = new System.Drawing.Size(136, 26);
+            this._CallHistoryContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this._CallHistoryContextMenu.ShowImageMargin = false;
+            this._CallHistoryContextMenu.Size = new System.Drawing.Size(141, 26);
             // 
             // callHistoryToolStripMenuItem
             // 
+            this.callHistoryToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 7F);
             this.callHistoryToolStripMenuItem.Name = "callHistoryToolStripMenuItem";
-            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.callHistoryToolStripMenuItem.Text = "Call History";
+            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(140, 22);
+            this.callHistoryToolStripMenuItem.Text = "Show Call History";
             this.callHistoryToolStripMenuItem.Click += new System.EventHandler(this.callHistoryToolStripMenuItem_Click);
             // 
             // bindingNavigatorMovePreviousItem
@@ -642,13 +606,6 @@
             this.toolStripSeparator1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 26);
             // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 26);
-            // 
             // bindingNavigatorAddNewItem
             // 
             this.bindingNavigatorAddNewItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -663,6 +620,13 @@
             this.bindingNavigatorAddNewItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.bindingNavigatorAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 26);
             // 
             // flowLayoutPanel1
             // 
@@ -802,23 +766,26 @@
             // 
             // _DialContextMenu
             // 
+            this._DialContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
             this._DialContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dialToolStripMenuItem,
             this.transferToolStripMenuItem});
             this._DialContextMenu.Name = "_DialContextMenu";
-            this._DialContextMenu.Size = new System.Drawing.Size(118, 48);
+            this._DialContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this._DialContextMenu.ShowImageMargin = false;
+            this._DialContextMenu.Size = new System.Drawing.Size(92, 48);
             // 
             // dialToolStripMenuItem
             // 
             this.dialToolStripMenuItem.Name = "dialToolStripMenuItem";
-            this.dialToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.dialToolStripMenuItem.Size = new System.Drawing.Size(91, 22);
             this.dialToolStripMenuItem.Text = "Dial";
             this.dialToolStripMenuItem.Click += new System.EventHandler(this._Dial_click);
             // 
             // transferToolStripMenuItem
             // 
             this.transferToolStripMenuItem.Name = "transferToolStripMenuItem";
-            this.transferToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.transferToolStripMenuItem.Size = new System.Drawing.Size(91, 22);
             this.transferToolStripMenuItem.Text = "Transfer";
             this.transferToolStripMenuItem.Click += new System.EventHandler(this._Transfer_click);
             // 
@@ -1063,20 +1030,24 @@
             // 
             // _NoteContextMenuStrip
             // 
+            this._NoteContextMenuStrip.Font = new System.Drawing.Font("Verdana", 7F);
             this._NoteContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.noteToolStripMenuItem,
             this.generateICONNoteToolStripMenuItem,
             this.toolStripSeparator3,
             this.copyToolStripMenuItem});
             this._NoteContextMenuStrip.Name = "_NoteContextMenuStrip";
-            this._NoteContextMenuStrip.Size = new System.Drawing.Size(183, 76);
+            this._NoteContextMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this._NoteContextMenuStrip.ShowCheckMargin = true;
+            this._NoteContextMenuStrip.ShowImageMargin = false;
+            this._NoteContextMenuStrip.Size = new System.Drawing.Size(184, 76);
             // 
             // noteToolStripMenuItem
             // 
             this.noteToolStripMenuItem.Checked = true;
             this.noteToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.noteToolStripMenuItem.Name = "noteToolStripMenuItem";
-            this.noteToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.noteToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.noteToolStripMenuItem.Tag = "Note";
             this.noteToolStripMenuItem.Text = "Call Notes";
             this.noteToolStripMenuItem.Click += new System.EventHandler(this.SwitchNote);
@@ -1084,7 +1055,7 @@
             // generateICONNoteToolStripMenuItem
             // 
             this.generateICONNoteToolStripMenuItem.Name = "generateICONNoteToolStripMenuItem";
-            this.generateICONNoteToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.generateICONNoteToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.generateICONNoteToolStripMenuItem.Tag = "ICONNote";
             this.generateICONNoteToolStripMenuItem.Text = "Generate ICON Note";
             this.generateICONNoteToolStripMenuItem.Click += new System.EventHandler(this.SwitchNote);
@@ -1092,12 +1063,12 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(179, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(180, 6);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
@@ -1119,6 +1090,48 @@
             this.servicesDataSet.DataSetName = "ServicesDataSet";
             this.servicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // _PRContextMenu
+            // 
+            this._PRContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._PRContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewPRToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.dispatchToolStripMenuItem,
+            this.clearAndCloseToolStripMenuItem,
+            this.stapleToParentToolStripMenuItem});
+            this._PRContextMenu.Name = "_PRContextMenu";
+            this._PRContextMenu.ShowImageMargin = false;
+            this._PRContextMenu.Size = new System.Drawing.Size(136, 98);
+            // 
+            // viewPRToolStripMenuItem
+            // 
+            this.viewPRToolStripMenuItem.Name = "viewPRToolStripMenuItem";
+            this.viewPRToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.viewPRToolStripMenuItem.Text = "View PR";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(132, 6);
+            // 
+            // dispatchToolStripMenuItem
+            // 
+            this.dispatchToolStripMenuItem.Name = "dispatchToolStripMenuItem";
+            this.dispatchToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.dispatchToolStripMenuItem.Text = "Dispatch";
+            // 
+            // clearAndCloseToolStripMenuItem
+            // 
+            this.clearAndCloseToolStripMenuItem.Name = "clearAndCloseToolStripMenuItem";
+            this.clearAndCloseToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.clearAndCloseToolStripMenuItem.Text = "Clear and Close";
+            // 
+            // stapleToParentToolStripMenuItem
+            // 
+            this.stapleToParentToolStripMenuItem.Name = "stapleToParentToolStripMenuItem";
+            this.stapleToParentToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.stapleToParentToolStripMenuItem.Text = "Staple to Parent";
+            // 
             // EditContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1137,7 +1150,6 @@
             this.splitContainer2.ResumeLayout(false);
             this.HfcPanel.ResumeLayout(false);
             this.HfcPanel.PerformLayout();
-            this._PRContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
             this._ServiceMenu.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
@@ -1153,6 +1165,7 @@
             this._NoteContextMenuStrip.ResumeLayout(false);
             this.MainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.servicesDataSet)).EndInit();
+            this._PRContextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1206,12 +1219,6 @@
         private System.Windows.Forms.ContextMenuStrip _DialContextMenu;
         private System.Windows.Forms.ToolStripMenuItem dialToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transferToolStripMenuItem;
-        private System.Windows.Forms.ContextMenuStrip _PRContextMenu;
-        private System.Windows.Forms.ToolStripMenuItem viewPRToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripMenuItem dispatchToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stapleToParentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clearAndCloseToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip _CallHistoryContextMenu;
         private System.Windows.Forms.ToolStripMenuItem callHistoryToolStripMenuItem;
         private BorderedTextBox borderedTextBox1;
@@ -1243,5 +1250,11 @@
         private System.Windows.Forms.ToolStripMenuItem generateICONNoteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip _PRContextMenu;
+        private System.Windows.Forms.ToolStripMenuItem viewPRToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem dispatchToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearAndCloseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stapleToParentToolStripMenuItem;
     }
 }

@@ -5,19 +5,19 @@
 	| IFMS element use name ctl00$cphPage$F001_Aff_Svc_ProxyPR1$btnAddPhone instead of ctl00_cphPage_F001_Aff_Svc_ProxyPR1_btnAddPhone
 
 
-- Check scopy spaste. Need to press twice often.
+/ Check scopy spaste. Need to press twice often.
 - IPCC Offsets aren't low enough.
 - IFMS wont accept problemstyle unless typed. Using TypeText is still too quick for product code to be filled. Need to implement the abilty to either add an arbitrary wait, or activily watch the page.
 	- Pasting in CMBS same thing - It doesn't update with the new value.
 	- Perhaps an event can be triggered instead of typetext.
-- gridlinks still sometimes not working - Minimized windows aren't restored.
+| gridlinks still sometimes not working - Minimized windows aren't restored.
 | Need to implement Row deletablity on other datagridviews using EditOnEnter
 | Datagridviews should only copy cells.
-- GUI not recieveing event unless it's been clicked already. On GUI focus, resend click event.
+| GUI not recieveing event unless it's been clicked already. On GUI focus, resend click event.
 | Remove Unable to find window warnings.
 - Mark had issues with ICON, after adding smart paste binds, his IE wasn't able to find windows by title. The after clicking on a CT menu, ICON minimized, the it was trying to autofill boxes and causing issues.
 	- Perhaps it was still trying to auto paste into drop downs. Need to add more checks and timers and unhook the browser object asap.
-- Mark wanted to paste mobile into the actual ICON note section. 
+/ Mark wanted to paste mobile into the actual ICON note section. 
 	| Add Copy to ICON note right click menu.
 / Binds are being deleted on new computers.
 	/ Binds unable to be decrypted are only garbled, not deleted. Mark's computer must not have read the file.
@@ -43,5 +43,5 @@ ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_STU1_tx_Loc
 Bugs:
 
 General:
-- Null browser object on quit. (should be nulling after every action)
+| Null browser object on quit. (should be nulling after every action)
 - Add an icon to CallTracker.
