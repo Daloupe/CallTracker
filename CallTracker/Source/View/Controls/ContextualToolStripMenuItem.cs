@@ -10,6 +10,35 @@ using System.Drawing.Design;
 using CallTracker.DataSets;
 using CallTracker.Helpers;
 
+//[DefaultProperty("Items")]
+//[ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
+//public class ToolStripMenuLabelItem : ToolStripMenuItem
+//{
+//    public ToolStripMenuLabelItem()
+//    {
+//    }
+
+//}
+public class ToolStripButtonWithContextMenu : ToolStripButton
+{
+    ContextMenuStrip _contextMenuStrip;
+
+    public ContextMenuStrip ContextMenuStrip
+    {
+        get { return _contextMenuStrip; }
+        set { _contextMenuStrip = value; }
+    }
+
+    protected override void OnMouseDown(MouseEventArgs e)
+    {
+        if (e.Button == MouseButtons.Right)
+        {
+            if (_contextMenuStrip != null)
+                _contextMenuStrip.Show(Parent.PointToScreen(e.Location));
+        }
+    }
+}
+
 [DefaultProperty("Items")]
 [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
 public class ContextualToolStripMenuItem : ToolStripMenuItem

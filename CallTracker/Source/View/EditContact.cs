@@ -174,7 +174,7 @@ namespace CallTracker.View
                     currentService.ContextMenuItem.Checked = true;
                     currentService.Panel.ConnectEvents(splitContainer2_MouseEnter);
                     currentService.Panel.SetDataSource(MainForm.SelectedContact.Service);
-                    MainForm.SelectedContact.Fault.AffectedServiceType = (ServiceTypes)Enum.Parse(typeof(ServiceTypes), currentService.ServiceType.ProductCode);
+                    MainForm.SelectedContact.Fault.AffectedServiceType = ((ServiceTypes)Enum.Parse(typeof(ServiceTypes), currentService.ServiceType.ProductCode, true));
                     currentService.CheckBox.Checked = true;
                     currentService.CheckBox.ForeColor = Color.DarkRed;
                 }
@@ -388,6 +388,19 @@ namespace CallTracker.View
         private void _Outcome_SelectedIndexChanged(object sender, EventArgs e)
         {
             _OutcomeTooltip.SetToolTip(_Outcome, Main.ServicesStore.servicesDataSet.Outcomes.First(x => x.Acronym == _Outcome.Text).Description);
+        }
+
+        private void _NewCallMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            ToolStripMenuItem ownerItem = e.ClickedItem.OwnerItem as ToolStripMenuItem;
+            if (ownerItem != null)
+            {
+                //uncheck all item
+                foreach (ToolStripMenuItem item in ownerItem.DropDownItems)
+                {
+                    item.Checked = false;
+                }
+            }
         }
     }
 

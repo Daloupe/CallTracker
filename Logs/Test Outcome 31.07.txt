@@ -6,10 +6,11 @@
 
 
 / Check scopy spaste. Need to press twice often.
-- IPCC Offsets aren't low enough.
+| IPCC Offsets aren't low enough.
 - IFMS wont accept problemstyle unless typed. Using TypeText is still too quick for product code to be filled. Need to implement the abilty to either add an arbitrary wait, or activily watch the page.
 	- Pasting in CMBS same thing - It doesn't update with the new value.
 	- Perhaps an event can be triggered instead of typetext.
+	- _browser.WaitUntilContainsText? Find somethign that changes about the html once input has finished.
 | gridlinks still sometimes not working - Minimized windows aren't restored.
 | Need to implement Row deletablity on other datagridviews using EditOnEnter
 | Datagridviews should only copy cells.

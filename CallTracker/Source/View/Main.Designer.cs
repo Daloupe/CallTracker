@@ -235,6 +235,7 @@
             this.viewKeyCommandsMenuItem.Name = "viewKeyCommandsMenuItem";
             this.viewKeyCommandsMenuItem.Size = new System.Drawing.Size(158, 22);
             this.viewKeyCommandsMenuItem.Text = "Key Commands";
+            this.viewKeyCommandsMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
             // versionStripMenuItem
             // 

@@ -180,6 +180,14 @@ namespace CallTracker.Model
 
         public void WriteData()
         {
+            //servicesDataSet.AcceptChanges();
+            if(servicesDataSet.Tables.Count > 0)
+                Console.WriteLine("Tables exits");
+
+            if (servicesDataSet.Services.Rows.Count > 0)
+                Console.WriteLine("Rows in Services exist");
+            DataTable[] dtarray = new DataTable[servicesDataSet.Tables.Count];
+
             using (Stream stream = File.OpenWrite(Filename))
             using (IDataReader reader = servicesDataSet.CreateDataReader())
             {
@@ -199,12 +207,13 @@ namespace CallTracker.Model
             }
             else
             {
+                
                 using (Stream stream = File.OpenRead(Filename))
                 using (IDataReader reader = DataSerializer.Deserialize(stream))
                 {
                     DataTable[] dtarray = new DataTable[servicesDataSet.Tables.Count];
                     servicesDataSet.Tables.CopyTo(dtarray, 0);
-                    servicesDataSet.Load(reader, LoadOption.PreserveChanges, dtarray);
+                    servicesDataSet.Load(reader, LoadOption.OverwriteChanges, dtarray);
 ;
                     //servicesDataSet.IFMSTier2IFMSTier3Match.Columns.Remove("Tier2Id");
                     //servicesDataSet.IFMSTier2IFMSTier3Match.Columns.Remove("Tier3Id");

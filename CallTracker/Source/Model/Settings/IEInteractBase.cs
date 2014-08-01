@@ -141,7 +141,7 @@ namespace CallTracker.Model
             {
                 elem.FindNativeElement().SetFocus();
                 IEMethod(elem, _value);
-                _browser.WaitForComplete(3000);
+                _browser.WaitForComplete(5000);
             }
         }
 

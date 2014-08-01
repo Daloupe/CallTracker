@@ -17,15 +17,15 @@ using CallTracker.Model;
 using CallTracker.Helpers;
 using CallTracker.Data;
 
-using System.Windows.Automation;
-using TestStack.White.Configuration;
-using TestStack.White.Factory;
-using TestStack.White.UIItems;
-using TestStack.White.UIItems.Finders;
-using TestStack.White.UIItems.WindowItems;
-using TestStack.White.Recording;
-using TestStack.White.UIItemEvents;
-using TestStack.White.UIItems.Actions;
+//using System.Windows.Automation;
+//using TestStack.White.Configuration;
+//using TestStack.White.Factory;
+//using TestStack.White.UIItems;
+//using TestStack.White.UIItems.Finders;
+//using TestStack.White.UIItems.WindowItems;
+//using TestStack.White.Recording;
+//using TestStack.White.UIItemEvents;
+//using TestStack.White.UIItems.Actions;
 
 namespace CallTracker.View
 {
@@ -88,15 +88,22 @@ namespace CallTracker.View
         private void Main_Load(object sender, EventArgs e)
         {
             EventLogger.LogNewEvent("------------------------------------------------------");
-            SetProgressBarStep(2, "Loading Interface", EventLogLevel.Status);
+            SetProgressBarStep(7, "Loading Interface", EventLogLevel.Status);
 
+            UpdateProgressBar("Loading Service Store");
+            ServicesStore.ReadData();
+            UpdateProgressBar("Loading Main Data");
             DataStore = DataStore.ReadFile();
+            UpdateProgressBar("Loading Resource Store");
+            ResourceStore = ResourceStore.ReadFile();
 
             SelectedContact = new CustomerContact();
 
+            UpdateProgressBar("Creating Main View");
             editContact = new EditContact(this);
             Controls.Add(editContact);
             editContact.OnParentLoad();
+            UpdateProgressBar("Bring to front");
             editContact.BringToFront();
             editContact.Visible = true;
         } 
@@ -104,9 +111,6 @@ namespace CallTracker.View
         private void Main_Shown(object sender, EventArgs e)
         {
             UpdateProgressBar("Loading Views", EventLogLevel.Status);
-
-            ServicesStore.ReadData();
-            ResourceStore = ResourceStore.ReadFile();
 
             editLogins = new EditLogins();
             editGridLinks = new EditGridLinks();

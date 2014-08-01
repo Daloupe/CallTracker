@@ -7,15 +7,24 @@
 
 0.31.00
 - Added Glance GUI.
+- Selecting "Clear and Close" brings up a PopUp with a single dropdown to select from before actioning the pr.
 
 0.30.00
 - Added ARO GUI.
 - Added TestStack.White support for IPCC control.
 	- Poll Work Ready button to see if enabled.
+-
+	
+0.29.13
+- Added context menu to Next Call to select default product.
+
+0.29.12
+| Fixed a big that was deleting data. Services.bin has to be loaded before other data files.
 
 0.29.11
 | Application no longer requires focus to send clicks.
 / Attempted to fix need to sometimes press smart copy twice. Using Application.DoEvents() after sendkeys to try push message throuhg. Also SendKeys.Flush().
+	- Try waiting till clipboard has information. May need to clear it first, and store previous info.
 | Gridlinks will restore minimized windows.
 | AutoFill will now look for ICON.
 | Status bar level can now be set.
@@ -41,6 +50,13 @@
 | ICON Regex defines second group as last 6 digits.
 | Added Status Bar.
 | Added EventLogger model.
+
+- Hopefully smart paste will only need 1 press.
+- Shouldn't need to click twice on the application to open menus.
+- Shouldn't get those pop ups when trying to bind.
+- "Copy" is now in the right click menu for the Note field.
+- Open ICON search, and bind the Account field. Type CMBS|{1}{2}0{3} into the data field instead of select CMBS from the dropdown. Now even if you have 31-123456-7 the CMBS box, it will paste 3112345607. You can use CMBS|{1}{2} {3} for the IFMS account search field.
+
 
 0.29.8
 | Fixed crash caused by selecting a transfer while service was still NONE.
@@ -108,6 +124,8 @@ Bugs:
  | Will Regex replace support $1$20$3 where 0 is intended as the number?
 	| $1${2}0$3
  - MTV ProblemStyle needs to changes based on base internet product.
+ - Logins datagridview wont enable the scrolls.
+ - Services.bat seemed to empty. Might be similat to why marks lost the binds
 
 Under The Hood
 - Update panels to reference binding source. May be able to avoid having to use the nested events in ContactModel.
@@ -119,8 +137,8 @@ Under The Hood
 		| Symptoms.
 		| Outcomes.
 		| Equipment.
- - Add Outcomes tooltip.
- - Add status bar to display warnings.
+ | Add Outcomes tooltip.
+ | Add status bar to display warnings.
  - Key Command Help extends window height.
  | Symptom Group is irrelevant to Service Views. It's only required in IFMS and is grabbed as the cross section between Service and Symptom.
  - Change databaseview code to query a dataset and change data source each time a different table is selected.
