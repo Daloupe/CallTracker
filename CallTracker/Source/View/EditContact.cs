@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Collections;
 
 using CallTracker.Model;
 using CallTracker.Data;
@@ -19,11 +20,12 @@ namespace CallTracker.View
         private UserDataStore DataStore;
         //private Dictionary<string, PanelBase> ServicePanels;
         public static Dictionary<ServiceTypes, ServiceView> ServiceViews;
-        private Main MainForm;
+        public Main MainForm;
 
         public EditContact(Main _mainform)
         {
             InitializeComponent();
+
             _OutcomeTooltip.SetToolTip(_Outcome, "Problem Report");
 
             MainForm = _mainform;
@@ -58,7 +60,7 @@ namespace CallTracker.View
         public void OnParentLoad()
         {
             DataStore = MainForm.DataStore;
-
+            
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
             customerContactsBindingSource.DataSource = DataStore.Contacts;
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
@@ -112,6 +114,7 @@ namespace CallTracker.View
                             _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, item.Tag.ToString(), true, DataSourceUpdateMode.OnPropertyChanged));
 
                 CurrentService = ServiceViews[MainForm.SelectedContact.Fault.AffectedServiceType];
+    
             }
             //_Note.DataBindings.Clear();
             //_Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, "Note", true, DataSourceUpdateMode.OnPropertyChanged));
@@ -168,7 +171,6 @@ namespace CallTracker.View
                 {
                     if (currentService.IsInitialized == false)
                         currentService.Init();
-
                     currentService.AddRowChangedEvents();
                     splitContainer2.Panel2.Controls.Add(currentService.Panel);
                     currentService.ContextMenuItem.Checked = true;
@@ -181,6 +183,10 @@ namespace CallTracker.View
                 else
                 {
                     MainForm.SelectedContact.Fault.AffectedServiceType = ServiceTypes.NONE;
+                    //currentService.UpdateEquipment();
+                    //currentService.UpdateSeverity();
+                    _Symptom.DataSource = null;
+                    _Equipment.DataSource = null;
                 }
               
             }
@@ -363,10 +369,10 @@ namespace CallTracker.View
                 _DialContextMenu.Tag = ((TextBox)sender).Text;
         }
 
-        private void _PRMenu_Clicked(object sender, MouseEventArgs e)
+        private void _PRContextMenu_Clicked(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                if (((TextBox)sender).Name == "_NPR")
+                if (((LabelledTextBox)sender).Name == "_NPR")
                 {
                     dispatchToolStripMenuItem.Enabled = false;
                     stapleToParentToolStripMenuItem.Enabled = false;
@@ -402,6 +408,96 @@ namespace CallTracker.View
                 }
             }
         }
+
+        private void _PRContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            if (menu.Tag == null)
+                e.Cancel = true;
+            menu.Tag = null;
+            if (menu.SourceControl.Parent.Name == "_NPR")
+            {
+                dispatchToolStripMenuItem.Enabled = false;
+                stapleToParentToolStripMenuItem.Enabled = false;
+                clearAndCloseToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                dispatchToolStripMenuItem.Enabled = true;
+                stapleToParentToolStripMenuItem.Enabled = true;
+                clearAndCloseToolStripMenuItem.Enabled = true;
+            }
+        }
+
+        private void _PRContextMenu_Closing(object sender, ToolStripDropDownClosingEventArgs e)
+        {
+            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            if (menu.Tag != null)
+            {
+                menu.Tag = null;
+                e.Cancel = true;
+            }
+            menu.SourceControl.BackgroundImage = Properties.Resources.TinyArrow2;
+        }
+
+        private void _SeverityMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+            _SeverityMenuStrip.Text = e.ClickedItem.Text;
+            ((ToolStripMenuItem)e.ClickedItem).Checked = true;
+
+            ToolStripMenuItem ownerItem = e.ClickedItem.OwnerItem as ToolStripMenuItem;
+            if (ownerItem != null)
+            {
+                //uncheck all item
+                foreach (ToolStripMenuItem item in ownerItem.DropDownItems)
+                {
+                    item.Checked = false;
+                }
+            }
+
+        }
+
+        //void DataBindings_CollectionChanged(object sender, CollectionChangeEventArgs e)
+        //{
+        //    Console.WriteLine("Binding started ");
+        //    if (String.IsNullOrEmpty(_SeverityMenuStrip.Text) || ((ToolStripMenuItem)_SeverityMenuStrip.Items[_SeverityMenuStrip.Text]).Enabled == false)
+        //    {
+        //        foreach (ToolStripMenuItem item in _SeverityMenuStrip.Items)
+        //            if (item.Enabled == true)
+        //            {
+        //                item.Checked = true;
+        //                _SeverityMenuStrip.Text = item.Text;
+        //                break;
+        //            };
+        //    }
+        //    else
+        //        ((ToolStripMenuItem)_SeverityMenuStrip.Items[_SeverityMenuStrip.Text]).Checked = true;
+
+        //    Console.WriteLine("Binding complete " + MainForm.SelectedContact.Fault.Severity);
+        //}
+
+        private void _Symptom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(CurrentService != null)
+                CurrentService.UpdateSeverity();
+
+            Console.WriteLine("symp changed: " + MainForm.SelectedContact.Fault.Severity);
+        }
+
+        //private void _SeverityMenuStrip_ItemAdded(object sender, ToolStripItemEventArgs e)
+        //{
+        //    _SeverityMenuStrip.BindingContext = this.BindingContext;
+        //    _SeverityMenuStrip.Text = "I";
+        //    Console.WriteLine("layout changed: " + MainForm.SelectedContact.Fault.Severity);
+        //}
+
+        //private void _SeverityMenuStrip_Opened(object sender, EventArgs e)
+        //{
+        //    _SeverityMenuStrip.BindingContext = this.BindingContext;
+        //    _SeverityMenuStrip.Text = "I";
+        //    Console.WriteLine("layout changed: " + MainForm.SelectedContact.Fault.Severity);
+        //}
     }
 
     public class EnumList
