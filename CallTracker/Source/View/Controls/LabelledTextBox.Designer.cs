@@ -35,11 +35,12 @@
             // _MenuButton
             // 
             this._MenuButton.Size = new System.Drawing.Size(7, 11);
+            this._MenuButton.Visible = false;
             // 
             // _DataField
             // 
             this._DataField.BackColor = System.Drawing.SystemColors.Window;
-            this._DataField.BorderColor = System.Drawing.Color.Gray;
+            this._DataField.BorderColor = System.Drawing.Color.WhiteSmoke;
             this._DataField.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._DataField.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._DataField.Font = new System.Drawing.Font("Verdana", 7F);
@@ -56,6 +57,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._DataField);
             this.Name = "LabelledTextBox";
+            this.Load += new System.EventHandler(this.LabelledTextBox_Load);
             this.Controls.SetChildIndex(this._DataField, 0);
             this.Controls.SetChildIndex(this._Label, 0);
             this.Controls.SetChildIndex(this._MenuButton, 0);

@@ -17,6 +17,11 @@ namespace CallTracker.View
             lasttime = DateTime.UtcNow;
         }
 
+        public virtual void AttachMenu(ContextMenuStrip menu)
+        {
+            ContextMenuStrip = menu;
+
+        }
         [Category("A1")]
         public string LabelText
         {
@@ -33,40 +38,56 @@ namespace CallTracker.View
 
         protected DateTime lasttime;
         protected bool opened;
-        protected void _MenuButton_MouseClick(object sender, MouseEventArgs e)
+        protected virtual void _MenuButton_MouseClick(object sender, MouseEventArgs e)
         {
-            lasttime = DateTime.UtcNow;
-
-            if (this.ContextMenuStrip.Visible == false && this.ContextMenuStrip.Tag != this._MenuButton)
+            if (this.ContextMenuStrip.Visible == false)
             {
-                _MenuButton.BackgroundImage = Properties.Resources.TinyArrow;
-                this.ContextMenuStrip.Tag = this._MenuButton;
-                this.ContextMenuStrip.Show(_MenuButton, 9, 9);
+                this.ContextMenuStrip.Opening += ContextMenuStrip_Opening;
+                this.ContextMenuStrip.Show(this._MenuButton, 9, 9);
                 opened = true;
             }
             else
             {
-                this.ContextMenuStrip.Tag = null;
                 this.ContextMenuStrip.Hide();
-                opened = false;
+                opened = false;       
             }
         }
 
-        protected void _MenuButton_MouseUp(object sender, MouseEventArgs e)
+        public virtual void ContextMenuStrip_Closing(object sender, ToolStripDropDownClosingEventArgs e)
         {
-            if (DateTime.UtcNow.Subtract(lasttime).Milliseconds > 50 && opened == true)
+            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            menu.Closing -= ContextMenuStrip_Closing;
+            Console.WriteLine(DateTime.UtcNow.Subtract(lasttime).Milliseconds);
+            int time = DateTime.UtcNow.Subtract(lasttime).Milliseconds;
+            if (time > 9 && opened == false )
             {
-                this.ContextMenuStrip.Tag = this._MenuButton;
-                opened = false;
+                e.Cancel = true;
+                return;
             }
+            menu.SourceControl.BackgroundImage = Properties.Resources.TinyArrow2;
+            lasttime = DateTime.UtcNow;
         }
 
-        protected void LabelledTextBox_ContextMenuStripChanged(object sender, EventArgs e)
+        protected virtual void ContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        { 
+            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            menu.Opening -= ContextMenuStrip_Opening;
+
+            int time = DateTime.UtcNow.Subtract(lasttime).Milliseconds;
+            if (time < 9 && opened == true)
+            {
+                e.Cancel = true;
+                return;
+            }
+            lasttime = DateTime.UtcNow;
+            this._MenuButton.BackgroundImage = Properties.Resources.TinyArrow;
+            menu.Closing += ContextMenuStrip_Closing;
+        }
+
+        protected virtual void LabelledTextBox_ContextMenuStripChanged(object sender, EventArgs e)
         {
             if (ContextMenuStrip != null)
-            {
                 _MenuButton.Show();
-            }
             else
                 _MenuButton.Hide();
         }

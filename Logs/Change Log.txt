@@ -15,10 +15,13 @@
 	- Poll Work Ready button to see if enabled.
 -
 
+0.30.0
+| Fixed timing issues with left click context menu.
+| Fixed binding issues with context menu.
 	
 0.29.13
-- Added context menu to Next Call to select default product.
-- Created new controls for input fields.
+| Added context menu to Next Call to select default product.
+| Created new controls for input fields.
 
 0.29.12
 | Fixed a big that was deleting data. Services.bin has to be loaded before other data files.

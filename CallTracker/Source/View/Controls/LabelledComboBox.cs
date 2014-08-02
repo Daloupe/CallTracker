@@ -18,17 +18,20 @@ namespace CallTracker.View
         public LabelledComboBox()
         {
             InitializeComponent();
+            this.ContextMenuStripChanged += base.LabelledTextBox_ContextMenuStripChanged;
         }
 
         private void LabelledComboBox_Load(object sender, EventArgs e)
         {
-            this.ContextMenuStripChanged += base.LabelledTextBox_ContextMenuStripChanged;
-            if (ContextMenuStrip != null)
-            {
-                this._MenuButton.Show();
-                this.ContextMenuStrip.Show();
-                this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
-            }
+            //if (ContextMenuStrip != null)
+            //{
+            //    //this.ContextMenuStrip.Opening += ContextMenuStrip_Opening;
+            //    //this.ContextMenuStrip.Closing += ContextMenuStrip_Closing;
+            //    this._MenuButton.Show();
+            //    //this.ContextMenuStrip.Show();
+            //    //this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
+            //}
+            //this.ContextMenuStripChanged += base.LabelledTextBox_ContextMenuStripChanged;
         }
 
         [Category("A1")]
@@ -60,5 +63,30 @@ namespace CallTracker.View
         {
             this.ParentForm.Validate();
         }
+
+        //public override void ContextMenuStrip_Closing(object sender, ToolStripDropDownClosingEventArgs e)
+        //{
+        //    //this.ContextMenuStrip.Opening -= ContextMenuStrip_Opening;
+        //    //Console.WriteLine(((PictureBox)this.ContextMenuStrip.Tag).Parent.Name);
+        //    //ContextMenuStrip menu = (ContextMenuStrip)sender;
+        //    //Console.WriteLine(((PictureBox)ContextMenuStrip.Tag).Name);
+        //    if (ContextMenuStrip.Tag != null)
+        //    {
+        //        ContextMenuStrip.Tag = null;
+        //        e.Cancel = true;
+        //    }
+        //    this.BackgroundImage = Properties.Resources.TinyArrow2;
+        //}
+
+        //public override void ContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        //{
+        //    //this.ContextMenuStrip.Closing -= ContextMenuStrip_Closing;
+        //    //Console.WriteLine(((PictureBox)this.ContextMenuStrip.Tag).Parent.Name);
+        //    //ContextMenuStrip menu = (ContextMenuStrip)sender;
+        //    //Console.WriteLine(((PictureBox)ContextMenuStrip.Tag).Name);
+        //    if (ContextMenuStrip.Tag == null)
+        //        e.Cancel = true;
+        //    ContextMenuStrip.Tag = null;
+        //}
     }
 }

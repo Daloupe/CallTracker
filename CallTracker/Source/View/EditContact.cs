@@ -79,6 +79,10 @@ namespace CallTracker.View
             //_Severity.DataSource = Main.ServicesStore.servicesDataSet.SeverityCodes.Select(x => x.IFMSCode).ToList(); //Enum.GetValues(typeof(FaultSeverity));
             _Outcome.DataSource = Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList(); //Enum.GetValues(typeof(Outcomes));
             _BookingTimeSlot.DataSource = Enum.GetValues(typeof(BookingTimeslot));
+            _PR.AttachMenu(_PRContextMenu);
+            _NPR.AttachMenu(_PRContextMenu);
+            _Symptom.AttachMenu(_SeverityMenuStrip);
+
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -408,13 +412,12 @@ namespace CallTracker.View
                 }
             }
         }
-
-        private void _PRContextMenu_Opening(object sender, CancelEventArgs e)
+        private void _PRContextMenu_Opened(object sender, EventArgs e)
         {
             ContextMenuStrip menu = (ContextMenuStrip)sender;
-            if (menu.Tag == null)
-                e.Cancel = true;
-            menu.Tag = null;
+            //if (menu.Tag == null)
+            //    e.Cancel = true;
+            //menu.Tag = null;
             if (menu.SourceControl.Parent.Name == "_NPR")
             {
                 dispatchToolStripMenuItem.Enabled = false;
@@ -428,54 +431,39 @@ namespace CallTracker.View
                 clearAndCloseToolStripMenuItem.Enabled = true;
             }
         }
-
-        private void _PRContextMenu_Closing(object sender, ToolStripDropDownClosingEventArgs e)
-        {
-            ContextMenuStrip menu = (ContextMenuStrip)sender;
-            if (menu.Tag != null)
-            {
-                menu.Tag = null;
-                e.Cancel = true;
-            }
-            menu.SourceControl.BackgroundImage = Properties.Resources.TinyArrow2;
-        }
+        //private void _PRContextMenu_Opening(object sender, CancelEventArgs e)
+        //{
+        //    ContextMenuStrip menu = (ContextMenuStrip)sender;
+        //    if (menu.Tag == null)
+        //        e.Cancel = true;
+        //    menu.Tag = null;
+        //    if (menu.SourceControl.Parent.Name == "_NPR")
+        //    {
+        //        dispatchToolStripMenuItem.Enabled = false;
+        //        stapleToParentToolStripMenuItem.Enabled = false;
+        //        clearAndCloseToolStripMenuItem.Enabled = false;
+        //    }
+        //    else
+        //    {
+        //        dispatchToolStripMenuItem.Enabled = true;
+        //        stapleToParentToolStripMenuItem.Enabled = true;
+        //        clearAndCloseToolStripMenuItem.Enabled = true;
+        //    }
+        //}
 
         private void _SeverityMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
-            _SeverityMenuStrip.Text = e.ClickedItem.Text;
-            ((ToolStripMenuItem)e.ClickedItem).Checked = true;
+            //ToolStripMenuItem ownerItem = e.ClickedItem.OwnerItem as ToolStripMenuItem;
 
-            ToolStripMenuItem ownerItem = e.ClickedItem.OwnerItem as ToolStripMenuItem;
-            if (ownerItem != null)
-            {
-                //uncheck all item
-                foreach (ToolStripMenuItem item in ownerItem.DropDownItems)
+                foreach (ToolStripMenuItem item in _SeverityMenuStrip.Items)
                 {
                     item.Checked = false;
                 }
-            }
 
+                _SeverityMenuStrip.Text = e.ClickedItem.Text;
+                ((ToolStripMenuItem)e.ClickedItem).Checked = true;
         }
-
-        //void DataBindings_CollectionChanged(object sender, CollectionChangeEventArgs e)
-        //{
-        //    Console.WriteLine("Binding started ");
-        //    if (String.IsNullOrEmpty(_SeverityMenuStrip.Text) || ((ToolStripMenuItem)_SeverityMenuStrip.Items[_SeverityMenuStrip.Text]).Enabled == false)
-        //    {
-        //        foreach (ToolStripMenuItem item in _SeverityMenuStrip.Items)
-        //            if (item.Enabled == true)
-        //            {
-        //                item.Checked = true;
-        //                _SeverityMenuStrip.Text = item.Text;
-        //                break;
-        //            };
-        //    }
-        //    else
-        //        ((ToolStripMenuItem)_SeverityMenuStrip.Items[_SeverityMenuStrip.Text]).Checked = true;
-
-        //    Console.WriteLine("Binding complete " + MainForm.SelectedContact.Fault.Severity);
-        //}
 
         private void _Symptom_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -485,19 +473,6 @@ namespace CallTracker.View
             Console.WriteLine("symp changed: " + MainForm.SelectedContact.Fault.Severity);
         }
 
-        //private void _SeverityMenuStrip_ItemAdded(object sender, ToolStripItemEventArgs e)
-        //{
-        //    _SeverityMenuStrip.BindingContext = this.BindingContext;
-        //    _SeverityMenuStrip.Text = "I";
-        //    Console.WriteLine("layout changed: " + MainForm.SelectedContact.Fault.Severity);
-        //}
-
-        //private void _SeverityMenuStrip_Opened(object sender, EventArgs e)
-        //{
-        //    _SeverityMenuStrip.BindingContext = this.BindingContext;
-        //    _SeverityMenuStrip.Text = "I";
-        //    Console.WriteLine("layout changed: " + MainForm.SelectedContact.Fault.Severity);
-        //}
     }
 
     public class EnumList

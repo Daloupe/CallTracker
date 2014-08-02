@@ -63,7 +63,7 @@ namespace CallTracker.View
             Main.ServicesStore.servicesDataSet.SeverityCodes.RowChanged += Severity_RowChanged;
             Main.ServicesStore.servicesDataSet.SeverityCodeSymptomMatch.RowChanged += Severity_RowChanged;
 
-            Parent._Symptom2.SelectedIndexChanged += _Symptom_SelectedIndexChanged;
+            Parent._Symptom.SelectedIndexChanged += _Symptom_SelectedIndexChanged;
 
             UpdateSymptoms();
             UpdateEquipment();
@@ -85,7 +85,7 @@ namespace CallTracker.View
             Main.ServicesStore.servicesDataSet.SeverityCodes.RowChanged -= Severity_RowChanged;
             Main.ServicesStore.servicesDataSet.SeverityCodeSymptomMatch.RowChanged -= Severity_RowChanged;
 
-            Parent._Symptom2.SelectedIndexChanged -= _Symptom_SelectedIndexChanged;
+            Parent._Symptom.SelectedIndexChanged -= _Symptom_SelectedIndexChanged;
         }
 
         void Symptoms_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)

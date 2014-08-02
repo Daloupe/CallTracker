@@ -39,7 +39,7 @@
             // 
             // _ComboBox
             // 
-            this._ComboBox.BorderColor = System.Drawing.Color.Gray;
+            this._ComboBox.BorderColor = System.Drawing.Color.WhiteSmoke;
             this._ComboBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;

@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace CallTracker.View
 {
@@ -27,7 +28,7 @@ namespace CallTracker.View
             }
         }
 
-        //[Category("Appearance")]
+        [Category("Appearance")]
         public Color BorderColor
         {
             get { return _borderColor; }
@@ -41,7 +42,7 @@ namespace CallTracker.View
 
     public class BorderedCombobox : ComboBox
     {
-       private Color _borderColor = Color.Gray;
+        private Color _borderColor = Color.Gray;
         private ButtonBorderStyle _buttonBorderStyle = ButtonBorderStyle.Solid;
         private static int WM_PAINT = 0x000F;
 
@@ -64,7 +65,7 @@ namespace CallTracker.View
             }
         }
 
-        //[Category("Appearance")]
+        [Category("Appearance")]
         public Color BorderColor
         {
             get { return _borderColor; }

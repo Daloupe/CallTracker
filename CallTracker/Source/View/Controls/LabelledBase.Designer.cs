@@ -47,7 +47,6 @@
             this._MenuButton.TabIndex = 30;
             this._MenuButton.TabStop = false;
             this._MenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
-            this._MenuButton.MouseUp += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseUp);
             // 
             // _Label
             // 
@@ -77,7 +76,6 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "LabelledBase";
             this.Size = new System.Drawing.Size(180, 30);
-            this.ContextMenuStripChanged += new System.EventHandler(this.LabelledTextBox_ContextMenuStripChanged);
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
