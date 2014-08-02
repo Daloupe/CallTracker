@@ -1,6 +1,6 @@
 ﻿namespace CallTracker.View
 {
-    partial class LabelledComboBox
+    partial class LabelledComboBoxLong
     {
         /// <summary> 
         /// Required designer variable.
@@ -32,20 +32,26 @@
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).BeginInit();
             this.SuspendLayout();
             // 
+            // _Label
+            // 
+            this._Label.Dock = System.Windows.Forms.DockStyle.Left;
+            this._Label.Location = new System.Drawing.Point(0, 0);
+            // 
             // _MenuButton
             // 
-            this._MenuButton.Location = new System.Drawing.Point(164, 0);
-            this._MenuButton.Size = new System.Drawing.Size(16, 12);
+            this._MenuButton.Dock = System.Windows.Forms.DockStyle.Left;
+            this._MenuButton.Location = new System.Drawing.Point(30, 0);
+            this._MenuButton.Size = new System.Drawing.Size(15, 20);
             this._MenuButton.Visible = false;
             // 
             // _ComboBox
             // 
             this._ComboBox.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this._ComboBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this._ComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this._ComboBox.FormattingEnabled = true;
-            this._ComboBox.Location = new System.Drawing.Point(0, 12);
+            this._ComboBox.Location = new System.Drawing.Point(0, 0);
             this._ComboBox.MaxDropDownItems = 15;
             this._ComboBox.Name = "_ComboBox";
             this._ComboBox.Size = new System.Drawing.Size(180, 20);
@@ -53,15 +59,18 @@
             this._ComboBox.SelectedIndexChanged += new System.EventHandler(this._ComboBox_SelectedIndexChanged);
             this._ComboBox.DataSourceChanged += new System.EventHandler(this._ComboBox_DataSourceChanged);
             // 
-            // LabelledComboBox
+            // LabelledComboBoxLong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ControlHeight = 20;
             this.Controls.Add(this._ComboBox);
-            this.Name = "LabelledComboBox";
+            this.LabelOffset = new System.Drawing.Point(0, 0);
+            this.Name = "LabelledComboBoxLong";
+            this.Size = new System.Drawing.Size(180, 20);
             this.Load += new System.EventHandler(this.LabelledComboBox_Load);
-            this.Controls.SetChildIndex(this._Label, 0);
             this.Controls.SetChildIndex(this._ComboBox, 0);
+            this.Controls.SetChildIndex(this._Label, 0);
             this.Controls.SetChildIndex(this._MenuButton, 0);
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).EndInit();
             this.ResumeLayout(false);

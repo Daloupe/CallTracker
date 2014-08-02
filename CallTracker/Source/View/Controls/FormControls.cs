@@ -14,6 +14,7 @@ namespace CallTracker.View
         public BorderedTextBox() : base()
         {
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
         }
 
         protected override void WndProc(ref Message m)
@@ -50,6 +51,7 @@ namespace CallTracker.View
             : base()
         {
             this.FlatStyle = FlatStyle.Popup;
+            this.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             //this.DropDownStyle = ComboBoxStyle.DropDown;
         }
 

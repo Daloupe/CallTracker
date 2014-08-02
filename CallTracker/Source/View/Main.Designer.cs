@@ -40,6 +40,7 @@
             this._StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._StatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.MenuPanel = new System.Windows.Forms.Panel();
+            this._ViewPanel = new System.Windows.Forms.Panel();
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,15 +86,19 @@
             // 
             // AppPanel
             // 
+            this.AppPanel.AutoSize = true;
+            this.AppPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AppPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.AppPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AppPanel.Controls.Add(this._ViewPanel);
             this.AppPanel.Controls.Add(this.statusStrip1);
             this.AppPanel.Controls.Add(this.MenuPanel);
             this.AppPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AppPanel.Location = new System.Drawing.Point(0, 0);
             this.AppPanel.Name = "AppPanel";
-            this.AppPanel.Size = new System.Drawing.Size(584, 259);
+            this.AppPanel.Size = new System.Drawing.Size(586, 257);
             this.AppPanel.TabIndex = 25;
+            this.AppPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
             // statusStrip1
             // 
@@ -104,9 +109,10 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._StatusLabel,
             this._StatusProgressBar});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 237);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 236);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(582, 20);
+            this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.ManagerRenderMode;
+            this.statusStrip1.Size = new System.Drawing.Size(584, 19);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 28;
             // 
@@ -170,14 +176,15 @@
             this._StatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this._StatusLabel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this._StatusLabel.Name = "_StatusLabel";
-            this._StatusLabel.Size = new System.Drawing.Size(521, 17);
+            this._StatusLabel.Size = new System.Drawing.Size(521, 16);
             this._StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // _StatusProgressBar
             // 
+            this._StatusProgressBar.ForeColor = System.Drawing.Color.CornflowerBlue;
             this._StatusProgressBar.Margin = new System.Windows.Forms.Padding(1, 3, 1, 1);
             this._StatusProgressBar.Name = "_StatusProgressBar";
-            this._StatusProgressBar.Size = new System.Drawing.Size(60, 16);
+            this._StatusProgressBar.Size = new System.Drawing.Size(60, 15);
             // 
             // MenuPanel
             // 
@@ -187,9 +194,17 @@
             this.MenuPanel.Location = new System.Drawing.Point(0, 0);
             this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
             this.MenuPanel.Name = "MenuPanel";
-            this.MenuPanel.Size = new System.Drawing.Size(582, 18);
+            this.MenuPanel.Size = new System.Drawing.Size(584, 16);
             this.MenuPanel.TabIndex = 27;
             this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
+            // 
+            // _ViewPanel
+            // 
+            this._ViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ViewPanel.Location = new System.Drawing.Point(0, 16);
+            this._ViewPanel.Name = "_ViewPanel";
+            this._ViewPanel.Size = new System.Drawing.Size(584, 220);
+            this._ViewPanel.TabIndex = 29;
             // 
             // _MainMenu
             // 
@@ -205,10 +220,10 @@
             this._MainMenu.Location = new System.Drawing.Point(0, 0);
             this._MainMenu.Name = "_MainMenu";
             this._MainMenu.Padding = new System.Windows.Forms.Padding(0);
-            this._MainMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this._MainMenu.Size = new System.Drawing.Size(582, 18);
+            this._MainMenu.Size = new System.Drawing.Size(584, 17);
             this._MainMenu.TabIndex = 3;
             this._MainMenu.Text = "_MainMenu";
+            this._MainMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             this._MainMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MainMenu_MouseDown);
             // 
             // quitToolStripMenuItem1
@@ -217,7 +232,7 @@
             this.quitToolStripMenuItem1.Image = global::CallTracker.Properties.Resources.Close;
             this.quitToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.quitToolStripMenuItem1.Name = "quitToolStripMenuItem1";
-            this.quitToolStripMenuItem1.Size = new System.Drawing.Size(22, 18);
+            this.quitToolStripMenuItem1.Size = new System.Drawing.Size(22, 17);
             this.quitToolStripMenuItem1.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
@@ -227,7 +242,7 @@
             this.viewKeyCommandsMenuItem,
             this.versionStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 18);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 17);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // viewKeyCommandsMenuItem
@@ -246,6 +261,7 @@
             // 
             // fileToolStripMenuItem
             // 
+            this.fileToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.callHistoryToolStripMenuItem,
             this.viewToolStripMenuItem,
@@ -253,13 +269,14 @@
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(79, 18);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(79, 17);
             this.fileToolStripMenuItem.Text = "Call Tracker";
+            this.fileToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
             // callHistoryToolStripMenuItem
             // 
             this.callHistoryToolStripMenuItem.Name = "callHistoryToolStripMenuItem";
-            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.callHistoryToolStripMenuItem.Text = "Call History";
             this.callHistoryToolStripMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
@@ -272,7 +289,7 @@
             this.gridLinksViewMenuItem,
             this.advancedToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.viewToolStripMenuItem.Text = "Settings";
             // 
             // showStatusBarToolStripMenuItem
@@ -326,13 +343,13 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(127, 6);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -347,7 +364,7 @@
             this.linksToolStripMenuItem});
             this.resourcesToolStripMenuItem.Name = "resourcesToolStripMenuItem";
             this.resourcesToolStripMenuItem.ShowShortcutKeys = false;
-            this.resourcesToolStripMenuItem.Size = new System.Drawing.Size(74, 18);
+            this.resourcesToolStripMenuItem.Size = new System.Drawing.Size(74, 17);
             this.resourcesToolStripMenuItem.Text = "Resources";
             // 
             // toolStripServiceSelector
@@ -509,10 +526,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.ClientSize = new System.Drawing.Size(584, 259);
+            this.ClientSize = new System.Drawing.Size(586, 257);
             this.ControlBox = false;
             this.Controls.Add(this.AppPanel);
-            this.Enabled = false;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -531,6 +547,7 @@
             this._MainMenu.ResumeLayout(false);
             this._MainMenu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -584,5 +601,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem clearMessagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showStatusBarToolStripMenuItem;
+        public System.Windows.Forms.Panel _ViewPanel;
     }
 }

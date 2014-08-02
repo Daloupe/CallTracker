@@ -13,13 +13,20 @@ namespace CallTracker.View
 {
     [ImplementPropertyChanged]
     [DefaultBindingProperty("DataBindingSource")]
-    public partial class LabelledComboBox : LabelledBase
+    public partial class LabelledComboBoxLong : LabelledBase
     {
         [Category("A1")]
         public Color BorderColour
         {
             get { return _ComboBox.BorderColor; }
             set { _ComboBox.BorderColor = value; }
+        }
+        [Category("A1")]
+        [DefaultValue(typeof(Padding), "3,3,3,3")]
+        public Padding ControlMargin
+        {
+            get { return this.Margin; }
+            set { this.Margin = value; }
         }
 
         [Category("A1")]
@@ -43,9 +50,18 @@ namespace CallTracker.View
             set { _ComboBox.DataSource = value; }
         }
 
-        public LabelledComboBox()
+        public LabelledComboBoxLong()
         {
             InitializeComponent();
+            foreach (PropertyDescriptor prop in TypeDescriptor.GetProperties(this))
+            {
+                DefaultValueAttribute attr = (DefaultValueAttribute)prop.Attributes[typeof(DefaultValueAttribute)];
+                if (attr != null)
+                {
+                    prop.SetValue(this, attr.Value);
+                }
+            }
+
             _ComboBox.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             this.ContextMenuStripChanged += base.LabelledTextBox_ContextMenuStripChanged;
         }

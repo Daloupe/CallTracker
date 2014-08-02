@@ -34,7 +34,7 @@ namespace CallTracker.View
     {
         public static string SelectedMenuProduct = String.Empty;
 
-        public Point ControlOffset = new Point(0, 18);
+        public Point ControlOffset = new Point(0, -1);
 
         internal CustomerContact SelectedContact { get; set; }
 
@@ -101,7 +101,7 @@ namespace CallTracker.View
 
             UpdateProgressBar("Creating Main View");
             editContact = new EditContact(this);
-            Controls.Add(editContact);
+            _ViewPanel.Controls.Add(editContact);
             editContact.OnParentLoad();
             UpdateProgressBar("Bring to front");
             editContact.BringToFront();
@@ -120,13 +120,13 @@ namespace CallTracker.View
             latRateCodes = new LATRatecodes();
             databaseView = new DatabaseView();
 
-            Controls.Add(editLogins);
-            Controls.Add(editGridLinks);
-            Controls.Add(editSmartPasteBinds);
-            Controls.Add(callHistory);
-            Controls.Add(helpKeyCommands);
-            Controls.Add(latRateCodes);
-            Controls.Add(databaseView);
+            _ViewPanel.Controls.Add(editLogins);
+            _ViewPanel.Controls.Add(editGridLinks);
+            _ViewPanel.Controls.Add(editSmartPasteBinds);
+            _ViewPanel.Controls.Add(callHistory);
+            _ViewPanel.Controls.Add(helpKeyCommands);
+            _ViewPanel.Controls.Add(latRateCodes);
+            _ViewPanel.Controls.Add(databaseView);
 
             editContact.Init();
             editLogins.Init(this, loginsViewMenuItem);
@@ -147,7 +147,7 @@ namespace CallTracker.View
             NoteGen = new ICONNoteGenerator(ServicesStore.servicesDataSet);
             HotKeys = new HotkeyController(this);
 
-            this.Enabled = true;
+            //this.Enabled = true;
             UpdateProgressBar(0, "Finished Loading", EventLogLevel.ClearStatus);
         }
 
@@ -366,6 +366,14 @@ namespace CallTracker.View
                 this.Height = 259;
             else
                 this.Height = 239;
+        }
+
+        private void Main_Paint(object sender, PaintEventArgs e)
+        {
+            Point[] points = { new Point(10, 10), new Point(100, 10), new Point(50, 100) };
+            e.Graphics.DrawPolygon(new Pen(Color.Blue), points);
+            Point[] points2 = { new Point(100, 100), new Point(200, 100), new Point(150, 10) };
+            e.Graphics.FillPolygon(new SolidBrush(Color.Red), points2);
         }
     }
 }

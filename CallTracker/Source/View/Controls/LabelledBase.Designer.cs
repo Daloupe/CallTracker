@@ -40,10 +40,11 @@
             this._MenuButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_MenuButton.BackgroundImage")));
             this._MenuButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._MenuButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this._MenuButton.Location = new System.Drawing.Point(173, 0);
+            this._MenuButton.Location = new System.Drawing.Point(164, 0);
             this._MenuButton.Margin = new System.Windows.Forms.Padding(0);
             this._MenuButton.Name = "_MenuButton";
-            this._MenuButton.Size = new System.Drawing.Size(7, 30);
+            this._MenuButton.Size = new System.Drawing.Size(16, 32);
+            this._MenuButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this._MenuButton.TabIndex = 30;
             this._MenuButton.TabStop = false;
             this._MenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
@@ -51,15 +52,14 @@
             // _Label
             // 
             this._Label.AutoSize = true;
-            this._Label.Dock = System.Windows.Forms.DockStyle.Left;
             this._Label.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this._Label.Font = new System.Drawing.Font("Microsoft Yi Baiti", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._Label.Location = new System.Drawing.Point(0, 0);
+            this._Label.Font = new System.Drawing.Font("Gautami", 7F);
+            this._Label.Location = new System.Drawing.Point(1, -2);
             this._Label.Margin = new System.Windows.Forms.Padding(0);
-            this._Label.MaximumSize = new System.Drawing.Size(300, 10);
-            this._Label.MinimumSize = new System.Drawing.Size(9, 10);
+            this._Label.MaximumSize = new System.Drawing.Size(300, 70);
+            this._Label.MinimumSize = new System.Drawing.Size(9, 6);
             this._Label.Name = "_Label";
-            this._Label.Size = new System.Drawing.Size(24, 10);
+            this._Label.Size = new System.Drawing.Size(30, 22);
             this._Label.TabIndex = 26;
             this._Label.Text = "AVC:";
             this._Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -75,7 +75,7 @@
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "LabelledBase";
-            this.Size = new System.Drawing.Size(180, 30);
+            this.Size = new System.Drawing.Size(180, 32);
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

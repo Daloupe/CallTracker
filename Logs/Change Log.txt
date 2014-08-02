@@ -14,6 +14,14 @@
 - Added TestStack.White support for IPCC control.
 	- Poll Work Ready button to see if enabled.
 -
+0.30.1
+
+0.30.1
+| Improved new Texfield and Combo boxes.
+| Combo boxes now give focus back to parent.
+| Replced gui elements
+| Mouse wheel now moves the Splitter at the rate of one row;
+- Check Symptoms are bidning properly.
 
 0.30.0
 | Fixed timing issues with left click context menu.

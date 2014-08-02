@@ -123,7 +123,7 @@ namespace CallTracker.View
 
         public void UpdateEquipment()
         {
-            Parent._Equipment.DataSource = null;
+           Parent._Equipment.DataSource = null;
             Equipment.Clear();
             var query = (from a in Main.ServicesStore.servicesDataSet.Equipment
                          from b in a.GetServiceEquipmentMatchRows()
@@ -133,7 +133,7 @@ namespace CallTracker.View
             foreach (var item in query)
                 Equipment.Add(item);
 
-            Parent._Equipment.DataSource = Equipment;
+           Parent._Equipment.DataSource = Equipment;
         }
 
         public void UpdateSeverity()
@@ -161,7 +161,7 @@ namespace CallTracker.View
                     {
                         Parent._SeverityMenuStrip.Text = current = item.Text;
                     }
-                    if(item.Text == current)
+                    if (item.Text == current)
                         item.Checked = true;
                 }
                 else

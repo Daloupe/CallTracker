@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using System.Drawing.Drawing2D;
 
 using CallTracker.Model;
 using CallTracker.Data;
@@ -64,7 +65,7 @@ namespace CallTracker.View
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
             customerContactsBindingSource.DataSource = DataStore.Contacts;
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
-
+                
             if (customerContactsBindingSource.Count == 0)
             {
                 flowLayoutPanel1.Enabled = false;
@@ -306,8 +307,9 @@ namespace CallTracker.View
             splitContainer1.SplitterDistance = dist;
         }
 
-        private const int SPLITTER_2_MIN = 70;
-        private const int SPLITTER_2_MAX = 258;
+        private static List<int> SplitterRows = new List<int> { 155, 122, 91, 68, 37, 0};
+        private const int SPLITTER_2_MIN = 0;
+        private const int SPLITTER_2_MAX = 155;
         private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
         {
             if (splitContainer2.SplitterDistance > SPLITTER_2_MAX)
@@ -334,9 +336,24 @@ namespace CallTracker.View
 
         void splitContainer2_MouseWheel(object sender, MouseEventArgs e)
         {
-            if ((splitContainer2.SplitterDistance > 254 && e.Delta > 0) || (splitContainer2.SplitterDistance < 74 && e.Delta < 0))
-                return;
-            splitContainer2.SplitterDistance += e.Delta / 10;
+           
+            int dist = splitContainer2.SplitterDistance;
+            //List<int> closestPos = SplitterRows.Where(item => dist <= item).OrderBy(item => Math.Abs(dist - item)).ToList();
+            //List<int> closestNeg = SplitterRows.Where(item => dist >= item).OrderBy(item => Math.Abs(dist - item)).ToList();
+
+            Console.WriteLine(dist);
+            if (e.Delta > 0)
+            {
+                int newNeg = SplitterRows.Where(item => dist <item).OrderBy(item => Math.Abs(item - dist)).FirstOrDefault();
+                if (newNeg > dist)
+                    splitContainer2.SplitterDistance = newNeg;
+            }
+            else
+            {
+                int newNeg = SplitterRows.Where(item => dist > item).OrderBy(item => Math.Abs(item - dist)).FirstOrDefault();
+                if (newNeg < dist)
+                    splitContainer2.SplitterDistance = newNeg;
+            }
         }
 
         void splitContainer2_MouseEnter(object sender, EventArgs e)
@@ -355,6 +372,15 @@ namespace CallTracker.View
               ((Control)sender).Width - 1,
               ((Control)sender).Height - 1);
             base.OnPaint(e);
+        }
+        private void PaintGrayBorderMain(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawRectangle(Pens.WhiteSmoke,
+              0,
+              0,
+              ((Control)sender).Width - 1,
+              ((Control)sender).Height - 1);
+         
         }
 
         private void _Dial_click(object sender, EventArgs e)
@@ -469,10 +495,48 @@ namespace CallTracker.View
         {
             if(CurrentService != null)
                 CurrentService.UpdateSeverity();
-
-            Console.WriteLine("symp changed: " + MainForm.SelectedContact.Fault.Severity);
         }
 
+        private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
+        {
+            FillPolygonPointFillMode(e);
+        }
+
+        public void FillPolygonPointFillMode(PaintEventArgs e)
+        {
+
+            // Create solid brush.
+            SolidBrush blueBrush = new SolidBrush(Color.White);
+
+            // Create points that define polygon.
+
+            Point point1 = new Point(this.Height / 2 + 3, this.Width / 2 - 2);
+            Point point2 = new Point(this.Height / 2, this.Width / 2 + 2);
+            Point point3 = new Point(this.Height / 2 - 3, this.Width / 2 - 2);
+            Point point4 = new Point(this.Height / 2 + 3, this.Width / 2 - 2);
+
+            Point[] curvePoints = { point1, point2, point3, point4 };
+
+            // Define fill mode.
+            FillMode newFillMode = FillMode.Winding;
+
+            // Draw polygon to screen.
+            e.Graphics.FillPolygon(blueBrush, curvePoints, newFillMode);
+        }
+
+        private void hToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            if(item.Checked)
+            {
+                item.BackColor = Color.LightSlateGray;
+                item.ForeColor = Color.White;
+            }else
+            {
+                item.BackColor = Color.WhiteSmoke;
+                item.ForeColor = Color.Black;
+            }
+        }
     }
 
     public class EnumList
