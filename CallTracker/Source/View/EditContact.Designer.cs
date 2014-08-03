@@ -115,6 +115,8 @@
             this._Symptom = new CallTracker.View.LabelledComboBox();
             this._NPR = new CallTracker.View.LabelledTextBox();
             this._PR = new CallTracker.View.LabelledTextBox();
+            this.labelledTextField1 = new CallTracker.View.LabelledTextField();
+            this.labelledTextField2 = new CallTracker.View.LabelledTextField();
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -124,6 +126,7 @@
             this.HfcPanel.SuspendLayout();
             this._ServiceMenu.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this._SeverityMenuStrip.SuspendLayout();
             this._PRContextMenu.SuspendLayout();
             this._NewCallMenuStrip.SuspendLayout();
@@ -169,7 +172,7 @@
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer1.Panel2MinSize = 0;
             this.splitContainer1.Size = new System.Drawing.Size(275, 216);
-            this.splitContainer1.SplitterDistance = 179;
+            this.splitContainer1.SplitterDistance = 180;
             this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 24;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
@@ -200,7 +203,7 @@
             this.splitContainer2.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel2_Paint);
             this.splitContainer2.Panel2MinSize = 0;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Size = new System.Drawing.Size(179, 216);
+            this.splitContainer2.Size = new System.Drawing.Size(180, 216);
             this.splitContainer2.SplitterDistance = 68;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 0;
@@ -224,7 +227,7 @@
             this.HfcPanel.Location = new System.Drawing.Point(0, -91);
             this.HfcPanel.Margin = new System.Windows.Forms.Padding(0);
             this.HfcPanel.Name = "HfcPanel";
-            this.HfcPanel.Size = new System.Drawing.Size(179, 159);
+            this.HfcPanel.Size = new System.Drawing.Size(180, 159);
             this.HfcPanel.TabIndex = 22;
             // 
             // _ServiceMenu
@@ -305,6 +308,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Wheat;
+            this.panel1.Controls.Add(this.labelledTextField2);
+            this.panel1.Controls.Add(this.labelledTextField1);
             this.panel1.Location = new System.Drawing.Point(4, 6);
             this.panel1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.panel1.Name = "panel1";
@@ -925,6 +930,7 @@
             this._Icon.BorderColour = System.Drawing.Color.SlateGray;
             this._Icon.ControlHeight = 19;
             this._Icon.ControlMargin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this._Icon.DefaultText = "";
             this._Icon.Font = new System.Drawing.Font("Verdana", 7F);
             this._Icon.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._Icon.LabelAutoSize = false;
@@ -939,7 +945,7 @@
             this._Icon.PropertyName = null;
             this._Icon.Size = new System.Drawing.Size(187, 19);
             this._Icon.TabIndex = 13;
-            this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Icon.TextField = "";
             // 
             // _Cmbs
@@ -949,6 +955,7 @@
             this._Cmbs.BorderColour = System.Drawing.Color.SlateGray;
             this._Cmbs.ControlHeight = 19;
             this._Cmbs.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "CMBS", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Cmbs.DefaultText = "";
             this._Cmbs.Font = new System.Drawing.Font("Verdana", 7F);
             this._Cmbs.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._Cmbs.LabelAutoSize = false;
@@ -962,7 +969,7 @@
             this._Cmbs.PropertyName = null;
             this._Cmbs.Size = new System.Drawing.Size(135, 19);
             this._Cmbs.TabIndex = 14;
-            this._Cmbs.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this._Cmbs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Cmbs.TextField = "";
             // 
             // customerContactsBindingSource
@@ -978,6 +985,7 @@
             this._Username.ControlHeight = 19;
             this._Username.ControlMargin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this._Username.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Username", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Username.DefaultText = "";
             this._Username.Font = new System.Drawing.Font("Verdana", 7F);
             this._Username.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._Username.LabelAutoSize = false;
@@ -1002,6 +1010,7 @@
             this._Dn.BorderColour = System.Drawing.Color.SlateGray;
             this._Dn.ControlHeight = 19;
             this._Dn.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "DN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Dn.DefaultText = "";
             this._Dn.Font = new System.Drawing.Font("Verdana", 7F);
             this._Dn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._Dn.LabelAutoSize = false;
@@ -1015,7 +1024,7 @@
             this._Dn.PropertyName = null;
             this._Dn.Size = new System.Drawing.Size(135, 19);
             this._Dn.TabIndex = 16;
-            this._Dn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this._Dn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Dn.TextField = "";
             // 
             // _Name
@@ -1026,6 +1035,7 @@
             this._Name.ControlHeight = 19;
             this._Name.ControlMargin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this._Name.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Name.DefaultText = "";
             this._Name.Font = new System.Drawing.Font("Verdana", 7F);
             this._Name.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._Name.LabelAutoSize = false;
@@ -1050,6 +1060,7 @@
             this._Mobile.BorderColour = System.Drawing.Color.SlateGray;
             this._Mobile.ControlHeight = 19;
             this._Mobile.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Mobile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Mobile.DefaultText = "";
             this._Mobile.Dock = System.Windows.Forms.DockStyle.Right;
             this._Mobile.Font = new System.Drawing.Font("Verdana", 7F);
             this._Mobile.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -1064,7 +1075,7 @@
             this._Mobile.PropertyName = null;
             this._Mobile.Size = new System.Drawing.Size(135, 19);
             this._Mobile.TabIndex = 18;
-            this._Mobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this._Mobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Mobile.TextField = "";
             // 
             // _Address
@@ -1074,6 +1085,7 @@
             this._Address.BorderColour = System.Drawing.Color.SlateGray;
             this._Address.ControlHeight = 19;
             this._Address.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Address.Address", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Address.DefaultText = "";
             this._Address.Font = new System.Drawing.Font("Verdana", 7F);
             this._Address.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._Address.LabelAutoSize = false;
@@ -1098,6 +1110,7 @@
             this._BookingType.BorderColour = System.Drawing.Color.SlateGray;
             this._BookingType.ControlHeight = 29;
             this._BookingType.DataSource = null;
+            this._BookingType.DefaultText = "";
             this._BookingType.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingType.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._BookingType.LabelAutoSize = true;
@@ -1121,6 +1134,7 @@
             this._BookingTimeSlot.BorderColour = System.Drawing.Color.SlateGray;
             this._BookingTimeSlot.ControlHeight = 29;
             this._BookingTimeSlot.DataSource = null;
+            this._BookingTimeSlot.DefaultText = "";
             this._BookingTimeSlot.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingTimeSlot.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._BookingTimeSlot.LabelAutoSize = true;
@@ -1144,6 +1158,7 @@
             this._BookingDate.BorderColour = System.Drawing.Color.SlateGray;
             this._BookingDate.ControlHeight = 29;
             this._BookingDate.DataSource = null;
+            this._BookingDate.DefaultText = "";
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._BookingDate.LabelAutoSize = true;
@@ -1167,6 +1182,7 @@
             this._Itcase.BorderColour = System.Drawing.Color.SlateGray;
             this._Itcase.ControlHeight = 28;
             this._Itcase.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.PR", true));
+            this._Itcase.DefaultText = "";
             this._Itcase.Font = new System.Drawing.Font("Verdana", 7F);
             this._Itcase.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._Itcase.LabelAutoSize = true;
@@ -1191,6 +1207,7 @@
             this._Equipment.BorderColour = System.Drawing.Color.SlateGray;
             this._Equipment.ControlHeight = 20;
             this._Equipment.DataSource = null;
+            this._Equipment.DefaultText = "";
             this._Equipment.Font = new System.Drawing.Font("Verdana", 7F);
             this._Equipment.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._Equipment.LabelAutoSize = false;
@@ -1214,6 +1231,7 @@
             this._Outcome.BorderColour = System.Drawing.Color.SlateGray;
             this._Outcome.ControlHeight = 29;
             this._Outcome.DataSource = null;
+            this._Outcome.DefaultText = "";
             this._Outcome.Font = new System.Drawing.Font("Verdana", 7F);
             this._Outcome.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._Outcome.LabelAutoSize = true;
@@ -1238,6 +1256,7 @@
             this._Symptom.BorderColour = System.Drawing.Color.SlateGray;
             this._Symptom.ControlHeight = 29;
             this._Symptom.DataSource = null;
+            this._Symptom.DefaultText = "";
             this._Symptom.Font = new System.Drawing.Font("Verdana", 7F);
             this._Symptom.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._Symptom.LabelAutoSize = true;
@@ -1262,6 +1281,7 @@
             this._NPR.BorderColour = System.Drawing.Color.SlateGray;
             this._NPR.ControlHeight = 28;
             this._NPR.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.NPR", true));
+            this._NPR.DefaultText = "";
             this._NPR.Font = new System.Drawing.Font("Verdana", 7F);
             this._NPR.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._NPR.LabelAutoSize = true;
@@ -1287,6 +1307,7 @@
             this._PR.BorderColour = System.Drawing.Color.SlateGray;
             this._PR.ControlHeight = 28;
             this._PR.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.PR", true));
+            this._PR.DefaultText = "";
             this._PR.Font = new System.Drawing.Font("Verdana", 7F);
             this._PR.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this._PR.LabelAutoSize = true;
@@ -1303,6 +1324,50 @@
             this._PR.TabIndex = 51;
             this._PR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._PR.TextField = "";
+            // 
+            // labelledTextField1
+            // 
+            this.labelledTextField1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextField1.BackColor = System.Drawing.Color.Tomato;
+            this.labelledTextField1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.labelledTextField1.BorderColour = System.Drawing.Color.Tomato;
+            this.labelledTextField1.ControlHeight = 97;
+            this.labelledTextField1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextField1.LabelAutoSize = false;
+            this.labelledTextField1.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this.labelledTextField1.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextField1.LabelSize = new System.Drawing.Size(174, 17);
+            this.labelledTextField1.LabelText = "TESTING DONE";
+            this.labelledTextField1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelledTextField1.Location = new System.Drawing.Point(0, 1);
+            this.labelledTextField1.Margin = new System.Windows.Forms.Padding(0);
+            this.labelledTextField1.Name = "labelledTextField1";
+            this.labelledTextField1.PropertyName = null;
+            this.labelledTextField1.Size = new System.Drawing.Size(174, 97);
+            this.labelledTextField1.TabIndex = 0;
+            this.labelledTextField1.TextField = "";
+            // 
+            // labelledTextField2
+            // 
+            this.labelledTextField2.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextField2.BackColor = System.Drawing.Color.Tomato;
+            this.labelledTextField2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.labelledTextField2.BorderColour = System.Drawing.Color.Tomato;
+            this.labelledTextField2.ControlHeight = 98;
+            this.labelledTextField2.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextField2.LabelAutoSize = false;
+            this.labelledTextField2.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this.labelledTextField2.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextField2.LabelSize = new System.Drawing.Size(173, 17);
+            this.labelledTextField2.LabelText = "OUTCOME";
+            this.labelledTextField2.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelledTextField2.Location = new System.Drawing.Point(1, 104);
+            this.labelledTextField2.Margin = new System.Windows.Forms.Padding(0);
+            this.labelledTextField2.Name = "labelledTextField2";
+            this.labelledTextField2.PropertyName = null;
+            this.labelledTextField2.Size = new System.Drawing.Size(173, 98);
+            this.labelledTextField2.TabIndex = 1;
+            this.labelledTextField2.TextField = "";
             // 
             // EditContact
             // 
@@ -1325,6 +1390,7 @@
             this.HfcPanel.ResumeLayout(false);
             this._ServiceMenu.ResumeLayout(false);
             this.flowLayoutPanel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this._SeverityMenuStrip.ResumeLayout(false);
             this._PRContextMenu.ResumeLayout(false);
             this._NewCallMenuStrip.ResumeLayout(false);
@@ -1433,5 +1499,7 @@
         internal LabelledComboBox _BookingType;
         internal LabelledComboBox _BookingTimeSlot;
         internal LabelledComboBox _BookingDate;
+        private LabelledTextField labelledTextField1;
+        private LabelledTextField labelledTextField2;
     }
 }

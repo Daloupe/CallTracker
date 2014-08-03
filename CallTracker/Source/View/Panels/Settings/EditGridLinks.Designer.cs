@@ -90,7 +90,7 @@
             this._Done.BackColor = System.Drawing.Color.LightGray;
             this._Done.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._Done.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Done.Location = new System.Drawing.Point(506, 197);
+            this._Done.Location = new System.Drawing.Point(506, 217);
             this._Done.Name = "_Done";
             this._Done.Size = new System.Drawing.Size(75, 22);
             this._Done.TabIndex = 10;
@@ -518,7 +518,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
             this.label11.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label11.Location = new System.Drawing.Point(3, 199);
+            this.label11.Location = new System.Drawing.Point(3, 219);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(148, 18);
             this.label11.TabIndex = 17;
@@ -529,7 +529,7 @@
             this._SetDefaults.BackColor = System.Drawing.Color.LightGray;
             this._SetDefaults.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._SetDefaults.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._SetDefaults.Location = new System.Drawing.Point(239, 197);
+            this._SetDefaults.Location = new System.Drawing.Point(239, 217);
             this._SetDefaults.Name = "_SetDefaults";
             this._SetDefaults.Size = new System.Drawing.Size(75, 22);
             this._SetDefaults.TabIndex = 18;
@@ -596,7 +596,7 @@
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "EditGridLinks";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(584, 222);
+            this.Size = new System.Drawing.Size(584, 241);
             ((System.ComponentModel.ISupportInitialize)(this.systemItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridLinksBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);

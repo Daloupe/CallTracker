@@ -112,7 +112,7 @@
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(578, 191);
+            this.panel1.Size = new System.Drawing.Size(578, 211);
             this.panel1.TabIndex = 13;
             // 
             // panel7
@@ -612,7 +612,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label6.Location = new System.Drawing.Point(3, 199);
+            this.label6.Location = new System.Drawing.Point(3, 218);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(200, 18);
             this.label6.TabIndex = 12;
@@ -623,7 +623,7 @@
             this._Done.BackColor = System.Drawing.Color.LightGray;
             this._Done.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._Done.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Done.Location = new System.Drawing.Point(506, 197);
+            this._Done.Location = new System.Drawing.Point(506, 216);
             this._Done.Name = "_Done";
             this._Done.Size = new System.Drawing.Size(75, 22);
             this._Done.TabIndex = 10;
@@ -646,7 +646,7 @@
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "HelpKeyCommands";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(584, 222);
+            this.Size = new System.Drawing.Size(584, 241);
             this.panel1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();

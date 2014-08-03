@@ -34,7 +34,6 @@
             // 
             // _MenuButton
             // 
-            this._MenuButton.Location = new System.Drawing.Point(164, 0);
             this._MenuButton.Size = new System.Drawing.Size(16, 12);
             this._MenuButton.Visible = false;
             // 
@@ -51,6 +50,7 @@
             this._ComboBox.Size = new System.Drawing.Size(180, 20);
             this._ComboBox.TabIndex = 31;
             this._ComboBox.SelectedIndexChanged += new System.EventHandler(this._ComboBox_SelectedIndexChanged);
+            this._ComboBox.DropDownClosed += new System.EventHandler(this._ComboBox_DropDownClosed);
             this._ComboBox.DataSourceChanged += new System.EventHandler(this._ComboBox_DataSourceChanged);
             // 
             // LabelledComboBox

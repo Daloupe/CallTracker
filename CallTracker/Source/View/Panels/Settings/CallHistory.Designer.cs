@@ -49,7 +49,7 @@
             this._Done.BackColor = System.Drawing.Color.LightGray;
             this._Done.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._Done.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Done.Location = new System.Drawing.Point(425, 197);
+            this._Done.Location = new System.Drawing.Point(426, 217);
             this._Done.Name = "_Done";
             this._Done.Size = new System.Drawing.Size(75, 22);
             this._Done.TabIndex = 10;
@@ -121,7 +121,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label6.Location = new System.Drawing.Point(3, 199);
+            this.label6.Location = new System.Drawing.Point(4, 219);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(128, 18);
             this.label6.TabIndex = 13;
@@ -132,7 +132,7 @@
             this._Cancel.BackColor = System.Drawing.Color.LightGray;
             this._Cancel.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Cancel.Location = new System.Drawing.Point(506, 197);
+            this._Cancel.Location = new System.Drawing.Point(507, 217);
             this._Cancel.Name = "_Cancel";
             this._Cancel.Size = new System.Drawing.Size(75, 22);
             this._Cancel.TabIndex = 15;
@@ -145,7 +145,7 @@
             this._ClearHistory.BackColor = System.Drawing.Color.LightGray;
             this._ClearHistory.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._ClearHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._ClearHistory.Location = new System.Drawing.Point(269, 197);
+            this._ClearHistory.Location = new System.Drawing.Point(270, 217);
             this._ClearHistory.Name = "_ClearHistory";
             this._ClearHistory.Size = new System.Drawing.Size(87, 22);
             this._ClearHistory.TabIndex = 16;
@@ -166,7 +166,7 @@
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "CallHistory";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(584, 222);
+            this.Size = new System.Drawing.Size(584, 241);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);

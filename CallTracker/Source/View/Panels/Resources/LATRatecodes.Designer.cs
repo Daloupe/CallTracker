@@ -173,7 +173,7 @@
             this._Search.BackColor = System.Drawing.Color.LightGray;
             this._Search.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._Search.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Search.Location = new System.Drawing.Point(92, 198);
+            this._Search.Location = new System.Drawing.Point(92, 217);
             this._Search.Name = "_Search";
             this._Search.Size = new System.Drawing.Size(57, 22);
             this._Search.TabIndex = 16;
@@ -186,7 +186,7 @@
             this._Cancel.BackColor = System.Drawing.Color.LightGray;
             this._Cancel.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Cancel.Location = new System.Drawing.Point(506, 198);
+            this._Cancel.Location = new System.Drawing.Point(506, 217);
             this._Cancel.Name = "_Cancel";
             this._Cancel.Size = new System.Drawing.Size(75, 22);
             this._Cancel.TabIndex = 15;
@@ -199,7 +199,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label6.Location = new System.Drawing.Point(374, 200);
+            this.label6.Location = new System.Drawing.Point(374, 219);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(123, 17);
             this.label6.TabIndex = 13;
@@ -210,7 +210,7 @@
             this.textBox1.BorderColor = System.Drawing.Color.Gray;
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(4, 198);
+            this.textBox1.Location = new System.Drawing.Point(4, 217);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(85, 22);
             this.textBox1.TabIndex = 19;
@@ -228,7 +228,7 @@
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "LATRatecodes";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(584, 222);
+            this.Size = new System.Drawing.Size(584, 241);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rateplanBindingSource)).EndInit();

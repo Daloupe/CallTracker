@@ -49,12 +49,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pasteToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(108, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(106, 26);
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.pasteToolStripMenuItem.Text = "Delete";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
@@ -100,7 +100,7 @@
             this._Cancel.BackColor = System.Drawing.Color.LightGray;
             this._Cancel.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Cancel.Location = new System.Drawing.Point(506, 198);
+            this._Cancel.Location = new System.Drawing.Point(506, 217);
             this._Cancel.Name = "_Cancel";
             this._Cancel.Size = new System.Drawing.Size(75, 22);
             this._Cancel.TabIndex = 15;
@@ -113,7 +113,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Verdana", 10F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label6.Location = new System.Drawing.Point(374, 200);
+            this.label6.Location = new System.Drawing.Point(374, 219);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(131, 17);
             this.label6.TabIndex = 13;
@@ -122,7 +122,7 @@
             // _DatabaseSelect
             // 
             this._DatabaseSelect.FormattingEnabled = true;
-            this._DatabaseSelect.Location = new System.Drawing.Point(3, 198);
+            this._DatabaseSelect.Location = new System.Drawing.Point(3, 217);
             this._DatabaseSelect.Name = "_DatabaseSelect";
             this._DatabaseSelect.Size = new System.Drawing.Size(183, 20);
             this._DatabaseSelect.TabIndex = 18;
@@ -140,7 +140,7 @@
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "DatabaseView";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(584, 222);
+            this.Size = new System.Drawing.Size(584, 241);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.databaseBindingSource)).EndInit();

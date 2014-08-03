@@ -182,13 +182,20 @@ namespace CallTracker.View
             set
             {
                 if (value != null)
+                {
+                    statusStrip1.Hide();
                     value.ShowSetting();
+                }else
+                    statusStrip1.Show();
 
                 if (visibleSetting != null)
                     visibleSetting.HideSetting();
 
                 if (visibleSetting == value)
+                {
+                    statusStrip1.Show();
                     visibleSetting = null;
+                }
                 else
                     visibleSetting = value;
             }

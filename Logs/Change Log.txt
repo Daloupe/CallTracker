@@ -15,6 +15,11 @@
 	- Poll Work Ready button to see if enabled.
 -
 0.30.1
+- Severity Should be being selected by default.
+- outcomes crasheS.
+
+0.30.2
+| Othr gui stuff.
 
 0.30.1
 | Improved new Texfield and Combo boxes.

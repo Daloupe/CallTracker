@@ -128,6 +128,12 @@
     <Compile Include="Source\View\Controls\LabelledComboBoxLong.Designer.cs">
       <DependentUpon>LabelledComboBoxLong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\View\Controls\LabelledTextField.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\LabelledTextField.Designer.cs">
+      <DependentUpon>LabelledTextField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Controls\LabelledTextBoxLong.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -282,6 +288,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\LabelledComboBoxLong.resx">
       <DependentUpon>LabelledComboBoxLong.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\LabelledTextField.resx">
+      <DependentUpon>LabelledTextField.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Controls\LabelledTextBoxLong.resx">

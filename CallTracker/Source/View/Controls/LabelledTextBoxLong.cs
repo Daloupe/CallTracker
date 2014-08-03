@@ -20,6 +20,12 @@ namespace CallTracker.View
             set { _DataField.TextAlign = value; }
         }
 
+        [Category("A1")]
+        public string DefaultText
+        {
+            get { return _DataField.Text; }
+            set { _DataField.Text = value; }
+        }
 
         [Category("A1")]
         public Color BorderColour

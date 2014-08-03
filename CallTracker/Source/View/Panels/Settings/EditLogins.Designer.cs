@@ -77,7 +77,7 @@
             this.propertyLock.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.propertyLock.Image = global::CallTracker.Properties.Resources.padlock_small;
             this.propertyLock.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.propertyLock.Location = new System.Drawing.Point(360, 197);
+            this.propertyLock.Location = new System.Drawing.Point(359, 200);
             this.propertyLock.Name = "propertyLock";
             this.propertyLock.Padding = new System.Windows.Forms.Padding(3);
             this.propertyLock.Size = new System.Drawing.Size(38, 22);
@@ -91,7 +91,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label6.Location = new System.Drawing.Point(3, 199);
+            this.label6.Location = new System.Drawing.Point(3, 219);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(124, 18);
             this.label6.TabIndex = 13;
@@ -407,7 +407,7 @@
             this._Done.BackColor = System.Drawing.Color.LightGray;
             this._Done.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._Done.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Done.Location = new System.Drawing.Point(506, 197);
+            this._Done.Location = new System.Drawing.Point(506, 217);
             this._Done.Name = "_Done";
             this._Done.Size = new System.Drawing.Size(75, 22);
             this._Done.TabIndex = 10;
@@ -427,7 +427,7 @@
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "EditLogins";
             this.Padding = new System.Windows.Forms.Padding(3);
-            this.Size = new System.Drawing.Size(584, 222);
+            this.Size = new System.Drawing.Size(584, 241);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);

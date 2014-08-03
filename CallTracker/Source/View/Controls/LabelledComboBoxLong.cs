@@ -21,6 +21,14 @@ namespace CallTracker.View
             get { return _ComboBox.BorderColor; }
             set { _ComboBox.BorderColor = value; }
         }
+
+        [Category("A1")]
+        public string DefaultText
+        {
+            get { return _ComboBox.Text; }
+            set { _ComboBox.Text = value; }
+        }
+
         [Category("A1")]
         [DefaultValue(typeof(Padding), "3,3,3,3")]
         public Padding ControlMargin
@@ -79,13 +87,27 @@ namespace CallTracker.View
 
         private void _ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Parent.Focus();
             this.ParentForm.Validate();
         }
 
         private void _ComboBox_DataSourceChanged(object sender, EventArgs e)
         {
             this.ParentForm.Validate();
+        }
+
+        private void _ComboBox_DropDown(object sender, EventArgs e)
+        {
+            _Label.Hide();
+            if (ContextMenuStrip != null)
+                _MenuButton.Hide();
+        }
+
+        private void _ComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            this.Parent.Focus();
+            _Label.Show();
+            if(ContextMenuStrip != null)
+                _MenuButton.Show();
         }
     }
 }

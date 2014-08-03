@@ -338,13 +338,10 @@ namespace CallTracker.View
         {
            
             int dist = splitContainer2.SplitterDistance;
-            //List<int> closestPos = SplitterRows.Where(item => dist <= item).OrderBy(item => Math.Abs(dist - item)).ToList();
-            //List<int> closestNeg = SplitterRows.Where(item => dist >= item).OrderBy(item => Math.Abs(dist - item)).ToList();
 
-            Console.WriteLine(dist);
             if (e.Delta > 0)
             {
-                int newNeg = SplitterRows.Where(item => dist <item).OrderBy(item => Math.Abs(item - dist)).FirstOrDefault();
+                int newNeg = SplitterRows.Where(item => dist < item).OrderBy(item => Math.Abs(item - dist)).FirstOrDefault();
                 if (newNeg > dist)
                     splitContainer2.SplitterDistance = newNeg;
             }
@@ -457,30 +454,9 @@ namespace CallTracker.View
                 clearAndCloseToolStripMenuItem.Enabled = true;
             }
         }
-        //private void _PRContextMenu_Opening(object sender, CancelEventArgs e)
-        //{
-        //    ContextMenuStrip menu = (ContextMenuStrip)sender;
-        //    if (menu.Tag == null)
-        //        e.Cancel = true;
-        //    menu.Tag = null;
-        //    if (menu.SourceControl.Parent.Name == "_NPR")
-        //    {
-        //        dispatchToolStripMenuItem.Enabled = false;
-        //        stapleToParentToolStripMenuItem.Enabled = false;
-        //        clearAndCloseToolStripMenuItem.Enabled = false;
-        //    }
-        //    else
-        //    {
-        //        dispatchToolStripMenuItem.Enabled = true;
-        //        stapleToParentToolStripMenuItem.Enabled = true;
-        //        clearAndCloseToolStripMenuItem.Enabled = true;
-        //    }
-        //}
 
         private void _SeverityMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-
-            //ToolStripMenuItem ownerItem = e.ClickedItem.OwnerItem as ToolStripMenuItem;
 
                 foreach (ToolStripMenuItem item in _SeverityMenuStrip.Items)
                 {

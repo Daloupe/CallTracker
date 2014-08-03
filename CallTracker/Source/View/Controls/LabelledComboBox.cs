@@ -23,6 +23,13 @@ namespace CallTracker.View
         }
 
         [Category("A1")]
+        public string DefaultText
+        {
+            get { return _ComboBox.Text; }
+            set { _ComboBox.Text = value; }
+        }
+
+        [Category("A1")]
         [Bindable(true)]
         [Browsable(true)]
         public ControlBindingsCollection DataBindingSource
@@ -63,13 +70,17 @@ namespace CallTracker.View
 
         private void _ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.Parent.Focus();
             this.ParentForm.Validate();
         }
 
         private void _ComboBox_DataSourceChanged(object sender, EventArgs e)
         {
             this.ParentForm.Validate();
+        }
+
+        private void _ComboBox_DropDownClosed(object sender, EventArgs e)
+        {
+            this.Parent.Focus();
         }
     }
 }
