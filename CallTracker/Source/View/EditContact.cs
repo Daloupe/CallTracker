@@ -153,6 +153,7 @@ namespace CallTracker.View
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
             _WorkReadyTimer.Enabled = false;
             _WorkReadyTimerDisplay.Text = "Work Ready: 00:00";
+            _WorkReadyTimerDisplay.BackColor = Color.FromArgb(180, 238, 121);
         }
 
         public void DeleteCalls()
@@ -559,9 +560,14 @@ namespace CallTracker.View
             {
                 _WorkReadyTimeElapsed = new DateTime();
                 _WorkReadyTimer.Enabled = true;
+                _WorkReadyTimerDisplay.BackColor = Color.FromArgb(245, 120, 88);
             }
             else
+            {
                 _WorkReadyTimer.Enabled = false;
+                _WorkReadyTimerDisplay.Text = "Work Ready: 00:00";
+                _WorkReadyTimerDisplay.BackColor = Color.FromArgb(180, 238, 121);
+            }
         } 
 
     }

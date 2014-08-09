@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexAssembly", "RegexAssem
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{CB733810-5F75-41BA-BE45-1E9E874D8220}"
 	ProjectSection(SolutionItems) = preProject
+		Logs\9.8.txt = Logs\9.8.txt
 		Logs\Change Log.txt = Logs\Change Log.txt
 		Logs\Test Outcome 29.07.txt = Logs\Test Outcome 29.07.txt
 		Logs\Test Outcome 31.07.txt = Logs\Test Outcome 31.07.txt

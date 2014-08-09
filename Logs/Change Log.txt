@@ -15,6 +15,17 @@
 	- Poll Work Ready button to see if enabled.
 -
 
+0.31.0
+
+0.30.5
+| Work Ready timer background changes color.
+| ParentForm.Validate on all labelledcontrols.
+| Adding BindingNavigatorIgnoreFocus.
+| Work Ready Timer resets properly.
+| Removed Ratecode search menu item.
+| Fixed Contol text color.
+| Added skeleton for IPCC Monitoring.
+
 0.30.4
 | Changed DataField Label color when populated with data.
 | /bin files moved to their own Data folder.

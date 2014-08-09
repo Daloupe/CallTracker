@@ -26,7 +26,7 @@ namespace CallTracker.View
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
-            rateplanBindingSource.ListChanged += rateplanBindingSource_ListChanged;
+            //rateplanBindingSource.ListChanged += rateplanBindingSource_ListChanged;
             rateplanBindingSource.DataSource = MainForm.ResourceStore.LATRatePlans;
             dataGridView1.DataSource = rateplanBindingSource;
         }
@@ -99,7 +99,7 @@ namespace CallTracker.View
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //dataGridView1.ClearSelection();
-            rateplanBindingSource.ListChanged -= rateplanBindingSource_ListChanged;
+            //rateplanBindingSource.ListChanged -= rateplanBindingSource_ListChanged;
             
             char[] rowSplitter = { '\n', '\r' };  // Cr and Lf.
             IDataObject dataInClipboard = Clipboard.GetDataObject();
@@ -116,14 +116,14 @@ namespace CallTracker.View
             }
 
             //rateplanBindingSource.RemoveAt(0);
-            rateplanBindingSource.ListChanged += rateplanBindingSource_ListChanged;
-            MainForm.UpdateAutoComplete();
+            //rateplanBindingSource.ListChanged += rateplanBindingSource_ListChanged;
+            //MainForm.UpdateAutoComplete();
         }
 
-        void rateplanBindingSource_ListChanged(object sender, ListChangedEventArgs e)
-        {
-             MainForm.UpdateAutoComplete();
-        }
+        //void rateplanBindingSource_ListChanged(object sender, ListChangedEventArgs e)
+        //{
+        //     //MainForm.UpdateAutoComplete();
+        //}
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {

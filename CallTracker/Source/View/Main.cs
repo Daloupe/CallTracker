@@ -150,6 +150,8 @@ namespace CallTracker.View
 
             //this.Enabled = true;
             UpdateProgressBar(0, "Finished Loading", EventLogLevel.ClearStatus);
+
+            InitIPCCMonitor();
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -266,28 +268,29 @@ namespace CallTracker.View
             WindowHelper.IPCCAutomation(item.Tag.ToString(), offsets);
         }
 
-        private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Return)
-            {
-                settingMenuItem_Click(LATRatecodeMenuItem, new EventArgs());
-                latRateCodes.Search(((ToolStripTextBox)sender).Text);
-                LatRatecodeSearch.PerformClick();
-            };
-        }
+        //private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
+        //{
+        //    if (e.KeyCode == Keys.Return)
+        //    {
+        //        settingMenuItem_Click(LATRatecodeMenuItem, new EventArgs());
+        //        latRateCodes.Search(((ToolStripTextBox)sender).Text);
+        //        LatRatecodeSearch.PerformClick();
+        //    };
+        //}
 
-        public void UpdateAutoComplete()
-        {
-            LatRatecodeSearch.AutoCompleteCustomSource = systemAutoCompleteSource;
-            systemAutoCompleteSource.Clear();
-            systemAutoCompleteSource.AddRange(ResourceStore.LATRatePlans.Select(p => p.RateCode).ToArray());
-        }
+        //public void UpdateAutoComplete()
+        //{
+        //    LatRatecodeSearch.AutoCompleteCustomSource = systemAutoCompleteSource;
+        //    systemAutoCompleteSource.Clear();
+        //    systemAutoCompleteSource.AddRange(ResourceStore.LATRatePlans.Select(p => p.RateCode).ToArray());
+        //}
 
         private void LATRatecodeMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            ((ToolStripMenuItem)sender).HideDropDown();
-            ((ToolStripMenuItem)sender).Invalidate();
+            //((ToolStripMenuItem)sender).HideDropDown();
+            //((ToolStripMenuItem)sender).Invalidate();
         }
+
         // Move Window ////////////////////////////////////////////////////////////////////////////////////
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -385,6 +388,24 @@ namespace CallTracker.View
             e.Graphics.DrawPolygon(new Pen(Color.Blue), points);
             Point[] points2 = { new Point(100, 100), new Point(200, 100), new Point(150, 10) };
             e.Graphics.FillPolygon(new SolidBrush(Color.Red), points2);
+        }
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        // IPCC Monitor ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //private TestStack.White.Application IPCCApplication
+        //private Window IPCCWindow
+        //private TestStack.White.UIItems.Edit IPCCCallStatus
+        private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
+        }
+
+        private void InitIPCCMonitor()
+        {
+            //IPCCApplication = TestStack.White.Application.Attach("IPCCDesktopAgent.exe");
+            //IPCCWindow = application.GetWindow("CMake 2.8.12.1 - C:/Programming/Rust/piston-master/exam", InitializeOption.WithCache);
+            //IPCCCallStatus = window.Get<TestStack.White.UIItems.Panel>("BrowseSourceDirectoryButton");
         }
     }
 }

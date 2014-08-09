@@ -48,17 +48,17 @@ namespace CallTracker.View
         private void LabelledComboBox_Load(object sender, EventArgs e)
         {
             if (ContextMenuStrip != null)
-            {
-                
+            {    
                 this._MenuButton.Show();
                 this.ContextMenuStrip.Show();
                 this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
+                _DateTimePicker.ValueChanged += _DateTimePicker_ValueChanged;
             }
         }
 
         private void _DateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            //this.ParentForm.Validate();
+            this.ParentForm.Validate();
         }
 
         private void _DateTimePicker_CloseUp(object sender, EventArgs e)

@@ -49,7 +49,6 @@
             this._DateTimePicker.Size = new System.Drawing.Size(180, 19);
             this._DateTimePicker.TabIndex = 31;
             this._DateTimePicker.CloseUp += new System.EventHandler(this._DateTimePicker_CloseUp);
-            this._DateTimePicker.ValueChanged += new System.EventHandler(this._DateTimePicker_ValueChanged);
             // 
             // LabelledDatePicker
             // 

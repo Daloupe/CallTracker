@@ -41,6 +41,9 @@
             this._StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._StatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.MenuPanel = new System.Windows.Forms.Panel();
+            this._IPCCState = new System.Windows.Forms.ToolStripStatusLabel();
+            this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,13 +73,13 @@
             this.nIMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ratecodesToolStripMenuItem = new ContextualToolStripMenuItem();
             this.LATRatecodeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LatRatecodeSearch = new System.Windows.Forms.ToolStripTextBox();
             this.oNCToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.dTVToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.clearanceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.monitorIPCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -116,6 +119,7 @@
             this.statusStrip1.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this._StatusLabel,
+            this._IPCCState,
             this._StatusProgressBar});
             this.statusStrip1.Location = new System.Drawing.Point(0, 236);
             this.statusStrip1.Name = "statusStrip1";
@@ -128,6 +132,8 @@
             // 
             this._StatusContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
             this._StatusContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.monitorIPCCToolStripMenuItem,
+            this.toolStripSeparator5,
             this.lowToolStripMenuItem,
             this.mediumToolStripMenuItem,
             this.highToolStripMenuItem,
@@ -135,7 +141,7 @@
             this.clearMessagesToolStripMenuItem});
             this._StatusContextMenu.Name = "_StatusContextMenu";
             this._StatusContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this._StatusContextMenu.Size = new System.Drawing.Size(177, 98);
+            this._StatusContextMenu.Size = new System.Drawing.Size(177, 126);
             this._StatusContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._StatusContextMenu_ItemClicked);
             // 
             // lowToolStripMenuItem
@@ -184,7 +190,7 @@
             this._StatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this._StatusLabel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this._StatusLabel.Name = "_StatusLabel";
-            this._StatusLabel.Size = new System.Drawing.Size(521, 16);
+            this._StatusLabel.Size = new System.Drawing.Size(401, 16);
             this._StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // _StatusProgressBar
@@ -205,6 +211,26 @@
             this.MenuPanel.Size = new System.Drawing.Size(584, 16);
             this.MenuPanel.TabIndex = 27;
             this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
+            // 
+            // _IPCCState
+            // 
+            this._IPCCState.AutoSize = false;
+            this._IPCCState.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this._IPCCState.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this._IPCCState.Font = new System.Drawing.Font("Verdana", 7F);
+            this._IPCCState.Name = "_IPCCState";
+            this._IPCCState.Size = new System.Drawing.Size(120, 14);
+            // 
+            // _IPCCTimer
+            // 
+            this._IPCCTimer.Interval = 1000;
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(173, 6);
             // 
             // _MainMenu
             // 
@@ -460,29 +486,11 @@
             // 
             // LATRatecodeMenuItem
             // 
-            this.LATRatecodeMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.LatRatecodeSearch});
             this.LATRatecodeMenuItem.Name = "LATRatecodeMenuItem";
             this.LATRatecodeMenuItem.Size = new System.Drawing.Size(113, 22);
             this.LATRatecodeMenuItem.Text = "LAT/LIP";
             this.LATRatecodeMenuItem.CheckedChanged += new System.EventHandler(this.LATRatecodeMenuItem_CheckedChanged);
             this.LATRatecodeMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
-            // 
-            // LatRatecodeSearch
-            // 
-            this.LatRatecodeSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.LatRatecodeSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.LatRatecodeSearch.AutoSize = false;
-            this.LatRatecodeSearch.AutoToolTip = true;
-            this.LatRatecodeSearch.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.LatRatecodeSearch.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.LatRatecodeSearch.Font = new System.Drawing.Font("Verdana", 7F);
-            this.LatRatecodeSearch.HideSelection = false;
-            this.LatRatecodeSearch.MaxLength = 5;
-            this.LatRatecodeSearch.Name = "LatRatecodeSearch";
-            this.LatRatecodeSearch.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.LatRatecodeSearch.Size = new System.Drawing.Size(100, 19);
-            this.LatRatecodeSearch.ToolTipText = "Ratecode Search";
             // 
             // oNCToolStripMenuItem1
             // 
@@ -520,6 +528,13 @@
             this.linksToolStripMenuItem.Name = "linksToolStripMenuItem";
             this.linksToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.linksToolStripMenuItem.Text = "Links";
+            // 
+            // monitorIPCCToolStripMenuItem
+            // 
+            this.monitorIPCCToolStripMenuItem.Name = "monitorIPCCToolStripMenuItem";
+            this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.monitorIPCCToolStripMenuItem.Text = "Monitor IPCC";
+            this.monitorIPCCToolStripMenuItem.Click += new System.EventHandler(this.monitorIPCCToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -587,7 +602,6 @@
         private System.Windows.Forms.ToolStripMenuItem nIMToolStripMenuItem;
         private ContextualToolStripMenuItem ratecodesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem LATRatecodeMenuItem;
-        private System.Windows.Forms.ToolStripTextBox LatRatecodeSearch;
         private System.Windows.Forms.ToolStripMenuItem oNCToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem dTVToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
@@ -602,5 +616,9 @@
         private System.Windows.Forms.ToolStripMenuItem clearMessagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showStatusBarToolStripMenuItem;
         public System.Windows.Forms.Panel _ViewPanel;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        internal System.Windows.Forms.ToolStripStatusLabel _IPCCState;
+        internal System.Windows.Forms.Timer _IPCCTimer;
+        private System.Windows.Forms.ToolStripMenuItem monitorIPCCToolStripMenuItem;
     }
 }
