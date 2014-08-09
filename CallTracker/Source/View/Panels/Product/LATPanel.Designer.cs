@@ -44,8 +44,10 @@
             this.labelledBase1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.labelledBase1.ControlHeight = 12;
             this.labelledBase1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledBase1.LabelActiveColor = System.Drawing.Color.Empty;
             this.labelledBase1.LabelAutoSize = true;
             this.labelledBase1.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this.labelledBase1.LabelInactiveColor = System.Drawing.Color.Empty;
             this.labelledBase1.LabelOffset = new System.Drawing.Point(1, -2);
             this.labelledBase1.LabelSize = new System.Drawing.Size(38, 22);
             this.labelledBase1.LabelText = "//LAT";
@@ -67,8 +69,10 @@
             this._NitResults.ControlHeight = 93;
             this._NitResults.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "NitResults", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._NitResults.Font = new System.Drawing.Font("Verdana", 7F);
+            this._NitResults.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._NitResults.LabelAutoSize = false;
             this._NitResults.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._NitResults.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
             this._NitResults.LabelOffset = new System.Drawing.Point(0, 0);
             this._NitResults.LabelSize = new System.Drawing.Size(171, 17);
             this._NitResults.LabelText = "  nit results";
@@ -95,8 +99,10 @@
             this.dataDropDown1.DataSource = null;
             this.dataDropDown1.DefaultText = "";
             this.dataDropDown1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.dataDropDown1.LabelActiveColor = System.Drawing.Color.Empty;
             this.dataDropDown1.LabelAutoSize = true;
             this.dataDropDown1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.dataDropDown1.LabelInactiveColor = System.Drawing.Color.Empty;
             this.dataDropDown1.LabelOffset = new System.Drawing.Point(0, 0);
             this.dataDropDown1.LabelSize = new System.Drawing.Size(52, 23);
             this.dataDropDown1.LabelText = "cau ping";
@@ -118,8 +124,10 @@
             this.labelledTextBoxLong1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.labelledTextBoxLong1.DefaultText = "";
             this.labelledTextBoxLong1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong1.LabelActiveColor = System.Drawing.Color.Firebrick;
             this.labelledTextBoxLong1.LabelAutoSize = false;
             this.labelledTextBoxLong1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong1.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
             this.labelledTextBoxLong1.LabelOffset = new System.Drawing.Point(0, 0);
             this.labelledTextBoxLong1.LabelSize = new System.Drawing.Size(52, 19);
             this.labelledTextBoxLong1.LabelText = "node";

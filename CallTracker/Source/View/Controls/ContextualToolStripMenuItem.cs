@@ -129,4 +129,15 @@ public class TransfersMenuItem : UpdateMenuObject
                 }
         }
     }
+
+    [DefaultProperty("Items")]
+    [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
+    public class ToolStripTimerItem : ToolStripItem
+    {
+        public Timer MyTimer;
+        public ToolStripTimerItem()
+        {
+            MyTimer = new Timer(this.Container);
+        }
+    }
 }

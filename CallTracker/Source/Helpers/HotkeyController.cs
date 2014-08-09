@@ -159,7 +159,7 @@ namespace CallTracker.Helpers
             {Keys.D2, "CMBS"},
             {Keys.Q , "Username"},
             {Keys.W , "DN"},
-            {Keys.A , "Name"},
+            {Keys.A , "Name.Full"},
             {Keys.S , "Mobile"},
             {Keys.Z , "Fault.PR"},
             {Keys.X , "Service.Node"}
@@ -174,7 +174,9 @@ namespace CallTracker.Helpers
             {
                 Clipboard.SetText(dataToPaste);
                 SendKeys.SendWait("+^");
-                SendKeys.SendWait("^v");              
+                SendKeys.SendWait("^v");
+                Application.DoEvents();
+                SendKeys.Flush();
             } 
         }
 

@@ -69,6 +69,10 @@ namespace CallTracker.View
         private void _DataField_TextChanged(object sender, EventArgs e)
         {
             //this.ParentForm.Validate();
+            if (!String.IsNullOrEmpty(_DataField.Text))
+                this.BackColor = LabelActiveColor;
+            else
+                this.BackColor = LabelInactiveColor;
         }
 
         private void LabelledTextBox_Load(object sender, EventArgs e)

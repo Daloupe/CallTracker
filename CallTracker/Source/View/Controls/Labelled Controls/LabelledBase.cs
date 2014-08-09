@@ -56,6 +56,20 @@ namespace CallTracker.View
         }
 
         [Category("!Label")]
+        public Color LabelInactiveColor
+        {
+            get;
+            set;
+        }
+
+        [Category("!Label")]
+        public Color LabelActiveColor
+        {
+            get;
+            set;
+        }
+
+        [Category("!Label")]
         public ContentAlignment LabelTextAlign
         {
             get { return _Label.TextAlign; }

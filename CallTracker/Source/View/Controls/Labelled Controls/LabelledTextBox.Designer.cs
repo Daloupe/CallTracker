@@ -34,7 +34,6 @@
             // 
             // _MenuButton
             // 
-            this._MenuButton.Location = new System.Drawing.Point(164, 0);
             this._MenuButton.Size = new System.Drawing.Size(16, 13);
             this._MenuButton.Visible = false;
             // 
@@ -51,6 +50,7 @@
             this._DataField.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this._DataField.Size = new System.Drawing.Size(180, 19);
             this._DataField.TabIndex = 27;
+            this._DataField.TextChanged += new System.EventHandler(this._DataField_TextChanged);
             // 
             // LabelledTextBox
             // 

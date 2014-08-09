@@ -59,6 +59,7 @@
             this._DataField.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this._DataField.Size = new System.Drawing.Size(132, 19);
             this._DataField.TabIndex = 27;
+            this._DataField.TextChanged += new System.EventHandler(this._DataField_TextChanged);
             // 
             // LabelledTextBoxLong
             // 

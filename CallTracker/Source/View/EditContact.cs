@@ -28,7 +28,7 @@ namespace CallTracker.View
         public EditContact(Main _mainform)
         {
             InitializeComponent();
-
+            
             _OutcomeTooltip.SetToolTip(_Outcome, "Problem Report");
 
             MainForm = _mainform;
@@ -105,6 +105,7 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
+
             if (customerContactsBindingSource.Count == 0)
             {
                 flowLayoutPanel1.Enabled = false;
@@ -150,6 +151,8 @@ namespace CallTracker.View
         {
             DataStore.Contacts.Add(new CustomerContact(1));
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
+            _WorkReadyTimer.Enabled = false;
+            _WorkReadyTimerDisplay.Text = "Work Ready: 00:00";
         }
 
         public void DeleteCalls()
@@ -542,6 +545,24 @@ namespace CallTracker.View
                 item.ForeColor = Color.Black;
             }
         }
+
+        private DateTime _WorkReadyTimeElapsed;
+        private void _WorkReadyTimer_Tick(object sender, EventArgs e)
+        {
+            _WorkReadyTimeElapsed = _WorkReadyTimeElapsed.AddMilliseconds(1000);
+            _WorkReadyTimerDisplay.Text = "Work Ready: " + _WorkReadyTimeElapsed.ToString("mm:ss");
+        }
+
+        private void _WorkReadyTimerDisplay_Click(object sender, EventArgs e)
+        {
+            if (_WorkReadyTimer.Enabled == false)
+            {
+                _WorkReadyTimeElapsed = new DateTime();
+                _WorkReadyTimer.Enabled = true;
+            }
+            else
+                _WorkReadyTimer.Enabled = false;
+        } 
 
     }
 

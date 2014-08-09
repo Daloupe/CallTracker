@@ -15,6 +15,11 @@
 	- Poll Work Ready button to see if enabled.
 -
 
+0.30.4
+| Changed DataField Label color when populated with data.
+| /bin files moved to their own Data folder.
+| Added Work Ready Timer.
+
 0.30.3
 | Severity Should be being selected by default.
 | Fixed Outcome tooltip. - now attaches correctly to _Outcome._ComboBox.

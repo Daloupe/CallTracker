@@ -52,8 +52,10 @@
             this.labelledBase1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.labelledBase1.ControlHeight = 12;
             this.labelledBase1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledBase1.LabelActiveColor = System.Drawing.Color.Empty;
             this.labelledBase1.LabelAutoSize = true;
             this.labelledBase1.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this.labelledBase1.LabelInactiveColor = System.Drawing.Color.Empty;
             this.labelledBase1.LabelOffset = new System.Drawing.Point(1, -2);
             this.labelledBase1.LabelSize = new System.Drawing.Size(40, 22);
             this.labelledBase1.LabelText = "//DTV";
@@ -76,8 +78,10 @@
             this.labelledTextBoxLong1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.labelledTextBoxLong1.DefaultText = "";
             this.labelledTextBoxLong1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong1.LabelActiveColor = System.Drawing.Color.Firebrick;
             this.labelledTextBoxLong1.LabelAutoSize = true;
             this.labelledTextBoxLong1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong1.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
             this.labelledTextBoxLong1.LabelOffset = new System.Drawing.Point(0, 0);
             this.labelledTextBoxLong1.LabelSize = new System.Drawing.Size(34, 23);
             this.labelledTextBoxLong1.LabelText = "node";
@@ -102,8 +106,10 @@
             this.labelledTextBoxLong2.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "DTVMsg", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.labelledTextBoxLong2.DefaultText = "";
             this.labelledTextBoxLong2.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong2.LabelActiveColor = System.Drawing.Color.Firebrick;
             this.labelledTextBoxLong2.LabelAutoSize = false;
             this.labelledTextBoxLong2.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong2.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
             this.labelledTextBoxLong2.LabelOffset = new System.Drawing.Point(0, 0);
             this.labelledTextBoxLong2.LabelSize = new System.Drawing.Size(34, 19);
             this.labelledTextBoxLong2.LabelText = "msg";
@@ -127,8 +133,10 @@
             this.dataDropDown1.DataSource = null;
             this.dataDropDown1.DefaultText = "";
             this.dataDropDown1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.dataDropDown1.LabelActiveColor = System.Drawing.Color.Empty;
             this.dataDropDown1.LabelAutoSize = true;
             this.dataDropDown1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.dataDropDown1.LabelInactiveColor = System.Drawing.Color.Empty;
             this.dataDropDown1.LabelOffset = new System.Drawing.Point(0, 0);
             this.dataDropDown1.LabelSize = new System.Drawing.Size(64, 23);
             this.dataDropDown1.LabelText = "connection";
@@ -147,8 +155,10 @@
             this.labelledBase2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.labelledBase2.ControlHeight = 12;
             this.labelledBase2.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledBase2.LabelActiveColor = System.Drawing.Color.Empty;
             this.labelledBase2.LabelAutoSize = true;
             this.labelledBase2.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this.labelledBase2.LabelInactiveColor = System.Drawing.Color.Empty;
             this.labelledBase2.LabelOffset = new System.Drawing.Point(1, -2);
             this.labelledBase2.LabelSize = new System.Drawing.Size(40, 22);
             this.labelledBase2.LabelText = "//STB";
@@ -171,8 +181,10 @@
             this.labelledTextBoxLong3.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "DTVSmartCard", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.labelledTextBoxLong3.DefaultText = "";
             this.labelledTextBoxLong3.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong3.LabelActiveColor = System.Drawing.Color.Firebrick;
             this.labelledTextBoxLong3.LabelAutoSize = false;
             this.labelledTextBoxLong3.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong3.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
             this.labelledTextBoxLong3.LabelOffset = new System.Drawing.Point(0, 0);
             this.labelledTextBoxLong3.LabelSize = new System.Drawing.Size(64, 19);
             this.labelledTextBoxLong3.LabelText = "smartcard";
@@ -197,8 +209,10 @@
             this.labelledTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "DTVLot", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.labelledTextBox1.DefaultText = "";
             this.labelledTextBox1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBox1.LabelActiveColor = System.Drawing.Color.Firebrick;
             this.labelledTextBox1.LabelAutoSize = true;
             this.labelledTextBox1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBox1.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
             this.labelledTextBox1.LabelOffset = new System.Drawing.Point(1, -2);
             this.labelledTextBox1.LabelSize = new System.Drawing.Size(22, 23);
             this.labelledTextBox1.LabelText = "lot";
@@ -223,8 +237,10 @@
             this.labelledTextBox2.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "DTVBox", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.labelledTextBox2.DefaultText = "";
             this.labelledTextBox2.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBox2.LabelActiveColor = System.Drawing.Color.Firebrick;
             this.labelledTextBox2.LabelAutoSize = true;
             this.labelledTextBox2.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBox2.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
             this.labelledTextBox2.LabelOffset = new System.Drawing.Point(1, -2);
             this.labelledTextBox2.LabelSize = new System.Drawing.Size(27, 23);
             this.labelledTextBox2.LabelText = "box";

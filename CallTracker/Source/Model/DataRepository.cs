@@ -91,7 +91,7 @@ namespace CallTracker.Model
 
         public UserDataStore()
         {
-            Filename = "Data.bin";
+            Filename = "Data/Data.bin";
 
             PasteBinds = new TriggerList<PasteBind>();
             Contacts = new BindingList<CustomerContact>();
@@ -158,7 +158,7 @@ namespace CallTracker.Model
 
         public ResourceData()
         {
-            Filename = "Resources.bin";
+            Filename = "Data/Resources.bin";
             LATRatePlans = new SortableBindingList<RateplanModel>();
         }
 
@@ -174,7 +174,7 @@ namespace CallTracker.Model
 
         public ServicesData()
         {
-            Filename = "Services.bin";
+            Filename = "Data/Services.bin";
             servicesDataSet = new ServicesDataSet();
         }
 

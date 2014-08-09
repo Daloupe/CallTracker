@@ -72,8 +72,8 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this._WorkReadyTimerDisplay = new System.Windows.Forms.ToolStripLabel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this._DialContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,9 +95,10 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this._OutcomeTooltip = new System.Windows.Forms.ToolTip(this.components);
+            this.servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
+            this._WorkReadyTimer = new System.Windows.Forms.Timer(this.components);
             this._Icon = new CallTracker.View.LabelledTextBoxLong();
             this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._Cmbs = new CallTracker.View.LabelledTextBoxLong();
@@ -147,8 +148,8 @@
             // FaultPanel
             // 
             this.FaultPanel.Controls.Add(this.splitContainer1);
-            this.FaultPanel.Location = new System.Drawing.Point(388, 0);
-            this.FaultPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.FaultPanel.Location = new System.Drawing.Point(389, 0);
+            this.FaultPanel.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.FaultPanel.Name = "FaultPanel";
             this.FaultPanel.Size = new System.Drawing.Size(191, 216);
             this.FaultPanel.TabIndex = 28;
@@ -530,8 +531,8 @@
             this.bindingNavigatorMoveNextItem,
             this.toolStripSeparator1,
             this.bindingNavigatorAddNewItem,
-            this.toolStripComboBox1,
-            this.bindingNavigatorSeparator2});
+            this.bindingNavigatorSeparator2,
+            this._WorkReadyTimerDisplay});
             this.bindingNavigator1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 189);
             this.bindingNavigator1.Margin = new System.Windows.Forms.Padding(0, 2, 0, 0);
@@ -616,19 +617,21 @@
             this.bindingNavigatorAddNewItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
-            // toolStripComboBox1
-            // 
-            this.toolStripComboBox1.AutoSize = false;
-            this.toolStripComboBox1.Margin = new System.Windows.Forms.Padding(3, 0, 1, 4);
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(136, 21);
-            // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 5);
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 29);
+            // 
+            // _WorkReadyTimerDisplay
+            // 
+            this._WorkReadyTimerDisplay.BackColor = System.Drawing.Color.LightGray;
+            this._WorkReadyTimerDisplay.Margin = new System.Windows.Forms.Padding(20, 1, 0, 2);
+            this._WorkReadyTimerDisplay.Name = "_WorkReadyTimerDisplay";
+            this._WorkReadyTimerDisplay.Size = new System.Drawing.Size(115, 26);
+            this._WorkReadyTimerDisplay.Text = "Work Ready: 00:00";
+            this._WorkReadyTimerDisplay.Click += new System.EventHandler(this._WorkReadyTimerDisplay_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -941,6 +944,11 @@
             this.servicesDataSet.DataSetName = "ServicesDataSet";
             this.servicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // _WorkReadyTimer
+            // 
+            this._WorkReadyTimer.Interval = 1000;
+            this._WorkReadyTimer.Tick += new System.EventHandler(this._WorkReadyTimer_Tick);
+            // 
             // _Icon
             // 
             this._Icon.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
@@ -952,8 +960,10 @@
             this._Icon.DefaultText = "";
             this._Icon.Font = new System.Drawing.Font("Verdana", 7F);
             this._Icon.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Icon.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Icon.LabelAutoSize = false;
             this._Icon.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Icon.LabelInactiveColor = System.Drawing.Color.SlateGray;
             this._Icon.LabelOffset = new System.Drawing.Point(0, 0);
             this._Icon.LabelSize = new System.Drawing.Size(50, 19);
             this._Icon.LabelText = "ICON";
@@ -983,8 +993,10 @@
             this._Cmbs.DefaultText = "";
             this._Cmbs.Font = new System.Drawing.Font("Verdana", 7F);
             this._Cmbs.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Cmbs.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Cmbs.LabelAutoSize = false;
             this._Cmbs.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Cmbs.LabelInactiveColor = System.Drawing.Color.SlateGray;
             this._Cmbs.LabelOffset = new System.Drawing.Point(0, 0);
             this._Cmbs.LabelSize = new System.Drawing.Size(40, 19);
             this._Cmbs.LabelText = "CMBS";
@@ -1009,8 +1021,10 @@
             this._Username.DefaultText = "";
             this._Username.Font = new System.Drawing.Font("Verdana", 7F);
             this._Username.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Username.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Username.LabelAutoSize = false;
             this._Username.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Username.LabelInactiveColor = System.Drawing.Color.SlateGray;
             this._Username.LabelOffset = new System.Drawing.Point(0, 0);
             this._Username.LabelSize = new System.Drawing.Size(50, 19);
             this._Username.LabelText = "Username";
@@ -1035,8 +1049,10 @@
             this._Dn.DefaultText = "";
             this._Dn.Font = new System.Drawing.Font("Verdana", 7F);
             this._Dn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Dn.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Dn.LabelAutoSize = false;
             this._Dn.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Dn.LabelInactiveColor = System.Drawing.Color.SlateGray;
             this._Dn.LabelOffset = new System.Drawing.Point(0, 0);
             this._Dn.LabelSize = new System.Drawing.Size(40, 19);
             this._Dn.LabelText = "DN";
@@ -1061,8 +1077,10 @@
             this._Name.DefaultText = "";
             this._Name.Font = new System.Drawing.Font("Verdana", 7F);
             this._Name.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Name.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Name.LabelAutoSize = false;
             this._Name.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Name.LabelInactiveColor = System.Drawing.Color.SlateGray;
             this._Name.LabelOffset = new System.Drawing.Point(0, 0);
             this._Name.LabelSize = new System.Drawing.Size(50, 19);
             this._Name.LabelText = "Name";
@@ -1088,8 +1106,10 @@
             this._Mobile.Dock = System.Windows.Forms.DockStyle.Right;
             this._Mobile.Font = new System.Drawing.Font("Verdana", 7F);
             this._Mobile.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Mobile.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Mobile.LabelAutoSize = false;
             this._Mobile.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Mobile.LabelInactiveColor = System.Drawing.Color.SlateGray;
             this._Mobile.LabelOffset = new System.Drawing.Point(0, 0);
             this._Mobile.LabelSize = new System.Drawing.Size(40, 19);
             this._Mobile.LabelText = "Mobile";
@@ -1113,8 +1133,10 @@
             this._Address.DefaultText = "";
             this._Address.Font = new System.Drawing.Font("Verdana", 7F);
             this._Address.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Address.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Address.LabelAutoSize = false;
             this._Address.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Address.LabelInactiveColor = System.Drawing.Color.SlateGray;
             this._Address.LabelOffset = new System.Drawing.Point(0, 0);
             this._Address.LabelSize = new System.Drawing.Size(50, 19);
             this._Address.LabelText = "Address";
@@ -1138,8 +1160,10 @@
             this._BookingDate.DataBindings.Add(new System.Windows.Forms.Binding("DateField", this.customerContactsBindingSource, "Booking.Date", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 5, 40, 35, 872);
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
+            this._BookingDate.LabelActiveColor = System.Drawing.Color.Empty;
             this._BookingDate.LabelAutoSize = true;
             this._BookingDate.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this._BookingDate.LabelInactiveColor = System.Drawing.Color.Empty;
             this._BookingDate.LabelOffset = new System.Drawing.Point(2, -3);
             this._BookingDate.LabelSize = new System.Drawing.Size(53, 22);
             this._BookingDate.LabelText = "BOOKING";
@@ -1163,8 +1187,10 @@
             this._BookingType.DefaultText = "";
             this._BookingType.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingType.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._BookingType.LabelActiveColor = System.Drawing.Color.Empty;
             this._BookingType.LabelAutoSize = true;
             this._BookingType.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
+            this._BookingType.LabelInactiveColor = System.Drawing.Color.Empty;
             this._BookingType.LabelOffset = new System.Drawing.Point(2, -3);
             this._BookingType.LabelSize = new System.Drawing.Size(34, 22);
             this._BookingType.LabelText = "TYPE";
@@ -1188,8 +1214,10 @@
             this._BookingTimeSlot.DefaultText = "";
             this._BookingTimeSlot.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingTimeSlot.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._BookingTimeSlot.LabelActiveColor = System.Drawing.Color.Empty;
             this._BookingTimeSlot.LabelAutoSize = true;
             this._BookingTimeSlot.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
+            this._BookingTimeSlot.LabelInactiveColor = System.Drawing.Color.Empty;
             this._BookingTimeSlot.LabelOffset = new System.Drawing.Point(2, -3);
             this._BookingTimeSlot.LabelSize = new System.Drawing.Size(58, 22);
             this._BookingTimeSlot.LabelText = "TIMESLOT";
@@ -1213,8 +1241,10 @@
             this._Itcase.DefaultText = "";
             this._Itcase.Font = new System.Drawing.Font("Verdana", 7F);
             this._Itcase.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Itcase.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Itcase.LabelAutoSize = true;
             this._Itcase.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._Itcase.LabelInactiveColor = System.Drawing.Color.DarkGoldenrod;
             this._Itcase.LabelOffset = new System.Drawing.Point(2, -3);
             this._Itcase.LabelSize = new System.Drawing.Size(46, 22);
             this._Itcase.LabelText = "IT CASE";
@@ -1239,8 +1269,10 @@
             this._Equipment.DefaultText = "";
             this._Equipment.Font = new System.Drawing.Font("Verdana", 7F);
             this._Equipment.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Equipment.LabelActiveColor = System.Drawing.Color.Empty;
             this._Equipment.LabelAutoSize = false;
             this._Equipment.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this._Equipment.LabelInactiveColor = System.Drawing.Color.Empty;
             this._Equipment.LabelOffset = new System.Drawing.Point(2, 0);
             this._Equipment.LabelSize = new System.Drawing.Size(54, 20);
             this._Equipment.LabelText = "EQUIPMENT";
@@ -1264,8 +1296,10 @@
             this._Outcome.DefaultText = "";
             this._Outcome.Font = new System.Drawing.Font("Verdana", 7F);
             this._Outcome.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Outcome.LabelActiveColor = System.Drawing.Color.Empty;
             this._Outcome.LabelAutoSize = true;
             this._Outcome.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._Outcome.LabelInactiveColor = System.Drawing.Color.Empty;
             this._Outcome.LabelOffset = new System.Drawing.Point(2, -3);
             this._Outcome.LabelSize = new System.Drawing.Size(59, 22);
             this._Outcome.LabelText = "OUTCOME";
@@ -1290,8 +1324,10 @@
             this._Symptom.DefaultText = "";
             this._Symptom.Font = new System.Drawing.Font("Verdana", 7F);
             this._Symptom.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Symptom.LabelActiveColor = System.Drawing.Color.Empty;
             this._Symptom.LabelAutoSize = true;
             this._Symptom.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
+            this._Symptom.LabelInactiveColor = System.Drawing.Color.Empty;
             this._Symptom.LabelOffset = new System.Drawing.Point(2, -3);
             this._Symptom.LabelSize = new System.Drawing.Size(59, 22);
             this._Symptom.LabelText = "SYMPTOM";
@@ -1316,8 +1352,10 @@
             this._NPR.DefaultText = "";
             this._NPR.Font = new System.Drawing.Font("Verdana", 7F);
             this._NPR.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._NPR.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._NPR.LabelAutoSize = true;
             this._NPR.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
+            this._NPR.LabelInactiveColor = System.Drawing.Color.DarkGoldenrod;
             this._NPR.LabelOffset = new System.Drawing.Point(2, -3);
             this._NPR.LabelSize = new System.Drawing.Size(74, 22);
             this._NPR.LabelText = "NETWORK PR";
@@ -1343,8 +1381,10 @@
             this._PR.DefaultText = "";
             this._PR.Font = new System.Drawing.Font("Verdana", 7F);
             this._PR.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._PR.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._PR.LabelAutoSize = true;
             this._PR.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._PR.LabelInactiveColor = System.Drawing.Color.DarkGoldenrod;
             this._PR.LabelOffset = new System.Drawing.Point(2, -3);
             this._PR.LabelSize = new System.Drawing.Size(81, 22);
             this._PR.LabelText = "CUSTOMER PR";
@@ -1367,8 +1407,10 @@
             this.labelledTextField2.BorderColour = System.Drawing.Color.Tomato;
             this.labelledTextField2.ControlHeight = 98;
             this.labelledTextField2.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextField2.LabelActiveColor = System.Drawing.Color.Empty;
             this.labelledTextField2.LabelAutoSize = false;
             this.labelledTextField2.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this.labelledTextField2.LabelInactiveColor = System.Drawing.Color.Empty;
             this.labelledTextField2.LabelOffset = new System.Drawing.Point(0, 0);
             this.labelledTextField2.LabelSize = new System.Drawing.Size(173, 17);
             this.labelledTextField2.LabelText = "OUTCOME";
@@ -1390,8 +1432,10 @@
             this.labelledTextField1.BorderColour = System.Drawing.Color.Tomato;
             this.labelledTextField1.ControlHeight = 97;
             this.labelledTextField1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextField1.LabelActiveColor = System.Drawing.Color.Empty;
             this.labelledTextField1.LabelAutoSize = false;
             this.labelledTextField1.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this.labelledTextField1.LabelInactiveColor = System.Drawing.Color.Empty;
             this.labelledTextField1.LabelOffset = new System.Drawing.Point(0, 0);
             this.labelledTextField1.LabelSize = new System.Drawing.Size(174, 17);
             this.labelledTextField1.LabelText = "TESTING DONE";
@@ -1529,7 +1573,6 @@
         private LabelledTextBoxLong _Mobile;
         private LabelledTextBoxLong _Address;
         private System.Windows.Forms.Panel _notePanel;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
         internal LabelledComboBoxLong _Equipment;
         private LabelledTextBox _Itcase;
         internal LabelledComboBox _BookingType;
@@ -1537,5 +1580,7 @@
         private LabelledTextField labelledTextField1;
         private LabelledTextField labelledTextField2;
         private LabelledDatePicker _BookingDate;
+        private System.Windows.Forms.ToolStripLabel _WorkReadyTimerDisplay;
+        internal System.Windows.Forms.Timer _WorkReadyTimer;
     }
 }

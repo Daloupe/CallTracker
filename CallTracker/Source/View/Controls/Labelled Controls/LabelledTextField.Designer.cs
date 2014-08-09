@@ -55,6 +55,7 @@
             this._DataField.Size = new System.Drawing.Size(180, 77);
             this._DataField.TabIndex = 31;
             this._DataField.Text = "";
+            this._DataField.TextChanged += new System.EventHandler(this._DataField_TextChanged);
             // 
             // LabelledTextField
             // 
