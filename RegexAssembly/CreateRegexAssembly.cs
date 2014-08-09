@@ -36,6 +36,7 @@ namespace RegexAssembly
                 new MyRegex("ICON",     @"^((?:1|5|8|9)\d{7})(\d{6})$"),
                 new MyRegex("Name",     @"(?:(Mr|Mrs|miss|dr)\.?)?\s?" +             // Title (Followed by a ".")
                                         @"([a-z]+)" +                       // First Name
+                                        @"(?:\s([a-z])?)" +                       // Middle Initial
                                         @"\s([a-z]+(?:(?:-)[a-z]+)?)"              // Surnames
                                         , RegexOptions.IgnoreCase),
                 new MyRegex("Address",  @"(?:(Unit|Lot|Level|Floor)\s)?" +  // Property Type
@@ -50,9 +51,9 @@ namespace RegexAssembly
                 new MyRegex("Address2", @"(?:(Unit|Lot|Level|Floor|P.?O.? Box)\s)?" +  // Property Type
                                         @"(?:(\d+)(?:/|\\|\s))?" +         // Unit Number
                                         @"(\d+)" +                          // Property Number
-                                        @"\s([a-z]+(?:(?:\s|-)[a-z]+)?)" +                     // Street Name
-                                        @"\s(st|rd|ave|hwy|cct|ct|cl|gr|street|road|avenue|highway|circuit|court|close|grove)\.?" +                  // Street Type
-                                        @"\s([a-z]+(?:(?:\s|-)[a-z]+)?)" +                     // Suburb
+                                        @"\s*([a-z]+(?:(?:\s|-)[a-z]+)?)" +                     // Street Name
+                                        @"\s*(st|rd|ave|hwy|cct|ct|cl|gr|street|road|avenue|highway|circuit|court|close|grove)\.?" +                  // Street Type
+                                        @"\s*([a-z]+(?:(?:\s|-)[a-z]+)?)" +                     // Suburb
                                         @"\s?(Victoria|Tasmania|Queensland|New South Wales|(?:South|Western) Australia|(?:Northern|Australian Captial) Territory|VIC|NSW|SA|WA|NT|TAS|ACT|QLD)?" +           // State (Optional)
                                         @"\s?(\d{4})?"                      // Postcode (Optional)
                                         , RegexOptions.IgnoreCase),

@@ -13,9 +13,24 @@
 - Added ARO GUI.
 - Added TestStack.White support for IPCC control.
 	- Poll Work Ready button to see if enabled.
--
+- Added DataType Modem IP address, PRI, NTD Serial number, Address ID(LIP), ESN(LAT). (CMR 1000000000021266_12494541)
+- Added "" to Data string to enable pastes of strings.
+- Added MAC Regex.
+- Split State and Postcode from the Address field.
+- State field is prefilled when CMBS or DN is smart copied. Address copies after the fact only overwrite, not erase.
 
 0.31.0
+| Implemented IPCCMonitoring.
+| Replaced login encryption Environment.Username with Jesse Poulton
+| Outcome column in Call history now sortable, Date and Time concatenated into a single column.
+| Symptom will now select when product chanegs to different symptom codes.
+| Severity updates properly again.
+| Updated bind and autologin log to pikc match is the pages url or title contains a match.
+| Booking.GetIFMSDate should output dd/mm/yyyy hh:mm:ss.
+| Updated Name Regex to recognize a middle initial. Accessed via NameSplit.Initial.
+| Address Regex should now be able to deal with some extra spacing.
+| Symptom can be returned as "NDT - No Dial Tone" via Fault.SymptomFull.
+| Binding Source position decrements when the current call is deleetd from call history.
 
 0.30.5
 | Work Ready timer background changes color.
@@ -207,6 +222,7 @@ Long Term:
 	- Create Tester: Popup with Texbox Name, Input, and Application Name fields, pressing OK triggers test.
 - ARO GUI.
 - Glance GUI.
+- Win-Middle Mouse Button brings up a special menu.
 
 Potential:
 - Realtime KPI's. Smartcopy roster and use call/login information to provide realtime stats.

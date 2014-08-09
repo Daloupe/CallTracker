@@ -128,6 +128,9 @@ namespace CallTracker.View
 
                 if (Parent._Symptom._ComboBox.DataSource == null)
                     Parent._Symptom.BindComboBox(Symptoms, Parent.customerContactsBindingSource);
+
+                if (!Symptoms.Contains(Parent.MainForm.SelectedContact.Fault.Symptom))
+                    Parent.MainForm.SelectedContact.Fault.Symptom = Symptoms[0];
             }              
         }
 

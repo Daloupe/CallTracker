@@ -2,34 +2,32 @@
 | Work ready timer - Go Green/Red.
 | DN not updating on prop change? Invalidate Parent?
 | Text color is black on some controls.
-- Can't sort by outcome.
-- Transfer isn't getting CTI DialPad offsets.
-- "FInd within form" button might not be updating proerly. Same as Typeastext.
-- Severity not pasting? 
-- Symptom not updating on change, needs to be selected
-- Autologin shoudl go by Title first. Do fuzzy search for url.
+| Can't sort by outcome.
+/ Transfer isn't getting CTI DialPad offsets.
+| "FInd within form" button might not be updating proerly. Same as Typeastext.
+	| They are disconnected. Need to be replaced with new dropdown.
+| Severity not pasting? 
+| Symptom not updating on change, needs to be selected
+| Autologin shoudl go by Title first. Do fuzzy search for url.
 - Gridlinks not updating dropdowns when name is changed.
 - OPOM isn't restoring if minimized.
 - Have Alt title search? eg OPOM search screen. Or ICON Search Screen.
-- Gridlinks gettign confused between UNMT and NSI as both have simliar title.
-- Update GetDate for IFMS. 00/00/0000 00:00:00
-- Name Regex needs to recognize middle initial
+| Gridlinks gettign confused between UNMT and NSI as both have simliar title.
+| Update GetDate for IFMS. 00/00/0000 00:00:00
+| Name Regex needs to recognize middle initial
+| 1A MAIR ST BRIGHTON Victoria 3186 AUSTRALIA remove spaces.
+| NBN Service Calls Fault Type drop down. Need to have NDT - No Dial Tone. Fault.SymptomFull?
 
-MAC Regex
-1A MAIR ST BRIGHTON Victoria 3186 AUSTRALIA remove spaces.
-Modem IP address.PRI. NTD Serial number. CMR 1000000000021266_12494541. LAT: Address ID, ESN
-
-Win-Middle Mouse Button?
+*MAC Regex
+*Modem IP address.PRI. NTD Serial number. CMR 1000000000021266_12494541. LAT: Address ID, ESN
+*Add abilty to paste certain values with binds. eg Data = "Node" - for PTW database.
+*Address.StateAcronym
+*Postcode alone?
+*Get Address.State from CMBS/DN information.
+*Win-Middle Mouse Button?
 
 Select No Symptom.
-
 MeTV PPV Symptom
-
-NBN Service Calls Fault Type drop down. Need to have NDT - No Dial Tone. Fault.SymptomFull?
-Address.StateAcronym
-Postcode alone?
-Set Address.State from CMBS/DN information.
-Add abilty to paste certain values with binds. eg Data = "Node" - for PTW database.
 
 Username contextmenu - search in UNMT.
 Name contextmenu - id ok.

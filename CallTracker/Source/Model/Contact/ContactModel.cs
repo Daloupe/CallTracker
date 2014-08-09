@@ -35,7 +35,7 @@ namespace CallTracker.Model
                 new DataBindType("CMBS","CMBS"),
                 new DataBindType("ICON", "ICON"),
                 new DataBindType("Note", "Note"),
-                new DataBindType("ICON Note", "ICONNote"),
+                new DataBindType("ICONNote", "ICONNote"),
                 new DataBindType("Address", "Address"),
                 new DataBindType("PR", "Fault.PR"),
                 new DataBindType("NPR", "Fault.NPR"),
@@ -85,6 +85,7 @@ namespace CallTracker.Model
         public FaultModel Fault { get; set; }
         [ProtoMember(12)]
         public ContactStatistics Contacts { get; set; }
+        public string ContactDateTime { get { return Contacts.StartDate.Add(Contacts.StartTime).ToString("dd/MM HH:mm"); } }
         public DateTime ContactDate { get { return Contacts.StartDate; } }
         public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
         [ProtoMember(13)]

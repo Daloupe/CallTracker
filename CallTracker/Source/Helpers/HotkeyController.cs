@@ -140,9 +140,7 @@ namespace CallTracker.Helpers
                 }
                 else
                     if (NavigateOrNewIE(systemItem.Title, systemItem.Url))
-                        AutoLogin();
-
-                
+                        AutoLogin();   
             }
             finally
             {
@@ -197,9 +195,8 @@ namespace CallTracker.Helpers
                                    bind in parent.DataStore.PasteBinds
                                where  
                                    bind.Element == element &&
-                                   (bind.Url == url || 
-                                    title.Contains(bind.Title) || 
-                                    bind.Title.Contains(title))
+                                   (url.Contains(bind.Url) || 
+                                    title.Contains(bind.Title))
                                select 
                                    bind)
                                .FirstOrDefault();
@@ -235,9 +232,8 @@ namespace CallTracker.Helpers
             var UrlOrTitleMatches =  from
                                         bind in parent.DataStore.PasteBinds
                                      where
-                                        bind.Url == url || 
-                                        bind.Title.Contains(title) ||
-                                        title.Contains(bind.Title) 
+                                        url.Contains(bind.Url) ||
+                                        title.Contains(bind.Title)
                                      select
                                         bind;
 
@@ -272,8 +268,7 @@ namespace CallTracker.Helpers
             var query = from
                             bind in parent.DataStore.PasteBinds
                         where
-                            bind.Url == url ||
-                            bind.Title.Contains(title) ||
+                            url.Contains(bind.Url) ||
                             title.Contains(bind.Title)
                         select
                             bind;
@@ -315,9 +310,8 @@ namespace CallTracker.Helpers
             LoginsModel query = (from
                                      login in parent.DataStore.Logins
                                  where
-                                     //title.Contains(login.Title) ||
-                                     //login.Title.Contains(title) || 
-                                     login.Url == url
+                                     title.Contains(login.Title) ||
+                                     url.Contains(login.Url)
                                  select
                                      login)
                                  .FirstOrDefault();

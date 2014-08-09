@@ -28,7 +28,13 @@ namespace CallTracker.View
         public EditContact(Main _mainform)
         {
             InitializeComponent();
-            
+
+            _PR.AttachMenu(_PRContextMenu);
+            _NPR.AttachMenu(_PRContextMenu);
+            _Dn.AttachMenu(_DialContextMenu);
+            _Mobile.AttachMenu(_DialContextMenu);
+            _Symptom.AttachMenu(_SeverityMenuStrip);
+
             _OutcomeTooltip.SetToolTip(_Outcome, "Problem Report");
 
             MainForm = _mainform;
@@ -65,11 +71,6 @@ namespace CallTracker.View
 
         public void OnParentLoad()
         {
-            _PR.AttachMenu(_PRContextMenu);
-            _NPR.AttachMenu(_PRContextMenu);
-            _Dn.AttachMenu(_DialContextMenu);
-            _Mobile.AttachMenu(_DialContextMenu);
-            _Symptom.AttachMenu(_SeverityMenuStrip);
 
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList(), customerContactsBindingSource);
             _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)), customerContactsBindingSource);
@@ -467,6 +468,8 @@ namespace CallTracker.View
             //if (menu.Tag == null)
             //    e.Cancel = true;
             //menu.Tag = null;
+            if (menu.SourceControl == null)
+                return;
             if (menu.SourceControl.Parent.Name == "_NPR")
             {
                 viewPRToolStripMenuItem.Enabled = false;
@@ -491,13 +494,11 @@ namespace CallTracker.View
 
         private void _SeverityMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-                foreach (ToolStripMenuItem item in _SeverityMenuStrip.Items)
-                {
-                    item.Checked = false;
-                }
+            foreach (ToolStripMenuItem item in _SeverityMenuStrip.Items)
+                item.Checked = false;
 
-                _SeverityMenuStrip.Text = e.ClickedItem.Text;
-                ((ToolStripMenuItem)e.ClickedItem).Checked = true;
+            _SeverityMenuStrip.Text = e.ClickedItem.Text;
+            ((ToolStripMenuItem)e.ClickedItem).Checked = true;
         }
 
         private void _Symptom_SelectedIndexChanged(object sender, EventArgs e)

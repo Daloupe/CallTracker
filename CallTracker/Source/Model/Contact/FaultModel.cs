@@ -115,6 +115,18 @@ namespace CallTracker.Model
             } 
         }
 
+        public string SymptomFull
+        {
+            get
+            {
+                if (AffectedServiceType == ServiceTypes.NONE)
+                    return String.Empty;
+                return Symptom + " - " + (from a in Main.ServicesStore.servicesDataSet.Symptoms
+                        where a.IFMSCode == Symptom
+                        select a).First().Description;
+            }
+        }
+
         //[ProtoMember(15)]
         //public BookingModel Booking { get; set; }       
 

@@ -53,7 +53,6 @@ namespace CallTracker.View
         {
             if (ContextMenuStrip != null)
             {
-                
                 this._MenuButton.Show();
                 this.ContextMenuStrip.Show();
                 this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;

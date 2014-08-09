@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 using CallTracker.View;
 using CallTracker.Model;
+using CallTracker.Helpers;
 
 namespace CallTracker.View
 {
@@ -25,20 +26,24 @@ namespace CallTracker.View
             dataGridView1.AutoGenerateColumns = false;
 
             dataGridView1.Columns.Add("Date", "Date");
-            dataGridView1.Columns.Add("Time", "Time");
+            //dataGridView1.Columns.Add("Time", "Time");
             dataGridView1.Columns.Add("Name", "Name");
 
-            dataGridView1.Columns["Date"].DataPropertyName = "ContactDate";
-            dataGridView1.Columns["Date"].Width = 65;
+            dataGridView1.Columns["Date"].DataPropertyName = "ContactDateTime";
+            dataGridView1.Columns["Date"].Width = 40;
             dataGridView1.Columns["Date"].ReadOnly = true;
+            
+            //dataGridView1.Columns["Date"].SortMode = DataGridViewColumnSortMode.NotSortable;
 
-            dataGridView1.Columns["Time"].DataPropertyName = "ContactTime";
-            dataGridView1.Columns["Time"].Width = 35;
-            dataGridView1.Columns["Time"].ReadOnly = true;
+            //dataGridView1.Columns["Time"].DataPropertyName = "ContactTime";
+            //dataGridView1.Columns["Time"].Width = 35;
+            //dataGridView1.Columns["Time"].ReadOnly = true;
+            //dataGridView1.Columns["Time"].SortMode = DataGridViewColumnSortMode.NotSortable;
 
             dataGridView1.Columns["Name"].DataPropertyName = "Name";
-            dataGridView1.Columns["Name"].Width = 155;
+            dataGridView1.Columns["Name"].Width = 235;
             dataGridView1.Columns["Name"].ReadOnly = false;
+            
 
             DataGridViewComboBoxColumn dtcol = new DataGridViewComboBoxColumn();
             dataGridView1.Columns.Add(dtcol);
@@ -46,12 +51,13 @@ namespace CallTracker.View
             dtcol.Name = "Outcome";
             dtcol.HeaderText = "Outcome";
             dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dtcol.Width = 60;
+            dtcol.Width = 65;
             dtcol.SortMode = DataGridViewColumnSortMode.Automatic;
             dtcol.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
             dtcol.ReadOnly = false;
             dtcol.DataSource = Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList();
 
+            dataGridView1.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
@@ -59,6 +65,7 @@ namespace CallTracker.View
             base.Init(_parent, _menuItem);
             bindingSource1 = MainForm.editContact.customerContactsBindingSource;
             dataGridView1.DataSource = bindingSource1;
+            dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
         }
 
         protected override void _Done_Click(object sender, EventArgs e)
@@ -103,7 +110,7 @@ namespace CallTracker.View
 
             callHistoryPanel1.RemoveBindingSource();
             dataGridView1.DataSource = null;
-            MainForm.DataStore.Contacts = new BindingList<CustomerContact>();
+            MainForm.DataStore.Contacts = new SortableBindingList<CustomerContact>();
             MainForm.editContact.DeleteCalls();
             dataGridView1.DataSource = MainForm.editContact.customerContactsBindingSource;
             callHistoryPanel1.SetBindingSource(MainForm.editContact.customerContactsBindingSource);
@@ -115,6 +122,9 @@ namespace CallTracker.View
             {
                 MainForm.DataStore.Contacts.Add(new CustomerContact(1));
                 MainForm.editContact.customerContactsBindingSource.Position = 1;
+            }else if(bindingSource1.Position == e.Row.Index)
+            {
+                bindingSource1.Position -= 1;
             }
         }
     }

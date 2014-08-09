@@ -19,6 +19,10 @@ namespace CallTracker.Model
         {
             get { return Date.ToShortDateString() + " " + Timeslots[Timeslot].Split(new char[1] { "-"[0] })[0].Trim(); }
         }
+        public string GetIFMSDate
+        {
+            get { return Date.ToString("dd/MM/yyyy") + " " + Timeslots[Timeslot].Split(new char[1] { "-"[0] })[0].Trim() + ":00"; }
+        }
         public string GetShortDate
         {
             get { return Date.ToString("dd/MM"); }

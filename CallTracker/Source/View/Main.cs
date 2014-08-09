@@ -18,15 +18,15 @@ using CallTracker.Model;
 using CallTracker.Helpers;
 using CallTracker.Data;
 
-//using System.Windows.Automation;
-//using TestStack.White.Configuration;
-//using TestStack.White.Factory;
-//using TestStack.White.UIItems;
-//using TestStack.White.UIItems.Finders;
-//using TestStack.White.UIItems.WindowItems;
-//using TestStack.White.Recording;
-//using TestStack.White.UIItemEvents;
-//using TestStack.White.UIItems.Actions;
+using System.Windows.Automation;
+using TestStack.White.Configuration;
+using TestStack.White.Factory;
+using TestStack.White.UIItems;
+using TestStack.White.UIItems.Finders;
+using TestStack.White.UIItems.WindowItems;
+using TestStack.White.Recording;
+using TestStack.White.UIItemEvents;
+using TestStack.White.UIItems.Actions;
 
 namespace CallTracker.View
 {
@@ -150,8 +150,6 @@ namespace CallTracker.View
 
             //this.Enabled = true;
             UpdateProgressBar(0, "Finished Loading", EventLogLevel.ClearStatus);
-
-            InitIPCCMonitor();
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
@@ -393,19 +391,72 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // IPCC Monitor ////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        //private TestStack.White.Application IPCCApplication
-        //private Window IPCCWindow
-        //private TestStack.White.UIItems.Edit IPCCCallStatus
+        private Process IPCCProcess;
+        private TestStack.White.Application IPCCApplication;
+        private Window IPCCWindow;
+        private TestStack.White.UIItems.TextBox IPCCCallStatus;
+
         private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (IPCCProcess == null && monitorIPCCToolStripMenuItem.Checked == true)
+                if (InitIPCCMonitor() == false)
+                    return;
+            
             _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
         }
 
-        private void InitIPCCMonitor()
+        private void _IPCCTimer_Tick(object sender, EventArgs e)
         {
-            //IPCCApplication = TestStack.White.Application.Attach("IPCCDesktopAgent.exe");
-            //IPCCWindow = application.GetWindow("CMake 2.8.12.1 - C:/Programming/Rust/piston-master/exam", InitializeOption.WithCache);
-            //IPCCCallStatus = window.Get<TestStack.White.UIItems.Panel>("BrowseSourceDirectoryButton");
+            string status = IPCCCallStatus.Name;
+            monitorIPCCToolStripMenuItem.Text = status;
+            switch(status)
+            {
+                case "AgentStatus: Work Ready":
+                    editContact._WorkReadyTimerDisplay.PerformClick();
+                    _IPCCTimer.Interval = 1000;
+                    break;
+                case "AgentStatus: On Call":
+                    _IPCCTimer.Interval = 2000;
+                    break;
+                case "AgentStatus: Not Ready":
+                    _IPCCTimer.Interval = 2000;
+                    break;
+                case "AgentStatus: Ready":
+                    _IPCCTimer.Interval = 1000;
+                    break;
+                default:
+                    _IPCCTimer.Interval = 1000;
+                    break;
+            }
+            
+        }
+
+        private bool InitIPCCMonitor()
+        {
+            foreach (Process pList in Process.GetProcesses())
+                if(pList.MainWindowTitle.Contains("IPCC Agent Desktop"))
+                    IPCCProcess = pList;
+
+            if (IPCCProcess == null)
+            {
+                EventLogger.LogNewEvent("Unable to Find IPCC", EventLogLevel.Status);
+                return false;
+            }
+
+            IPCCProcess.Exited += IPCCProcess_Exited;
+            IPCCApplication = TestStack.White.Application.Attach(IPCCProcess);//@"C:\Program Files\Optus\IPCC Agent Desktop\IPCCAgentDesktop.exe");
+            IPCCWindow = IPCCApplication.GetWindow(SearchCriteria.ByAutomationId("SoftphoneForm"), InitializeOption.NoCache);
+            IPCCCallStatus = IPCCWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("StatusBar.Pane3"));
+            return true;
+        }
+
+        void IPCCProcess_Exited(object sender, EventArgs e)
+        {
+            _IPCCTimer.Enabled = false;
+            monitorIPCCToolStripMenuItem.Checked = false;
+            IPCCProcess.Exited -= IPCCProcess_Exited;
+            IPCCProcess.Dispose();
+            IPCCProcess = null;
         }
     }
 }

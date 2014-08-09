@@ -118,7 +118,7 @@ namespace CallTracker.Helpers
 
             ////////////////////////////////////////////
 
-            title = "CTI Dial Pad";
+            title = "CTI";
             buttonOffsets = new Point();
             string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
 
@@ -127,6 +127,7 @@ namespace CallTracker.Helpers
 
             hwnd = FindHWNDByTitle(title);
             SetForegroundWindow(hwnd);
+            rect = new Rect();
             GetWindowRect(hwnd, ref rect);
             transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
 

@@ -23,6 +23,8 @@ namespace CallTracker.Model
         public string Title{ get; set; }
         [ProtoMember(2)]
         public string First { get; set; }
+        [ProtoMember(5)]
+        public string Initial { get; set; }
         [ProtoMember(3)]
         public string Last { get; set; }
         [ProtoMember(4)]
@@ -37,7 +39,8 @@ namespace CallTracker.Model
                 Match match = Pattern.Match(value);
                 Title = match.Groups[1].Value;
                 First = match.Groups[2].Value;
-                Last = match.Groups[3].Value;
+                Initial = match.Groups[3].Value;
+                Last = match.Groups[4].Value;
 
                 full = value;
             } 

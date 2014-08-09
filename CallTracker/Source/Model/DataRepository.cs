@@ -83,7 +83,7 @@ namespace CallTracker.Model
         [ProtoMember(1)]
         internal TriggerList<PasteBind> PasteBinds { get; set; }
         [ProtoMember(2)]
-        internal BindingList<CustomerContact> Contacts { get; set; }
+        internal SortableBindingList<CustomerContact> Contacts { get; set; }
         [ProtoMember(3)]
         internal BindingList<LoginsModel> Logins { get; set; }
         [ProtoMember(4)]
@@ -94,7 +94,7 @@ namespace CallTracker.Model
             Filename = "Data/Data.bin";
 
             PasteBinds = new TriggerList<PasteBind>();
-            Contacts = new BindingList<CustomerContact>();
+            Contacts = new SortableBindingList<CustomerContact>();
             Logins = new BindingList<LoginsModel>();
             GridLinks = new GridLinksModel();
         }
@@ -134,8 +134,8 @@ namespace CallTracker.Model
         public override void DecryptData(UserDataStore _dataStore) 
         {
             UserDataStore dataStore = _dataStore;
-
-            string key = StringCipher.Encrypt(Environment.UserName, "2point71828");
+            //Environment.UserName
+            string key = StringCipher.Encrypt("Jesse Poulton", "2point71828");
             foreach (var login in dataStore.Logins)
                 login.Password = StringCipher.Decrypt(login.Password, key);
         }
@@ -145,7 +145,7 @@ namespace CallTracker.Model
             UserDataStore dataStore = _dataStore;
 
             foreach (var login in dataStore.Logins)
-                login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt(Environment.UserName, "2point71828"));
+                login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt("Jesse Poulton", "2point71828"));
 
         }
     }
