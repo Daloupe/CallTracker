@@ -5,6 +5,8 @@ using System.Threading;
 using System.Drawing;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace CallTracker.Helpers
 {
@@ -96,6 +98,7 @@ namespace CallTracker.Helpers
         public const int MOUSEEVENTF_RIGHTDOWN = 0x08;
         public const int MOUSEEVENTF_RIGHTUP = 0x10;
 
+       // public static Point NumberOffset = new Point();
         public static void IPCCAutomation(string _number, Point _buttonOffsets)
         {
             string title = "IPCC"; //IPCC Agent Desktop for Fusion: v5.2.1 (c2)
@@ -116,7 +119,11 @@ namespace CallTracker.Helpers
             ////////////////////////////////////////////
 
             title = "CTI Dial Pad";
-            buttonOffsets = new Point() { X = 120, Y = 65 };
+            buttonOffsets = new Point();
+            string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
+
+            buttonOffsets.X = Convert.ToInt16(Regex.Split(offsetFile[2], ",")[1]);
+            buttonOffsets.Y = Convert.ToInt16(Regex.Split(offsetFile[2], ",")[2]);
 
             hwnd = FindHWNDByTitle(title);
             SetForegroundWindow(hwnd);

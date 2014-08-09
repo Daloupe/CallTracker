@@ -18,13 +18,13 @@ namespace CallTracker.View
             
         }
 
-        [Category("A1")]
+        [Category("!Label")]
         public string LabelText
         {
             get { return _Label.Text; }
             set { _Label.Text = value; }
         }
-        [Category("A1")]
+        [Category("!Label")]
         public int LabelWidth
         {
             get { return _Label.Width; }
@@ -41,13 +41,13 @@ namespace CallTracker.View
 
         private void _DataField_TextChanged(object sender, EventArgs e)
         {
-            this.ParentForm.Validate();
+            //this.ParentForm.Validate();
         }
     }
     public partial class IDataField : UserControl
     {
         protected string propertyName;
-        [Category("A1")]
+        [Category("!Input")]
         public string PropertyName
         {
             get { return propertyName; }

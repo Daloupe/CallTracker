@@ -10,25 +10,39 @@ using System.Windows.Forms;
 namespace CallTracker.View
 {
     [DefaultBindingProperty("TextField")]
-    public partial class LabelledTextField : LabelledBase
+    public partial class LabelledTextBox : LabelledBase
     {
-        [Category("A1")]
+        [Category("!Input")]
+        public HorizontalAlignment TextAlign
+        {
+            get { return _DataField.TextAlign; }
+            set { _DataField.TextAlign = value; }
+        }
+
+        [Category("!Input")]
+        public string DefaultText
+        {
+            get { return _DataField.Text; }
+            set { _DataField.Text = value; }
+        }
+
+        [Category("!Input")]
         public Color BorderColour
         {
             get { return _DataField.BorderColor; }
             set { _DataField.BorderColor = value; }
         }
 
-        [Category("A1")]
+        [Category("!Input")]
         [Bindable(true)]
-        [Browsable(false)]
+        [Browsable(true)]
         public string TextField
         {
             get { return _DataField.Text; }
             set { _DataField.Text = value; }
         }
 
-        public LabelledTextField()
+        public LabelledTextBox()
         {
             InitializeComponent();
             _DataField.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;

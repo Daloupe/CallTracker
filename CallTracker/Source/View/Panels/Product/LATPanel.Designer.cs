@@ -29,76 +29,110 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.panelHeading1 = new CallTracker.View.PanelHeading();
-            this.dataDropDown1 = new CallTracker.View.DataDropDown();
+            this.labelledBase1 = new CallTracker.View.LabelledBase();
+            this._NitResults = new CallTracker.View.LabelledTextField();
             this.serviceModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataArea1 = new CallTracker.View.DataArea();
-            this.dataField1 = new CallTracker.View.DataField();
+            this.dataDropDown1 = new CallTracker.View.LabelledComboBoxLong();
+            this.labelledTextBoxLong1 = new CallTracker.View.LabelledTextBoxLong();
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // panelHeading1
+            // labelledBase1
             // 
-            this.panelHeading1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.panelHeading1.LabelText = "//LAT";
-            this.panelHeading1.Location = new System.Drawing.Point(0, 0);
-            this.panelHeading1.Margin = new System.Windows.Forms.Padding(0);
-            this.panelHeading1.Name = "panelHeading1";
-            this.panelHeading1.Padding = new System.Windows.Forms.Padding(2);
-            this.panelHeading1.Size = new System.Drawing.Size(180, 17);
-            this.panelHeading1.TabIndex = 46;
+            this.labelledBase1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledBase1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this.labelledBase1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.labelledBase1.ControlHeight = 12;
+            this.labelledBase1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledBase1.LabelAutoSize = true;
+            this.labelledBase1.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this.labelledBase1.LabelOffset = new System.Drawing.Point(1, -2);
+            this.labelledBase1.LabelSize = new System.Drawing.Size(38, 22);
+            this.labelledBase1.LabelText = "//LAT";
+            this.labelledBase1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelledBase1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledBase1.Location = new System.Drawing.Point(0, 0);
+            this.labelledBase1.Margin = new System.Windows.Forms.Padding(0);
+            this.labelledBase1.Name = "labelledBase1";
+            this.labelledBase1.PropertyName = null;
+            this.labelledBase1.Size = new System.Drawing.Size(180, 12);
+            this.labelledBase1.TabIndex = 61;
             // 
-            // dataDropDown1
+            // _NitResults
             // 
-            this.dataDropDown1.DataBindings.Add(new System.Windows.Forms.Binding("DataText", this.serviceModelBindingSource, "CauPing", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dataDropDown1.DataSelectedItem = "";
-            this.dataDropDown1.DataSelectedValue = "";
-            this.dataDropDown1.DataText = "";
-            this.dataDropDown1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.dataDropDown1.LabelText = "CAU:";
-            this.dataDropDown1.LabelWidth = 36;
-            this.dataDropDown1.Location = new System.Drawing.Point(0, 42);
-            this.dataDropDown1.Margin = new System.Windows.Forms.Padding(0);
-            this.dataDropDown1.Name = "dataDropDown1";
-            this.dataDropDown1.Padding = new System.Windows.Forms.Padding(3);
-            this.dataDropDown1.PropertyName = null;
-            this.dataDropDown1.Size = new System.Drawing.Size(179, 25);
-            this.dataDropDown1.TabIndex = 45;
+            this._NitResults.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._NitResults.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._NitResults.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._NitResults.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._NitResults.ControlHeight = 93;
+            this._NitResults.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "NitResults", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._NitResults.Font = new System.Drawing.Font("Verdana", 7F);
+            this._NitResults.LabelAutoSize = false;
+            this._NitResults.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._NitResults.LabelOffset = new System.Drawing.Point(0, 0);
+            this._NitResults.LabelSize = new System.Drawing.Size(171, 17);
+            this._NitResults.LabelText = "  nit results";
+            this._NitResults.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._NitResults.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._NitResults.Location = new System.Drawing.Point(4, 59);
+            this._NitResults.Margin = new System.Windows.Forms.Padding(0);
+            this._NitResults.Name = "_NitResults";
+            this._NitResults.PropertyName = null;
+            this._NitResults.Size = new System.Drawing.Size(171, 93);
+            this._NitResults.TabIndex = 60;
+            this._NitResults.TextField = "";
             // 
             // serviceModelBindingSource
             // 
             this.serviceModelBindingSource.DataSource = typeof(CallTracker.Model.ServiceModel);
             // 
-            // dataArea1
+            // dataDropDown1
             // 
-            this.dataArea1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "NitResults", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dataArea1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.dataArea1.LabelText = "NIT:";
-            this.dataArea1.LabelWidth = 35;
-            this.dataArea1.Location = new System.Drawing.Point(0, 67);
-            this.dataArea1.Margin = new System.Windows.Forms.Padding(0);
-            this.dataArea1.Name = "dataArea1";
-            this.dataArea1.Padding = new System.Windows.Forms.Padding(3);
-            this.dataArea1.PropertyName = null;
-            this.dataArea1.Size = new System.Drawing.Size(180, 63);
-            this.dataArea1.TabIndex = 44;
-            this.dataArea1.TextField = "";
+            this.dataDropDown1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.dataDropDown1.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.dataDropDown1.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.dataDropDown1.ControlHeight = 20;
+            this.dataDropDown1.DataSource = null;
+            this.dataDropDown1.DefaultText = "";
+            this.dataDropDown1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.dataDropDown1.LabelAutoSize = true;
+            this.dataDropDown1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.dataDropDown1.LabelOffset = new System.Drawing.Point(0, 0);
+            this.dataDropDown1.LabelSize = new System.Drawing.Size(52, 23);
+            this.dataDropDown1.LabelText = "cau ping";
+            this.dataDropDown1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dataDropDown1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dataDropDown1.Location = new System.Drawing.Point(4, 37);
+            this.dataDropDown1.Name = "dataDropDown1";
+            this.dataDropDown1.PropertyName = "CauPing";
+            this.dataDropDown1.Size = new System.Drawing.Size(171, 20);
+            this.dataDropDown1.TabIndex = 59;
             // 
-            // dataField1
+            // labelledTextBoxLong1
             // 
-            this.dataField1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.dataField1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dataField1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.dataField1.LabelText = "Node:";
-            this.dataField1.LabelWidth = 35;
-            this.dataField1.Location = new System.Drawing.Point(0, 17);
-            this.dataField1.Margin = new System.Windows.Forms.Padding(0);
-            this.dataField1.Name = "dataField1";
-            this.dataField1.Padding = new System.Windows.Forms.Padding(3);
-            this.dataField1.PropertyName = null;
-            this.dataField1.Size = new System.Drawing.Size(180, 25);
-            this.dataField1.TabIndex = 37;
-            this.dataField1.TextField = "";
+            this.labelledTextBoxLong1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextBoxLong1.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong1.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong1.ControlHeight = 19;
+            this.labelledTextBoxLong1.ControlMargin = new System.Windows.Forms.Padding(2);
+            this.labelledTextBoxLong1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labelledTextBoxLong1.DefaultText = "";
+            this.labelledTextBoxLong1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong1.LabelAutoSize = false;
+            this.labelledTextBoxLong1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong1.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextBoxLong1.LabelSize = new System.Drawing.Size(52, 19);
+            this.labelledTextBoxLong1.LabelText = "node";
+            this.labelledTextBoxLong1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelledTextBoxLong1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledTextBoxLong1.Location = new System.Drawing.Point(4, 16);
+            this.labelledTextBoxLong1.Margin = new System.Windows.Forms.Padding(2);
+            this.labelledTextBoxLong1.Name = "labelledTextBoxLong1";
+            this.labelledTextBoxLong1.PropertyName = null;
+            this.labelledTextBoxLong1.Size = new System.Drawing.Size(171, 19);
+            this.labelledTextBoxLong1.TabIndex = 58;
+            this.labelledTextBoxLong1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.labelledTextBoxLong1.TextField = "";
             // 
             // LATPanel
             // 
@@ -106,10 +140,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.Ivory;
-            this.Controls.Add(this.panelHeading1);
+            this.Controls.Add(this.labelledBase1);
+            this.Controls.Add(this._NitResults);
             this.Controls.Add(this.dataDropDown1);
-            this.Controls.Add(this.dataArea1);
-            this.Controls.Add(this.dataField1);
+            this.Controls.Add(this.labelledTextBoxLong1);
             this.Name = "LATPanel";
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -118,10 +152,10 @@
 
         #endregion
 
-        private DataField dataField1;
         internal System.Windows.Forms.BindingSource serviceModelBindingSource;
-        private DataArea dataArea1;
-        private DataDropDown dataDropDown1;
-        private PanelHeading panelHeading1;
+        private LabelledComboBoxLong dataDropDown1;
+        private LabelledTextBoxLong labelledTextBoxLong1;
+        private LabelledTextField _NitResults;
+        private LabelledBase labelledBase1;
     }
 }

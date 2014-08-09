@@ -229,6 +229,7 @@
             this.Name = "LATRatecodes";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(584, 241);
+            this.VisibleChanged += new System.EventHandler(this.LATRatecodes_VisibleChanged);
             this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rateplanBindingSource)).EndInit();

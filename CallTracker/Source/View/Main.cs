@@ -7,6 +7,7 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 using System.ComponentModel;
 using System.Text;
+using System.Text.RegularExpressions;
 
 using System.Diagnostics;
 
@@ -249,7 +250,10 @@ namespace CallTracker.View
 
         public void transfer_Click(object sender, EventArgs e)
         {
-
+            Point offsets = new Point();
+            string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
+            offsets.X = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[1]);
+            offsets.Y = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[2]);
 
             //TestStack.White.Application application = TestStack.White.Application.Attach("cmake-gui");
             //Window window = application.GetWindow("CMake 2.8.12.1 - C:/Programming/Rust/piston-master/exam", InitializeOption.WithCache);
@@ -259,7 +263,7 @@ namespace CallTracker.View
             //button.Click();
 
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            WindowHelper.IPCCAutomation(item.Tag.ToString(), new Point() { X = 732, Y = 63 });
+            WindowHelper.IPCCAutomation(item.Tag.ToString(), offsets);
         }
 
         private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)

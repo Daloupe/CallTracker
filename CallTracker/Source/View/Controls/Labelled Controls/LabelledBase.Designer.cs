@@ -54,6 +54,7 @@
             this._Label.AutoSize = true;
             this._Label.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._Label.Font = new System.Drawing.Font("Gautami", 7F);
+            this._Label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this._Label.Location = new System.Drawing.Point(1, -2);
             this._Label.Margin = new System.Windows.Forms.Padding(0);
             this._Label.MaximumSize = new System.Drawing.Size(300, 70);

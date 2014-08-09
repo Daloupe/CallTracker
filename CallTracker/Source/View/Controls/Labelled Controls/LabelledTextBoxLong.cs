@@ -68,7 +68,7 @@ namespace CallTracker.View
 
         private void _DataField_TextChanged(object sender, EventArgs e)
         {
-            this.ParentForm.Validate();
+            //this.ParentForm.Validate();
         }
 
         private void LabelledTextBox_Load(object sender, EventArgs e)

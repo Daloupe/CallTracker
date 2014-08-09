@@ -98,6 +98,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(353, 191);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
             // 
             // callHistoryPanel1

@@ -12,49 +12,57 @@ namespace CallTracker.View
     public partial class LabelledBase : IDataField
     {
         
-        [Category("A1")]
+        [Category("!Label")]
         public string LabelText
         {
             get { return _Label.Text; }
             set { _Label.Text = value; }
         }
 
-        [Category("A1")]
+        [Category("!Label")]
         public Font LabelFont
         {
             get { return _Label.Font; }
             set { _Label.Font = value; }
         }
 
-        [Category("A1")]
+        [Category("!Label")]
         public Point LabelOffset
         {
             get { return _Label.Location; }
             set { _Label.Location = value; }
         }
 
-        [Category("A1")]
+        [Category("!Label")]
         public Size LabelSize
         {
             get { return _Label.Size; }
             set { _Label.Size = value; }
         }
 
-        [Category("A1")]
+        [Category("!Label")]
         public bool LabelAutoSize
         {
             get { return _Label.AutoSize; }
             set { _Label.AutoSize = value; }
         }
 
-        [Category("A1")]
+
+        [Category("!Label")]
+        public Color LabelTextColor
+        {
+            get { return _Label.ForeColor; }
+            set { _Label.ForeColor = value; }
+        }
+
+        [Category("!Label")]
         public ContentAlignment LabelTextAlign
         {
             get { return _Label.TextAlign; }
             set { _Label.TextAlign = value; }
         }
 
-        [Category("A1")]
+        [Category("!Main")]
         public int ControlHeight
         {
             get { return this.Height; }

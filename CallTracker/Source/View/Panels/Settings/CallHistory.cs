@@ -108,5 +108,14 @@ namespace CallTracker.View
             dataGridView1.DataSource = MainForm.editContact.customerContactsBindingSource;
             callHistoryPanel1.SetBindingSource(MainForm.editContact.customerContactsBindingSource);
         }
+
+        private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+        {
+            if(MainForm.DataStore.Contacts.Count == 1)
+            {
+                MainForm.DataStore.Contacts.Add(new CustomerContact(1));
+                MainForm.editContact.customerContactsBindingSource.Position = 1;
+            }
+        }
     }
 }

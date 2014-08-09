@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AppPanel = new System.Windows.Forms.Panel();
+            this._ViewPanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this._StatusContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,7 +41,6 @@
             this._StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._StatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.MenuPanel = new System.Windows.Forms.Panel();
-            this._ViewPanel = new System.Windows.Forms.Panel();
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -99,6 +99,14 @@
             this.AppPanel.Size = new System.Drawing.Size(586, 257);
             this.AppPanel.TabIndex = 25;
             this.AppPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
+            // 
+            // _ViewPanel
+            // 
+            this._ViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._ViewPanel.Location = new System.Drawing.Point(0, 16);
+            this._ViewPanel.Name = "_ViewPanel";
+            this._ViewPanel.Size = new System.Drawing.Size(584, 220);
+            this._ViewPanel.TabIndex = 29;
             // 
             // statusStrip1
             // 
@@ -197,14 +205,6 @@
             this.MenuPanel.Size = new System.Drawing.Size(584, 16);
             this.MenuPanel.TabIndex = 27;
             this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
-            // 
-            // _ViewPanel
-            // 
-            this._ViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._ViewPanel.Location = new System.Drawing.Point(0, 16);
-            this._ViewPanel.Name = "_ViewPanel";
-            this._ViewPanel.Size = new System.Drawing.Size(584, 220);
-            this._ViewPanel.TabIndex = 29;
             // 
             // _MainMenu
             // 

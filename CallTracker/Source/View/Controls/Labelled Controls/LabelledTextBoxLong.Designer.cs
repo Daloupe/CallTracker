@@ -57,7 +57,7 @@
             this._DataField.Margin = new System.Windows.Forms.Padding(0);
             this._DataField.Name = "_DataField";
             this._DataField.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._DataField.Size = new System.Drawing.Size(140, 19);
+            this._DataField.Size = new System.Drawing.Size(132, 19);
             this._DataField.TabIndex = 27;
             // 
             // LabelledTextBoxLong
@@ -74,8 +74,8 @@
             this.Load += new System.EventHandler(this.LabelledTextBox_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this._MenuButton_Paint);
             this.Controls.SetChildIndex(this._Label, 0);
-            this.Controls.SetChildIndex(this._DataField, 0);
             this.Controls.SetChildIndex(this._MenuButton, 0);
+            this.Controls.SetChildIndex(this._DataField, 0);
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

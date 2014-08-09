@@ -21,8 +21,8 @@ namespace CallTracker.View
 
         public DataSets.ServicesDataSet.ServicesRow ServiceType;
 
-        public BindingList<string> Equipment;
-        public BindingList<string> Symptoms;
+        public static BindingList<string> Equipment;
+        public static BindingList<string> Symptoms;
         public ToolStripItemCollection  Severity;
 
         private EditContact Parent;
@@ -37,15 +37,18 @@ namespace CallTracker.View
             Panel = (PanelBase)(Activator.CreateInstance(Type.GetType("CallTracker.View." + ProductCode + "Panel")));
             ContextMenuItem = ((ToolStripMenuItem)Parent.GetType().GetField("_ServiceMenu" + ProductCode).GetValue(Parent));
             CheckBox = ((CheckBox)Parent.GetType().GetField("_" + ProductCode).GetValue(Parent));
+
+            ServiceType = (from a in Main.ServicesStore.servicesDataSet.Services
+                           where a.ProductCode == ProductCode
+                           select a).First();
         }
 
         public void Init()
         {
-            ServiceType = (from a in Main.ServicesStore.servicesDataSet.Services
-                           where a.ProductCode == ProductCode
-                           select a).First();
-            Symptoms = new BindingList<string>();
-            Equipment = new BindingList<string>();
+            //ServiceType = (from a in Main.ServicesStore.servicesDataSet.Services
+            //               where a.ProductCode == ProductCode
+            //               select a).First();
+
             UpdateSymptoms();
             UpdateEquipment();
             //UpdateSeverity();
@@ -105,44 +108,54 @@ namespace CallTracker.View
 
         public void UpdateSymptoms()
         {
-            Parent._Symptom.DataSource = null;
-            Symptoms.Clear();
-
             var query = (from a in Main.ServicesStore.servicesDataSet.Symptoms
                         from b in a.GetSymptomGroupSymptomMatchRows()
                         from c in ServiceType.GetServiceSymptomGroupMatchRows()
                         where b.SymptomGroupsRow == c.SymptomGroupsRow &&
                               c.ServicesRow == ServiceType
                         select a.IFMSCode).Distinct().ToList();
-            
-            foreach (var item in query)
-                Symptoms.Add(item);
 
-            Parent._Symptom.DataSource = Symptoms;
+            if (query.Count > 0)
+            {
+                Symptoms.RaiseListChangedEvents = false;
+                Symptoms.Clear();
+
+                foreach (var item in query)
+                    Symptoms.Add(item);
+
+                Symptoms.RaiseListChangedEvents = true;
+                Symptoms.ResetBindings();
+
+                if (Parent._Symptom._ComboBox.DataSource == null)
+                    Parent._Symptom.BindComboBox(Symptoms, Parent.customerContactsBindingSource);
+            }              
         }
 
         public void UpdateEquipment()
         {
-           Parent._Equipment.DataSource = null;
-            Equipment.Clear();
             var query = (from a in Main.ServicesStore.servicesDataSet.Equipment
                          from b in a.GetServiceEquipmentMatchRows()
                          where b.ServicesRow == ServiceType
                          select a.Description).Distinct().ToList();
 
-            foreach (var item in query)
-                Equipment.Add(item);
+            if (query.Count > 0)
+            {
+                Equipment.RaiseListChangedEvents = false;
+                Equipment.Clear();
 
-           Parent._Equipment.DataSource = Equipment;
+                foreach (var item in query)
+                    Equipment.Add(item);
+
+                Equipment.RaiseListChangedEvents = true;
+                Equipment.ResetBindings();
+
+                if (Parent._Equipment._ComboBox.DataSource == null)
+                    Parent._Equipment.BindComboBox(Equipment, Parent.customerContactsBindingSource);
+            }
         }
 
         public void UpdateSeverity()
         {
-           // Parent._SeverityMenuStrip.Items.Clear();// = null;
-
-
-            if(String.IsNullOrEmpty(Parent._Symptom._ComboBox.Text))
-                return;
             string symp = Parent._Symptom._ComboBox.Text ?? "NONE";
             var query = (from a in Main.ServicesStore.servicesDataSet.SeverityCodes
                          from b in a.GetSeverityCodeSymptomMatchRows()
@@ -162,7 +175,9 @@ namespace CallTracker.View
                         Parent._SeverityMenuStrip.Text = current = item.Text;
                     }
                     if (item.Text == current)
-                        item.Checked = true;
+                    {
+                        item.PerformClick();
+                    }
                 }
                 else
                 {

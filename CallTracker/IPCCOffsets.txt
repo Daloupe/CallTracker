@@ -1,0 +1,3 @@
+﻿Transfer,735,63
+Dial,305,63
+Number,120,65

@@ -18,6 +18,18 @@ namespace CallTracker.Model
     [ProtoContract]
     public class FaultModel
     {
+        public FaultModel()
+        {
+            PR = String.Empty;
+            NPR = String.Empty;
+            ITCase = String.Empty;
+            Severity = String.Empty; // "I";
+            Symptom = String.Empty; //"NDT";
+            Outcome = String.Empty; //"PR";
+            //Booking = new BookingModel();
+            AffectedServices = AffectedServiceType = ServiceTypes.NONE;
+        }
+
         public static ITCasePattern ITCasePattern = new ITCasePattern();
 
         [ProtoMember(1)]
@@ -110,18 +122,6 @@ namespace CallTracker.Model
         {
             "I", "D", "N", "H"
         };
-
-        public FaultModel()
-        {
-            PR = String.Empty;
-            NPR = String.Empty;
-            ITCase = String.Empty;
-            Severity = String.Empty;
-            Symptom = String.Empty;
-            Outcome = String.Empty;
-            //Booking = new BookingModel();
-            AffectedServices = AffectedServiceType = ServiceTypes.NONE;
-        }
 
         public bool LAT
         {

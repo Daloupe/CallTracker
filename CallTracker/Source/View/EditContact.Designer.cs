@@ -99,24 +99,24 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this._OutcomeTooltip = new System.Windows.Forms.ToolTip(this.components);
             this._Icon = new CallTracker.View.LabelledTextBoxLong();
-            this._Cmbs = new CallTracker.View.LabelledTextBoxLong();
             this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._Cmbs = new CallTracker.View.LabelledTextBoxLong();
             this._Username = new CallTracker.View.LabelledTextBoxLong();
             this._Dn = new CallTracker.View.LabelledTextBoxLong();
             this._Name = new CallTracker.View.LabelledTextBoxLong();
             this._Mobile = new CallTracker.View.LabelledTextBoxLong();
             this._Address = new CallTracker.View.LabelledTextBoxLong();
+            this._BookingDate = new CallTracker.View.LabelledDatePicker();
             this._BookingType = new CallTracker.View.LabelledComboBox();
             this._BookingTimeSlot = new CallTracker.View.LabelledComboBox();
-            this._BookingDate = new CallTracker.View.LabelledComboBox();
             this._Itcase = new CallTracker.View.LabelledTextBox();
             this._Equipment = new CallTracker.View.LabelledComboBoxLong();
             this._Outcome = new CallTracker.View.LabelledComboBox();
             this._Symptom = new CallTracker.View.LabelledComboBox();
             this._NPR = new CallTracker.View.LabelledTextBox();
             this._PR = new CallTracker.View.LabelledTextBox();
-            this.labelledTextField1 = new CallTracker.View.LabelledTextField();
             this.labelledTextField2 = new CallTracker.View.LabelledTextField();
+            this.labelledTextField1 = new CallTracker.View.LabelledTextField();
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -200,11 +200,11 @@
             this.splitContainer2.Panel2.ContextMenuStrip = this._ServiceMenu;
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this.splitContainer2.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer2.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer2_Panel2_Paint);
+            this.splitContainer2.Panel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.splitContainer2_MouseWheel);
             this.splitContainer2.Panel2MinSize = 0;
             this.splitContainer2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer2.Size = new System.Drawing.Size(180, 216);
-            this.splitContainer2.SplitterDistance = 68;
+            this.splitContainer2.SplitterDistance = 67;
             this.splitContainer2.SplitterWidth = 3;
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
@@ -213,10 +213,10 @@
             // 
             // HfcPanel
             // 
-            this.HfcPanel.BackColor = System.Drawing.Color.LightBlue;
+            this.HfcPanel.BackColor = System.Drawing.Color.BlanchedAlmond;
+            this.HfcPanel.Controls.Add(this._BookingDate);
             this.HfcPanel.Controls.Add(this._BookingType);
             this.HfcPanel.Controls.Add(this._BookingTimeSlot);
-            this.HfcPanel.Controls.Add(this._BookingDate);
             this.HfcPanel.Controls.Add(this._Itcase);
             this.HfcPanel.Controls.Add(this._Equipment);
             this.HfcPanel.Controls.Add(this._Outcome);
@@ -224,7 +224,7 @@
             this.HfcPanel.Controls.Add(this._NPR);
             this.HfcPanel.Controls.Add(this._PR);
             this.HfcPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.HfcPanel.Location = new System.Drawing.Point(0, -91);
+            this.HfcPanel.Location = new System.Drawing.Point(0, -92);
             this.HfcPanel.Margin = new System.Windows.Forms.Padding(0);
             this.HfcPanel.Name = "HfcPanel";
             this.HfcPanel.Size = new System.Drawing.Size(180, 159);
@@ -320,6 +320,7 @@
             // 
             this._SeverityMenuStrip.AutoSize = false;
             this._SeverityMenuStrip.BackColor = System.Drawing.Color.WhiteSmoke;
+            this._SeverityMenuStrip.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this._SeverityMenuStrip.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Fault.Severity", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._SeverityMenuStrip.Font = new System.Drawing.Font("Gautami", 8.25F);
             this._SeverityMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -330,7 +331,7 @@
             this._SeverityMenuStrip.Name = "_SeverityMenuStrip";
             this._SeverityMenuStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this._SeverityMenuStrip.ShowImageMargin = false;
-            this._SeverityMenuStrip.Size = new System.Drawing.Size(40, 114);
+            this._SeverityMenuStrip.Size = new System.Drawing.Size(40, 96);
             this._SeverityMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._SeverityMenuStrip_ItemClicked);
             // 
             // iToolStripMenuItem
@@ -338,46 +339,63 @@
             this.iToolStripMenuItem.AutoSize = false;
             this.iToolStripMenuItem.Checked = true;
             this.iToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.iToolStripMenuItem.Font = new System.Drawing.Font("Gautami", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.iToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.iToolStripMenuItem.Font = new System.Drawing.Font("KaiTi", 9.6F);
+            this.iToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.iToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.iToolStripMenuItem.Name = "iToolStripMenuItem";
             this.iToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
-            this.iToolStripMenuItem.Size = new System.Drawing.Size(30, 22);
+            this.iToolStripMenuItem.ShowShortcutKeys = false;
+            this.iToolStripMenuItem.Size = new System.Drawing.Size(30, 24);
             this.iToolStripMenuItem.Text = "I";
+            this.iToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.iToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.iToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.iToolStripMenuItem.ToolTipText = "Interruption";
             this.iToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hToolStripMenuItem_CheckedChanged);
             // 
             // dToolStripMenuItem
             // 
             this.dToolStripMenuItem.AutoSize = false;
+            this.dToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.dToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.dToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.dToolStripMenuItem.Name = "dToolStripMenuItem";
+            this.dToolStripMenuItem.ShowShortcutKeys = false;
             this.dToolStripMenuItem.Size = new System.Drawing.Size(30, 22);
             this.dToolStripMenuItem.Text = "D";
             this.dToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.dToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.dToolStripMenuItem.ToolTipText = "Degredation";
             this.dToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hToolStripMenuItem_CheckedChanged);
             // 
             // nToolStripMenuItem
             // 
             this.nToolStripMenuItem.AutoSize = false;
+            this.nToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.nToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.nToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.nToolStripMenuItem.Name = "nToolStripMenuItem";
+            this.nToolStripMenuItem.ShowShortcutKeys = false;
             this.nToolStripMenuItem.Size = new System.Drawing.Size(30, 22);
             this.nToolStripMenuItem.Text = "N";
             this.nToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.nToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.nToolStripMenuItem.ToolTipText = "No Impact";
             this.nToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hToolStripMenuItem_CheckedChanged);
             // 
             // hToolStripMenuItem
             // 
             this.hToolStripMenuItem.AutoSize = false;
+            this.hToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.hToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.hToolStripMenuItem.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.hToolStripMenuItem.Name = "hToolStripMenuItem";
+            this.hToolStripMenuItem.ShowShortcutKeys = false;
             this.hToolStripMenuItem.Size = new System.Drawing.Size(30, 22);
             this.hToolStripMenuItem.Text = "H";
             this.hToolStripMenuItem.TextDirection = System.Windows.Forms.ToolStripTextDirection.Horizontal;
+            this.hToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
             this.hToolStripMenuItem.ToolTipText = "Hazardous";
             this.hToolStripMenuItem.CheckedChanged += new System.EventHandler(this.hToolStripMenuItem_CheckedChanged);
             // 
@@ -930,6 +948,7 @@
             this._Icon.BorderColour = System.Drawing.Color.SlateGray;
             this._Icon.ControlHeight = 19;
             this._Icon.ControlMargin = new System.Windows.Forms.Padding(3, 3, 0, 3);
+            this._Icon.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "ICON", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Icon.DefaultText = "";
             this._Icon.Font = new System.Drawing.Font("Verdana", 7F);
             this._Icon.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -939,6 +958,7 @@
             this._Icon.LabelSize = new System.Drawing.Size(50, 19);
             this._Icon.LabelText = "ICON";
             this._Icon.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Icon.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Icon.Location = new System.Drawing.Point(3, 7);
             this._Icon.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this._Icon.Name = "_Icon";
@@ -947,6 +967,11 @@
             this._Icon.TabIndex = 13;
             this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Icon.TextField = "";
+            // 
+            // customerContactsBindingSource
+            // 
+            this.customerContactsBindingSource.AllowNew = true;
+            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // _Cmbs
             // 
@@ -964,6 +989,7 @@
             this._Cmbs.LabelSize = new System.Drawing.Size(40, 19);
             this._Cmbs.LabelText = "CMBS";
             this._Cmbs.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Cmbs.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Cmbs.Location = new System.Drawing.Point(193, 7);
             this._Cmbs.Name = "_Cmbs";
             this._Cmbs.PropertyName = null;
@@ -971,11 +997,6 @@
             this._Cmbs.TabIndex = 14;
             this._Cmbs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Cmbs.TextField = "";
-            // 
-            // customerContactsBindingSource
-            // 
-            this.customerContactsBindingSource.AllowNew = true;
-            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // _Username
             // 
@@ -994,6 +1015,7 @@
             this._Username.LabelSize = new System.Drawing.Size(50, 19);
             this._Username.LabelText = "Username";
             this._Username.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Username.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Username.Location = new System.Drawing.Point(3, 32);
             this._Username.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this._Username.Name = "_Username";
@@ -1019,6 +1041,7 @@
             this._Dn.LabelSize = new System.Drawing.Size(40, 19);
             this._Dn.LabelText = "DN";
             this._Dn.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Dn.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Dn.Location = new System.Drawing.Point(193, 32);
             this._Dn.Name = "_Dn";
             this._Dn.PropertyName = null;
@@ -1044,6 +1067,7 @@
             this._Name.LabelSize = new System.Drawing.Size(50, 19);
             this._Name.LabelText = "Name";
             this._Name.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Name.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Name.Location = new System.Drawing.Point(3, 57);
             this._Name.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this._Name.Name = "_Name";
@@ -1070,6 +1094,7 @@
             this._Mobile.LabelSize = new System.Drawing.Size(40, 19);
             this._Mobile.LabelText = "Mobile";
             this._Mobile.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Mobile.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Mobile.Location = new System.Drawing.Point(193, 57);
             this._Mobile.Name = "_Mobile";
             this._Mobile.PropertyName = null;
@@ -1094,6 +1119,7 @@
             this._Address.LabelSize = new System.Drawing.Size(50, 19);
             this._Address.LabelText = "Address";
             this._Address.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Address.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Address.Location = new System.Drawing.Point(3, 82);
             this._Address.Name = "_Address";
             this._Address.PropertyName = null;
@@ -1102,12 +1128,36 @@
             this._Address.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this._Address.TextField = "";
             // 
+            // _BookingDate
+            // 
+            this._BookingDate.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._BookingDate.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._BookingDate.BorderColour = System.Drawing.Color.DarkGoldenrod;
+            this._BookingDate.ControlHeight = 29;
+            this._BookingDate.DataBindings.Add(new System.Windows.Forms.Binding("DateField", this.customerContactsBindingSource, "Booking.Date", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 5, 40, 35, 872);
+            this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
+            this._BookingDate.LabelAutoSize = true;
+            this._BookingDate.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this._BookingDate.LabelOffset = new System.Drawing.Point(2, -3);
+            this._BookingDate.LabelSize = new System.Drawing.Size(53, 22);
+            this._BookingDate.LabelText = "BOOKING";
+            this._BookingDate.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._BookingDate.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._BookingDate.Location = new System.Drawing.Point(67, 63);
+            this._BookingDate.Margin = new System.Windows.Forms.Padding(0);
+            this._BookingDate.Name = "_BookingDate";
+            this._BookingDate.PropertyName = null;
+            this._BookingDate.Size = new System.Drawing.Size(56, 29);
+            this._BookingDate.TabIndex = 61;
+            // 
             // _BookingType
             // 
             this._BookingType.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._BookingType.BackColor = System.Drawing.Color.SlateGray;
+            this._BookingType.BackColor = System.Drawing.Color.DarkGoldenrod;
             this._BookingType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._BookingType.BorderColour = System.Drawing.Color.SlateGray;
+            this._BookingType.BorderColour = System.Drawing.Color.DarkGoldenrod;
             this._BookingType.ControlHeight = 29;
             this._BookingType.DataSource = null;
             this._BookingType.DefaultText = "";
@@ -1119,19 +1169,20 @@
             this._BookingType.LabelSize = new System.Drawing.Size(34, 22);
             this._BookingType.LabelText = "TYPE";
             this._BookingType.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._BookingType.Location = new System.Drawing.Point(119, 39);
+            this._BookingType.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._BookingType.Location = new System.Drawing.Point(4, 63);
             this._BookingType.Margin = new System.Windows.Forms.Padding(0);
             this._BookingType.Name = "_BookingType";
             this._BookingType.PropertyName = "Booking.Type";
-            this._BookingType.Size = new System.Drawing.Size(55, 29);
+            this._BookingType.Size = new System.Drawing.Size(59, 29);
             this._BookingType.TabIndex = 60;
             // 
             // _BookingTimeSlot
             // 
             this._BookingTimeSlot.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._BookingTimeSlot.BackColor = System.Drawing.Color.SlateGray;
+            this._BookingTimeSlot.BackColor = System.Drawing.Color.DarkGoldenrod;
             this._BookingTimeSlot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._BookingTimeSlot.BorderColour = System.Drawing.Color.SlateGray;
+            this._BookingTimeSlot.BorderColour = System.Drawing.Color.DarkGoldenrod;
             this._BookingTimeSlot.ControlHeight = 29;
             this._BookingTimeSlot.DataSource = null;
             this._BookingTimeSlot.DefaultText = "";
@@ -1143,43 +1194,20 @@
             this._BookingTimeSlot.LabelSize = new System.Drawing.Size(58, 22);
             this._BookingTimeSlot.LabelText = "TIMESLOT";
             this._BookingTimeSlot.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._BookingTimeSlot.Location = new System.Drawing.Point(63, 39);
+            this._BookingTimeSlot.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._BookingTimeSlot.Location = new System.Drawing.Point(127, 63);
             this._BookingTimeSlot.Margin = new System.Windows.Forms.Padding(0);
             this._BookingTimeSlot.Name = "_BookingTimeSlot";
             this._BookingTimeSlot.PropertyName = "Booking.TimeSlot";
-            this._BookingTimeSlot.Size = new System.Drawing.Size(53, 29);
+            this._BookingTimeSlot.Size = new System.Drawing.Size(48, 29);
             this._BookingTimeSlot.TabIndex = 59;
-            // 
-            // _BookingDate
-            // 
-            this._BookingDate.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._BookingDate.BackColor = System.Drawing.Color.SlateGray;
-            this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._BookingDate.BorderColour = System.Drawing.Color.SlateGray;
-            this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DataSource = null;
-            this._BookingDate.DefaultText = "";
-            this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
-            this._BookingDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._BookingDate.LabelAutoSize = true;
-            this._BookingDate.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
-            this._BookingDate.LabelOffset = new System.Drawing.Point(2, -3);
-            this._BookingDate.LabelSize = new System.Drawing.Size(53, 22);
-            this._BookingDate.LabelText = "BOOKING";
-            this._BookingDate.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._BookingDate.Location = new System.Drawing.Point(4, 39);
-            this._BookingDate.Margin = new System.Windows.Forms.Padding(0);
-            this._BookingDate.Name = "_BookingDate";
-            this._BookingDate.PropertyName = "Fault.Symptom";
-            this._BookingDate.Size = new System.Drawing.Size(56, 29);
-            this._BookingDate.TabIndex = 58;
             // 
             // _Itcase
             // 
             this._Itcase.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Itcase.BackColor = System.Drawing.Color.SlateGray;
+            this._Itcase.BackColor = System.Drawing.Color.DarkGoldenrod;
             this._Itcase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._Itcase.BorderColour = System.Drawing.Color.SlateGray;
+            this._Itcase.BorderColour = System.Drawing.Color.DarkGoldenrod;
             this._Itcase.ControlHeight = 28;
             this._Itcase.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.PR", true));
             this._Itcase.DefaultText = "";
@@ -1191,11 +1219,12 @@
             this._Itcase.LabelSize = new System.Drawing.Size(46, 22);
             this._Itcase.LabelText = "IT CASE";
             this._Itcase.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._Itcase.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Itcase.Location = new System.Drawing.Point(4, 8);
             this._Itcase.Margin = new System.Windows.Forms.Padding(0);
             this._Itcase.Name = "_Itcase";
             this._Itcase.PropertyName = "PR";
-            this._Itcase.Size = new System.Drawing.Size(170, 28);
+            this._Itcase.Size = new System.Drawing.Size(171, 28);
             this._Itcase.TabIndex = 57;
             this._Itcase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Itcase.TextField = "";
@@ -1203,8 +1232,8 @@
             // _Equipment
             // 
             this._Equipment.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Equipment.BackColor = System.Drawing.Color.SlateGray;
-            this._Equipment.BorderColour = System.Drawing.Color.SlateGray;
+            this._Equipment.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this._Equipment.BorderColour = System.Drawing.Color.DarkGoldenrod;
             this._Equipment.ControlHeight = 20;
             this._Equipment.DataSource = null;
             this._Equipment.DefaultText = "";
@@ -1216,19 +1245,20 @@
             this._Equipment.LabelSize = new System.Drawing.Size(54, 20);
             this._Equipment.LabelText = "EQUIPMENT";
             this._Equipment.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._Equipment.Location = new System.Drawing.Point(4, 71);
+            this._Equipment.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Equipment.Location = new System.Drawing.Point(4, 40);
             this._Equipment.Name = "_Equipment";
             this._Equipment.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this._Equipment.PropertyName = null;
-            this._Equipment.Size = new System.Drawing.Size(170, 20);
+            this._Equipment.PropertyName = "Service.Equipment";
+            this._Equipment.Size = new System.Drawing.Size(171, 20);
             this._Equipment.TabIndex = 56;
             // 
             // _Outcome
             // 
             this._Outcome.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Outcome.BackColor = System.Drawing.Color.SlateGray;
+            this._Outcome.BackColor = System.Drawing.Color.DarkGoldenrod;
             this._Outcome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._Outcome.BorderColour = System.Drawing.Color.SlateGray;
+            this._Outcome.BorderColour = System.Drawing.Color.DarkGoldenrod;
             this._Outcome.ControlHeight = 29;
             this._Outcome.DataSource = null;
             this._Outcome.DefaultText = "";
@@ -1240,10 +1270,11 @@
             this._Outcome.LabelSize = new System.Drawing.Size(59, 22);
             this._Outcome.LabelText = "OUTCOME";
             this._Outcome.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._Outcome.Location = new System.Drawing.Point(66, 125);
+            this._Outcome.LabelTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Outcome.Location = new System.Drawing.Point(67, 95);
             this._Outcome.Margin = new System.Windows.Forms.Padding(0);
             this._Outcome.Name = "_Outcome";
-            this._Outcome.PropertyName = "Outcome";
+            this._Outcome.PropertyName = "Fault.Outcome";
             this._Outcome.Size = new System.Drawing.Size(108, 29);
             this._Outcome.TabIndex = 54;
             this._Outcome.SelectedIndexChanged += new System.EventHandler(this._Outcome_SelectedIndexChanged);
@@ -1251,9 +1282,9 @@
             // _Symptom
             // 
             this._Symptom.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Symptom.BackColor = System.Drawing.Color.SlateGray;
+            this._Symptom.BackColor = System.Drawing.Color.DarkGoldenrod;
             this._Symptom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._Symptom.BorderColour = System.Drawing.Color.SlateGray;
+            this._Symptom.BorderColour = System.Drawing.Color.DarkGoldenrod;
             this._Symptom.ControlHeight = 29;
             this._Symptom.DataSource = null;
             this._Symptom.DefaultText = "";
@@ -1265,7 +1296,8 @@
             this._Symptom.LabelSize = new System.Drawing.Size(59, 22);
             this._Symptom.LabelText = "SYMPTOM";
             this._Symptom.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._Symptom.Location = new System.Drawing.Point(4, 125);
+            this._Symptom.LabelTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Symptom.Location = new System.Drawing.Point(4, 95);
             this._Symptom.Margin = new System.Windows.Forms.Padding(0);
             this._Symptom.Name = "_Symptom";
             this._Symptom.PropertyName = "Fault.Symptom";
@@ -1276,9 +1308,9 @@
             // _NPR
             // 
             this._NPR.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._NPR.BackColor = System.Drawing.Color.SlateGray;
+            this._NPR.BackColor = System.Drawing.Color.DarkGoldenrod;
             this._NPR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._NPR.BorderColour = System.Drawing.Color.SlateGray;
+            this._NPR.BorderColour = System.Drawing.Color.DarkGoldenrod;
             this._NPR.ControlHeight = 28;
             this._NPR.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.NPR", true));
             this._NPR.DefaultText = "";
@@ -1290,11 +1322,12 @@
             this._NPR.LabelSize = new System.Drawing.Size(74, 22);
             this._NPR.LabelText = "NETWORK PR";
             this._NPR.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._NPR.Location = new System.Drawing.Point(89, 94);
+            this._NPR.LabelTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._NPR.Location = new System.Drawing.Point(93, 127);
             this._NPR.Margin = new System.Windows.Forms.Padding(0);
             this._NPR.Name = "_NPR";
             this._NPR.PropertyName = "NPR";
-            this._NPR.Size = new System.Drawing.Size(85, 28);
+            this._NPR.Size = new System.Drawing.Size(82, 28);
             this._NPR.TabIndex = 52;
             this._NPR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._NPR.TextField = "";
@@ -1302,9 +1335,9 @@
             // _PR
             // 
             this._PR.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._PR.BackColor = System.Drawing.Color.SlateGray;
+            this._PR.BackColor = System.Drawing.Color.DarkGoldenrod;
             this._PR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._PR.BorderColour = System.Drawing.Color.SlateGray;
+            this._PR.BorderColour = System.Drawing.Color.DarkGoldenrod;
             this._PR.ControlHeight = 28;
             this._PR.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.PR", true));
             this._PR.DefaultText = "";
@@ -1316,36 +1349,15 @@
             this._PR.LabelSize = new System.Drawing.Size(81, 22);
             this._PR.LabelText = "CUSTOMER PR";
             this._PR.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._PR.Location = new System.Drawing.Point(4, 94);
+            this._PR.LabelTextColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._PR.Location = new System.Drawing.Point(4, 127);
             this._PR.Margin = new System.Windows.Forms.Padding(0);
             this._PR.Name = "_PR";
             this._PR.PropertyName = "PR";
-            this._PR.Size = new System.Drawing.Size(82, 28);
+            this._PR.Size = new System.Drawing.Size(85, 28);
             this._PR.TabIndex = 51;
             this._PR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._PR.TextField = "";
-            // 
-            // labelledTextField1
-            // 
-            this.labelledTextField1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.labelledTextField1.BackColor = System.Drawing.Color.Tomato;
-            this.labelledTextField1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.labelledTextField1.BorderColour = System.Drawing.Color.Tomato;
-            this.labelledTextField1.ControlHeight = 97;
-            this.labelledTextField1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.labelledTextField1.LabelAutoSize = false;
-            this.labelledTextField1.LabelFont = new System.Drawing.Font("Gautami", 7F);
-            this.labelledTextField1.LabelOffset = new System.Drawing.Point(0, 0);
-            this.labelledTextField1.LabelSize = new System.Drawing.Size(174, 17);
-            this.labelledTextField1.LabelText = "TESTING DONE";
-            this.labelledTextField1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelledTextField1.Location = new System.Drawing.Point(0, 1);
-            this.labelledTextField1.Margin = new System.Windows.Forms.Padding(0);
-            this.labelledTextField1.Name = "labelledTextField1";
-            this.labelledTextField1.PropertyName = null;
-            this.labelledTextField1.Size = new System.Drawing.Size(174, 97);
-            this.labelledTextField1.TabIndex = 0;
-            this.labelledTextField1.TextField = "";
             // 
             // labelledTextField2
             // 
@@ -1361,6 +1373,7 @@
             this.labelledTextField2.LabelSize = new System.Drawing.Size(173, 17);
             this.labelledTextField2.LabelText = "OUTCOME";
             this.labelledTextField2.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelledTextField2.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this.labelledTextField2.Location = new System.Drawing.Point(1, 104);
             this.labelledTextField2.Margin = new System.Windows.Forms.Padding(0);
             this.labelledTextField2.Name = "labelledTextField2";
@@ -1368,6 +1381,29 @@
             this.labelledTextField2.Size = new System.Drawing.Size(173, 98);
             this.labelledTextField2.TabIndex = 1;
             this.labelledTextField2.TextField = "";
+            // 
+            // labelledTextField1
+            // 
+            this.labelledTextField1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextField1.BackColor = System.Drawing.Color.Tomato;
+            this.labelledTextField1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.labelledTextField1.BorderColour = System.Drawing.Color.Tomato;
+            this.labelledTextField1.ControlHeight = 97;
+            this.labelledTextField1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextField1.LabelAutoSize = false;
+            this.labelledTextField1.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this.labelledTextField1.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextField1.LabelSize = new System.Drawing.Size(174, 17);
+            this.labelledTextField1.LabelText = "TESTING DONE";
+            this.labelledTextField1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelledTextField1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledTextField1.Location = new System.Drawing.Point(0, 1);
+            this.labelledTextField1.Margin = new System.Windows.Forms.Padding(0);
+            this.labelledTextField1.Name = "labelledTextField1";
+            this.labelledTextField1.PropertyName = null;
+            this.labelledTextField1.Size = new System.Drawing.Size(174, 97);
+            this.labelledTextField1.TabIndex = 0;
+            this.labelledTextField1.TextField = "";
             // 
             // EditContact
             // 
@@ -1498,8 +1534,8 @@
         private LabelledTextBox _Itcase;
         internal LabelledComboBox _BookingType;
         internal LabelledComboBox _BookingTimeSlot;
-        internal LabelledComboBox _BookingDate;
         private LabelledTextField labelledTextField1;
         private LabelledTextField labelledTextField2;
+        private LabelledDatePicker _BookingDate;
     }
 }

@@ -12,24 +12,23 @@ using PropertyChanged;
 namespace CallTracker.View
 {
     [ImplementPropertyChanged]
-    [DefaultBindingProperty("DataBindingSource")]
     public partial class LabelledComboBoxLong : LabelledBase
     {
-        [Category("A1")]
+        [Category("!Input")]
         public Color BorderColour
         {
             get { return _ComboBox.BorderColor; }
             set { _ComboBox.BorderColor = value; }
         }
 
-        [Category("A1")]
+        [Category("!Input")]
         public string DefaultText
         {
             get { return _ComboBox.Text; }
             set { _ComboBox.Text = value; }
         }
 
-        [Category("A1")]
+        [Category("!Main")]
         [DefaultValue(typeof(Padding), "3,3,3,3")]
         public Padding ControlMargin
         {
@@ -37,13 +36,13 @@ namespace CallTracker.View
             set { this.Margin = value; }
         }
 
-        [Category("A1")]
-        [Bindable(true)]
-        [Browsable(true)]
-        public ControlBindingsCollection DataBindingSource
-        {
-            get { return _ComboBox.DataBindings; }
-        }
+        //[Category("!Input")]
+        //[Bindable(true)]
+        //[Browsable(true)]
+        //public ControlBindingsCollection DataBindingSource
+        //{
+        //    get { return _ComboBox.DataBindings; }
+        //}
 
         [Browsable(true)]
         public event EventHandler SelectedIndexChanged
@@ -85,14 +84,38 @@ namespace CallTracker.View
             }
         }
 
+        public void BindComboBox(List<string> _dataSource, BindingSource _bindingSource)
+        {
+            _ComboBox.DataSource = null;
+            _ComboBox.DataBindings.Clear();
+            _ComboBox.DataBindings.Add("Text", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+            _ComboBox.DataSource = _dataSource;
+        }
+
+        public void BindComboBox(Array _dataSource, BindingSource _bindingSource)
+        {
+            _ComboBox.DataSource = null;
+            _ComboBox.DataBindings.Clear();
+            _ComboBox.DataBindings.Add("Text", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+            _ComboBox.DataSource = _dataSource;
+        }
+
+        public void BindComboBox(BindingList<string> _dataSource, BindingSource _bindingSource)
+        {
+            _ComboBox.DataSource = null;
+            _ComboBox.DataBindings.Clear();
+            _ComboBox.DataBindings.Add("Text", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+            _ComboBox.DataSource = _dataSource;
+        }
+
         private void _ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.ParentForm.Validate();
+            this.ParentForm.Invalidate();
         }
 
         private void _ComboBox_DataSourceChanged(object sender, EventArgs e)
         {
-            this.ParentForm.Validate();
+            this.ParentForm.Invalidate();
         }
 
         private void _ComboBox_DropDown(object sender, EventArgs e)
@@ -104,7 +127,7 @@ namespace CallTracker.View
 
         private void _ComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            this.Parent.Focus();
+            this.Parent.Parent.Focus();
             _Label.Show();
             if(ContextMenuStrip != null)
                 _MenuButton.Show();

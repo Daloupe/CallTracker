@@ -194,6 +194,14 @@ namespace CallTracker.View
             dataGridView1.KeyPress += dataGridView1_KeyDown;
         }
 
+        private void LATRatecodes_VisibleChanged(object sender, EventArgs e)
+        {
+            if(this.Visible == true)
+            {
+                dataGridView1.Focus();
+            }
+        }
+
         //// PasteInData pastes clipboard data into the grid passed to it.
         //static void PasteInData(ref DataGridView dgv)
         //{

@@ -33,9 +33,9 @@
             // 
             // _Label
             // 
-            this._Label.BackColor = System.Drawing.Color.DarkSlateGray;
-            this._Label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._Label.Font = new System.Drawing.Font("Verdana", 6.5F, System.Drawing.FontStyle.Bold);
+            this._Label.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._Label.Dock = System.Windows.Forms.DockStyle.Left;
+            this._Label.Font = new System.Drawing.Font("Verdana", 7F);
             this._Label.ForeColor = System.Drawing.SystemColors.ControlLight;
             this._Label.Location = new System.Drawing.Point(2, 2);
             this._Label.Margin = new System.Windows.Forms.Padding(0);
@@ -54,7 +54,7 @@
             this.Font = new System.Drawing.Font("Verdana", 6.5F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "PanelHeading";
-            this.Padding = new System.Windows.Forms.Padding(2);
+            this.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Size = new System.Drawing.Size(180, 18);
             this.ResumeLayout(false);
 

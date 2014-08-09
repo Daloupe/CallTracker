@@ -12,11 +12,16 @@ namespace CallTracker.Model
     {
         [ProtoMember(1)]
         public BookingType Type { get; set; }
+
         [ProtoMember(2)]
         public DateTime Date { get; set; }
         public string GetDate
         {
             get { return Date.ToShortDateString() + " " + Timeslots[Timeslot].Split(new char[1] { "-"[0] })[0].Trim(); }
+        }
+        public string GetShortDate
+        {
+            get { return Date.ToString("dd/MM"); }
         }
         [ProtoMember(3)]
         public string Timeslot { get; set; }

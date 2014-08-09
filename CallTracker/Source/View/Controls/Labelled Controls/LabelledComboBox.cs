@@ -12,29 +12,21 @@ using PropertyChanged;
 namespace CallTracker.View
 {
     [ImplementPropertyChanged]
-    [DefaultBindingProperty("DataBindingSource")]
+    //[DefaultBindingProperty("ComboText")]
     public partial class LabelledComboBox : LabelledBase
     {
-        [Category("A1")]
+        [Category("!Input")]
         public Color BorderColour
         {
             get { return _ComboBox.BorderColor; }
             set { _ComboBox.BorderColor = value; }
         }
 
-        [Category("A1")]
+        [Category("!Input")]
         public string DefaultText
         {
             get { return _ComboBox.Text; }
             set { _ComboBox.Text = value; }
-        }
-
-        [Category("A1")]
-        [Bindable(true)]
-        [Browsable(true)]
-        public ControlBindingsCollection DataBindingSource
-        {
-            get { return _ComboBox.DataBindings; }
         }
 
         [Browsable(true)]
@@ -66,6 +58,24 @@ namespace CallTracker.View
                 this.ContextMenuStrip.Show();
                 this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
             }
+        }
+
+        public void BindComboBox(List<string> _dataSource, BindingSource _bindingSource)
+        {
+            _ComboBox.DataSource = _dataSource;
+            _ComboBox.DataBindings.Add("SelectedItem", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+        public void BindComboBox(Array _dataSource, BindingSource _bindingSource)
+        {
+            _ComboBox.DataSource = _dataSource;
+            _ComboBox.DataBindings.Add("SelectedItem", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+        public void BindComboBox(BindingList<string> _dataSource, BindingSource _bindingSource)
+        {
+            _ComboBox.DataSource = _dataSource;
+            _ComboBox.DataBindings.Add("SelectedItem", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void _ComboBox_SelectedIndexChanged(object sender, EventArgs e)
