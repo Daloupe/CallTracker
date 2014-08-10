@@ -4,6 +4,8 @@ using System.Text;
 using System.Security.Cryptography;
 using System.IO;
 
+using CallTracker.Model;
+
 namespace CallTracker.Helpers
 {
     public static class StringCipher
@@ -63,7 +65,8 @@ namespace CallTracker.Helpers
             }
             catch(CryptographicException ex)
             {
-                
+                EventLogger.LogNewEvent(ex.Message);
+                EventLogger.LogNewEvent(ex.HelpLink);
                 outputstring = cipherText;
             }
             return outputstring;

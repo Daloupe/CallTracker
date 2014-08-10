@@ -40,7 +40,7 @@ namespace CallTracker.View
         internal CustomerContact SelectedContact { get; set; }
 
         internal UserDataStore DataStore = new UserDataStore();
-        internal ResourceData ResourceStore = new ResourceData();
+        //internal ResourceData ResourceStore = new ResourceData();
         internal static ServicesData ServicesStore = new ServicesData();
         //private static EventLogger EventLog = new EventLogger();
 
@@ -52,8 +52,8 @@ namespace CallTracker.View
         internal EditContact editContact;
         internal CallHistory callHistory;
         internal HelpKeyCommands helpKeyCommands;
-        internal LATRatecodes latRateCodes;
         internal DatabaseView databaseView;
+        internal Ratecodes Ratecodes;
 
         private HotkeyController HotKeys;
         private AutoCompleteStringCollection systemAutoCompleteSource = new AutoCompleteStringCollection();
@@ -69,6 +69,7 @@ namespace CallTracker.View
             SetStyle(ControlStyles.DoubleBuffer, true);
 
             versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
+
         }
 
         private void SetAppLocation()
@@ -96,7 +97,7 @@ namespace CallTracker.View
             UpdateProgressBar("Loading Main Data");
             DataStore = DataStore.ReadFile();
             UpdateProgressBar("Loading Resource Store");
-            ResourceStore = ResourceStore.ReadFile();
+            //ResourceStore = ResourceStore.ReadFile();
 
             SelectedContact = new CustomerContact();
 
@@ -107,46 +108,55 @@ namespace CallTracker.View
             UpdateProgressBar("Bring to front");
             editContact.BringToFront();
             editContact.Visible = true;
+
+           
         } 
 
         private void Main_Shown(object sender, EventArgs e)
         {
             UpdateProgressBar("Loading Views", EventLogLevel.Status);
 
+            callHistory = new CallHistory();
+            
             editLogins = new EditLogins();
             editGridLinks = new EditGridLinks();
             editSmartPasteBinds = new EditSmartPasteBinds();
-            callHistory = new CallHistory();
             helpKeyCommands = new HelpKeyCommands();
-            latRateCodes = new LATRatecodes();
             databaseView = new DatabaseView();
+            Ratecodes = new Ratecodes();
 
+            _ViewPanel.Controls.Add(callHistory);
             _ViewPanel.Controls.Add(editLogins);
             _ViewPanel.Controls.Add(editGridLinks);
             _ViewPanel.Controls.Add(editSmartPasteBinds);
-            _ViewPanel.Controls.Add(callHistory);
             _ViewPanel.Controls.Add(helpKeyCommands);
-            _ViewPanel.Controls.Add(latRateCodes);
             _ViewPanel.Controls.Add(databaseView);
+            _ViewPanel.Controls.Add(Ratecodes);
 
-            editContact.Init();
+            
+            callHistory.Init(this, callHistoryToolStripMenuItem);
             editLogins.Init(this, loginsViewMenuItem);
             editSmartPasteBinds.Init(this, pasteBindsViewMenuItem);
             editGridLinks.Init(this, gridLinksViewMenuItem);
-            callHistory.Init(this, callHistoryToolStripMenuItem);
-            helpKeyCommands.Init(this, viewKeyCommandsMenuItem);
-            latRateCodes.Init(this, LATRatecodeMenuItem);
+            helpKeyCommands.Init(this, viewKeyCommandsMenuItem);         
             databaseView.Init(this, databaseEditorToolStripMenuItem);
+            Ratecodes.Init(this, ratecodesMenuItem);
+
+            editContact.Init();
+
+            transfersToolStripMenuItem.UpdateObject = new TransfersMenuItem(ServicesStore.servicesDataSet);
+
+            toolStripServiceSelector.ComboBox.BindingContext = this.BindingContext;
+            toolStripServiceSelector.ComboBox.DataSource = ServicesStore.servicesDataSet.Services.Select(x => x.ProblemStylesRow).Distinct().ToList();
+            toolStripServiceSelector.ComboBox.DisplayMember = "Description";
+            toolStripServiceSelector.ComboBox.ValueMember = "IFMSCode";
+            toolStripServiceSelector.ComboBox.SelectedIndex = 0;
+
+            NoteGen = new ICONNoteGenerator(ServicesStore.servicesDataSet);
+            HotKeys = new HotkeyController(this);
 
             IETabActivator.OnAction += UpdateProgressBar;
             HotkeyController.OnAction += UpdateProgressBar;
-
-            toolStripServiceSelector.ComboBox.BindingContext = this.BindingContext;
-            toolStripServiceSelector.ComboBox.DataSource = ServicesStore.servicesDataSet.Services.Select(x => x.ProductCode).ToList();
-
-            transfersToolStripMenuItem.UpdateObject = new TransfersMenuItem(ServicesStore.servicesDataSet);
-            NoteGen = new ICONNoteGenerator(ServicesStore.servicesDataSet);
-            HotKeys = new HotkeyController(this);
 
             //this.Enabled = true;
             UpdateProgressBar(0, "Finished Loading", EventLogLevel.ClearStatus);
@@ -156,7 +166,7 @@ namespace CallTracker.View
         {
             Properties.Settings.Default.Save();
             DataStore.SaveFile(DataStore);
-            ResourceStore.SaveFile(ResourceStore);
+            //ResourceStore.SaveFile(ResourceStore);
             ServicesStore.WriteData();
             HotKeys.Dispose();
         }
@@ -374,10 +384,17 @@ namespace CallTracker.View
         private void showStatusBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
+
             if (item.Checked == true)
-                this.Height = 259;
+            {
+                this.Height = 257;
+                statusStrip1.Show();
+            }
             else
+            {
+                statusStrip1.Hide();
                 this.Height = 239;
+            }
         }
 
         private void Main_Paint(object sender, PaintEventArgs e)
@@ -459,5 +476,7 @@ namespace CallTracker.View
             IPCCProcess.Dispose();
             IPCCProcess = null;
         }
+
+        
     }
 }

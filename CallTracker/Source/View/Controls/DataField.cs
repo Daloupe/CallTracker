@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+
 namespace CallTracker.View
 {
     [DefaultBindingProperty("TextField")]
@@ -44,6 +45,7 @@ namespace CallTracker.View
             //this.ParentForm.Validate();
         }
     }
+
     public partial class IDataField : UserControl
     {
         protected string propertyName;

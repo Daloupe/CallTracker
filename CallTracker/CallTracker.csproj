@@ -107,6 +107,7 @@
     <Compile Include="Source\Data\Equipment.cs" />
     <Compile Include="Source\Data\Symptoms.cs" />
     <Compile Include="Source\Helpers\AutoFills\ICONAutoFill.cs" />
+    <Compile Include="Source\Helpers\MadSmartPaste.cs" />
     <Compile Include="Source\Helpers\Type\EnumExtensions.cs" />
     <Compile Include="Source\Helpers\FindProperty.cs" />
     <Compile Include="Source\Helpers\ICONNoteGenerator.cs" />
@@ -236,12 +237,18 @@
     <Compile Include="Source\View\Panels\Resources\DatabaseView.Designer.cs">
       <DependentUpon>DatabaseView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Panels\Resources\LATRatecodes.cs">
+    <Compile Include="Source\View\Panels\Resources\Ratecodes.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Panels\Resources\LATRatecodes.Designer.cs">
-      <DependentUpon>LATRatecodes.cs</DependentUpon>
+    <Compile Include="Source\View\Panels\Resources\Ratecodes.Designer.cs">
+      <DependentUpon>Ratecodes.cs</DependentUpon>
     </Compile>
+    <None Include="Source\View\Panels\Resources\LATRatecodes.cs">
+      <SubType>UserControl</SubType>
+    </None>
+    <None Include="Source\View\Panels\Resources\LATRatecodes.Designer.cs">
+      <DependentUpon>LATRatecodes.cs</DependentUpon>
+    </None>
     <Compile Include="Source\View\Panels\Settings\CallHistoryPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -354,6 +361,9 @@
     <EmbeddedResource Include="Source\View\Panels\Resources\DatabaseView.resx">
       <DependentUpon>DatabaseView.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Resources\Ratecodes.resx">
+      <DependentUpon>Ratecodes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Resources\LATRatecodes.resx">
       <DependentUpon>LATRatecodes.cs</DependentUpon>

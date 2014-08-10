@@ -188,63 +188,62 @@ Identification
     IsControlElement:	"True"
     IsContentElement:	"True"
 
-Telephony
+Telephony 11,212
   Visibility
     BoundingRectangle:	"(423, 373, 105, 18)"
     ClickablePoint:	"475,381"
-Cass
+Cass 343,212
  Visibility
     BoundingRectangle:	"(755, 373, 131, 18)"
     ClickablePoint:	"820,381"
-CMBS
+CMBS 343,161
   Visibility
     BoundingRectangle:	"(755, 322, 76, 19)"
     ClickablePoint:	"792,331"
     IsOffscreen:	"False"
 
-Login
+Login 343, 108
 Visibility
     BoundingRectangle:	"(755, 269, 133, 18)"
     ClickablePoint:	"821,277"
     IsOffscreen:	"False"
 
-FirstName
-
+FirstName 11, 53
   Visibility
     BoundingRectangle:	"(423, 214, 91, 19)"
     ClickablePoint:	"468,223"
 
-Surname
+Surname 126, 53
 Visibility
     BoundingRectangle:	"(538, 214, 166, 19)"
     ClickablePoint:	"620,223"
     IsOffscreen:	"False"
 
-Unit
+Unit 11, 108
   Visibility
     BoundingRectangle:	"(423, 269, 40, 18)"
     ClickablePoint:	"442,277"
     IsOffscreen:	"False"
 
-No
+No 70, 108
 Visibility
     BoundingRectangle:	"(482, 269, 37, 18)"
     ClickablePoint:	"500,277"
     IsOffscreen:	"False"
 
-Street
+Street 124, 108
   Visibility
     BoundingRectangle:	"(536, 269, 167, 18)"
     ClickablePoint:	"619,277"
     IsOffscreen:	"False"
 
-Suburb
+Suburb 11,161
   Visibility
     BoundingRectangle:	"(423, 322, 133, 19)"
     ClickablePoint:	"489,331"
     IsOffscreen:	"False"
 
-Postcode
+Postcode 171,162
   Visibility
     BoundingRectangle:	"(583, 323, 57, 19)"
     ClickablePoint:	"611,332"

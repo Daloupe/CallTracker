@@ -21,7 +21,6 @@ namespace CallTracker.View
     public partial class EditContact : UserControl
     {
         private UserDataStore DataStore;
-        //private Dictionary<string, PanelBase> ServicePanels;
         public static Dictionary<ServiceTypes, ServiceView> ServiceViews;
         public Main MainForm;
 
@@ -29,6 +28,13 @@ namespace CallTracker.View
         {
             InitializeComponent();
 
+            //foreach (LabelledBase cont in HfcPanel.Controls)
+            //{
+            //    cont.BackColor = Color.SlateGray;
+            //    //cont.BorderColour = Color.SlateGray;
+            //    cont.LabelInactiveColor = Color.SlateGray;
+            //    cont.LabelActiveColor = Color.Firebrick;
+            //}
             _PR.AttachMenu(_PRContextMenu);
             _NPR.AttachMenu(_PRContextMenu);
             _Dn.AttachMenu(_DialContextMenu);
@@ -71,33 +77,30 @@ namespace CallTracker.View
 
         public void OnParentLoad()
         {
-
-            _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList(), customerContactsBindingSource);
-            _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)), customerContactsBindingSource);
-            _BookingTimeSlot.BindComboBox(Enum.GetValues(typeof(BookingTimeslot)), customerContactsBindingSource);
             DataStore = MainForm.DataStore;
-
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
             customerContactsBindingSource.DataSource = DataStore.Contacts;
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
 
+            
+
             if (customerContactsBindingSource.Count == 0)
             {
+                //DataStore.Contacts.Add(new CustomerContact(1));
                 flowLayoutPanel1.Enabled = false;
                 ServiceTypePanel.Enabled = false;
                 FaultPanel.Enabled = false;
                 _Note.Enabled = false;
             }
+
+            _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList(), customerContactsBindingSource);
+            _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)), customerContactsBindingSource);
+            _BookingTimeSlot.BindComboBox(Enum.GetValues(typeof(BookingTimeslot)), customerContactsBindingSource);
         }
 
         public void Init()
         {
-            //_PR.AttachMenu(_PRContextMenu);
-            //_NPR.AttachMenu(_PRContextMenu);
-            //_Dn.AttachMenu(_DialContextMenu);
-            //_Mobile.AttachMenu(_DialContextMenu);
-            //_Symptom.AttachMenu(_SeverityMenuStrip);
-
+            
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -151,14 +154,15 @@ namespace CallTracker.View
         {
             DataStore.Contacts.Add(new CustomerContact(1));
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
+
             _WorkReadyTimer.Enabled = false;
             _WorkReadyTimerDisplay.Text = "Work Ready: 00:00";
-            _WorkReadyTimerDisplay.BackColor = Color.FromArgb(180, 238, 121);
+            _WorkReadyTimerDisplay.ForeColor = Color.DarkSlateGray;
+            _WorkReadyTimerDisplay.BorderStyle = Border3DStyle.RaisedInner;
         }
 
         public void DeleteCalls()
         {
-            //DataStore.Contacts.Add(new CustomerContact(1));
             customerContactsBindingSource.DataSource = DataStore.Contacts;
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
         }
@@ -172,7 +176,7 @@ namespace CallTracker.View
             get { return currentService; }
             set
             {
-                if (value == currentService)
+                if (value == currentService && currentService != null)
                 {
                     currentService.Panel.SetDataSource(MainForm.SelectedContact.Service);
                     return;
@@ -448,6 +452,9 @@ namespace CallTracker.View
             _OutcomeTooltip.SetToolTip(_Outcome._ComboBox, Main.ServicesStore.servicesDataSet.Outcomes.First(x => x.Acronym == _Outcome._ComboBox.Text).Description);
             if (MainForm.SelectedContact.Fault.Outcome == "ARO")
             {
+
+                //_BookingType._ComboBox.SelectedItem = BookingType.NRQ;
+
                 MainForm.SelectedContact.PRTemplateList[0].Answer = MainForm.SelectedContact.Name;
                 MainForm.SelectedContact.PRTemplateList[1].Answer = String.IsNullOrEmpty(MainForm.SelectedContact.Mobile) ? MainForm.SelectedContact.DN + "- No Alt" : MainForm.SelectedContact.Mobile;
                 MainForm.SelectedContact.PRTemplateList[2].Answer = MainForm.SelectedContact.Fault.Symptom;
@@ -457,12 +464,15 @@ namespace CallTracker.View
                 MainForm.SelectedContact.PRTemplateList[4].Answer = "ARO on node, customers address affected.";
                 MainForm.SelectedContact.PRTemplateList[5].Answer = "Outage";
                 MainForm.SelectedContact.PRTemplateList[6].Answer = "SMS";
+              
+
 
                 //MainForm.SelectedContact.PRTemplate = sb.ToString();
                 if (((ToolStripMenuItem)_NoteContextMenuStrip.Items["pRTemplateToolStripMenuItem"]).Checked == true)
                     _Note.DataBindings[0].ReadValue();
 
-                _BookingType._ComboBox.SelectedItem = BookingType.NRQ;
+
+                //Validate();
             }
         }
 
@@ -563,7 +573,6 @@ namespace CallTracker.View
                 item.ForeColor = Color.Black;
             }
         }
-
         private DateTime _WorkReadyTimeElapsed;
         private void _WorkReadyTimer_Tick(object sender, EventArgs e)
         {
@@ -577,26 +586,17 @@ namespace CallTracker.View
             {
                 _WorkReadyTimeElapsed = new DateTime();
                 _WorkReadyTimer.Enabled = true;
-                _WorkReadyTimerDisplay.BackColor = Color.FromArgb(245, 120, 88);
+                _WorkReadyTimerDisplay.ForeColor = Color.DarkRed;
+                _WorkReadyTimerDisplay.BorderStyle = Border3DStyle.SunkenInner;
             }
             else
             {
                 _WorkReadyTimer.Enabled = false;
                 _WorkReadyTimerDisplay.Text = "Work Ready: 00:00";
-                _WorkReadyTimerDisplay.BackColor = Color.FromArgb(180, 238, 121);
+                _WorkReadyTimerDisplay.ForeColor = Color.DarkSlateGray;
+                _WorkReadyTimerDisplay.BorderStyle = Border3DStyle.RaisedInner;
             }
         }
-
-        private void _State_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void _State_Leave(object sender, EventArgs e)
-        {
-           
-        } 
-
     }
 
     public class EnumList

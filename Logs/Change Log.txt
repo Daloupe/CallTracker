@@ -17,7 +17,13 @@
 - Added "" to Data string to enable pastes of strings.
 - Added MAC Regex.
 
+0.32.0
+- Selecting ARO changed Booking type to NRQ, but this isn't flowing throuhg to the data object.
+
 0.31.2
+| Implemented MAD smart paste.
+| Updated Ratecode View. Inserted all 3 products.
+| Removed Resources Repository.
 
 0.31.1
 | Implemented PR Template Generation.

@@ -105,15 +105,23 @@ namespace CallTracker.View
 
         private void _ClearHistory_Click(object sender, EventArgs e)
         {
-            MainForm.DataStore.Contacts.Add(new CustomerContact(1));
-            MainForm.editContact.customerContactsBindingSource.Position = MainForm.DataStore.Contacts.Count;
+
 
             callHistoryPanel1.RemoveBindingSource();
             dataGridView1.DataSource = null;
+            MainForm.DataStore.Contacts.RaiseListChangedEvents = false;
+            MainForm.DataStore.Contacts.Clear();
+            MainForm.DataStore.Contacts.RaiseListChangedEvents = true;
             MainForm.DataStore.Contacts = new SortableBindingList<CustomerContact>();
+            MainForm.DataStore.Contacts.Add(new CustomerContact(1));
+            MainForm.editContact.customerContactsBindingSource.Position = MainForm.DataStore.Contacts.Count;
+            
+
             MainForm.editContact.DeleteCalls();
             dataGridView1.DataSource = MainForm.editContact.customerContactsBindingSource;
             callHistoryPanel1.SetBindingSource(MainForm.editContact.customerContactsBindingSource);
+
+
         }
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)

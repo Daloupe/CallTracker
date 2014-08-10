@@ -9,6 +9,7 @@ using System.Windows.Forms;
 
 namespace CallTracker.View
 {
+
     public partial class LabelledBase : IDataField
     {
         

@@ -14,21 +14,23 @@ using CallTracker.Helpers;
 
 namespace CallTracker.View
 {
-    public partial class LATRatecodes : ViewControlBase
+    public partial class Ratecodes : ViewControlBase
     {
 
-        public LATRatecodes()
+        public Ratecodes()
         {
             InitializeComponent();
-            dataGridView1.AutoGenerateColumns = false;
+            //dataGridView1.AutoGenerateColumns = false;
         }
 
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
-            //rateplanBindingSource.ListChanged += rateplanBindingSource_ListChanged;
-            rateplanBindingSource.DataSource = MainForm.ResourceStore.LATRatePlans;
+            rateplanBindingSource.DataSource = Main.ServicesStore.servicesDataSet;
+            dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = rateplanBindingSource;
+            MainForm.toolStripServiceSelector.SelectedIndexChanged += toolStripServiceSelector_SelectedIndexChanged;
+            _ServiceSelector.SelectedIndex = 0;
         }
 
 
@@ -98,9 +100,6 @@ namespace CallTracker.View
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //dataGridView1.ClearSelection();
-            //rateplanBindingSource.ListChanged -= rateplanBindingSource_ListChanged;
-            
             char[] rowSplitter = { '\n', '\r' };  // Cr and Lf.
             IDataObject dataInClipboard = Clipboard.GetDataObject();
             string stringInClipboard =
@@ -111,13 +110,38 @@ namespace CallTracker.View
             int iRow = 3;
             while (iRow < rowsInClipboard.Length)
             {
-                rateplanBindingSource.Insert(dataGridView1.SelectedRows[0].Index, new RateplanModel(rowsInClipboard[iRow]));            
+                char columnSplitter = '\t';
+                string[] valuesInRow = rowsInClipboard[iRow].Split(columnSplitter);
+                switch (_ServiceSelector.Text)
+                {
+                    case "LAT/LIP":
+                        DataSets.ServicesDataSet.LATLIPRatecodesRow newLATRow = Main.ServicesStore.servicesDataSet.LATLIPRatecodes.NewLATLIPRatecodesRow();
+                        newLATRow.Ratecode = valuesInRow[0];
+                        newLATRow.Description = valuesInRow[1];
+                        newLATRow.LATChangeCode = valuesInRow[2];
+                        newLATRow.LIPChangeCode = valuesInRow[3];
+                        Main.ServicesStore.servicesDataSet.LATLIPRatecodes.AddLATLIPRatecodesRow(newLATRow);  
+                        break;
+                    case "ONC":
+                        DataSets.ServicesDataSet.ONCRatecodesRow newONCRow = Main.ServicesStore.servicesDataSet.ONCRatecodes.NewONCRatecodesRow();
+                        newONCRow.Ratecode = valuesInRow[0];
+                        newONCRow.Description = valuesInRow[1];
+                        newONCRow.ChangeCode = valuesInRow[2];
+                        Main.ServicesStore.servicesDataSet.ONCRatecodes.AddONCRatecodesRow(newONCRow);  
+                        break;
+                    case "DTV":
+                        DataSets.ServicesDataSet.DTVRatecodesRow newDTVRow = Main.ServicesStore.servicesDataSet.DTVRatecodes.NewDTVRatecodesRow();
+                        newDTVRow.Ratecode = valuesInRow[0];
+                        newDTVRow.Description = valuesInRow[1];
+                        newDTVRow.ChangeCode = valuesInRow[2];
+                        Main.ServicesStore.servicesDataSet.DTVRatecodes.AddDTVRatecodesRow(newDTVRow);  
+                        break;
+                    default:
+                        break;
+                }
+                         
                 iRow += 1;
             }
-
-            //rateplanBindingSource.RemoveAt(0);
-            //rateplanBindingSource.ListChanged += rateplanBindingSource_ListChanged;
-            //MainForm.UpdateAutoComplete();
         }
 
         //void rateplanBindingSource_ListChanged(object sender, ListChangedEventArgs e)
@@ -198,61 +222,69 @@ namespace CallTracker.View
         {
             if(this.Visible == true)
             {
+                //_ServiceSelector.Text = MainForm.toolStripServiceSelector.Text;
+                //if (String.IsNullOrEmpty(_ServiceSelector.Text))
+                //    _ServiceSelector.Text = "LAT/LIP";
                 dataGridView1.Focus();
             }
         }
 
-        private void borderedCombobox1_SelectedIndexChanged(object sender, EventArgs e)
+        void toolStripServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            string selectedService = MainForm.toolStripServiceSelector.Text;
+            
+            if (selectedService == "NBN" || selectedService == "MeTV")
+            {
+                MenuControl.Enabled = false;
+                if (String.IsNullOrEmpty(_ServiceSelector.Text))
+                    _ServiceSelector.Text = "LAT/LIP";
+            }
+            else
+            {
+                MenuControl.Enabled = true;
+                _ServiceSelector.Text = selectedService;
+            }
         }
 
-        //// PasteInData pastes clipboard data into the grid passed to it.
-        //static void PasteInData(ref DataGridView dgv)
-        //{
-        //    char[] rowSplitter = { '\n', '\r' };  // Cr and Lf.
-        //    char columnSplitter = '\t';         // Tab.
+        private void _ServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(_ServiceSelector.Text)
+            {
+                case "LAT/LIP":
+                    dataGridView1.DataMember = "LATLIPRatecodes";
+                    dataGridView1.Columns["LATChangeCode"].HeaderText = "LAT Change Code";
+                    dataGridView1.Columns["LATChangeCode"].Width = 110;
+                    dataGridView1.Columns["LATChangeCode"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    dataGridView1.Columns["LIPChangeCode"].HeaderText = "LIP Change Code";
+                    dataGridView1.Columns["LIPChangeCode"].Width = 110;
+                    dataGridView1.Columns["LIPChangeCode"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    dataGridView1.Columns["Ratecode"].Width = 90;
+                    dataGridView1.Columns["Description"].Width = 280;
+                    break;
+                case "ONC":
+                    dataGridView1.DataMember = "ONCRatecodes";   
+                    dataGridView1.Columns["ChangeCode"].HeaderText = "Change Code";
+                    dataGridView1.Columns["ChangeCode"].Width = 70;
+                    dataGridView1.Columns["Ratecode"].Width = 60;
+                    dataGridView1.Columns["Description"].Width = 340;
+                    break;
+                case "DTV":
+                    dataGridView1.DataMember = "DTVRatecodes";   
+                    dataGridView1.Columns["ChangeCode"].HeaderText = "Change Code";
+                    dataGridView1.Columns["ChangeCode"].Width = 70;
+                    dataGridView1.Columns["Ratecode"].Width = 60;
+                    dataGridView1.Columns["Description"].Width = 340;
+                    break;
+                default:
+                    break;
+            }
+            if (dataGridView1.Columns.Contains("Id"))
+                dataGridView1.Columns.Remove("Id");
 
-        //    IDataObject dataInClipboard = Clipboard.GetDataObject();
+            dataGridView1.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-        //    string stringInClipboard =
-        //        dataInClipboard.GetData(DataFormats.Text).ToString();
-
-        //    string[] rowsInClipboard = stringInClipboard.Split(rowSplitter,
-        //        StringSplitOptions.RemoveEmptyEntries);
-
-        //    int r = dgv.SelectedCells[0].RowIndex;
-        //    int c = dgv.SelectedCells[0].ColumnIndex;
-
-        //    if (dgv.Rows.Count < (r + rowsInClipboard.Length))
-        //        dgv.Rows.Add(r + rowsInClipboard.Length - dgv.Rows.Count);
-
-        //    // Loop through lines:
-
-        //    int iRow = 0;
-        //    while (iRow < rowsInClipboard.Length)
-        //    {
-        //        // Split up rows to get individual cells:
-
-        //        string[] valuesInRow =
-        //            rowsInClipboard[iRow].Split(columnSplitter);
-
-        //        // Cycle through cells.
-        //        // Assign cell value only if within columns of grid:
-
-        //        int jCol = 0;
-        //        while (jCol < valuesInRow.Length)
-        //        {
-        //            if ((dgv.ColumnCount - 1) >= (c + jCol))
-        //                dgv.Rows[r + iRow].Cells[c + jCol].Value =
-        //                valuesInRow[jCol];
-
-        //            jCol += 1;
-        //        } // end while
-
-        //        iRow += 1;
-        //    } // end while
-        //} // PasteInData
+            dataGridView1.Focus();
+        }
 
     }
 }

@@ -57,6 +57,7 @@
             <xs:sequence>
               <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
               <xs:element name="IFMSCode" msprop:Generator_ColumnVarNameInTable="columnIFMSCode" msprop:Generator_ColumnPropNameInRow="IFMSCode" msprop:Generator_ColumnPropNameInTable="IFMSCodeColumn" msprop:Generator_UserColumnName="IFMSCode" type="xs:string" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -253,6 +254,37 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="LATLIPRatecodes" msprop:Generator_TableClassName="LATLIPRatecodesDataTable" msprop:Generator_TableVarName="tableLATLIPRatecodes" msprop:Generator_TablePropName="LATLIPRatecodes" msprop:Generator_RowDeletingName="LATLIPRatecodesRowDeleting" msprop:Generator_RowChangingName="LATLIPRatecodesRowChanging" msprop:Generator_RowEvHandlerName="LATLIPRatecodesRowChangeEventHandler" msprop:Generator_RowDeletedName="LATLIPRatecodesRowDeleted" msprop:Generator_UserTableName="LATLIPRatecodes" msprop:Generator_RowChangedName="LATLIPRatecodesRowChanged" msprop:Generator_RowEvArgName="LATLIPRatecodesRowChangeEvent" msprop:Generator_RowClassName="LATLIPRatecodesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="Ratecode" msprop:Generator_ColumnVarNameInTable="columnRatecode" msprop:Generator_ColumnPropNameInRow="Ratecode" msprop:Generator_ColumnPropNameInTable="RatecodeColumn" msprop:Generator_UserColumnName="Ratecode" type="xs:string" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" type="xs:string" minOccurs="0" />
+              <xs:element name="LATChangeCode" msprop:Generator_ColumnVarNameInTable="columnLATChangeCode" msprop:Generator_ColumnPropNameInRow="LATChangeCode" msprop:Generator_ColumnPropNameInTable="LATChangeCodeColumn" msprop:Generator_UserColumnName="LATChangeCode" type="xs:string" minOccurs="0" />
+              <xs:element name="LIPChangeCode" msprop:Generator_ColumnVarNameInTable="columnLIPChangeCode" msprop:Generator_ColumnPropNameInRow="LIPChangeCode" msprop:Generator_ColumnPropNameInTable="LIPChangeCodeColumn" msprop:Generator_UserColumnName="LIPChangeCode" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ONCRatecodes" msprop:Generator_TableClassName="ONCRatecodesDataTable" msprop:Generator_TableVarName="tableONCRatecodes" msprop:Generator_TablePropName="ONCRatecodes" msprop:Generator_RowDeletingName="ONCRatecodesRowDeleting" msprop:Generator_RowChangingName="ONCRatecodesRowChanging" msprop:Generator_RowEvHandlerName="ONCRatecodesRowChangeEventHandler" msprop:Generator_RowDeletedName="ONCRatecodesRowDeleted" msprop:Generator_UserTableName="ONCRatecodes" msprop:Generator_RowChangedName="ONCRatecodesRowChanged" msprop:Generator_RowEvArgName="ONCRatecodesRowChangeEvent" msprop:Generator_RowClassName="ONCRatecodesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="Ratecode" msprop:Generator_ColumnVarNameInTable="columnRatecode" msprop:Generator_ColumnPropNameInRow="Ratecode" msprop:Generator_ColumnPropNameInTable="RatecodeColumn" msprop:Generator_UserColumnName="Ratecode" type="xs:string" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" type="xs:string" minOccurs="0" />
+              <xs:element name="ChangeCode" msdata:Caption="LATChangeCode" msprop:Generator_ColumnVarNameInTable="columnChangeCode" msprop:Generator_ColumnPropNameInRow="ChangeCode" msprop:Generator_ColumnPropNameInTable="ChangeCodeColumn" msprop:Generator_UserColumnName="ChangeCode" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DTVRatecodes" msprop:Generator_TableClassName="DTVRatecodesDataTable" msprop:Generator_TableVarName="tableDTVRatecodes" msprop:Generator_TablePropName="DTVRatecodes" msprop:Generator_RowDeletingName="DTVRatecodesRowDeleting" msprop:Generator_RowChangingName="DTVRatecodesRowChanging" msprop:Generator_RowEvHandlerName="DTVRatecodesRowChangeEventHandler" msprop:Generator_RowDeletedName="DTVRatecodesRowDeleted" msprop:Generator_UserTableName="DTVRatecodes" msprop:Generator_RowChangedName="DTVRatecodesRowChanged" msprop:Generator_RowEvArgName="DTVRatecodesRowChangeEvent" msprop:Generator_RowClassName="DTVRatecodesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="Ratecode" msprop:Generator_ColumnVarNameInTable="columnRatecode" msprop:Generator_ColumnPropNameInRow="Ratecode" msprop:Generator_ColumnPropNameInTable="RatecodeColumn" msprop:Generator_UserColumnName="Ratecode" type="xs:string" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" type="xs:string" minOccurs="0" />
+              <xs:element name="ChangeCode" msdata:Caption="LATChangeCode" msprop:Generator_ColumnVarNameInTable="columnChangeCode" msprop:Generator_ColumnPropNameInRow="ChangeCode" msprop:Generator_ColumnPropNameInTable="ChangeCodeColumn" msprop:Generator_UserColumnName="ChangeCode" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -325,6 +357,18 @@
     </xs:unique>
     <xs:unique name="EquipmentStatuses_Constraint1" msdata:ConstraintName="Constraint1">
       <xs:selector xpath=".//mstns:EquipmentStatuses" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="LATLIPRatecodes_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:LATLIPRatecodes" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="ONCRatecodes_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:ONCRatecodes" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="DTVRatecodes_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:DTVRatecodes" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
   </xs:element>

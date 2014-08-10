@@ -184,30 +184,57 @@ namespace CallTracker.Helpers
         private void OnSmartPaste(HotkeyPressedEventArgs e)
         {
             EventLogger.LogNewEvent("Searching for SmartPaste Matches", EventLogLevel.Brief);
-            if (!FindBrowser())
-                return;
-
-            string url = browser.Url;
-            string title = browser.Title;
-            string element = browser.ActiveElement.IdOrName;
-
-            PasteBind query = (from   
-                                   bind in parent.DataStore.PasteBinds
-                               where  
-                                   bind.Element == element &&
-                                   (url.Contains(bind.Url) || 
-                                    title.Contains(bind.Title))
-                               select 
-                                   bind)
-                               .FirstOrDefault();
-
-            if (query != null)
+            if (WindowHelper.GetActiveWindowTitle().Contains("Oracle Forms Runtime"))
             {
-                query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data, query.AltData));
-                EventLogger.LogNewEvent("Match Found");
-            }
+                string activeelem = MadSmartPaste.GetActiveElement();
+                if (String.IsNullOrEmpty(activeelem))
+                {
+                    EventLogger.LogNewEvent("No Active Element Found", EventLogLevel.Status);
+                    return;
+                }
 
-            browser.Dispose();
+                string propvalue = FindProperty.FollowPropertyPath(parent.SelectedContact, activeelem);
+
+                EventLogger.LogNewEvent("Trying to set value", EventLogLevel.Status);
+                MadSmartPaste.SetElementValue(propvalue);
+
+                EventLogger.LogNewEvent("Trying to Set Text", EventLogLevel.Status);
+                MadSmartPaste.SetElementText(propvalue);
+                
+                EventLogger.LogNewEvent("Ctrl-V in MAD value", EventLogLevel.Status);
+                Clipboard.SetText(propvalue);
+                SendKeys.SendWait("+^");
+                SendKeys.SendWait("^v");
+                Application.DoEvents();
+                SendKeys.Flush();  
+            }
+            else
+            {
+                if (!FindBrowser())
+                    return;
+
+                string url = browser.Url;
+                string title = browser.Title;
+                string element = browser.ActiveElement.IdOrName;
+
+                PasteBind query = (from
+                                       bind in parent.DataStore.PasteBinds
+                                   where
+                                       bind.Element == element &&
+                                       (url.Contains(bind.Url) ||
+                                        title.Contains(bind.Title))
+                                   select
+                                       bind)
+                                   .FirstOrDefault();
+
+                if (query != null)
+                {
+                    query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data, query.AltData));
+                    EventLogger.LogNewEvent("Match Found");
+                }
+
+                browser.Dispose();
+            }
         }
 
         private void OnBindSmartPaste(HotkeyPressedEventArgs e)

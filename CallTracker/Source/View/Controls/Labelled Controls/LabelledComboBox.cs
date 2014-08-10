@@ -11,7 +11,7 @@ using PropertyChanged;
 
 namespace CallTracker.View
 {
-    [ImplementPropertyChanged]
+    //[ImplementPropertyChanged]
     //[DefaultBindingProperty("ComboText")]
     public partial class LabelledComboBox : LabelledBase
     {
