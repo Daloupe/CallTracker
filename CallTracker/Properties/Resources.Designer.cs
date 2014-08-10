@@ -63,6 +63,16 @@ namespace CallTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddImage {
+            get {
+                object obj = ResourceManager.GetObject("AddImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bindingNavigatorDeleteItem_Image {
             get {
                 object obj = ResourceManager.GetObject("bindingNavigatorDeleteItem_Image", resourceCulture);
@@ -93,9 +103,29 @@ namespace CallTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap copyToolStripButton {
+            get {
+                object obj = ResourceManager.GetObject("copyToolStripButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Ctrl {
             get {
                 object obj = ResourceManager.GetObject("Ctrl", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cutToolStripButton {
+            get {
+                object obj = ResourceManager.GetObject("cutToolStripButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +153,69 @@ namespace CallTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MoveFirstItem {
+            get {
+                object obj = ResourceManager.GetObject("MoveFirstItem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MoveLastItem {
+            get {
+                object obj = ResourceManager.GetObject("MoveLastItem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MoveNextItem {
+            get {
+                object obj = ResourceManager.GetObject("MoveNextItem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MovePreviousItem {
+            get {
+                object obj = ResourceManager.GetObject("MovePreviousItem", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap newToolStripButton {
+            get {
+                object obj = ResourceManager.GetObject("newToolStripButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Numpad {
             get {
                 object obj = ResourceManager.GetObject("Numpad", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap openToolStripButton {
+            get {
+                object obj = ResourceManager.GetObject("openToolStripButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -146,6 +236,26 @@ namespace CallTracker.Properties {
         internal static System.Drawing.Bitmap padlock_small {
             get {
                 object obj = ResourceManager.GetObject("padlock_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pasteToolStripButton {
+            get {
+                object obj = ResourceManager.GetObject("pasteToolStripButton", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap saveToolStripButton {
+            get {
+                object obj = ResourceManager.GetObject("saveToolStripButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
