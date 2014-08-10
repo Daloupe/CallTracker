@@ -145,6 +145,7 @@ namespace CallTracker.View
             editContact.Init();
 
             transfersToolStripMenuItem.UpdateObject = new TransfersMenuItem(ServicesStore.servicesDataSet);
+            bookmakrsContextualToolStripMenuItem.UpdateObject = new BookmarksMenuItem(ServicesStore.servicesDataSet);
 
             toolStripServiceSelector.ComboBox.BindingContext = this.BindingContext;
             toolStripServiceSelector.ComboBox.DataSource = ServicesStore.servicesDataSet.Services.Select(x => x.ProblemStylesRow).Distinct().ToList();
@@ -160,8 +161,6 @@ namespace CallTracker.View
 
             //this.Enabled = true;
 
-            _NewBookmarkName.LostFocus += _NewBookmarkName_LostFocus;
-            _NewBookmarkUrl.LostFocus += _NewBookmarkName_LostFocus;
             UpdateProgressBar(0, "Finished Loading", EventLogLevel.ClearStatus);
         }
 
@@ -481,54 +480,14 @@ namespace CallTracker.View
             IPCCProcess = null;
         }
 
-        private void _NewBookmarkName_Click(object sender, EventArgs e)
+        private void editBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (_NewBookmarkName.Text == _NewBookmarkName.Tag.ToString())
-                _NewBookmarkName.ForeColor = Color.Black;
-                _NewBookmarkName.Text = String.Empty;
+            ShowPopupForm<EditBookmarks>();
         }
 
-        private void _NewBookmarkUrl_Click(object sender, EventArgs e)
+        private void toolStripMenuItem2_DropDownOpening(object sender, EventArgs e)
         {
-            if (_NewBookmarkUrl.Text == _NewBookmarkUrl.Tag.ToString())
-                _NewBookmarkUrl.ForeColor = Color.Black;
-                _NewBookmarkUrl.Text = String.Empty;
-        }
 
-        private void _NewBookmark_DropDownClosed(object sender, EventArgs e)
-        {
-            _NewBookmarkName.ForeColor = Color.Gray;
-            _NewBookmarkName.Text = "Enter Name...";
-            _NewBookmarkUrl.ForeColor = Color.Gray;
-            _NewBookmarkUrl.Text = "Enter URL...";
-            _NewBookmarkAdd.Enabled = false;
-        }
-
-        private void toggleClickToRemoveToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            //cycle through this dropdown and change image on all items above the seperator to a cross.
-        }
-
-        private void _NewBookmarkName_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Enter)
-                ((ToolStripTextBox)sender).Owner.Focus();
-        }
-
-        void _NewBookmarkName_LostFocus(object sender, EventArgs e)
-        {
-            ToolStripTextBox item = (ToolStripTextBox)sender;
-            if (String.IsNullOrEmpty(item.Text))
-            {
-                item.ForeColor = Color.Gray;
-                item.Text = item.Tag.ToString();
-                return;
-            }
-
-            if (_NewBookmarkName.Text != "Enter Name..." && _NewBookmarkUrl.Text != "Enter URL...")
-                _NewBookmarkAdd.Enabled = true;
-            else
-                _NewBookmarkAdd.Enabled = false;
         }
 
         

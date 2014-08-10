@@ -10,123 +10,157 @@ using System.Drawing.Design;
 using CallTracker.DataSets;
 using CallTracker.Helpers;
 
-//[DefaultProperty("Items")]
-//[ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
-//public class ToolStripMenuLabelItem : ToolStripMenuItem
-//{
-//    public ToolStripMenuLabelItem()
-//    {
-//    }
+    //[DefaultProperty("Items")]
+    //[ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
+    //public class ToolStripMenuLabelItem : ToolStripMenuItem
+    //{
+    //    public ToolStripMenuLabelItem()
+    //    {
+    //    }
 
-//}
-public class ToolStripButtonWithContextMenu : ToolStripButton
-{
-    ContextMenuStrip _contextMenuStrip;
-
-    public ContextMenuStrip ContextMenuStrip
+    //}
+    public class ToolStripButtonWithContextMenu : ToolStripButton
     {
-        get { return _contextMenuStrip; }
-        set { _contextMenuStrip = value; }
-    }
+        ContextMenuStrip _contextMenuStrip;
 
-    protected override void OnMouseDown(MouseEventArgs e)
-    {
-        if (e.Button == MouseButtons.Right)
+        public ContextMenuStrip ContextMenuStrip
         {
-            if (_contextMenuStrip != null)
-                _contextMenuStrip.Show(Parent.PointToScreen(e.Location));
+            get { return _contextMenuStrip; }
+            set { _contextMenuStrip = value; }
         }
-    }
-}
 
-[DefaultProperty("Items")]
-[ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
-public class ContextualToolStripMenuItem : ToolStripMenuItem
-{
-    public bool dirty = false;
-    private UpdateMenuObject updateObject;
-    public UpdateMenuObject UpdateObject
-    {
-        get { return updateObject; }
-        set 
-        { 
-            updateObject = value;
-            if(updateObject != null)
-                updateObject.Parent = this;
-        }
-    }
-
-    public virtual void UpdateMenu(string _service) 
-    {
-        if (dirty == true && UpdateObject != null)
+        protected override void OnMouseDown(MouseEventArgs e)
         {
-            UpdateObject.Go(_service);
-            dirty = false;
+            if (e.Button == MouseButtons.Right)
+            {
+                if (_contextMenuStrip != null)
+                    _contextMenuStrip.Show(Parent.PointToScreen(e.Location));
+            }
         }
     }
 
-    public ContextualToolStripMenuItem()
+    [DefaultProperty("Items")]
+    [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
+    public class ContextualToolStripMenuItem : ToolStripMenuItem
     {
-    }
+        public bool dirty = false;
+        private UpdateMenuObject updateObject;
+        public UpdateMenuObject UpdateObject
+        {
+            get { return updateObject; }
+            set 
+            { 
+                updateObject = value;
+                if(updateObject != null)
+                    updateObject.Parent = this;
+            }
+        }
+
+        public virtual void UpdateMenu(string _service) 
+        {
+            if (dirty == true && UpdateObject != null)
+            {
+                UpdateObject.Go(_service);
+                dirty = false;
+            }
+        }
+
+        public ContextualToolStripMenuItem()
+        {
+        }
     
-}
-
-public abstract class UpdateMenuObject
-{
-    public ServicesDataSet ds;
-    public ContextualToolStripMenuItem Parent;
-
-    public UpdateMenuObject(ServicesDataSet _ds)
-    {
-        ds = _ds;
-    }
-    public virtual void Go(string _service)
-    {
-
-    }
-}
-
-public class TransfersMenuItem : UpdateMenuObject
-{
-    public TransfersMenuItem(ServicesDataSet _ds) : base(_ds)
-    {
-        ds.Departments.RowChanged += Departments_RowChanged;
     }
 
-    void Departments_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
+    public abstract class UpdateMenuObject
     {
-        Parent.dirty = true;
-    }
+        public ServicesDataSet ds;
+        public ContextualToolStripMenuItem Parent;
 
-    public override void Go(string _service)
-    {
-        var queries = from a in ds.Departments
-                      where a.ServicesRow.Name == _service
-                      select new
-                      {
-                          a.InternalContact,
-                          a.ExternalContact,
-                          a.ContactHours,
-                          a.DepartmentNamesRow.NameShort
-                      };
-
-        foreach (var query in queries)
+        public UpdateMenuObject(ServicesDataSet _ds)
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Internal: ");
-            sb.AppendLine(query.InternalContact.ToString());
-            sb.Append("External: ");
-            sb.AppendLine(query.ExternalContact.ToString());
-            sb.AppendLine(query.ContactHours);
+            ds = _ds;
+        }
+        public virtual void Go(string _service)
+        {
 
-            string menu = StringHelpers.JoinCamelCase(query.NameShort) + "ToolStripMenuItem";
+        }
+    }
 
-            foreach (ToolStripMenuItem item in Parent.DropDownItems.OfType<ToolStripMenuItem>())
-                if (item.Name == menu)
-                {
-                    item.ToolTipText = sb.ToString();
-                    item.Tag = query.InternalContact.ToString();
-                }
+    public class TransfersMenuItem : UpdateMenuObject
+    {
+        public TransfersMenuItem(ServicesDataSet _ds) : base(_ds)
+        {
+            ds.Departments.RowChanged += Departments_RowChanged;
+        }
+
+        void Departments_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
+        {
+            Parent.dirty = true;
+        }
+
+        public override void Go(string _service)
+        {
+            var queries = from a in ds.Departments
+                          where a.ServicesRow.ProblemStylesRow.Description == _service
+                          select new
+                          {
+                              a.InternalContact,
+                              a.ExternalContact,
+                              a.ContactHours,
+                              a.DepartmentNamesRow.NameShort
+                          };
+
+            foreach (var query in queries)
+            {
+                StringBuilder sb = new StringBuilder();
+                sb.Append("Internal: ");
+                sb.AppendLine(query.InternalContact.ToString());
+                sb.Append("External: ");
+                sb.AppendLine(query.ExternalContact.ToString());
+                sb.AppendLine(query.ContactHours);
+
+                string menu = StringHelpers.JoinCamelCase(query.NameShort) + "ToolStripMenuItem";
+
+                foreach (ToolStripMenuItem item in Parent.DropDownItems.OfType<ToolStripMenuItem>())
+                    if (item.Name == menu)
+                    {
+                        item.ToolTipText = sb.ToString();
+                        item.Tag = query.InternalContact.ToString();
+                    }
+            }
+        }
+    }
+
+    public class BookmarksMenuItem : UpdateMenuObject
+    {
+        public BookmarksMenuItem(ServicesDataSet _ds)
+            : base(_ds)
+        {
+            ds.Departments.RowChanged += Departments_RowChanged;
+        }
+
+        void Departments_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
+        {
+            Parent.dirty = true;
+        }
+
+        public override void Go(string _service)
+        {
+            var queries = from a in ds.Bookmarks
+                          where a.ProblemStylesRow.Description == _service
+                          select a;
+
+            ToolStripItem[] coll = new ToolStripItem[2]{Parent.DropDownItems["bookmarksSeperator"], Parent.DropDownItems["editBookmarksToolStripMenuItem"]};
+            Parent.DropDownItems.Clear();
+            Parent.DropDownItems.AddRange(coll);
+
+            foreach (var query in queries)
+            {
+                ToolStripMenuItem newItem = new ToolStripMenuItem();
+                newItem.Text = query.Name;
+                newItem.Tag = query.Url;
+                Parent.DropDownItems.Insert(0,newItem);
+            }
         }
     }
 
@@ -140,4 +174,3 @@ public class TransfersMenuItem : UpdateMenuObject
             MyTimer = new Timer(this.Container);
         }
     }
-}

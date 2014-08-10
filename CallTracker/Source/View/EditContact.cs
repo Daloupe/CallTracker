@@ -453,7 +453,8 @@ namespace CallTracker.View
             if (MainForm.SelectedContact.Fault.Outcome == "ARO")
             {
 
-                //_BookingType._ComboBox.SelectedItem = BookingType.NRQ;
+                _BookingType._ComboBox.SelectedItem = BookingType.NRQ;
+                customerContactsBindingSource.ResetCurrentItem();
 
                 MainForm.SelectedContact.PRTemplateList[0].Answer = MainForm.SelectedContact.Name;
                 MainForm.SelectedContact.PRTemplateList[1].Answer = String.IsNullOrEmpty(MainForm.SelectedContact.Mobile) ? MainForm.SelectedContact.DN + "- No Alt" : MainForm.SelectedContact.Mobile;

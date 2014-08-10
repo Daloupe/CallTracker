@@ -17,10 +17,24 @@
 - Added "" to Data string to enable pastes of strings.
 - Added MAC Regex.
 
-0.32.0
-| Added Add and Remove buttons to Bookmarks Menu.
+
+
+
+0.32.1
 - Selecting ARO changed Booking type to NRQ, but this isn't flowing throuhg to the data object.
 	- ModifiedChanged event?
+- SearchSystem Contextmenu option.
+	- AttachOrCreate IE
+	- Find binds matching url, element, submit element.
+	- Trigger.
+- Silent Auto Searches.
+- SelectedService dropdown now mtaches Affeceted service.
+- Manually added Dispatch and NIM tooltips.
+
+0.32.0
+| Added Edit Bookmarks popup.
+| Bookmarks menu items now update based on service type.
+| Edit Bookmarks now properly bind to the selecetd service type.
 
 0.31.2
 | Implemented MAD smart paste.
@@ -241,6 +255,7 @@ Long Term:
 - ARO GUI.
 - Glance GUI.
 - Win-Middle Mouse Button brings up a special menu.
+- Auto Minimize?
 
 Potential:
 - Realtime KPI's. Smartcopy roster and use call/login information to provide realtime stats.

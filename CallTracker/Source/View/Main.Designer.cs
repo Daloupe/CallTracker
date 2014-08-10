@@ -33,13 +33,13 @@
             this._ViewPanel = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this._StatusContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.monitorIPCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.lowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.highToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.clearMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.monitorIPCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._IPCCState = new System.Windows.Forms.ToolStripStatusLabel();
             this._StatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
@@ -74,15 +74,9 @@
             this.nIMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.telstraTestDialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ratecodesMenuItem = new ContextualToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.clearanceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this._NewBookmark = new System.Windows.Forms.ToolStripMenuItem();
-            this._NewBookmarkName = new System.Windows.Forms.ToolStripTextBox();
-            this._NewBookmarkUrl = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this._NewBookmarkAdd = new System.Windows.Forms.ToolStripMenuItem();
-            this.toggleClickToRemoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bookmakrsContextualToolStripMenuItem = new ContextualToolStripMenuItem();
+            this.bookmarksSeperator = new System.Windows.Forms.ToolStripSeparator();
+            this.editBookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sMSHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -171,17 +165,30 @@
             // 
             this._StatusContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
             this._StatusContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.monitorIPCCToolStripMenuItem,
+            this.toolStripSeparator5,
             this.lowToolStripMenuItem,
             this.mediumToolStripMenuItem,
             this.highToolStripMenuItem,
             this.toolStripSeparator4,
-            this.clearMessagesToolStripMenuItem,
-            this.toolStripSeparator5,
-            this.monitorIPCCToolStripMenuItem});
+            this.clearMessagesToolStripMenuItem});
             this._StatusContextMenu.Name = "_StatusContextMenu";
             this._StatusContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this._StatusContextMenu.Size = new System.Drawing.Size(177, 126);
             this._StatusContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._StatusContextMenu_ItemClicked);
+            // 
+            // monitorIPCCToolStripMenuItem
+            // 
+            this.monitorIPCCToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallerOrCalleeView_8871;
+            this.monitorIPCCToolStripMenuItem.Name = "monitorIPCCToolStripMenuItem";
+            this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.monitorIPCCToolStripMenuItem.Text = "Monitor IPCC";
+            this.monitorIPCCToolStripMenuItem.Click += new System.EventHandler(this.monitorIPCCToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(173, 6);
             // 
             // lowToolStripMenuItem
             // 
@@ -219,18 +226,6 @@
             this.clearMessagesToolStripMenuItem.Name = "clearMessagesToolStripMenuItem";
             this.clearMessagesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.clearMessagesToolStripMenuItem.Text = "Clear Last Warning";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(173, 6);
-            // 
-            // monitorIPCCToolStripMenuItem
-            // 
-            this.monitorIPCCToolStripMenuItem.Name = "monitorIPCCToolStripMenuItem";
-            this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.monitorIPCCToolStripMenuItem.Text = "Monitor IPCC";
-            this.monitorIPCCToolStripMenuItem.Click += new System.EventHandler(this.monitorIPCCToolStripMenuItem_Click);
             // 
             // _StatusLabel
             // 
@@ -436,7 +431,7 @@
             this.toolStripServiceSelector,
             this.transfersToolStripMenuItem,
             this.ratecodesMenuItem,
-            this.toolStripMenuItem2,
+            this.bookmakrsContextualToolStripMenuItem,
             this.toolStripSeparator3,
             this.linksToolStripMenuItem,
             this.systemsToolStripMenuItem});
@@ -540,93 +535,35 @@
             this.ratecodesMenuItem.UpdateObject = null;
             this.ratecodesMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
-            // toolStripMenuItem2
+            // bookmakrsContextualToolStripMenuItem
             // 
-            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clearanceCodeToolStripMenuItem,
-            this.toolStripSeparator8,
-            this._NewBookmark,
-            this.toggleClickToRemoveToolStripMenuItem});
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(181, 22);
-            this.toolStripMenuItem2.Text = "Bookmarks";
+            this.bookmakrsContextualToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bookmarksSeperator,
+            this.editBookmarksToolStripMenuItem});
+            this.bookmakrsContextualToolStripMenuItem.Name = "bookmakrsContextualToolStripMenuItem";
+            this.bookmakrsContextualToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.bookmakrsContextualToolStripMenuItem.Text = "Bookmarks";
+            this.bookmakrsContextualToolStripMenuItem.UpdateObject = null;
+            this.bookmakrsContextualToolStripMenuItem.DropDownOpening += new System.EventHandler(this.resourcesToolStripMenuItem_DropDownOpening);
             // 
-            // clearanceCodeToolStripMenuItem
+            // bookmarksSeperator
             // 
-            this.clearanceCodeToolStripMenuItem.Name = "clearanceCodeToolStripMenuItem";
-            this.clearanceCodeToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.clearanceCodeToolStripMenuItem.Text = "Clearance Codes";
+            this.bookmarksSeperator.Name = "bookmarksSeperator";
+            this.bookmarksSeperator.Size = new System.Drawing.Size(154, 6);
             // 
-            // toolStripSeparator8
+            // editBookmarksToolStripMenuItem
             // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(161, 6);
-            // 
-            // _NewBookmark
-            // 
-            this._NewBookmark.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._NewBookmarkName,
-            this._NewBookmarkUrl,
-            this.toolStripSeparator9,
-            this._NewBookmarkAdd});
-            this._NewBookmark.Image = global::CallTracker.Properties.Resources.AddImage;
-            this._NewBookmark.Name = "_NewBookmark";
-            this._NewBookmark.Size = new System.Drawing.Size(164, 22);
-            this._NewBookmark.Text = "Add";
-            this._NewBookmark.DropDownClosed += new System.EventHandler(this._NewBookmark_DropDownClosed);
-            // 
-            // _NewBookmarkName
-            // 
-            this._NewBookmarkName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._NewBookmarkName.Font = new System.Drawing.Font("Verdana", 7F);
-            this._NewBookmarkName.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this._NewBookmarkName.Name = "_NewBookmarkName";
-            this._NewBookmarkName.Size = new System.Drawing.Size(100, 19);
-            this._NewBookmarkName.Tag = "Enter Name...";
-            this._NewBookmarkName.Text = "Enter Name...";
-            this._NewBookmarkName.ToolTipText = "Enter Bookmark Name";
-            this._NewBookmarkName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._NewBookmarkName_KeyPress);
-            this._NewBookmarkName.Click += new System.EventHandler(this._NewBookmarkName_Click);
-            // 
-            // _NewBookmarkUrl
-            // 
-            this._NewBookmarkUrl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._NewBookmarkUrl.Font = new System.Drawing.Font("Verdana", 7F);
-            this._NewBookmarkUrl.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this._NewBookmarkUrl.Name = "_NewBookmarkUrl";
-            this._NewBookmarkUrl.Size = new System.Drawing.Size(100, 19);
-            this._NewBookmarkUrl.Tag = "Enter URL...";
-            this._NewBookmarkUrl.Text = "Enter URL...";
-            this._NewBookmarkUrl.ToolTipText = "Enter Bookmark URL";
-            this._NewBookmarkUrl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this._NewBookmarkName_KeyPress);
-            this._NewBookmarkUrl.Click += new System.EventHandler(this._NewBookmarkUrl_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(157, 6);
-            // 
-            // _NewBookmarkAdd
-            // 
-            this._NewBookmarkAdd.Enabled = false;
-            this._NewBookmarkAdd.Image = global::CallTracker.Properties.Resources.saveToolStripButton;
-            this._NewBookmarkAdd.Name = "_NewBookmarkAdd";
-            this._NewBookmarkAdd.Size = new System.Drawing.Size(160, 22);
-            this._NewBookmarkAdd.Text = "Save";
-            // 
-            // toggleClickToRemoveToolStripMenuItem
-            // 
-            this.toggleClickToRemoveToolStripMenuItem.CheckOnClick = true;
-            this.toggleClickToRemoveToolStripMenuItem.Image = global::CallTracker.Properties.Resources.bindingNavigatorDeleteItem_Image;
-            this.toggleClickToRemoveToolStripMenuItem.Name = "toggleClickToRemoveToolStripMenuItem";
-            this.toggleClickToRemoveToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.toggleClickToRemoveToolStripMenuItem.Text = "Remove";
-            this.toggleClickToRemoveToolStripMenuItem.CheckedChanged += new System.EventHandler(this.toggleClickToRemoveToolStripMenuItem_CheckedChanged);
+            this.editBookmarksToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
+            this.editBookmarksToolStripMenuItem.Name = "editBookmarksToolStripMenuItem";
+            this.editBookmarksToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.editBookmarksToolStripMenuItem.Text = "Edit Bookmarks";
+            this.editBookmarksToolStripMenuItem.Click += new System.EventHandler(this.editBookmarksToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator3.Visible = false;
             // 
             // linksToolStripMenuItem
             // 
@@ -640,6 +577,7 @@
             this.linksToolStripMenuItem.Name = "linksToolStripMenuItem";
             this.linksToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.linksToolStripMenuItem.Text = "Links";
+            this.linksToolStripMenuItem.Visible = false;
             // 
             // sMSHubToolStripMenuItem
             // 
@@ -728,6 +666,7 @@
             this.systemsToolStripMenuItem.Name = "systemsToolStripMenuItem";
             this.systemsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.systemsToolStripMenuItem.Text = "Systems";
+            this.systemsToolStripMenuItem.Visible = false;
             // 
             // iCONToolStripMenuItem
             // 
@@ -940,8 +879,6 @@
         private System.Windows.Forms.ToolStripMenuItem dispatchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nIMToolStripMenuItem;
         private ContextualToolStripMenuItem ratecodesMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem clearanceCodeToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem linksToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip _StatusContextMenu;
@@ -992,12 +929,8 @@
         private System.Windows.Forms.ToolStripMenuItem dPMToolStripMenuItem;
         internal System.Windows.Forms.ToolStripComboBox toolStripServiceSelector;
         internal System.Windows.Forms.ToolStripStatusLabel _IPCCState;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.ToolStripMenuItem _NewBookmark;
-        private System.Windows.Forms.ToolStripTextBox _NewBookmarkName;
-        private System.Windows.Forms.ToolStripTextBox _NewBookmarkUrl;
-        private System.Windows.Forms.ToolStripMenuItem _NewBookmarkAdd;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
-        private System.Windows.Forms.ToolStripMenuItem toggleClickToRemoveToolStripMenuItem;
+        private ContextualToolStripMenuItem bookmakrsContextualToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator bookmarksSeperator;
+        private System.Windows.Forms.ToolStripMenuItem editBookmarksToolStripMenuItem;
     }
 }

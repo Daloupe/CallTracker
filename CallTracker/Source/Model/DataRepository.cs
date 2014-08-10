@@ -106,7 +106,7 @@ namespace CallTracker.Model
             Filename = "Data/Data.bin";
 
             PasteBinds = new TriggerList<PasteBind>();
-            Contacts = new SortableBindingList<CustomerContact>(){new CustomerContact(1)};
+            Contacts = new SortableBindingList<CustomerContact>();
             Logins = new BindingList<LoginsModel>();
             GridLinks = new GridLinksModel();
         }
@@ -128,7 +128,8 @@ namespace CallTracker.Model
             //newContact.Contacts.StartTime = DateTime.Now.TimeOfDay;
             //newContact.Fault.AffectedServices = 1;
 
-            //dataStore.Contacts.Add(newContact);
+            if (dataStore.Contacts.Count == 0)
+                dataStore.Contacts.Add(new CustomerContact(1));
             dataStore.GridLinks.PopulateIfEmpty();
 
             return dataStore;

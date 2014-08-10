@@ -294,6 +294,12 @@
     <Compile Include="Source\View\Controls\ViewControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Source\View\Popups\EditBookmarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\EditBookmarks.Designer.cs">
+      <DependentUpon>EditBookmarks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\ServiceView.cs" />
     <EmbeddedResource Include="Source\View\Controls\DataArea.resx">
       <DependentUpon>DataArea.cs</DependentUpon>
@@ -487,6 +493,9 @@
     <EmbeddedResource Include="Source\View\Popups\AddAROForm.resx">
       <DependentUpon>AddAROForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\EditBookmarks.resx">
+      <DependentUpon>EditBookmarks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Popups\BindSmartPasteForm.resx">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -527,6 +536,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\bindingNavigatorDeleteItem.Image.png" />
+    <None Include="Resources\Property_501.png" />
+    <None Include="Resources\ViewinBrowser_6294.png" />
     <None Include="Resources\TinyArrow2.png" />
     <None Include="Resources\TinyArrow1.png" />
     <None Include="Resources\TinyArrow.png" />
@@ -534,6 +545,8 @@
     <None Include="Resources\help.jpg" />
     <None Include="Resources\c.png" />
     <None Include="Resources\Ctrl.png" />
+    <None Include="Resources\Copy_6524.png" />
+    <None Include="Resources\CallerOrCalleeView_8871.png" />
     <Content Include="Resources\helpToolStripButton.Image.png" />
     <None Include="Resources\lock.jpg" />
     <None Include="Resources\lock.png" />
