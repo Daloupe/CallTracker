@@ -7,12 +7,13 @@ using System.Collections.ObjectModel;
 using System.Windows.Forms;
 //using System.Collections.Generic;
 using System.Reflection;
+using System.Linq;
 
 using ProtoBuf;
 using System.Text.RegularExpressions;
 using Utilities.RegularExpressions;
 
-
+using CallTracker.View;
 namespace CallTracker.Model
 {
     [ImplementPropertyChanged]
@@ -54,10 +55,32 @@ namespace CallTracker.Model
                 StreetName = String.Empty;
                 StreetType = String.Empty;
                 Suburb = String.Empty;
-                State = String.Empty;
+                //State = String.Empty;
                 Postcode = String.Empty;
 
-                Match AddressMatch = Pattern.Match(value);
+                string[] split1 = Regex.Split(value, @".(\d{4})$");
+
+                if (split1.Length > 1)
+                { 
+                    Postcode = split1[1];
+                    State = (from a in Main.ServicesStore.servicesDataSet.States
+                            where a.Postcode == Postcode.Substring(0,1) ||
+                                  a.Postcode == Postcode.Substring(0,2)
+                            select a).OrderBy(x => x.Postcode.Length).Last().NameShort;
+                }
+
+                string[] split2 = Regex.Split(split1[0], @"(Victoria|Tasmania|Queensland|New South Wales|(?:South|Western) Australia|(?:Northern|Australian Captial) Territory|VIC|NSW|SA|WA|NT|TAS|ACT|QLD)", RegexOptions.IgnoreCase);
+
+                if (split2.Length > 1)
+                    State = (from a in Main.ServicesStore.servicesDataSet.States
+                             where a.NameShort.ToLower() == split2[1].ToLower() ||
+                                   a.NameLong.ToLower() == split2[1].ToLower()
+                             select a).First().NameShort;
+
+                Match AddressMatch = new AddressPattern().Match(split2[0]);
+
+                //Console.WriteLine();
+                //Match AddressMatch = Pattern.Match(value);
                 //if (AddressMatch.Success == false)
                 //    return;
                 PropertyType = AddressMatch.Groups[1].Value;
@@ -66,8 +89,8 @@ namespace CallTracker.Model
                 StreetName = AddressMatch.Groups[4].Value;
                 StreetType = AddressMatch.Groups[5].Value;
                 Suburb = AddressMatch.Groups[6].Value;
-                State = AddressMatch.Groups[7].Value;
-                Postcode = AddressMatch.Groups[8].Value;
+                //State = AddressMatch.Groups[7].Value;
+                //Postcode = AddressMatch.Groups[8].Value;
 
                 //Console.WriteLine("1:{0}", PropertyType);
                 //Console.WriteLine("2:{0}", UnitNumber);
@@ -80,7 +103,7 @@ namespace CallTracker.Model
                 //Console.WriteLine("6:{0}", AddressMatch.Groups[9].Value);
                 //Console.WriteLine("6:{0}", AddressMatch.Groups[10].Value);
                 //Console.WriteLine("6:{0}", AddressMatch.Groups[11].Value);
-                address = value;
+                address = split2[0];
             } 
         }
         //public List<String> States = new List<string>{

@@ -44,6 +44,7 @@
             this._IPCCState = new System.Windows.Forms.ToolStripStatusLabel();
             this._StatusProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.MenuPanel = new System.Windows.Forms.Panel();
+            this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +80,6 @@
             this.clearanceCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.linksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -202,7 +202,7 @@
             this._StatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this._StatusLabel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this._StatusLabel.Name = "_StatusLabel";
-            this._StatusLabel.Size = new System.Drawing.Size(341, 16);
+            this._StatusLabel.Size = new System.Drawing.Size(334, 16);
             this._StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // _IPCCState
@@ -223,7 +223,7 @@
             this._StatusProgressBar.ForeColor = System.Drawing.Color.CornflowerBlue;
             this._StatusProgressBar.Margin = new System.Windows.Forms.Padding(1, 3, 1, 1);
             this._StatusProgressBar.Name = "_StatusProgressBar";
-            this._StatusProgressBar.Size = new System.Drawing.Size(60, 15);
+            this._StatusProgressBar.Size = new System.Drawing.Size(65, 15);
             // 
             // MenuPanel
             // 
@@ -236,6 +236,11 @@
             this.MenuPanel.Size = new System.Drawing.Size(584, 16);
             this.MenuPanel.TabIndex = 27;
             this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
+            // 
+            // _IPCCTimer
+            // 
+            this._IPCCTimer.Interval = 1000;
+            this._IPCCTimer.Tick += new System.EventHandler(this._IPCCTimer_Tick);
             // 
             // _MainMenu
             // 
@@ -533,11 +538,6 @@
             this.linksToolStripMenuItem.Name = "linksToolStripMenuItem";
             this.linksToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.linksToolStripMenuItem.Text = "Links";
-            // 
-            // _IPCCTimer
-            // 
-            this._IPCCTimer.Interval = 1000;
-            this._IPCCTimer.Tick += new System.EventHandler(this._IPCCTimer_Tick);
             // 
             // Main
             // 

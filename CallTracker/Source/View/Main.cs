@@ -447,6 +447,7 @@ namespace CallTracker.View
             IPCCApplication = TestStack.White.Application.Attach(IPCCProcess);//@"C:\Program Files\Optus\IPCC Agent Desktop\IPCCAgentDesktop.exe");
             IPCCWindow = IPCCApplication.GetWindow(SearchCriteria.ByAutomationId("SoftphoneForm"), InitializeOption.NoCache);
             IPCCCallStatus = IPCCWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("StatusBar.Pane3"));
+            
             return true;
         }
 

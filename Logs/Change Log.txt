@@ -16,8 +16,18 @@
 - Added DataType Modem IP address, PRI, NTD Serial number, Address ID(LIP), ESN(LAT). (CMR 1000000000021266_12494541)
 - Added "" to Data string to enable pastes of strings.
 - Added MAC Regex.
-- Split State and Postcode from the Address field.
-- State field is prefilled when CMBS or DN is smart copied. Address copies after the fact only overwrite, not erase.
+
+0.31.2
+
+0.31.1
+| Implemented PR Template Generation.
+| Split State and Postcode from the Address field.
+| Added State table to reference State identifiers.
+| State field is prefilled when CMBS or DN is smart copied. Address copies after the fact only overwrite, not erase.
+| Changed Mob and DN Regex groups - the 0/61 is dropped.
+| Expanded CMBS regex to include 11234567008 style.
+| Changed LabelledComboboxLong to use dropdown instead of dropdownlist. Onfocus loss, values are matched against data source.
+| ARO select NQR for booking type.
 
 0.31.0
 | Implemented IPCCMonitoring.

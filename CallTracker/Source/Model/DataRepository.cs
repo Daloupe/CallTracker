@@ -135,7 +135,7 @@ namespace CallTracker.Model
         {
             UserDataStore dataStore = _dataStore;
             //Environment.UserName
-            string key = StringCipher.Encrypt("Jesse Poulton", "2point71828");
+            string key = StringCipher.Encrypt(Environment.UserName, "2point71828");
             foreach (var login in dataStore.Logins)
                 login.Password = StringCipher.Decrypt(login.Password, key);
         }
@@ -145,7 +145,7 @@ namespace CallTracker.Model
             UserDataStore dataStore = _dataStore;
 
             foreach (var login in dataStore.Logins)
-                login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt("Jesse Poulton", "2point71828"));
+                login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt(Environment.UserName, "2point71828"));
 
         }
     }
@@ -299,6 +299,10 @@ namespace CallTracker.Model
                     servicesDataSet.Departments.AddDepartmentsRow(NewDepartment);
                 }
             };
+            //ServicesDataSet.StatesRow newState = servicesDataSet.States.NewStatesRow();
+            //newState.NameShort = "VIC";
+            //servicesDataSet.States
+
             //servicesDataSet.Services.First(x => x.Name == "LAT").ProductCodeID = 
 
 

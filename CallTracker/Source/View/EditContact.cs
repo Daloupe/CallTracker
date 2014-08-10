@@ -75,7 +75,6 @@ namespace CallTracker.View
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList(), customerContactsBindingSource);
             _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)), customerContactsBindingSource);
             _BookingTimeSlot.BindComboBox(Enum.GetValues(typeof(BookingTimeslot)), customerContactsBindingSource);
-
             DataStore = MainForm.DataStore;
 
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
@@ -278,22 +277,21 @@ namespace CallTracker.View
         {
             ToolStripMenuItem cm = (ToolStripMenuItem)sender;
             foreach (ToolStripMenuItem item in _NoteContextMenuStrip.Items.OfType<ToolStripMenuItem>())
-            {
-                if (item == cm)
-                    item.Checked = true;
-                else
-                    item.Checked = false;
-            }
+                item.Checked = false;
+            cm.Checked = true;
             _Note.DataBindings.Clear();
             string tag = cm.Tag.ToString();
             _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
+            
+            _Note.ReadOnly = false;
             if (tag == "ICONNote")
             {
                 _Note.DataBindings[0].ReadValue();
                 _Note.ReadOnly = true;
             }
-            else
-                _Note.ReadOnly = false;
+            else if (tag == "PRTemplate")
+                _Note.DataBindings[0].ReadValue();
+                
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -448,6 +446,24 @@ namespace CallTracker.View
         private void _Outcome_SelectedIndexChanged(object sender, EventArgs e)
         {
             _OutcomeTooltip.SetToolTip(_Outcome._ComboBox, Main.ServicesStore.servicesDataSet.Outcomes.First(x => x.Acronym == _Outcome._ComboBox.Text).Description);
+            if (MainForm.SelectedContact.Fault.Outcome == "ARO")
+            {
+                MainForm.SelectedContact.PRTemplateList[0].Answer = MainForm.SelectedContact.Name;
+                MainForm.SelectedContact.PRTemplateList[1].Answer = String.IsNullOrEmpty(MainForm.SelectedContact.Mobile) ? MainForm.SelectedContact.DN + "- No Alt" : MainForm.SelectedContact.Mobile;
+                MainForm.SelectedContact.PRTemplateList[2].Answer = MainForm.SelectedContact.Fault.Symptom;
+                MainForm.SelectedContact.PRTemplateList[3].Answer = MainForm.SelectedContact.Service.Equipment;
+                if (!String.IsNullOrEmpty(MainForm.SelectedContact.Username))
+                    MainForm.SelectedContact.PRTemplateList[3].Answer += Environment.NewLine + MainForm.SelectedContact.Username;
+                MainForm.SelectedContact.PRTemplateList[4].Answer = "ARO on node, customers address affected.";
+                MainForm.SelectedContact.PRTemplateList[5].Answer = "Outage";
+                MainForm.SelectedContact.PRTemplateList[6].Answer = "SMS";
+
+                //MainForm.SelectedContact.PRTemplate = sb.ToString();
+                if (((ToolStripMenuItem)_NoteContextMenuStrip.Items["pRTemplateToolStripMenuItem"]).Checked == true)
+                    _Note.DataBindings[0].ReadValue();
+
+                _BookingType._ComboBox.SelectedItem = BookingType.NRQ;
+            }
         }
 
         private void _NewCallMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -569,6 +585,16 @@ namespace CallTracker.View
                 _WorkReadyTimerDisplay.Text = "Work Ready: 00:00";
                 _WorkReadyTimerDisplay.BackColor = Color.FromArgb(180, 238, 121);
             }
+        }
+
+        private void _State_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void _State_Leave(object sender, EventArgs e)
+        {
+           
         } 
 
     }

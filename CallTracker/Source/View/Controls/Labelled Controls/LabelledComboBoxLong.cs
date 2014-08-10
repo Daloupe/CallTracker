@@ -132,5 +132,18 @@ namespace CallTracker.View
             if(ContextMenuStrip != null)
                 _MenuButton.Show();
         }
+
+        private void _ComboBox_Leave(object sender, EventArgs e)
+        {
+            bool ok = false;
+            if (_ComboBox.DataSource != null)
+                foreach(string data in ((List<string>)_ComboBox.DataSource))
+                {
+                    if(data.ToLower() == _ComboBox.Text.ToLower())
+                        ok = true;
+                }
+            if(!ok)
+                _ComboBox.Text = String.Empty;
+        }
     }
 }

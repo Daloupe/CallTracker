@@ -21,17 +21,17 @@ namespace RegexAssembly
                 new MyRegex("UsernameLower", @"^[a-z]+[a-z0-9._]*[a-z0-9]+(?:@optusnet.com.au)?$"),
                 new MyRegex("UsernameUpper", @"^[A-Z]+[A-Z0-9._]*[A-Z0-9]+(?:@optusnet.com.au)?$"),
                 new MyRegex("BRAS",     @"^[a-z]{3}\d{3}\.[a-z]{2}$"),
-                new MyRegex("CommonNBN",@"^([AVCSNIG]{3})" +                // Data Type
+                new MyRegex("CommonNBN",@"^([AVCSNIGPR]{3})" +                // Data Type
                                         @"(\d{12})$"),                      // Id
-                new MyRegex("Mobile",   @"^(0|61)"+                         // Prefix
-                                        @"(4\d{8})$"),                      // Number
-                new MyRegex("DN",       @"^(0|61)" +                        // Prefix
-                                        @"([2378]\d{8})$"),                 // Number
+                new MyRegex("Mobile",   @"^(?:0|61)"+                         // Prefix
+                                        @"(4)(\d{8})$"),                      // Number
+                new MyRegex("DN",       @"^(?:0|61)" +                        // Prefix
+                                        @"([2378])(\d)(\d{7})$"),                 // Number
                 new MyRegex("Node",     @"^(\d{2})([a-z]{2})_?(\d{3})$", RegexOptions.IgnoreCase),
-                new MyRegex("CMBS",     @"\b(3[1-3])" +                      // State
+                new MyRegex("CMBS",     @"\b3?([1-3])" +                      // State
                                         @"-?" +                             // Divider
                                         @"(\d{6})" +                        // Account
-                                        @"(?:-|0|\s)?"+                     // Divider
+                                        @"(?:-|0{0,2}|\s)?"+                     // Divider
                                         @"(\d)$"),                          // Flip
                 new MyRegex("ICON",     @"^((?:1|5|8|9)\d{7})(\d{6})$"),
                 new MyRegex("Name",     @"(?:(Mr|Mrs|miss|dr)\.?)?\s?" +             // Title (Followed by a ".")
@@ -39,14 +39,12 @@ namespace RegexAssembly
                                         @"(?:\s([a-z])?)" +                       // Middle Initial
                                         @"\s([a-z]+(?:(?:-)[a-z]+)?)"              // Surnames
                                         , RegexOptions.IgnoreCase),
-                new MyRegex("Address",  @"(?:(Unit|Lot|Level|Floor)\s)?" +  // Property Type
-                                        @"(?:(\d+)(?:/|\\|\s)?)?" +         // Unit Number
-                                        @"(\d+)" +                          // Property Number
-                                        @"\s([a-z]+)" +                     // Street Name
-                                        @"\s([a-z]+)\.?" +                  // Street Type
-                                        @"\s([a-z]+)" +                     // Suburb
-                                        @"(?:[,\s]+?([a-z]+))?" +           // State (Optional)
-                                        @"(?:[,\s]+?(\d{4}))?"              // Postcode (Optional)
+                new MyRegex("Address",  @"(?:(Unit|Lot|Level|Floor|P.?O.? Box)\s)?" +  // Property Type
+                                        @"\s*(?:(\d+)(?:/|\\|\s))?" +         // Unit Number
+                                        @"\s*(\d+)" +                          // Property Number
+                                        @"\s*([a-z]+(?:(?:\s*|-)[a-z]+)?)" +                     // Street Name
+                                        @"\s*(st|rd|ave|hwy|cct|ct|cl|gr|street|road|avenue|highway|circuit|court|close|grove)\.?" +                  // Street Type
+                                        @"\s*([a-z]+(?:(?:\s*|-)[a-z]+)?)"                      // Suburb
                                         , RegexOptions.IgnoreCase),
                 new MyRegex("Address2", @"(?:(Unit|Lot|Level|Floor|P.?O.? Box)\s)?" +  // Property Type
                                         @"(?:(\d+)(?:/|\\|\s))?" +         // Unit Number

@@ -353,12 +353,24 @@ namespace CallTracker.Helpers
                      || (text.Substring(0, 2) == "61" && textlen == 11))
                 {
                     if (CustomerContact.MobilePattern.IsMatch(text))        parent.SelectedContact.Mobile = text;
-                    else if (CustomerContact.DNPattern.IsMatch(text))       parent.SelectedContact.DN = text;
+                    else if (CustomerContact.DNPattern.IsMatch(text))
+                    {
+                        parent.SelectedContact.DN = CustomerContact.DNPattern.Replace(text,"0$1$2$3");
+                        parent.SelectedContact.Address.State = (from a in Main.ServicesStore.servicesDataSet.States
+                                                                where a.Areacode == parent.SelectedContact.DN.Substring(1,1)
+                                                                select a).First().NameShort; 
+                    };
                 }
-                else if (CustomerContact.CMBSPattern.IsMatch(text)) parent.SelectedContact.CMBS = text;
-                else if (CustomerContact.ICONPattern.IsMatch(text))         parent.SelectedContact.ICON = text;
-                else if (FaultModel.ITCasePattern.IsMatch(text))            parent.SelectedContact.Fault.ITCase = text;
-                else                                                        parent.SelectedContact.Note += text;
+                else if (CustomerContact.CMBSPattern.IsMatch(text)) 
+                { 
+                    parent.SelectedContact.CMBS = CustomerContact.CMBSPattern.Replace(text, "3$1$2 $3"); 
+                    parent.SelectedContact.Address.State = (from a in Main.ServicesStore.servicesDataSet.States
+                                                            where a.CMBScode == CustomerContact.CMBSPattern.Replace(text, "$1")
+                                                            select a).First().NameShort; 
+                }
+                else if (CustomerContact.ICONPattern.IsMatch(text)) parent.SelectedContact.ICON = text;
+                else if (FaultModel.ITCasePattern.IsMatch(text)) parent.SelectedContact.Fault.ITCase = text;
+                else parent.SelectedContact.Note += text;
             }
             else if (new AlphaPattern().IsMatch(text))
             {
@@ -380,7 +392,7 @@ namespace CallTracker.Helpers
                 else
                 {
                     if (new NodePattern().IsMatch(text))                    parent.SelectedContact.Service.Node = text;
-                    else if (CustomerContact.CMBSPattern.IsMatch(text))     parent.SelectedContact.CMBS = text;
+                    else if (CustomerContact.CMBSPattern.IsMatch(text))     parent.SelectedContact.CMBS = CustomerContact.CMBSPattern.Replace(text, "3$1$2 $3");
                     else if (ContactAddress.Pattern.IsMatch(text))          parent.SelectedContact.Address.Address = text;
                     else                                                    parent.SelectedContact.Note += text;
                 }    

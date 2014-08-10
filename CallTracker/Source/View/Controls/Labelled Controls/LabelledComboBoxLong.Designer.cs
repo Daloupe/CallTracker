@@ -48,7 +48,6 @@
             // 
             this._ComboBox.BorderColor = System.Drawing.Color.WhiteSmoke;
             this._ComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this._ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this._ComboBox.FormattingEnabled = true;
             this._ComboBox.Location = new System.Drawing.Point(45, 0);
@@ -60,6 +59,7 @@
             this._ComboBox.SelectedIndexChanged += new System.EventHandler(this._ComboBox_SelectedIndexChanged);
             this._ComboBox.DropDownClosed += new System.EventHandler(this._ComboBox_DropDownClosed);
             this._ComboBox.DataSourceChanged += new System.EventHandler(this._ComboBox_DataSourceChanged);
+            this._ComboBox.Leave += new System.EventHandler(this._ComboBox_Leave);
             // 
             // LabelledComboBoxLong
             // 

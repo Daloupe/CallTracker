@@ -117,6 +117,7 @@
     <Compile Include="Source\Model\Contact\NameModel.cs" />
     <Compile Include="Source\Model\EnumData.cs" />
     <Compile Include="Source\Model\EventLogModel.cs" />
+    <Compile Include="Source\Model\PRTemplateModel.cs" />
     <Compile Include="Source\Model\Settings\AROModel.cs" />
     <Compile Include="Source\Model\Settings\IEInteractBase.cs" />
     <Compile Include="Source\Model\Settings\ElementBinds.cs" />
