@@ -153,6 +153,16 @@ namespace CallTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Find_5650 {
+            get {
+                object obj = ResourceManager.GetObject("Find_5650", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap helpToolStripButton_Image {
             get {
                 object obj = ResourceManager.GetObject("helpToolStripButton_Image", resourceCulture);

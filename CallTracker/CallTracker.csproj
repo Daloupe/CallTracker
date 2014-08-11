@@ -294,6 +294,12 @@
     <Compile Include="Source\View\Controls\ViewControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Source\View\Popups\EditSystems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\EditSystems.Designer.cs">
+      <DependentUpon>EditSystems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Popups\EditBookmarks.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -493,6 +499,9 @@
     <EmbeddedResource Include="Source\View\Popups\AddAROForm.resx">
       <DependentUpon>AddAROForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\EditSystems.resx">
+      <DependentUpon>EditSystems.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Popups\EditBookmarks.resx">
       <DependentUpon>EditBookmarks.cs</DependentUpon>
     </EmbeddedResource>
@@ -547,6 +556,7 @@
     <None Include="Resources\Ctrl.png" />
     <None Include="Resources\Copy_6524.png" />
     <None Include="Resources\CallerOrCalleeView_8871.png" />
+    <None Include="Resources\Find_5650.png" />
     <Content Include="Resources\helpToolStripButton.Image.png" />
     <None Include="Resources\lock.jpg" />
     <None Include="Resources\lock.png" />

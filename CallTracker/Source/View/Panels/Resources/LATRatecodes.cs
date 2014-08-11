@@ -140,7 +140,7 @@ namespace CallTracker.View
                 title = item.Title;
                 url = item.Url;
             }
-            HotkeyController.NavigateOrNewIE(title, url);
+            HotkeyController.NavigateOrNewIE(url, title);
         }
 
         DateTime lastKeyPress = DateTime.UtcNow;

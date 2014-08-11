@@ -40,6 +40,7 @@ namespace CallTracker.View
             _Dn.AttachMenu(_DialContextMenu);
             _Mobile.AttachMenu(_DialContextMenu);
             _Symptom.AttachMenu(_SeverityMenuStrip);
+            _Username.AttachMenu(_UsernameContextMenu);
 
             _OutcomeTooltip.SetToolTip(_Outcome, "Problem Report");
 
@@ -232,7 +233,9 @@ namespace CallTracker.View
             {
                 if ((affectedServices & service) != 0 || affectedServices == 0)
                 {                  
-                    CurrentService = ServiceViews[service];                
+                    CurrentService = ServiceViews[service];
+                    if (CurrentService != null)
+                        MainForm.toolStripServiceSelector.Text = CurrentService.ServiceType.ProblemStylesRow.Description;
                     break;
                 }
             }
@@ -258,6 +261,7 @@ namespace CallTracker.View
                 }
                 //ServiceLock = true;
                 CurrentService = ServiceViews[(ServiceTypes)((CheckBox)sender).Tag];
+                MainForm.toolStripServiceSelector.Text = CurrentService.ServiceType.ProblemStylesRow.Description;
             }
         }
 
@@ -411,7 +415,7 @@ namespace CallTracker.View
             offsets.X = Convert.ToInt16(Regex.Split(offsetFile[1], ",")[1]);
             offsets.Y = Convert.ToInt16(Regex.Split(offsetFile[1], ",")[2]);
 
-            WindowHelper.IPCCAutomation(((LabelledTextBoxLong)_DialContextMenu.SourceControl)._DataField.Text, offsets);
+            WindowHelper.IPCCAutomation(((LabelledTextBoxLong)_DialContextMenu.SourceControl.Parent)._DataField.Text, offsets);
         }
 
         private void _Transfer_click(object sender, EventArgs e)
@@ -422,7 +426,7 @@ namespace CallTracker.View
             offsets.X = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[1]);
             offsets.Y = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[2]);
 
-            WindowHelper.IPCCAutomation(((LabelledTextBoxLong)_DialContextMenu.SourceControl)._DataField.Text, offsets);
+            WindowHelper.IPCCAutomation(((LabelledTextBoxLong)_DialContextMenu.SourceControl.Parent)._DataField.Text, offsets);
         }
 
         private void _PRContextMenu_Clicked(object sender, MouseEventArgs e)
@@ -598,6 +602,17 @@ namespace CallTracker.View
                 _WorkReadyTimerDisplay.BorderStyle = Border3DStyle.RaisedInner;
             }
         }
+
+        private void _SearchSCAMPS_click(object sender, EventArgs e)
+        {
+            HotkeyController.CreateNewIE("https://scamps.optusnet.com.au/cm.html?q=" + ((ToolStripMenuItem)sender).Tag.ToString());
+        }
+
+        private void _TextFieldContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            e.ClickedItem.Tag = ((LabelledTextBoxLong)((ContextMenuStrip)sender).SourceControl.Parent)._DataField.Text;
+        }
+
     }
 
     public class EnumList

@@ -15,21 +15,21 @@ using PropertyChanged;
 namespace CallTracker.View
 {   
     [ImplementPropertyChanged]
-    public partial class EditBookmarks : Form
+    public partial class EditSystems : Form
     {
         private Main MainForm;
 
-        public EditBookmarks()
+        public EditSystems()
         {
             InitializeComponent();
             MainForm = Application.OpenForms.OfType<Main>().First();
             Int16 query = (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
                            where a.Description == MainForm.toolStripServiceSelector.Text
                            select a).First().Id;
-            bookmarksBindingSource.Filter = "ProblemStyleId in (" + query + ")";
-            bookmarksBindingSource.DataSource = Main.ServicesStore.servicesDataSet;
+            systemLinksBindingSource.Filter = "ProblemStyleId in (" + query + ")";
+            systemLinksBindingSource.DataSource = Main.ServicesStore.servicesDataSet;
 
-            listBox1.DataSource = bookmarksBindingSource;
+            listBox1.DataSource = systemLinksBindingSource;
             listBox1.DisplayMember = "Name";
         }
 
@@ -46,21 +46,21 @@ namespace CallTracker.View
         private void button2_Click(object sender, EventArgs e)
         {
             listBox1.DataSource = null;
-            ServicesDataSet.BookmarksRow newRow = Main.ServicesStore.servicesDataSet.Bookmarks.NewBookmarksRow();
-            newRow.Name = "New Bookmark";
+            ServicesDataSet.SystemLinksRow newRow = Main.ServicesStore.servicesDataSet.SystemLinks.NewSystemLinksRow();
+            newRow.Name = "New System";
             newRow.ProblemStyleId = (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
                                     where a.Description == MainForm.toolStripServiceSelector.Text
                                     select a).First().Id;
             newRow.Url = "http://";
-            Main.ServicesStore.servicesDataSet.Bookmarks.AddBookmarksRow(newRow);
-            listBox1.DataSource = bookmarksBindingSource;
+            Main.ServicesStore.servicesDataSet.SystemLinks.AddSystemLinksRow(newRow);
+            listBox1.DataSource = systemLinksBindingSource;
             listBox1.DisplayMember = "Name";
         }
 
         private void _Name_KeyUp(object sender, KeyEventArgs e)
         {
-            bookmarksBindingSource.ResetCurrentItem();
-            MainForm.bookmarksContextualToolStripMenuItem.dirty = true;
+            systemLinksBindingSource.ResetCurrentItem();
+            MainForm.systemsContextualToolStripMenuItem.dirty = true;
         }
 
         private void EditBookmarks_Load(object sender, EventArgs e)

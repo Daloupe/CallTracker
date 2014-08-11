@@ -23,18 +23,22 @@
 0.32.2
 - Selecting ARO changed Booking type to NRQ, but this isn't flowing throuhg to the data object.
 	- ModifiedChanged event?
-- SearchSystem Contextmenu option.
-	- AttachOrCreate IE
-	- Find binds matching url, element, submit element.
-	- Trigger.
 - Silent Auto Searches.
-- SelectedService dropdown now mtaches Affeceted service.
 - Manually added Dispatch and NIM tooltips.
 - Contextmenu buttons on DTV headers?
 - Getting an exception when changing DTV equipment.
 
 0.32.1
 | Added Systems contextual menu item.
+| Systems and Bookmarks now set parent as dirty when new rows added, or values changed.
+| SelectedService dropdown now matches Affeceted service.
+| Systems and Bookmarks create new IE page.
+| DN/Username contextmenu now searches scamps.
+| SearchSystem Contextmenu option.
+	| AttachOrCreate IE
+	| Find binds matching url, element, submit element.
+	| Trigger.
+| Fixed view logic to resize window whether or not status bar is hidden.
 
 0.32.0
 | Added Edit Bookmarks popup.

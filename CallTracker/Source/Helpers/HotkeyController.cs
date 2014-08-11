@@ -48,8 +48,6 @@ namespace CallTracker.Helpers
         private static HotKeyManager HotKeyManager;
         private static PropertyDescriptorCollection props;
 
-        public Stopwatch sw = new Stopwatch();
-
         public static event ActionEventHandler OnAction;
         
         public HotkeyController(Main _parent)
@@ -90,7 +88,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // TEST  //////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void OnTest(HotkeyPressedEventArgs e)
+        private static void OnTest(HotkeyPressedEventArgs e)
         {
            //Console.WriteLine(WindowHelper.GetActiveWindowTitle());
            ICONAutoFill.Go(parent);
@@ -99,7 +97,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // ARO //////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void OnAddARO(HotkeyPressedEventArgs e)
+        private static void OnAddARO(HotkeyPressedEventArgs e)
         {
             Main.ShowPopupForm<AddAROForm>();
         }
@@ -121,7 +119,7 @@ namespace CallTracker.Helpers
             {Keys.NumPad9, "9"}
         };
 
-        private void OnGridLinks(HotkeyPressedEventArgs e)
+        private static void OnGridLinks(HotkeyPressedEventArgs e)
         {
             SystemItem systemItem = parent.DataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name));
             parent.SetProgressBarStep(4, String.Format("Switching to: {0}", systemItem.Url), EventLogLevel.Verbose);
@@ -139,7 +137,7 @@ namespace CallTracker.Helpers
                     }
                 }
                 else
-                    if (NavigateOrNewIE(systemItem.Title, systemItem.Url))
+                    if (NavigateOrNewIE(systemItem.Url, systemItem.Title))
                         AutoLogin();   
             }
             finally
@@ -163,7 +161,7 @@ namespace CallTracker.Helpers
             {Keys.X , "Service.Node"}
         };
 
-        private void OnDataPaste(HotkeyPressedEventArgs e)
+        private static void OnDataPaste(HotkeyPressedEventArgs e)
         {
             EventLogger.LogNewEvent(String.Format("Pasting: {0}", e.Name), EventLogLevel.Brief);
             string dataToPaste = FindProperty.FollowPropertyPath(parent.SelectedContact, e.Name);
@@ -181,7 +179,7 @@ namespace CallTracker.Helpers
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         // Smart Paste ///////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void OnSmartPaste(HotkeyPressedEventArgs e)
+        private static void OnSmartPaste(HotkeyPressedEventArgs e)
         {
             EventLogger.LogNewEvent("Searching for SmartPaste Matches", EventLogLevel.Brief);
             if (WindowHelper.GetActiveWindowTitle().Contains("Oracle Forms Runtime"))
@@ -237,7 +235,7 @@ namespace CallTracker.Helpers
             }
         }
 
-        private void OnBindSmartPaste(HotkeyPressedEventArgs e)
+        private static void OnBindSmartPaste(HotkeyPressedEventArgs e)
         {
             EventLogger.LogNewEvent("Searching for matching binds", EventLogLevel.Brief);
             if (!FindBrowser())
@@ -283,7 +281,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // AutoFill /////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void OnAutoFill(HotkeyPressedEventArgs e)
+        private static void OnAutoFill(HotkeyPressedEventArgs e)
         {
             EventLogger.LogNewEvent("Searching for AutoFill Matches", EventLogLevel.Brief);
             if (!FindBrowser())
@@ -318,14 +316,14 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Auto Login ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void OnAutoLogin(HotkeyPressedEventArgs e)
+        private static void OnAutoLogin(HotkeyPressedEventArgs e)
         {
             parent.SetProgressBarStep(2, "Attempting Autologin", EventLogLevel.Brief);
             AutoLogin();
             parent.UpdateProgressBar(0, "Finished Autologin", EventLogLevel.ClearStatus);
         }
 
-        private void AutoLogin()
+        private static void AutoLogin()
         {
             OnAction("Searching for matches");
             if (!FindBrowser())
@@ -357,7 +355,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void OnSmartCopy(HotkeyPressedEventArgs e)
+        private static void OnSmartCopy(HotkeyPressedEventArgs e)
         {
             //string oldClip = Clipboard.GetText();
             EventLogger.LogNewEvent("Starting Smart Copy", EventLogLevel.Brief);
@@ -426,11 +424,57 @@ namespace CallTracker.Helpers
             }
         }
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        // System Search /////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////////////////
+        public static void SearchSystem(string _url, string _searchValue, string _searchElement, string _submitElement = "")
+        {
+            EventLogger.LogNewEvent("Searching System", EventLogLevel.Brief);
+
+            if (!FindIEByUrl(_url))
+                NavigateOrNewIE(_url);
+
+            // Fill Search field ////////////////////////////////////////////////////////
+            PasteBind query = (from
+                                    bind in parent.DataStore.PasteBinds
+                                where
+                                    bind.Element == _searchElement &&
+                                    (_url.Contains(bind.Url))
+                                select
+                                    bind)
+                                .FirstOrDefault();
+
+            if (query != null)
+            {
+                EventLogger.LogNewEvent("Element Match Found");
+                query.Paste(browser, _searchElement, _searchValue);        
+            };
+
+            // Click Submit /////////////////////////////////////////////////////////////
+            if (!String.IsNullOrEmpty(_submitElement))
+            {
+                query = (from bind in parent.DataStore.PasteBinds
+                        where
+                            bind.Element == _submitElement &&
+                            (_url.Contains(bind.Url))
+                        select
+                            bind)
+                        .FirstOrDefault();
+                
+                if (query != null)
+                {
+                    EventLogger.LogNewEvent("Button Match Found");
+                    query.Paste(browser, _submitElement, "");
+                }
+            }
+
+            browser.Dispose();
+        }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Browser Methods //////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public bool FindBrowser()
+        public static bool FindBrowser()
         {
             string title = WindowHelper.GetActiveWindowTitle();
             if (!FindIEByTitle(title))
@@ -504,7 +548,7 @@ namespace CallTracker.Helpers
         }
 
         //private static Process m_Proc;
-        public static bool CreateNewIE(string _url, string _title)
+        public static bool CreateNewIE(string _url)
         {
             OnAction("Unhooking brower");
             if (browser != null)
@@ -514,23 +558,7 @@ namespace CallTracker.Helpers
 
             Process m_Proc = System.Diagnostics.Process.Start("IExplore.exe", _url);
             m_Proc.Dispose();
-            //m_Proc.EnableRaisingEvents = true;
-            //m_Proc.Exited += m_Proc_Exited;
             return true;
-            //using (Process m_Proc = System.Diagnostics.Process.Start("IExplore.exe", _url))
-            //{
-            //    try
-            //    {
-            //        browser = Browser.AttachTo<IE>(Find.ByUrl(_url)); //new IE(_url);//
-            //        browser.AutoClose = false;
-            //        //PreviousIEMatch = _title;
-            //        return true;
-            //    }
-            //    catch (WatiN.Core.Exceptions.TimeoutException)
-            //    {
-            //        return false; 
-            //    }
-            //}
         }
 
         //static void m_Proc_Exited(object sender, EventArgs e)
@@ -538,19 +566,25 @@ namespace CallTracker.Helpers
         //    Console.WriteLine("Exited");
         //}
 
-        public static bool NavigateOrNewIE(string title, string url)
+        public static bool NavigateOrNewIE(string url, string title = "")
         {
-            if (FindIEByTitle(title))
+            if (FindIEByUrl(url))
             {
                 new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
                 if (browser.Url == url)
                     return true;
             }
-            else
-            {
-                if (CreateNewIE(url, title))
-                    return true;
-            }
+
+            if(!String.IsNullOrEmpty(title))
+                if (FindIEByTitle(title))
+                {
+                    new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
+                    if (browser.Url == url)
+                        return true;
+                }
+
+            if (CreateNewIE(url))
+                return true;
 
             if (browser != null)
                 browser.Dispose();

@@ -44,6 +44,7 @@ using CallTracker.Helpers;
     public class ContextualToolStripMenuItem : ToolStripMenuItem
     {
         public bool dirty = false;
+        public ToolStripItem[] staticDropDownItems;
         private UpdateMenuObject updateObject;
         public UpdateMenuObject UpdateObject
         {
@@ -51,8 +52,12 @@ using CallTracker.Helpers;
             set 
             { 
                 updateObject = value;
-                if(updateObject != null)
+                if (updateObject != null)
+                {
+                    staticDropDownItems = new ToolStripItem[this.DropDownItems.Count];
+                    this.DropDownItems.CopyTo(staticDropDownItems, 0);
                     updateObject.Parent = this;
+                }
             }
         }
 
@@ -60,6 +65,8 @@ using CallTracker.Helpers;
         {
             if (dirty == true && UpdateObject != null)
             {
+                DropDownItems.Clear();
+                DropDownItems.AddRange(staticDropDownItems);
                 UpdateObject.Go(_service);
                 dirty = false;
             }
@@ -67,6 +74,7 @@ using CallTracker.Helpers;
 
         public ContextualToolStripMenuItem()
         {
+
         }
     
     }
@@ -83,6 +91,11 @@ using CallTracker.Helpers;
         public virtual void Go(string _service)
         {
 
+        }
+
+        public static void newItem_Click(object sender, EventArgs e)
+        {
+            HotkeyController.CreateNewIE(((ToolStripMenuItem)sender).Tag.ToString());
         }
     }
 
@@ -136,10 +149,10 @@ using CallTracker.Helpers;
         public BookmarksMenuItem(ServicesDataSet _ds)
             : base(_ds)
         {
-            ds.Departments.RowChanged += Departments_RowChanged;
+            ds.Bookmarks.RowChanged += Bookmarks_RowChanged;
         }
 
-        void Departments_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
+        void Bookmarks_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
         {
             Parent.dirty = true;
         }
@@ -149,17 +162,45 @@ using CallTracker.Helpers;
             var queries = from a in ds.Bookmarks
                           where a.ProblemStylesRow.Description == _service
                           select a;
+            
+            foreach (var query in queries)
+            {
+                ToolStripMenuItem newItem = new ToolStripMenuItem();
+                newItem.Text = query.Name;
+                newItem.Tag = query.Url;
+                newItem.Click += newItem_Click;
+                Parent.DropDownItems.Insert(0,newItem);
+            }
+        }
 
-            ToolStripItem[] coll = new ToolStripItem[2]{Parent.DropDownItems["bookmarksSeperator"], Parent.DropDownItems["editBookmarksToolStripMenuItem"]};
-            Parent.DropDownItems.Clear();
-            Parent.DropDownItems.AddRange(coll);
+    }
+
+    public class SystemsMenuItem : UpdateMenuObject
+    {
+        public SystemsMenuItem(ServicesDataSet _ds)
+            : base(_ds)
+        {
+            ds.SystemLinks.RowChanged += SystemLinks_RowChanged;
+        }
+
+        void SystemLinks_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
+        {
+            Parent.dirty = true;
+        }
+
+        public override void Go(string _service)
+        {
+            var queries = from a in ds.SystemLinks
+                          where a.ProblemStylesRow.Description == _service
+                          select a;
 
             foreach (var query in queries)
             {
                 ToolStripMenuItem newItem = new ToolStripMenuItem();
                 newItem.Text = query.Name;
                 newItem.Tag = query.Url;
-                Parent.DropDownItems.Insert(0,newItem);
+                newItem.Click += newItem_Click;
+                Parent.DropDownItems.Insert(0, newItem);
             }
         }
     }

@@ -55,7 +55,7 @@ namespace CallTracker.View
         internal DatabaseView databaseView;
         internal Ratecodes Ratecodes;
 
-        private HotkeyController HotKeys;
+        public HotkeyController HotKeys;
         private AutoCompleteStringCollection systemAutoCompleteSource = new AutoCompleteStringCollection();
 
         public Main()
@@ -145,7 +145,9 @@ namespace CallTracker.View
             editContact.Init();
 
             transfersToolStripMenuItem.UpdateObject = new TransfersMenuItem(ServicesStore.servicesDataSet);
-            systemsContextualToolStripMenuItem.UpdateObject = new BookmarksMenuItem(ServicesStore.servicesDataSet);
+            bookmarksContextualToolStripMenuItem.UpdateObject = new BookmarksMenuItem(ServicesStore.servicesDataSet);
+            systemsContextualToolStripMenuItem.UpdateObject = new SystemsMenuItem(ServicesStore.servicesDataSet);
+
 
             toolStripServiceSelector.ComboBox.BindingContext = this.BindingContext;
             toolStripServiceSelector.ComboBox.DataSource = ServicesStore.servicesDataSet.Services.Select(x => x.ProblemStylesRow).Distinct().ToList();
@@ -195,19 +197,33 @@ namespace CallTracker.View
             get { return visibleSetting; }
             set
             {
+                // If the new view isn't null
                 if (value != null)
                 {
                     statusStrip1.Hide();
+                    this.Height = 257;
                     value.ShowSetting();
-                }else
-                    statusStrip1.Show();
-
+                }
+                else
+                {
+                    if (showStatusBarToolStripMenuItem.Checked == true)
+                        statusStrip1.Show();
+                    else
+                        this.Height = 239;
+                }
+                
+                // If the previous view isn't null
                 if (visibleSetting != null)
                     visibleSetting.HideSetting();
 
+                // If the current view is the same as the previous view
                 if (visibleSetting == value)
                 {
-                    statusStrip1.Show();
+                    if (showStatusBarToolStripMenuItem.Checked == true)
+                        statusStrip1.Show();
+                    else
+                        this.Height = 239;
+
                     visibleSetting = null;
                 }
                 else
@@ -487,12 +503,12 @@ namespace CallTracker.View
 
         private void editSystemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           // ShowPopupForm<EditSystems>();
+           ShowPopupForm<EditSystems>();
         }
 
-        private void toolStripMenuItem2_DropDownOpening(object sender, EventArgs e)
+        private void OpenURL_Click(object sender, EventArgs e)
         {
-
+            UpdateMenuObject.newItem_Click(sender, e);
         }
 
         
