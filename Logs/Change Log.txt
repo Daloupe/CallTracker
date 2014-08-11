@@ -20,7 +20,7 @@
 
 
 
-0.32.1
+0.32.2
 - Selecting ARO changed Booking type to NRQ, but this isn't flowing throuhg to the data object.
 	- ModifiedChanged event?
 - SearchSystem Contextmenu option.
@@ -30,6 +30,11 @@
 - Silent Auto Searches.
 - SelectedService dropdown now mtaches Affeceted service.
 - Manually added Dispatch and NIM tooltips.
+- Contextmenu buttons on DTV headers?
+- Getting an exception when changing DTV equipment.
+
+0.32.1
+| Added Systems contextual menu item.
 
 0.32.0
 | Added Edit Bookmarks popup.

@@ -145,7 +145,7 @@ namespace CallTracker.View
             editContact.Init();
 
             transfersToolStripMenuItem.UpdateObject = new TransfersMenuItem(ServicesStore.servicesDataSet);
-            bookmakrsContextualToolStripMenuItem.UpdateObject = new BookmarksMenuItem(ServicesStore.servicesDataSet);
+            systemsContextualToolStripMenuItem.UpdateObject = new BookmarksMenuItem(ServicesStore.servicesDataSet);
 
             toolStripServiceSelector.ComboBox.BindingContext = this.BindingContext;
             toolStripServiceSelector.ComboBox.DataSource = ServicesStore.servicesDataSet.Services.Select(x => x.ProblemStylesRow).Distinct().ToList();
@@ -483,6 +483,11 @@ namespace CallTracker.View
         private void editBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowPopupForm<EditBookmarks>();
+        }
+
+        private void editSystemsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           // ShowPopupForm<EditSystems>();
         }
 
         private void toolStripMenuItem2_DropDownOpening(object sender, EventArgs e)
