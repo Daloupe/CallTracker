@@ -25,12 +25,14 @@ Yellow: 255,198,0
 - Added MAC Regex.
 
 0.33.0
-/ Seperated Outcome to CallType and Outcome dropdowns.
+| Seperated Outcome to CallType and Outcome dropdowns.
 - Contact count resets on first IPCC login for the day, data saves on the last logout.
 - Added date selection to CallHistory.
 - Resources are now saved on settings close.
-- Outcome drop down resets on each new call.
+| Outcome drop down resets on each new call.
 - Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
+| Copy All Selects the text.
+| PRGenerator static class made.
 
 0.32.3
 | Replaced Service Panels with a single panel that hides and shows appropriate controls.

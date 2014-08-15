@@ -29,10 +29,26 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LabelledBase));
-            this._MenuButton = new System.Windows.Forms.PictureBox();
             this._Label = new System.Windows.Forms.Label();
+            this._MenuButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).BeginInit();
             this.SuspendLayout();
+            // 
+            // _Label
+            // 
+            this._Label.AutoSize = true;
+            this._Label.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this._Label.Font = new System.Drawing.Font("Gautami", 7F);
+            this._Label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Label.Location = new System.Drawing.Point(2, -3);
+            this._Label.Margin = new System.Windows.Forms.Padding(0);
+            this._Label.MaximumSize = new System.Drawing.Size(300, 70);
+            this._Label.MinimumSize = new System.Drawing.Size(9, 6);
+            this._Label.Name = "_Label";
+            this._Label.Size = new System.Drawing.Size(30, 22);
+            this._Label.TabIndex = 26;
+            this._Label.Text = "AVC:";
+            this._Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // _MenuButton
             // 
@@ -49,22 +65,6 @@
             this._MenuButton.TabStop = false;
             this._MenuButton.Visible = false;
             this._MenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
-            // 
-            // _Label
-            // 
-            this._Label.AutoSize = true;
-            this._Label.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this._Label.Font = new System.Drawing.Font("Gautami", 7F);
-            this._Label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Label.Location = new System.Drawing.Point(0, 0);
-            this._Label.Margin = new System.Windows.Forms.Padding(0);
-            this._Label.MaximumSize = new System.Drawing.Size(300, 70);
-            this._Label.MinimumSize = new System.Drawing.Size(9, 6);
-            this._Label.Name = "_Label";
-            this._Label.Size = new System.Drawing.Size(30, 22);
-            this._Label.TabIndex = 26;
-            this._Label.Text = "AVC:";
-            this._Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LabelledBase
             // 
@@ -88,7 +88,8 @@
         #endregion
 
         protected System.Windows.Forms.PictureBox _MenuButton;
-        internal System.Windows.Forms.Label _Label;
+        public System.Windows.Forms.Label _Label;
+
 
     }
 }

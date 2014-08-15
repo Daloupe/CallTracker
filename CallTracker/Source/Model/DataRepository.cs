@@ -215,12 +215,6 @@ namespace CallTracker.Model
 
         public void WriteData()
         {
-            //servicesDataSet.AcceptChanges();
-            if(servicesDataSet.Tables.Count > 0)
-                Console.WriteLine("Tables exits");
-
-            if (servicesDataSet.Services.Rows.Count > 0)
-                Console.WriteLine("Rows in Services exist");
             DataTable[] dtarray = new DataTable[servicesDataSet.Tables.Count];
 
             using (Stream stream = File.OpenWrite(Filename))

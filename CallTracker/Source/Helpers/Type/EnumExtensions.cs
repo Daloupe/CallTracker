@@ -1,7 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CallTracker.Helpers
 {
+    public static class EnumList
+    {
+        public static IEnumerable<KeyValuePair<T, string>> Of<T>()
+        {
+            return Enum.GetValues(typeof(T))
+                .Cast<T>()
+                .Select(p => new KeyValuePair<T, string>(p, p.ToString()))
+                .ToList();
+        }
+    }
+
     public static class EnumerationExtensions
     {
 

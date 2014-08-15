@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Reflection;
+using System.Linq;
 
 using PropertyChanged;
 using ProtoBuf;
@@ -18,16 +19,16 @@ namespace CallTracker.Model
     [ImplementPropertyChanged]
     public class CustomerContact : INotifyPropertyChanged
     {
-        public List<PRTemplateModel> HFCTemplate = new List<PRTemplateModel>
-        {
-            new PRTemplateModel("Name: "),
-            new PRTemplateModel("Contact Number: "),
-            new PRTemplateModel("Symptoms: "),
-            new PRTemplateModel("Configuration: "),
-            new PRTemplateModel("Testing/Outcome: "),
-            new PRTemplateModel("Issue/Root Cause: "),
-            new PRTemplateModel("Next Action: ")
-        };
+        //public List<PRTemplateModel> HFCTemplate = new List<PRTemplateModel>
+        //{
+        //    new PRTemplateFindProperty("Name: ", "Name"),
+        //    new PRTemplateFunc("Contact Number: ", (x) => {string mobile = FindProperty.FollowPropertyPath(x, "Mobile"); return String.IsNullOrEmpty(mobile) ? FindProperty.FollowPropertyPath(x, "DN") + "- No Alt" : mobile}),
+        //    new PRTemplateFindProperty("Symptoms: ", "Fault.SymptomFull"),
+        //    new PRTemplateFunc("Configuration: "),
+        //    new PRTemplateString("Testing/Outcome: "),
+        //    new PRTemplateString("Issue/Root Cause: "),
+        //    new PRTemplateString("Next Action: ")
+        //};
 
         //public List<PRTemplateModel> NBNTemplate = new List<PRTemplateModel>
         //{
@@ -39,33 +40,33 @@ namespace CallTracker.Model
         //    new PRTemplateModel("SIP Server: "),
         //};
 
-        public void GenerateNBNAdditions(ref StringBuilder sb)
-        {
-            sb.Append("AVC ID: ");
-            sb.AppendLine(Service.AVC);
-            sb.Append("CVC ID: ");
-            sb.AppendLine(Service.CVC);
-            sb.Append("BRAS: ");
-            sb.AppendLine(Service.Bras);
-            sb.Append("CSA ID: ");
-            sb.AppendLine(Service.CSA);
-            sb.Append("NNI ID: ");
-            sb.AppendLine(Service.NNI);
-            sb.AppendLine("SIP Server: ");
-        }
+        //public void GenerateNBNAdditions(ref StringBuilder sb)
+        //{
+        //    sb.Append("AVC ID: ");
+        //    sb.AppendLine(Service.AVC);
+        //    sb.Append("CVC ID: ");
+        //    sb.AppendLine(Service.CVC);
+        //    sb.Append("BRAS: ");
+        //    sb.AppendLine(Service.Bras);
+        //    sb.Append("CSA ID: ");
+        //    sb.AppendLine(Service.CSA);
+        //    sb.Append("NNI ID: ");
+        //    sb.AppendLine(Service.NNI);
+        //    sb.AppendLine("SIP Server: ");
+        //}
 
-        public void GenerateCallbackTime(ref StringBuilder sb)
-        {
-            if (Booking.Type.Is(BookingType.FAQ) || Booking.Type.Is(BookingType.CRQ))
-            {
-                sb.Append("Callback Window ");
-                sb.Append(Booking.Type);
-                sb.Append(": ");
-                sb.Append(Booking.Date.ToString("yyyy-MM-dd"));
-                sb.AppendLine(" " + Booking.Timeslot);
-            }
+        //public void GenerateCallbackTime(ref StringBuilder sb)
+        //{
+        //    if (Booking.Type.Is(BookingType.FAQ) || Booking.Type.Is(BookingType.CRQ))
+        //    {
+        //        sb.Append("Callback Window ");
+        //        sb.Append(Booking.Type);
+        //        sb.Append(": ");
+        //        sb.Append(Booking.Date.ToString("yyyy-MM-dd"));
+        //        sb.AppendLine(" " + Booking.Timeslot);
+        //    }
            
-        }
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -143,26 +144,28 @@ namespace CallTracker.Model
         [ProtoMember(14)]
         public bool IDok { get; set; }
 
-        public List<PRTemplateModel> PRTemplateList = new List<PRTemplateModel>();
+        protected List<PRTemplateModel> PRTemplateReplacements = new List<PRTemplateModel>();
+        public void UpdatePrTemplateReplacements(List<PRTemplateModel> _replacements)
+        {
+            foreach (PRTemplateModel model in _replacements)
+            {
+                var query = PRTemplateReplacements.FirstOrDefault(x => x.Question == model.Question);
+                if (query != null)
+                {
+                    int idx = PRTemplateReplacements.IndexOf(query);
+                    PRTemplateReplacements[idx] = model;
+                }
+                else
+                    PRTemplateReplacements.Add(model);
+            }
+        }
 
         public string PRTemplate
         {
             get
             {
-                StringBuilder sb = new StringBuilder();
-                foreach (PRTemplateModel line in PRTemplateList)
-                {
-                    if (line.Question == "Next Action: " && (Fault.AffectedServices.Has(ServiceTypes.NBF) || Fault.AffectedServices.Has(ServiceTypes.NFV)))
-                        GenerateNBNAdditions(ref sb);
-
-                    sb.Append(line.Question);
-                    sb.AppendLine(line.Answer);
-                };
-                GenerateCallbackTime(ref sb);
-                
-                return sb.ToString();
+                return PRGenerators.Generate(this, PRTemplateReplacements);
             }
-            set { ;}
         }
 
         public string ICONNote { get { return Main.NoteGen.GenerateNoteManually(this); } set { ; } }
@@ -197,7 +200,7 @@ namespace CallTracker.Model
             Contacts = new ContactStatistics();
             Booking = new BookingModel();
 
-            PRTemplateList.AddRange(HFCTemplate);
+            //PRTemplateList.AddRange(HFCTemplate);
 
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)NameSplit).PropertyChanged += CustomerContact_PropertyChanged;
@@ -233,7 +236,7 @@ namespace CallTracker.Model
             Contacts = new ContactStatistics();
             Booking = new BookingModel();
 
-            PRTemplateList.AddRange(HFCTemplate);
+            //PRTemplateList.AddRange(HFCTemplate);
 
             Contacts.StartDate = DateTime.Today.ToLocalTime();
             Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();

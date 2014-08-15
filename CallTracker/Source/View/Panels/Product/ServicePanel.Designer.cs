@@ -94,9 +94,10 @@
             this._Node.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._Node.ControlHeight = 20;
             this._Node.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._Node.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Node.DefaultText = "";
             this._Node.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Node.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._Node.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Node.LabelAutoSize = false;
             this._Node.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._Node.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -110,6 +111,8 @@
             this._Node.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Node.Location = new System.Drawing.Point(4, 4);
             this._Node.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._Node.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Node.MenuButtonImage = null;
             this._Node.Name = "_Node";
             this._Node.PropertyName = null;
             this._Node.Size = new System.Drawing.Size(171, 20);
@@ -127,7 +130,7 @@
             this._CauPing.DataSource = null;
             this._CauPing.DefaultText = "";
             this._CauPing.Font = new System.Drawing.Font("Verdana", 7F);
-            this._CauPing.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._CauPing.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._CauPing.LabelAutoSize = true;
             this._CauPing.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._CauPing.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -141,6 +144,8 @@
             this._CauPing.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._CauPing.Location = new System.Drawing.Point(4, 25);
             this._CauPing.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._CauPing.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
+            this._CauPing.MenuButtonImage = null;
             this._CauPing.Name = "_CauPing";
             this._CauPing.PropertyName = "Service.CauPing";
             this._CauPing.Size = new System.Drawing.Size(171, 20);
@@ -153,8 +158,9 @@
             this._NitResults.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._NitResults.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._NitResults.ControlHeight = 93;
+            this._NitResults.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.NitResults", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._NitResults.Font = new System.Drawing.Font("Verdana", 7F);
-            this._NitResults.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._NitResults.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._NitResults.LabelAutoSize = false;
             this._NitResults.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._NitResults.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -168,6 +174,8 @@
             this._NitResults.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._NitResults.Location = new System.Drawing.Point(4, 46);
             this._NitResults.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._NitResults.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._NitResults.MenuButtonImage = null;
             this._NitResults.Name = "_NitResults";
             this._NitResults.PropertyName = null;
             this._NitResults.Size = new System.Drawing.Size(171, 93);
@@ -198,9 +206,10 @@
             this._Bras.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._Bras.ControlHeight = 20;
             this._Bras.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._Bras.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.Bras", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Bras.DefaultText = "";
             this._Bras.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Bras.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._Bras.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Bras.LabelAutoSize = false;
             this._Bras.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._Bras.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -214,6 +223,8 @@
             this._Bras.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Bras.Location = new System.Drawing.Point(4, 4);
             this._Bras.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._Bras.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Bras.MenuButtonImage = null;
             this._Bras.Name = "_Bras";
             this._Bras.PropertyName = null;
             this._Bras.Size = new System.Drawing.Size(102, 20);
@@ -231,7 +242,7 @@
             this._Sip.DataSource = null;
             this._Sip.DefaultText = "";
             this._Sip.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Sip.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._Sip.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Sip.LabelAutoSize = true;
             this._Sip.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._Sip.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -245,6 +256,8 @@
             this._Sip.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Sip.Location = new System.Drawing.Point(108, 4);
             this._Sip.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
+            this._Sip.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
+            this._Sip.MenuButtonImage = null;
             this._Sip.Name = "_Sip";
             this._Sip.PropertyName = "Service.Sip";
             this._Sip.Size = new System.Drawing.Size(67, 20);
@@ -257,9 +270,10 @@
             this._AVC.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._AVC.ControlHeight = 20;
             this._AVC.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._AVC.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.AVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._AVC.DefaultText = "";
             this._AVC.Font = new System.Drawing.Font("Verdana", 7F);
-            this._AVC.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._AVC.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._AVC.LabelAutoSize = false;
             this._AVC.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._AVC.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -273,6 +287,8 @@
             this._AVC.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._AVC.Location = new System.Drawing.Point(4, 25);
             this._AVC.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._AVC.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._AVC.MenuButtonImage = null;
             this._AVC.Name = "_AVC";
             this._AVC.PropertyName = null;
             this._AVC.Size = new System.Drawing.Size(171, 20);
@@ -287,9 +303,10 @@
             this._CSA.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._CSA.ControlHeight = 20;
             this._CSA.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._CSA.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.CSA", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._CSA.DefaultText = "";
             this._CSA.Font = new System.Drawing.Font("Verdana", 7F);
-            this._CSA.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._CSA.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._CSA.LabelAutoSize = false;
             this._CSA.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._CSA.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -303,6 +320,8 @@
             this._CSA.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._CSA.Location = new System.Drawing.Point(4, 46);
             this._CSA.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._CSA.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._CSA.MenuButtonImage = null;
             this._CSA.Name = "_CSA";
             this._CSA.PropertyName = null;
             this._CSA.Size = new System.Drawing.Size(171, 20);
@@ -317,9 +336,10 @@
             this._CVC.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._CVC.ControlHeight = 20;
             this._CVC.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._CVC.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.CVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._CVC.DefaultText = "";
             this._CVC.Font = new System.Drawing.Font("Verdana", 7F);
-            this._CVC.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._CVC.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._CVC.LabelAutoSize = false;
             this._CVC.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._CVC.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -333,6 +353,8 @@
             this._CVC.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._CVC.Location = new System.Drawing.Point(4, 67);
             this._CVC.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._CVC.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._CVC.MenuButtonImage = null;
             this._CVC.Name = "_CVC";
             this._CVC.PropertyName = null;
             this._CVC.Size = new System.Drawing.Size(171, 20);
@@ -347,9 +369,10 @@
             this._NNI.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._NNI.ControlHeight = 20;
             this._NNI.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._NNI.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.NNI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._NNI.DefaultText = "";
             this._NNI.Font = new System.Drawing.Font("Verdana", 7F);
-            this._NNI.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._NNI.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._NNI.LabelAutoSize = false;
             this._NNI.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._NNI.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -363,6 +386,8 @@
             this._NNI.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._NNI.Location = new System.Drawing.Point(4, 88);
             this._NNI.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._NNI.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._NNI.MenuButtonImage = null;
             this._NNI.Name = "_NNI";
             this._NNI.PropertyName = null;
             this._NNI.Size = new System.Drawing.Size(171, 20);
@@ -377,9 +402,10 @@
             this._PRI.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._PRI.ControlHeight = 20;
             this._PRI.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._PRI.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.PRI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._PRI.DefaultText = "";
             this._PRI.Font = new System.Drawing.Font("Verdana", 7F);
-            this._PRI.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._PRI.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._PRI.LabelAutoSize = false;
             this._PRI.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._PRI.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -393,6 +419,8 @@
             this._PRI.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._PRI.Location = new System.Drawing.Point(4, 109);
             this._PRI.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._PRI.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._PRI.MenuButtonImage = null;
             this._PRI.Name = "_PRI";
             this._PRI.PropertyName = null;
             this._PRI.Size = new System.Drawing.Size(171, 20);
@@ -407,9 +435,10 @@
             this._INC.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._INC.ControlHeight = 20;
             this._INC.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._INC.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Fault.INC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._INC.DefaultText = "";
             this._INC.Font = new System.Drawing.Font("Verdana", 7F);
-            this._INC.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._INC.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._INC.LabelAutoSize = false;
             this._INC.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._INC.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -423,6 +452,8 @@
             this._INC.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._INC.Location = new System.Drawing.Point(4, 130);
             this._INC.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._INC.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._INC.MenuButtonImage = null;
             this._INC.Name = "_INC";
             this._INC.PropertyName = null;
             this._INC.Size = new System.Drawing.Size(171, 20);
@@ -437,9 +468,10 @@
             this._APT.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._APT.ControlHeight = 20;
             this._APT.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._APT.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Fault.APT", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._APT.DefaultText = "";
             this._APT.Font = new System.Drawing.Font("Verdana", 7F);
-            this._APT.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._APT.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._APT.LabelAutoSize = false;
             this._APT.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._APT.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -453,6 +485,8 @@
             this._APT.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._APT.Location = new System.Drawing.Point(4, 151);
             this._APT.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._APT.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._APT.MenuButtonImage = null;
             this._APT.Name = "_APT";
             this._APT.PropertyName = null;
             this._APT.Size = new System.Drawing.Size(171, 20);
@@ -483,9 +517,10 @@
             this._DTVNode.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._DTVNode.ControlHeight = 20;
             this._DTVNode.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._DTVNode.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._DTVNode.DefaultText = "";
             this._DTVNode.Font = new System.Drawing.Font("Verdana", 7F);
-            this._DTVNode.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._DTVNode.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._DTVNode.LabelAutoSize = false;
             this._DTVNode.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
             this._DTVNode.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -499,6 +534,8 @@
             this._DTVNode.LabelTextColor = System.Drawing.SystemColors.Info;
             this._DTVNode.Location = new System.Drawing.Point(4, 4);
             this._DTVNode.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._DTVNode.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._DTVNode.MenuButtonImage = null;
             this._DTVNode.Name = "_DTVNode";
             this._DTVNode.PropertyName = null;
             this._DTVNode.Size = new System.Drawing.Size(171, 20);
@@ -513,9 +550,10 @@
             this._DTVMsg.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._DTVMsg.ControlHeight = 20;
             this._DTVMsg.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._DTVMsg.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DTVMsg", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._DTVMsg.DefaultText = "";
             this._DTVMsg.Font = new System.Drawing.Font("Verdana", 7F);
-            this._DTVMsg.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._DTVMsg.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._DTVMsg.LabelAutoSize = false;
             this._DTVMsg.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
             this._DTVMsg.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -529,6 +567,8 @@
             this._DTVMsg.LabelTextColor = System.Drawing.SystemColors.Info;
             this._DTVMsg.Location = new System.Drawing.Point(4, 25);
             this._DTVMsg.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._DTVMsg.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._DTVMsg.MenuButtonImage = null;
             this._DTVMsg.Name = "_DTVMsg";
             this._DTVMsg.PropertyName = null;
             this._DTVMsg.Size = new System.Drawing.Size(171, 20);
@@ -546,7 +586,7 @@
             this._DTVConnection.DataSource = null;
             this._DTVConnection.DefaultText = "";
             this._DTVConnection.Font = new System.Drawing.Font("Verdana", 7F);
-            this._DTVConnection.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._DTVConnection.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._DTVConnection.LabelAutoSize = true;
             this._DTVConnection.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
             this._DTVConnection.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -560,6 +600,8 @@
             this._DTVConnection.LabelTextColor = System.Drawing.SystemColors.Info;
             this._DTVConnection.Location = new System.Drawing.Point(4, 46);
             this._DTVConnection.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._DTVConnection.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
+            this._DTVConnection.MenuButtonImage = null;
             this._DTVConnection.Name = "_DTVConnection";
             this._DTVConnection.PropertyName = "Service.ConnectionType";
             this._DTVConnection.Size = new System.Drawing.Size(171, 20);
@@ -572,7 +614,7 @@
             this._STBHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._STBHeading.ControlHeight = 12;
             this._STBHeading.Font = new System.Drawing.Font("Verdana", 7F);
-            this._STBHeading.LabelActiveColor = System.Drawing.Color.Empty;
+            this._STBHeading.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._STBHeading.LabelAutoSize = true;
             this._STBHeading.LabelBorderColor = System.Drawing.Color.Empty;
             this._STBHeading.LabelFont = new System.Drawing.Font("Gautami", 7F);
@@ -586,6 +628,8 @@
             this._STBHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._STBHeading.Location = new System.Drawing.Point(4, 67);
             this._STBHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._STBHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._STBHeading.MenuButtonImage = null;
             this._STBHeading.Name = "_STBHeading";
             this._STBHeading.PropertyName = null;
             this._STBHeading.Size = new System.Drawing.Size(171, 12);
@@ -598,9 +642,10 @@
             this._STBSmartCard.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._STBSmartCard.ControlHeight = 20;
             this._STBSmartCard.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._STBSmartCard.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DTVSmartCard", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._STBSmartCard.DefaultText = "";
             this._STBSmartCard.Font = new System.Drawing.Font("Verdana", 7F);
-            this._STBSmartCard.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._STBSmartCard.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._STBSmartCard.LabelAutoSize = false;
             this._STBSmartCard.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
             this._STBSmartCard.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -614,6 +659,8 @@
             this._STBSmartCard.LabelTextColor = System.Drawing.SystemColors.Info;
             this._STBSmartCard.Location = new System.Drawing.Point(4, 80);
             this._STBSmartCard.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._STBSmartCard.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._STBSmartCard.MenuButtonImage = null;
             this._STBSmartCard.Name = "_STBSmartCard";
             this._STBSmartCard.PropertyName = null;
             this._STBSmartCard.Size = new System.Drawing.Size(171, 20);
@@ -628,9 +675,10 @@
             this._STBLot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._STBLot.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._STBLot.ControlHeight = 32;
+            this._STBLot.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DTVLot", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._STBLot.DefaultText = "";
             this._STBLot.Font = new System.Drawing.Font("Verdana", 7F);
-            this._STBLot.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._STBLot.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._STBLot.LabelAutoSize = true;
             this._STBLot.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
             this._STBLot.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -644,12 +692,15 @@
             this._STBLot.LabelTextColor = System.Drawing.SystemColors.Info;
             this._STBLot.Location = new System.Drawing.Point(4, 101);
             this._STBLot.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._STBLot.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._STBLot.MenuButtonImage = null;
             this._STBLot.Name = "_STBLot";
             this._STBLot.PropertyName = null;
             this._STBLot.Size = new System.Drawing.Size(65, 32);
             this._STBLot.TabIndex = 96;
             this._STBLot.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this._STBLot.TextField = "";
+            this._STBLot.TextFieldBackColour = System.Drawing.SystemColors.Window;
             // 
             // _STBBox
             // 
@@ -658,9 +709,10 @@
             this._STBBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._STBBox.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._STBBox.ControlHeight = 32;
+            this._STBBox.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DTVBox", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._STBBox.DefaultText = "";
             this._STBBox.Font = new System.Drawing.Font("Verdana", 7F);
-            this._STBBox.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._STBBox.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._STBBox.LabelAutoSize = true;
             this._STBBox.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
             this._STBBox.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -674,12 +726,15 @@
             this._STBBox.LabelTextColor = System.Drawing.SystemColors.Info;
             this._STBBox.Location = new System.Drawing.Point(71, 101);
             this._STBBox.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
+            this._STBBox.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._STBBox.MenuButtonImage = null;
             this._STBBox.Name = "_STBBox";
             this._STBBox.PropertyName = null;
             this._STBBox.Size = new System.Drawing.Size(104, 32);
             this._STBBox.TabIndex = 97;
             this._STBBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this._STBBox.TextField = "";
+            this._STBBox.TextFieldBackColour = System.Drawing.SystemColors.Window;
             // 
             // _MTVPanel
             // 
@@ -713,6 +768,8 @@
             this._MTVHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._MTVHeading.Location = new System.Drawing.Point(4, 4);
             this._MTVHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._MTVHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._MTVHeading.MenuButtonImage = null;
             this._MTVHeading.Name = "_MTVHeading";
             this._MTVHeading.PropertyName = null;
             this._MTVHeading.Size = new System.Drawing.Size(171, 12);
@@ -725,9 +782,10 @@
             this._MTVMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._MTVMac.ControlHeight = 20;
             this._MTVMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._MTVMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MeTVMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._MTVMac.DefaultText = "";
             this._MTVMac.Font = new System.Drawing.Font("Verdana", 7F);
-            this._MTVMac.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._MTVMac.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._MTVMac.LabelAutoSize = false;
             this._MTVMac.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._MTVMac.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -741,6 +799,8 @@
             this._MTVMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._MTVMac.Location = new System.Drawing.Point(4, 17);
             this._MTVMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._MTVMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._MTVMac.MenuButtonImage = null;
             this._MTVMac.Name = "_MTVMac";
             this._MTVMac.PropertyName = null;
             this._MTVMac.Size = new System.Drawing.Size(171, 20);
@@ -755,9 +815,10 @@
             this._MTVSN.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._MTVSN.ControlHeight = 20;
             this._MTVSN.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._MTVSN.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MeTVSN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._MTVSN.DefaultText = "";
             this._MTVSN.Font = new System.Drawing.Font("Verdana", 7F);
-            this._MTVSN.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._MTVSN.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._MTVSN.LabelAutoSize = false;
             this._MTVSN.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._MTVSN.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -771,6 +832,8 @@
             this._MTVSN.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._MTVSN.Location = new System.Drawing.Point(4, 38);
             this._MTVSN.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._MTVSN.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._MTVSN.MenuButtonImage = null;
             this._MTVSN.Name = "_MTVSN";
             this._MTVSN.PropertyName = null;
             this._MTVSN.Size = new System.Drawing.Size(171, 20);
@@ -803,9 +866,10 @@
             this._ONCNode.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._ONCNode.ControlHeight = 20;
             this._ONCNode.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ONCNode.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ONCNode.DefaultText = "";
             this._ONCNode.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ONCNode.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._ONCNode.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._ONCNode.LabelAutoSize = false;
             this._ONCNode.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._ONCNode.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -819,6 +883,8 @@
             this._ONCNode.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._ONCNode.Location = new System.Drawing.Point(4, 4);
             this._ONCNode.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ONCNode.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ONCNode.MenuButtonImage = null;
             this._ONCNode.Name = "_ONCNode";
             this._ONCNode.PropertyName = null;
             this._ONCNode.Size = new System.Drawing.Size(171, 20);
@@ -833,7 +899,7 @@
             this._SpeedTestHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._SpeedTestHeading.ControlHeight = 12;
             this._SpeedTestHeading.Font = new System.Drawing.Font("Verdana", 7F);
-            this._SpeedTestHeading.LabelActiveColor = System.Drawing.Color.Empty;
+            this._SpeedTestHeading.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._SpeedTestHeading.LabelAutoSize = true;
             this._SpeedTestHeading.LabelBorderColor = System.Drawing.Color.Empty;
             this._SpeedTestHeading.LabelFont = new System.Drawing.Font("Gautami", 7F);
@@ -847,6 +913,8 @@
             this._SpeedTestHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._SpeedTestHeading.Location = new System.Drawing.Point(4, 25);
             this._SpeedTestHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._SpeedTestHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._SpeedTestHeading.MenuButtonImage = null;
             this._SpeedTestHeading.Name = "_SpeedTestHeading";
             this._SpeedTestHeading.PropertyName = null;
             this._SpeedTestHeading.Size = new System.Drawing.Size(171, 12);
@@ -859,9 +927,10 @@
             this._SpeedTestDown.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._SpeedTestDown.ControlHeight = 20;
             this._SpeedTestDown.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._SpeedTestDown.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DownloadSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._SpeedTestDown.DefaultText = "";
             this._SpeedTestDown.Font = new System.Drawing.Font("Verdana", 7F);
-            this._SpeedTestDown.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._SpeedTestDown.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._SpeedTestDown.LabelAutoSize = false;
             this._SpeedTestDown.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._SpeedTestDown.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -875,6 +944,8 @@
             this._SpeedTestDown.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._SpeedTestDown.Location = new System.Drawing.Point(4, 38);
             this._SpeedTestDown.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._SpeedTestDown.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._SpeedTestDown.MenuButtonImage = null;
             this._SpeedTestDown.Name = "_SpeedTestDown";
             this._SpeedTestDown.PropertyName = null;
             this._SpeedTestDown.Size = new System.Drawing.Size(85, 20);
@@ -889,9 +960,10 @@
             this._SpeedTestUp.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._SpeedTestUp.ControlHeight = 20;
             this._SpeedTestUp.ControlMargin = new System.Windows.Forms.Padding(2, 0, 0, 1);
+            this._SpeedTestUp.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.UploadSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._SpeedTestUp.DefaultText = "";
             this._SpeedTestUp.Font = new System.Drawing.Font("Verdana", 7F);
-            this._SpeedTestUp.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._SpeedTestUp.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._SpeedTestUp.LabelAutoSize = false;
             this._SpeedTestUp.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._SpeedTestUp.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -905,6 +977,8 @@
             this._SpeedTestUp.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._SpeedTestUp.Location = new System.Drawing.Point(91, 38);
             this._SpeedTestUp.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
+            this._SpeedTestUp.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._SpeedTestUp.MenuButtonImage = null;
             this._SpeedTestUp.Name = "_SpeedTestUp";
             this._SpeedTestUp.PropertyName = null;
             this._SpeedTestUp.Size = new System.Drawing.Size(84, 20);
@@ -919,7 +993,7 @@
             this._ModemDetailsHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._ModemDetailsHeading.ControlHeight = 12;
             this._ModemDetailsHeading.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemDetailsHeading.LabelActiveColor = System.Drawing.Color.Empty;
+            this._ModemDetailsHeading.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._ModemDetailsHeading.LabelAutoSize = true;
             this._ModemDetailsHeading.LabelBorderColor = System.Drawing.Color.Empty;
             this._ModemDetailsHeading.LabelFont = new System.Drawing.Font("Gautami", 7F);
@@ -933,6 +1007,8 @@
             this._ModemDetailsHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._ModemDetailsHeading.Location = new System.Drawing.Point(4, 59);
             this._ModemDetailsHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemDetailsHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ModemDetailsHeading.MenuButtonImage = null;
             this._ModemDetailsHeading.Name = "_ModemDetailsHeading";
             this._ModemDetailsHeading.PropertyName = null;
             this._ModemDetailsHeading.Size = new System.Drawing.Size(171, 12);
@@ -948,7 +1024,7 @@
             this._ModemStatus.DataSource = null;
             this._ModemStatus.DefaultText = "";
             this._ModemStatus.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemStatus.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._ModemStatus.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._ModemStatus.LabelAutoSize = false;
             this._ModemStatus.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._ModemStatus.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -962,6 +1038,8 @@
             this._ModemStatus.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._ModemStatus.Location = new System.Drawing.Point(4, 72);
             this._ModemStatus.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemStatus.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
+            this._ModemStatus.MenuButtonImage = null;
             this._ModemStatus.Name = "_ModemStatus";
             this._ModemStatus.PropertyName = "Service.ModemStatus";
             this._ModemStatus.Size = new System.Drawing.Size(104, 20);
@@ -977,7 +1055,7 @@
             this._ModemRF.DataSource = null;
             this._ModemRF.DefaultText = "";
             this._ModemRF.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemRF.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._ModemRF.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._ModemRF.LabelAutoSize = true;
             this._ModemRF.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._ModemRF.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -991,6 +1069,8 @@
             this._ModemRF.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._ModemRF.Location = new System.Drawing.Point(110, 72);
             this._ModemRF.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
+            this._ModemRF.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
+            this._ModemRF.MenuButtonImage = null;
             this._ModemRF.Name = "_ModemRF";
             this._ModemRF.PropertyName = "Service.RFIssues";
             this._ModemRF.Size = new System.Drawing.Size(65, 20);
@@ -1003,9 +1083,10 @@
             this._ModemCMMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._ModemCMMac.ControlHeight = 20;
             this._ModemCMMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemCMMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.CMMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ModemCMMac.DefaultText = "";
             this._ModemCMMac.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemCMMac.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._ModemCMMac.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._ModemCMMac.LabelAutoSize = false;
             this._ModemCMMac.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._ModemCMMac.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -1019,6 +1100,8 @@
             this._ModemCMMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._ModemCMMac.Location = new System.Drawing.Point(4, 93);
             this._ModemCMMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemCMMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ModemCMMac.MenuButtonImage = null;
             this._ModemCMMac.Name = "_ModemCMMac";
             this._ModemCMMac.PropertyName = null;
             this._ModemCMMac.Size = new System.Drawing.Size(171, 20);
@@ -1033,9 +1116,10 @@
             this._ModemMTAMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._ModemMTAMac.ControlHeight = 20;
             this._ModemMTAMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemMTAMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MTAMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ModemMTAMac.DefaultText = "";
             this._ModemMTAMac.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemMTAMac.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._ModemMTAMac.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._ModemMTAMac.LabelAutoSize = false;
             this._ModemMTAMac.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._ModemMTAMac.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -1049,6 +1133,8 @@
             this._ModemMTAMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._ModemMTAMac.Location = new System.Drawing.Point(4, 114);
             this._ModemMTAMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemMTAMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ModemMTAMac.MenuButtonImage = null;
             this._ModemMTAMac.Name = "_ModemMTAMac";
             this._ModemMTAMac.PropertyName = null;
             this._ModemMTAMac.Size = new System.Drawing.Size(171, 20);
@@ -1063,9 +1149,10 @@
             this._ModemSN.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._ModemSN.ControlHeight = 20;
             this._ModemSN.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemSN.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.ModemSN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ModemSN.DefaultText = "";
             this._ModemSN.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemSN.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._ModemSN.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._ModemSN.LabelAutoSize = false;
             this._ModemSN.LabelBorderColor = System.Drawing.Color.OliveDrab;
             this._ModemSN.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
@@ -1079,6 +1166,8 @@
             this._ModemSN.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._ModemSN.Location = new System.Drawing.Point(4, 135);
             this._ModemSN.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemSN.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ModemSN.MenuButtonImage = null;
             this._ModemSN.Name = "_ModemSN";
             this._ModemSN.PropertyName = null;
             this._ModemSN.Size = new System.Drawing.Size(171, 20);
@@ -1107,6 +1196,8 @@
             this._ServiceHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._ServiceHeading.Location = new System.Drawing.Point(0, 0);
             this._ServiceHeading.Margin = new System.Windows.Forms.Padding(0);
+            this._ServiceHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ServiceHeading.MenuButtonImage = null;
             this._ServiceHeading.Name = "_ServiceHeading";
             this._ServiceHeading.PropertyName = null;
             this._ServiceHeading.Size = new System.Drawing.Size(180, 12);
@@ -1121,7 +1212,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(248)))), ((int)(((byte)(199)))));
+            this.BackColor = System.Drawing.Color.LemonChiffon;
             this.Controls.Add(this._LATPanel);
             this.Controls.Add(this._ONCPanel);
             this.Controls.Add(this._MTVPanel);

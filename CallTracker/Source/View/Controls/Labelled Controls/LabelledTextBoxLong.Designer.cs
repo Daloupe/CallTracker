@@ -32,19 +32,18 @@
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).BeginInit();
             this.SuspendLayout();
             // 
+            // _MenuButton
+            // 
+            this._MenuButton.Location = new System.Drawing.Point(166, 0);
+            this._MenuButton.Size = new System.Drawing.Size(8, 20);
+            this._MenuButton.Paint += new System.Windows.Forms.PaintEventHandler(this._MenuButton_Paint);
+            // 
             // _Label
             // 
             this._Label.Dock = System.Windows.Forms.DockStyle.Left;
             this._Label.Font = new System.Drawing.Font("Gautami", 8.25F);
             this._Label.Location = new System.Drawing.Point(0, 0);
             this._Label.Size = new System.Drawing.Size(34, 23);
-            // 
-            // _MenuButton
-            // 
-            this._MenuButton.Location = new System.Drawing.Point(166, 0);
-            this._MenuButton.Size = new System.Drawing.Size(8, 20);
-            this._MenuButton.Visible = false;
-            this._MenuButton.Paint += new System.Windows.Forms.PaintEventHandler(this._MenuButton_Paint);
             // 
             // _DataField
             // 
@@ -75,8 +74,8 @@
             this.Name = "LabelledTextBoxLong";
             this.Size = new System.Drawing.Size(174, 20);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this._MenuButton_Paint);
-            this.Controls.SetChildIndex(this._Label, 0);
             this.Controls.SetChildIndex(this._MenuButton, 0);
+            this.Controls.SetChildIndex(this._Label, 0);
             this.Controls.SetChildIndex(this._DataField, 0);
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).EndInit();
             this.ResumeLayout(false);

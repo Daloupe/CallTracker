@@ -88,15 +88,18 @@ namespace CallTracker.View
             _ComboBox.DataBindings.Clear();
             _ComboBox.DataBindings.Add("Text", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
             _ComboBox.DataSource = _dataSource;
+            _ComboBox.SelectedIndex = -1;
+            _ComboBox.Leave += _ComboBox_Leave<List<string>>;
         }
 
-        public void BindComboBox(Array _dataSource, BindingSource _bindingSource)
-        {
-            _ComboBox.DataSource = null;
-            _ComboBox.DataBindings.Clear();
-            _ComboBox.DataBindings.Add("Text", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
-            _ComboBox.DataSource = _dataSource;
-        }
+        //public void BindComboBox(Array _dataSource, BindingSource _bindingSource)
+        //{
+        //    _ComboBox.DataSource = null;
+        //    _ComboBox.DataBindings.Clear();
+        //    _ComboBox.DataBindings.Add("Text", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+        //    _ComboBox.DataSource = _dataSource;
+        //    //_ComboBox.Leave += _ComboBox_Leave<Array>;
+        //}
 
         public void BindComboBox(BindingList<string> _dataSource, BindingSource _bindingSource)
         {
@@ -104,6 +107,8 @@ namespace CallTracker.View
             _ComboBox.DataBindings.Clear();
             _ComboBox.DataBindings.Add("Text", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
             _ComboBox.DataSource = _dataSource;
+            _ComboBox.SelectedIndex = -1;
+            _ComboBox.Leave += _ComboBox_Leave<BindingList<string>>;
         }
 
         private void _ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -131,17 +136,30 @@ namespace CallTracker.View
                 _MenuButton.Show();
         }
 
-        private void _ComboBox_Leave(object sender, EventArgs e)
+        private void _ComboBox_Leave<T>(object sender, EventArgs e) where T : IEnumerable<string>
         {
             bool ok = false;
             if (_ComboBox.DataSource != null)
-                foreach(string data in ((BindingList<string>)_ComboBox.DataSource))
+                foreach (string data in ((T)_ComboBox.DataSource))
                 {
-                    if(data.ToLower() == _ComboBox.Text.ToLower())
+                    if (data.ToLower() == _ComboBox.Text.ToLower())
                         ok = true;
                 }
-            if(!ok)
+            if (!ok)
                 _ComboBox.Text = String.Empty;
         }
+
+        //private void _ComboBox_Leave(object sender, EventArgs e)
+        //{
+        //    bool ok = false;
+        //    if (_ComboBox.DataSource != null)
+        //        foreach (string data in ((BindingList<string>)_ComboBox.DataSource))
+        //        {
+        //            if (data.ToLower() == _ComboBox.Text.ToLower())
+        //                ok = true;
+        //        }
+        //    if (!ok)
+        //        _ComboBox.Text = String.Empty;
+        //}
     }
 }

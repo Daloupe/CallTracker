@@ -35,17 +35,11 @@ namespace CallTracker.View
     public partial class Main : Form
     {
         public static string SelectedMenuProduct = String.Empty;
-
         public Point ControlOffset = new Point(0, -1);
 
-        internal CustomerContact SelectedContact { get; set; }
-
         internal UserDataStore DataStore = new UserDataStore();
-        //internal ResourceData ResourceStore = new ResourceData();
         internal static ServicesData ServicesStore = new ServicesData();
-        //private static EventLogger EventLog = new EventLogger();
-
-        internal static ICONNoteGenerator NoteGen;
+        internal CustomerContact SelectedContact { get; set; }
 
         internal EditLogins editLogins;
         internal EditGridLinks editGridLinks;
@@ -56,10 +50,10 @@ namespace CallTracker.View
         internal DatabaseView databaseView;
         internal Ratecodes Ratecodes;
 
+        internal static ICONNoteGenerator NoteGen;
         public HotkeyController HotKeys;
-        private AutoCompleteStringCollection systemAutoCompleteSource = new AutoCompleteStringCollection();
 
-        SplashScreen Splash;
+        private SplashScreen Splash;
         public Main(SplashScreen _splash)
         {
             InitializeComponent();
@@ -213,12 +207,9 @@ namespace CallTracker.View
 
         private void Main_Shown(object sender, EventArgs e)
         {
-            //Splash.Close();
             this.Opacity = 100;
             Splash.Close();
             Splash.Dispose();
-            //this.WindowState = FormWindowState.Normal;
-            //this.ShowInTaskbar = true;
         }
 
         public bool CancelLoad = false;
@@ -247,7 +238,9 @@ namespace CallTracker.View
             }
         }
 
-        // Menu Bar ////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Menu //////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         internal void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -326,123 +319,14 @@ namespace CallTracker.View
             return findForm.First();
         }
 
-        private void toolStripServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ((ToolStripComboBox)sender).GetCurrentParent().Focus();
-            foreach (ContextualToolStripMenuItem item in resourcesToolStripMenuItem.DropDownItems.OfType<ContextualToolStripMenuItem>())
-                item.dirty = true;
-        }
 
-        private void resourcesToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
-        {
-            ContextualToolStripMenuItem menuItem = (ContextualToolStripMenuItem)sender;
-            menuItem.UpdateMenu(toolStripServiceSelector.Text);
-        }
 
-        public void transfer_Click(object sender, EventArgs e)
-        {
-            Point offsets = new Point();
-            string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
-            offsets.X = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[1]);
-            offsets.Y = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[2]);
 
-            //TestStack.White.Application application = TestStack.White.Application.Attach("cmake-gui");
-            //Window window = application.GetWindow("CMake 2.8.12.1 - C:/Programming/Rust/piston-master/exam", InitializeOption.WithCache);
 
-          
-            //TestStack.White.UIItems.Panel button = window.Get<TestStack.White.UIItems.Panel>("BrowseSourceDirectoryButton");
-            //button.Click();
 
-            ToolStripMenuItem item = (ToolStripMenuItem)sender;
-            WindowHelper.IPCCAutomation(item.Tag.ToString(), offsets);
-        }
-
-        //private void toolStripTextBox1_KeyDown(object sender, KeyEventArgs e)
-        //{
-        //    if (e.KeyCode == Keys.Return)
-        //    {
-        //        settingMenuItem_Click(LATRatecodeMenuItem, new EventArgs());
-        //        latRateCodes.Search(((ToolStripTextBox)sender).Text);
-        //        LatRatecodeSearch.PerformClick();
-        //    };
-        //}
-
-        //public void UpdateAutoComplete()
-        //{
-        //    LatRatecodeSearch.AutoCompleteCustomSource = systemAutoCompleteSource;
-        //    systemAutoCompleteSource.Clear();
-        //    systemAutoCompleteSource.AddRange(ResourceStore.LATRatePlans.Select(p => p.RateCode).ToArray());
-        //}
-
-        private void LATRatecodeMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            //((ToolStripMenuItem)sender).HideDropDown();
-            //((ToolStripMenuItem)sender).Invalidate();
-        }
-
-        // Move Window ////////////////////////////////////////////////////////////////////////////////////
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        private void _MainMenu_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {  
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-                Properties.Settings.Default.Main_Position = Location;
-            }
-        }
-
-        // Misc ////////////////////////////////////////////////////////////////////////////////////
-        private void PaintGrayBorder(object sender, PaintEventArgs e)
-        {
-            e.Graphics.DrawRectangle(Pens.WhiteSmoke,
-             0,
-             0,
-             ((Control)sender).Width - 1,
-             ((Control)sender).Height - 1);
-            base.OnPaint(e);
-        }
-
-        public void UpdateProgressBar(int percent, string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
-        {
-            EventLogger.LogNewEvent(_event, _logLevel);
-            //_StatusProgressBar.Value = percent;
-        }
-
-        public void UpdateProgressBar(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
-        {
-            EventLogger.LogNewEvent(_event, _logLevel);
-           //_StatusProgressBar.PerformStep();
-        }
-
-        public void SetProgressBarStep(int _steps, string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
-        {
-            //_StatusProgressBar.Maximum = _steps + 1;
-            UpdateProgressBar(_event, _logLevel);
-        }
-
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
-                return cp;
-            }
-        }
-
-        private void _StatusContextMenu_MouseClick(object sender, MouseEventArgs e)
-        {
-
-        }
-
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Status Bar ///////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void _StatusContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Name == "clearMessagesToolStripMenuItem")
@@ -478,6 +362,13 @@ namespace CallTracker.View
             }
         }
 
+
+
+
+
+
+
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // IPCC Monitor ////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -485,15 +376,59 @@ namespace CallTracker.View
         private TestStack.White.Application IPCCApplication;
         private Window IPCCWindow;
         private TestStack.White.UIItems.TextBox IPCCCallStatus;
+        //private TestStack.White.UIItems.Button IPCCDialButton;
+        //private TestStack.White.UIItems.Button IPCCTransferButton;
+
+        private bool CheckForIPCC()
+        {
+            if (IPCCProcess == null && monitorIPCCToolStripMenuItem.Checked == true)
+                if (InitIPCCMonitor() == false)
+                    return false;
+            return true;
+        }
+
+        private bool InitIPCCMonitor()
+        {
+            foreach (Process pList in Process.GetProcesses())
+                if (pList.MainWindowTitle.Contains("IPCC Agent Desktop"))
+                    IPCCProcess = pList;
+
+            if (IPCCProcess == null)
+            {
+                EventLogger.LogNewEvent("Unable to Find IPCC", EventLogLevel.Status);
+                return false;
+            }
+
+            IPCCProcess.Exited += IPCCProcess_Exited;
+            IPCCApplication = TestStack.White.Application.Attach(IPCCProcess);//@"C:\Program Files\Optus\IPCC Agent Desktop\IPCCAgentDesktop.exe");
+            IPCCWindow = IPCCApplication.GetWindow(SearchCriteria.ByAutomationId("SoftphoneForm"), InitializeOption.NoCache);
+            IPCCCallStatus = IPCCWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("StatusBar.Pane3"));
+            //IPCCDialButton = IPCCWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId("btnDial"));
+            //IPCCTransferButton = IPCCWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId("btnTransfer"));
+            
+            return true;
+        }
+
+        void IPCCProcess_Exited(object sender, EventArgs e)
+        {
+            _IPCCTimer.Enabled = false;
+            monitorIPCCToolStripMenuItem.Checked = false;
+            IPCCProcess.Exited -= IPCCProcess_Exited;
+            IPCCProcess.Dispose();
+            IPCCProcess = null;
+        }
+
+        private DateTime _CallStateTimeElapsed;
+        private void _WorkReadyTimer_Tick(object sender, EventArgs e)
+        {
+            _CallStateTimeElapsed = _CallStateTimeElapsed.AddMilliseconds(1000);
+            _CallStateTime.Text = _CallStateTimeElapsed.ToString("mm:ss");
+        }
 
         private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChangeCallStateMenuItem(notReadyToolStripMenuItem);
-            if (IPCCProcess == null && monitorIPCCToolStripMenuItem.Checked == true)
-                if (InitIPCCMonitor() == false)
-                    return;
-
-            _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
+            if (CheckForIPCC())
+                _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
         }
 
         ToolStripMenuItem currentItem;
@@ -559,9 +494,11 @@ namespace CallTracker.View
         }
         private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {    
-            //SetCallState = e.ClickedItem.Tag.ToString();
-            ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
-            _IPCCTimer.Enabled = true;
+            if (e.ClickedItem != monitorIPCCToolStripMenuItem)
+            {
+                ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
+                _IPCCTimer.Enabled = true;
+            }
         }
 
         private void ChangeCallStateMenuItem(string _callState)
@@ -591,6 +528,7 @@ namespace CallTracker.View
             //string status = IPCCCallStatus.Name;
             if (CurrentItem.Name == "logInToolStripMenuItem")
                 ChangeCallStateMenuItem(notReadyToolStripMenuItem);
+
             string status = CurrentItem.Tag.ToString();
             if (status != _IPCCState.Text)
             {
@@ -640,40 +578,52 @@ namespace CallTracker.View
             _CallStateTime.Text = _CallStateTimeElapsed.ToString("mm:ss");
         }
 
-        private bool InitIPCCMonitor()
+
+
+
+
+
+
+
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Resource menu events /////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        private void toolStripServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (Process pList in Process.GetProcesses())
-                if(pList.MainWindowTitle.Contains("IPCC Agent Desktop"))
-                    IPCCProcess = pList;
-
-            if (IPCCProcess == null)
-            {
-                EventLogger.LogNewEvent("Unable to Find IPCC", EventLogLevel.Status);
-                return false;
-            }
-
-            IPCCProcess.Exited += IPCCProcess_Exited;
-            IPCCApplication = TestStack.White.Application.Attach(IPCCProcess);//@"C:\Program Files\Optus\IPCC Agent Desktop\IPCCAgentDesktop.exe");
-            IPCCWindow = IPCCApplication.GetWindow(SearchCriteria.ByAutomationId("SoftphoneForm"), InitializeOption.NoCache);
-            IPCCCallStatus = IPCCWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("StatusBar.Pane3"));
-            
-            return true;
+            ((ToolStripComboBox)sender).GetCurrentParent().Focus();
+            foreach (ContextualToolStripMenuItem item in resourcesToolStripMenuItem.DropDownItems.OfType<ContextualToolStripMenuItem>())
+                item.dirty = true;
         }
 
-        void IPCCProcess_Exited(object sender, EventArgs e)
+        private void resourcesToolStripMenuItem_DropDownOpening(object sender, EventArgs e)
         {
-            _IPCCTimer.Enabled = false;
-            monitorIPCCToolStripMenuItem.Checked = false;
-            IPCCProcess.Exited -= IPCCProcess_Exited;
-            IPCCProcess.Dispose();
-            IPCCProcess = null;
+            ContextualToolStripMenuItem menuItem = (ContextualToolStripMenuItem)sender;
+            menuItem.UpdateMenu(toolStripServiceSelector.Text);
         }
 
-        private DateTime _CallStateTimeElapsed;
-        private void _WorkReadyTimer_Tick(object sender, EventArgs e)
+        public void transfer_Click(object sender, EventArgs e)
         {
-            _CallStateTimeElapsed = _CallStateTimeElapsed.AddMilliseconds(1000);
-            _CallStateTime.Text = _CallStateTimeElapsed.ToString("mm:ss");
+            if (!CheckForIPCC())
+                return;
+
+            string dialOrTransfer = "btnDial";
+            if (IPCCCallStatus.Name == "AgentStatus: Talking")
+                dialOrTransfer = "btnTranfer";
+
+            TestStack.White.UIItems.Button button = IPCCWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId(dialOrTransfer));
+            button.Click();
+            //Point offsets = new Point();
+            //string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
+            //offsets.X = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[1]);
+            //offsets.Y = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[2]);
+
+            //button.Click();
+
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            //WindowHelper.IPCCAutomation(item.Tag.ToString(), offsets);
         }
 
         private void editBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
@@ -683,12 +633,91 @@ namespace CallTracker.View
 
         private void editSystemsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           ShowPopupForm<EditSystems>();
+            ShowPopupForm<EditSystems>();
         }
 
         private void OpenURL_Click(object sender, EventArgs e)
         {
             UpdateMenuObject.newItem_Click(sender, e);
+        }
+
+
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Progress Bar /////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public void UpdateProgressBar(int percent, string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
+        {
+            EventLogger.LogNewEvent(_event, _logLevel);
+            //_StatusProgressBar.Value = percent;
+        }
+
+        public void UpdateProgressBar(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
+        {
+            EventLogger.LogNewEvent(_event, _logLevel);
+            //_StatusProgressBar.PerformStep();
+        }
+
+        public void SetProgressBarStep(int _steps, string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
+        {
+            //_StatusProgressBar.Maximum = _steps + 1;
+            UpdateProgressBar(_event, _logLevel);
+        }
+
+
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Move Window //////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void _MainMenu_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                Properties.Settings.Default.Main_Position = Location;
+            }
+        }
+
+
+
+
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Misc /////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        private void PaintGrayBorder(object sender, PaintEventArgs e)
+        {
+            e.Graphics.DrawRectangle(Pens.WhiteSmoke,
+             0,
+             0,
+             ((Control)sender).Width - 1,
+             ((Control)sender).Height - 1);
+            base.OnPaint(e);
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                return cp;
+            }
         }
 
     }

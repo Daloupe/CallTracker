@@ -25,7 +25,7 @@ namespace CallTracker.Model
             ITCase = String.Empty;
             Severity = String.Empty; // "I";
             Symptom = String.Empty; //"NDT";
-            Outcome = String.Empty; //"PR";
+            Outcome = "Fault"; //"PR";
             Action = String.Empty;
             //Booking = new BookingModel();
             AffectedServices = ServiceTypes.NONE;
@@ -118,7 +118,7 @@ namespace CallTracker.Model
                         from c in a.GetSymptomGroupSymptomMatchRows()
                         where b.ServiceId == Service.Id &&
                               c.SymptomsRow.IFMSCode == Symptom
-                        select a).First().IFMSCode;
+                        select a).FirstOrDefault().IFMSCode;
             } 
         }
 
@@ -130,7 +130,7 @@ namespace CallTracker.Model
                     return String.Empty;
                 return Symptom + " - " + (from a in Main.ServicesStore.servicesDataSet.Symptoms
                         where a.IFMSCode == Symptom
-                        select a).First().Description;
+                        select a).FirstOrDefault().Description;
             }
         }
 

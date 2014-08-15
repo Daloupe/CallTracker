@@ -46,7 +46,7 @@ namespace CallTracker.Model
 
     public enum BookingType
     {
-        NRQ, FAQ, CRQ, MDQ
+        NRQ, FAQ, CRQ, MDQ, CM
     }
 
     public enum BookingTimeslot

@@ -106,6 +106,20 @@ namespace CallTracker.View
 
         }
 
+        [Category("!MenuButton")]
+        public DockStyle MenuButtonDock
+        {
+            get { return _MenuButton.Dock; }
+            set { _MenuButton.Dock = value; }
+        }
+
+        [Category("!MenuButton")]
+        public Image MenuButtonImage
+        {
+            get { return _MenuButton.Image; }
+            set { _MenuButton.Image = value; }
+        }
+
         public LabelledBase()
         {
             InitializeComponent();

@@ -3,29 +3,92 @@
 using ProtoBuf;
 using PropertyChanged;
 
+using CallTracker.Helpers;
+
 namespace CallTracker.Model
 {
     [ImplementPropertyChanged]
-    [ProtoContract]
-    public class PRTemplateModel
+    public abstract class PRTemplateModel
     {
-        [ProtoMember(1)]
+        public abstract bool RequiresObject { get; }
         public string Question{ get; set; }
-        [ProtoMember(2)]
-        public string Answer { get; set; }
+        protected object TargetObject;
+        public ServiceTypes ServiceRestrictions { get; set; }
 
-        public PRTemplateModel()
-        {
-            Question = String.Empty;
-            Answer = String.Empty;
-        }
-
-        public PRTemplateModel(string _question)
+        public PRTemplateModel(string _question, ServiceTypes _serviceRestrictions)
         {
             Question = _question;
-            Answer = String.Empty;
+            ServiceRestrictions = _serviceRestrictions;
         }
 
-    }    
+        public virtual string GetAnswer() { return String.Empty; }
+        public virtual void SetObject(object _value) { TargetObject = _value; }
+    }
+
+    public class PRTemplateString: PRTemplateModel
+    {
+        public string Answer { get; set; }
+
+        public const bool Constant = false;
+        public override bool RequiresObject { get { return PRTemplateString.Constant; } }
+
+        public PRTemplateString(string _question, ServiceTypes _serviceRestrictions = ServiceTypes.NONE) : base(_question, _serviceRestrictions)
+        {
+            Answer = String.Empty;
+        }
+        public PRTemplateString(string _question, string _answer, ServiceTypes _serviceRestrictions = ServiceTypes.NONE): base(_question, _serviceRestrictions)
+        {
+            Answer = _answer;
+        }
+
+        public override string GetAnswer() 
+        { 
+            return Answer; 
+        }
+
+    }
+
+    public class PRTemplateFindProperty : PRTemplateModel
+    {
+        public string PropertyPath { get; set; }
+
+        public const bool Constant = true;
+        public override bool RequiresObject { get { return PRTemplateFindProperty.Constant; } }
+
+        public PRTemplateFindProperty(string _question, ServiceTypes _serviceRestrictions = ServiceTypes.NONE): base(_question, _serviceRestrictions) {}
+
+        public PRTemplateFindProperty(string _question, string _propertyPath, ServiceTypes _serviceRestrictions = ServiceTypes.NONE) : base(_question, _serviceRestrictions) 
+        {
+            PropertyPath = _propertyPath;
+        }
+
+
+        public override string GetAnswer()
+        {
+            return FindProperty.FollowPropertyPath(TargetObject, PropertyPath);
+        }
+    }
+
+    public class PRTemplateFunc : PRTemplateModel
+    {
+        public Func<object, string> AnswerFunc { get; set; }
+
+        public const bool Constant = true;
+        public override bool RequiresObject{ get { return PRTemplateFunc.Constant; }}
+
+
+        public PRTemplateFunc(string _question, ServiceTypes _serviceRestrictions = ServiceTypes.NONE) : base(_question, _serviceRestrictions) {}
+
+        public PRTemplateFunc(string _question, Func<object, string> _answer, ServiceTypes _serviceRestrictions = ServiceTypes.NONE) : base(_question, _serviceRestrictions) 
+        {
+            AnswerFunc = _answer;
+        }
+
+
+        public override string GetAnswer()
+        {
+            return AnswerFunc.Invoke(TargetObject);
+        }
+    }  
 
 }

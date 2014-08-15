@@ -9,7 +9,7 @@
 | Severity not pasting? 
 | Symptom not updating on change, needs to be selected
 | Autologin shoudl go by Title first. Do fuzzy search for url.
-- Gridlinks not updating dropdowns when name is changed.
+| Gridlinks not updating dropdowns when name is changed.
 - OPOM isn't restoring if minimized.
 - Have Alt title search? eg OPOM search screen. Or ICON Search Screen.
 | Gridlinks gettign confused between UNMT and NSI as both have simliar title.

@@ -20,6 +20,7 @@ namespace CallTracker.View
 
         internal static BindingList<string> Equipment;
         internal static BindingList<string> Symptoms;
+
         //internal ToolStripItemCollection Severity;
         internal List<ServicePanelDetails> ServiceFields;
         internal ServicePanelDetails currentFlowPanel;

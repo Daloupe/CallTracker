@@ -100,6 +100,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Source\Helpers\PRGenerators.cs" />
     <Compile Include="Source\Helpers\Type\DataGridExtentions.cs" />
     <Compile Include="Source\View\Popups\SplashScreen.cs">
       <SubType>Form</SubType>
@@ -589,6 +590,8 @@
     <Content Include="IPCCOffsets.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\TinyArrow211.png" />
+    <None Include="Resources\TinyArrow21.png" />
     <None Include="Resources\bg_gradient-teal.jpg" />
     <Content Include="Resources\bindingNavigatorDeleteItem.Image.png" />
     <None Include="Resources\Property_501.png" />
