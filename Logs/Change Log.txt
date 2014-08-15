@@ -24,6 +24,14 @@ Yellow: 255,198,0
 - Added "" to Data string to enable pastes of strings.
 - Added MAC Regex.
 
+0.33.0
+/ Seperated Outcome to CallType and Outcome dropdowns.
+- Contact count resets on first IPCC login for the day, data saves on the last logout.
+- Added date selection to CallHistory.
+- Resources are now saved on settings close.
+- Outcome drop down resets on each new call.
+- Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
+
 0.32.3
 | Replaced Service Panels with a single panel that hides and shows appropriate controls.
 | Added PRI, APT, Sip to servicemodel.
@@ -35,16 +43,10 @@ Yellow: 255,198,0
 | CallState change to talking pulls info from IPCC.
 | Added Splash Screen.
 / Change colour scheme to match branding.
-/ Seperated Outcome to CallType and Outcome dropdowns.
 | SIP is set from address state.
-- Contact count resets on first IPCC login for the day, data saves on the last logout.
-- Added date selection to CallHistory.
 | New Call is automatically trigger when CallState changes from Ready to Talking.
 | Auto New Call option added to settings.
 | Added context menu with ID ok options to Name Field.
-- Resources are now saved on settings close.
-- Outcome drop down resets on each new call.
-- Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
 | Setup popup when change of user detected.
 | Added Menu Hint to Call Navigation.
 
