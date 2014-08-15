@@ -22,13 +22,18 @@ namespace CallTracker
         static void Main()
         {
             bool createdNew = true;
+            SplashScreen Splash;
             using (Mutex mutex = new Mutex(true, "CallTracker", out createdNew))
             {
                 if (createdNew)
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Application.Run(new Main());
+                    Splash = new SplashScreen();
+                    //Splash._Version.Text = "Version " + Properties.Settings.Default.Version;
+                    Splash.Show();
+                    Application.DoEvents();
+                    Application.Run(new Main(Splash));
                 }
                 else
                 {

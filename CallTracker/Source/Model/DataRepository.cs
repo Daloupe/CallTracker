@@ -100,6 +100,8 @@ namespace CallTracker.Model
         internal BindingList<LoginsModel> Logins { get; set; }
         [ProtoMember(4)]
         internal GridLinksModel GridLinks { get; set; }
+        [ProtoMember(5)]
+        internal string User { get; set; }
 
         public UserDataStore()
         {
@@ -109,6 +111,7 @@ namespace CallTracker.Model
             Contacts = new SortableBindingList<CustomerContact>();
             Logins = new BindingList<LoginsModel>();
             GridLinks = new GridLinksModel();
+            User = String.Empty;
         }
 
         public override UserDataStore ReadFile()
@@ -147,15 +150,26 @@ namespace CallTracker.Model
         public override void DecryptData(UserDataStore _dataStore) 
         {
             UserDataStore dataStore = _dataStore;
-            //Environment.UserName
-            string key = StringCipher.Encrypt(Environment.UserName, "2point71828");
-            foreach (var login in dataStore.Logins)
-                login.Password = StringCipher.Decrypt(login.Password, key);
+            
+            dataStore.User = StringCipher.Decrypt(dataStore.User, "jumpingfivemammotheightyeight");
+            if (dataStore.User != Environment.UserName)
+            {
+                dataStore.User = String.Empty;
+                foreach (var login in dataStore.Logins)
+                    login.Password = String.Empty;
+            }
+            else
+            {
+                string key = StringCipher.Encrypt(Environment.UserName, "2point71828");
+                foreach (var login in dataStore.Logins)
+                    login.Password = StringCipher.Decrypt(login.Password, key);
+            }
         }
 
         public override void EncryptData(UserDataStore _dataStore)
         {
             UserDataStore dataStore = _dataStore;
+            dataStore.User = StringCipher.Encrypt(dataStore.User, "jumpingfivemammotheightyeight");
 
             foreach (var login in dataStore.Logins)
                 login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt(Environment.UserName, "2point71828"));

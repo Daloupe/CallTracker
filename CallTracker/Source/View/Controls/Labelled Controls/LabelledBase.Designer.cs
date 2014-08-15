@@ -47,6 +47,7 @@
             this._MenuButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this._MenuButton.TabIndex = 30;
             this._MenuButton.TabStop = false;
+            this._MenuButton.Visible = false;
             this._MenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
             // 
             // _Label
@@ -55,7 +56,7 @@
             this._Label.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._Label.Font = new System.Drawing.Font("Gautami", 7F);
             this._Label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Label.Location = new System.Drawing.Point(1, -2);
+            this._Label.Location = new System.Drawing.Point(0, 0);
             this._Label.Margin = new System.Windows.Forms.Padding(0);
             this._Label.MaximumSize = new System.Drawing.Size(300, 70);
             this._Label.MinimumSize = new System.Drawing.Size(9, 6);
@@ -77,6 +78,7 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "LabelledBase";
             this.Size = new System.Drawing.Size(180, 32);
+            this.Load += new System.EventHandler(this.LabelledBase_Load);
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -85,8 +87,8 @@
 
         #endregion
 
-        protected System.Windows.Forms.Label _Label;
         protected System.Windows.Forms.PictureBox _MenuButton;
+        internal System.Windows.Forms.Label _Label;
 
     }
 }

@@ -1,4 +1,11 @@
-﻿0.33.00
+﻿Colours:
+Blue: 0,156,173
+Light Blue: 2,188, 201
+Dark Blue: 53, 143, 169
+23, 103, 129
+Yellow: 255,198,0
+
+0.33.00
 - Added Chrome support.
 
 0.32.00
@@ -17,6 +24,29 @@
 - Added "" to Data string to enable pastes of strings.
 - Added MAC Regex.
 
+0.32.3
+| Replaced Service Panels with a single panel that hides and shows appropriate controls.
+| Added PRI, APT, Sip to servicemodel.
+| Equipment changes create excpetion.
+| Fixed ITCase, booking date binds.
+| Gridlinks now longer opens a new window if match found.
+| Fixed Name and CMBS Regexes.
+| Progressbar now used as CallState traffic light with overlayed timer.
+| CallState change to talking pulls info from IPCC.
+| Added Splash Screen.
+/ Change colour scheme to match branding.
+/ Seperated Outcome to CallType and Outcome dropdowns.
+| SIP is set from address state.
+- Contact count resets on first IPCC login for the day, data saves on the last logout.
+- Added date selection to CallHistory.
+| New Call is automatically trigger when CallState changes from Ready to Talking.
+| Auto New Call option added to settings.
+| Added context menu with ID ok options to Name Field.
+- Resources are now saved on settings close.
+- Outcome drop down resets on each new call.
+- Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
+| Setup popup when change of user detected.
+| Added Menu Hint to Call Navigation.
 
 
 

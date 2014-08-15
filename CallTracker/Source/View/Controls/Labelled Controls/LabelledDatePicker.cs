@@ -22,9 +22,9 @@ namespace CallTracker.View
             set { _DateTimePicker.BorderColor = value; }
         }
 
-        [Category("!Input")]
+        //[Category("!Input")]
         [Bindable(true)]
-        [Browsable(true)]
+        //[Browsable(true)]
         public DateTime DateField
         {
             get { return _DateTimePicker.Value; }
@@ -42,28 +42,25 @@ namespace CallTracker.View
         {
             InitializeComponent();
             _DateTimePicker.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
-            this.ContextMenuStripChanged += base.LabelledTextBox_ContextMenuStripChanged;
+            //this.ContextMenuStripChanged += base.LabelledTextBox_ContextMenuStripChanged;
         }
 
-        private void LabelledComboBox_Load(object sender, EventArgs e)
+        private void OnLoad(object sender, EventArgs e)
         {
-            if (ContextMenuStrip != null)
-            {    
-                this._MenuButton.Show();
-                this.ContextMenuStrip.Show();
-                this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
-                _DateTimePicker.ValueChanged += _DateTimePicker_ValueChanged;
-            }
+            //if (ContextMenuStrip != null)
+            //{    
+            //    this._MenuButton.Show();
+            //    this.ContextMenuStrip.Show();
+            //    this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
+            //    _DateTimePicker.ValueChanged += _DateTimePicker_ValueChanged;
+            //}
         }
 
-        private void _DateTimePicker_ValueChanged(object sender, EventArgs e)
+        public void BindDatePickerBox( BindingSource _bindingSource)
         {
-            this.ParentForm.Validate();
+            _DateTimePicker.DataBindings.Clear();
+            _DateTimePicker.DataBindings.Add("Value", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
-        private void _DateTimePicker_CloseUp(object sender, EventArgs e)
-        {
-            //this.Parent.Focus();
-        }
     }
 }

@@ -119,7 +119,7 @@
             this.labelledTextBoxLong1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.labelledTextBoxLong1.BackColor = System.Drawing.Color.DarkOliveGreen;
             this.labelledTextBoxLong1.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this.labelledTextBoxLong1.ControlHeight = 19;
+            this.labelledTextBoxLong1.ControlHeight = 20;
             this.labelledTextBoxLong1.ControlMargin = new System.Windows.Forms.Padding(2);
             this.labelledTextBoxLong1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.labelledTextBoxLong1.DefaultText = "";
@@ -129,7 +129,7 @@
             this.labelledTextBoxLong1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this.labelledTextBoxLong1.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
             this.labelledTextBoxLong1.LabelOffset = new System.Drawing.Point(0, 0);
-            this.labelledTextBoxLong1.LabelSize = new System.Drawing.Size(52, 19);
+            this.labelledTextBoxLong1.LabelSize = new System.Drawing.Size(52, 20);
             this.labelledTextBoxLong1.LabelText = "node";
             this.labelledTextBoxLong1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelledTextBoxLong1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
@@ -137,7 +137,7 @@
             this.labelledTextBoxLong1.Margin = new System.Windows.Forms.Padding(2);
             this.labelledTextBoxLong1.Name = "labelledTextBoxLong1";
             this.labelledTextBoxLong1.PropertyName = null;
-            this.labelledTextBoxLong1.Size = new System.Drawing.Size(171, 19);
+            this.labelledTextBoxLong1.Size = new System.Drawing.Size(171, 20);
             this.labelledTextBoxLong1.TabIndex = 58;
             this.labelledTextBoxLong1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.labelledTextBoxLong1.TextField = "";

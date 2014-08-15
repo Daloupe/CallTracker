@@ -67,21 +67,19 @@ namespace CallTracker.View
                 {
                     prop.SetValue(this, attr.Value);
                 }
-            }
-
-            _ComboBox.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
-            this.ContextMenuStripChanged += base.LabelledTextBox_ContextMenuStripChanged;
+            }    
+            //this.ContextMenuStripChanged += base.LabelledTextBox_ContextMenuStripChanged;
         }
 
         private void LabelledComboBox_Load(object sender, EventArgs e)
         {
-            if (ContextMenuStrip != null)
-            {
+            //if (ContextMenuStrip != null)
+            //{
                 
-                this._MenuButton.Show();
-                this.ContextMenuStrip.Show();
-                this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
-            }
+            //    this._MenuButton.Show();
+            //    this.ContextMenuStrip.Show();
+            //    this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
+            //}
         }
 
         public void BindComboBox(List<string> _dataSource, BindingSource _bindingSource)
@@ -137,7 +135,7 @@ namespace CallTracker.View
         {
             bool ok = false;
             if (_ComboBox.DataSource != null)
-                foreach(string data in ((List<string>)_ComboBox.DataSource))
+                foreach(string data in ((BindingList<string>)_ComboBox.DataSource))
                 {
                     if(data.ToLower() == _ComboBox.Text.ToLower())
                         ok = true;

@@ -21,13 +21,18 @@ namespace CallTracker.View
     public partial class EditContact : UserControl
     {
         private UserDataStore DataStore;
-        public static Dictionary<ServiceTypes, ServiceView> ServiceViews;
-        public Main MainForm;
+        internal Main MainForm;
+        internal List<CheckBox> ServiceCheckboxes;
 
         public EditContact(Main _mainform)
         {
             InitializeComponent();
-
+            MainForm = _mainform;
+            Location = MainForm.ControlOffset;
+            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.UserPaint, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             //foreach (LabelledBase cont in HfcPanel.Controls)
             //{
             //    cont.BackColor = Color.SlateGray;
@@ -35,45 +40,40 @@ namespace CallTracker.View
             //    cont.LabelInactiveColor = Color.SlateGray;
             //    cont.LabelActiveColor = Color.Firebrick;
             //}
+            
             _PR.AttachMenu(_PRContextMenu);
             _NPR.AttachMenu(_PRContextMenu);
             _Dn.AttachMenu(_DialContextMenu);
+            _Name.AttachMenu(_NameContextMenu);
             _Mobile.AttachMenu(_DialContextMenu);
             _Symptom.AttachMenu(_SeverityMenuStrip);
             _Username.AttachMenu(_UsernameContextMenu);
-
-            _OutcomeTooltip.SetToolTip(_Outcome, "Problem Report");
-
-            MainForm = _mainform;
+            _ServicePanel._ServiceHeading.AttachMenu(_ServiceContextMenu);
             
-            Location = MainForm.ControlOffset;
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+
+            //_OutcomeTooltip.SetToolTip(_Outcome, "Problem Report");
 
             splitContainer2.MouseWheel += splitContainer2_MouseWheel;
-            splitContainer2.Panel2.MouseWheel += splitContainer2_MouseWheel;
-            HfcPanel.MouseEnter += splitContainer2_MouseEnter;
+            splitContainer2.MouseHover += splitContainer2_MouseEnter;
 
-            ServiceViews = new Dictionary<ServiceTypes, ServiceView>
+            _ServicePanel.MouseHover += splitContainer2_MouseEnter;
+            foreach (Control control in _ServicePanel.Controls)
             {
-                {ServiceTypes.LAT, new ServiceView(this, "LAT")},
-                {ServiceTypes.LIP, new ServiceView(this, "LIP")},
-                {ServiceTypes.ONC, new ServiceView(this, "ONC")},
-                {ServiceTypes.NFV, new ServiceView(this, "NFV")},
-                {ServiceTypes.NBF, new ServiceView(this, "NBF")},
-                {ServiceTypes.DTV, new ServiceView(this, "DTV")},
-                {ServiceTypes.MTV, new ServiceView(this, "MTV")},
-                {ServiceTypes.NONE, null}
-            };
-            foreach(var view in ServiceViews)
-            {
-                if (view.Key != ServiceTypes.NONE)
-                    view.Value.ContextMenuItem.Tag = view.Value.CheckBox.Tag = view.Key;
+                control.MouseHover += splitContainer2_MouseEnter;
+                foreach (LabelledBase control2 in control.Controls.OfType<LabelledBase>())
+                    control2._Label.MouseHover += splitContainer2_MouseEnter;
             }
-            ServiceView.Symptoms = new BindingList<string>();
-            ServiceView.Equipment = new BindingList<string>();
+
+            HfcPanel.MouseHover += splitContainer2_MouseEnter;
+            foreach (Control control in HfcPanel.Controls)
+                control.MouseHover += splitContainer2_MouseEnter;
+
+            ServiceCheckboxes = new List<CheckBox> { _LAT, _LIP, _ONC, _DTV, _MTV, _NFV, _NBF };
+
+            ServicePanel.Symptoms = new BindingList<string>();
+            ServicePanel.Equipment = new BindingList<string>();
+
+            _ServicePanel.PreInit(this);
         }
 
         public void OnParentLoad()
@@ -81,6 +81,7 @@ namespace CallTracker.View
             DataStore = MainForm.DataStore;
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
             customerContactsBindingSource.DataSource = DataStore.Contacts;
+            _ServicePanel.Init();
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
 
             
@@ -94,9 +95,10 @@ namespace CallTracker.View
                 _Note.Enabled = false;
             }
 
-            _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList(), customerContactsBindingSource);
+            _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
             _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)), customerContactsBindingSource);
             _BookingTimeSlot.BindComboBox(Enum.GetValues(typeof(BookingTimeslot)), customerContactsBindingSource);
+
         }
 
         public void Init()
@@ -109,7 +111,6 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
-
             if (customerContactsBindingSource.Count == 0)
             {
                 flowLayoutPanel1.Enabled = false;
@@ -119,7 +120,7 @@ namespace CallTracker.View
 
                 _Note.DataBindings.Clear();
 
-                CurrentService = ServiceViews[ServiceTypes.NONE];
+                _ServicePanel.ChangeService(ServiceTypes.NONE);
             }
             else
             {
@@ -132,34 +133,28 @@ namespace CallTracker.View
                 MainForm.SelectedContact = DataStore.Contacts[customerContactsBindingSource.Position];
                 MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
 
-                _NoteContextMenuStrip.Items[0].PerformClick();
-                CurrentService = ServiceViews[MainForm.SelectedContact.Fault.AffectedServiceType];
+                _BookingDate.BindDatePickerBox(customerContactsBindingSource);
 
+                _NoteContextMenuStrip.Items[0].PerformClick();
+                UpdateCurrentPanel();
             }
-            //_Note.DataBindings.Clear();
-            //_Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, "Note", true, DataSourceUpdateMode.OnPropertyChanged));
         }
 
         void SelectedContact_NestedChange(object sender, PropertyChangedEventArgs e)
         {
             // Swap Panels
-            if(e.PropertyName == "AffectedServices")
-                UpdateCurrentPanel();
+            if (e.PropertyName == "AffectedServices")
+                UpdateMainService();
 
             // Update Note
             if (_Note.DataBindings.Count > 0)
                 _Note.DataBindings[0].ReadValue();
         }
 
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        public void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             DataStore.Contacts.Add(new CustomerContact(1));
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
-
-            _WorkReadyTimer.Enabled = false;
-            _WorkReadyTimerDisplay.Text = "Work Ready: 00:00";
-            _WorkReadyTimerDisplay.ForeColor = Color.DarkSlateGray;
-            _WorkReadyTimerDisplay.BorderStyle = Border3DStyle.RaisedInner;
         }
 
         public void DeleteCalls()
@@ -171,97 +166,120 @@ namespace CallTracker.View
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Product Codes ////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private ServiceView currentService;
-        private ServiceView CurrentService
+        private ServiceTypes currentService;
+        private ServiceTypes CurrentService
         {
             get { return currentService; }
             set
             {
-                if (value == currentService && currentService != null)
-                {
-                    currentService.Panel.SetDataSource(MainForm.SelectedContact.Service);
+                if (value == currentService && currentService.IsNot(ServiceTypes.NONE))
                     return;
-                }
-
-                ServiceView.Symptoms.Clear();
+                ServicePanel.Symptoms.Clear();
                 _Symptom._ComboBox.DataSource = null;
                 _Symptom._ComboBox.DataBindings.Clear();
-                ServiceView.Equipment.Clear();
+                ServicePanel.Equipment.Clear();
                 _Equipment._ComboBox.DataSource = null;
                 _Equipment._ComboBox.DataBindings.Clear();
 
-                if (currentService != null)
-                {
-                    currentService.RemoveRowChangedEvents();
-                    splitContainer2.Panel2.Controls.Remove(currentService.Panel);
-                    currentService.ContextMenuItem.Checked = false;
-                    currentService.Panel.RemoveEvents(splitContainer2_MouseEnter);
-                    currentService.CheckBox.ForeColor = Color.Black;
-                }
-
                 currentService = value;
-
-                if (currentService != null)
-                {
-                    if (currentService.IsInitialized == false)
-                        currentService.Init();
-                    currentService.AddRowChangedEvents();
-                    splitContainer2.Panel2.Controls.Add(currentService.Panel);
-                    currentService.ContextMenuItem.Checked = true;
-                    currentService.Panel.ConnectEvents(splitContainer2_MouseEnter);
-                    currentService.Panel.SetDataSource(MainForm.SelectedContact.Service);
-                    MainForm.SelectedContact.Fault.AffectedServiceType = ((ServiceTypes)Enum.Parse(typeof(ServiceTypes), currentService.ServiceType.ProductCode, true));
-                    currentService.CheckBox.Checked = true;
-                    currentService.CheckBox.ForeColor = Color.DarkRed;
-                }
-                else
-                {
-                    MainForm.SelectedContact.Fault.AffectedServiceType = ServiceTypes.NONE;
-                }
-              
+                MainForm.SelectedContact.Fault.AffectedServiceType = currentService;
+                _ServicePanel.ChangeService(currentService);
+                if (currentService.IsNot(ServiceTypes.NONE))
+                    MainForm.toolStripServiceSelector.Text = _ServicePanel.currentFlowPanel.Service.ProblemStylesRow.Description;
             }
         }
 
-        private void UpdateCurrentPanel()
+        private void UpdateMainService()
         {
-            //if (ServiceLock)
-            //    return;
 
             ServiceTypes affectedServices = MainForm.SelectedContact.Fault.AffectedServices;
 
             foreach (ServiceTypes service in Enum.GetValues(typeof(ServiceTypes)))
             {
                 if ((affectedServices & service) != 0 || affectedServices == 0)
-                {                  
-                    CurrentService = ServiceViews[service];
-                    if (CurrentService != null)
-                        MainForm.toolStripServiceSelector.Text = CurrentService.ServiceType.ProblemStylesRow.Description;
+                {
+                    CurrentService = service;
                     break;
                 }
             }
         }
 
-        //private bool ServiceLock;
+        private void UpdateCurrentPanel()
+        {
+            ServiceTypes affectedServices = MainForm.SelectedContact.Fault.AffectedServices;
 
+            foreach (ServiceTypes service in Enum.GetValues(typeof(ServiceTypes)))
+            {
+                if ((affectedServices & service) != 0 || affectedServices == 0)
+                {
+                    foreach (CheckBox control in ServiceTypePanel.Controls)
+                    {
+                        if ((ServiceTypes)control.Tag == service)// && service.Is(MainForm.SelectedContact.Fault.AffectedServiceType))
+                        {
+                            control.ForeColor = Color.DarkRed;
+                            CurrentService = service;   
+                        }
+                    }
+                    break;
+                }
+            }
+        }
         private void _ServiceMenu_Click(object sender, EventArgs e)
         {
-            //ServiceLock = true;
-            CurrentService = ServiceViews[(ServiceTypes)((ToolStripMenuItem)sender).Tag];
+            CurrentService = (ServiceTypes)((ToolStripMenuItem)sender).Tag; //ServiceViews[(ServiceTypes)((ToolStripMenuItem)sender).Tag];
+            _ServicePanel.currentFlowPanel.CheckBox.Checked = true;
+            foreach (CheckBox service in ServiceTypePanel.Controls)
+                service.ForeColor = Color.Black;
+            _ServicePanel.currentFlowPanel.CheckBox.ForeColor = Color.DarkRed;
         }
+        private void _LAT_CheckedChanged(object sender, EventArgs e)
+        {
 
+        }
         private void OnMouseDown(object sender, MouseEventArgs e)
         {
+            CheckBox cb = (CheckBox)sender;
             if (e.Button == MouseButtons.Right && !HandlingRightClick)
-            {
-                CheckBox cb = (CheckBox)sender;
+            {  
                 HandlingRightClick = true;
-                if(cb.Checked == false)
+                if (cb.Checked == false)
+                {
+                    foreach (CheckBox service in ServiceTypePanel.Controls)
+                        service.ForeColor = Color.Black;
+                    CurrentService = (ServiceTypes)cb.Tag;
+                    cb.Checked = true;
+                    cb.ForeColor = Color.DarkRed;
+                    //UpdateCurrentPanel();
+                }else
+                {
+                    if (((ServiceTypes)cb.Tag).IsNot(MainForm.SelectedContact.Fault.AffectedServiceType))
+                    {
+                        foreach (CheckBox service in ServiceTypePanel.Controls)
+                            service.ForeColor = Color.Black;
+                        CurrentService = (ServiceTypes)cb.Tag;
+                        cb.ForeColor = Color.DarkRed;
+                    }else
+                    {
+                        cb.ForeColor = Color.Black;
+                        UpdateCurrentPanel();
+                    }
+                        
+                }
+                 //ServiceViews[(ServiceTypes)((ToolStripMenuItem)sender).Tag];
+            }else if (e.Button == MouseButtons.Left)
+            {
+                if (cb.Checked == false)
                 {
                     cb.Checked = true;
+                    UpdateCurrentPanel();
+                }else
+                {
+                    cb.ForeColor = Color.Black;
+                    cb.Checked = false;
+                    UpdateCurrentPanel();
                 }
-                //ServiceLock = true;
-                CurrentService = ServiceViews[(ServiceTypes)((CheckBox)sender).Tag];
-                MainForm.toolStripServiceSelector.Text = CurrentService.ServiceType.ProblemStylesRow.Description;
+
+                 //ServiceViews[(ServiceTypes)((ToolStripMenuItem)sender).Tag];            
             }
         }
 
@@ -453,8 +471,14 @@ namespace CallTracker.View
 
         private void _Outcome_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _OutcomeTooltip.SetToolTip(_Outcome._ComboBox, Main.ServicesStore.servicesDataSet.Outcomes.First(x => x.Acronym == _Outcome._ComboBox.Text).Description);
-            if (MainForm.SelectedContact.Fault.Outcome == "ARO")
+            //_OutcomeTooltip.SetToolTip(_Outcome._ComboBox, Main.ServicesStore.servicesDataSet.Outcomes.First(x => x.Acronym == _Outcome._ComboBox.Text).Description);
+            List<string> query = (from a in Main.ServicesStore.servicesDataSet.Actions
+                                  where a.OutcomesRow.Description == MainForm.SelectedContact.Fault.Outcome
+                                  select a.Description).ToList();
+
+            _Action.BindComboBox(query, customerContactsBindingSource);
+
+            if (MainForm.SelectedContact.Fault.Outcome == "Outage")
             {
 
                 _BookingType._ComboBox.SelectedItem = BookingType.NRQ;
@@ -479,6 +503,7 @@ namespace CallTracker.View
 
                 //Validate();
             }
+            
         }
 
         private void _NewCallMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -534,35 +559,8 @@ namespace CallTracker.View
 
         private void _Symptom_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(CurrentService != null)
-                CurrentService.UpdateSeverity();
-        }
-
-        private void splitContainer2_Panel2_Paint(object sender, PaintEventArgs e)
-        {
-            FillPolygonPointFillMode(e);
-        }
-
-        public void FillPolygonPointFillMode(PaintEventArgs e)
-        {
-
-            // Create solid brush.
-            SolidBrush blueBrush = new SolidBrush(Color.White);
-
-            // Create points that define polygon.
-
-            Point point1 = new Point(this.Height / 2 + 3, this.Width / 2 - 2);
-            Point point2 = new Point(this.Height / 2, this.Width / 2 + 2);
-            Point point3 = new Point(this.Height / 2 - 3, this.Width / 2 - 2);
-            Point point4 = new Point(this.Height / 2 + 3, this.Width / 2 - 2);
-
-            Point[] curvePoints = { point1, point2, point3, point4 };
-
-            // Define fill mode.
-            FillMode newFillMode = FillMode.Winding;
-
-            // Draw polygon to screen.
-            e.Graphics.FillPolygon(blueBrush, curvePoints, newFillMode);
+            if (!currentService.Is(ServiceTypes.NONE))
+                _ServicePanel.UpdateSeverity();
         }
 
         private void hToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
@@ -578,31 +576,7 @@ namespace CallTracker.View
                 item.ForeColor = Color.Black;
             }
         }
-        private DateTime _WorkReadyTimeElapsed;
-        private void _WorkReadyTimer_Tick(object sender, EventArgs e)
-        {
-            _WorkReadyTimeElapsed = _WorkReadyTimeElapsed.AddMilliseconds(1000);
-            _WorkReadyTimerDisplay.Text = "Work Ready: " + _WorkReadyTimeElapsed.ToString("mm:ss");
-        }
-
-        private void _WorkReadyTimerDisplay_Click(object sender, EventArgs e)
-        {
-            if (_WorkReadyTimer.Enabled == false)
-            {
-                _WorkReadyTimeElapsed = new DateTime();
-                _WorkReadyTimer.Enabled = true;
-                _WorkReadyTimerDisplay.ForeColor = Color.DarkRed;
-                _WorkReadyTimerDisplay.BorderStyle = Border3DStyle.SunkenInner;
-            }
-            else
-            {
-                _WorkReadyTimer.Enabled = false;
-                _WorkReadyTimerDisplay.Text = "Work Ready: 00:00";
-                _WorkReadyTimerDisplay.ForeColor = Color.DarkSlateGray;
-                _WorkReadyTimerDisplay.BorderStyle = Border3DStyle.RaisedInner;
-            }
-        }
-
+       
         private void _SearchSCAMPS_click(object sender, EventArgs e)
         {
             HotkeyController.CreateNewIE("https://scamps.optusnet.com.au/cm.html?q=" + ((ToolStripMenuItem)sender).Tag.ToString());
@@ -611,6 +585,66 @@ namespace CallTracker.View
         private void _TextFieldContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             e.ClickedItem.Tag = ((LabelledTextBoxLong)((ContextMenuStrip)sender).SourceControl.Parent)._DataField.Text;
+        }
+
+
+
+
+
+        protected DateTime lasttime;
+        protected bool opened;
+        protected virtual void _MenuButton_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (_CallHistoryContextMenu.Visible == false)
+            {
+                _CallHistoryContextMenu.Opening += ContextMenuStrip_Opening;
+                _CallHistoryContextMenu.Show(_CallMenuButton.Owner, _CallMenuButton.Bounds.X + _CallMenuButton.Width, _CallMenuButton.Bounds.Y);
+                opened = true;
+            }
+            else
+            {
+                _CallHistoryContextMenu.Hide();
+                opened = false;
+            }
+        }
+
+        public virtual void ContextMenuStrip_Closing(object sender, ToolStripDropDownClosingEventArgs e)
+        {
+            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            menu.Closing -= ContextMenuStrip_Closing;
+
+            if (DateTime.UtcNow.Subtract(lasttime).Milliseconds > 9 && opened == false)
+            {
+                e.Cancel = true;
+                return;
+            }
+            _CallMenuButton.BackgroundImage = Properties.Resources.TinyArrow2;
+            lasttime = DateTime.UtcNow;
+        }
+
+        protected virtual void ContextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            menu.Opening -= ContextMenuStrip_Opening;
+
+            if (DateTime.UtcNow.Subtract(lasttime).Milliseconds < 9 && opened == true)
+            {
+                e.Cancel = true;
+                return;
+            }
+            lasttime = DateTime.UtcNow;
+            _CallMenuButton.BackgroundImage = Properties.Resources.TinyArrow;
+            menu.Closing += ContextMenuStrip_Closing;
+        }
+
+        private void _NameContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            _IDok.Checked = MainForm.SelectedContact.IDok;
+        }
+
+        private void _IDok_Click(object sender, EventArgs e)
+        {
+            MainForm.SelectedContact.IDok = _IDok.Checked;
         }
 
     }

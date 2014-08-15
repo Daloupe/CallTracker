@@ -70,7 +70,6 @@
             this.LabelOffset = new System.Drawing.Point(0, 0);
             this.Name = "LabelledComboBoxLong";
             this.Size = new System.Drawing.Size(180, 20);
-            this.Load += new System.EventHandler(this.LabelledComboBox_Load);
             this.Controls.SetChildIndex(this._Label, 0);
             this.Controls.SetChildIndex(this._MenuButton, 0);
             this.Controls.SetChildIndex(this._ComboBox, 0);

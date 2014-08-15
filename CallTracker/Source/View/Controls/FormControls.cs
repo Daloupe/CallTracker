@@ -7,6 +7,24 @@ using System.Runtime.InteropServices;
 
 namespace CallTracker.View
 {
+    public class LabelledToolStripProgressBar : ToolStripProgressBar
+    {
+        public TextBox Label = new TextBox();
+
+        [Category("!Label")]
+        public string LabelText
+        {
+            get { return Label.Text; }
+            set { Label.Text = value; }
+        }
+
+        public LabelledToolStripProgressBar() : base()
+        {
+            Label.Text = "test";
+            Label.Size = this.Size;
+            Label.Location = this.Control.Location;
+        }
+    }
 
     public class BorderedTextBox : TextBox
     {

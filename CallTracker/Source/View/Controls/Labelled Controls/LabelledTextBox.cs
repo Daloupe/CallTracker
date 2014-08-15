@@ -42,11 +42,17 @@ namespace CallTracker.View
             set { _DataField.Text = value; }
         }
 
+        [Category("!Input")]
+        public Color TextFieldBackColour
+        {
+            get { return _DataField.BackColor; }
+            set { _DataField.BackColor = value; }
+        }
+
         public LabelledTextBox()
         {
             InitializeComponent();
-            _DataField.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
-            this.ContextMenuStripChanged += base.LabelledTextBox_ContextMenuStripChanged;
+            //this.ContextMenuStripChanged += base.LabelledTextBox_ContextMenuStripChanged;
         }
 
         private void _DataField_TextChanged(object sender, EventArgs e)
@@ -60,12 +66,12 @@ namespace CallTracker.View
 
         private void LabelledTextBox_Load(object sender, EventArgs e)
         {
-            if (ContextMenuStrip != null)
-            {
-                this._MenuButton.Show();
-                this.ContextMenuStrip.Show();
-                this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
-            }
+            //if (ContextMenuStrip != null)
+            //{
+            //    this._MenuButton.Show();
+            //    this.ContextMenuStrip.Show();
+            //    this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
+            //}
         }
     }
 }

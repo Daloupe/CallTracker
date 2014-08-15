@@ -26,8 +26,10 @@ namespace CallTracker.Model
             Severity = String.Empty; // "I";
             Symptom = String.Empty; //"NDT";
             Outcome = String.Empty; //"PR";
+            Action = String.Empty;
             //Booking = new BookingModel();
-            AffectedServices = AffectedServiceType = ServiceTypes.NONE;
+            AffectedServices = ServiceTypes.NONE;
+            AffectedServiceType = ServiceTypes.NONE;
         }
 
         public static ITCasePattern ITCasePattern = new ITCasePattern();
@@ -38,6 +40,8 @@ namespace CallTracker.Model
         public string PR { get; set; }
         [ProtoMember(3)]
         public string INC { get; set; }
+        [ProtoMember(20)]
+        public string APT { get; set; }
         [ProtoMember(4)]
         public string ITCase { get; set; }
 
@@ -67,6 +71,9 @@ namespace CallTracker.Model
         public string Symptom { get; set; }
         [ProtoMember(12)]
         public string Outcome { get; set; }
+        [ProtoMember(13)]
+        public string Action { get; set; }
+
         //public string ProductCode { get { return AffectedServiceType != ServiceTypes.NONE ? EditContact.ServiceViews[AffectedServiceType].ProductCode : String.Empty; } }
         public ServicesDataSet.ServicesRow Service { get; set; }
         public string ProductCode
@@ -141,8 +148,9 @@ namespace CallTracker.Model
             set 
             {
                 if (value)
-                    AffectedServices = RemoveNBN(AffectedServices.Remove(ServiceTypes.LIP)
-                                                                 .Add(ServiceTypes.LAT));
+                    AffectedServices = RemoveNBN(AffectedServices.Add(ServiceTypes.LAT)
+                                                                 .Remove(ServiceTypes.LIP));
+
                 else
                     AffectedServices = RemoveNBN(AffectedServices.Remove(ServiceTypes.LAT));        
             }

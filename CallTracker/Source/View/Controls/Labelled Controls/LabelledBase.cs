@@ -42,6 +42,20 @@ namespace CallTracker.View
         }
 
         [Category("!Label")]
+        public Padding LabelPadding
+        {
+            get { return _Label.Padding; }
+            set { _Label.Padding = value; }
+        }
+
+        [Category("!Label")]
+        public Padding LabelMargin
+        {
+            get { return _Label.Margin; }
+            set { _Label.Margin = value; }
+        }
+
+        [Category("!Label")]
         public bool LabelAutoSize
         {
             get { return _Label.AutoSize; }
@@ -84,10 +98,20 @@ namespace CallTracker.View
             set { this.Height = value; }
         }
 
+        [Category("!Label")]
+        public Color LabelBorderColor
+        {
+            get; 
+            set;
+
+        }
+
         public LabelledBase()
         {
             InitializeComponent();
+            this.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             lasttime = DateTime.UtcNow;
+            this.ContextMenuStripChanged += LabelledTextBox_ContextMenuStripChanged;
         }
 
         public virtual void AttachMenu(ContextMenuStrip menu)
@@ -148,5 +172,16 @@ namespace CallTracker.View
             else
                 _MenuButton.Hide();
         }
+
+        private void LabelledBase_Load(object sender, EventArgs e)
+        {
+            if (ContextMenuStrip != null)
+            {
+                this._MenuButton.Show();
+                this.ContextMenuStrip.Show();
+                this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
+            }
+        }
+
     }
 }

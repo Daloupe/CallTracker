@@ -29,174 +29,344 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dataField6 = new CallTracker.View.DataField();
             this.serviceModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataField5 = new CallTracker.View.DataField();
-            this.dataField4 = new CallTracker.View.DataField();
-            this.dataField3 = new CallTracker.View.DataField();
-            this.dataField2 = new CallTracker.View.DataField();
-            this.dataField1 = new CallTracker.View.DataField();
-            this.dataField7 = new CallTracker.View.DataField();
-            this.panelHeading1 = new CallTracker.View.PanelHeading();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.labelledTextBoxLong1 = new CallTracker.View.LabelledTextBoxLong();
+            this.labelledTextBoxLong2 = new CallTracker.View.LabelledTextBoxLong();
+            this.dataDropDown1 = new CallTracker.View.LabelledComboBoxLong();
+            this.labelledTextBoxLong3 = new CallTracker.View.LabelledTextBoxLong();
+            this.labelledTextBoxLong4 = new CallTracker.View.LabelledTextBoxLong();
+            this.labelledTextBoxLong5 = new CallTracker.View.LabelledTextBoxLong();
+            this.labelledTextBoxLong6 = new CallTracker.View.LabelledTextBoxLong();
+            this.labelledTextBoxLong7 = new CallTracker.View.LabelledTextBoxLong();
+            this.labelledTextBoxLong8 = new CallTracker.View.LabelledTextBoxLong();
+            this.labelledBase1 = new CallTracker.View.LabelledBase();
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dataField6
-            // 
-            this.dataField6.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.dataField6.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Bras", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dataField6.Font = new System.Drawing.Font("Verdana", 7F);
-            this.dataField6.LabelText = "Bras:";
-            this.dataField6.LabelWidth = 34;
-            this.dataField6.Location = new System.Drawing.Point(0, 39);
-            this.dataField6.Margin = new System.Windows.Forms.Padding(0);
-            this.dataField6.Name = "dataField6";
-            this.dataField6.Padding = new System.Windows.Forms.Padding(3);
-            this.dataField6.PropertyName = null;
-            this.dataField6.Size = new System.Drawing.Size(90, 23);
-            this.dataField6.TabIndex = 42;
-            this.dataField6.TextField = "";
             // 
             // serviceModelBindingSource
             // 
             this.serviceModelBindingSource.DataSource = typeof(CallTracker.Model.ServiceModel);
             // 
-            // dataField5
+            // flowLayoutPanel1
             // 
-            this.dataField5.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.dataField5.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "AVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dataField5.Font = new System.Drawing.Font("Verdana", 7F);
-            this.dataField5.LabelText = "INC:";
-            this.dataField5.LabelWidth = 34;
-            this.dataField5.Location = new System.Drawing.Point(0, 137);
-            this.dataField5.Margin = new System.Windows.Forms.Padding(0);
-            this.dataField5.Name = "dataField5";
-            this.dataField5.Padding = new System.Windows.Forms.Padding(3);
-            this.dataField5.PropertyName = null;
-            this.dataField5.Size = new System.Drawing.Size(180, 25);
-            this.dataField5.TabIndex = 41;
-            this.dataField5.TextField = "";
+            this.flowLayoutPanel1.Controls.Add(this.labelledTextBoxLong1);
+            this.flowLayoutPanel1.Controls.Add(this.labelledTextBoxLong2);
+            this.flowLayoutPanel1.Controls.Add(this.dataDropDown1);
+            this.flowLayoutPanel1.Controls.Add(this.labelledTextBoxLong3);
+            this.flowLayoutPanel1.Controls.Add(this.labelledTextBoxLong4);
+            this.flowLayoutPanel1.Controls.Add(this.labelledTextBoxLong5);
+            this.flowLayoutPanel1.Controls.Add(this.labelledTextBoxLong6);
+            this.flowLayoutPanel1.Controls.Add(this.labelledTextBoxLong7);
+            this.flowLayoutPanel1.Controls.Add(this.labelledTextBoxLong8);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 12);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 0);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(180, 197);
+            this.flowLayoutPanel1.TabIndex = 68;
             // 
-            // dataField4
+            // labelledTextBoxLong1
             // 
-            this.dataField4.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.dataField4.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "NNI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dataField4.Font = new System.Drawing.Font("Verdana", 7F);
-            this.dataField4.LabelText = "NNI:";
-            this.dataField4.LabelWidth = 34;
-            this.dataField4.Location = new System.Drawing.Point(0, 112);
-            this.dataField4.Margin = new System.Windows.Forms.Padding(0);
-            this.dataField4.Name = "dataField4";
-            this.dataField4.Padding = new System.Windows.Forms.Padding(3);
-            this.dataField4.PropertyName = null;
-            this.dataField4.Size = new System.Drawing.Size(180, 25);
-            this.dataField4.TabIndex = 40;
-            this.dataField4.TextField = "";
+            this.labelledTextBoxLong1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextBoxLong1.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong1.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong1.ControlHeight = 20;
+            this.labelledTextBoxLong1.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "AVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labelledTextBoxLong1.DefaultText = "";
+            this.labelledTextBoxLong1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong1.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this.labelledTextBoxLong1.LabelAutoSize = false;
+            this.labelledTextBoxLong1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong1.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong1.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextBoxLong1.LabelSize = new System.Drawing.Size(40, 20);
+            this.labelledTextBoxLong1.LabelText = "avc";
+            this.labelledTextBoxLong1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelledTextBoxLong1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledTextBoxLong1.Location = new System.Drawing.Point(4, 4);
+            this.labelledTextBoxLong1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong1.Name = "labelledTextBoxLong1";
+            this.labelledTextBoxLong1.PropertyName = null;
+            this.labelledTextBoxLong1.Size = new System.Drawing.Size(171, 20);
+            this.labelledTextBoxLong1.TabIndex = 68;
+            this.labelledTextBoxLong1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.labelledTextBoxLong1.TextField = "";
             // 
-            // dataField3
+            // labelledTextBoxLong2
             // 
-            this.dataField3.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.dataField3.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "CVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dataField3.Font = new System.Drawing.Font("Verdana", 7F);
-            this.dataField3.LabelText = "CVC:";
-            this.dataField3.LabelWidth = 34;
-            this.dataField3.Location = new System.Drawing.Point(0, 87);
-            this.dataField3.Margin = new System.Windows.Forms.Padding(0);
-            this.dataField3.Name = "dataField3";
-            this.dataField3.Padding = new System.Windows.Forms.Padding(3);
-            this.dataField3.PropertyName = null;
-            this.dataField3.Size = new System.Drawing.Size(180, 25);
-            this.dataField3.TabIndex = 39;
-            this.dataField3.TextField = "";
+            this.labelledTextBoxLong2.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextBoxLong2.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong2.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong2.ControlHeight = 20;
+            this.labelledTextBoxLong2.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong2.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Bras", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labelledTextBoxLong2.DefaultText = "";
+            this.labelledTextBoxLong2.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong2.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this.labelledTextBoxLong2.LabelAutoSize = false;
+            this.labelledTextBoxLong2.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong2.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong2.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextBoxLong2.LabelSize = new System.Drawing.Size(40, 20);
+            this.labelledTextBoxLong2.LabelText = "bras";
+            this.labelledTextBoxLong2.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelledTextBoxLong2.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledTextBoxLong2.Location = new System.Drawing.Point(4, 25);
+            this.labelledTextBoxLong2.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong2.Name = "labelledTextBoxLong2";
+            this.labelledTextBoxLong2.PropertyName = null;
+            this.labelledTextBoxLong2.Size = new System.Drawing.Size(102, 20);
+            this.labelledTextBoxLong2.TabIndex = 69;
+            this.labelledTextBoxLong2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.labelledTextBoxLong2.TextField = "";
             // 
-            // dataField2
+            // dataDropDown1
             // 
-            this.dataField2.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.dataField2.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "CSA", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dataField2.Font = new System.Drawing.Font("Verdana", 7F);
-            this.dataField2.LabelText = "CSA:";
-            this.dataField2.LabelWidth = 34;
-            this.dataField2.Location = new System.Drawing.Point(0, 62);
-            this.dataField2.Margin = new System.Windows.Forms.Padding(0);
-            this.dataField2.Name = "dataField2";
-            this.dataField2.Padding = new System.Windows.Forms.Padding(3);
-            this.dataField2.PropertyName = null;
-            this.dataField2.Size = new System.Drawing.Size(180, 25);
-            this.dataField2.TabIndex = 38;
-            this.dataField2.TextField = "";
+            this.dataDropDown1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.dataDropDown1.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.dataDropDown1.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.dataDropDown1.ControlHeight = 20;
+            this.dataDropDown1.ControlMargin = new System.Windows.Forms.Padding(2, 0, 0, 1);
+            this.dataDropDown1.DataSource = null;
+            this.dataDropDown1.DefaultText = "";
+            this.dataDropDown1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.dataDropDown1.LabelActiveColor = System.Drawing.Color.Empty;
+            this.dataDropDown1.LabelAutoSize = true;
+            this.dataDropDown1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.dataDropDown1.LabelInactiveColor = System.Drawing.Color.Empty;
+            this.dataDropDown1.LabelOffset = new System.Drawing.Point(0, 0);
+            this.dataDropDown1.LabelSize = new System.Drawing.Size(24, 23);
+            this.dataDropDown1.LabelText = "sip";
+            this.dataDropDown1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dataDropDown1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dataDropDown1.Location = new System.Drawing.Point(108, 25);
+            this.dataDropDown1.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
+            this.dataDropDown1.Name = "dataDropDown1";
+            this.dataDropDown1.PropertyName = "Sip";
+            this.dataDropDown1.Size = new System.Drawing.Size(67, 20);
+            this.dataDropDown1.TabIndex = 76;
             // 
-            // dataField1
+            // labelledTextBoxLong3
             // 
-            this.dataField1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.dataField1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "AVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dataField1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.dataField1.LabelText = "AVC:";
-            this.dataField1.LabelWidth = 34;
-            this.dataField1.Location = new System.Drawing.Point(0, 16);
-            this.dataField1.Margin = new System.Windows.Forms.Padding(0);
-            this.dataField1.Name = "dataField1";
-            this.dataField1.Padding = new System.Windows.Forms.Padding(3);
-            this.dataField1.PropertyName = null;
-            this.dataField1.Size = new System.Drawing.Size(180, 23);
-            this.dataField1.TabIndex = 37;
-            this.dataField1.TextField = "";
+            this.labelledTextBoxLong3.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextBoxLong3.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong3.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong3.ControlHeight = 20;
+            this.labelledTextBoxLong3.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong3.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "CSA", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labelledTextBoxLong3.DefaultText = "";
+            this.labelledTextBoxLong3.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong3.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this.labelledTextBoxLong3.LabelAutoSize = false;
+            this.labelledTextBoxLong3.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong3.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong3.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextBoxLong3.LabelSize = new System.Drawing.Size(40, 20);
+            this.labelledTextBoxLong3.LabelText = "csa";
+            this.labelledTextBoxLong3.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelledTextBoxLong3.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledTextBoxLong3.Location = new System.Drawing.Point(4, 46);
+            this.labelledTextBoxLong3.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong3.Name = "labelledTextBoxLong3";
+            this.labelledTextBoxLong3.PropertyName = null;
+            this.labelledTextBoxLong3.Size = new System.Drawing.Size(171, 20);
+            this.labelledTextBoxLong3.TabIndex = 70;
+            this.labelledTextBoxLong3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.labelledTextBoxLong3.TextField = "";
             // 
-            // dataField7
+            // labelledTextBoxLong4
             // 
-            this.dataField7.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.dataField7.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Bras", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.dataField7.Font = new System.Drawing.Font("Verdana", 7F);
-            this.dataField7.LabelText = "SIP:";
-            this.dataField7.LabelWidth = 34;
-            this.dataField7.Location = new System.Drawing.Point(90, 39);
-            this.dataField7.Margin = new System.Windows.Forms.Padding(0);
-            this.dataField7.Name = "dataField7";
-            this.dataField7.Padding = new System.Windows.Forms.Padding(3);
-            this.dataField7.PropertyName = null;
-            this.dataField7.Size = new System.Drawing.Size(90, 23);
-            this.dataField7.TabIndex = 43;
-            this.dataField7.TextField = "";
+            this.labelledTextBoxLong4.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextBoxLong4.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong4.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong4.ControlHeight = 20;
+            this.labelledTextBoxLong4.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong4.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "CVC", true));
+            this.labelledTextBoxLong4.DefaultText = "";
+            this.labelledTextBoxLong4.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong4.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this.labelledTextBoxLong4.LabelAutoSize = false;
+            this.labelledTextBoxLong4.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong4.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong4.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextBoxLong4.LabelSize = new System.Drawing.Size(40, 20);
+            this.labelledTextBoxLong4.LabelText = "cvc";
+            this.labelledTextBoxLong4.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelledTextBoxLong4.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledTextBoxLong4.Location = new System.Drawing.Point(4, 67);
+            this.labelledTextBoxLong4.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong4.Name = "labelledTextBoxLong4";
+            this.labelledTextBoxLong4.PropertyName = null;
+            this.labelledTextBoxLong4.Size = new System.Drawing.Size(171, 20);
+            this.labelledTextBoxLong4.TabIndex = 71;
+            this.labelledTextBoxLong4.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.labelledTextBoxLong4.TextField = "";
             // 
-            // panelHeading1
+            // labelledTextBoxLong5
             // 
-            this.panelHeading1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.panelHeading1.LabelText = "//NBN Internet";
-            this.panelHeading1.Location = new System.Drawing.Point(0, 0);
-            this.panelHeading1.Margin = new System.Windows.Forms.Padding(0);
-            this.panelHeading1.Name = "panelHeading1";
-            this.panelHeading1.Padding = new System.Windows.Forms.Padding(2);
-            this.panelHeading1.Size = new System.Drawing.Size(180, 17);
-            this.panelHeading1.TabIndex = 47;
+            this.labelledTextBoxLong5.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextBoxLong5.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong5.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong5.ControlHeight = 20;
+            this.labelledTextBoxLong5.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong5.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "NNI", true));
+            this.labelledTextBoxLong5.DefaultText = "";
+            this.labelledTextBoxLong5.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong5.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this.labelledTextBoxLong5.LabelAutoSize = false;
+            this.labelledTextBoxLong5.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong5.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong5.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextBoxLong5.LabelSize = new System.Drawing.Size(40, 20);
+            this.labelledTextBoxLong5.LabelText = "nni";
+            this.labelledTextBoxLong5.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelledTextBoxLong5.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledTextBoxLong5.Location = new System.Drawing.Point(4, 88);
+            this.labelledTextBoxLong5.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong5.Name = "labelledTextBoxLong5";
+            this.labelledTextBoxLong5.PropertyName = null;
+            this.labelledTextBoxLong5.Size = new System.Drawing.Size(171, 20);
+            this.labelledTextBoxLong5.TabIndex = 72;
+            this.labelledTextBoxLong5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.labelledTextBoxLong5.TextField = "";
+            // 
+            // labelledTextBoxLong6
+            // 
+            this.labelledTextBoxLong6.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextBoxLong6.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong6.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong6.ControlHeight = 20;
+            this.labelledTextBoxLong6.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong6.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "PRI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labelledTextBoxLong6.DefaultText = "";
+            this.labelledTextBoxLong6.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong6.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this.labelledTextBoxLong6.LabelAutoSize = false;
+            this.labelledTextBoxLong6.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong6.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong6.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextBoxLong6.LabelSize = new System.Drawing.Size(40, 20);
+            this.labelledTextBoxLong6.LabelText = "pri";
+            this.labelledTextBoxLong6.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelledTextBoxLong6.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledTextBoxLong6.Location = new System.Drawing.Point(4, 109);
+            this.labelledTextBoxLong6.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong6.Name = "labelledTextBoxLong6";
+            this.labelledTextBoxLong6.PropertyName = null;
+            this.labelledTextBoxLong6.Size = new System.Drawing.Size(171, 20);
+            this.labelledTextBoxLong6.TabIndex = 73;
+            this.labelledTextBoxLong6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.labelledTextBoxLong6.TextField = "";
+            // 
+            // labelledTextBoxLong7
+            // 
+            this.labelledTextBoxLong7.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextBoxLong7.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong7.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong7.ControlHeight = 20;
+            this.labelledTextBoxLong7.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong7.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labelledTextBoxLong7.DefaultText = "";
+            this.labelledTextBoxLong7.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong7.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this.labelledTextBoxLong7.LabelAutoSize = false;
+            this.labelledTextBoxLong7.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong7.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong7.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextBoxLong7.LabelSize = new System.Drawing.Size(40, 20);
+            this.labelledTextBoxLong7.LabelText = "inc";
+            this.labelledTextBoxLong7.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelledTextBoxLong7.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledTextBoxLong7.Location = new System.Drawing.Point(4, 130);
+            this.labelledTextBoxLong7.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong7.Name = "labelledTextBoxLong7";
+            this.labelledTextBoxLong7.PropertyName = null;
+            this.labelledTextBoxLong7.Size = new System.Drawing.Size(171, 20);
+            this.labelledTextBoxLong7.TabIndex = 74;
+            this.labelledTextBoxLong7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.labelledTextBoxLong7.TextField = "";
+            // 
+            // labelledTextBoxLong8
+            // 
+            this.labelledTextBoxLong8.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextBoxLong8.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong8.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong8.ControlHeight = 20;
+            this.labelledTextBoxLong8.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong8.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.serviceModelBindingSource, "Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labelledTextBoxLong8.DefaultText = "";
+            this.labelledTextBoxLong8.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong8.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this.labelledTextBoxLong8.LabelAutoSize = false;
+            this.labelledTextBoxLong8.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong8.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong8.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextBoxLong8.LabelSize = new System.Drawing.Size(40, 20);
+            this.labelledTextBoxLong8.LabelText = "apt";
+            this.labelledTextBoxLong8.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelledTextBoxLong8.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledTextBoxLong8.Location = new System.Drawing.Point(4, 151);
+            this.labelledTextBoxLong8.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong8.Name = "labelledTextBoxLong8";
+            this.labelledTextBoxLong8.PropertyName = null;
+            this.labelledTextBoxLong8.Size = new System.Drawing.Size(171, 20);
+            this.labelledTextBoxLong8.TabIndex = 75;
+            this.labelledTextBoxLong8.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.labelledTextBoxLong8.TextField = "";
+            // 
+            // labelledBase1
+            // 
+            this.labelledBase1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledBase1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this.labelledBase1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.labelledBase1.ControlHeight = 12;
+            this.labelledBase1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledBase1.LabelActiveColor = System.Drawing.Color.Empty;
+            this.labelledBase1.LabelAutoSize = true;
+            this.labelledBase1.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this.labelledBase1.LabelInactiveColor = System.Drawing.Color.Empty;
+            this.labelledBase1.LabelOffset = new System.Drawing.Point(1, -2);
+            this.labelledBase1.LabelSize = new System.Drawing.Size(67, 22);
+            this.labelledBase1.LabelText = "//NBN Voice";
+            this.labelledBase1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelledBase1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledBase1.Location = new System.Drawing.Point(0, 0);
+            this.labelledBase1.Margin = new System.Windows.Forms.Padding(0);
+            this.labelledBase1.Name = "labelledBase1";
+            this.labelledBase1.PropertyName = null;
+            this.labelledBase1.Size = new System.Drawing.Size(180, 12);
+            this.labelledBase1.TabIndex = 69;
             // 
             // NBFPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Ivory;
-            this.Controls.Add(this.panelHeading1);
-            this.Controls.Add(this.dataField7);
-            this.Controls.Add(this.dataField6);
-            this.Controls.Add(this.dataField5);
-            this.Controls.Add(this.dataField4);
-            this.Controls.Add(this.dataField3);
-            this.Controls.Add(this.dataField2);
-            this.Controls.Add(this.dataField1);
+            this.Controls.Add(this.labelledBase1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "NBFPanel";
+            this.Tag = "180, 245";
             ((System.ComponentModel.ISupportInitialize)(this.serviceModelBindingSource)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private View.DataField dataField1;
-        private View.DataField dataField2;
-        private View.DataField dataField3;
-        private View.DataField dataField4;
-        private View.DataField dataField5;
-        private View.DataField dataField6;
         internal System.Windows.Forms.BindingSource serviceModelBindingSource;
-        private View.DataField dataField7;
-        private PanelHeading panelHeading1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private LabelledTextBoxLong labelledTextBoxLong1;
+        private LabelledTextBoxLong labelledTextBoxLong2;
+        private LabelledComboBoxLong dataDropDown1;
+        private LabelledTextBoxLong labelledTextBoxLong3;
+        private LabelledTextBoxLong labelledTextBoxLong4;
+        private LabelledTextBoxLong labelledTextBoxLong5;
+        private LabelledTextBoxLong labelledTextBoxLong6;
+        private LabelledTextBoxLong labelledTextBoxLong7;
+        private LabelledTextBoxLong labelledTextBoxLong8;
+        private LabelledBase labelledBase1;
     }
 }

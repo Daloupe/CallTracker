@@ -140,7 +140,8 @@ namespace CallTracker.Model
         public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
         [ProtoMember(13)]
         public BookingModel Booking { get; set; }
-        //[ProtoMember(14)]
+        [ProtoMember(14)]
+        public bool IDok { get; set; }
 
         public List<PRTemplateModel> PRTemplateList = new List<PRTemplateModel>();
 
@@ -188,6 +189,7 @@ namespace CallTracker.Model
             CMBS = String.Empty;
             ICON = String.Empty;
             Note = String.Empty;
+            IDok = false;
 
             Address = new ContactAddress();
             Service = new ServiceModel();
@@ -223,6 +225,7 @@ namespace CallTracker.Model
             CMBS = String.Empty;
             ICON = String.Empty;
             Note = String.Empty;
+            IDok = false;
 
             Address = new ContactAddress();
             Service = new ServiceModel();

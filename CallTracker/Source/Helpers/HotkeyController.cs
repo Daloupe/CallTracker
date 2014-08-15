@@ -107,7 +107,7 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private Dictionary<Keys, string> GridLinkHotkeys = new Dictionary<Keys, string>()
         {
-            {Keys.NumPad0, "0"},
+            {Keys.Q, "0"},
             {Keys.NumPad1, "1"},
             {Keys.NumPad2, "2"},
             {Keys.NumPad3, "3"},
@@ -377,25 +377,29 @@ namespace CallTracker.Helpers
                 else if ((firstchar == "0" && textlen == 10) 
                      || (text.Substring(0, 2) == "61" && textlen == 11))
                 {
-                    if (CustomerContact.MobilePattern.IsMatch(text))        parent.SelectedContact.Mobile = text;
+                    if (CustomerContact.MobilePattern.IsMatch(text))        parent.SelectedContact.Mobile = "0" + text;
                     else if (CustomerContact.DNPattern.IsMatch(text))
                     {
                         parent.SelectedContact.DN = CustomerContact.DNPattern.Replace(text,"0$1$2$3");
-                        parent.SelectedContact.Address.State = (from a in Main.ServicesStore.servicesDataSet.States
+                        var query = (from a in Main.ServicesStore.servicesDataSet.States
                                                                 where a.Areacode == parent.SelectedContact.DN.Substring(1,1)
-                                                                select a).First().NameShort; 
+                                                                select a).First();
+                        parent.SelectedContact.Address.State = query.NameShort;
+                        parent.SelectedContact.Service.Sip = query.Sip;
                     };
                 }
                 else if (CustomerContact.CMBSPattern.IsMatch(text)) 
                 { 
                     parent.SelectedContact.CMBS = CustomerContact.CMBSPattern.Replace(text, "3$1$2 $3"); 
-                    parent.SelectedContact.Address.State = (from a in Main.ServicesStore.servicesDataSet.States
+                    var query = (from a in Main.ServicesStore.servicesDataSet.States
                                                             where a.CMBScode == CustomerContact.CMBSPattern.Replace(text, "$1")
-                                                            select a).First().NameShort; 
+                                                            select a).First();
+                    parent.SelectedContact.Address.State = query.NameShort;
+                    parent.SelectedContact.Service.Sip = query.Sip;
                 }
                 else if (CustomerContact.ICONPattern.IsMatch(text)) parent.SelectedContact.ICON = text;
                 else if (FaultModel.ITCasePattern.IsMatch(text)) parent.SelectedContact.Fault.ITCase = text;
-                else parent.SelectedContact.Note += text;
+                else parent.SelectedContact.Note += Environment.NewLine + text;
             }
             else if (new AlphaPattern().IsMatch(text))
             {
@@ -417,7 +421,15 @@ namespace CallTracker.Helpers
                 else
                 {
                     if (new NodePattern().IsMatch(text))                    parent.SelectedContact.Service.Node = text;
-                    else if (CustomerContact.CMBSPattern.IsMatch(text))     parent.SelectedContact.CMBS = CustomerContact.CMBSPattern.Replace(text, "3$1$2 $3");
+                    else if (CustomerContact.CMBSPattern.IsMatch(text))
+                    { 
+                        parent.SelectedContact.CMBS = CustomerContact.CMBSPattern.Replace(text, "3$1$2 $3"); 
+                        var query = (from a in Main.ServicesStore.servicesDataSet.States
+                                                                where a.CMBScode == CustomerContact.CMBSPattern.Replace(text, "$1")
+                                                                select a).First();
+                        parent.SelectedContact.Address.State = query.NameShort;
+                        parent.SelectedContact.Service.Sip = query.Sip;
+                    }
                     else if (ContactAddress.Pattern.IsMatch(text))          parent.SelectedContact.Address.Address = text;
                     else                                                    parent.SelectedContact.Note += text;
                 }    
@@ -561,27 +573,22 @@ namespace CallTracker.Helpers
             return true;
         }
 
-        //static void m_Proc_Exited(object sender, EventArgs e)
-        //{
-        //    Console.WriteLine("Exited");
-        //}
-
         public static bool NavigateOrNewIE(string url, string title = "")
         {
             if (FindIEByUrl(url))
             {
                 new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
-                if (browser.Url == url)
-                    return true;
+                return true;
             }
-
-            if(!String.IsNullOrEmpty(title))
+            
+            if (!String.IsNullOrEmpty(title))
+            {
                 if (FindIEByTitle(title))
                 {
                     new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
-                    if (browser.Url == url)
-                        return true;
+                    return true;
                 }
+            }
 
             if (CreateNewIE(url))
                 return true;

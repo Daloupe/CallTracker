@@ -17,6 +17,7 @@ using PropertyChanged;
 using CallTracker.Model;
 using CallTracker.Helpers;
 using CallTracker.Data;
+using CustomControls;
 
 using System.Windows.Automation;
 using TestStack.White.Configuration;
@@ -58,18 +59,26 @@ namespace CallTracker.View
         public HotkeyController HotKeys;
         private AutoCompleteStringCollection systemAutoCompleteSource = new AutoCompleteStringCollection();
 
-        public Main()
+        SplashScreen Splash;
+        public Main(SplashScreen _splash)
         {
             InitializeComponent();
+            Splash = _splash;
+            Splash.Init(this);
+
+            Splash.UpdateProgress("Main setup",0);
+            Splash.StepProgress("Setting up Logs");
             _StatusLabel.Tag = EventLogLevel.Status;
             EventLogger.StatusLabel = _StatusLabel;
 
+            Splash.StepProgress("Setting App Location");
             SetAppLocation();
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
 
             versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
-
         }
 
         private void SetAppLocation()
@@ -89,91 +98,144 @@ namespace CallTracker.View
 
         private void Main_Load(object sender, EventArgs e)
         {
+                
+
             EventLogger.LogNewEvent("------------------------------------------------------");
             SetProgressBarStep(7, "Loading Interface", EventLogLevel.Status);
 
-            UpdateProgressBar("Loading Service Store");
+            Splash.UpdateProgress("Loading Data", 10);
             ServicesStore.ReadData();
-            UpdateProgressBar("Loading Main Data");
+            Splash.UpdateProgress("Loading Resources", 17);
             DataStore = DataStore.ReadFile();
-            UpdateProgressBar("Loading Resource Store");
-            //ResourceStore = ResourceStore.ReadFile();
+            Splash.UpdateProgress("Loading User Data", 27);
+
+
 
             SelectedContact = new CustomerContact();
 
-            UpdateProgressBar("Creating Main View");
+            Splash.UpdateProgress("Loading View", 30);
+            UpdateProgressBar("Loading Views", EventLogLevel.Status);
+            //Splash.StepProgress("Edit Contacts");
             editContact = new EditContact(this);
+            //Splash.StepProgress("Call History");
+            callHistory = new CallHistory();
+            //Splash.StepProgress("Edit Logins");
+            editLogins = new EditLogins();
+            //Splash.StepProgress("Edit Gridlinks");
+            editGridLinks = new EditGridLinks();
+            //Splash.StepProgress("Edit Smart Paste Binds");
+            editSmartPasteBinds = new EditSmartPasteBinds();
+            //Splash.StepProgress("Keycommand Help");
+            helpKeyCommands = new HelpKeyCommands();
+           // Splash.StepProgress("Edit Database");
+            databaseView = new DatabaseView();
+            //Splash.StepProgress("Edit Ratecodes");
+            Ratecodes = new Ratecodes();
+
+            Splash.UpdateProgress("Adding Controls", 40);
+            UpdateProgressBar("Added Controls");
             _ViewPanel.Controls.Add(editContact);
+            //Splash.StepProgress();
+            _ViewPanel.Controls.Add(callHistory);
+            //Splash.StepProgress();
+            _ViewPanel.Controls.Add(editLogins);
+            //Splash.StepProgress();
+            _ViewPanel.Controls.Add(editGridLinks);
+            //Splash.StepProgress();
+            _ViewPanel.Controls.Add(editSmartPasteBinds);
+            //Splash.StepProgress();
+            _ViewPanel.Controls.Add(helpKeyCommands);
+            //Splash.StepProgress();
+            _ViewPanel.Controls.Add(databaseView);
+            //Splash.StepProgress();
+            _ViewPanel.Controls.Add(Ratecodes);
+
+            Splash.UpdateProgress("Initializing Views", 50);
             editContact.OnParentLoad();
+
+            //Splash.StepProgress();
+            editContact.Init();
+            //Splash.StepProgress();
+            callHistory.Init(this, callHistoryToolStripMenuItem);
+            //Splash.StepProgress();
+            editLogins.Init(this, loginsViewMenuItem);
+            //Splash.StepProgress();
+            editSmartPasteBinds.Init(this, pasteBindsViewMenuItem);
+            //Splash.StepProgress();
+            editGridLinks.Init(this, gridLinksViewMenuItem);
+            //Splash.StepProgress();
+            helpKeyCommands.Init(this, viewKeyCommandsMenuItem);
+            //Splash.StepProgress();
+            databaseView.Init(this, databaseEditorToolStripMenuItem);
+            //Splash.StepProgress();
+            Ratecodes.Init(this, ratecodesMenuItem);
+
+            //Splash.StepProgress();
             UpdateProgressBar("Bring to front");
             editContact.BringToFront();
             editContact.Visible = true;
 
-           
-        } 
+            //if (String.IsNullOrEmpty(DataStore.User))
+            //{
+            //    Splash.ShowLogins();
+            //    this.Shown -= Main_Shown;
+            //}
 
-        private void Main_Shown(object sender, EventArgs e)
-        {
-            UpdateProgressBar("Loading Views", EventLogLevel.Status);
-
-            callHistory = new CallHistory();
-            
-            editLogins = new EditLogins();
-            editGridLinks = new EditGridLinks();
-            editSmartPasteBinds = new EditSmartPasteBinds();
-            helpKeyCommands = new HelpKeyCommands();
-            databaseView = new DatabaseView();
-            Ratecodes = new Ratecodes();
-
-            _ViewPanel.Controls.Add(callHistory);
-            _ViewPanel.Controls.Add(editLogins);
-            _ViewPanel.Controls.Add(editGridLinks);
-            _ViewPanel.Controls.Add(editSmartPasteBinds);
-            _ViewPanel.Controls.Add(helpKeyCommands);
-            _ViewPanel.Controls.Add(databaseView);
-            _ViewPanel.Controls.Add(Ratecodes);
-
-            
-            callHistory.Init(this, callHistoryToolStripMenuItem);
-            editLogins.Init(this, loginsViewMenuItem);
-            editSmartPasteBinds.Init(this, pasteBindsViewMenuItem);
-            editGridLinks.Init(this, gridLinksViewMenuItem);
-            helpKeyCommands.Init(this, viewKeyCommandsMenuItem);         
-            databaseView.Init(this, databaseEditorToolStripMenuItem);
-            Ratecodes.Init(this, ratecodesMenuItem);
-
-            editContact.Init();
-
+            Splash.UpdateProgress("Connecting Contextual Menu", 70);
             transfersToolStripMenuItem.UpdateObject = new TransfersMenuItem(ServicesStore.servicesDataSet);
             bookmarksContextualToolStripMenuItem.UpdateObject = new BookmarksMenuItem(ServicesStore.servicesDataSet);
             systemsContextualToolStripMenuItem.UpdateObject = new SystemsMenuItem(ServicesStore.servicesDataSet);
 
-
+            
             toolStripServiceSelector.ComboBox.BindingContext = this.BindingContext;
             toolStripServiceSelector.ComboBox.DataSource = ServicesStore.servicesDataSet.Services.Select(x => x.ProblemStylesRow).Distinct().ToList();
             toolStripServiceSelector.ComboBox.DisplayMember = "Description";
             toolStripServiceSelector.ComboBox.ValueMember = "IFMSCode";
             toolStripServiceSelector.ComboBox.SelectedIndex = 0;
 
+            Splash.UpdateProgress("Creating ICON Note Generator", 80);
             NoteGen = new ICONNoteGenerator(ServicesStore.servicesDataSet);
+
+            Splash.UpdateProgress("Creating Hotkey Controller", 85);
             HotKeys = new HotkeyController(this);
 
+            Splash.UpdateProgress("Attaching Events", 90);
             IETabActivator.OnAction += UpdateProgressBar;
             HotkeyController.OnAction += UpdateProgressBar;
 
             //this.Enabled = true;
 
+            Splash.UpdateProgress("Finishing", 99);
+            Splash.UpdateProgress("", 100);
             UpdateProgressBar(0, "Finished Loading", EventLogLevel.ClearStatus);
+            ChangeCallStateMenuItem(logOutToolStripMenuItem);       
+        } 
+
+        private void Main_Shown(object sender, EventArgs e)
+        {
+            //Splash.Close();
+            this.Opacity = 100;
+            Splash.Close();
+            Splash.Dispose();
+            //this.WindowState = FormWindowState.Normal;
+            //this.ShowInTaskbar = true;
         }
 
-
+        public bool CancelLoad = false;
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Properties.Settings.Default.Save();
-            DataStore.SaveFile(DataStore);
-            //ResourceStore.SaveFile(ResourceStore);
-            ServicesStore.WriteData();
-            HotKeys.Dispose();
+            if (CancelLoad == false)
+            {
+                Properties.Settings.Default.Save();
+                DataStore.SaveFile(DataStore);
+                ServicesStore.WriteData();
+            }
+
+            if (ServicesStore != null)
+                ServicesStore.servicesDataSet.Dispose();
+
+            if(HotKeys != null)
+                HotKeys.Dispose();
         }
 
         public void RemovePasteBind(PasteBind _bind)
@@ -186,7 +248,7 @@ namespace CallTracker.View
         }
 
         // Menu Bar ////////////////////////////////////////////////////////////////////////////////
-        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        internal void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
@@ -351,18 +413,18 @@ namespace CallTracker.View
         public void UpdateProgressBar(int percent, string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
         {
             EventLogger.LogNewEvent(_event, _logLevel);
-            _StatusProgressBar.Value = percent;
+            //_StatusProgressBar.Value = percent;
         }
 
         public void UpdateProgressBar(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
         {
             EventLogger.LogNewEvent(_event, _logLevel);
-           _StatusProgressBar.PerformStep();
+           //_StatusProgressBar.PerformStep();
         }
 
         public void SetProgressBarStep(int _steps, string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
         {
-            _StatusProgressBar.Maximum = _steps + 1;
+            //_StatusProgressBar.Maximum = _steps + 1;
             UpdateProgressBar(_event, _logLevel);
         }
 
@@ -416,14 +478,6 @@ namespace CallTracker.View
             }
         }
 
-        private void Main_Paint(object sender, PaintEventArgs e)
-        {
-            Point[] points = { new Point(10, 10), new Point(100, 10), new Point(50, 100) };
-            e.Graphics.DrawPolygon(new Pen(Color.Blue), points);
-            Point[] points2 = { new Point(100, 100), new Point(200, 100), new Point(150, 10) };
-            e.Graphics.FillPolygon(new SolidBrush(Color.Red), points2);
-        }
-
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // IPCC Monitor ////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -434,37 +488,156 @@ namespace CallTracker.View
 
         private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ChangeCallStateMenuItem(notReadyToolStripMenuItem);
             if (IPCCProcess == null && monitorIPCCToolStripMenuItem.Checked == true)
                 if (InitIPCCMonitor() == false)
                     return;
-            
+
             _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
+        }
+
+        ToolStripMenuItem currentItem;
+        ToolStripMenuItem CurrentItem
+        {
+            get { return currentItem; }
+            set
+            {
+                currentItem = value;
+                switch (currentItem.Name)
+                {
+                    case "readyToolStripMenuItem":
+                        wrapUpToolStripMenuItem.Enabled = false;
+                        talkingToolStripMenuItem.Enabled = true;
+                        notReadyToolStripMenuItem.Enabled = true;
+                        logInToolStripMenuItem.Enabled = false;
+                        logOutToolStripMenuItem.Enabled = true;
+                        break;
+                    case "wrapUpToolStripMenuItem":
+                        readyToolStripMenuItem.Enabled = true;
+                        talkingToolStripMenuItem.Enabled = false;
+                        notReadyToolStripMenuItem.Enabled = true;
+                        logInToolStripMenuItem.Enabled = false;
+                        logOutToolStripMenuItem.Enabled = true;
+                        break;
+                    case "talkingToolStripMenuItem":
+                        readyToolStripMenuItem.Enabled = false;
+                        wrapUpToolStripMenuItem.Enabled = true;
+                        notReadyToolStripMenuItem.Enabled = false;
+                        logInToolStripMenuItem.Enabled = false;
+                        logOutToolStripMenuItem.Enabled = false;
+                        break;
+                    case "notReadyToolStripMenuItem":
+                        readyToolStripMenuItem.Enabled = true;
+                        wrapUpToolStripMenuItem.Enabled = true;
+                        talkingToolStripMenuItem.Enabled = false;
+                        logInToolStripMenuItem.Enabled = false;
+                        logOutToolStripMenuItem.Enabled = true;
+                        break;
+                    case "logOutToolStripMenuItem":
+                        readyToolStripMenuItem.Enabled = false;
+                        wrapUpToolStripMenuItem.Enabled = false;
+                        talkingToolStripMenuItem.Enabled = false;
+                        logInToolStripMenuItem.Enabled = true;
+                        notReadyToolStripMenuItem.Enabled = false;
+                        break;
+                    case "logInToolStripMenuItem":
+                        readyToolStripMenuItem.Enabled = false;
+                        wrapUpToolStripMenuItem.Enabled = false;
+                        talkingToolStripMenuItem.Enabled = false;
+                        logOutToolStripMenuItem.Enabled = true;
+                        notReadyToolStripMenuItem.Enabled = true;
+                        break;
+                    default:
+                        readyToolStripMenuItem.Enabled = false;
+                        wrapUpToolStripMenuItem.Enabled = false;
+                        talkingToolStripMenuItem.Enabled = false;
+                        logInToolStripMenuItem.Enabled = true;
+                        notReadyToolStripMenuItem.Enabled = false;
+                        break;
+                }
+            }
+        }
+        private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {    
+            //SetCallState = e.ClickedItem.Tag.ToString();
+            ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
+            _IPCCTimer.Enabled = true;
+        }
+
+        private void ChangeCallStateMenuItem(string _callState)
+        {
+            foreach (ToolStripMenuItem control in _CallStateTime.DropDownItems.OfType<ToolStripMenuItem>())
+                if (control.Tag.ToString() == _callState)
+                {
+                    CurrentItem = control;
+                    CurrentItem.Checked = true;
+                }
+                else
+                    control.Checked = false;
+        }
+
+        private void ChangeCallStateMenuItem(ToolStripMenuItem _callState)
+        {
+            foreach (ToolStripMenuItem control in _CallStateTime.DropDownItems.OfType<ToolStripMenuItem>())
+                control.Checked = false;
+            CurrentItem = _callState;
+            CurrentItem.Checked = true;
         }
 
         private void _IPCCTimer_Tick(object sender, EventArgs e)
         {
-            string status = IPCCCallStatus.Name;
-            monitorIPCCToolStripMenuItem.Text = status;
-            switch(status)
+            _CallStateTimeElapsed = _CallStateTimeElapsed.AddMilliseconds(_IPCCTimer.Interval);
+
+            //string status = IPCCCallStatus.Name;
+            if (CurrentItem.Name == "logInToolStripMenuItem")
+                ChangeCallStateMenuItem(notReadyToolStripMenuItem);
+            string status = CurrentItem.Tag.ToString();
+            if (status != _IPCCState.Text)
             {
-                case "AgentStatus: Work Ready":
-                    editContact._WorkReadyTimerDisplay.PerformClick();
-                    _IPCCTimer.Interval = 1000;
-                    break;
-                case "AgentStatus: On Call":
-                    _IPCCTimer.Interval = 2000;
-                    break;
-                case "AgentStatus: Not Ready":
-                    _IPCCTimer.Interval = 2000;
-                    break;
-                case "AgentStatus: Ready":
-                    _IPCCTimer.Interval = 1000;
-                    break;
-                default:
-                    _IPCCTimer.Interval = 1000;
-                    break;
+                CurrentItem.Checked = false;
+                
+                _CallStateTimeElapsed = new DateTime();
+                switch (status)
+                {
+                    case "AgentStatus: WrapUp":
+                        _IPCCTimer.Interval = 1000;
+                        _CallStateTime.BackColor = Color.Firebrick;
+                        _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
+
+                        break;
+                    case "AgentStatus: Talking":
+                        _IPCCTimer.Interval = 1000;
+                        _CallStateTime.BackColor = Color.Chocolate;
+                        _CallStateTime.ForeColor = Color.PaleGoldenrod;
+                        if (_IPCCState.Text == "AgentStatus: Ready" && editContact.autoNewCallToolStripMenuItem.Checked == true)
+                            editContact.bindingNavigatorAddNewItem_Click(_IPCCState, new EventArgs());
+                        break;
+                    case "AgentStatus: NotReady":
+                        _IPCCTimer.Interval = 1000;
+                        _CallStateTime.BackColor = Color.Firebrick;
+                        _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
+                        break;
+                    case "AgentStatus: Ready":
+                        _IPCCTimer.Interval = 1000;
+                        _CallStateTime.BackColor = Color.OliveDrab;
+                        _CallStateTime.ForeColor = Color.PaleGoldenrod;
+                        break;
+                    case "AgentStatus:":
+                        _IPCCTimer.Interval = 5000;
+                        _CallStateTime.BackColor = Color.WhiteSmoke;
+                        _CallStateTime.ForeColor = Color.DarkSlateGray;
+                        break;
+                    default:
+                        _IPCCTimer.Interval = 1000;
+                        _CallStateTime.BackColor = Color.WhiteSmoke;
+                        _CallStateTime.ForeColor = Color.DarkSlateGray;
+                        break;
+                }
+
+                _IPCCState.Text = status;
+                ChangeCallStateMenuItem(status);
             }
-            
+            _CallStateTime.Text = _CallStateTimeElapsed.ToString("mm:ss");
         }
 
         private bool InitIPCCMonitor()
@@ -496,6 +669,13 @@ namespace CallTracker.View
             IPCCProcess = null;
         }
 
+        private DateTime _CallStateTimeElapsed;
+        private void _WorkReadyTimer_Tick(object sender, EventArgs e)
+        {
+            _CallStateTimeElapsed = _CallStateTimeElapsed.AddMilliseconds(1000);
+            _CallStateTime.Text = _CallStateTimeElapsed.ToString("mm:ss");
+        }
+
         private void editBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowPopupForm<EditBookmarks>();
@@ -511,6 +691,5 @@ namespace CallTracker.View
             UpdateMenuObject.newItem_Click(sender, e);
         }
 
-        
     }
 }

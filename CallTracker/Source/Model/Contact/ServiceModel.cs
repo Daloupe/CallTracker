@@ -51,9 +51,11 @@ namespace CallTracker.Model
         [ProtoMember(6)]
         public string NNI { get; set; }
         [ProtoMember(7)]
-        public string GIS { get; set; }
+        public string PRI { get; set; }
         [ProtoMember(8)]
         public string Bras { get; set; }
+        [ProtoMember(9)]
+        public string Sip { get; set; }
 
         [ProtoMember(10)]
         public string CauPing { get; set; }

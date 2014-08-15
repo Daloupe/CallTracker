@@ -16,7 +16,6 @@ namespace CallTracker.View
         public DataField()
         {
             InitializeComponent();
-            
         }
 
         [Category("!Label")]

@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.automaticSortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.databaseBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
@@ -47,16 +48,27 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pasteToolStripMenuItem});
+            this.pasteToolStripMenuItem,
+            this.automaticSortToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(106, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(146, 48);
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.pasteToolStripMenuItem.Text = "Delete";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // automaticSortToolStripMenuItem
+            // 
+            this.automaticSortToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.DatabaseAutoSort;
+            this.automaticSortToolStripMenuItem.CheckOnClick = true;
+            this.automaticSortToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.automaticSortToolStripMenuItem.Name = "automaticSortToolStripMenuItem";
+            this.automaticSortToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.automaticSortToolStripMenuItem.Text = "Automatic Sort";
+            this.automaticSortToolStripMenuItem.CheckedChanged += new System.EventHandler(this.automaticSortToolStripMenuItem_CheckedChanged);
             // 
             // dataGridView1
             // 
@@ -83,6 +95,7 @@
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(577, 193);
             this.dataGridView1.TabIndex = 17;
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
             // 
             // databaseBindingSource
@@ -160,5 +173,6 @@
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
         private System.Windows.Forms.ComboBox _DatabaseSelect;
         private DataSets.ServicesDataSet servicesDataSet;
+        private System.Windows.Forms.ToolStripMenuItem automaticSortToolStripMenuItem;
     }
 }

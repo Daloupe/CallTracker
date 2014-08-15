@@ -59,7 +59,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._ComboBox);
             this.Name = "LabelledComboBox";
-            this.Load += new System.EventHandler(this.LabelledComboBox_Load);
             this.Controls.SetChildIndex(this._Label, 0);
             this.Controls.SetChildIndex(this._ComboBox, 0);
             this.Controls.SetChildIndex(this._MenuButton, 0);

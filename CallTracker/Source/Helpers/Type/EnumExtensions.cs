@@ -29,6 +29,17 @@ namespace CallTracker.Helpers
             }
         }
 
+        public static bool IsNot<T>(this System.Enum type, T value)
+        {
+            try
+            {
+                return (int)(object)type != (int)(object)value;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public static T Add<T>(this System.Enum type, T value)
         {

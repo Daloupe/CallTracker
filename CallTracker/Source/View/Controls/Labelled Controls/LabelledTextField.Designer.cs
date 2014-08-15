@@ -68,7 +68,6 @@
             this.LabelSize = new System.Drawing.Size(164, 17);
             this.Name = "LabelledTextField";
             this.Size = new System.Drawing.Size(180, 93);
-            this.Load += new System.EventHandler(this.LabelledTextBox_Load);
             this.Controls.SetChildIndex(this._DataField, 0);
             this.Controls.SetChildIndex(this._MenuButton, 0);
             this.Controls.SetChildIndex(this._Label, 0);

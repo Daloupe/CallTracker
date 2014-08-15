@@ -130,6 +130,7 @@
               <xs:element name="Postcode" msprop:Generator_ColumnVarNameInTable="columnPostcode" msprop:Generator_ColumnPropNameInRow="Postcode" msprop:Generator_ColumnPropNameInTable="PostcodeColumn" msprop:Generator_UserColumnName="Postcode" type="xs:string" minOccurs="0" />
               <xs:element name="Areacode" msprop:Generator_ColumnVarNameInTable="columnAreacode" msprop:Generator_ColumnPropNameInRow="Areacode" msprop:Generator_ColumnPropNameInTable="AreacodeColumn" msprop:Generator_UserColumnName="Areacode" type="xs:string" minOccurs="0" />
               <xs:element name="CMBScode" msprop:Generator_ColumnVarNameInTable="columnCMBScode" msprop:Generator_ColumnPropNameInRow="CMBScode" msprop:Generator_ColumnPropNameInTable="CMBScodeColumn" msprop:Generator_UserColumnName="CMBScode" type="xs:string" minOccurs="0" />
+              <xs:element name="Sip" msprop:Generator_ColumnVarNameInTable="columnSip" msprop:Generator_ColumnPropNameInRow="Sip" msprop:Generator_ColumnPropNameInTable="SipColumn" msprop:Generator_UserColumnName="Sip" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -305,6 +306,15 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Actions" msprop:Generator_TableClassName="ActionsDataTable" msprop:Generator_TableVarName="tableActions" msprop:Generator_TablePropName="Actions" msprop:Generator_RowDeletingName="ActionsRowDeleting" msprop:Generator_RowChangingName="ActionsRowChanging" msprop:Generator_RowEvHandlerName="ActionsRowChangeEventHandler" msprop:Generator_RowDeletedName="ActionsRowDeleted" msprop:Generator_UserTableName="Actions" msprop:Generator_RowChangedName="ActionsRowChanged" msprop:Generator_RowEvArgName="ActionsRowChangeEvent" msprop:Generator_RowClassName="ActionsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
+              <xs:element name="OutcomeId" msdata:Caption="Acronym" msprop:Generator_ColumnVarNameInTable="columnOutcomeId" msprop:Generator_ColumnPropNameInRow="OutcomeId" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInTable="OutcomeIdColumn" msprop:Generator_UserColumnName="OutcomeId" type="xs:short" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -399,6 +409,10 @@
       <xs:selector xpath=".//mstns:SystemLinks" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
+    <xs:unique name="Actions_Constraint1" msdata:ConstraintName="Constraint1">
+      <xs:selector xpath=".//mstns:Actions" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
@@ -430,6 +444,7 @@
       <msdata:Relationship name="EquipmentStatuses_EquipmentEquipmentStatusesMatch" msdata:parent="EquipmentStatuses" msdata:child="EquipmentEquipmentStatusesMatch" msdata:parentkey="Id" msdata:childkey="EquipmentStatusesId" msprop:Generator_UserChildTable="EquipmentEquipmentStatusesMatch" msprop:Generator_ChildPropName="GetEquipmentEquipmentStatusesMatchRows" msprop:Generator_UserRelationName="EquipmentStatuses_EquipmentEquipmentStatusesMatch" msprop:Generator_ParentPropName="EquipmentStatusesRow" msprop:Generator_RelationVarName="relationEquipmentStatuses_EquipmentEquipmentStatusesMatch" msprop:Generator_UserParentTable="EquipmentStatuses" />
       <msdata:Relationship name="ProblemStyles_Bookmarks" msdata:parent="ProblemStyles" msdata:child="Bookmarks" msdata:parentkey="Id" msdata:childkey="ProblemStyleId" msprop:Generator_UserChildTable="Bookmarks" msprop:Generator_ChildPropName="GetBookmarksRows" msprop:Generator_UserRelationName="ProblemStyles_Bookmarks" msprop:Generator_ParentPropName="ProblemStylesRow" msprop:Generator_RelationVarName="relationProblemStyles_Bookmarks" msprop:Generator_UserParentTable="ProblemStyles" />
       <msdata:Relationship name="ProblemStyles_SystemLinks" msdata:parent="ProblemStyles" msdata:child="SystemLinks" msdata:parentkey="Id" msdata:childkey="ProblemStyleId" msprop:Generator_UserChildTable="SystemLinks" msprop:Generator_ChildPropName="GetSystemLinksRows" msprop:Generator_UserRelationName="ProblemStyles_SystemLinks" msprop:Generator_ParentPropName="ProblemStylesRow" msprop:Generator_RelationVarName="relationProblemStyles_SystemLinks" msprop:Generator_UserParentTable="ProblemStyles" />
+      <msdata:Relationship name="Outcomes_Actions" msdata:parent="Outcomes" msdata:child="Actions" msdata:parentkey="Id" msdata:childkey="OutcomeId" msprop:Generator_UserChildTable="Actions" msprop:Generator_ChildPropName="GetActionsRows" msprop:Generator_UserRelationName="Outcomes_Actions" msprop:Generator_ParentPropName="OutcomesRow" msprop:Generator_RelationVarName="relationOutcomes_Actions" msprop:Generator_UserParentTable="Outcomes" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

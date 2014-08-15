@@ -74,7 +74,6 @@
             this.LabelSize = new System.Drawing.Size(34, 23);
             this.Name = "LabelledTextBoxLong";
             this.Size = new System.Drawing.Size(174, 20);
-            this.Load += new System.EventHandler(this.LabelledTextBox_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this._MenuButton_Paint);
             this.Controls.SetChildIndex(this._Label, 0);
             this.Controls.SetChildIndex(this._MenuButton, 0);

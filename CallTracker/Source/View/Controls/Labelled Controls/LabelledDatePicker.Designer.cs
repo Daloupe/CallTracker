@@ -35,7 +35,6 @@
             // _MenuButton
             // 
             this._MenuButton.Size = new System.Drawing.Size(16, 13);
-            this._MenuButton.Visible = false;
             // 
             // _DateTimePicker
             // 
@@ -45,10 +44,11 @@
             this._DateTimePicker.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._DateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this._DateTimePicker.Location = new System.Drawing.Point(0, 13);
+            this._DateTimePicker.MaxDate = new System.DateTime(2020, 12, 31, 0, 0, 0, 0);
+            this._DateTimePicker.MinDate = new System.DateTime(2013, 1, 1, 0, 0, 0, 0);
             this._DateTimePicker.Name = "_DateTimePicker";
             this._DateTimePicker.Size = new System.Drawing.Size(180, 19);
             this._DateTimePicker.TabIndex = 31;
-            this._DateTimePicker.CloseUp += new System.EventHandler(this._DateTimePicker_CloseUp);
             // 
             // LabelledDatePicker
             // 
@@ -56,8 +56,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this._DateTimePicker);
             this.Name = "LabelledDatePicker";
-            this.Load += new System.EventHandler(this.LabelledComboBox_Load);
-            this.Controls.SetChildIndex(this._Label, 0);
+            this.Load += new System.EventHandler(this.OnLoad);
             this.Controls.SetChildIndex(this._DateTimePicker, 0);
             this.Controls.SetChildIndex(this._MenuButton, 0);
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).EndInit();
@@ -68,7 +67,8 @@
 
         #endregion
 
-        private BorderedDateTimePicker _DateTimePicker;
+        internal BorderedDateTimePicker _DateTimePicker;
+
 
 
 

@@ -40,8 +40,11 @@ namespace CallTracker.View
 
         private void _DatabaseSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
+           string newTable = StringHelpers.JoinCamelCase(((ComboBox)sender).Text);
+           if (newTable == dataGridView1.DataMember)
+               return;
             dataGridView1.Columns.Clear();
-            dataGridView1.DataMember = StringHelpers.JoinCamelCase(((ComboBox)sender).Text);
+            dataGridView1.DataMember = newTable;
             if(dataGridView1.Columns.Contains("Id"))
                 dataGridView1.Columns.Remove("Id");
 
@@ -154,6 +157,10 @@ namespace CallTracker.View
                 ReplaceWithComboBoxColumn("EquipmentStatusesID", "Status", "EquipmentStatusesID", "Status", "Id", 200, Main.ServicesStore.servicesDataSet.EquipmentStatuses.ToList(), false, 1);
                 dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
             }
+            else if (dataGridView1.DataMember == "Actions")
+            {
+                ReplaceWithComboBoxColumn("OutcomeId", "Outcomes", "OutcomeId", "Description", "Id", 200, Main.ServicesStore.servicesDataSet.Outcomes.ToList());
+            }
         }
 
         private DataGridViewComboBoxColumn ReplaceWithComboBoxColumn(string _columnName, string _columnHeader, string _idColumnName, string _displayMember, string _valueMember, int _width, object _dataSource, bool _readOnly = false, int _columnIndex = 0)
@@ -228,6 +235,19 @@ namespace CallTracker.View
         {
             ToolStripMenuItem item = (ToolStripMenuItem)sender;
             ((DataGridViewComboBoxCell)item.Tag).Value = DBNull.Value;
+        }
+
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
+        }
+
+        private void automaticSortToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (automaticSortToolStripMenuItem.Checked == false)
+                dataGridView1.SetColumnSortMode(DataGridViewColumnSortMode.NotSortable);
+            else
+                dataGridView1.SetColumnSortMode(DataGridViewColumnSortMode.Automatic);
         }
     }
 }
