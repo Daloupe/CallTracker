@@ -20,6 +20,7 @@ namespace CallTracker.View
         {
             InitializeComponent();
             dgv = dataGridView1;
+            dataGridView1.DataError += dataGridView1_DataError;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.AutoGenerateColumns = false;
         }
@@ -66,6 +67,18 @@ namespace CallTracker.View
 
             comboBox9.DataSource = bs[9];
             comboBox9.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[9], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+        }
+
+        private void dataGridView1_DataError(object sender,
+        DataGridViewDataErrorEventArgs e)
+        {
+            // If the data source raises an exception when a cell value is  
+            // commited, display an error message. 
+            if (e.Exception != null &&
+                e.Context == DataGridViewDataErrorContexts.Commit)
+            {
+                EventLogger.LogNewEvent("Error: "+this.Name+" couldn't commit data to cell");
+            }
         }
 
         protected override void _Done_Click(object sender, EventArgs e)

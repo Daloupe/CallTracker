@@ -21,24 +21,13 @@ namespace CallTracker.View
     {
         private UserDataStore DataStore;
         internal Main MainForm;
-        internal List<CheckBox> ServiceCheckboxes;
+        //internal List<CheckBox> ServiceCheckboxes;
 
         public EditContact(Main _mainform)
         {
             InitializeComponent();
             MainForm = _mainform;
             Location = MainForm.ControlOffset;
-            
-            _PR.AttachMenu(_PRContextMenu);
-            _NPR.AttachMenu(_PRContextMenu);
-            _Dn.AttachMenu(_DialContextMenu);
-            _Name.AttachMenu(_NameContextMenu);
-            _Mobile.AttachMenu(_DialContextMenu);
-            _Symptom.AttachMenu(_SeverityMenuStrip);
-            _Username.AttachMenu(_UsernameContextMenu);
-            _ServicePanel._ServiceHeading.AttachMenu(_ServiceContextMenu);
-
-           
 
             // Fault Panel Mouse Wheel Focus////////////////////////////////////////////////////////////////////
             splitContainer2.MouseWheel += splitContainer2_MouseWheel;
@@ -76,19 +65,27 @@ namespace CallTracker.View
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
             _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)).Cast<BookingType>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
             _BookingTimeSlot.BindComboBox(Enum.GetValues(typeof(BookingTimeslot)).Cast<BookingTimeslot>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
-            
-            //if (customerContactsBindingSource.Count == 0)
-            //{
-            //    //DataStore.Contacts.Add(new CustomerContact(1));
-            //    flowLayoutPanel1.Enabled = false;
-            //    ServiceTypePanel.Enabled = false;
-            //    FaultPanel.Enabled = false;
-            //    _Note.Enabled = false;
-            //}
+
+            if (customerContactsBindingSource.Count == 0)
+            {
+                //DataStore.Contacts.Add(new CustomerContact(1));
+                flowLayoutPanel1.Enabled = false;
+                ServiceTypePanel.Enabled = false;
+                FaultPanel.Enabled = false;
+                _Note.Enabled = false;
+            }
         }
 
         public void Init()
         {
+            _PR.AttachMenu(_PRContextMenu);
+            _NPR.AttachMenu(_PRContextMenu);
+            _Dn.AttachMenu(_DialContextMenu);
+            _Name.AttachMenu(_NameContextMenu);
+            _Mobile.AttachMenu(_DialContextMenu);
+            _Symptom.AttachMenu(_SeverityMenuStrip);
+            _Username.AttachMenu(_UsernameContextMenu);
+            _ServicePanel._ServiceHeading.AttachMenu(_ServiceContextMenu);
             //_OutcomeTooltip.SetToolTip(_Outcome, "Problem Report");
             //ServiceCheckboxes = new List<CheckBox> { _LAT, _LIP, _ONC, _DTV, _MTV, _NFV, _NBF };
         }
@@ -105,23 +102,25 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
-            //if (customerContactsBindingSource.Count == 0)
-            //{
-            //    flowLayoutPanel1.Enabled = false;
-            //    ServiceTypePanel.Enabled = false;
-            //    FaultPanel.Enabled = false;
-            //    _Note.Enabled = false;
 
-            //    _Note.DataBindings.Clear();
+            if (customerContactsBindingSource.Count == 0)
+            {
+                flowLayoutPanel1.Enabled = false;
+                ServiceTypePanel.Enabled = false;
+                FaultPanel.Enabled = false;
+                _Note.Enabled = false;
+                MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
+                _Note.DataBindings.Clear();
 
-            //    _ServicePanel.ChangeService(ServiceTypes.NONE);
-            //}
-            //else
-            //{
+                _ServicePanel.ChangeService(ServiceTypes.NONE);
+            }
+            else
+            {
                 flowLayoutPanel1.Enabled = true;
                 ServiceTypePanel.Enabled = true;
                 FaultPanel.Enabled = true;
                 _Note.Enabled = true;
+
 
                 MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
                 MainForm.SelectedContact = DataStore.Contacts[customerContactsBindingSource.Position];
@@ -132,15 +131,19 @@ namespace CallTracker.View
                 _NoteContextMenuStrip.Items[0].PerformClick();
                 //CurrentService = MainForm.SelectedContact.Fault.AffectedServices;
                 //UpdateMainService();
+                
                 UpdateCurrentPanel();
-            //}
+            }
         }
 
-        void SelectedContact_NestedChange(object sender, PropertyChangedEventArgs e)
+        public void SelectedContact_NestedChange(object sender, PropertyChangedEventArgs e)
         {
             // Swap Panels
             if (e.PropertyName == "AffectedServices")
-                UpdateMainService();
+                UpdateCurrentPanel();
+
+            if (e.PropertyName == "Outcome")
+                UpdateActions();
 
             // Update Note
             if (_Note.DataBindings.Count > 0)
@@ -151,6 +154,8 @@ namespace CallTracker.View
         {
             DataStore.Contacts.Add(new CustomerContact(1));
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
+            if(DataStore.Contacts.Count == 1)
+                MainForm.editContact.customerContactsBindingSource.ResetBindings(true);
         }
 
         public void DeleteCalls()
@@ -159,7 +164,14 @@ namespace CallTracker.View
             customerContactsBindingSource.Position = DataStore.Contacts.Count;
         }
 
-
+        public void UpdateActions()
+        {
+            List<string> query = (from a in Main.ServicesStore.servicesDataSet.Actions
+                                  where a.OutcomesRow.Description == MainForm.SelectedContact.Fault.Outcome
+                                  select a.Description).ToList();
+            if(query.Count > 0)
+                _Action.BindComboBox(query, customerContactsBindingSource);
+        }
 
 
 
@@ -183,45 +195,50 @@ namespace CallTracker.View
                 _Equipment._ComboBox.DataSource = null;
                 _Equipment._ComboBox.DataBindings.Clear();
 
+                //_ServicePanel.currentFlowPanel.CheckBox.ForeColor = Color.Black;
                 currentService = value;
-                MainForm.SelectedContact.Fault.AffectedServiceType = currentService;
+                //MainForm.SelectedContact.Fault.AffectedServiceType = currentService;
                 _ServicePanel.ChangeService(currentService);
-                if (currentService.IsNot(ServiceTypes.NONE))
-                    MainForm.toolStripServiceSelector.Text = _ServicePanel.currentFlowPanel.Service.ProblemStylesRow.Description;
+                //if (currentService.IsNot(ServiceTypes.NONE))
+                //{
+                //    MainForm.toolStripServiceSelector.Text = _ServicePanel.currentFlowPanel.Service.ProblemStylesRow.Description;
+                //}
             }
         }
 
-        private void UpdateMainService()
-        {
+        //private void UpdateMainService()
+        //{
 
-            ServiceTypes affectedServices = MainForm.SelectedContact.Fault.AffectedServices;
+        //    ServiceTypes affectedServices = MainForm.SelectedContact.Fault.AffectedServices;
 
-            foreach (ServiceTypes service in Enum.GetValues(typeof(ServiceTypes)))
-            {
-                if ((affectedServices & service) != 0 || affectedServices == 0)
-                {
-                    CurrentService = service;
-                    break;
-                }
-            }
-        }
+        //    foreach (ServiceTypes service in Enum.GetValues(typeof(ServiceTypes)))
+        //    {
+        //        if ((affectedServices & service) != 0 || affectedServices.Is(ServiceTypes.NONE))
+        //        {
+        //            CurrentService = service;
+        //            break;
+        //        }
+        //    }
+        //}
 
         private void UpdateCurrentPanel()
         {
+            Console.WriteLine("Updating panle");
             ServiceTypes affectedServices = MainForm.SelectedContact.Fault.AffectedServices;
 
             foreach (ServiceTypes service in Enum.GetValues(typeof(ServiceTypes)))
             {
                 if ((affectedServices & service) != 0 || affectedServices == 0)
                 {
-                    foreach (CheckBox control in ServiceTypePanel.Controls)
-                    {
-                        if ((ServiceTypes)control.Tag == service)// && service.Is(MainForm.SelectedContact.Fault.AffectedServiceType))
-                        {
-                            control.ForeColor = Color.DarkRed;
-                            CurrentService = service;   
-                        }
-                    }
+                    //foreach (CheckBox control in ServiceTypePanel.Controls)
+                    //{
+                    //    if ((ServiceTypes)control.Tag == service)// && service.Is(MainForm.SelectedContact.Fault.AffectedServiceType))
+                    //    {
+                    //        control.ForeColor = Color.DarkRed;
+                    //        CurrentService = service;   
+                    //    }
+                    //}
+                    CurrentService = service;  
                     break;
                 }
             }
@@ -229,11 +246,8 @@ namespace CallTracker.View
 
         private void _ServiceMenu_Click(object sender, EventArgs e)
         {
-            CurrentService = (ServiceTypes)((ToolStripMenuItem)sender).Tag; //ServiceViews[(ServiceTypes)((ToolStripMenuItem)sender).Tag];
             _ServicePanel.currentFlowPanel.CheckBox.Checked = true;
-            foreach (CheckBox service in ServiceTypePanel.Controls)
-                service.ForeColor = Color.Black;
-            _ServicePanel.currentFlowPanel.CheckBox.ForeColor = Color.DarkRed;
+            CurrentService = (ServiceTypes)((ToolStripMenuItem)sender).Tag;
         }
 
         private bool HandlingRightClick { get; set; }
@@ -245,40 +259,23 @@ namespace CallTracker.View
                 HandlingRightClick = true;
                 if (cb.Checked == false)
                 {
-                    foreach (CheckBox service in ServiceTypePanel.Controls)
-                        service.ForeColor = Color.Black;
-                    CurrentService = (ServiceTypes)cb.Tag;
                     cb.Checked = true;
-                    cb.ForeColor = Color.DarkRed;
+                    CurrentService = (ServiceTypes)cb.Tag;
                 }
                 else
                 {
-                    if (((ServiceTypes)cb.Tag).IsNot(MainForm.SelectedContact.Fault.AffectedServiceType))
-                    {
-                        foreach (CheckBox service in ServiceTypePanel.Controls)
-                            service.ForeColor = Color.Black;
+                    if (((ServiceTypes)cb.Tag) != _ServicePanel.currentFlowPanel.ServiceType)
                         CurrentService = (ServiceTypes)cb.Tag;
-                        cb.ForeColor = Color.DarkRed;
-                    }
                     else
-                    {
-                        cb.ForeColor = Color.Black;
-                        UpdateCurrentPanel();
-                    }      
+                        UpdateCurrentPanel();  
                 }
             }
             else if (e.Button == MouseButtons.Left)
             {
                 if (cb.Checked == false)
-                {
                     cb.Checked = true;
-                    UpdateCurrentPanel();
-                }else
-                {
-                    cb.ForeColor = Color.Black;
-                    cb.Checked = false;
-                    UpdateCurrentPanel();
-                }          
+                else
+                    cb.Checked = false;        
             }
         }
 
@@ -420,11 +417,11 @@ namespace CallTracker.View
         private void _Outcome_SelectedIndexChanged(object sender, EventArgs e)
         {
             //_OutcomeTooltip.SetToolTip(_Outcome._ComboBox, Main.ServicesStore.servicesDataSet.Outcomes.First(x => x.Acronym == _Outcome._ComboBox.Text).Description);
-            List<string> query = (from a in Main.ServicesStore.servicesDataSet.Actions
-                                  where a.OutcomesRow.Description == MainForm.SelectedContact.Fault.Outcome
-                                  select a.Description).ToList();
+            //List<string> query = (from a in Main.ServicesStore.servicesDataSet.Actions
+            //                      where a.OutcomesRow.Description == MainForm.SelectedContact.Fault.Outcome
+            //                      select a.Description).ToList();
 
-            _Action.BindComboBox(query, customerContactsBindingSource);
+            //_Action.BindComboBox(query, customerContactsBindingSource);
 
             if (MainForm.SelectedContact.Fault.Outcome == "Outage")
             {
@@ -462,37 +459,21 @@ namespace CallTracker.View
         {
             ToolStripMenuItem ownerItem = e.ClickedItem.OwnerItem as ToolStripMenuItem;
             if (ownerItem != null)
-            {
-                //uncheck all item
                 foreach (ToolStripMenuItem item in ownerItem.DropDownItems)
-                {
                     item.Checked = false;
-                }
-            }
         }
 
         private void _Dial_click(object sender, EventArgs e)
         {
-            Point offsets = new Point();
-            string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
+            //Point offsets = new Point();
+            //string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
 
-            offsets.X = Convert.ToInt16(Regex.Split(offsetFile[1], ",")[1]);
-            offsets.Y = Convert.ToInt16(Regex.Split(offsetFile[1], ",")[2]);
+            //offsets.X = Convert.ToInt16(Regex.Split(offsetFile[1], ",")[1]);
+            //offsets.Y = Convert.ToInt16(Regex.Split(offsetFile[1], ",")[2]);
 
-            WindowHelper.IPCCAutomation(((LabelledTextBoxLong)_DialContextMenu.SourceControl.Parent)._DataField.Text, offsets);
+            MainForm.DialOrTransfer(((LabelledTextBoxLong)_DialContextMenu.SourceControl.Parent)._DataField.Text);
+            //WindowHelper.IPCCAutomation(((LabelledTextBoxLong)_DialContextMenu.SourceControl.Parent)._DataField.Text, offsets);
         }
-
-        private void _Transfer_click(object sender, EventArgs e)
-        {
-            Point offsets = new Point();
-            string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
-
-            offsets.X = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[1]);
-            offsets.Y = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[2]);
-
-            WindowHelper.IPCCAutomation(((LabelledTextBoxLong)_DialContextMenu.SourceControl.Parent)._DataField.Text, offsets);
-        }
-
 
 
 
@@ -705,6 +686,12 @@ namespace CallTracker.View
               ((Control)sender).Width - 1,
               ((Control)sender).Height - 1);
 
+        }
+
+        private void _DialContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            if (((ContextMenuStrip)sender).SourceControl != null)
+            Console.WriteLine(((ContextMenuStrip)sender).SourceControl.Name);
         }
     }
 }

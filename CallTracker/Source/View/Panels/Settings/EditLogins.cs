@@ -18,6 +18,7 @@ namespace CallTracker.View
         {
             InitializeComponent();
             dgv = dataGridView1;
+            dataGridView1.DataError += dataGridView1_DataError;
             dataGridView1.CellClick += dataGridView1_CellClick;
         }
 
@@ -27,6 +28,17 @@ namespace CallTracker.View
             loginsModelBindingSource.DataSource = MainForm.DataStore.Logins;
         }
 
+        private void dataGridView1_DataError(object sender,
+        DataGridViewDataErrorEventArgs e)
+        {
+            // If the data source raises an exception when a cell value is  
+            // commited, display an error message. 
+            if (e.Exception != null &&
+                e.Context == DataGridViewDataErrorContexts.Commit)
+            {
+                EventLogger.LogNewEvent("Error: "+this.Name+" couldn't commit data to cell");
+            }
+        }
         protected override void _Done_Click(object sender, EventArgs e)
         {
             base._Done_Click(sender, e);

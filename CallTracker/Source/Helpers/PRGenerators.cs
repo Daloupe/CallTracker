@@ -9,7 +9,7 @@ namespace CallTracker.Helpers
 {
     public static class PRGenerators
     {
-        public static ServiceTypes NBNOnly = ServiceTypes.NBF.Add(ServiceTypes.NFV);
+        public static ServiceTypes NBNOnly = (ServiceTypes.NBF | ServiceTypes.NFV);
         public static List<PRTemplateModel> PRTemplate = new List<PRTemplateModel>
         {
             new PRTemplateFindProperty("Name: ", "Name"),
@@ -52,7 +52,7 @@ namespace CallTracker.Helpers
         public static string Generate(CustomerContact _service, List<PRTemplateModel> _replacementQuestions)
         {
             // Remove Missed Dependanices.
-            List<PRTemplateModel> newTemplate = PRTemplate.Where(x => (_service.Fault.AffectedServices & (ServiceTypes.NBF | ServiceTypes.NFV)) != 0).ToList();
+            List<PRTemplateModel> newTemplate = PRTemplate.Where(x => (_service.Fault.AffectedServices & x.ServiceRestrictions) != 0 || x.ServiceRestrictions.Is(ServiceTypes.NONE)).ToList();
 
 
             //Console.WriteLine(query.Count());
@@ -60,10 +60,10 @@ namespace CallTracker.Helpers
 
             foreach (PRTemplateModel model in _replacementQuestions)
             {
-                var query = newTemplate.First(x => x.Question == model.Question);
-                if (query != null)
+                var query = newTemplate.Exists(x => x.Question == model.Question);
+                if (query != false)
                 {
-                    int idx = newTemplate.IndexOf(query);
+                    int idx = newTemplate.IndexOf(newTemplate.First(x => x.Question == model.Question));
                     newTemplate[idx] = model;
                 }
             }

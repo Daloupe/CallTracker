@@ -42,9 +42,6 @@
     <Reference Include="Castle.Core">
       <HintPath>..\..\..\Libraries\White-net35_notmaintained\src\TestStack.White\bin\Release\Castle.Core.dll</HintPath>
     </Reference>
-    <Reference Include="EWSoftware.StatusBarText">
-      <HintPath>..\..\..\Libraries\StatusBarText\DotNet20\bin\Release\EWSoftware.StatusBarText.dll</HintPath>
-    </Reference>
     <Reference Include="Interop.SHDocVw, Version=1.1.0.0, Culture=neutral, PublicKeyToken=db7cfd3acb5ad44e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -102,12 +99,21 @@
     </Compile>
     <Compile Include="Source\Helpers\PRGenerators.cs" />
     <Compile Include="Source\Helpers\Type\DataGridExtentions.cs" />
+    <Compile Include="Source\View\Popups\FadingTooltip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\FadingTooltip.Designer.cs">
+      <DependentUpon>FadingTooltip.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Popups\SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Source\View\Popups\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Source\View\Popups\FadingTooltip.resx">
+      <DependentUpon>FadingTooltip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Popups\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,9 +136,9 @@
     <Compile Include="Source\Helpers\Type\ListHelpers.cs" />
     <Compile Include="Source\Helpers\Type\StringHelpers.cs" />
     <Compile Include="Source\Model\Contact\NameModel.cs" />
-    <Compile Include="Source\Model\EnumData.cs" />
-    <Compile Include="Source\Model\EventLogModel.cs" />
-    <Compile Include="Source\Model\PRTemplateModel.cs" />
+    <Compile Include="Source\Model\Resource\EnumData.cs" />
+    <Compile Include="Source\Model\Resource\EventLogModel.cs" />
+    <Compile Include="Source\Model\Resource\PRTemplateModel.cs" />
     <Compile Include="Source\Model\Settings\AROModel.cs" />
     <Compile Include="Source\Model\Settings\IEInteractBase.cs" />
     <Compile Include="Source\Model\Settings\ElementBinds.cs" />
@@ -191,40 +197,34 @@
     <Compile Include="Source\View\Controls\BindingNavigatorIgnoreFocus.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\TheBestProgressBarEver.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\View\Controls\TheBestProgressBarEver.designer.cs">
-      <DependentUpon>TheBestProgressBarEver.cs</DependentUpon>
-    </Compile>
     <Compile Include="Source\View\Controls\ToolStripIgnoreFocus.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\DataArea.cs">
+    <Compile Include="Source\View\Controls\Basic Controls\DataArea.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\DataArea.Designer.cs">
+    <Compile Include="Source\View\Controls\Basic Controls\DataArea.Designer.cs">
       <DependentUpon>DataArea.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Controls\DataDropDown.cs">
+    <Compile Include="Source\View\Controls\Basic Controls\DataDropDown.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\DataDropDown.Designer.cs">
+    <Compile Include="Source\View\Controls\Basic Controls\DataDropDown.Designer.cs">
       <DependentUpon>DataDropDown.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Controls\DataControlBase.cs">
+    <Compile Include="Source\View\Controls\Basic Controls\DataControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\DataControlBase.Designer.cs">
+    <Compile Include="Source\View\Controls\Basic Controls\DataControlBase.Designer.cs">
       <DependentUpon>DataControlBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Controls\ContextualToolStripMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\PanelHeading.cs">
+    <Compile Include="Source\View\Controls\Basic Controls\PanelHeading.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\PanelHeading.Designer.cs">
+    <Compile Include="Source\View\Controls\Basic Controls\PanelHeading.Designer.cs">
       <DependentUpon>PanelHeading.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Controls\ToopStripProgressBarWithText.cs">
@@ -236,30 +236,30 @@
     <Compile Include="Source\View\Panels\Help\HelpKeyCommands.Designer.cs">
       <DependentUpon>HelpKeyCommands.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Controls\DataField.cs">
+    <Compile Include="Source\View\Controls\Basic Controls\DataField.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Controls\DataField.Designer.cs">
+    <Compile Include="Source\View\Controls\Basic Controls\DataField.Designer.cs">
       <DependentUpon>DataField.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Panels\Product\MTVPanel.cs">
+    <None Include="Source\View\Panels\Product\Archive\MTVPanel.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\MTVPanel.Designer.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\MTVPanel.Designer.cs">
       <DependentUpon>MTVPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\DTVPanel.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\DTVPanel.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\DTVPanel.Designer.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\DTVPanel.Designer.cs">
       <DependentUpon>DTVPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\NFVPanel.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\NFVPanel.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\NFVPanel.Designer.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\NFVPanel.Designer.cs">
       <DependentUpon>NFVPanel.cs</DependentUpon>
-    </Compile>
+    </None>
     <Compile Include="Source\View\Panels\Product\ServicePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -296,30 +296,30 @@
     <Compile Include="Source\View\Panels\Product\PanelBase.Designer.cs">
       <DependentUpon>PanelBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Panels\Product\ONCPanel.cs">
+    <None Include="Source\View\Panels\Product\Archive\ONCPanel.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\ONCPanel.Designer.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\ONCPanel.Designer.cs">
       <DependentUpon>ONCPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\LIPPanel.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\LIPPanel.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\LIPPanel.Designer.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\LIPPanel.Designer.cs">
       <DependentUpon>LIPPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\LATPanel.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\LATPanel.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\LATPanel.Designer.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\LATPanel.Designer.cs">
       <DependentUpon>LATPanel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\NBFPanel.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\NBFPanel.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Source\View\Panels\Product\NBFPanel.Designer.cs">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\NBFPanel.Designer.cs">
       <DependentUpon>NBFPanel.cs</DependentUpon>
-    </Compile>
+    </None>
     <Compile Include="Source\View\Panels\Settings\CallHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -342,15 +342,15 @@
       <DependentUpon>EditBookmarks.cs</DependentUpon>
     </Compile>
     <None Include="Source\View\ServiceView.cs" />
-    <EmbeddedResource Include="Source\View\Controls\DataArea.resx">
+    <EmbeddedResource Include="Source\View\Controls\Basic Controls\DataArea.resx">
       <DependentUpon>DataArea.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\DataDropDown.resx">
+    <EmbeddedResource Include="Source\View\Controls\Basic Controls\DataDropDown.resx">
       <DependentUpon>DataDropDown.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\DataControlBase.resx">
+    <EmbeddedResource Include="Source\View\Controls\Basic Controls\DataControlBase.resx">
       <DependentUpon>DataControlBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -386,32 +386,29 @@
       <DependentUpon>LabelledComboBox.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\PanelHeading.resx">
+    <EmbeddedResource Include="Source\View\Controls\Basic Controls\PanelHeading.resx">
       <DependentUpon>PanelHeading.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\TheBestProgressBarEver.resx">
-      <DependentUpon>TheBestProgressBarEver.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Help\HelpKeyCommands.resx">
       <DependentUpon>HelpKeyCommands.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\DataField.resx">
+    <EmbeddedResource Include="Source\View\Controls\Basic Controls\DataField.resx">
       <DependentUpon>DataField.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Product\MTVPanel.resx">
+    <None Include="Source\View\Panels\Product\Archive\MTVPanel.resx">
       <DependentUpon>MTVPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Product\DTVPanel.resx">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\DTVPanel.resx">
       <DependentUpon>DTVPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Product\NFVPanel.resx">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\NFVPanel.resx">
       <DependentUpon>NFVPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
+    </None>
     <EmbeddedResource Include="Source\View\Panels\Product\ServicePanel.resx">
       <DependentUpon>ServicePanel.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -433,19 +430,19 @@
       <DependentUpon>PanelBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Product\ONCPanel.resx">
+    <None Include="Source\View\Panels\Product\Archive\ONCPanel.resx">
       <DependentUpon>ONCPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Product\LIPPanel.resx">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\LIPPanel.resx">
       <DependentUpon>LIPPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Product\LATPanel.resx">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\LATPanel.resx">
       <DependentUpon>LATPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Product\NBFPanel.resx">
+    </None>
+    <None Include="Source\View\Panels\Product\Archive\NBFPanel.resx">
       <DependentUpon>NBFPanel.cs</DependentUpon>
-    </EmbeddedResource>
+    </None>
     <EmbeddedResource Include="Source\View\Panels\Settings\CallHistory.resx">
       <DependentUpon>CallHistory.cs</DependentUpon>
       <SubType>Designer</SubType>

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LabelledBase));
             this._Label = new System.Windows.Forms.Label();
             this._MenuButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).BeginInit();
@@ -53,7 +52,7 @@
             // _MenuButton
             // 
             this._MenuButton.BackColor = System.Drawing.Color.Transparent;
-            this._MenuButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("_MenuButton.BackgroundImage")));
+            this._MenuButton.BackgroundImage = global::CallTracker.Properties.Resources.TinyArrow2;
             this._MenuButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._MenuButton.Dock = System.Windows.Forms.DockStyle.Right;
             this._MenuButton.Location = new System.Drawing.Point(164, 0);

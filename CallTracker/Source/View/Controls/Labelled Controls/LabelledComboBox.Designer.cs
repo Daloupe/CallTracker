@@ -34,15 +34,15 @@
             // 
             // _MenuButton
             // 
+            this._MenuButton.BackgroundImage = global::CallTracker.Properties.Resources.TinyArrow2;
             this._MenuButton.Size = new System.Drawing.Size(16, 12);
-            this._MenuButton.Visible = false;
             // 
             // _ComboBox
             // 
             this._ComboBox.BorderColor = System.Drawing.Color.WhiteSmoke;
             this._ComboBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._ComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this._ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._ComboBox.FormattingEnabled = true;
             this._ComboBox.Location = new System.Drawing.Point(0, 12);
             this._ComboBox.MaxDropDownItems = 15;

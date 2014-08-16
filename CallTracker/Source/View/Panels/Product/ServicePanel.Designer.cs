@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this._LATPanel = new System.Windows.Forms.FlowLayoutPanel();
             this._Node = new CallTracker.View.LabelledTextBoxLong();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this._CauPing = new CallTracker.View.LabelledComboBoxLong();
             this._NitResults = new CallTracker.View.LabelledTextField();
             this._NBNPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -67,13 +68,12 @@
             this._ModemMTAMac = new CallTracker.View.LabelledTextBoxLong();
             this._ModemSN = new CallTracker.View.LabelledTextBoxLong();
             this._ServiceHeading = new CallTracker.View.LabelledBase();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this._LATPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this._NBNPanel.SuspendLayout();
             this._DTVPanel.SuspendLayout();
             this._MTVPanel.SuspendLayout();
             this._ONCPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // _LATPanel
@@ -119,6 +119,10 @@
             this._Node.TabIndex = 77;
             this._Node.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Node.TextField = "";
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // _CauPing
             // 
@@ -1203,11 +1207,6 @@
             this._ServiceHeading.Size = new System.Drawing.Size(180, 12);
             this._ServiceHeading.TabIndex = 71;
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
-            this.bindingSource1.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSource1_BindingComplete);
-            // 
             // ServicePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1224,11 +1223,11 @@
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(995, 211);
             this._LATPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this._NBNPanel.ResumeLayout(false);
             this._DTVPanel.ResumeLayout(false);
             this._MTVPanel.ResumeLayout(false);
             this._ONCPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }

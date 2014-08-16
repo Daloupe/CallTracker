@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using CallTracker.Model;
-
 namespace CallTracker.View
 {
     public partial class PanelBase : UserControl
@@ -48,31 +46,5 @@ namespace CallTracker.View
             foreach (Control control in Controls)
                 control.MouseEnter -= action;
         }
-
-        public void ChangeService(ServiceTypes _service)
-        { 
-            List<string> serviceControls = ServiceFields[_service];
-
-            foreach(LabelledBase control in this.Controls)
-                if(serviceControls.Contains(control.Name))
-                    control.Show();
-                else
-                    control.Hide();
-
-            _ServiceHeading.LabelText = "//" + Enum.GetName(typeof(ServiceTypes), _service);
-        }
-
-        private Dictionary<ServiceTypes, List<string>> ServiceFields = new Dictionary<ServiceTypes,List<string>>
-        {
-            {ServiceTypes.NONE, new List<string>()},
-            {ServiceTypes.LAT, new List<string>{"_Node", "_CauPing", "_NitResults"}},
-            {ServiceTypes.LIP, new List<string>{"_Node", "_CauPing", "_NitResults"}},
-            {ServiceTypes.ONC, new List<string>{"_Node", "_CauPing", "_NitResults"}},
-            {ServiceTypes.DTV, new List<string>{"_Node", "_CauPing", "_NitResults"}},
-            {ServiceTypes.MTV, new List<string>{"_Node", "_CauPing", "_NitResults"}},
-            {ServiceTypes.NFV, new List<string>{"_AVC", "_BRAS", "_SIP", "_CSA", "_CVC", "_NNI", "_PRI", "_INC", "_APT"}},
-            {ServiceTypes.NBF, new List<string>{"_AVC", "_CSA", "_CVC", "_NNI", "_PRI", "_INC", "_APT"}}
-        };
     }
-
 }

@@ -167,8 +167,8 @@ namespace CallTracker.View
         const int WM_SETCURSOR = 0x20;
 
 
-        private Pen BorderPen = new Pen(Color.Black, 1);
-        private Pen BorderPenControl = new Pen(SystemColors.ControlDark, 1);
+        private Pen BorderPen = new Pen(Color.Black, 2);
+        private Pen BorderPenControl = new Pen(SystemColors.ControlDark, 2);
         private bool DroppedDown = false;
         private int InvalidateSince = 0;
         private static int DropDownButtonWidth = 17;
@@ -192,7 +192,7 @@ namespace CallTracker.View
         static BorderedDateTimePicker()
 		{
 			// 2 pixel extra is for the 3D border around the pulldown button on the left and right
-            DropDownButtonWidth = ComboInfoHelper.GetComboDropDownWidth() +2;	
+            DropDownButtonWidth = ComboInfoHelper.GetComboDropDownWidth() + 3;	
 		}
 
         public BorderedDateTimePicker()

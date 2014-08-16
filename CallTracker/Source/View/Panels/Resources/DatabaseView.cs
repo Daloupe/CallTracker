@@ -20,6 +20,7 @@ namespace CallTracker.View
         {
             InitializeComponent();
             dgv = dataGridView1;
+            dataGridView1.DataError +=dataGridView1_DataError;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.AutoGenerateColumns = false;
         }
@@ -36,6 +37,18 @@ namespace CallTracker.View
             foreach(DataTable table in Main.ServicesStore.servicesDataSet.Tables)
                 tables.Add(StringHelpers.SeperateCamelCase(table.TableName));
             _DatabaseSelect.DataSource = tables;
+        }
+
+        private void dataGridView1_DataError(object sender,
+        DataGridViewDataErrorEventArgs e)
+        {
+            // If the data source raises an exception when a cell value is  
+            // commited, display an error message. 
+            if (e.Exception != null &&
+                e.Context == DataGridViewDataErrorContexts.Commit)
+            {
+                EventLogger.LogNewEvent("Error: "+this.Name+" couldn't commit data to cell");
+            }
         }
 
         private void _DatabaseSelect_SelectedIndexChanged(object sender, EventArgs e)

@@ -93,7 +93,6 @@
             this._Address = new CallTracker.View.LabelledTextBoxLong();
             this._DialContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.transferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
@@ -117,10 +116,10 @@
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._NavigatorPanel = new System.Windows.Forms.Panel();
             this.bindingNavigator1 = new CallTracker.View.BindingNavigatorIgnoreFocus();
-            this._PrevCallButton = new System.Windows.Forms.ToolStripButton();
-            this._CurrentPosition = new System.Windows.Forms.ToolStripTextBox();
-            this._NextCallButton = new System.Windows.Forms.ToolStripButton();
             this._CallMenuButton = new System.Windows.Forms.ToolStripButton();
+            this._NextCallButton = new System.Windows.Forms.ToolStripButton();
+            this._CurrentPosition = new System.Windows.Forms.ToolStripTextBox();
+            this._PrevCallButton = new System.Windows.Forms.ToolStripButton();
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this._OutcomeTooltip = new System.Windows.Forms.ToolTip(this.components);
@@ -176,7 +175,7 @@
             this.FaultPanel.Location = new System.Drawing.Point(389, 0);
             this.FaultPanel.Margin = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.FaultPanel.Name = "FaultPanel";
-            this.FaultPanel.Size = new System.Drawing.Size(191, 216);
+            this.FaultPanel.Size = new System.Drawing.Size(190, 216);
             this.FaultPanel.TabIndex = 28;
             // 
             // splitContainer1
@@ -267,6 +266,7 @@
             this._Symptom.DefaultText = "";
             this._Symptom.Font = new System.Drawing.Font("Verdana", 7F);
             this._Symptom.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Symptom.InitialIndex = 0;
             this._Symptom.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Symptom.LabelAutoSize = true;
             this._Symptom.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
@@ -300,6 +300,7 @@
             this._Outcome.DefaultText = "";
             this._Outcome.Font = new System.Drawing.Font("Verdana", 7F);
             this._Outcome.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Outcome.InitialIndex = 0;
             this._Outcome.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Outcome.LabelAutoSize = true;
             this._Outcome.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
@@ -331,6 +332,7 @@
             this._Action.DataSource = null;
             this._Action.DefaultText = "";
             this._Action.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Action.InitialIndex = 0;
             this._Action.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Action.LabelAutoSize = false;
             this._Action.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
@@ -358,8 +360,9 @@
             this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DataBindings.Add(new System.Windows.Forms.Binding("DateField", this.customerContactsBindingSource, "Booking.Date", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 5, 40, 35, 872);
+            this._BookingDate.DataBindings.Add(new System.Windows.Forms.Binding("DateText", this.customerContactsBindingSource, "Booking.GetDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 0, 0, 0, 0);
+            this._BookingDate.DateText = "09/08";
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._BookingDate.LabelAutoSize = true;
@@ -398,6 +401,7 @@
             this._BookingType.DefaultText = "";
             this._BookingType.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingType.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._BookingType.InitialIndex = 0;
             this._BookingType.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._BookingType.LabelAutoSize = true;
             this._BookingType.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
@@ -430,6 +434,7 @@
             this._BookingTimeSlot.DefaultText = "";
             this._BookingTimeSlot.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingTimeSlot.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._BookingTimeSlot.InitialIndex = 0;
             this._BookingTimeSlot.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._BookingTimeSlot.LabelAutoSize = true;
             this._BookingTimeSlot.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
@@ -1171,7 +1176,7 @@
             this._Address.BorderColour = System.Drawing.Color.DarkSlateGray;
             this._Address.ControlHeight = 20;
             this._Address.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Address.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Address.Address", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Address.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Address.Address", true));
             this._Address.DefaultText = "";
             this._Address.Font = new System.Drawing.Font("Verdana", 7F);
             this._Address.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -1203,40 +1208,33 @@
             this._DialContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
             this._DialContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dialToolStripMenuItem,
-            this.transferToolStripMenuItem,
             this.toolStripSeparator1,
             this.searchToolStripMenuItem,
             this.toolStripMenuItem10,
             this.toolStripMenuItem12});
             this._DialContextMenu.Name = "_DialContextMenu";
             this._DialContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this._DialContextMenu.Size = new System.Drawing.Size(117, 120);
+            this._DialContextMenu.Size = new System.Drawing.Size(116, 98);
+            this._DialContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this._DialContextMenu_Opening);
             this._DialContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._TextFieldContextMenu_ItemClicked);
             // 
             // dialToolStripMenuItem
             // 
             this.dialToolStripMenuItem.Name = "dialToolStripMenuItem";
-            this.dialToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.dialToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.dialToolStripMenuItem.Text = "Dial";
             this.dialToolStripMenuItem.Click += new System.EventHandler(this._Dial_click);
-            // 
-            // transferToolStripMenuItem
-            // 
-            this.transferToolStripMenuItem.Name = "transferToolStripMenuItem";
-            this.transferToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
-            this.transferToolStripMenuItem.Text = "Transfer";
-            this.transferToolStripMenuItem.Click += new System.EventHandler(this._Transfer_click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(113, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(112, 6);
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Find_5650;
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
             this.searchToolStripMenuItem.Text = "SCAMPS";
             this.searchToolStripMenuItem.Click += new System.EventHandler(this._SearchSCAMPS_click);
             // 
@@ -1245,7 +1243,7 @@
             this.toolStripMenuItem10.Enabled = false;
             this.toolStripMenuItem10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem10.Image")));
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(116, 22);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(115, 22);
             this.toolStripMenuItem10.Text = "DIMPS";
             // 
             // toolStripMenuItem12
@@ -1253,14 +1251,13 @@
             this.toolStripMenuItem12.Enabled = false;
             this.toolStripMenuItem12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem12.Image")));
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(116, 22);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(115, 22);
             this.toolStripMenuItem12.Text = "ICON";
             // 
             // ServiceTypePanel
             // 
             this.ServiceTypePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ServiceTypePanel.BackColor = System.Drawing.Color.LightGray;
-            this.ServiceTypePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.ServiceTypePanel.Controls.Add(this._LAT);
             this.ServiceTypePanel.Controls.Add(this._LIP);
             this.ServiceTypePanel.Controls.Add(this._ONC);
@@ -1454,6 +1451,7 @@
             // 
             // flowLayoutPanel4
             // 
+            this.flowLayoutPanel4.BackColor = System.Drawing.Color.LightSlateGray;
             this.flowLayoutPanel4.Controls.Add(this.flowLayoutPanel1);
             this.flowLayoutPanel4.Controls.Add(this._notePanel);
             this.flowLayoutPanel4.Controls.Add(this._NavigatorPanel);
@@ -1575,10 +1573,10 @@
             this.bindingNavigator1.GripMargin = new System.Windows.Forms.Padding(0);
             this.bindingNavigator1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._CallMenuButton,
             this._PrevCallButton,
             this._CurrentPosition,
-            this._NextCallButton,
-            this._CallMenuButton});
+            this._NextCallButton});
             this.bindingNavigator1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator1.MoveFirstItem = null;
@@ -1595,16 +1593,34 @@
             this.bindingNavigator1.Text = "bindingNavigatorIgnoreFocus1";
             this.bindingNavigator1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
-            // _PrevCallButton
+            // _CallMenuButton
             // 
-            this._PrevCallButton.AutoSize = false;
-            this._PrevCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._PrevCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_PrevCallButton.Image")));
-            this._PrevCallButton.Margin = new System.Windows.Forms.Padding(1, 1, 0, 2);
-            this._PrevCallButton.Name = "_PrevCallButton";
-            this._PrevCallButton.RightToLeftAutoMirrorImage = true;
-            this._PrevCallButton.Size = new System.Drawing.Size(20, 18);
-            this._PrevCallButton.Text = "Move previous";
+            this._CallMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this._CallMenuButton.AutoSize = false;
+            this._CallMenuButton.AutoToolTip = false;
+            this._CallMenuButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._CallMenuButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._CallMenuButton.Image = global::CallTracker.Properties.Resources.TinyArrow3;
+            this._CallMenuButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this._CallMenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._CallMenuButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._CallMenuButton.Margin = new System.Windows.Forms.Padding(0);
+            this._CallMenuButton.Name = "_CallMenuButton";
+            this._CallMenuButton.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
+            this._CallMenuButton.Size = new System.Drawing.Size(15, 28);
+            this._CallMenuButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._CallMenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
+            // 
+            // _NextCallButton
+            // 
+            this._NextCallButton.AutoSize = false;
+            this._NextCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._NextCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_NextCallButton.Image")));
+            this._NextCallButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._NextCallButton.Name = "_NextCallButton";
+            this._NextCallButton.RightToLeftAutoMirrorImage = true;
+            this._NextCallButton.Size = new System.Drawing.Size(20, 18);
+            this._NextCallButton.Text = "Move next";
             // 
             // _CurrentPosition
             // 
@@ -1618,34 +1634,16 @@
             this._CurrentPosition.Text = "0";
             this._CurrentPosition.ToolTipText = "Current position";
             // 
-            // _NextCallButton
+            // _PrevCallButton
             // 
-            this._NextCallButton.AutoSize = false;
-            this._NextCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._NextCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_NextCallButton.Image")));
-            this._NextCallButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._NextCallButton.Name = "_NextCallButton";
-            this._NextCallButton.RightToLeftAutoMirrorImage = true;
-            this._NextCallButton.Size = new System.Drawing.Size(20, 18);
-            this._NextCallButton.Text = "Move next";
-            // 
-            // _CallMenuButton
-            // 
-            this._CallMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this._CallMenuButton.AutoSize = false;
-            this._CallMenuButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._CallMenuButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._CallMenuButton.Image = global::CallTracker.Properties.Resources.TinyArrow3;
-            this._CallMenuButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this._CallMenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._CallMenuButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._CallMenuButton.Margin = new System.Windows.Forms.Padding(0);
-            this._CallMenuButton.Name = "_CallMenuButton";
-            this._CallMenuButton.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this._CallMenuButton.Size = new System.Drawing.Size(15, 28);
-            this._CallMenuButton.Text = "toolStripButton1";
-            this._CallMenuButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this._CallMenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
+            this._PrevCallButton.AutoSize = false;
+            this._PrevCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._PrevCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_PrevCallButton.Image")));
+            this._PrevCallButton.Margin = new System.Windows.Forms.Padding(1, 1, 0, 2);
+            this._PrevCallButton.Name = "_PrevCallButton";
+            this._PrevCallButton.RightToLeftAutoMirrorImage = true;
+            this._PrevCallButton.Size = new System.Drawing.Size(20, 18);
+            this._PrevCallButton.Text = "Move previous";
             // 
             // MainPanel
             // 
@@ -1803,7 +1801,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ContextMenuStrip _DialContextMenu;
         private System.Windows.Forms.ToolStripMenuItem dialToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem transferToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem callHistoryToolStripMenuItem;
         public System.Windows.Forms.CheckBox _LAT;
         public System.Windows.Forms.CheckBox _LIP;
@@ -1860,7 +1857,6 @@
         private LabelledTextBox _Itcase;
         internal LabelledComboBox _BookingType;
         internal LabelledComboBox _BookingTimeSlot;
-        private LabelledDatePicker _BookingDate;
         private System.Windows.Forms.ToolStripButton _PrevCallButton;
         private System.Windows.Forms.ToolStripTextBox _CurrentPosition;
         private System.Windows.Forms.ToolStripButton _NextCallButton;
@@ -1891,5 +1887,6 @@
         internal LabelledComboBoxLong _Action;
         internal LabelledComboBox _Symptom;
         internal LabelledComboBox _Outcome;
+        internal LabelledDatePicker _BookingDate;
     }
 }

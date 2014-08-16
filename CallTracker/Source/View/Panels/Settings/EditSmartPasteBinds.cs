@@ -22,6 +22,7 @@ namespace CallTracker.View
         {
             InitializeComponent();
             dgv = dataGridView1;
+            dataGridView1.DataError += dataGridView1_DataError;
             dataGridView1.CellClick += dataGridView1_CellClick;
         }
 
@@ -57,6 +58,18 @@ namespace CallTracker.View
                                       true,
                                       DataSourceUpdateMode.OnPropertyChanged));
         }
+
+        
+        private void dataGridView1_DataError(object sender,
+        DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Exception != null &&
+                e.Context == DataGridViewDataErrorContexts.Commit)
+            {
+                EventLogger.LogNewEvent("Error: "+this.Name+" couldn't commit data to cell");
+            }
+        }
+
         public void SelectQuery(PasteBind _query)
         {
             pasteBindBindingSource.Position = pasteBindBindingSource.IndexOf(_query);

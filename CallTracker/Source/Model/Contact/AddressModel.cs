@@ -63,19 +63,25 @@ namespace CallTracker.Model
                 if (split1.Length > 1)
                 { 
                     Postcode = split1[1];
-                    State = (from a in Main.ServicesStore.servicesDataSet.States
-                            where a.Postcode == Postcode.Substring(0,1) ||
-                                  a.Postcode == Postcode.Substring(0,2)
-                            select a).OrderBy(x => x.Postcode.Length).Last().NameShort;
+                    var query = (from a in Main.ServicesStore.servicesDataSet.States
+                                where a.Postcode == Postcode.Substring(0,1) ||
+                                      a.Postcode == Postcode.Substring(0,2)
+                                select a).OrderBy(x => x.Postcode.Length).LastOrDefault();
+                    if(query != null)
+                        State = query.NameShort;
                 }
 
                 string[] split2 = Regex.Split(split1[0], @"(Victoria|Tasmania|Queensland|New South Wales|(?:South|Western) Australia|(?:Northern|Australian Captial) Territory|VIC|NSW|SA|WA|NT|TAS|ACT|QLD)", RegexOptions.IgnoreCase);
 
                 if (split2.Length > 1)
-                    State = (from a in Main.ServicesStore.servicesDataSet.States
-                             where a.NameShort.ToLower() == split2[1].ToLower() ||
-                                   a.NameLong.ToLower() == split2[1].ToLower()
-                             select a).First().NameShort;
+                {
+                    var query = (from a in Main.ServicesStore.servicesDataSet.States
+                                 where a.NameShort.ToLower() == split2[1].ToLower() ||
+                                       a.NameLong.ToLower() == split2[1].ToLower()
+                                 select a).First();
+                    if(query != null)
+                        State = query.NameShort;
+                }
 
                 Match AddressMatch = new AddressPattern().Match(split2[0]);
 

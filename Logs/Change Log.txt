@@ -24,13 +24,27 @@ Yellow: 255,198,0
 - Added "" to Data string to enable pastes of strings.
 - Added MAC Regex.
 
-0.33.0
-| Seperated Outcome to CallType and Outcome dropdowns.
+
+
+
+
+0.33.2
 - Contact count resets on first IPCC login for the day, data saves on the last logout.
 - Added date selection to CallHistory.
 - Resources are now saved on settings close.
-| Outcome drop down resets on each new call.
 - Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
+
+0.33.1
+| Stopped contextmenus from showing during load.
+| Made Context Menu Arrows more visible.
+| Roughed out Dial or Transfer method and connected context menus.
+| Experimented with fading tooltip.
+| Clear red selected affected service.
+| PR generate not working.
+
+0.33.0
+| Seperated Outcome to CallType and Outcome dropdowns.
+| Outcome drop down resets on each new call.
 | Copy All Selects the text.
 | PRGenerator static class made.
 

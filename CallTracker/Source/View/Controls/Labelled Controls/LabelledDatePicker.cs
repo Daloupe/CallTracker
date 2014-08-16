@@ -30,6 +30,15 @@ namespace CallTracker.View
             get { return _DateTimePicker.Value; }
             set { _DateTimePicker.Value = value; }
         }
+        //[Category("!Input")]
+        [Bindable(true)]
+        //[Browsable(true)]
+        public string DateText
+        {
+            get { return _DateTimePicker.Text; }
+            set { _DateTimePicker.Text = value; }
+        }
+
 
         [Browsable(true)]
         public event EventHandler ValueChanged

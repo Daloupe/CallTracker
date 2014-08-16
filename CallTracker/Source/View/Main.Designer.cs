@@ -84,9 +84,6 @@
             this.bookmarksSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.editBookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemsContextualToolStripMenuItem = new ContextualToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.iFMSToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.systemsSeperator = new System.Windows.Forms.ToolStripSeparator();
             this.editSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
@@ -150,6 +147,7 @@
             // 
             // _ViewPanel
             // 
+            this._ViewPanel.BackColor = System.Drawing.Color.LightSlateGray;
             this._ViewPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this._ViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ViewPanel.Location = new System.Drawing.Point(0, 16);
@@ -300,7 +298,7 @@
             // 
             this.notReadyToolStripMenuItem.Enabled = false;
             this.notReadyToolStripMenuItem.Name = "notReadyToolStripMenuItem";
-            this.notReadyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.notReadyToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.notReadyToolStripMenuItem.Tag = "AgentStatus: NotReady";
             this.notReadyToolStripMenuItem.Text = "Not Ready";
             // 
@@ -308,7 +306,7 @@
             // 
             this.readyToolStripMenuItem.Enabled = false;
             this.readyToolStripMenuItem.Name = "readyToolStripMenuItem";
-            this.readyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.readyToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.readyToolStripMenuItem.Tag = "AgentStatus: Ready";
             this.readyToolStripMenuItem.Text = "Ready";
             // 
@@ -316,7 +314,7 @@
             // 
             this.talkingToolStripMenuItem.Enabled = false;
             this.talkingToolStripMenuItem.Name = "talkingToolStripMenuItem";
-            this.talkingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.talkingToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.talkingToolStripMenuItem.Tag = "AgentStatus: Talking";
             this.talkingToolStripMenuItem.Text = "Talking";
             // 
@@ -324,20 +322,20 @@
             // 
             this.wrapUpToolStripMenuItem.Enabled = false;
             this.wrapUpToolStripMenuItem.Name = "wrapUpToolStripMenuItem";
-            this.wrapUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wrapUpToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.wrapUpToolStripMenuItem.Tag = "AgentStatus: WrapUp";
             this.wrapUpToolStripMenuItem.Text = "Wrap Up";
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(140, 6);
             // 
             // logInToolStripMenuItem
             // 
             this.logInToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallIn;
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
-            this.logInToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.logInToolStripMenuItem.Tag = "AgentStatus:";
             this.logInToolStripMenuItem.Text = "Log In";
             // 
@@ -346,14 +344,14 @@
             this.logOutToolStripMenuItem.Enabled = false;
             this.logOutToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallOut;
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.logOutToolStripMenuItem.Tag = "AgentStatus:";
             this.logOutToolStripMenuItem.Text = "Log Out";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(140, 6);
             // 
             // monitorIPCCToolStripMenuItem
             // 
@@ -361,7 +359,7 @@
             this.monitorIPCCToolStripMenuItem.CheckOnClick = true;
             this.monitorIPCCToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.monitorIPCCToolStripMenuItem.Name = "monitorIPCCToolStripMenuItem";
-            this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.monitorIPCCToolStripMenuItem.Tag = "MonitorIPCC";
             this.monitorIPCCToolStripMenuItem.Text = "Monitor IPCC";
             // 
@@ -650,9 +648,6 @@
             // systemsContextualToolStripMenuItem
             // 
             this.systemsContextualToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator8,
-            this.toolStripMenuItem1,
-            this.iFMSToolStripMenuItem1,
             this.systemsSeperator,
             this.editSystemsToolStripMenuItem});
             this.systemsContextualToolStripMenuItem.Name = "systemsContextualToolStripMenuItem";
@@ -660,27 +655,6 @@
             this.systemsContextualToolStripMenuItem.Text = "Systems";
             this.systemsContextualToolStripMenuItem.UpdateObject = null;
             this.systemsContextualToolStripMenuItem.DropDownOpening += new System.EventHandler(this.resourcesToolStripMenuItem_DropDownOpening);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(138, 6);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
-            this.toolStripMenuItem1.Tag = "http://icon.optus.com.au/";
-            this.toolStripMenuItem1.Text = "ICON";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.OpenURL_Click);
-            // 
-            // iFMSToolStripMenuItem1
-            // 
-            this.iFMSToolStripMenuItem1.Name = "iFMSToolStripMenuItem1";
-            this.iFMSToolStripMenuItem1.Size = new System.Drawing.Size(141, 22);
-            this.iFMSToolStripMenuItem1.Tag = "http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F191_CUST_ACCESS_OV.aspx";
-            this.iFMSToolStripMenuItem1.Text = "IFMS";
-            this.iFMSToolStripMenuItem1.Click += new System.EventHandler(this.OpenURL_Click);
             // 
             // systemsSeperator
             // 
@@ -964,7 +938,7 @@
             this.Opacity = 0D;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Call Tracker";
+            this.Text = "Wingman";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.Shown += new System.EventHandler(this.Main_Shown);
@@ -1058,9 +1032,6 @@
         private System.Windows.Forms.ToolStripMenuItem editBookmarksToolStripMenuItem;
         internal ContextualToolStripMenuItem systemsContextualToolStripMenuItem;
         internal ContextualToolStripMenuItem bookmarksContextualToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem iFMSToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem nexusToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem numbersToKnowToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rOXToolStripMenuItem;

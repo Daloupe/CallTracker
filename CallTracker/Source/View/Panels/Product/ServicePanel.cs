@@ -113,30 +113,30 @@ namespace CallTracker.View
             UpdateSeverity();
         }
 
-        private void bindingSource1_BindingComplete(object sender, BindingCompleteEventArgs e)
-        {
-            // Check if the data source has been updated, and that no error has occured.
-            if (e.BindingCompleteContext ==
-                BindingCompleteContext.DataSourceUpdate && e.Exception == null)
+        //private void bindingSource1_BindingComplete(object sender, BindingCompleteEventArgs e)
+        //{
+        //    // Check if the data source has been updated, and that no error has occured.
+        //    if (e.BindingCompleteContext ==
+        //        BindingCompleteContext.DataSourceUpdate && e.Exception == null)
 
-                // If not, end the current edit.
-                e.Binding.BindingManagerBase.EndCurrentEdit();
-        }
+        //        // If not, end the current edit.
+        //        e.Binding.BindingManagerBase.EndCurrentEdit();
+        //}
 
         public virtual void ConnectEvents(EventHandler action)
         {
             foreach (Control control in Controls)
-                control.MouseEnter += action;
+                control.MouseHover += action;
         }
 
         public virtual void RemoveEvents(EventHandler action)
         {
             foreach (Control control in Controls)
-                control.MouseEnter -= action;
+                control.MouseHover -= action;
         }
 
-        public delegate void AddListItem();
-        public AddListItem myDelegate;
+        //public delegate void AddListItem();
+        //public AddListItem myDelegate;
         public void ChangeService(ServiceTypes _service)
         {
             currentFlowPanel.HidePanel();
@@ -147,13 +147,14 @@ namespace CallTracker.View
             currentFlowPanel.ShowPanel();
             if (currentFlowPanel.ServiceType.IsNot(ServiceTypes.NONE))
             {
+                EditContacts.MainForm.toolStripServiceSelector.Text = currentFlowPanel.Service.ProblemStylesRow.Description;
                 SuspendLayout();
                 UpdateSymptoms();
                 UpdateEquipment();
                 UpdateSeverity();
                 ResumeLayout();
             }
-
+            EditContacts.MainForm.SelectedContact.Fault.AffectedServiceType = currentFlowPanel.ServiceType;
         }
 
         public void UpdateSymptoms()
@@ -291,6 +292,7 @@ namespace CallTracker.View
         {
             if (ServiceType.IsNot(ServiceTypes.NONE))
             {
+                CheckBox.ForeColor = Color.DarkRed;
                 foreach (LabelledBase control in HiddenControls)
                     control.Hide();
                 Panel.Show();
@@ -299,14 +301,14 @@ namespace CallTracker.View
         }
 
         public void HidePanel()
-        {
+        {     
             if (ServiceType.IsNot(ServiceTypes.NONE))
             {
+                CheckBox.ForeColor = Color.Black;
                 Panel.Hide();
                 foreach (LabelledBase control in HiddenControls)
                     control.Show();
                 ContextMenuItem.Checked = false;
-                CheckBox.ForeColor = Color.Black;
             }
         }
     }

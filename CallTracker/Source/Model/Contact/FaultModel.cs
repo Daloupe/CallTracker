@@ -91,7 +91,7 @@ namespace CallTracker.Model
                     var query = from a in Main.ServicesStore.servicesDataSet.Services
                                 where a.ProductCode == value
                                 select a;
-                    Service = query.First();
+                    Service = query.FirstOrDefault();
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace CallTracker.Model
                     return String.Empty;
                 return (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
                         where a.Id == Service.ProblemStyleId
-                        select a).First().IFMSCode; 
+                        select a).FirstOrDefault().IFMSCode; 
             } 
         }
 
@@ -147,12 +147,15 @@ namespace CallTracker.Model
             get { return AffectedServices.Has(ServiceTypes.LAT); }
             set 
             {
+                ServiceTypes temp = AffectedServices;
                 if (value)
-                    AffectedServices = RemoveNBN(AffectedServices.Add(ServiceTypes.LAT)
-                                                                 .Remove(ServiceTypes.LIP));
+                    temp = RemoveNBN(temp.Add(ServiceTypes.LAT)
+                                         .Remove(ServiceTypes.LIP));
 
                 else
-                    AffectedServices = RemoveNBN(AffectedServices.Remove(ServiceTypes.LAT));        
+                    temp = RemoveNBN(temp.Remove(ServiceTypes.LAT));
+
+                AffectedServices = temp;
             }
         }
 
@@ -161,42 +164,44 @@ namespace CallTracker.Model
             get { return AffectedServices.Has(ServiceTypes.LIP); }
             set 
             {
+                ServiceTypes temp = AffectedServices;
                 if (value)
-                    AffectedServices = RemoveNBN(AffectedServices.Remove(ServiceTypes.LAT)
-                                                                 .Add(ServiceTypes.LIP)); 
+                    temp = RemoveNBN(temp.Remove(ServiceTypes.LAT)
+                                         .Add(ServiceTypes.LIP)); 
                 else
-                    AffectedServices = RemoveNBN(AffectedServices.Remove(ServiceTypes.LIP));    
+                    temp = RemoveNBN(temp.Remove(ServiceTypes.LIP));
+                AffectedServices = temp;
             }
         }
 
         public bool ONC
         {
             get { return AffectedServices.Has(ServiceTypes.ONC); }
-            set { AffectedServices = RemoveNBN(AffectedServices.Change(ServiceTypes.ONC, value)); }
+            set { ServiceTypes temp = AffectedServices; temp = RemoveNBN(temp.Change(ServiceTypes.ONC, value)); AffectedServices = temp; }
         }
 
         public bool DTV
         {
             get { return AffectedServices.Has(ServiceTypes.DTV); }
-            set { AffectedServices = RemoveNBN(AffectedServices.Change(ServiceTypes.DTV, value)); }
+            set { ServiceTypes temp = AffectedServices; temp = RemoveNBN(temp.Change(ServiceTypes.DTV, value)); AffectedServices = temp; }
         }
 
         public bool NBF
         {
             get { return AffectedServices.Has(ServiceTypes.NBF); }
-            set { AffectedServices = RemoveHFC(AffectedServices.Change(ServiceTypes.NBF, value)); }
+            set { ServiceTypes temp = AffectedServices; temp = RemoveHFC(temp.Change(ServiceTypes.NBF, value)); AffectedServices = temp; }
         }
 
         public bool NFV
         {
             get { return AffectedServices.Has(ServiceTypes.NFV); }
-            set { AffectedServices = RemoveHFC(AffectedServices.Change(ServiceTypes.NFV, value)); }
+            set { ServiceTypes temp = AffectedServices; temp = RemoveHFC(temp.Change(ServiceTypes.NFV, value)); AffectedServices = temp; }
         }
 
         public bool MTV
         {
             get { return AffectedServices.Has(ServiceTypes.MTV); }
-            set { AffectedServices = AffectedServices.Change(ServiceTypes.MTV, value); }
+            set { ServiceTypes temp = AffectedServices; temp = temp.Change(ServiceTypes.MTV, value); AffectedServices = temp; }
         }
 
         public ServiceTypes RemoveNBN(ServiceTypes services)

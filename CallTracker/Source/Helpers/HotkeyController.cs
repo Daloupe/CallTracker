@@ -11,6 +11,8 @@ using System.Threading;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
+using System.Drawing;
+
 using Shortcut;
 using WatiN.Core;
 //using WatiN.Core.Constraints;
@@ -75,7 +77,12 @@ namespace CallTracker.Helpers
             Settings.Instance.WaitUntilExistsTimeOut = 3;
 
             props = TypeDescriptor.GetProperties(parent.SelectedContact.Service);
+
+            //bgw.DoWork += bgw_DoWork;
+            //bgw.RunWorkerCompleted += bgw_RunWorkerCompleted;
         }
+
+
 
         public void Dispose()
         {
@@ -355,7 +362,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private static void OnSmartCopy(HotkeyPressedEventArgs e)
+        private void OnSmartCopy(HotkeyPressedEventArgs e)
         {
             //string oldClip = Clipboard.GetText();
             EventLogger.LogNewEvent("Starting Smart Copy", EventLogLevel.Brief);
@@ -368,8 +375,6 @@ namespace CallTracker.Helpers
             if (textlen == 0)
                 return;
             string firstchar = text.Substring(0, 1);
-
-            
             
             if(new DigitPattern().IsMatch(text))
             {
@@ -434,7 +439,30 @@ namespace CallTracker.Helpers
                     else                                                    parent.SelectedContact.Note += text;
                 }    
             }
+
+                 //bgw.RunWorkerAsync();
+                
+
         }
+
+        
+        //void bgw_DoWork(object sender, DoWorkEventArgs e)
+        //{
+
+        //    FadingTooltip FadingTooltip = new FadingTooltip(Cursor.Position);
+        //    FadingTooltip.TopMost = true;
+        //        FadingTooltip.ShowandFade();
+        //        e.Result = FadingTooltip;
+            
+        //}
+
+        //void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        //{
+          
+        //}
+        
+               
+        //    public BackgroundWorker bgw = new BackgroundWorker();
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         // System Search /////////////////////////////////////////////////////////////////////////////////////

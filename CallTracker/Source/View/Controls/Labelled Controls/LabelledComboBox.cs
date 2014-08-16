@@ -29,6 +29,15 @@ namespace CallTracker.View
             set { _ComboBox.Text = value; }
         }
 
+        [Category("!Input")]
+        [DefaultValue(-1)]
+        public int InitialIndex
+        {
+            get;
+            set;
+        }
+
+
         [Browsable(true)]
         public event EventHandler SelectedIndexChanged
         {
@@ -56,24 +65,43 @@ namespace CallTracker.View
 
         public void BindComboBox(List<string> _dataSource, BindingSource _bindingSource)
         {
-            _ComboBox.DataSource = _dataSource;
+            //_ComboBox.DataSource = null;
+            //_ComboBox.DataBindings.Clear();
+            if (_dataSource.Count > 0)
+            {
+                _ComboBox.DataSource = _dataSource;
+                _ComboBox.SelectedIndex = InitialIndex;
+            }
             _ComboBox.DataBindings.Add("SelectedItem", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         public void BindComboBox(Array _dataSource, BindingSource _bindingSource)
         {
-            _ComboBox.DataSource = _dataSource;
+            //_ComboBox.DataSource = null;
+            //_ComboBox.DataBindings.Clear();
+            if (_dataSource.Length > 0)
+            {
+                _ComboBox.DataSource = _dataSource;
+                _ComboBox.SelectedIndex = InitialIndex;
+            }
             _ComboBox.DataBindings.Add("SelectedItem", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         public void BindComboBox(BindingList<string> _dataSource, BindingSource _bindingSource)
         {
-            _ComboBox.DataSource = _dataSource;
+            //_ComboBox.DataSource = null;
+            //_ComboBox.DataBindings.Clear();
+            if (_dataSource.Count > 0)
+            {
+                _ComboBox.DataSource = _dataSource;
+                _ComboBox.SelectedIndex = InitialIndex;
+            }
             _ComboBox.DataBindings.Add("SelectedItem", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void _ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //_ComboBox.Select(0, 0);
             this.ParentForm.Validate();
         }
 
@@ -85,6 +113,8 @@ namespace CallTracker.View
         private void _ComboBox_DropDownClosed(object sender, EventArgs e)
         {
             this.Parent.Focus();
+            //_ComboBox.Select(0, 0);
+            
         }
     }
 }

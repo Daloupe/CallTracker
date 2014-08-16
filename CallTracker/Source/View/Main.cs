@@ -17,7 +17,6 @@ using PropertyChanged;
 using CallTracker.Model;
 using CallTracker.Helpers;
 using CallTracker.Data;
-using CustomControls;
 
 using System.Windows.Automation;
 using TestStack.White.Configuration;
@@ -67,9 +66,9 @@ namespace CallTracker.View
 
             Splash.StepProgress("Setting App Location");
             SetAppLocation();
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
-            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            //SetStyle(ControlStyles.DoubleBuffer, true);
+            //this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.DoubleBuffer, true);
             //SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
 
             versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
@@ -107,7 +106,7 @@ namespace CallTracker.View
 
             SelectedContact = new CustomerContact();
 
-            Splash.UpdateProgress("Loading View", 30);
+            Splash.UpdateProgress("Loading Views", 30);
             UpdateProgressBar("Loading Views", EventLogLevel.Status);
             //Splash.StepProgress("Edit Contacts");
             editContact = new EditContact(this);
@@ -202,7 +201,7 @@ namespace CallTracker.View
             Splash.UpdateProgress("Finishing", 99);
             Splash.UpdateProgress("", 100);
             UpdateProgressBar(0, "Finished Loading", EventLogLevel.ClearStatus);
-            ChangeCallStateMenuItem(logOutToolStripMenuItem);       
+            ChangeCallStateMenuItem(logOutToolStripMenuItem);
         } 
 
         private void Main_Shown(object sender, EventArgs e)
@@ -418,6 +417,19 @@ namespace CallTracker.View
             IPCCProcess = null;
         }
 
+        public void DialOrTransfer(string value)
+        {
+            if (!CheckForIPCC())
+                return;
+
+            string dialOrTransfer = "btnDial";
+            if (IPCCCallStatus.Name == "AgentStatus: Talking")
+                dialOrTransfer = "btnTranfer";
+
+            TestStack.White.UIItems.Button button = IPCCWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId(dialOrTransfer));
+            button.Click();
+        }
+
         private DateTime _CallStateTimeElapsed;
         private void _WorkReadyTimer_Tick(object sender, EventArgs e)
         {
@@ -606,23 +618,15 @@ namespace CallTracker.View
 
         public void transfer_Click(object sender, EventArgs e)
         {
-            if (!CheckForIPCC())
-                return;
-
-            string dialOrTransfer = "btnDial";
-            if (IPCCCallStatus.Name == "AgentStatus: Talking")
-                dialOrTransfer = "btnTranfer";
-
-            TestStack.White.UIItems.Button button = IPCCWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId(dialOrTransfer));
-            button.Click();
+            ToolStripMenuItem item = (ToolStripMenuItem)sender;
             //Point offsets = new Point();
             //string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
             //offsets.X = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[1]);
             //offsets.Y = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[2]);
 
             //button.Click();
-
-            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            DialOrTransfer(item.Tag.ToString());
+            
             //WindowHelper.IPCCAutomation(item.Tag.ToString(), offsets);
         }
 

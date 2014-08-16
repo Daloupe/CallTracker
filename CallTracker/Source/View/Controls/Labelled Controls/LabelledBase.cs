@@ -182,9 +182,14 @@ namespace CallTracker.View
         protected virtual void LabelledTextBox_ContextMenuStripChanged(object sender, EventArgs e)
         {
             if (ContextMenuStrip != null)
+            {
                 _MenuButton.Show();
+                this.ContextMenuStrip.Opacity = 100;
+            }
             else
                 _MenuButton.Hide();
+
+            
         }
 
         private void LabelledBase_Load(object sender, EventArgs e)
@@ -192,9 +197,11 @@ namespace CallTracker.View
             if (ContextMenuStrip != null)
             {
                 this._MenuButton.Show();
-                this.ContextMenuStrip.Show();
+                this.ContextMenuStrip.Opacity = 0;
+                this.ContextMenuStrip.Show(this, 9, 9);
                 this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
             }
+
         }
 
     }
