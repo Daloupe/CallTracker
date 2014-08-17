@@ -57,8 +57,11 @@ namespace CallTracker.View
 
             DataStore = MainForm.DataStore;
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
+            customerContactsBindingSource.Filter = "Id = 100";
             customerContactsBindingSource.DataSource = DataStore.Contacts;
-            customerContactsBindingSource.Position = DataStore.Contacts.Count;
+
+            customerContactsBindingSource.MoveLast();
+            //customerContactsBindingSource.Position = DataStore.Contacts.Count;
 
            
 
@@ -123,7 +126,7 @@ namespace CallTracker.View
 
 
                 MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
-                MainForm.SelectedContact = DataStore.Contacts[customerContactsBindingSource.Position];
+                MainForm.SelectedContact = (CustomerContact)customerContactsBindingSource.Current;
                 MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
 
                 _BookingDate.BindDatePickerBox(customerContactsBindingSource);
@@ -152,10 +155,9 @@ namespace CallTracker.View
 
         public void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            DataStore.Contacts.Add(new CustomerContact(1));
-            customerContactsBindingSource.Position = DataStore.Contacts.Count;
-            if(DataStore.Contacts.Count == 1)
-                MainForm.editContact.customerContactsBindingSource.ResetBindings(true);
+            //customerContactsBindingSource.Add(new CustomerContact());
+            //customerContactsBindingSource.Position = DataStore.Contacts.Count;
+            customerContactsBindingSource.AddNew();
         }
 
         public void DeleteCalls()

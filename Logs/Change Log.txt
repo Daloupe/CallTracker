@@ -27,12 +27,17 @@ Yellow: 255,198,0
 
 
 
-
-0.33.2
+0.3.4.0
+- Added Contact model to DataSet;
 - Contact count resets on first IPCC login for the day, data saves on the last logout.
 - Added date selection to CallHistory.
 - Resources are now saved on settings close.
 - Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
+- Action isn't saving/binding.
+- Affected service is ding strange things on reload. Perhaps the filter changes the order.
+
+0.33.2
+| Changed bining method.
 
 0.33.1
 | Stopped contextmenus from showing during load.

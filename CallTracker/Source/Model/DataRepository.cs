@@ -95,7 +95,8 @@ namespace CallTracker.Model
         [ProtoMember(1)]
         internal TriggerList<PasteBind> PasteBinds { get; set; }
         [ProtoMember(2)]
-        internal SortableBindingList<CustomerContact> Contacts { get; set; }
+        internal DataView Contacts { get; set; }
+        //internal SortableBindingList<CustomerContact> Contacts { get; set; }
         [ProtoMember(3)]
         internal BindingList<LoginsModel> Logins { get; set; }
         [ProtoMember(4)]
@@ -108,10 +109,12 @@ namespace CallTracker.Model
             Filename = "Data/Data.bin";
 
             PasteBinds = new TriggerList<PasteBind>();
-            Contacts = new SortableBindingList<CustomerContact>();
+            Contacts = new DataView();//new SortableBindingList<CustomerContact>();
             Logins = new BindingList<LoginsModel>();
             GridLinks = new GridLinksModel();
             User = String.Empty;
+            DataView dw = new DataView();
+           
         }
 
         public override UserDataStore ReadFile()
@@ -119,7 +122,10 @@ namespace CallTracker.Model
             UserDataStore dataStore;
 
             if (!File.Exists(Filename))
+            {
                 File.Create(Filename).Close();
+                Properties.Settings.Default.NextContactsId = 0;
+            }
             using (var file = File.OpenRead(Filename))
                 dataStore = Serializer.Deserialize<UserDataStore>(file);
 
@@ -132,7 +138,7 @@ namespace CallTracker.Model
             //newContact.Fault.AffectedServices = 1;
 
             if (dataStore.Contacts.Count == 0)
-                dataStore.Contacts.Add(new CustomerContact(1));
+                dataStore.Contacts.;// (new CustomerContact());
             dataStore.GridLinks.PopulateIfEmpty();
 
             return dataStore;

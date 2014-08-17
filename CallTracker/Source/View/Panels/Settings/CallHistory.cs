@@ -64,7 +64,7 @@ namespace CallTracker.View
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
-            bindingSource1 = MainForm.editContact.customerContactsBindingSource;
+            bindingSource1.DataSource = MainForm.DataStore.Contacts;
             dataGridView1.DataSource = bindingSource1;
             dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
         }
@@ -118,61 +118,14 @@ namespace CallTracker.View
 
         private void _ClearHistory_Click(object sender, EventArgs e)
         {
-
-            //if (dataGridView1.RowCount <= 1)
-            //{
-          
-            //    MainForm.DataStore.Contacts.RaiseListChangedEvents = false;
-            //    //MainForm.DataStore.Contacts.Add(new CustomerContact(1));
-            //    MainForm.DataStore.Contacts.RemoveAt(0);
-            //    MainForm.DataStore.Contacts.RaiseListChangedEvents = true;
-            //    MainForm.DataStore.Contacts.ResetBindings();
-                
-            //    //MainForm.editContact.customerContactsBindingSource.Position = 1;
-            //    //MainForm.editContact.customerContactsBindingSource.RemoveAt(0);
-            //    return;
-            //}
-
-            MainForm.DataStore.Contacts.Add(new CustomerContact(1));
-            MainForm.editContact.customerContactsBindingSource.Position = MainForm.DataStore.Contacts.Count;
-
-            MainForm.SelectedContact.NestedChange -= MainForm.editContact.SelectedContact_NestedChange;
-            //MainForm.editContact.customerContactsBindingSource.RaiseListChangedEvents = false;
-            MainForm.editContact.customerContactsBindingSource.SuspendBinding();
-            //bindingSource1.SuspendBinding();
-            callHistoryPanel1.RemoveBindingSource();
-            
-            dataGridView1.DataSource = null;
-            MainForm.DataStore.Contacts.Clear();
-            MainForm.editContact.customerContactsBindingSource.ResumeBinding();
-            //MainForm.DataStore.Contacts = new SortableBindingList<CustomerContact>();
-            MainForm.DataStore.Contacts.Add(new CustomerContact(1));
-            MainForm.editContact.customerContactsBindingSource.Position = 1;
-            
-            
-            //MainForm.editContact.DeleteCalls();
-            //MainForm.editContact.customerContactsBindingSource.Position = 0;
-
-
-            
-            //dataGridView1.DataSource = MainForm.editContact.customerContactsBindingSource;
-
-
-            
-            //bindingSource1.ResumeBinding();
-            callHistoryPanel1.SetBindingSource(MainForm.editContact.customerContactsBindingSource);
-            dataGridView1.DataSource = bindingSource1;
-            //MainForm.editContact.customerContactsBindingSource.RaiseListChangedEvents = true;
-
-            MainForm.editContact.customerContactsBindingSource.ResetBindings(true);
-
+            Properties.Settings.Default.NextContactsId = 0;
         }
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             if(MainForm.DataStore.Contacts.Count == 1)
             {
-                MainForm.DataStore.Contacts.Add(new CustomerContact(1));
+                MainForm.DataStore.Contacts.Add(new CustomerContact());
                 MainForm.editContact.customerContactsBindingSource.Position = 1;
             }else if(bindingSource1.Position == e.Row.Index)
             {

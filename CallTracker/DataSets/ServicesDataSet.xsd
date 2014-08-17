@@ -310,8 +310,16 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:short" minOccurs="0" />
-              <xs:element name="OutcomeId" msdata:Caption="Acronym" msprop:Generator_ColumnVarNameInTable="columnOutcomeId" msprop:Generator_ColumnPropNameInRow="OutcomeId" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInTable="OutcomeIdColumn" msprop:Generator_UserColumnName="OutcomeId" type="xs:short" minOccurs="0" />
+              <xs:element name="OutcomeId" msdata:Caption="Acronym" msprop:nullValue="_throw" msprop:Generator_ColumnPropNameInRow="OutcomeId" msprop:Generator_ColumnVarNameInTable="columnOutcomeId" msprop:Generator_ColumnPropNameInTable="OutcomeIdColumn" msprop:Generator_UserColumnName="OutcomeId" type="xs:short" minOccurs="0" />
               <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Contact" msprop:Generator_TableClassName="ContactDataTable" msprop:Generator_TableVarName="tableContact" msprop:Generator_TablePropName="Contact" msprop:Generator_RowDeletingName="ContactRowDeleting" msprop:Generator_RowChangingName="ContactRowChanging" msprop:Generator_RowEvHandlerName="ContactRowChangeEventHandler" msprop:Generator_RowDeletedName="ContactRowDeleted" msprop:Generator_UserTableName="Contact" msprop:Generator_RowChangedName="ContactRowChanged" msprop:Generator_RowEvArgName="ContactRowChangeEvent" msprop:Generator_RowClassName="ContactRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDataColumn1" msprop:Generator_ColumnPropNameInRow="DataColumn1" msprop:Generator_ColumnPropNameInTable="DataColumn1Column" msprop:Generator_UserColumnName="DataColumn1" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

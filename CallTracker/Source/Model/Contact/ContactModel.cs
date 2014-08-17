@@ -19,55 +19,6 @@ namespace CallTracker.Model
     [ImplementPropertyChanged]
     public class CustomerContact : INotifyPropertyChanged
     {
-        //public List<PRTemplateModel> HFCTemplate = new List<PRTemplateModel>
-        //{
-        //    new PRTemplateFindProperty("Name: ", "Name"),
-        //    new PRTemplateFunc("Contact Number: ", (x) => {string mobile = FindProperty.FollowPropertyPath(x, "Mobile"); return String.IsNullOrEmpty(mobile) ? FindProperty.FollowPropertyPath(x, "DN") + "- No Alt" : mobile}),
-        //    new PRTemplateFindProperty("Symptoms: ", "Fault.SymptomFull"),
-        //    new PRTemplateFunc("Configuration: "),
-        //    new PRTemplateString("Testing/Outcome: "),
-        //    new PRTemplateString("Issue/Root Cause: "),
-        //    new PRTemplateString("Next Action: ")
-        //};
-
-        //public List<PRTemplateModel> NBNTemplate = new List<PRTemplateModel>
-        //{
-        //    new PRTemplateModel("AVC ID: "),
-        //    new PRTemplateModel("CVC ID: "),
-        //    new PRTemplateModel("BRAS: "),
-        //    new PRTemplateModel("CSA ID: "),
-        //    new PRTemplateModel("NNI ID:"),
-        //    new PRTemplateModel("SIP Server: "),
-        //};
-
-        //public void GenerateNBNAdditions(ref StringBuilder sb)
-        //{
-        //    sb.Append("AVC ID: ");
-        //    sb.AppendLine(Service.AVC);
-        //    sb.Append("CVC ID: ");
-        //    sb.AppendLine(Service.CVC);
-        //    sb.Append("BRAS: ");
-        //    sb.AppendLine(Service.Bras);
-        //    sb.Append("CSA ID: ");
-        //    sb.AppendLine(Service.CSA);
-        //    sb.Append("NNI ID: ");
-        //    sb.AppendLine(Service.NNI);
-        //    sb.AppendLine("SIP Server: ");
-        //}
-
-        //public void GenerateCallbackTime(ref StringBuilder sb)
-        //{
-        //    if (Booking.Type.Is(BookingType.FAQ) || Booking.Type.Is(BookingType.CRQ))
-        //    {
-        //        sb.Append("Callback Window ");
-        //        sb.Append(Booking.Type);
-        //        sb.Append(": ");
-        //        sb.Append(Booking.Date.ToString("yyyy-MM-dd"));
-        //        sb.AppendLine(" " + Booking.Timeslot);
-        //    }
-           
-        //}
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public static DNPattern DNPattern = new DNPattern();
@@ -137,7 +88,7 @@ namespace CallTracker.Model
         [ProtoMember(12)]
         public ContactStatistics Contacts { get; set; }
         public string ContactDateTime { get { return Contacts.StartDate.Add(Contacts.StartTime).ToString("dd/MM HH:mm"); } }
-        public DateTime ContactDate { get { return Contacts.StartDate; } }
+        public string ContactDate { get { return Contacts.StartDate.ToString(); } }
         public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
         [ProtoMember(13)]
         public BookingModel Booking { get; set; }
@@ -184,42 +135,9 @@ namespace CallTracker.Model
 
         public CustomerContact()
         {
-            NameSplit = new NameModel();
-            Name = String.Empty;
-            Username = String.Empty;
-            DN = String.Empty;
-            Mobile = String.Empty;
-            CMBS = String.Empty;
-            ICON = String.Empty;
-            Note = String.Empty;
-            IDok = false;
+            Id = Properties.Settings.Default.NextContactsId;
+            Properties.Settings.Default.NextContactsId = Id + 1;
 
-            Address = new ContactAddress();
-            Service = new ServiceModel();
-            Fault = new FaultModel();
-            Contacts = new ContactStatistics();
-            Booking = new BookingModel();
-
-            //PRTemplateList.AddRange(HFCTemplate);
-
-            ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
-            ((INotifyPropertyChanged)NameSplit).PropertyChanged += CustomerContact_PropertyChanged;
-            ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
-            ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
-        }
-
-        public event PropertyChangedEventHandler NestedChange;
-
-
-        void CustomerContact_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if(NestedChange != null)
-                NestedChange(sender, e);
-        }
-
-        public CustomerContact(int _id)
-        {
-            Id = _id;
             NameSplit = new NameModel();
             Name = String.Empty;
             Username = String.Empty;
@@ -245,6 +163,15 @@ namespace CallTracker.Model
             ((INotifyPropertyChanged)NameSplit).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
+        }
+
+        public event PropertyChangedEventHandler NestedChange;
+
+
+        void CustomerContact_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if(NestedChange != null)
+                NestedChange(sender, e);
         }
 
         public object GetProperty(string property)

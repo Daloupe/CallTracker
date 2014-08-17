@@ -117,9 +117,9 @@
             this._NavigatorPanel = new System.Windows.Forms.Panel();
             this.bindingNavigator1 = new CallTracker.View.BindingNavigatorIgnoreFocus();
             this._CallMenuButton = new System.Windows.Forms.ToolStripButton();
-            this._NextCallButton = new System.Windows.Forms.ToolStripButton();
-            this._CurrentPosition = new System.Windows.Forms.ToolStripTextBox();
             this._PrevCallButton = new System.Windows.Forms.ToolStripButton();
+            this._CurrentPosition = new System.Windows.Forms.ToolStripTextBox();
+            this._NextCallButton = new System.Windows.Forms.ToolStripButton();
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this._OutcomeTooltip = new System.Windows.Forms.ToolTip(this.components);
@@ -389,6 +389,7 @@
             // 
             this.customerContactsBindingSource.AllowNew = true;
             this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
+            this.customerContactsBindingSource.Filter = "Id = 100";
             // 
             // _BookingType
             // 
@@ -1611,16 +1612,16 @@
             this._CallMenuButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._CallMenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
             // 
-            // _NextCallButton
+            // _PrevCallButton
             // 
-            this._NextCallButton.AutoSize = false;
-            this._NextCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._NextCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_NextCallButton.Image")));
-            this._NextCallButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._NextCallButton.Name = "_NextCallButton";
-            this._NextCallButton.RightToLeftAutoMirrorImage = true;
-            this._NextCallButton.Size = new System.Drawing.Size(20, 18);
-            this._NextCallButton.Text = "Move next";
+            this._PrevCallButton.AutoSize = false;
+            this._PrevCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._PrevCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_PrevCallButton.Image")));
+            this._PrevCallButton.Margin = new System.Windows.Forms.Padding(1, 1, 0, 2);
+            this._PrevCallButton.Name = "_PrevCallButton";
+            this._PrevCallButton.RightToLeftAutoMirrorImage = true;
+            this._PrevCallButton.Size = new System.Drawing.Size(20, 18);
+            this._PrevCallButton.Text = "Move previous";
             // 
             // _CurrentPosition
             // 
@@ -1634,16 +1635,16 @@
             this._CurrentPosition.Text = "0";
             this._CurrentPosition.ToolTipText = "Current position";
             // 
-            // _PrevCallButton
+            // _NextCallButton
             // 
-            this._PrevCallButton.AutoSize = false;
-            this._PrevCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._PrevCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_PrevCallButton.Image")));
-            this._PrevCallButton.Margin = new System.Windows.Forms.Padding(1, 1, 0, 2);
-            this._PrevCallButton.Name = "_PrevCallButton";
-            this._PrevCallButton.RightToLeftAutoMirrorImage = true;
-            this._PrevCallButton.Size = new System.Drawing.Size(20, 18);
-            this._PrevCallButton.Text = "Move previous";
+            this._NextCallButton.AutoSize = false;
+            this._NextCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._NextCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_NextCallButton.Image")));
+            this._NextCallButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._NextCallButton.Name = "_NextCallButton";
+            this._NextCallButton.RightToLeftAutoMirrorImage = true;
+            this._NextCallButton.Size = new System.Drawing.Size(20, 18);
+            this._NextCallButton.Text = "Move next";
             // 
             // MainPanel
             // 

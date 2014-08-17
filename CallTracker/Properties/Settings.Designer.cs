@@ -106,5 +106,17 @@ namespace CallTracker.Properties {
                 this["DatabaseAutoSort"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int NextContactsId {
+            get {
+                return ((int)(this["NextContactsId"]));
+            }
+            set {
+                this["NextContactsId"] = value;
+            }
+        }
     }
 }
