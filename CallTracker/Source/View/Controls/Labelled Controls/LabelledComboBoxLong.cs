@@ -115,7 +115,7 @@ namespace CallTracker.View
 
         public void BindComboBox(BindingList<string> _dataSource, BindingSource _bindingSource)
         {
-            Console.WriteLine("yep");
+            //Console.WriteLine("yep");
             _ComboBox.DataSource = null;
             _ComboBox.DataBindings.Clear();
             

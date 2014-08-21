@@ -128,7 +128,7 @@ namespace CallTracker.Helpers
 
             List<AltNote> PRAltNotes = new List<AltNote>
             {
-                new AltNote("Fault.Outcome", "PR", "- Tech has been booked for {0}"),
+                new AltNote("Fault.Outcome", "Fault", "- Tech has been booked for {0}"),
                 new AltNote("Fault.Outcome", "CM", "- Case Management callback has been organized for {0}")
             };
 

@@ -57,7 +57,7 @@ namespace CallTracker.View
 
             DataStore = MainForm.DataStore;
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
-            customerContactsBindingSource.Filter = "Id = 100";
+            //customerContactsBindingSource.Filter = "Id = 100";
             customerContactsBindingSource.DataSource = DataStore.Contacts;
 
             customerContactsBindingSource.MoveLast();
@@ -225,7 +225,7 @@ namespace CallTracker.View
 
         private void UpdateCurrentPanel()
         {
-            Console.WriteLine("Updating panle");
+            //Console.WriteLine("Updating panel");
             ServiceTypes affectedServices = MainForm.SelectedContact.Fault.AffectedServices;
 
             foreach (ServiceTypes service in Enum.GetValues(typeof(ServiceTypes)))
@@ -692,8 +692,8 @@ namespace CallTracker.View
 
         private void _DialContextMenu_Opening(object sender, CancelEventArgs e)
         {
-            if (((ContextMenuStrip)sender).SourceControl != null)
-            Console.WriteLine(((ContextMenuStrip)sender).SourceControl.Name);
+            //if (((ContextMenuStrip)sender).SourceControl != null)
+            //    Console.WriteLine(((ContextMenuStrip)sender).SourceControl.Name);
         }
     }
 }

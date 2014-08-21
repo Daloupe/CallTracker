@@ -114,7 +114,7 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private Dictionary<Keys, string> GridLinkHotkeys = new Dictionary<Keys, string>()
         {
-            {Keys.Q, "0"},
+            {Keys.NumPad0, "0"},
             {Keys.NumPad1, "1"},
             {Keys.NumPad2, "2"},
             {Keys.NumPad3, "3"},
@@ -364,6 +364,7 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void OnSmartCopy(HotkeyPressedEventArgs e)
         {
+            //Process.Start("FloatingToolTip.exe", "SmartCopy");
             //string oldClip = Clipboard.GetText();
             EventLogger.LogNewEvent("Starting Smart Copy", EventLogLevel.Brief);
             SendKeys.SendWait("^c");
@@ -375,6 +376,8 @@ namespace CallTracker.Helpers
             if (textlen == 0)
                 return;
             string firstchar = text.Substring(0, 1);
+
+            
             
             if(new DigitPattern().IsMatch(text))
             {
@@ -441,7 +444,7 @@ namespace CallTracker.Helpers
             }
 
                  //bgw.RunWorkerAsync();
-                
+
 
         }
 

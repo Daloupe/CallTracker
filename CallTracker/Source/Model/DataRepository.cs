@@ -95,8 +95,8 @@ namespace CallTracker.Model
         [ProtoMember(1)]
         internal TriggerList<PasteBind> PasteBinds { get; set; }
         [ProtoMember(2)]
-        internal DataView Contacts { get; set; }
-        //internal SortableBindingList<CustomerContact> Contacts { get; set; }
+        //internal DataView Contacts { get; set; }
+        internal SortableBindingList<CustomerContact> Contacts { get; set; }
         [ProtoMember(3)]
         internal BindingList<LoginsModel> Logins { get; set; }
         [ProtoMember(4)]
@@ -109,7 +109,7 @@ namespace CallTracker.Model
             Filename = "Data/Data.bin";
 
             PasteBinds = new TriggerList<PasteBind>();
-            Contacts = new DataView();//new SortableBindingList<CustomerContact>();
+            Contacts = new SortableBindingList<CustomerContact>();
             Logins = new BindingList<LoginsModel>();
             GridLinks = new GridLinksModel();
             User = String.Empty;
@@ -138,7 +138,7 @@ namespace CallTracker.Model
             //newContact.Fault.AffectedServices = 1;
 
             if (dataStore.Contacts.Count == 0)
-                dataStore.Contacts.;// (new CustomerContact());
+                dataStore.Contacts.AddNew();//new CustomerContact());
             dataStore.GridLinks.PopulateIfEmpty();
 
             return dataStore;

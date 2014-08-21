@@ -125,7 +125,7 @@ namespace CallTracker.View
         {
             if(MainForm.DataStore.Contacts.Count == 1)
             {
-                MainForm.DataStore.Contacts.Add(new CustomerContact());
+                MainForm.DataStore.Contacts.AddNew();
                 MainForm.editContact.customerContactsBindingSource.Position = 1;
             }else if(bindingSource1.Position == e.Row.Index)
             {

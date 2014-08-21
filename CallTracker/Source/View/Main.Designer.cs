@@ -298,7 +298,7 @@
             // 
             this.notReadyToolStripMenuItem.Enabled = false;
             this.notReadyToolStripMenuItem.Name = "notReadyToolStripMenuItem";
-            this.notReadyToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.notReadyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.notReadyToolStripMenuItem.Tag = "AgentStatus: NotReady";
             this.notReadyToolStripMenuItem.Text = "Not Ready";
             // 
@@ -306,7 +306,7 @@
             // 
             this.readyToolStripMenuItem.Enabled = false;
             this.readyToolStripMenuItem.Name = "readyToolStripMenuItem";
-            this.readyToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.readyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.readyToolStripMenuItem.Tag = "AgentStatus: Ready";
             this.readyToolStripMenuItem.Text = "Ready";
             // 
@@ -314,7 +314,7 @@
             // 
             this.talkingToolStripMenuItem.Enabled = false;
             this.talkingToolStripMenuItem.Name = "talkingToolStripMenuItem";
-            this.talkingToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.talkingToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.talkingToolStripMenuItem.Tag = "AgentStatus: Talking";
             this.talkingToolStripMenuItem.Text = "Talking";
             // 
@@ -322,20 +322,20 @@
             // 
             this.wrapUpToolStripMenuItem.Enabled = false;
             this.wrapUpToolStripMenuItem.Name = "wrapUpToolStripMenuItem";
-            this.wrapUpToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.wrapUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.wrapUpToolStripMenuItem.Tag = "AgentStatus: WrapUp";
             this.wrapUpToolStripMenuItem.Text = "Wrap Up";
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(140, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(149, 6);
             // 
             // logInToolStripMenuItem
             // 
             this.logInToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallIn;
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
-            this.logInToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.logInToolStripMenuItem.Tag = "AgentStatus:";
             this.logInToolStripMenuItem.Text = "Log In";
             // 
@@ -344,24 +344,25 @@
             this.logOutToolStripMenuItem.Enabled = false;
             this.logOutToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallOut;
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.logOutToolStripMenuItem.Tag = "AgentStatus:";
             this.logOutToolStripMenuItem.Text = "Log Out";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(140, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
             // 
             // monitorIPCCToolStripMenuItem
             // 
             this.monitorIPCCToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.MonitorIPCC;
             this.monitorIPCCToolStripMenuItem.CheckOnClick = true;
-            this.monitorIPCCToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.monitorIPCCToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.monitorIPCCToolStripMenuItem.Name = "monitorIPCCToolStripMenuItem";
-            this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.monitorIPCCToolStripMenuItem.Tag = "MonitorIPCC";
             this.monitorIPCCToolStripMenuItem.Text = "Monitor IPCC";
+            this.monitorIPCCToolStripMenuItem.Click += new System.EventHandler(this.monitorIPCCToolStripMenuItem_Click);
             // 
             // _MainMenu
             // 

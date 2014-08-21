@@ -381,8 +381,15 @@ namespace CallTracker.View
         private bool CheckForIPCC()
         {
             if (IPCCProcess == null && monitorIPCCToolStripMenuItem.Checked == true)
+            {
+                EventLogger.LogNewEvent("Trying to find IPCC", EventLogLevel.Status);
                 if (InitIPCCMonitor() == false)
+                {
+                    EventLogger.LogNewEvent("Unable to Find IPCC", EventLogLevel.Status);
                     return false;
+                }
+            }
+            EventLogger.LogNewEvent("Monitoring IPCC", EventLogLevel.ClearStatus);
             return true;
         }
 
@@ -537,11 +544,11 @@ namespace CallTracker.View
         {
             _CallStateTimeElapsed = _CallStateTimeElapsed.AddMilliseconds(_IPCCTimer.Interval);
 
-            //string status = IPCCCallStatus.Name;
+            string status = IPCCCallStatus.Name;
             if (CurrentItem.Name == "logInToolStripMenuItem")
                 ChangeCallStateMenuItem(notReadyToolStripMenuItem);
 
-            string status = CurrentItem.Tag.ToString();
+            //string status = CurrentItem.Tag.ToString();
             if (status != _IPCCState.Text)
             {
                 CurrentItem.Checked = false;
@@ -549,7 +556,7 @@ namespace CallTracker.View
                 _CallStateTimeElapsed = new DateTime();
                 switch (status)
                 {
-                    case "AgentStatus: WrapUp":
+                    case "AgentStatus: Wrapup":
                         _IPCCTimer.Interval = 1000;
                         _CallStateTime.BackColor = Color.Firebrick;
                         _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
