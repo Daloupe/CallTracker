@@ -73,5 +73,25 @@ namespace CallTracker.View
             //    this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
             //}
         }
+
+        private bool _focus;
+        private void _DataField_MouseClick(object sender, MouseEventArgs e)
+        {
+            
+
+        }
+
+        private void _DataField_Leave(object sender, EventArgs e)
+        {
+            _focus = false;
+        }
+
+        private void _DataField_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (_focus) return;
+
+            _DataField.SelectAll();
+            _focus = true;
+        }
     }
 }

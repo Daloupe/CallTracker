@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
@@ -68,15 +69,16 @@ namespace CallTracker.View
 
         private void _DataField_TextChanged(object sender, EventArgs e)
         {
-            this.ParentForm.Validate();
+            ParentForm.Validate();
             if (!String.IsNullOrEmpty(_DataField.Text))
-                this.BackColor = LabelActiveColor;
+                BackColor = LabelActiveColor;
             else
-                this.BackColor = LabelInactiveColor;
+                BackColor = LabelInactiveColor;
         }
 
         private void LabelledTextBox_Load(object sender, EventArgs e)
         {
+            
             //if (ContextMenuStrip != null)
             //{
             //    this._MenuButton.Show();
@@ -113,5 +115,28 @@ namespace CallTracker.View
             //FillPolygonPointFillMode(e);
             //base.OnPaint(e);
         }
+
+        private void LabelledTextBoxLong_ContextMenuStripChanged(object sender, EventArgs e)
+        {
+            _DataField.ContextMenuStrip = ContextMenuStrip;
+        }
+
+        private bool _focus;
+
+        private void _DataField_Leave(object sender, EventArgs e)
+        {
+            _focus = false;
+        }
+
+        private void _DataField_MouseDown(object sender, MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            if (_focus) return;
+
+            _DataField.SelectAll();
+            _focus = true;
+        }
     }
+
+        
 }

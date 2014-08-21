@@ -33,7 +33,7 @@ namespace CallTracker.Helpers
             }
 
             // Remove Case Management Callback Time.
-            if(_service.Booking.Type.IsNot(BookingType.CM))
+            if(_service.Booking.Type != "CM")
                   newTemplate.RemoveAt(newTemplate.Count-1);
 
             StringBuilder sb = new StringBuilder();

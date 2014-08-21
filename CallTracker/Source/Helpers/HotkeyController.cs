@@ -198,20 +198,20 @@ namespace CallTracker.Helpers
                     return;
                 }
 
-                string propvalue = FindProperty.FollowPropertyPath(parent.SelectedContact, activeelem);
+                var propvalue = FindProperty.FollowPropertyPath(parent.SelectedContact, activeelem);
 
                 EventLogger.LogNewEvent("Trying to set value", EventLogLevel.Status);
                 MadSmartPaste.SetElementValue(propvalue);
 
-                EventLogger.LogNewEvent("Trying to Set Text", EventLogLevel.Status);
-                MadSmartPaste.SetElementText(propvalue);
+                //EventLogger.LogNewEvent("Trying to Set Text", EventLogLevel.Status);
+                //MadSmartPaste.SetElementText(propvalue);
                 
-                EventLogger.LogNewEvent("Ctrl-V in MAD value", EventLogLevel.Status);
-                Clipboard.SetText(propvalue);
-                SendKeys.SendWait("+^");
-                SendKeys.SendWait("^v");
-                Application.DoEvents();
-                SendKeys.Flush();  
+                //EventLogger.LogNewEvent("Ctrl-V in MAD value", EventLogLevel.Status);
+                //Clipboard.SetText(propvalue);
+                //SendKeys.SendWait("+^");
+                //SendKeys.SendWait("^v");
+                //Application.DoEvents();
+                //SendKeys.Flush();  
             }
             else
             {
@@ -362,6 +362,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        private static readonly Stopwatch Stopwatch = new Stopwatch();
         private static void OnSmartCopy(HotkeyPressedEventArgs e)
         {
             EventLogger.LogNewEvent("Starting Smart Copy", EventLogLevel.Brief);
@@ -370,31 +371,27 @@ namespace CallTracker.Helpers
             Clipboard.Clear();
             SendKeys.SendWait("^c");
             SendKeys.Flush();
-            
-            var sw = new Stopwatch();
-            sw.Start();
+
+            Stopwatch.Start();
             while (!Clipboard.ContainsText())
             {
                 SendKeys.Flush();
-                if (sw.ElapsedMilliseconds > 1000)
+                if (Stopwatch.ElapsedMilliseconds > 1000)
                     break;
             }
-            sw.Stop();
-
             var text = Clipboard.GetText().Trim();
-            EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1}ticks", text, sw.ElapsedTicks));
+            EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1}ticks", text, Stopwatch.ElapsedTicks));
+            if (!String.IsNullOrEmpty(oldClip))
+                Clipboard.SetText(oldClip);
+            Stopwatch.Reset();
+
             var textlen = text.Length;
             if (textlen == 0)
             {
                 Main.FadingToolTip.ShowandFade("Nothing selected");
-                if (!String.IsNullOrEmpty(oldClip))
-                    Clipboard.SetText(oldClip);
                 return;
             }
             var firstchar = text.Substring(0, 1);
-
-            if(!String.IsNullOrEmpty(oldClip))
-                Clipboard.SetText(oldClip);
 
             var contact = parent.SelectedContact;
             
@@ -407,55 +404,30 @@ namespace CallTracker.Helpers
                     Main.FadingToolTip.ShowandFade("PR: " + contact.Fault.PR);
                     return;
                 } 
-                
-                if ((firstchar == "0" && textlen == 10) ||
-                    (text.Substring(0, 2) == "61" && textlen == 11))
-                {
-                    if (contact.FindMobileMatch(text)) return;
-                    if (contact.FindDNMatch(text)) return;
-
-                    contact.Note += Environment.NewLine + text;
-                    Main.FadingToolTip.ShowandFade("Added to Note");
-                    return;
-                }
-
+                if (contact.FindMobileMatch(text)) return;
+                if (contact.FindDNMatch(text)) return;
                 if (contact.FindCMBSMatch(text)) return;
                 if (contact.FindICONMatch(text)) return;
                 if (contact.Fault.FindITCaseMatch(text)) return;
-
-                contact.Note += Environment.NewLine + text;
-                Main.FadingToolTip.ShowandFade("Added to Note");
-                return;
-            }
-
-            // If text is all letters ///////////////////////////////////////////////////////////////////////////////
-            if (new AlphaPattern().IsMatch(text))
+            } 
+            else if (new AlphaPattern().IsMatch(text))
             {
-                if (contact.NameSplit.FindNameMatch(text)) return;
+                if (contact.FindNameMatch(text)) return;
                 if (contact.FindUsernameMatch(text)) return;
-                
-                contact.Note += text;
-                Main.FadingToolTip.ShowandFade("Added to Note");
-                return;
-            }
-
-            // If text begins with a letter /////////////////////////////////////////////////////////////////////////
-            if (Char.IsLetter(text, 0))
+            } 
+            else if (Char.IsLetter(text, 0))
             {
                 if (contact.Service.FindBRASMatch(text)) return;
                 if (contact.Service.FindNBNMatch(text)) return;
                 if (contact.FindUsernameMatch(text)) return;
                 if (contact.Address.FindAddressMatch(text)) return;
-
-                contact.Note += text;
-                Main.FadingToolTip.ShowandFade("Added to Note");
-                return;
             }
-
-            // else /////////////////////////////////////////////////////////////////////////////////////////////////
-            if (contact.Service.FindNodeMatch(text)) return;
-            if (contact.FindCMBSMatch(text)) return;
-            if (contact.Address.FindAddressMatch(text)) return;
+            else
+            {
+                if (contact.Service.FindNodeMatch(text)) return;
+                if (contact.FindCMBSMatch(text)) return;
+                if (contact.Address.FindAddressMatch(text)) return;
+            }
 
             contact.Note += text;
             Main.FadingToolTip.ShowandFade("Added to Note");   

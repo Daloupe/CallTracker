@@ -68,6 +68,7 @@ namespace CallTracker.View
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
             _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)).Cast<BookingType>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
             _BookingTimeSlot.BindComboBox(Enum.GetValues(typeof(BookingTimeslot)).Cast<BookingTimeslot>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
+            _Action.BindComboBox(new List<string>(), customerContactsBindingSource);
 
             if (customerContactsBindingSource.Count == 0)
             {
@@ -133,9 +134,9 @@ namespace CallTracker.View
 
                 _NoteContextMenuStrip.Items[0].PerformClick();
                 //CurrentService = MainForm.SelectedContact.Fault.AffectedServices;
-                //UpdateMainService();
-                
                 UpdateCurrentPanel();
+                _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
+                UpdateActions();
             }
         }
 
@@ -145,8 +146,8 @@ namespace CallTracker.View
             if (e.PropertyName == "AffectedServices")
                 UpdateCurrentPanel();
 
-            if (e.PropertyName == "Outcome")
-                UpdateActions();
+            //if (e.PropertyName == "Outcome")
+            //    UpdateActions();
 
             // Update Note
             if (_Note.DataBindings.Count > 0)
@@ -173,6 +174,9 @@ namespace CallTracker.View
                                   select a.Description).ToList();
             if(query.Count > 0)
                 _Action.BindComboBox(query, customerContactsBindingSource);
+
+            if (!query.Contains(MainForm.SelectedContact.Fault.Action))
+                MainForm.SelectedContact.Fault.Action = "";
         }
 
 
@@ -419,30 +423,16 @@ namespace CallTracker.View
         private void _Outcome_SelectedIndexChanged(object sender, EventArgs e)
         {
             //_OutcomeTooltip.SetToolTip(_Outcome._ComboBox, Main.ServicesStore.servicesDataSet.Outcomes.First(x => x.Acronym == _Outcome._ComboBox.Text).Description);
-            //List<string> query = (from a in Main.ServicesStore.servicesDataSet.Actions
-            //                      where a.OutcomesRow.Description == MainForm.SelectedContact.Fault.Outcome
-            //                      select a.Description).ToList();
 
-            //_Action.BindComboBox(query, customerContactsBindingSource);
-
+            UpdateActions();
             if (MainForm.SelectedContact.Fault.Outcome == "Outage")
             {
-                _BookingType._ComboBox.SelectedItem = BookingType.NRQ;
-                customerContactsBindingSource.ResetCurrentItem();
-
-                //MainForm.SelectedContact.PRTemplateList[0].Answer = MainForm.SelectedContact.Name;
-                //MainForm.SelectedContact.PRTemplateList[1].Answer = String.IsNullOrEmpty(MainForm.SelectedContact.Mobile) ? MainForm.SelectedContact.DN + "- No Alt" : MainForm.SelectedContact.Mobile;
-                //MainForm.SelectedContact.PRTemplateList[2].Answer = MainForm.SelectedContact.Fault.Symptom;
-                //MainForm.SelectedContact.PRTemplateList[3].Answer = MainForm.SelectedContact.Service.Equipment;
-                //if (!String.IsNullOrEmpty(MainForm.SelectedContact.Username))
-                //    MainForm.SelectedContact.PRTemplateList[3].Answer += Environment.NewLine + MainForm.SelectedContact.Username;
-                //MainForm.SelectedContact.PRTemplateList[4].Answer = "ARO on node, customers address affected.";
-                //MainForm.SelectedContact.PRTemplateList[5].Answer = "Outage";
-                //MainForm.SelectedContact.PRTemplateList[6].Answer = "SMS";
+                //_BookingType._ComboBox.SelectedItem = BookingType.NRQ;
+                //customerContactsBindingSource.ResetCurrentItem();
 
                 MainForm.SelectedContact.UpdatePrTemplateReplacements(PRGenerators.AROAnswers);
 
-                if (((ToolStripMenuItem)_NoteContextMenuStrip.Items["pRTemplateToolStripMenuItem"]).Checked == true)
+                if (((ToolStripMenuItem)_NoteContextMenuStrip.Items["pRTemplateToolStripMenuItem"]).Checked)
                     _Note.DataBindings[0].ReadValue();
             }
             
@@ -460,21 +450,14 @@ namespace CallTracker.View
         private void _NewCallMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             ToolStripMenuItem ownerItem = e.ClickedItem.OwnerItem as ToolStripMenuItem;
-            if (ownerItem != null)
-                foreach (ToolStripMenuItem item in ownerItem.DropDownItems)
-                    item.Checked = false;
+            if (ownerItem == null) return;
+            foreach (ToolStripMenuItem item in ownerItem.DropDownItems)
+                item.Checked = false;
         }
 
         private void _Dial_click(object sender, EventArgs e)
         {
-            //Point offsets = new Point();
-            //string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
-
-            //offsets.X = Convert.ToInt16(Regex.Split(offsetFile[1], ",")[1]);
-            //offsets.Y = Convert.ToInt16(Regex.Split(offsetFile[1], ",")[2]);
-
-            MainForm.DialOrTransfer(((LabelledTextBoxLong)_DialContextMenu.SourceControl.Parent)._DataField.Text);
-            //WindowHelper.IPCCAutomation(((LabelledTextBoxLong)_DialContextMenu.SourceControl.Parent)._DataField.Text, offsets);
+            MainForm.DialOrTransfer("0" + ((LabelledTextBoxLong)_DialContextMenu.SourceControl.Parent)._DataField.Text);
         }
 
 
@@ -488,7 +471,7 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void _PRContextMenu_Opened(object sender, EventArgs e)
         {
-            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            var menu = (ContextMenuStrip)sender;
             //if (menu.Tag == null)
             //    e.Cancel = true;
             //menu.Tag = null;
@@ -518,24 +501,20 @@ namespace CallTracker.View
 
         private void _PRContextMenu_Clicked(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                if (((LabelledTextBox)sender).Name == "_NPR")
-                {
-                    dispatchToolStripMenuItem.Enabled = false;
-                    stapleToParentToolStripMenuItem.Enabled = false;
-                    clearAndCloseToolStripMenuItem.Enabled = false;
-                }
-                else
-                {
-                    dispatchToolStripMenuItem.Enabled = true;
-                    stapleToParentToolStripMenuItem.Enabled = true;
-                    clearAndCloseToolStripMenuItem.Enabled = true;
-                }
+            if (e.Button != System.Windows.Forms.MouseButtons.Right) return;
+            if (((LabelledTextBox)sender).Name == "_NPR")
+            {
+                dispatchToolStripMenuItem.Enabled = false;
+                stapleToParentToolStripMenuItem.Enabled = false;
+                clearAndCloseToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                dispatchToolStripMenuItem.Enabled = true;
+                stapleToParentToolStripMenuItem.Enabled = true;
+                clearAndCloseToolStripMenuItem.Enabled = true;
+            }
         }
-
-
-
-
 
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -567,7 +546,7 @@ namespace CallTracker.View
 
         private void SeverityItem_CheckedChanged(object sender, EventArgs e)
         {
-            ToolStripMenuItem item = (ToolStripMenuItem)sender;
+            var item = (ToolStripMenuItem)sender;
             if (item.Checked)
             {
                 item.BackColor = Color.LightSlateGray;
@@ -601,49 +580,49 @@ namespace CallTracker.View
             MainForm.settingMenuItem_Click(MainForm.callHistoryToolStripMenuItem, e);
         }
 
-        protected DateTime lasttime;
-        protected bool opened;
+        private DateTime _lasttime;
+        private bool _opened;
         protected virtual void _MenuButton_MouseClick(object sender, MouseEventArgs e)
         {
             if (_CallHistoryContextMenu.Visible == false)
             {
                 _CallHistoryContextMenu.Opening += ContextMenuStrip_Opening;
                 _CallHistoryContextMenu.Show(_CallMenuButton.Owner, _CallMenuButton.Bounds.X + _CallMenuButton.Width, _CallMenuButton.Bounds.Y);
-                opened = true;
+                _opened = true;
             }
             else
             {
                 _CallHistoryContextMenu.Hide();
-                opened = false;
+                _opened = false;
             }
         }
 
         public virtual void ContextMenuStrip_Closing(object sender, ToolStripDropDownClosingEventArgs e)
         {
-            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            var menu = (ContextMenuStrip)sender;
             menu.Closing -= ContextMenuStrip_Closing;
 
-            if (DateTime.UtcNow.Subtract(lasttime).Milliseconds > 9 && opened == false)
+            if (DateTime.UtcNow.Subtract(_lasttime).Milliseconds > 9 && _opened == false)
             {
                 e.Cancel = true;
                 return;
             }
-            _CallMenuButton.Image = Properties.Resources.TinyArrow3;
-            lasttime = DateTime.UtcNow;
+            _CallMenuButton.Image = Properties.Resources.ContextMenu_Closed_Dark;
+            _lasttime = DateTime.UtcNow;
         }
 
         protected virtual void ContextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
-            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            var menu = (ContextMenuStrip)sender;
             menu.Opening -= ContextMenuStrip_Opening;
 
-            if (DateTime.UtcNow.Subtract(lasttime).Milliseconds < 9 && opened == true)
+            if (DateTime.UtcNow.Subtract(_lasttime).Milliseconds < 9 && _opened == true)
             {
                 e.Cancel = true;
                 return;
             }
-            lasttime = DateTime.UtcNow;
-            _CallMenuButton.Image = Properties.Resources.TinyArrow4;
+            _lasttime = DateTime.UtcNow;
+            _CallMenuButton.Image = Properties.Resources.ContextMenu_Open_Dark;
             menu.Closing += ContextMenuStrip_Closing;
         }
 
@@ -659,12 +638,12 @@ namespace CallTracker.View
 
         private void _NameContextMenu_Opening(object sender, CancelEventArgs e)
         {
-            _IDok.Checked = MainForm.SelectedContact.IDok;
+            _IDokToolStripMenuItem.Checked = MainForm.SelectedContact.IDok;
         }
 
         private void _IDok_Click(object sender, EventArgs e)
         {
-            MainForm.SelectedContact.IDok = _IDok.Checked;
+            MainForm.SelectedContact.IDok = _IDokToolStripMenuItem.Checked;
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -678,6 +657,11 @@ namespace CallTracker.View
               ((Control)sender).Width - 1,
               ((Control)sender).Height - 1);
             base.OnPaint(e);
+        }
+
+        private void PaintLightGrayBorder(object sender, PaintEventArgs e)
+        {
+
         }
 
         private void PaintGrayBorderMain(object sender, PaintEventArgs e)
@@ -695,5 +679,12 @@ namespace CallTracker.View
             //if (((ContextMenuStrip)sender).SourceControl != null)
             //    Console.WriteLine(((ContextMenuStrip)sender).SourceControl.Name);
         }
+
+        private void _Important_CheckedChanged(object sender, EventArgs e)
+        {
+            var checkBox = (CheckBox)sender;
+            checkBox.ImageIndex = checkBox.Checked ? 1 : 0;
+        }
+
     }
 }

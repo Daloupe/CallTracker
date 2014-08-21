@@ -106,6 +106,14 @@ namespace CallTracker.View
 
         }
 
+        [Category("!Label")]
+        public string LabelToolTip
+        {
+            get { return _ToolTip.GetToolTip(_Label); }
+            set { _ToolTip.SetToolTip(_Label, value); }
+
+        }
+
         [Category("!MenuButton")]
         public DockStyle MenuButtonDock
         {

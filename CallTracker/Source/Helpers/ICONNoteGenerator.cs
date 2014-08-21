@@ -128,8 +128,10 @@ namespace CallTracker.Helpers
 
             List<AltNote> PRAltNotes = new List<AltNote>
             {
-                new AltNote("Fault.Outcome", "Fault", "- Tech has been booked for {0}"),
-                new AltNote("Fault.Outcome", "CM", "- Case Management callback has been organized for {0}")
+                new AltNote("Booking.Type", "CRQ", "- Tech has been booked for customer requested date: {0}"),
+                new AltNote("Booking.Type", "FAQ", "- Tech has been booked for first available date: {0}"),
+                new AltNote("Booking.Type", "MDQ", "- Tech has been booked for must do quota: {0}"),
+                new AltNote("Booking.Type", "CM", "- Case Management callback has been organized for {0}")
             };
 
             NoteItems = new List<NoteItem>();

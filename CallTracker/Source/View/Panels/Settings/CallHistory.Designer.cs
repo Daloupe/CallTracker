@@ -152,7 +152,6 @@
             this._ClearHistory.TabIndex = 16;
             this._ClearHistory.Text = "Clear History";
             this._ClearHistory.UseVisualStyleBackColor = false;
-            this._ClearHistory.Visible = false;
             this._ClearHistory.Click += new System.EventHandler(this._ClearHistory_Click);
             // 
             // CallHistory

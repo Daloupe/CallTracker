@@ -146,7 +146,7 @@ namespace CallTracker.Model
             get { return AffectedServices.Has(ServiceTypes.LAT); }
             set 
             {
-                ServiceTypes temp = AffectedServices;
+                var temp = AffectedServices;
                 if (value)
                     temp = RemoveNBN(temp.Add(ServiceTypes.LAT)
                                          .Remove(ServiceTypes.LIP));
@@ -163,7 +163,7 @@ namespace CallTracker.Model
             get { return AffectedServices.Has(ServiceTypes.LIP); }
             set 
             {
-                ServiceTypes temp = AffectedServices;
+                var temp = AffectedServices;
                 if (value)
                     temp = RemoveNBN(temp.Remove(ServiceTypes.LAT)
                                          .Add(ServiceTypes.LIP)); 
@@ -176,31 +176,31 @@ namespace CallTracker.Model
         public bool ONC
         {
             get { return AffectedServices.Has(ServiceTypes.ONC); }
-            set { ServiceTypes temp = AffectedServices; temp = RemoveNBN(temp.Change(ServiceTypes.ONC, value)); AffectedServices = temp; }
+            set { var temp = AffectedServices; temp = RemoveNBN(temp.Change(ServiceTypes.ONC, value)); AffectedServices = temp; }
         }
 
         public bool DTV
         {
             get { return AffectedServices.Has(ServiceTypes.DTV); }
-            set { ServiceTypes temp = AffectedServices; temp = RemoveNBN(temp.Change(ServiceTypes.DTV, value)); AffectedServices = temp; }
+            set { var temp = AffectedServices; temp = RemoveNBN(temp.Change(ServiceTypes.DTV, value)); AffectedServices = temp; }
         }
 
         public bool NBF
         {
             get { return AffectedServices.Has(ServiceTypes.NBF); }
-            set { ServiceTypes temp = AffectedServices; temp = RemoveHFC(temp.Change(ServiceTypes.NBF, value)); AffectedServices = temp; }
+            set { var temp = AffectedServices; temp = RemoveHFC(temp.Change(ServiceTypes.NBF, value)); AffectedServices = temp; }
         }
 
         public bool NFV
         {
             get { return AffectedServices.Has(ServiceTypes.NFV); }
-            set { ServiceTypes temp = AffectedServices; temp = RemoveHFC(temp.Change(ServiceTypes.NFV, value)); AffectedServices = temp; }
+            set { var temp = AffectedServices; temp = RemoveHFC(temp.Change(ServiceTypes.NFV, value)); AffectedServices = temp; }
         }
 
         public bool MTV
         {
             get { return AffectedServices.Has(ServiceTypes.MTV); }
-            set { ServiceTypes temp = AffectedServices; temp = temp.Change(ServiceTypes.MTV, value); AffectedServices = temp; }
+            set { var temp = AffectedServices; temp = temp.Change(ServiceTypes.MTV, value); AffectedServices = temp; }
         }
 
         public ServiceTypes RemoveNBN(ServiceTypes services)

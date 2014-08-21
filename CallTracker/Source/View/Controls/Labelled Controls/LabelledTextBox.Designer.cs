@@ -50,6 +50,8 @@
             this._DataField.Size = new System.Drawing.Size(180, 19);
             this._DataField.TabIndex = 27;
             this._DataField.TextChanged += new System.EventHandler(this._DataField_TextChanged);
+            this._DataField.Leave += new System.EventHandler(this._DataField_Leave);
+            this._DataField.MouseDown += new System.Windows.Forms.MouseEventHandler(this._DataField_MouseDown);
             // 
             // LabelledTextBox
             // 
@@ -59,6 +61,7 @@
             this.Controls.Add(this._DataField);
             this.Name = "LabelledTextBox";
             this.Size = new System.Drawing.Size(180, 35);
+            this.Controls.SetChildIndex(this._Label, 0);
             this.Controls.SetChildIndex(this._DataField, 0);
             this.Controls.SetChildIndex(this._MenuButton, 0);
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).EndInit();

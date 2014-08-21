@@ -66,7 +66,7 @@ namespace CallTracker.View
         public void BindComboBox(List<string> _dataSource, BindingSource _bindingSource)
         {
             //_ComboBox.DataSource = null;
-            //_ComboBox.DataBindings.Clear();
+            _ComboBox.DataBindings.Clear();
             if (_dataSource.Count > 0)
             {
                 _ComboBox.DataSource = _dataSource;
@@ -78,7 +78,7 @@ namespace CallTracker.View
         public void BindComboBox(Array _dataSource, BindingSource _bindingSource)
         {
             //_ComboBox.DataSource = null;
-            //_ComboBox.DataBindings.Clear();
+            _ComboBox.DataBindings.Clear();
             if (_dataSource.Length > 0)
             {
                 _ComboBox.DataSource = _dataSource;
@@ -90,13 +90,25 @@ namespace CallTracker.View
         public void BindComboBox(BindingList<string> _dataSource, BindingSource _bindingSource)
         {
             //_ComboBox.DataSource = null;
-            //_ComboBox.DataBindings.Clear();
+            _ComboBox.DataBindings.Clear();
             if (_dataSource.Count > 0)
             {
                 _ComboBox.DataSource = _dataSource;
                 _ComboBox.SelectedIndex = InitialIndex;
             }
             _ComboBox.DataBindings.Add("SelectedItem", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+        public void UpdateComboBox(BindingList<string> _dataSource)
+        {
+            //_ComboBox.DataSource = null;
+            //_ComboBox.DataBindings.Clear();
+            if (_dataSource.Count > 0)
+            {
+                _ComboBox.DataSource = _dataSource;
+                //_ComboBox.SelectedIndex = InitialIndex;
+            }
+         //   _ComboBox.DataBindings.Add("SelectedItem", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         private void _ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,7 +119,7 @@ namespace CallTracker.View
 
         private void _ComboBox_DataSourceChanged(object sender, EventArgs e)
         {
-            this.ParentForm.Validate();
+            //this.ParentForm.Validate();
         }
 
         private void _ComboBox_DropDownClosed(object sender, EventArgs e)

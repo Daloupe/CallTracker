@@ -69,6 +69,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -96,6 +99,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Data\Contacts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Contacts.edmx</DependentUpon>
     </Compile>
     <Compile Include="Source\Helpers\PRGenerators.cs" />
     <Compile Include="Source\Helpers\Type\DataGridExtentions.cs" />
@@ -242,6 +250,13 @@
     <Compile Include="Source\View\Controls\Basic Controls\DataField.Designer.cs">
       <DependentUpon>DataField.cs</DependentUpon>
     </Compile>
+    <EntityDeploy Include="Source\Data\Contacts.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Contacts.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Source\Data\Contacts.edmx.diagram">
+      <DependentUpon>Contacts.edmx</DependentUpon>
+    </None>
     <None Include="Source\View\Panels\Product\Archive\MTVPanel.cs">
       <SubType>UserControl</SubType>
     </None>
@@ -587,6 +602,8 @@
     <Content Include="IPCCOffsets.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\TinyArrow2111.png" />
+    <None Include="Resources\TinyArrow212.png" />
     <None Include="Resources\TinyArrow211.png" />
     <None Include="Resources\TinyArrow21.png" />
     <None Include="Resources\bg_gradient-teal.jpg" />
@@ -607,6 +624,8 @@
     <None Include="Resources\CallerOrCalleeView_887111.png" />
     <None Include="Resources\blue_gradient_300.jpg" />
     <None Include="Resources\blue_gradient_586.jpg" />
+    <None Include="Resources\flag_16xLG.png" />
+    <None Include="Resources\FlagThread-Flagged,NotHot,NotSelected_10392_16x.png" />
     <Content Include="Resources\helpToolStripButton.Image.png" />
     <None Include="Resources\lock.jpg" />
     <None Include="Resources\lock.png" />

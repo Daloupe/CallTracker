@@ -50,23 +50,7 @@ namespace CallTracker.Model
             Last = String.Empty;
         }
 
-        public bool FindNameMatch(string text)
-        {
-            var match = Pattern.Match(text);
-            if (match.Success)
-            {
-                Title = match.Groups[1].Value;
-                First = match.Groups[2].Value;
-                Initial = match.Groups[3].Value;
-                Last = match.Groups[4].Value;
-
-                _full = text;
-
-                Main.FadingToolTip.ShowandFade("Name: " + Full);
-                return true;
-            };
-            return false;
-        }
+        
 
     }    
 

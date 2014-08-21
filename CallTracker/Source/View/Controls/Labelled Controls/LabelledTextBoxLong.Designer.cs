@@ -61,6 +61,8 @@
             this._DataField.Size = new System.Drawing.Size(132, 20);
             this._DataField.TabIndex = 27;
             this._DataField.TextChanged += new System.EventHandler(this._DataField_TextChanged);
+            this._DataField.Leave += new System.EventHandler(this._DataField_Leave);
+            this._DataField.MouseDown += new System.Windows.Forms.MouseEventHandler(this._DataField_MouseDown);
             // 
             // LabelledTextBoxLong
             // 
@@ -73,6 +75,8 @@
             this.LabelSize = new System.Drawing.Size(34, 23);
             this.Name = "LabelledTextBoxLong";
             this.Size = new System.Drawing.Size(174, 20);
+            this.Load += new System.EventHandler(this.LabelledTextBox_Load);
+            this.ContextMenuStripChanged += new System.EventHandler(this.LabelledTextBoxLong_ContextMenuStripChanged);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this._MenuButton_Paint);
             this.Controls.SetChildIndex(this._MenuButton, 0);
             this.Controls.SetChildIndex(this._Label, 0);

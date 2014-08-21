@@ -54,11 +54,14 @@ namespace CallTracker.Helpers
 
         public static IntPtr FindHWNDByTitle(string _wName)
         {
-            IntPtr hWnd = IntPtr.Zero;
+            var hWnd = IntPtr.Zero;
             foreach (Process pList in Process.GetProcesses())
-                if(pList.MainWindowTitle.Contains(_wName))
+                if (pList.MainWindowTitle.Contains(_wName))
+                {
                     hWnd = pList.MainWindowHandle;
-            
+                    break;
+                }
+
             return hWnd;
         }
 
@@ -73,70 +76,70 @@ namespace CallTracker.Helpers
             return IntPtr.Zero;
         }
 
-        [DllImport("user32.dll")]
-        public static extern bool GetWindowRect(IntPtr hwnd, ref Rect rectangle);
+        //[DllImport("user32.dll")]
+        //public static extern bool GetWindowRect(IntPtr hwnd, ref Rect rectangle);
 
-        public struct Rect
-        {
-            public int Left { get; set; }
-            public int Top { get; set; }
-            public int Right { get; set; }
-            public int Bottom { get; set; }
-        }
+        //public struct Rect
+        //{
+        //    public int Left { get; set; }
+        //    public int Top { get; set; }
+        //    public int Right { get; set; }
+        //    public int Bottom { get; set; }
+        //}
 
-        [DllImport("user32.dll", CharSet=CharSet.Auto)]
-        public static extern int SendMessage(IntPtr hWnd, uint msg, int wParam, IntPtr lParam);
+        //[DllImport("user32.dll", CharSet=CharSet.Auto)]
+        //public static extern int SendMessage(IntPtr hWnd, uint msg, int wParam, IntPtr lParam);
 
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className,  string  windowTitle);
+        //[DllImport("user32.dll", SetLastError = true)]
+        //public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className,  string  windowTitle);
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
-        public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
+        //[DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
+        //public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
 
-        public const int MOUSEEVENTF_LEFTDOWN = 0x02;
-        public const int MOUSEEVENTF_LEFTUP = 0x04;
-        public const int MOUSEEVENTF_RIGHTDOWN = 0x08;
-        public const int MOUSEEVENTF_RIGHTUP = 0x10;
+        //public const int MOUSEEVENTF_LEFTDOWN = 0x02;
+        //public const int MOUSEEVENTF_LEFTUP = 0x04;
+        //public const int MOUSEEVENTF_RIGHTDOWN = 0x08;
+        //public const int MOUSEEVENTF_RIGHTUP = 0x10;
 
-       // public static Point NumberOffset = new Point();
-        public static void IPCCAutomation(string _number, Point _buttonOffsets)
-        {
-            string title = "IPCC"; //IPCC Agent Desktop for Fusion: v5.2.1 (c2)
-            Point buttonOffsets = _buttonOffsets;
+       //// public static Point NumberOffset = new Point();
+       // public static void IPCCAutomation(string _number, Point _buttonOffsets)
+       // {
+       //     string title = "IPCC"; //IPCC Agent Desktop for Fusion: v5.2.1 (c2)
+       //     Point buttonOffsets = _buttonOffsets;
 
-            IntPtr hwnd = FindHWNDByTitle(title);
-            SetForegroundWindow(hwnd);
-            Rect rect = new Rect();
-            GetWindowRect(hwnd, ref rect);
-            Console.WriteLine("{0} {1}", rect.Top, rect.Left);
-            Point transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
+       //     IntPtr hwnd = FindHWNDByTitle(title);
+       //     SetForegroundWindow(hwnd);
+       //     Rect rect = new Rect();
+       //     GetWindowRect(hwnd, ref rect);
+       //     Console.WriteLine("{0} {1}", rect.Top, rect.Left);
+       //     Point transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
 
-            Cursor.Position = transfer;
-            int X = Cursor.Position.X;
-            int Y = Cursor.Position.Y;
-            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, (uint)X, (uint)Y, 0, 0);
+       //     Cursor.Position = transfer;
+       //     int X = Cursor.Position.X;
+       //     int Y = Cursor.Position.Y;
+       //     mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, (uint)X, (uint)Y, 0, 0);
 
-            ////////////////////////////////////////////
+       //     ////////////////////////////////////////////
 
-            title = "CTI";
-            buttonOffsets = new Point();
-            string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
+       //     title = "CTI";
+       //     buttonOffsets = new Point();
+       //     string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
 
-            buttonOffsets.X = Convert.ToInt16(Regex.Split(offsetFile[2], ",")[1]);
-            buttonOffsets.Y = Convert.ToInt16(Regex.Split(offsetFile[2], ",")[2]);
+       //     buttonOffsets.X = Convert.ToInt16(Regex.Split(offsetFile[2], ",")[1]);
+       //     buttonOffsets.Y = Convert.ToInt16(Regex.Split(offsetFile[2], ",")[2]);
 
-            hwnd = FindHWNDByTitle(title);
-            SetForegroundWindow(hwnd);
-            rect = new Rect();
-            GetWindowRect(hwnd, ref rect);
-            transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
+       //     hwnd = FindHWNDByTitle(title);
+       //     SetForegroundWindow(hwnd);
+       //     rect = new Rect();
+       //     GetWindowRect(hwnd, ref rect);
+       //     transfer = new Point() { X = rect.Left + buttonOffsets.X, Y = rect.Top + buttonOffsets.Y };
 
-            Cursor.Position = transfer;
-            X = Cursor.Position.X;
-            Y = Cursor.Position.Y;
-            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, (uint)X, (uint)Y, 0, 0);
+       //     Cursor.Position = transfer;
+       //     X = Cursor.Position.X;
+       //     Y = Cursor.Position.Y;
+       //     mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, (uint)X, (uint)Y, 0, 0);
 
-            SendKeys.Send(_number);
-        }
+       //     SendKeys.Send(_number);
+       // }
     }
 }

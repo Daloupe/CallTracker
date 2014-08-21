@@ -92,9 +92,9 @@ namespace CallTracker.View
 
         public void BindComboBox(List<string> _dataSource, BindingSource _bindingSource)
         {
-            _ComboBox.DataSource = null;
+            //_ComboBox.DataSource = null;
             _ComboBox.DataBindings.Clear();
-            
+            _ComboBox.Leave -= _ComboBox_Leave<List<string>>;
             if (_dataSource.Count > 0)
             {
                 _ComboBox.DataSource = _dataSource;
@@ -116,9 +116,9 @@ namespace CallTracker.View
         public void BindComboBox(BindingList<string> _dataSource, BindingSource _bindingSource)
         {
             //Console.WriteLine("yep");
-            _ComboBox.DataSource = null;
+            //_ComboBox.DataSource = null;
             _ComboBox.DataBindings.Clear();
-            
+            _ComboBox.Leave -= _ComboBox_Leave<BindingList<string>>;
             if (_dataSource.Count > 0)
             {
                 _ComboBox.DataSource = _dataSource;
@@ -128,15 +128,27 @@ namespace CallTracker.View
             _ComboBox.DataBindings.Add("Text", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
+        public void UpdateComboBox(List<string> dataSource)
+        {
+            //_ComboBox.DataSource = null;
+            //_ComboBox.DataBindings.Clear();
+            if (dataSource.Count > 0)
+            {
+                _ComboBox.DataSource = dataSource;
+                //_ComboBox.SelectedIndex = InitialIndex;
+            }
+            //   _ComboBox.DataBindings.Add("SelectedItem", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
         private void _ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _ComboBox.Select(0, 0);
-            this.ParentForm.Invalidate();
+            this.ParentForm.Validate();
         }
 
         private void _ComboBox_DataSourceChanged(object sender, EventArgs e)
         {
-            this.ParentForm.Invalidate();
+            //this.ParentForm.Invalidate();
         }
 
         private void _ComboBox_DropDown(object sender, EventArgs e)

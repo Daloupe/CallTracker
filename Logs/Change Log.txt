@@ -18,14 +18,11 @@ Yellow: 255,198,0
 
 0.30.00
 - Added ARO GUI.
-- Added TestStack.White support for IPCC control.
-	- Poll Work Ready button to see if enabled.
 - Added DataType Modem IP address, PRI, NTD Serial number, Address ID(LIP), ESN(LAT). (CMR 1000000000021266_12494541)
 - Added "" to Data string to enable pastes of strings.
 - Added MAC Regex.
 
-
-0.3.4.2
+0.3.5.0
 - Added Contact model to DataSet;
 - Contact count resets on first IPCC login for the day, data saves on the last logout.
 - Added date selection to CallHistory.
@@ -33,6 +30,15 @@ Yellow: 255,198,0
 - Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
 - Action isn't saving/binding.
 - Affected service is ding strange things on reload. Perhaps the filter changes the order.
+
+0.3.4.2
+| Entered guesswork code for Call Details pull.
+| Entered guesswork code for dial pad fill.
+| Added Flag As Important and ID OK Checkboxes.
+| Fixed Tooltips on main data.
+| TextFields SelectAll on focus.
+| Fixed Outcome and Action binds.
+| Contacts are resorted by date on callhistory close.
 
 0.3.4.1
 | Floating Tooltip now functioning.

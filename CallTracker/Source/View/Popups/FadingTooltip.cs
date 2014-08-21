@@ -12,8 +12,8 @@ namespace CallTracker.View
 
         private void FadingTooltip_Load(object sender, EventArgs e)
         {
-            FadeOutDelay = 350;
-            FadeTime = 300;
+            FadeOutDelay = 300;
+            FadeTime = 250;
             MoveInterval = 2;
         }
 

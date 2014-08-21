@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this._Label = new System.Windows.Forms.Label();
+            this._ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._MenuButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).BeginInit();
             this.SuspendLayout();
@@ -48,6 +50,13 @@
             this._Label.TabIndex = 26;
             this._Label.Text = "AVC:";
             this._Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // _ToolTip
+            // 
+            this._ToolTip.AutomaticDelay = 100;
+            this._ToolTip.AutoPopDelay = 5000;
+            this._ToolTip.InitialDelay = 100;
+            this._ToolTip.ReshowDelay = 20;
             // 
             // _MenuButton
             // 
@@ -88,6 +97,7 @@
 
         protected System.Windows.Forms.PictureBox _MenuButton;
         public System.Windows.Forms.Label _Label;
+        private System.Windows.Forms.ToolTip _ToolTip;
 
 
     }

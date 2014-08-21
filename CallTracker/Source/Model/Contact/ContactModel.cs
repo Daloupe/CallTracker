@@ -94,6 +94,8 @@ namespace CallTracker.Model
         public BookingModel Booking { get; set; }
         [ProtoMember(14)]
         public bool IDok { get; set; }
+        [ProtoMember(15)]
+        public bool Important { get; set; }
 
         protected List<PRTemplateModel> PRTemplateReplacements = new List<PRTemplateModel>();
         public void UpdatePrTemplateReplacements(List<PRTemplateModel> _replacements)
@@ -298,11 +300,19 @@ namespace CallTracker.Model
             return false;
         }
 
-        //public static ICONPattern ICONPattern = new ICONPattern();
-        //public static CMBSPattern CMBSPattern = new CMBSPattern();
-        //public static MobilePattern MobilePattern = new MobilePattern();
-        //public static UsernameUpperPattern UNUpperPattern = new UsernameUpperPattern();
-        //public static UsernameLowerPattern UNLowerPattern = new UsernameLowerPattern();
+
+        public bool FindNameMatch(string text)
+        {
+            var match = NameModel.Pattern.Match(text);
+            if (match.Success)
+            {
+                Name = text;
+
+                Main.FadingToolTip.ShowandFade("Name: " + Name);
+                return true;
+            };
+            return false;
+        }
     }
 
 

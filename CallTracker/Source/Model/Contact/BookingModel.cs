@@ -11,7 +11,7 @@ namespace CallTracker.Model
     public class BookingModel
     {
         [ProtoMember(1)]
-        public BookingType Type { get; set; }
+        public string Type { get; set; }
 
         [ProtoMember(2)]
         public DateTime Date { get; set; }

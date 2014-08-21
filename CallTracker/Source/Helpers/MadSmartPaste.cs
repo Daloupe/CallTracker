@@ -48,7 +48,7 @@ namespace CallTracker.Helpers
 
     public static class MadSmartPaste
     {
-        private static Process MADProcess;
+        private static Process MADProcess = null;
         private static TestStack.White.Application MADApplication;
         private static Window MADWindow;
         private static TestStack.White.UIItems.TextBox MADActiveElement;
@@ -103,7 +103,10 @@ namespace CallTracker.Helpers
 
             MADProcess.Exited += MADProcess_Exited;
             MADApplication = TestStack.White.Application.Attach(MADProcess);
-            MADWindow = MADApplication.GetWindow(SearchCriteria.ByAutomationId("60016"), InitializeOption.NoCache);
+            
+            MADWindow = MADApplication.GetWindow(SearchCriteria.ByText("Search"), InitializeOption.NoCache);
+            if (!MADWindow.Exists(SearchCriteria.ByText("Search")))
+                return false;
             return true;
         }
 

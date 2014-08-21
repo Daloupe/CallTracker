@@ -64,14 +64,17 @@ namespace CallTracker.View
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
-            bindingSource1.DataSource = MainForm.DataStore.Contacts;
+            bindingSource1 = MainForm.editContact.customerContactsBindingSource;
+            callHistoryPanel1.SetBindingSource(bindingSource1);
             dataGridView1.DataSource = bindingSource1;
             dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
         }
 
         protected override void _Done_Click(object sender, EventArgs e)
         {
-            CurrentPosition = MainForm.editContact.customerContactsBindingSource.Position;
+            //MainForm.editContact.customerContactsBindingSource.Position = bindingSource1.Position;
+            dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
+            CurrentPosition = bindingSource1.Position;
             base._Done_Click(sender, e);
         }
 
@@ -87,20 +90,20 @@ namespace CallTracker.View
 
         public override void ShowSetting()
         {
-            callHistoryPanel1.SetBindingSource(MainForm.editContact.customerContactsBindingSource);
-            base.ShowSetting();
             CurrentPosition = MainForm.editContact.customerContactsBindingSource.Position;
+            base.ShowSetting();
+            
         }
 
         public override void HideSetting()
         {
-            callHistoryPanel1.RemoveBindingSource();
-            base.HideSetting();
             MainForm.editContact.customerContactsBindingSource.Position = CurrentPosition;
+            base.HideSetting();  
         }
 
         private void Cancel_Click(object sender, EventArgs e)
         {
+            dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
             base._Done_Click(sender, e);
         }
 
@@ -118,7 +121,11 @@ namespace CallTracker.View
 
         private void _ClearHistory_Click(object sender, EventArgs e)
         {
+            bindingSource1.SuspendBinding();
+            bindingSource1.Clear();
             Properties.Settings.Default.NextContactsId = 0;
+            bindingSource1.ResumeBinding();
+            bindingSource1.AddNew();
         }
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)

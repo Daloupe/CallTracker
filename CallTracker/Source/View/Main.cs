@@ -360,34 +360,43 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // IPCC Monitor ////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private Process _ipccProcess;
+        private Process _ipccProcess = null;
         private TestStack.White.Application _ipccApplication;
         private Window _ipccWindow;
         private TestStack.White.UIItems.TextBox _ipccCallStatus;
-        //private TestStack.White.UIItems.Button IPCCDialButton;
-        //private TestStack.White.UIItems.Button IPCCTransferButton;
+        private TestStack.White.UIItems.Button _ipccDialButton;
+        private TestStack.White.UIItems.Button _ipccTransferButton;
+        //private TestStack.White.UIItems.TableItems.Table _ipccCallGrid;
         private TimeSpan _callStateTimeElapsed;
 
         private bool CheckForIpcc()
         {
-            if (_ipccProcess == null && monitorIPCCToolStripMenuItem.Checked)
+            if (monitorIPCCToolStripMenuItem.Checked)
             {
-                EventLogger.LogNewEvent("Trying to find IPCC", EventLogLevel.Status);
-                if (InitIpccMonitor() == false)
+                if (_ipccProcess == null)
                 {
-                    EventLogger.LogNewEvent("Unable to Find IPCC", EventLogLevel.Status);
-                    return false;
+                    EventLogger.LogNewEvent("Trying to find IPCC", EventLogLevel.Status);
+                    if (InitIpccMonitor() == false)
+                    {
+                        //EventLogger.LogNewEvent("Unable to Find IPCC", EventLogLevel.Status);
+                        return false;
+                    }
                 }
+                EventLogger.LogNewEvent("Monitoring IPCC", EventLogLevel.ClearStatus);
+                return true;
             }
-            EventLogger.LogNewEvent("Monitoring IPCC", EventLogLevel.ClearStatus);
-            return true;
+            EventLogger.LogNewEvent("Monitoring Not Enabled", EventLogLevel.Brief);
+            return false;
         }
 
         private bool InitIpccMonitor()
         {
             foreach (Process pList in Process.GetProcesses())
                 if (pList.MainWindowTitle.Contains("IPCC Agent Desktop"))
+                {
                     _ipccProcess = pList;
+                    break;
+                }
 
             if (_ipccProcess == null)
             {
@@ -399,9 +408,10 @@ namespace CallTracker.View
             _ipccApplication = TestStack.White.Application.Attach(_ipccProcess);
             _ipccWindow = _ipccApplication.GetWindow(SearchCriteria.ByAutomationId("SoftphoneForm"), InitializeOption.NoCache);
             _ipccCallStatus = _ipccWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("StatusBar.Pane3"));
-            //IPCCDialButton = IPCCWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId("btnDial"));
-            //IPCCTransferButton = IPCCWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId("btnTransfer"));
-            
+            _ipccDialButton = _ipccWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId("btnDial"));
+            _ipccTransferButton = _ipccWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId("btnTransfer"));
+            //_ipccCallGrid = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid"));
+
             return true;
         }
 
@@ -419,18 +429,42 @@ namespace CallTracker.View
             if (!CheckForIpcc())
                 return;
 
-            string dialOrTransfer = "btnDial";
+            //string dialOrTransfer = "btnDial";
             if (_ipccCallStatus.Name == "AgentStatus: Talking")
-                dialOrTransfer = "btnTranfer";
+                _ipccTransferButton.Click();
+            else
+                _ipccDialButton.Click();
 
-            var button = _ipccWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId(dialOrTransfer));
-            button.Click();
+            //var button = _ipccWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId(dialOrTransfer));
+            //button.Click();
+
+            Process dialPadProcess = null;
+            foreach (Process pList in Process.GetProcesses())
+                if (pList.MainWindowTitle.Contains("CTI Dial Pad"))
+                {
+                    dialPadProcess = pList;
+                    break;
+                }
+
+            if (dialPadProcess == null)
+            {
+                EventLogger.LogNewEvent("Unable to Find CTI Dial Pad", EventLogLevel.Status);
+                return;
+            }
+
+            var dialPadApplication = TestStack.White.Application.Attach(dialPadProcess);
+            var dialPadWindow = dialPadApplication.GetWindow(SearchCriteria.ByAutomationId("DialPadForm"), InitializeOption.NoCache);
+            var dialPadNumber = dialPadWindow.Get<TestStack.White.UIItems.ListBoxItems.ComboBox>(SearchCriteria.ByAutomationId("dialedNumberComboBox"));
+            dialPadNumber.SetValue(value);
+
         }
 
         private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (CheckForIpcc())
-                _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
+            if (!CheckForIpcc())
+                monitorIPCCToolStripMenuItem.Checked = false;
+
+            _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
         }
 
         ToolStripMenuItem _currentItem;
@@ -499,8 +533,9 @@ namespace CallTracker.View
             if (e.ClickedItem != monitorIPCCToolStripMenuItem)
             {
                 ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
-                if (CheckForIpcc())
-                    _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
+                _IPCCTimer.Enabled = true;
+                //if (CheckForIpcc())
+                //    _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
             }
         }
 
@@ -541,6 +576,7 @@ namespace CallTracker.View
             if (CurrentItem.Name == "logInToolStripMenuItem")
                 ChangeCallStateMenuItem(notReadyToolStripMenuItem);
 
+            //var status = CurrentItem.Tag.ToString();
             if (status != _IPCCState.Text)
             {
                 switch (status)
@@ -555,7 +591,69 @@ namespace CallTracker.View
                         _CallStateTime.BackColor = Color.Chocolate;
                         _CallStateTime.ForeColor = Color.PaleGoldenrod;
                         if (_IPCCState.Text.Contains("Reserved") && editContact.autoNewCallToolStripMenuItem.Checked)
+                        {
                             editContact.bindingNavigatorAddNewItem_Click(_IPCCState, new EventArgs());
+
+                            var callGrid = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid"));
+                            var callGridRow = callGrid.Rows[0];
+                            // Caller ID
+                            if (callGridRow.Cells[3].Value != null)
+                            {
+                                SelectedContact.FindMobileMatch(callGridRow.Cells[3].Value.ToString());
+                                SelectedContact.FindDNMatch(callGridRow.Cells[3].Value.ToString());
+                            }
+                            // Service No
+                            if (callGridRow.Cells[4].Value != null)
+                            {
+                                SelectedContact.FindMobileMatch(callGridRow.Cells[4].Value.ToString());
+                                SelectedContact.FindDNMatch(callGridRow.Cells[4].Value.ToString());
+                            }
+                            // Acc No
+                            if (callGridRow.Cells[5].Value != null)
+                            {
+                                SelectedContact.FindCMBSMatch(callGridRow.Cells[5].Value.ToString());
+                                SelectedContact.FindICONMatch(callGridRow.Cells[5].Value.ToString());
+                            }
+                            // IVR Selection
+                            if (callGridRow.Cells[6].Value != null)
+                            {
+                                var selection = callGridRow.Cells[6].Value.ToString();
+                                if (selection.Contains("LAT"))
+                                    SelectedContact.Fault.LAT = true;
+                                else if (selection.Contains("LIP"))
+                                    SelectedContact.Fault.LIP = true;
+                                else if (selection.Contains("ONC"))
+                                    SelectedContact.Fault.ONC = true;
+                                else if (selection.Contains("NBN"))
+                                    SelectedContact.Fault.NFV = true;
+                                else if (selection.Contains("MTV"))
+                                    SelectedContact.Fault.MTV = true;
+                            }
+                            // ID ok
+                            if (callGridRow.Cells[8].Value != null)
+                            {
+                                if (callGridRow.Cells[8].Value.ToString().Contains("OK"))
+                                    SelectedContact.IDok = true;
+                            }
+
+                            //var serviceNumber = _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(SearchCriteria.ByText("Service No"));
+                            //SelectedContact.FindMobileMatch(serviceNumber.Value.ToString());
+                            //SelectedContact.FindDNMatch(serviceNumber.Value.ToString());
+
+                            //var contactNumber = _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(SearchCriteria.ByText("Caller ID"));
+                            //SelectedContact.FindMobileMatch(contactNumber.Value.ToString());
+                            //SelectedContact.FindDNMatch(contactNumber.Value.ToString());
+
+                            //var accountNumber = _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(SearchCriteria.ByText("Acc No"));
+                            //SelectedContact.FindCMBSMatch(accountNumber.Value.ToString());
+                            //SelectedContact.FindICONMatch(accountNumber.Value.ToString());
+
+                            //var idok = _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(SearchCriteria.ByText("IVR Status"));
+                            //if (idok.Value.ToString().Contains("OK"))
+                            //    SelectedContact.IDok = true;
+
+                            //var ivrSelection = _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(SearchCriteria.ByText("IVR Selection"));
+                        }
                         break;
                     case "AgentStatus: NotReady":
                         _IPCCTimer.Interval = 1000;
@@ -568,14 +666,12 @@ namespace CallTracker.View
                         _CallStateTime.ForeColor = Color.PaleGoldenrod;
                         break;
                     case "AgentStatus:":
-                        _IPCCTimer.Interval = 5000;
+                        _IPCCTimer.Interval = 2000;
                         _CallStateTime.BackColor = Color.WhiteSmoke;
                         _CallStateTime.ForeColor = Color.DarkSlateGray;
                         break;
                     default:
                         _IPCCTimer.Interval = 1000;
-                        _CallStateTime.BackColor = Color.WhiteSmoke;
-                        _CallStateTime.ForeColor = Color.DarkSlateGray;
                         break;
                 }
                 _callStateTimeElapsed = TimeSpan.Zero;
