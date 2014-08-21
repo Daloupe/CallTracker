@@ -1,12 +1,5 @@
 ﻿using PropertyChanged;
-using System.ComponentModel;
-using System.Collections.Generic;
 using System;
-using System.Text;
-using System.Collections.ObjectModel;
-using System.Windows.Forms;
-//using System.Collections.Generic;
-using System.Reflection;
 using System.Linq;
 
 using ProtoBuf;
@@ -58,7 +51,7 @@ namespace CallTracker.Model
                 //State = String.Empty;
                 Postcode = String.Empty;
 
-                string[] split1 = Regex.Split(value, @".(\d{4})$");
+                var split1 = Regex.Split(value, @".(\d{4})$");
 
                 if (split1.Length > 1)
                 { 
@@ -71,7 +64,7 @@ namespace CallTracker.Model
                         State = query.NameShort;
                 }
 
-                string[] split2 = Regex.Split(split1[0], @"(Victoria|Tasmania|Queensland|New South Wales|(?:South|Western) Australia|(?:Northern|Australian Captial) Territory|VIC|NSW|SA|WA|NT|TAS|ACT|QLD)", RegexOptions.IgnoreCase);
+                var split2 = Regex.Split(split1[0], @"(Victoria|Tasmania|Queensland|New South Wales|(?:South|Western) Australia|(?:Northern|Australian Capital) Territory|VIC|NSW|SA|WA|NT|TAS|ACT|QLD)", RegexOptions.IgnoreCase);
 
                 if (split2.Length > 1)
                 {
@@ -83,7 +76,7 @@ namespace CallTracker.Model
                         State = query.NameShort;
                 }
 
-                Match AddressMatch = new AddressPattern().Match(split2[0]);
+                var AddressMatch = new AddressPattern().Match(split2[0]);
 
                 //Console.WriteLine();
                 //Match AddressMatch = Pattern.Match(value);
@@ -120,6 +113,18 @@ namespace CallTracker.Model
         //        "st", "rd", "ave", "hwy", "cct", "ct", "cl","gr",
         //        "street","road","avenue", "highway","circuit","court","close","grove"
         //};
+
+        public bool FindAddressMatch(string text)
+        {
+            var match = Pattern.Match(text);
+            if (match.Success)
+            {
+                Address = text;
+                Main.FadingToolTip.ShowandFade("Address: " + Address);
+                return true;
+            };
+            return false;
+        }
     }
 
     //public enum AddressType

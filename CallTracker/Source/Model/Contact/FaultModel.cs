@@ -1,5 +1,4 @@
-﻿//using System.ComponentModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -216,6 +215,19 @@ namespace CallTracker.Model
                            .Remove(ServiceTypes.LIP)
                            .Remove(ServiceTypes.ONC)
                            .Remove(ServiceTypes.DTV);
+        }
+
+        public bool FindITCaseMatch(string text)
+        {
+            var match = ITCasePattern.Match(text);
+            if (match.Success)
+            {
+                ITCase = text;
+
+                Main.FadingToolTip.ShowandFade("IT Case: " + ITCase);
+                return true;
+            };
+            return false;
         }
     }    
 

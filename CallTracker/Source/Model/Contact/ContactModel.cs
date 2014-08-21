@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Reflection;
 using System.Linq;
-
+using System.Text.RegularExpressions;
 using PropertyChanged;
 using ProtoBuf;
 using Utilities.RegularExpressions;
@@ -174,12 +174,12 @@ namespace CallTracker.Model
                 NestedChange(sender, e);
         }
 
-        public object GetProperty(string property)
+        public static object GetProperty(object target, string property)
         {
             if (String.IsNullOrEmpty(property)) return null;
 
-            Type currentType = this.GetType();
-            object value = this;
+            Type currentType = target.GetType();
+            object value = target;
 
             foreach (string propertyName in property.Split('.'))
             {
@@ -193,13 +193,13 @@ namespace CallTracker.Model
             return value;
         }
 
-        public void SetProperty(string property, string value)
+        public static void SetProperty(object target, string property, string value)
         {
             if (String.IsNullOrEmpty(property)) return;
 
-            Type currentType = this.GetType();
+            Type currentType = target.GetType();
             PropertyInfo currentObject = null;
-            object nestedObject = this;
+            object nestedObject = target;
 
             string[] propSplit = property.Split('.');
 
@@ -215,7 +215,97 @@ namespace CallTracker.Model
             if (currentObject != null)
                 currentObject.SetValue(nestedObject, value, null);
         }
+
+        public bool FindDNMatch(string text)
+        {
+            var match = DNPattern.Match(text);
+            if (match.Success)
+            {
+                DN = match.Result("0$1$2$3");
+                var query = (from a in Main.ServicesStore.servicesDataSet.States
+                             where a.Areacode == match.Groups[1].Value
+                             select a).First();
+                Address.State = query.NameShort;
+                Service.Sip = query.Sip;
+
+                Main.FadingToolTip.ShowandFade("DN: " + DN);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindMobileMatch(string text)
+        {
+            var match = MobilePattern.Match(text);
+            if (match.Success)
+            {
+                Mobile = match.Result("0$1$2");
+                Main.FadingToolTip.ShowandFade("Mobile: " + Mobile);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindICONMatch(string text)
+        {
+            var match = ICONPattern.Match(text);
+            if (match.Success)
+            {
+                ICON = text;
+
+                Main.FadingToolTip.ShowandFade("ICON: " + ICON);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindCMBSMatch(string text)
+        {
+            var match = CMBSPattern.Match(text);
+            if (match.Success)
+            {
+                CMBS = match.Result("3$1$2 $3");
+                var query = (from a in Main.ServicesStore.servicesDataSet.States
+                             where a.CMBScode == match.Groups[1].Value
+                             select a).First();
+                Address.State = query.NameShort;
+                Service.Sip = query.Sip;
+
+                Main.FadingToolTip.ShowandFade("CMBS: " + CMBS);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindUsernameMatch(string text)
+        {
+            var match = UNLowerPattern.Match(text);
+            if (match.Success)
+            {
+                Username = text;
+                Main.FadingToolTip.ShowandFade("Username: " + Username);
+                return true;
+            };
+
+            match = UNUpperPattern.Match(text);
+            if (match.Success)
+            {
+                Username = text.ToLower();
+                Main.FadingToolTip.ShowandFade("Username: " + Username);
+                return true;
+            };
+
+            return false;
+        }
+
+        //public static ICONPattern ICONPattern = new ICONPattern();
+        //public static CMBSPattern CMBSPattern = new CMBSPattern();
+        //public static MobilePattern MobilePattern = new MobilePattern();
+        //public static UsernameUpperPattern UNUpperPattern = new UsernameUpperPattern();
+        //public static UsernameLowerPattern UNLowerPattern = new UsernameLowerPattern();
     }
+
+
 
     //[ImplementPropertyChanged]
     //public class ContactsList : List<CustomerContact>

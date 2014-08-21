@@ -139,9 +139,9 @@
     <Compile Include="Source\Model\Resource\EnumData.cs" />
     <Compile Include="Source\Model\Resource\EventLogModel.cs" />
     <Compile Include="Source\Model\Resource\PRTemplateModel.cs" />
-    <Compile Include="Source\Model\Settings\AROModel.cs" />
-    <Compile Include="Source\Model\Settings\IEInteractBase.cs" />
-    <Compile Include="Source\Model\Settings\ElementBinds.cs" />
+    <Compile Include="Source\Model\Resource\Settings\AROModel.cs" />
+    <Compile Include="Source\Model\Resource\Settings\IEInteractBase.cs" />
+    <Compile Include="Source\Model\Resource\Settings\ElementBinds.cs" />
     <Compile Include="Source\Model\Resource\RatePlanModel.cs" />
     <Compile Include="Source\View\Controls\BindableContextMenu.cs">
       <SubType>Component</SubType>
@@ -480,8 +480,8 @@
     <Compile Include="Source\Model\Contact\ContactModel.cs" />
     <Compile Include="Source\Model\DataRepository.cs" />
     <Compile Include="Source\Model\Contact\FaultModel.cs" />
-    <Compile Include="Source\Model\Settings\GridLinksModel.cs" />
-    <Compile Include="Source\Model\Settings\LoginsModel.cs" />
+    <Compile Include="Source\Model\Resource\Settings\GridLinksModel.cs" />
+    <Compile Include="Source\Model\Resource\Settings\LoginsModel.cs" />
     <Compile Include="Source\Model\Contact\ServiceModel.cs" />
     <Compile Include="Source\Model\Contact\StatisticsModel.cs" />
     <Compile Include="Source\View\Popups\AddAROForm.cs">

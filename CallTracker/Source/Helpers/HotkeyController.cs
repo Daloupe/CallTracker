@@ -261,7 +261,7 @@ namespace CallTracker.Helpers
                 return;
             }
 
-            var UrlOrTitleMatches =  from
+            var urlOrTitleMatches =  from
                                         bind in parent.DataStore.PasteBinds
                                      where
                                         url.Contains(bind.Url) ||
@@ -269,11 +269,11 @@ namespace CallTracker.Helpers
                                      select
                                         bind;
 
-            PasteBind ElementMatch = UrlOrTitleMatches.FirstOrDefault(bind => bind.Element == element);
+            PasteBind ElementMatch = urlOrTitleMatches.FirstOrDefault(bind => bind.Element == element);
 
             if (ElementMatch == null)
             {
-                string system = UrlOrTitleMatches.Count() > 0 ? UrlOrTitleMatches.ElementAtOrDefault(0).System : String.Empty;
+                string system = urlOrTitleMatches.Count() > 0 ? urlOrTitleMatches.ElementAtOrDefault(0).System : String.Empty;
                 ElementMatch = new PasteBind(system, url, title, browser.ActiveElement);
                 parent.DataStore.PasteBinds.Add(ElementMatch);
                 EventLogger.LogNewEvent("New Bind Created");
@@ -362,110 +362,111 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void OnSmartCopy(HotkeyPressedEventArgs e)
+        private static void OnSmartCopy(HotkeyPressedEventArgs e)
         {
-            //Process.Start("FloatingToolTip.exe", "SmartCopy");
-            //string oldClip = Clipboard.GetText();
             EventLogger.LogNewEvent("Starting Smart Copy", EventLogLevel.Brief);
-            SendKeys.SendWait("^c");
-            Application.DoEvents();
-            SendKeys.Flush();
-            string text = Clipboard.GetText().Trim();
-            EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard.", text));
-            int textlen = text.Length;
-            if (textlen == 0)
-                return;
-            string firstchar = text.Substring(0, 1);
 
+            var oldClip = Clipboard.GetText();
+            Clipboard.Clear();
+            SendKeys.SendWait("^c");
+            SendKeys.Flush();
             
+            var sw = new Stopwatch();
+            sw.Start();
+            while (!Clipboard.ContainsText())
+            {
+                SendKeys.Flush();
+                if (sw.ElapsedMilliseconds > 1000)
+                    break;
+            }
+            sw.Stop();
+
+            var text = Clipboard.GetText().Trim();
+            EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1}ticks", text, sw.ElapsedTicks));
+            var textlen = text.Length;
+            if (textlen == 0)
+            {
+                Main.FadingToolTip.ShowandFade("Nothing selected");
+                if (!String.IsNullOrEmpty(oldClip))
+                    Clipboard.SetText(oldClip);
+                return;
+            }
+            var firstchar = text.Substring(0, 1);
+
+            if(!String.IsNullOrEmpty(oldClip))
+                Clipboard.SetText(oldClip);
+
+            var contact = parent.SelectedContact;
             
+            // If text is all digits ////////////////////////////////////////////////////////////////////////////////
             if(new DigitPattern().IsMatch(text))
             {
-                if (firstchar == "1" && textlen == 8)                       parent.SelectedContact.Fault.PR = text; 
-                else if ((firstchar == "0" && textlen == 10) 
-                     || (text.Substring(0, 2) == "61" && textlen == 11))
+                if (firstchar == "1" && textlen == 8)
                 {
-                    if (CustomerContact.MobilePattern.IsMatch(text))        parent.SelectedContact.Mobile = "0" + text;
-                    else if (CustomerContact.DNPattern.IsMatch(text))
-                    {
-                        parent.SelectedContact.DN = CustomerContact.DNPattern.Replace(text,"0$1$2$3");
-                        var query = (from a in Main.ServicesStore.servicesDataSet.States
-                                                                where a.Areacode == parent.SelectedContact.DN.Substring(1,1)
-                                                                select a).First();
-                        parent.SelectedContact.Address.State = query.NameShort;
-                        parent.SelectedContact.Service.Sip = query.Sip;
-                    };
+                    contact.Fault.PR = text;
+                    Main.FadingToolTip.ShowandFade("PR: " + contact.Fault.PR);
+                    return;
+                } 
+                
+                if ((firstchar == "0" && textlen == 10) ||
+                    (text.Substring(0, 2) == "61" && textlen == 11))
+                {
+                    if (contact.FindMobileMatch(text)) return;
+                    if (contact.FindDNMatch(text)) return;
+
+                    contact.Note += Environment.NewLine + text;
+                    Main.FadingToolTip.ShowandFade("Added to Note");
+                    return;
                 }
-                else if (CustomerContact.CMBSPattern.IsMatch(text)) 
-                { 
-                    parent.SelectedContact.CMBS = CustomerContact.CMBSPattern.Replace(text, "3$1$2 $3"); 
-                    var query = (from a in Main.ServicesStore.servicesDataSet.States
-                                                            where a.CMBScode == CustomerContact.CMBSPattern.Replace(text, "$1")
-                                                            select a).First();
-                    parent.SelectedContact.Address.State = query.NameShort;
-                    parent.SelectedContact.Service.Sip = query.Sip;
-                }
-                else if (CustomerContact.ICONPattern.IsMatch(text)) parent.SelectedContact.ICON = text;
-                else if (FaultModel.ITCasePattern.IsMatch(text)) parent.SelectedContact.Fault.ITCase = text;
-                else parent.SelectedContact.Note += Environment.NewLine + text;
+
+                if (contact.FindCMBSMatch(text)) return;
+                if (contact.FindICONMatch(text)) return;
+                if (contact.Fault.FindITCaseMatch(text)) return;
+
+                contact.Note += Environment.NewLine + text;
+                Main.FadingToolTip.ShowandFade("Added to Note");
+                return;
             }
-            else if (new AlphaPattern().IsMatch(text))
+
+            // If text is all letters ///////////////////////////////////////////////////////////////////////////////
+            if (new AlphaPattern().IsMatch(text))
             {
-                if (NameModel.Pattern.IsMatch(text))                        parent.SelectedContact.Name = text;
-                else if (CustomerContact.UNLowerPattern.IsMatch(text)
-                      || CustomerContact.UNLowerPattern.IsMatch(text))      parent.SelectedContact.Username = text;
-                else                                                        parent.SelectedContact.Note += text;
+                if (contact.NameSplit.FindNameMatch(text)) return;
+                if (contact.FindUsernameMatch(text)) return;
+                
+                contact.Note += text;
+                Main.FadingToolTip.ShowandFade("Added to Note");
+                return;
             }
-            else
+
+            // If text begins with a letter /////////////////////////////////////////////////////////////////////////
+            if (Char.IsLetter(text, 0))
             {
-                if (Char.IsLetter(text, 0))
-                {
-                    if (new BRASPattern().IsMatch(text))                    parent.SelectedContact.Service.Bras = text;
-                    else if (new CommonNBNPattern().IsMatch(text))          parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
-                    else if (CustomerContact.UNLowerPattern.IsMatch(text)
-                        ||   CustomerContact.UNLowerPattern.IsMatch(text))  parent.SelectedContact.Username = text;
-                    else if (ContactAddress.Pattern.IsMatch(text))          parent.SelectedContact.Address.Address = text;
-                }
-                else
-                {
-                    if (new NodePattern().IsMatch(text))                    parent.SelectedContact.Service.Node = text;
-                    else if (CustomerContact.CMBSPattern.IsMatch(text))
-                    { 
-                        parent.SelectedContact.CMBS = CustomerContact.CMBSPattern.Replace(text, "3$1$2 $3"); 
-                        var query = (from a in Main.ServicesStore.servicesDataSet.States
-                                                                where a.CMBScode == CustomerContact.CMBSPattern.Replace(text, "$1")
-                                                                select a).First();
-                        parent.SelectedContact.Address.State = query.NameShort;
-                        parent.SelectedContact.Service.Sip = query.Sip;
-                    }
-                    else if (ContactAddress.Pattern.IsMatch(text))          parent.SelectedContact.Address.Address = text;
-                    else                                                    parent.SelectedContact.Note += text;
-                }    
+                if (contact.Service.FindBRASMatch(text)) return;
+                if (contact.Service.FindNBNMatch(text)) return;
+                if (contact.FindUsernameMatch(text)) return;
+                if (contact.Address.FindAddressMatch(text)) return;
+
+                contact.Note += text;
+                Main.FadingToolTip.ShowandFade("Added to Note");
+                return;
             }
 
-                 //bgw.RunWorkerAsync();
+            // else /////////////////////////////////////////////////////////////////////////////////////////////////
+            if (contact.Service.FindNodeMatch(text)) return;
+            if (contact.FindCMBSMatch(text)) return;
+            if (contact.Address.FindAddressMatch(text)) return;
 
-
+            contact.Note += text;
+            Main.FadingToolTip.ShowandFade("Added to Note");   
         }
 
-        
-        //void bgw_DoWork(object sender, DoWorkEventArgs e)
-        //{
 
-        //    FadingTooltip FadingTooltip = new FadingTooltip(Cursor.Position);
-        //    FadingTooltip.TopMost = true;
-        //        FadingTooltip.ShowandFade();
-        //        e.Result = FadingTooltip;
-            
-        //}
 
-        //void bgw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        //{
-          
-        //}
-        
-               
-        //    public BackgroundWorker bgw = new BackgroundWorker();
+
+
+
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         // System Search /////////////////////////////////////////////////////////////////////////////////////
@@ -631,3 +632,87 @@ namespace CallTracker.Helpers
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//if(new DigitPattern().IsMatch(text))
+//            {
+//                if (firstchar == "1" && textlen == 8)                       parent.SelectedContact.Fault.PR = text; 
+//                else if ((firstchar == "0" && textlen == 10) 
+//                     || (text.Substring(0, 2) == "61" && textlen == 11))
+//                {
+//                    if (CustomerContact.MobilePattern.IsMatch(text))        parent.SelectedContact.Mobile = "0" + text;
+//                    else if (parent.SelectedContact.FindDNMatch(text)) Main.FadingToolTip.ShowandFade("DN: " + text);
+//                    //else if (CustomerContact.DNPattern.IsMatch(text))
+//                    //{
+//                    //    parent.SelectedContact.DN = CustomerContact.DNPattern.Replace(text,"0$1$2$3");
+//                    //    var query = (from a in Main.ServicesStore.servicesDataSet.States
+//                    //                                            where a.Areacode == parent.SelectedContact.DN.Substring(1,1)
+//                    //                                            select a).First();
+//                    //    parent.SelectedContact.Address.State = query.NameShort;
+//                    //    parent.SelectedContact.Service.Sip = query.Sip;
+//                    //};
+//                }
+//                else if (CustomerContact.CMBSPattern.IsMatch(text)) 
+//                { 
+//                    parent.SelectedContact.CMBS = CustomerContact.CMBSPattern.Replace(text, "3$1$2 $3"); 
+//                    var query = (from a in Main.ServicesStore.servicesDataSet.States
+//                                                            where a.CMBScode == CustomerContact.CMBSPattern.Replace(text, "$1")
+//                                                            select a).First();
+//                    parent.SelectedContact.Address.State = query.NameShort;
+//                    parent.SelectedContact.Service.Sip = query.Sip;
+//                }
+//                else if (CustomerContact.ICONPattern.IsMatch(text)) parent.SelectedContact.ICON = text;
+//                else if (FaultModel.ITCasePattern.IsMatch(text)) parent.SelectedContact.Fault.ITCase = text;
+//                else parent.SelectedContact.Note += Environment.NewLine + text;
+//            }
+//            else if (new AlphaPattern().IsMatch(text))
+//            {
+//                if (NameModel.Pattern.IsMatch(text))                        parent.SelectedContact.Name = text;
+//                else if (CustomerContact.UNLowerPattern.IsMatch(text)
+//                      || CustomerContact.UNLowerPattern.IsMatch(text))      parent.SelectedContact.Username = text;
+//                else                                                        parent.SelectedContact.Note += text;
+//            }
+//            else
+//            {
+//                if (Char.IsLetter(text, 0))
+//                {
+//                    if (new BRASPattern().IsMatch(text))                    parent.SelectedContact.Service.Bras = text;
+//                    else if (new CommonNBNPattern().IsMatch(text))          parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
+//                    else if (CustomerContact.UNLowerPattern.IsMatch(text)
+//                        ||   CustomerContact.UNLowerPattern.IsMatch(text))  parent.SelectedContact.Username = text;
+//                    else if (ContactAddress.Pattern.IsMatch(text))          parent.SelectedContact.Address.Address = text;
+//                }
+//                else
+//                {
+//                    if (new NodePattern().IsMatch(text))                    parent.SelectedContact.Service.Node = text;
+//                    else if (CustomerContact.CMBSPattern.IsMatch(text))
+//                    { 
+//                        parent.SelectedContact.CMBS = CustomerContact.CMBSPattern.Replace(text, "3$1$2 $3"); 
+//                        var query = (from a in Main.ServicesStore.servicesDataSet.States
+//                                                                where a.CMBScode == CustomerContact.CMBSPattern.Replace(text, "$1")
+//                                                                select a).First();
+//                        parent.SelectedContact.Address.State = query.NameShort;
+//                        parent.SelectedContact.Service.Sip = query.Sip;
+//                    }
+//                    else if (ContactAddress.Pattern.IsMatch(text))          parent.SelectedContact.Address.Address = text;
+//                    else                                                    parent.SelectedContact.Note += text;
+//                }    
+//            }

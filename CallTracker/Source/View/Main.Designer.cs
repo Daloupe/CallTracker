@@ -323,7 +323,7 @@
             this.wrapUpToolStripMenuItem.Enabled = false;
             this.wrapUpToolStripMenuItem.Name = "wrapUpToolStripMenuItem";
             this.wrapUpToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.wrapUpToolStripMenuItem.Tag = "AgentStatus: WrapUp";
+            this.wrapUpToolStripMenuItem.Tag = "AgentStatus: Wrapup";
             this.wrapUpToolStripMenuItem.Text = "Wrap Up";
             // 
             // toolStripSeparator10
@@ -360,7 +360,7 @@
             this.monitorIPCCToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.monitorIPCCToolStripMenuItem.Name = "monitorIPCCToolStripMenuItem";
             this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.monitorIPCCToolStripMenuItem.Tag = "MonitorIPCC";
+            this.monitorIPCCToolStripMenuItem.Tag = "Protected";
             this.monitorIPCCToolStripMenuItem.Text = "Monitor IPCC";
             this.monitorIPCCToolStripMenuItem.Click += new System.EventHandler(this.monitorIPCCToolStripMenuItem_Click);
             // 

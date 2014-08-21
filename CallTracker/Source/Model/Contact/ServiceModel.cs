@@ -1,16 +1,11 @@
-﻿
-using System.ComponentModel;
-using System.Collections.Generic;
-using System;
-using System.Text;
-using System.Collections.ObjectModel;
-using System.Windows.Forms;
-//using System.Collections.Generic;
+﻿using System;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
 using ProtoBuf;
 using PropertyChanged;
+
+using Utilities.RegularExpressions;
+using CallTracker.View;
 
 namespace CallTracker.Model
 {
@@ -18,7 +13,10 @@ namespace CallTracker.Model
     [ProtoContract]
     public class ServiceModel
     {
-  
+        public static BRASPattern BRASPattern = new BRASPattern();
+        public static CommonNBNPattern NBNPattern = new CommonNBNPattern();
+        public static NodePattern NodePattern = new NodePattern();
+
         public ServiceModel()
         {
             Equipment = String.Empty;
@@ -99,5 +97,42 @@ namespace CallTracker.Model
         public string MeTVSN { get; set; }
 
         //public INetworkInfo NetworkInfo { get; set; }
+
+        public bool FindBRASMatch(string text)
+        {
+            var match = BRASPattern.Match(text);
+            if (match.Success)
+            {
+                Bras = text;
+
+                Main.FadingToolTip.ShowandFade("BRAS: " + Bras);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindNBNMatch(string text)
+        {
+            var match = NBNPattern.Match(text);
+            if (match.Success)
+            {
+                CustomerContact.SetProperty(this, text.Substring(0, 3), text);
+                Main.FadingToolTip.ShowandFade(text.Substring(0, 3) + ": " + text);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindNodeMatch(string text)
+        {
+            var match = NodePattern.Match(text);
+            if (match.Success)
+            {
+                Node = text;
+                Main.FadingToolTip.ShowandFade("Node: " + Node);
+                return true;
+            };
+            return false;
+        }
     }
 }

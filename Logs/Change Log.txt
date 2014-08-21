@@ -25,8 +25,7 @@ Yellow: 255,198,0
 - Added MAC Regex.
 
 
-
-0.3.4.1
+0.3.4.2
 - Added Contact model to DataSet;
 - Contact count resets on first IPCC login for the day, data saves on the last logout.
 - Added date selection to CallHistory.
@@ -34,6 +33,13 @@ Yellow: 255,198,0
 - Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
 - Action isn't saving/binding.
 - Affected service is ding strange things on reload. Perhaps the filter changes the order.
+
+0.3.4.1
+| Floating Tooltip now functioning.
+| Auto New Call triggers if previous state contains "Reserved".
+| Cleaned unused references.
+| Moved Smart Copy logic in to methods on the model.
+| Smart Copy preserves original clipboard buffer.
 
 0.3.4.0
 | Started conversion of contacts model to entity framwork.

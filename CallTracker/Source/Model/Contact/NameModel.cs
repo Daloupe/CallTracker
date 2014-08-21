@@ -1,14 +1,10 @@
-﻿//using System.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Text.RegularExpressions;
 
 using Utilities.RegularExpressions;
 using ProtoBuf;
 using PropertyChanged;
 
-using CallTracker.Helpers;
 using CallTracker.View;
 
 namespace CallTracker.Model
@@ -32,7 +28,7 @@ namespace CallTracker.Model
         { 
             get 
             {
-                return full;
+                return _full;
             } 
             set 
             {
@@ -42,15 +38,34 @@ namespace CallTracker.Model
                 Initial = match.Groups[3].Value;
                 Last = match.Groups[4].Value;
 
-                full = value;
+                _full = value;
             } 
         }
-        private string full { get; set; }
+
+        private string _full;
 
         public NameModel()
         {
             First = String.Empty;
             Last = String.Empty;
+        }
+
+        public bool FindNameMatch(string text)
+        {
+            var match = Pattern.Match(text);
+            if (match.Success)
+            {
+                Title = match.Groups[1].Value;
+                First = match.Groups[2].Value;
+                Initial = match.Groups[3].Value;
+                Last = match.Groups[4].Value;
+
+                _full = text;
+
+                Main.FadingToolTip.ShowandFade("Name: " + Full);
+                return true;
+            };
+            return false;
         }
 
     }    
