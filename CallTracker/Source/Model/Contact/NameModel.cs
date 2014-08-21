@@ -5,8 +5,6 @@ using Utilities.RegularExpressions;
 using ProtoBuf;
 using PropertyChanged;
 
-using CallTracker.View;
-
 namespace CallTracker.Model
 {
     [ImplementPropertyChanged]

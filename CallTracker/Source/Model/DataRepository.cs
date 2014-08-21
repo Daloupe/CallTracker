@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.IO;
 using System.ComponentModel;
 using System.Data;
-//using CallTracker.Model;
+
 using CallTracker.Helpers;
 using CallTracker.DataSets;
 
@@ -113,8 +112,6 @@ namespace CallTracker.Model
             Logins = new BindingList<LoginsModel>();
             GridLinks = new GridLinksModel();
             User = String.Empty;
-            DataView dw = new DataView();
-           
         }
 
         public override UserDataStore ReadFile()
@@ -160,7 +157,7 @@ namespace CallTracker.Model
             dataStore.User = StringCipher.Decrypt(dataStore.User, "jumpingfivemammotheightyeight");
             if (dataStore.User != Environment.UserName)
             {
-                dataStore.User = String.Empty;
+                dataStore.User = Environment.UserName;
                 foreach (var login in dataStore.Logins)
                     login.Password = String.Empty;
             }

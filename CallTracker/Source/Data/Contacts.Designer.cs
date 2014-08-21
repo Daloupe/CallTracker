@@ -12,7 +12,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("Contacts", "ContactsNames", "Contacts", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CallTracker.Source.Data.Contacts), "Names", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CallTracker.Source.Data.Names))]
 
 // Original file name:
-// Generation date: 8/22/2014 12:57:49 AM
+// Generation date: 8/22/2014 1:20:40 AM
 namespace CallTracker.Source.Data
 {
     
@@ -112,11 +112,13 @@ namespace CallTracker.Source.Data
         /// Create a new Contacts object.
         /// </summary>
         /// <param name="id">Initial value of Id.</param>
+        /// <param name="num">Initial value of num.</param>
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
-        public static Contacts CreateContacts(int id)
+        public static Contacts CreateContacts(int id, string num)
         {
             Contacts contacts = new Contacts();
             contacts.Id = id;
+            contacts.num = num;
             return contacts;
         }
         /// <summary>
@@ -146,6 +148,33 @@ namespace CallTracker.Source.Data
         partial void OnIdChanging(int value);
         [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
         partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for property num in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        public string num
+        {
+            get
+            {
+                return this._num;
+            }
+            set
+            {
+                this.OnnumChanging(value);
+                this.ReportPropertyChanging("num");
+                this._num = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("num");
+                this.OnnumChanged();
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        private string _num;
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnnumChanging(string value);
+        [global::System.CodeDom.Compiler.GeneratedCode("System.Data.Entity.Design.EntityClassGenerator", "4.0.0.0")]
+        partial void OnnumChanged();
         /// <summary>
         /// There are no comments for Name in the schema.
         /// </summary>

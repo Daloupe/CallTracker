@@ -56,7 +56,7 @@
             this.Wingman.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
             this.Wingman.Location = new System.Drawing.Point(22, 16);
             this.Wingman.Name = "Wingman";
-            this.Wingman.Size = new System.Drawing.Size(256, 64);
+            this.Wingman.Size = new System.Drawing.Size(256, 65);
             this.Wingman.TabIndex = 0;
             this.Wingman.Text = "Wingman";
             // 
@@ -79,16 +79,16 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(173)))));
             this.label1.Location = new System.Drawing.Point(19, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 64);
+            this.label1.Size = new System.Drawing.Size(256, 65);
             this.label1.TabIndex = 2;
             this.label1.Text = "Wingman";
             // 
             // _LoadingText
             // 
             this._LoadingText.BackColor = System.Drawing.Color.Transparent;
-            this._LoadingText.Font = new System.Drawing.Font("TradeGothicNo.18-Condensed", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._LoadingText.Font = new System.Drawing.Font("Gautami", 11.75F);
             this._LoadingText.ForeColor = System.Drawing.Color.PowderBlue;
-            this._LoadingText.Location = new System.Drawing.Point(26, 204);
+            this._LoadingText.Location = new System.Drawing.Point(19, 204);
             this._LoadingText.Name = "_LoadingText";
             this._LoadingText.Size = new System.Drawing.Size(250, 28);
             this._LoadingText.TabIndex = 3;
@@ -193,8 +193,11 @@
             this._Name.LabelText = "NAME:";
             this._Name.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._Name.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Name.LabelToolTip = "";
             this._Name.Location = new System.Drawing.Point(3, 25);
             this._Name.Margin = new System.Windows.Forms.Padding(0);
+            this._Name.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Name.MenuButtonImage = null;
             this._Name.Name = "_Name";
             this._Name.PropertyName = null;
             this._Name.Size = new System.Drawing.Size(170, 30);
@@ -225,8 +228,11 @@
             this._Id.LabelText = "EMP ID:";
             this._Id.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._Id.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Id.LabelToolTip = "";
             this._Id.Location = new System.Drawing.Point(175, 25);
             this._Id.Margin = new System.Windows.Forms.Padding(0);
+            this._Id.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Id.MenuButtonImage = null;
             this._Id.Name = "_Id";
             this._Id.PropertyName = null;
             this._Id.Size = new System.Drawing.Size(72, 30);

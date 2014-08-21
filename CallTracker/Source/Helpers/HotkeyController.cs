@@ -1,23 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Reflection;
 using System.Text.RegularExpressions;
-using System.Windows.Input;
 using System.Diagnostics;
-using System.Threading;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
-
-using System.Drawing;
-
 using Shortcut;
+
 using WatiN.Core;
-//using WatiN.Core.Constraints;
-//using WatiN.Core.Interfaces;
-//using SHDocVw;
 
 using CallTracker.View;
 using CallTracker.Model;
@@ -143,9 +133,12 @@ namespace CallTracker.Helpers
                         WindowHelper.SetForegroundWindow(hWnd);
                     }
                 }
-                else
-                    if (NavigateOrNewIE(systemItem.Url, systemItem.Title))
-                        AutoLogin();   
+                else if (NavigateOrNewIE(systemItem.Url, systemItem.Title))
+                {
+                    if (Browser.Exists<IE>(Find.ByTitle(systemItem.Title)))
+                        WindowHelper.ShowWindow(browser.hWnd, WindowHelper.SW_RESTORE);
+                    AutoLogin();
+                }
             }
             finally
             {
@@ -311,11 +304,16 @@ namespace CallTracker.Helpers
                 foreach (PasteBind bind in query)
                     bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, bind.AltData));
             }
-            if (browser.Url.Contains("http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F001_CreatePR"))
+            if (browser.Url.Contains("CreatePR"))
+            {
+                EventLogger.LogNewEvent("Attempting IFMS AutoFills", EventLogLevel.Status);
                 IFMSAutoFill.Go(parent);
-            if (browser.Url.Contains("http://icon.optus.com.au/icon/Activity/NewActivity.aspx"))
+            }
+            if (browser.Url.Contains("NewActivity"))
+            {
+                EventLogger.LogNewEvent("Attempting ICON AutoFills", EventLogLevel.Status);
                 ICONAutoFill.Go(parent);
-
+            }
             //PreviousIEMatch = browser.Title;
             browser.Dispose();
         }
@@ -518,7 +516,7 @@ namespace CallTracker.Helpers
             //{
                 //if (browser != null)
                 //    browser.Dispose();
-                browser = Browser.AttachToNoWait<IE>(Find.By("hwnd", currentHWND));
+                browser = Browser.AttachTo<IE>(Find.By("hwnd", currentHWND));
                 browser.AutoClose = false;
                 //PreviousIEMatch = currentHWND;
             //}
@@ -538,7 +536,7 @@ namespace CallTracker.Helpers
             //{
                 //if (browser != null)
                 //    browser.Dispose();
-                browser = Browser.AttachToNoWait<IE>(Find.ByTitle(currentTitle));
+                browser = Browser.AttachTo<IE>(Find.ByTitle(currentTitle));
                 browser.AutoClose = false;
                 //PreviousIEMatch = currentTitle;
             //}
@@ -555,7 +553,7 @@ namespace CallTracker.Helpers
             ////{
             //    if (browser != null)
             //        browser.Dispose();
-                browser = Browser.AttachToNoWait<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase)));
+                browser = Browser.AttachTo<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase)));
                 browser.AutoClose = false;
                 //PreviousIEMatch = _url;
             //}

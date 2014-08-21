@@ -428,7 +428,7 @@ namespace CallTracker.View
         {
             if (!CheckForIpcc())
                 return;
-
+            
             //string dialOrTransfer = "btnDial";
             if (_ipccCallStatus.Name == "AgentStatus: Talking")
                 _ipccTransferButton.Click();
@@ -530,13 +530,12 @@ namespace CallTracker.View
         }
         private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {    
-            if (e.ClickedItem != monitorIPCCToolStripMenuItem)
-            {
-                ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
-                _IPCCTimer.Enabled = true;
-                //if (CheckForIpcc())
-                //    _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
-            }
+            //if (e.ClickedItem != monitorIPCCToolStripMenuItem)
+            //{
+            //    ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
+            //    if (CheckForIpcc())
+            //        _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
+            //}
         }
 
         private void ChangeCallStateMenuItem(string callState)
@@ -821,6 +820,5 @@ namespace CallTracker.View
                 return cp;
             }
         }
-
     }
 }

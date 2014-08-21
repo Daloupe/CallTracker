@@ -31,6 +31,11 @@ Yellow: 255,198,0
 - Action isn't saving/binding.
 - Affected service is ding strange things on reload. Perhaps the filter changes the order.
 
+0.3.4.3
+| Optus Font used on splash screen even if not installed.
+| Added Clear Call History to CallHistory Context Menu.
+| Login Passwords now loading correctly.
+
 0.3.4.2
 | Entered guesswork code for Call Details pull.
 | Entered guesswork code for dial pad fill.
@@ -38,7 +43,7 @@ Yellow: 255,198,0
 | Fixed Tooltips on main data.
 | TextFields SelectAll on focus.
 | Fixed Outcome and Action binds.
-| Contacts are resorted by date on callhistory close.
+| Contacts are re-sorted by date on callhistory close.
 
 0.3.4.1
 | Floating Tooltip now functioning.

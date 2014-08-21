@@ -12,8 +12,8 @@ namespace CallTracker.View
 
         private void FadingTooltip_Load(object sender, EventArgs e)
         {
-            FadeOutDelay = 300;
-            FadeTime = 250;
+            FadeOutDelay = 200;
+            FadeTime = 350;
             MoveInterval = 2;
         }
 
@@ -54,8 +54,13 @@ namespace CallTracker.View
         {
             label1.Text = text;
             var point = MousePosition;
-            
-            point.Offset(-Width, -Cursor.Size.Height + Height);
+            if (Cursor.Current == Cursors.Default || Cursor.Current == Cursors.Arrow)
+                point.Offset(11, 0);
+            else if (Cursor.Current == Cursors.IBeam)
+                point.Offset(7, -8);
+            else
+                point.Offset(11, 0);
+            //point.Offset(-Width, 0);//-Cursor.Size.Height + Height);
             DesktopLocation = point;
             Opacity = 1;
             Show();

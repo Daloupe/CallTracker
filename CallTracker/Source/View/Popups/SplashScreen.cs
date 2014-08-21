@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Drawing.Text;
 using System.Windows.Forms;
 
 namespace CallTracker.View
@@ -15,12 +12,20 @@ namespace CallTracker.View
         
         public SplashScreen()
         {
-            InitializeComponent();   
+            InitializeComponent();
+            var pfc = new PrivateFontCollection();
+            pfc.AddFontFile("OptusVoiceBETA-Bold.ttf");
+
+            Wingman.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);
+            label1.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);
         }
 
         private void SplashScreen_Load(object sender, EventArgs e)
         {
             _Version.Text = "Version: " + Properties.Settings.Default.Version;
+            //var pfc2 = new PrivateFontCollection();
+            //pfc2.AddFontFile("trade-gothic-lt-1361519976.ttf");
+            //_LoadingText.Font = new Font(pfc2.Families[0], 11, FontStyle.Regular);
         }
         public void Init(Main _mainForm)
         {

@@ -143,7 +143,7 @@ namespace CallTracker.Model
             
             elem.FindNativeElement().SetFocus();
             IEMethod(elem, value);
-            Main.FadingToolTip.ShowandFade("Pasting " + element + ": " + value);
+            //Main.FadingToolTip.ShowandFade("Pasting " + element + ": " + value);
             browser.WaitForComplete(5000);
         }
 

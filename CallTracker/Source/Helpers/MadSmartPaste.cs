@@ -2,31 +2,14 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Linq;
-using System.IO;
-using System.Runtime.InteropServices;
-using System.Drawing;
-using System.ComponentModel;
-using System.Text;
-using System.Text.RegularExpressions;
-
 using System.Diagnostics;
 
-using ProtoBuf;
-using PropertyChanged;
-
 using CallTracker.Model;
-using CallTracker.Helpers;
-using CallTracker.Data;
 
-using System.Windows.Automation;
-using TestStack.White.Configuration;
+
 using TestStack.White.Factory;
-using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
-using TestStack.White.Recording;
-using TestStack.White.UIItemEvents;
-using TestStack.White.UIItems.Actions;
 
 namespace CallTracker.Helpers
 {

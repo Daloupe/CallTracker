@@ -4,15 +4,9 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Collections;
-using System.Drawing.Drawing2D;
-using System.IO;
-using System.Text.RegularExpressions;
 
 using CallTracker.Model;
-using CallTracker.Data;
 using CallTracker.Helpers;
 
 namespace CallTracker.View
@@ -580,6 +574,15 @@ namespace CallTracker.View
             MainForm.settingMenuItem_Click(MainForm.callHistoryToolStripMenuItem, e);
         }
 
+        private void clearCallHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            customerContactsBindingSource.SuspendBinding();
+            customerContactsBindingSource.Clear();
+            Properties.Settings.Default.NextContactsId = 0;
+            customerContactsBindingSource.ResumeBinding();
+            customerContactsBindingSource.AddNew();
+        }
+
         private DateTime _lasttime;
         private bool _opened;
         protected virtual void _MenuButton_MouseClick(object sender, MouseEventArgs e)
@@ -685,6 +688,5 @@ namespace CallTracker.View
             var checkBox = (CheckBox)sender;
             checkBox.ImageIndex = checkBox.Checked ? 1 : 0;
         }
-
     }
 }
