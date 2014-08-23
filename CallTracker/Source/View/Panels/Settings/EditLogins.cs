@@ -25,7 +25,7 @@ namespace CallTracker.View
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
-            loginsModelBindingSource.DataSource = MainForm.DataStore.Logins;
+            loginsModelBindingSource.DataSource = MainForm.UserDataStore.Logins;
         }
 
         private void dataGridView1_DataError(object sender,

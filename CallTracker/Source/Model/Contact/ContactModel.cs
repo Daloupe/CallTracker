@@ -155,7 +155,7 @@ namespace CallTracker.Model
 
             //PRTemplateList.AddRange(HFCTemplate);
 
-            Contacts.StartDate = DateTime.Today.ToLocalTime();
+            Contacts.StartDate = DateTime.Today;
             Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();
 
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;

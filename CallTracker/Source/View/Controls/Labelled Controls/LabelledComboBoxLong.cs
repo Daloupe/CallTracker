@@ -41,6 +41,14 @@ namespace CallTracker.View
             set;
         }
 
+        [Category("!Input")]
+        [DefaultValue(true)]
+        public bool OverlapLabel
+        {
+            get;
+            set;
+        }
+
         //[Category("!Input")]
         //[Bindable(true)]
         //[Browsable(true)]
@@ -150,6 +158,8 @@ namespace CallTracker.View
 
         private void _ComboBox_DropDown(object sender, EventArgs e)
         {
+            if (!OverlapLabel)
+                return;
             if (ContextMenuStrip != null)
                 _MenuButton.Hide();
             _Label.Hide();
@@ -157,8 +167,10 @@ namespace CallTracker.View
 
         private void _ComboBox_DropDownClosed(object sender, EventArgs e)
         {
-            this.Parent.Parent.Focus();
+            Parent.Parent.Focus();
             _ComboBox.Select(0, 0);
+            if (!OverlapLabel)
+                return;
             if(ContextMenuStrip != null)
                 _MenuButton.Show();
             _Label.Show();

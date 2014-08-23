@@ -6,6 +6,8 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
+using Equin.ApplicationFramework;
+
 using CallTracker.Model;
 using CallTracker.Helpers;
 
@@ -13,7 +15,7 @@ namespace CallTracker.View
 {
     public partial class EditContact : UserControl
     {
-        private UserDataStore DataStore;
+        private ContactDataStore ContactsDataStore;
         internal Main MainForm;
         //internal List<CheckBox> ServiceCheckboxes;
 
@@ -45,19 +47,21 @@ namespace CallTracker.View
             _ServicePanel.PreInit(this);
         }
 
+        internal BindingListView<CustomerContact> Contacts;
         public void OnParentLoad()
         {
             _ServicePanel.Init();
 
-            DataStore = MainForm.DataStore;
+            ContactsDataStore = MainForm.ContactsDataStore;
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
-            //customerContactsBindingSource.Filter = "Id = 100";
-            customerContactsBindingSource.DataSource = DataStore.Contacts;
+
+            Contacts = new BindingListView<CustomerContact>(ContactsDataStore._contactsList);
+            Contacts.ApplyFilter(x => x.Contacts.StartDate == DateTime.Today);
+            customerContactsBindingSource.DataSource = Contacts;
+            //customerContactsBindingSource.Filter = "Id < 5";
 
             customerContactsBindingSource.MoveLast();
-            //customerContactsBindingSource.Position = DataStore.Contacts.Count;
-
-           
+            //customerContactsBindingSource.Position = ContactsDataStore.Contacts.Count;
 
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
             _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)).Cast<BookingType>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
@@ -66,7 +70,6 @@ namespace CallTracker.View
 
             if (customerContactsBindingSource.Count == 0)
             {
-                //DataStore.Contacts.Add(new CustomerContact(1));
                 flowLayoutPanel1.Enabled = false;
                 ServiceTypePanel.Enabled = false;
                 FaultPanel.Enabled = false;
@@ -121,7 +124,7 @@ namespace CallTracker.View
 
 
                 MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
-                MainForm.SelectedContact = (CustomerContact)customerContactsBindingSource.Current;
+                MainForm.SelectedContact = ((ObjectView<CustomerContact>)customerContactsBindingSource.Current).Object;
                 MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
 
                 _BookingDate.BindDatePickerBox(customerContactsBindingSource);
@@ -151,14 +154,15 @@ namespace CallTracker.View
         public void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             //customerContactsBindingSource.Add(new CustomerContact());
-            //customerContactsBindingSource.Position = DataStore.Contacts.Count;
+            //customerContactsBindingSource.Position = ContactsDataStore.Contacts.Count;
             customerContactsBindingSource.AddNew();
+            Contacts.ApplyFilter(x => x.Contacts.StartDate == DateTime.Today);
         }
 
         public void DeleteCalls()
         {
-            customerContactsBindingSource.DataSource = DataStore.Contacts;
-            customerContactsBindingSource.Position = DataStore.Contacts.Count;
+            customerContactsBindingSource.DataSource = ContactsDataStore.Contacts;
+            customerContactsBindingSource.MoveLast();
         }
 
         public void UpdateActions()
@@ -574,15 +578,6 @@ namespace CallTracker.View
             MainForm.settingMenuItem_Click(MainForm.callHistoryToolStripMenuItem, e);
         }
 
-        private void clearCallHistoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            customerContactsBindingSource.SuspendBinding();
-            customerContactsBindingSource.Clear();
-            Properties.Settings.Default.NextContactsId = 0;
-            customerContactsBindingSource.ResumeBinding();
-            customerContactsBindingSource.AddNew();
-        }
-
         private DateTime _lasttime;
         private bool _opened;
         protected virtual void _MenuButton_MouseClick(object sender, MouseEventArgs e)
@@ -688,5 +683,7 @@ namespace CallTracker.View
             var checkBox = (CheckBox)sender;
             checkBox.ImageIndex = checkBox.Checked ? 1 : 0;
         }
+
+
     }
 }

@@ -134,7 +134,7 @@ namespace CallTracker.View
         {
             string title = "Nexus", url = "http://nexus.optus.com.au";
 
-            SystemItem item = MainForm.DataStore.GridLinks.SystemItems.Find(c => c.System == "Rate Plan Calculator");
+            SystemItem item = MainForm.UserDataStore.GridLinks.SystemItems.Find(c => c.System == "Rate Plan Calculator");
             if(item !=null)
             {
                 title = item.Title;

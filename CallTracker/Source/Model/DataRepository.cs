@@ -11,6 +11,8 @@ using CallTracker.DataSets;
 using ProtoBuf;
 using ProtoBuf.Data;
 
+using Equin.ApplicationFramework;
+
 namespace CallTracker.Model
 {
     //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,7 +20,7 @@ namespace CallTracker.Model
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public class TriggerList<T> : List<T>
-    {
+    { 
         public delegate void ChangedEventHandler();
         public event ChangedEventHandler Changed;
 
@@ -94,21 +96,17 @@ namespace CallTracker.Model
         [ProtoMember(1)]
         internal TriggerList<PasteBind> PasteBinds { get; set; }
         [ProtoMember(2)]
-        //internal DataView Contacts { get; set; }
-        internal SortableBindingList<CustomerContact> Contacts { get; set; }
-        [ProtoMember(3)]
         internal BindingList<LoginsModel> Logins { get; set; }
-        [ProtoMember(4)]
+        [ProtoMember(3)]
         internal GridLinksModel GridLinks { get; set; }
-        [ProtoMember(5)]
+        [ProtoMember(4)]
         internal string User { get; set; }
 
         public UserDataStore()
         {
-            Filename = "Data/Data.bin";
+            Filename = "Data/UserData.bin";
 
             PasteBinds = new TriggerList<PasteBind>();
-            Contacts = new SortableBindingList<CustomerContact>();
             Logins = new BindingList<LoginsModel>();
             GridLinks = new GridLinksModel();
             User = String.Empty;
@@ -121,21 +119,12 @@ namespace CallTracker.Model
             if (!File.Exists(Filename))
             {
                 File.Create(Filename).Close();
-                Properties.Settings.Default.NextContactsId = 0;
             }
             using (var file = File.OpenRead(Filename))
                 dataStore = Serializer.Deserialize<UserDataStore>(file);
 
             DecryptData(dataStore);
 
-            //CustomerContact newContact = new CustomerContact();
-            //newContact.Id = dataStore.Contacts.Count;
-            //newContact.Contacts.StartDate = DateTime.Today;
-            //newContact.Contacts.StartTime = DateTime.Now.TimeOfDay;
-            //newContact.Fault.AffectedServices = 1;
-
-            if (dataStore.Contacts.Count == 0)
-                dataStore.Contacts.AddNew();//new CustomerContact());
             dataStore.GridLinks.PopulateIfEmpty();
 
             return dataStore;
@@ -150,10 +139,10 @@ namespace CallTracker.Model
                 Serializer.Serialize<UserDataStore>(file, dataStore);
         }
 
-        public override void DecryptData(UserDataStore _dataStore) 
+        public override void DecryptData(UserDataStore _dataStore)
         {
             UserDataStore dataStore = _dataStore;
-            
+
             dataStore.User = StringCipher.Decrypt(dataStore.User, "jumpingfivemammotheightyeight");
             if (dataStore.User != Environment.UserName)
             {
@@ -184,19 +173,98 @@ namespace CallTracker.Model
     // Resources /////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //[ProtoContract]
-    //internal class ResourceData : DataRepository<ResourceData>
-    //{
-    //    [ProtoMember(1)]
-    //    internal SortableBindingList<RateplanModel> LATRatePlans { get; set; }
+    [ProtoContract]
+    internal class ContactDataStore : DataRepository<ContactDataStore>
+    {
+        //[ProtoMember(1)]
+        //internal SortableBindingList<CustomerContact> Contacts { get; set; }
+        [ProtoMember(1)]
+        internal List<CustomerContact> _contactsList;
 
-    //    public ResourceData()
-    //    {
-    //        Filename = "Data/Resources.bin";
-    //        LATRatePlans = new SortableBindingList<RateplanModel>();
-    //    }
+        internal BindingListView<CustomerContact> Contacts { get; set; }
 
-    //}
+        
+
+        public ContactDataStore()
+        {
+            Filename = "Data/Contacts.bin";
+            _contactsList = new List<CustomerContact>();
+            Contacts = new BindingListView<CustomerContact>(_contactsList);
+        }
+
+        public void ReadData()
+        {
+            ContactDataStore dataStore;
+
+            if (!File.Exists(Filename))
+            {
+                File.Create(Filename).Close();
+                Properties.Settings.Default.NextContactsId = 0;
+            }
+            using (var file = File.OpenRead(Filename))
+                dataStore = Serializer.Deserialize<ContactDataStore>(file);
+
+            if (dataStore.Contacts.Count == 0)
+                dataStore.Contacts.AddNew();
+
+            _contactsList = dataStore._contactsList;
+            Contacts = new BindingListView<CustomerContact>(_contactsList);
+            //ContactsTable = ConvertToDataTable(Contacts);
+
+            
+
+            //if (!File.Exists(Filename))
+            //{
+            //    File.Create(Filename).Close();
+            //    Properties.Settings.Default.NextContactsId = 0;
+            //    Contacts.NewRow();
+            //    WriteData();
+            //}
+            //else
+            //{
+
+            //    using (Stream stream = File.OpenRead(Filename))
+            //    using (IDataReader reader = DataSerializer.Deserialize(stream))
+            //    {
+            //        Contacts.Load(reader);
+            //    }
+            //}
+
+        }
+
+        public void WriteData()
+        {
+            using (var file = File.Create(Filename))
+                Serializer.Serialize(file, this);
+
+            //using (Stream stream = File.OpenWrite(Filename))
+            //using (IDataReader reader = Contacts.CreateDataReader())
+            //{
+            //    DataSerializer.Serialize(stream, reader);
+            //    stream.SetLength(stream.Position);
+            //}
+
+        }
+
+
+        //public DataTable ConvertToDataTable<T>(IList<T> data)
+        //{
+        //    PropertyDescriptorCollection properties =
+        //       TypeDescriptor.GetProperties(typeof(T));
+        //    DataTable table = new DataTable();
+        //    foreach (PropertyDescriptor prop in properties)
+        //        table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+        //    foreach (T item in data)
+        //    {
+        //        DataRow row = table.NewRow();
+        //        foreach (PropertyDescriptor prop in properties)
+        //            row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+        //        table.Rows.Add(row);
+        //    }
+        //    return table;
+
+        //}
+    }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     // Services /////////////////////////////////////////////////////////////////////////////////////////
@@ -212,7 +280,7 @@ namespace CallTracker.Model
 
         public ServicesData()
         {
-            Filename = "Data/Services.bin";
+            Filename = "Data/Resources.bin";
             servicesDataSet = new ServicesDataSet();
         }
 
@@ -349,3 +417,100 @@ namespace CallTracker.Model
         }
     }
 }
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+//// User Data ////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//[ProtoContract]
+//internal class UserDataStore : DataRepository<UserDataStore>
+//{
+//    [ProtoMember(1)]
+//    internal TriggerList<PasteBind> PasteBinds { get; set; }
+//    [ProtoMember(2)]
+//    internal SortableBindingList<CustomerContact> Contacts { get; set; }
+//    [ProtoMember(3)]
+//    internal BindingList<LoginsModel> Logins { get; set; }
+//    [ProtoMember(4)]
+//    internal GridLinksModel GridLinks { get; set; }
+//    [ProtoMember(5)]
+//    internal string User { get; set; }
+
+//    public UserDataStore()
+//    {
+//        Filename = "Data/Data.bin";
+
+//        PasteBinds = new TriggerList<PasteBind>();
+//        Contacts = new SortableBindingList<CustomerContact>();
+//        Logins = new BindingList<LoginsModel>();
+//        GridLinks = new GridLinksModel();
+//        User = String.Empty;
+//    }
+
+//    public override UserDataStore ReadFile()
+//    {
+//        UserDataStore dataStore;
+
+//        if (!File.Exists(Filename))
+//        {
+//            File.Create(Filename).Close();
+//            Properties.Settings.Default.NextContactsId = 0;
+//        }
+//        using (var file = File.OpenRead(Filename))
+//            dataStore = Serializer.Deserialize<UserDataStore>(file);
+
+//        DecryptData(dataStore);
+
+//        //CustomerContact newContact = new CustomerContact();
+//        //newContact.Id = dataStore.Contacts.Count;
+//        //newContact.Contacts.StartDate = DateTime.Today;
+//        //newContact.Contacts.StartTime = DateTime.Now.TimeOfDay;
+//        //newContact.Fault.AffectedServices = 1;
+
+//        if (dataStore.Contacts.Count == 0)
+//            dataStore.Contacts.AddNew();//new CustomerContact());
+//        dataStore.GridLinks.PopulateIfEmpty();
+
+//        return dataStore;
+//    }
+
+//    public override void SaveFile(UserDataStore _dataStore)
+//    {
+//        UserDataStore dataStore = _dataStore;
+
+//        EncryptData(dataStore);
+//        using (var file = File.Create(Filename))
+//            Serializer.Serialize<UserDataStore>(file, dataStore);
+//    }
+
+//    public override void DecryptData(UserDataStore _dataStore) 
+//    {
+//        UserDataStore dataStore = _dataStore;
+
+//        dataStore.User = StringCipher.Decrypt(dataStore.User, "jumpingfivemammotheightyeight");
+//        if (dataStore.User != Environment.UserName)
+//        {
+//            dataStore.User = Environment.UserName;
+//            foreach (var login in dataStore.Logins)
+//                login.Password = String.Empty;
+//        }
+//        else
+//        {
+//            string key = StringCipher.Encrypt(Environment.UserName, "2point71828");
+//            foreach (var login in dataStore.Logins)
+//                login.Password = StringCipher.Decrypt(login.Password, key);
+//        }
+//    }
+
+//    public override void EncryptData(UserDataStore _dataStore)
+//    {
+//        UserDataStore dataStore = _dataStore;
+//        dataStore.User = StringCipher.Encrypt(dataStore.User, "jumpingfivemammotheightyeight");
+
+//        foreach (var login in dataStore.Logins)
+//            login.Password = StringCipher.Encrypt(login.Password, StringCipher.Encrypt(Environment.UserName, "2point71828"));
+
+//    }
+//}

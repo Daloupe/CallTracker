@@ -42,6 +42,10 @@
     <Reference Include="Castle.Core">
       <HintPath>..\..\..\Libraries\White-net35_notmaintained\src\TestStack.White\bin\Release\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Equin.ApplicationFramework.BindingListView, Version=1.2.2446.31718, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\Equin.ApplicationFramework.BindingListView.dll</HintPath>
+    </Reference>
     <Reference Include="Interop.SHDocVw, Version=1.1.0.0, Culture=neutral, PublicKeyToken=db7cfd3acb5ad44e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -70,8 +74,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -84,8 +86,6 @@
     <Reference Include="TestStack.White">
       <HintPath>..\..\..\Libraries\White-net35_notmaintained\src\TestStack.White\bin\Release\TestStack.White.dll</HintPath>
     </Reference>
-    <Reference Include="UIAutomationClient" />
-    <Reference Include="UIAutomationTypes" />
     <Reference Include="WatiN.Core, Version=2.1.0.1196, Culture=neutral, PublicKeyToken=db7cfd3acb5ad44e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WatiN.2.1.0\lib\net35\WatiN.Core.dll</HintPath>
@@ -102,13 +102,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Source\Data\Contacts.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Contacts.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Source\Helpers\PRGenerators.cs" />
     <Compile Include="Source\Helpers\Type\DataGridExtentions.cs" />
+    <Compile Include="Source\Helpers\Type\FilterableBindingList.cs" />
     <Compile Include="Source\View\Popups\FadingTooltip.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,13 +248,6 @@
     <Compile Include="Source\View\Controls\Basic Controls\DataField.Designer.cs">
       <DependentUpon>DataField.cs</DependentUpon>
     </Compile>
-    <EntityDeploy Include="Source\Data\Contacts.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Contacts.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Source\Data\Contacts.edmx.diagram">
-      <DependentUpon>Contacts.edmx</DependentUpon>
-    </None>
     <None Include="Source\View\Panels\Product\Archive\MTVPanel.cs">
       <SubType>UserControl</SubType>
     </None>
@@ -604,7 +593,6 @@
     <Content Include="IPCCOffsets.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Source\Data\Contacts.edmx.sql" />
     <None Include="Resources\TinyArrow2111.png" />
     <None Include="Resources\TinyArrow212.png" />
     <None Include="Resources\TinyArrow211.png" />

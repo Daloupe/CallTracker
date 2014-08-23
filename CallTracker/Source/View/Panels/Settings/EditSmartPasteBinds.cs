@@ -32,9 +32,9 @@ namespace CallTracker.View
 
             _ElementType.DataSource = Enum.GetValues(typeof(ElementTypes));
 
-            MainForm.DataStore.PasteBinds.Changed += OnListChanged;
+            MainForm.UserDataStore.PasteBinds.Changed += OnListChanged;
 
-            pasteBindBindingSource.DataSource = MainForm.DataStore.PasteBinds;
+            pasteBindBindingSource.DataSource = MainForm.UserDataStore.PasteBinds;
 
             source1.DataSource = CustomerContact.PropertyStrings;
             _Data.DataSource = source1;

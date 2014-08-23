@@ -118,7 +118,7 @@ namespace CallTracker.Helpers
 
         private static void OnGridLinks(HotkeyPressedEventArgs e)
         {
-            SystemItem systemItem = parent.DataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name));
+            SystemItem systemItem = parent.UserDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name));
             parent.SetProgressBarStep(4, String.Format("Switching to: {0}", systemItem.Url), EventLogLevel.Verbose);
 
             try
@@ -216,7 +216,7 @@ namespace CallTracker.Helpers
                 string element = browser.ActiveElement.IdOrName;
 
                 PasteBind query = (from
-                                       bind in parent.DataStore.PasteBinds
+                                       bind in parent.UserDataStore.PasteBinds
                                    where
                                        bind.Element == element &&
                                        (url.Contains(bind.Url) ||
@@ -255,7 +255,7 @@ namespace CallTracker.Helpers
             }
 
             var urlOrTitleMatches =  from
-                                        bind in parent.DataStore.PasteBinds
+                                        bind in parent.UserDataStore.PasteBinds
                                      where
                                         url.Contains(bind.Url) ||
                                         title.Contains(bind.Title)
@@ -268,7 +268,7 @@ namespace CallTracker.Helpers
             {
                 string system = urlOrTitleMatches.Count() > 0 ? urlOrTitleMatches.ElementAtOrDefault(0).System : String.Empty;
                 ElementMatch = new PasteBind(system, url, title, browser.ActiveElement);
-                parent.DataStore.PasteBinds.Add(ElementMatch);
+                parent.UserDataStore.PasteBinds.Add(ElementMatch);
                 EventLogger.LogNewEvent("New Bind Created");
             }
 
@@ -291,7 +291,7 @@ namespace CallTracker.Helpers
             string title = browser.Title;
 
             var query = from
-                            bind in parent.DataStore.PasteBinds
+                            bind in parent.UserDataStore.PasteBinds
                         where
                             url.Contains(bind.Url) ||
                             title.Contains(bind.Title)
@@ -338,7 +338,7 @@ namespace CallTracker.Helpers
             string url = browser.Url;
 
             LoginsModel query = (from
-                                     login in parent.DataStore.Logins
+                                     login in parent.UserDataStore.Logins
                                  where
                                      title.Contains(login.Title) ||
                                      url.Contains(login.Url)
@@ -450,7 +450,7 @@ namespace CallTracker.Helpers
 
             // Fill Search field ////////////////////////////////////////////////////////
             PasteBind query = (from
-                                    bind in parent.DataStore.PasteBinds
+                                    bind in parent.UserDataStore.PasteBinds
                                 where
                                     bind.Element == _searchElement &&
                                     (_url.Contains(bind.Url))
@@ -467,7 +467,7 @@ namespace CallTracker.Helpers
             // Click Submit /////////////////////////////////////////////////////////////
             if (!String.IsNullOrEmpty(_submitElement))
             {
-                query = (from bind in parent.DataStore.PasteBinds
+                query = (from bind in parent.UserDataStore.PasteBinds
                         where
                             bind.Element == _submitElement &&
                             (_url.Contains(bind.Url))

@@ -29,13 +29,13 @@ namespace CallTracker.View
         {
             base.Init(_parent, _menuItem);
             
-            systemItemBindingSource.DataSource = MainForm.DataStore.GridLinks.SystemItems;
-            gridLinksBindingSource.DataSource = MainForm.DataStore.GridLinks.GridLinkList;
+            systemItemBindingSource.DataSource = MainForm.UserDataStore.GridLinks.SystemItems;
+            gridLinksBindingSource.DataSource = MainForm.UserDataStore.GridLinks.GridLinkList;
 
             for (var x = 0; x <10; x++)
             {
                 bs[x] = new BindingSource();
-                bs[x].DataSource = MainForm.DataStore.GridLinks.SystemItems;
+                bs[x].DataSource = MainForm.UserDataStore.GridLinks.SystemItems;
             }
 
             comboBox0.DataSource = bs[0];
@@ -93,7 +93,7 @@ namespace CallTracker.View
 
         private void _SetDefaults_Click(object sender, EventArgs e)
         {
-            MainForm.DataStore.GridLinks.Populate();
+            MainForm.UserDataStore.GridLinks.Populate();
         }
 
     }

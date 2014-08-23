@@ -22,7 +22,9 @@ namespace CallTracker.View
         public static string SelectedMenuProduct = String.Empty;
         public Point ControlOffset = new Point(0, -1);
 
-        internal UserDataStore DataStore = new UserDataStore();
+        internal UserDataStore UserDataStore = new UserDataStore();
+        //internal ProgramDataStore ProgramDataStore = new ProgramDataStore();
+        internal ContactDataStore ContactsDataStore = new ContactDataStore();
         internal static ServicesData ServicesStore = new ServicesData();
         internal CustomerContact SelectedContact { get; set; }
 
@@ -86,11 +88,11 @@ namespace CallTracker.View
 
             _splash.UpdateProgress("Loading Data", 10);
             ServicesStore.ReadData();
-            _splash.UpdateProgress("Loading Resources", 17);
-            DataStore = DataStore.ReadFile();
-            _splash.UpdateProgress("Loading User Data", 27);
-
-
+            _splash.UpdateProgress("Loading Resources", 15);
+            UserDataStore = UserDataStore.ReadFile();
+            _splash.UpdateProgress("Loading User Data", 20);
+            ContactsDataStore.ReadData();
+            _splash.UpdateProgress("Loading Contact Data", 25);
 
             SelectedContact = new CustomerContact();
 
@@ -207,7 +209,8 @@ namespace CallTracker.View
             if (CancelLoad == false)
             {
                 Properties.Settings.Default.Save();
-                DataStore.SaveFile(DataStore);
+                UserDataStore.SaveFile(UserDataStore);
+                ContactsDataStore.WriteData();
                 ServicesStore.WriteData();
             }
 
@@ -220,9 +223,9 @@ namespace CallTracker.View
 
         public void RemovePasteBind(PasteBind bind)
         {
-            if (DataStore.PasteBinds.Contains(bind))
+            if (UserDataStore.PasteBinds.Contains(bind))
             {
-                DataStore.PasteBinds.Remove(bind);
+                UserDataStore.PasteBinds.Remove(bind);
                 //editSmartPasteBinds.pasteBindBindingSource.ResetBindings(true);
             }
         }

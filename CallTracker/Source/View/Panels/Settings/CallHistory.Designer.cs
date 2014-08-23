@@ -37,6 +37,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this._Cancel = new System.Windows.Forms.Button();
             this._ClearHistory = new System.Windows.Forms.Button();
+            this._DateSelect = new CallTracker.View.LabelledComboBoxLong();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -146,7 +147,7 @@
             this._ClearHistory.BackColor = System.Drawing.Color.LightGray;
             this._ClearHistory.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
             this._ClearHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._ClearHistory.Location = new System.Drawing.Point(270, 217);
+            this._ClearHistory.Location = new System.Drawing.Point(269, 217);
             this._ClearHistory.Name = "_ClearHistory";
             this._ClearHistory.Size = new System.Drawing.Size(87, 22);
             this._ClearHistory.TabIndex = 16;
@@ -154,11 +155,44 @@
             this._ClearHistory.UseVisualStyleBackColor = false;
             this._ClearHistory.Click += new System.EventHandler(this._ClearHistory_Click);
             // 
+            // _DateSelect
+            // 
+            this._DateSelect.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._DateSelect.BackColor = System.Drawing.Color.LightGray;
+            this._DateSelect.BorderColour = System.Drawing.Color.WhiteSmoke;
+            this._DateSelect.ControlHeight = 20;
+            this._DateSelect.DataSource = null;
+            this._DateSelect.DefaultText = "";
+            this._DateSelect.Font = new System.Drawing.Font("Verdana", 7F);
+            this._DateSelect.LabelActiveColor = System.Drawing.Color.Empty;
+            this._DateSelect.LabelAutoSize = true;
+            this._DateSelect.LabelBorderColor = System.Drawing.Color.Empty;
+            this._DateSelect.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._DateSelect.LabelInactiveColor = System.Drawing.Color.Empty;
+            this._DateSelect.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._DateSelect.LabelOffset = new System.Drawing.Point(0, 0);
+            this._DateSelect.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._DateSelect.LabelSize = new System.Drawing.Size(31, 23);
+            this._DateSelect.LabelText = "date";
+            this._DateSelect.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._DateSelect.LabelTextColor = System.Drawing.SystemColors.ControlText;
+            this._DateSelect.LabelToolTip = "";
+            this._DateSelect.Location = new System.Drawing.Point(3, 196);
+            this._DateSelect.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
+            this._DateSelect.MenuButtonImage = null;
+            this._DateSelect.Name = "_DateSelect";
+            this._DateSelect.OverlapLabel = false;
+            this._DateSelect.PropertyName = null;
+            this._DateSelect.Size = new System.Drawing.Size(129, 20);
+            this._DateSelect.TabIndex = 17;
+            this._DateSelect.SelectedIndexChanged += new System.EventHandler(this._DateSelect_SelectedIndexChanged);
+            // 
             // CallHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSlateGray;
+            this.Controls.Add(this._DateSelect);
             this.Controls.Add(this._ClearHistory);
             this.Controls.Add(this._Cancel);
             this.Controls.Add(this.label6);
@@ -188,5 +222,6 @@
         private System.Windows.Forms.Button _Cancel;
         private System.Windows.Forms.Button _ClearHistory;
         private System.Windows.Forms.BindingSource bindingSource1;
+        internal LabelledComboBoxLong _DateSelect;
     }
 }
