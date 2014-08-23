@@ -26,5 +26,8 @@
     <Setting Name="NextContactsId" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
+    <Setting Name="WorkingDate" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">2014-08-23</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -96,7 +96,6 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._NavigatorPanel = new System.Windows.Forms.Panel();
-            this._Important = new System.Windows.Forms.CheckBox();
             this._ImportantImageList = new System.Windows.Forms.ImageList(this.components);
             this._IDOk = new System.Windows.Forms.CheckBox();
             this._TickCrossImageList = new System.Windows.Forms.ImageList(this.components);
@@ -112,6 +111,8 @@
             this._IDokToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
+            this._ImportantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this._Icon = new CallTracker.View.LabelledTextBoxLong();
             this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._Cmbs = new CallTracker.View.LabelledTextBoxLong();
@@ -121,10 +122,10 @@
             this._Mobile = new CallTracker.View.LabelledTextBoxLong();
             this._Address = new CallTracker.View.LabelledTextBoxLong();
             this.bindingNavigator1 = new CallTracker.View.BindingNavigatorIgnoreFocus();
-            this._CallMenuButton = new System.Windows.Forms.ToolStripButton();
             this._PrevCallButton = new System.Windows.Forms.ToolStripButton();
             this._CurrentPosition = new System.Windows.Forms.ToolStripTextBox();
             this._NextCallButton = new System.Windows.Forms.ToolStripButton();
+            this._CallMenuButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this._Symptom = new CallTracker.View.LabelledComboBox();
             this._Outcome = new CallTracker.View.LabelledComboBox();
@@ -554,20 +555,20 @@
             // 
             this._CallHistoryContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
             this._CallHistoryContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._ImportantToolStripMenuItem,
+            this.toolStripSeparator5,
             this.newCallToolStripMenuItem,
             this.autoNewCallToolStripMenuItem,
             this.toolStripSeparator6,
             this.callHistoryToolStripMenuItem});
             this._CallHistoryContextMenu.Name = "_CallHistoryContextMenu";
             this._CallHistoryContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this._CallHistoryContextMenu.ShowCheckMargin = true;
-            this._CallHistoryContextMenu.ShowImageMargin = false;
-            this._CallHistoryContextMenu.Size = new System.Drawing.Size(166, 98);
+            this._CallHistoryContextMenu.Size = new System.Drawing.Size(196, 104);
             // 
             // newCallToolStripMenuItem
             // 
             this.newCallToolStripMenuItem.Name = "newCallToolStripMenuItem";
-            this.newCallToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.newCallToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.newCallToolStripMenuItem.Text = "New Call";
             this.newCallToolStripMenuItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
@@ -577,19 +578,19 @@
             this.autoNewCallToolStripMenuItem.CheckOnClick = true;
             this.autoNewCallToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.autoNewCallToolStripMenuItem.Name = "autoNewCallToolStripMenuItem";
-            this.autoNewCallToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.autoNewCallToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.autoNewCallToolStripMenuItem.Text = "Auto New Call";
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(192, 6);
             // 
             // callHistoryToolStripMenuItem
             // 
             this.callHistoryToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 7F);
             this.callHistoryToolStripMenuItem.Name = "callHistoryToolStripMenuItem";
-            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.callHistoryToolStripMenuItem.Text = "Show Call History";
             this.callHistoryToolStripMenuItem.Click += new System.EventHandler(this.callHistoryToolStripMenuItem_Click);
             // 
@@ -961,7 +962,6 @@
             // 
             // _NavigatorPanel
             // 
-            this._NavigatorPanel.Controls.Add(this._Important);
             this._NavigatorPanel.Controls.Add(this._IDOk);
             this._NavigatorPanel.Controls.Add(this.bindingNavigator1);
             this._NavigatorPanel.Location = new System.Drawing.Point(0, 191);
@@ -970,29 +970,6 @@
             this._NavigatorPanel.Size = new System.Drawing.Size(331, 29);
             this._NavigatorPanel.TabIndex = 30;
             this._NavigatorPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
-            // 
-            // _Important
-            // 
-            this._Important.Appearance = System.Windows.Forms.Appearance.Button;
-            this._Important.BackColor = System.Drawing.Color.LightGray;
-            this._Important.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this._Important.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this._Important.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Important", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Important.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
-            this._Important.FlatAppearance.BorderSize = 0;
-            this._Important.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGray;
-            this._Important.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Important.ForeColor = System.Drawing.Color.LightGray;
-            this._Important.ImageIndex = 0;
-            this._Important.ImageList = this._ImportantImageList;
-            this._Important.Location = new System.Drawing.Point(93, 4);
-            this._Important.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this._Important.Name = "_Important";
-            this._Important.Size = new System.Drawing.Size(18, 20);
-            this._Important.TabIndex = 2;
-            this.toolTip1.SetToolTip(this._Important, "Flag As Important");
-            this._Important.UseVisualStyleBackColor = false;
-            this._Important.CheckedChanged += new System.EventHandler(this._Important_CheckedChanged);
             // 
             // _ImportantImageList
             // 
@@ -1014,15 +991,15 @@
             this._IDOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._IDOk.ImageIndex = 0;
             this._IDOk.ImageList = this._TickCrossImageList;
-            this._IDOk.Location = new System.Drawing.Point(250, 4);
+            this._IDOk.Location = new System.Drawing.Point(232, 3);
             this._IDOk.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this._IDOk.Name = "_IDOk";
-            this._IDOk.Size = new System.Drawing.Size(64, 20);
+            this._IDOk.Size = new System.Drawing.Size(46, 20);
             this._IDOk.TabIndex = 1;
-            this._IDOk.Text = "ID Ok";
+            this._IDOk.Text = "ID";
             this._IDOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._IDOk.UseVisualStyleBackColor = false;
-            this._IDOk.CheckedChanged += new System.EventHandler(this._Important_CheckedChanged);
+            this._IDOk.CheckedChanged += new System.EventHandler(this._IDOk_CheckedChanged);
             // 
             // _TickCrossImageList
             // 
@@ -1129,6 +1106,21 @@
             this.toolStripMenuItem17.Name = "toolStripMenuItem17";
             this.toolStripMenuItem17.Size = new System.Drawing.Size(101, 22);
             this.toolStripMenuItem17.Text = "ICON";
+            // 
+            // _ImportantToolStripMenuItem
+            // 
+            this._ImportantToolStripMenuItem.CheckOnClick = true;
+            this._ImportantToolStripMenuItem.Image = global::CallTracker.Properties.Resources.flag_off;
+            this._ImportantToolStripMenuItem.Name = "_ImportantToolStripMenuItem";
+            this._ImportantToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
+            this._ImportantToolStripMenuItem.Text = "Flag Call As Important";
+            this._ImportantToolStripMenuItem.CheckedChanged += new System.EventHandler(this._Important_CheckedChanged);
+            this._ImportantToolStripMenuItem.Click += new System.EventHandler(this._ImportantToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(192, 6);
             // 
             // _Icon
             // 
@@ -1390,15 +1382,15 @@
             this.bindingNavigator1.ContextMenuStrip = this._CallHistoryContextMenu;
             this.bindingNavigator1.CountItem = null;
             this.bindingNavigator1.DeleteItem = null;
-            this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.None;
             this.bindingNavigator1.Font = new System.Drawing.Font("Verdana", 7F);
             this.bindingNavigator1.GripMargin = new System.Windows.Forms.Padding(0);
             this.bindingNavigator1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._CallMenuButton,
             this._PrevCallButton,
             this._CurrentPosition,
             this._NextCallButton,
+            this._CallMenuButton,
             this.toolStripSeparator4});
             this.bindingNavigator1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
@@ -1415,24 +1407,6 @@
             this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigatorIgnoreFocus1";
             this.bindingNavigator1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
-            // 
-            // _CallMenuButton
-            // 
-            this._CallMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this._CallMenuButton.AutoSize = false;
-            this._CallMenuButton.AutoToolTip = false;
-            this._CallMenuButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._CallMenuButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._CallMenuButton.Image = global::CallTracker.Properties.Resources.ContextMenu_Closed_Dark;
-            this._CallMenuButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this._CallMenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._CallMenuButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._CallMenuButton.Margin = new System.Windows.Forms.Padding(0);
-            this._CallMenuButton.Name = "_CallMenuButton";
-            this._CallMenuButton.Padding = new System.Windows.Forms.Padding(8, 0, 0, 0);
-            this._CallMenuButton.Size = new System.Drawing.Size(15, 28);
-            this._CallMenuButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this._CallMenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
             // 
             // _PrevCallButton
             // 
@@ -1468,8 +1442,27 @@
             this._NextCallButton.Size = new System.Drawing.Size(20, 18);
             this._NextCallButton.Text = "Move next";
             // 
+            // _CallMenuButton
+            // 
+            this._CallMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this._CallMenuButton.AutoSize = false;
+            this._CallMenuButton.AutoToolTip = false;
+            this._CallMenuButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._CallMenuButton.Image = global::CallTracker.Properties.Resources.ContextMenu_Closed_Dark;
+            this._CallMenuButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this._CallMenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._CallMenuButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._CallMenuButton.Margin = new System.Windows.Forms.Padding(0);
+            this._CallMenuButton.Name = "_CallMenuButton";
+            this._CallMenuButton.Size = new System.Drawing.Size(48, 28);
+            this._CallMenuButton.Text = "28/07";
+            this._CallMenuButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._CallMenuButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this._CallMenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
+            // 
             // toolStripSeparator4
             // 
+            this.toolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 28);
             // 
@@ -1567,6 +1560,7 @@
             this._Action.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
             this._Action.MenuButtonImage = null;
             this._Action.Name = "_Action";
+            this._Action.OverlapLabel = false;
             this._Action.PropertyName = "Fault.Action";
             this._Action.Size = new System.Drawing.Size(170, 20);
             this._Action.TabIndex = 1;
@@ -1961,7 +1955,6 @@
         private System.Windows.Forms.ToolStripMenuItem _IDokToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem17;
-        private System.Windows.Forms.ToolStripButton _CallMenuButton;
         private System.Windows.Forms.Panel _NavigatorPanel;
         private LabelledTextBox _PR;
         private System.Windows.Forms.Panel _CallTypePanel;
@@ -1969,10 +1962,12 @@
         internal LabelledComboBox _Symptom;
         internal LabelledComboBox _Outcome;
         internal LabelledDatePicker _BookingDate;
-        private System.Windows.Forms.CheckBox _Important;
         private System.Windows.Forms.CheckBox _IDOk;
         private System.Windows.Forms.ImageList _ImportantImageList;
         private System.Windows.Forms.ImageList _TickCrossImageList;
+        internal System.Windows.Forms.ToolStripButton _CallMenuButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem _ImportantToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }

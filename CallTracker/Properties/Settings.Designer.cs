@@ -118,5 +118,17 @@ namespace CallTracker.Properties {
                 this["NextContactsId"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2014-08-23")]
+        public global::System.DateTime WorkingDate {
+            get {
+                return ((global::System.DateTime)(this["WorkingDate"]));
+            }
+            set {
+                this["WorkingDate"] = value;
+            }
+        }
     }
 }

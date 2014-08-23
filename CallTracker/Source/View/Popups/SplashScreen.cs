@@ -14,7 +14,7 @@ namespace CallTracker.View
         {
             InitializeComponent();
             var pfc = new PrivateFontCollection();
-            pfc.AddFontFile("OptusVoiceBETA-Bold.ttf");
+            pfc.AddFontFile("Fonts\\OptusVoiceBETA-Bold.ttf");
 
             Wingman.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);
             label1.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);

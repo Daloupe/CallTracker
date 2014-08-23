@@ -57,6 +57,7 @@ namespace CallTracker.View
 
             Contacts = new BindingListView<CustomerContact>(ContactsDataStore._contactsList);
             Contacts.ApplyFilter(x => x.Contacts.StartDate == DateTime.Today);
+            _CallMenuButton.Text = DateTime.Today.ToString("dd/MM");
             customerContactsBindingSource.DataSource = Contacts;
             //customerContactsBindingSource.Filter = "Id < 5";
 
@@ -101,19 +102,11 @@ namespace CallTracker.View
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Contact Navigator ////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
+        public void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
-
-            if (customerContactsBindingSource.Count == 0)
+            if (customerContactsBindingSource.Count == 0 || customerContactsBindingSource.Position < 0)
             {
-                flowLayoutPanel1.Enabled = false;
-                ServiceTypePanel.Enabled = false;
-                FaultPanel.Enabled = false;
-                _Note.Enabled = false;
-                MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
-                _Note.DataBindings.Clear();
-
-                _ServicePanel.ChangeService(ServiceTypes.NONE);
+                DisableInterface();
             }
             else
             {
@@ -134,7 +127,21 @@ namespace CallTracker.View
                 UpdateCurrentPanel();
                 _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
                 UpdateActions();
+                _ImportantToolStripMenuItem.Checked = MainForm.SelectedContact.Important;
             }
+        }
+
+        public void DisableInterface()
+        {
+            flowLayoutPanel1.Enabled = false;
+            ServiceTypePanel.Enabled = false;
+            FaultPanel.Enabled = false;
+            _Note.Enabled = false;
+            _Note.DataBindings.Clear();
+            _BookingDate._DateTimePicker.DataBindings.Clear();
+            _Outcome._ComboBox.DataBindings.Clear();
+            
+            _ServicePanel.ChangeService(ServiceTypes.NONE);
         }
 
         public void SelectedContact_NestedChange(object sender, PropertyChangedEventArgs e)
@@ -155,8 +162,9 @@ namespace CallTracker.View
         {
             //customerContactsBindingSource.Add(new CustomerContact());
             //customerContactsBindingSource.Position = ContactsDataStore.Contacts.Count;
-            customerContactsBindingSource.AddNew();
+            Contacts.AddNew();
             Contacts.ApplyFilter(x => x.Contacts.StartDate == DateTime.Today);
+            customerContactsBindingSource.MoveLast();
         }
 
         public void DeleteCalls()
@@ -679,6 +687,16 @@ namespace CallTracker.View
         }
 
         private void _Important_CheckedChanged(object sender, EventArgs e)
+        {
+            _ImportantToolStripMenuItem.Image = _ImportantToolStripMenuItem.Checked ? Properties.Resources.flag_on : Properties.Resources.flag_off;           
+        }
+
+        private void _ImportantToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainForm.SelectedContact.Important = _ImportantToolStripMenuItem.Checked;
+        }
+
+        private void _IDOk_CheckedChanged(object sender, EventArgs e)
         {
             var checkBox = (CheckBox)sender;
             checkBox.ImageIndex = checkBox.Checked ? 1 : 0;

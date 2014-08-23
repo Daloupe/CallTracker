@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
 using CallTracker.Model;
+using Equin.ApplicationFramework;
 
 namespace CallTracker.View
 {
@@ -27,7 +29,10 @@ namespace CallTracker.View
             dataGridView1.Columns.Add("Name", "Name");
 
             dataGridView1.Columns["Date"].DataPropertyName = "ContactDateTime";
-            dataGridView1.Columns["Date"].Width = 40;
+            dataGridView1.Columns["Date"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridView1.Columns["Date"].MinimumWidth = 90;
+            dataGridView1.Columns["Date"].FillWeight = 90;
+            dataGridView1.Columns["Date"].Width = 90;
             dataGridView1.Columns["Date"].ReadOnly = true;
             
             //dataGridView1.Columns["Date"].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -38,7 +43,9 @@ namespace CallTracker.View
             //dataGridView1.Columns["Time"].SortMode = DataGridViewColumnSortMode.NotSortable;
 
             dataGridView1.Columns["Name"].DataPropertyName = "Name";
-            dataGridView1.Columns["Name"].Width = 235;
+            dataGridView1.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dataGridView1.Columns["Name"].MinimumWidth = 185;
+            dataGridView1.Columns["Name"].FillWeight = 185;
             dataGridView1.Columns["Name"].ReadOnly = false;
             
 
@@ -47,14 +54,17 @@ namespace CallTracker.View
             dtcol.DataPropertyName = "GetOutcome";
             dtcol.Name = "Outcome";
             dtcol.HeaderText = "Outcome";
-            dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dtcol.Width = 65;
+            dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dtcol.MinimumWidth = 40;
+            dtcol.FillWeight = 88;
             dtcol.SortMode = DataGridViewColumnSortMode.Automatic;
             dtcol.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
             dtcol.ReadOnly = false;
             dtcol.DataSource = Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Acronym).ToList();
 
-            dataGridView1.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+           // dataGridView1.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            
         }
 
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
@@ -72,8 +82,8 @@ namespace CallTracker.View
             //MainForm.editContact.customerContactsBindingSource.Position = bindingSource1.Position;
 
             CurrentPosition = bindingSource1.Position;//bindingSource1.Count - bindingSource1.Position - 1;
-            
-            Console.WriteLine(CurrentPosition);
+
+            MainForm.editContact._CallMenuButton.Text = _DateSelect._ComboBox.Text;
             base._Done_Click(sender, e);
         }
 
@@ -120,7 +130,8 @@ namespace CallTracker.View
 
         public override void HideSetting()
         {
-            MainForm.editContact.customerContactsBindingSource.Position = CurrentPosition;
+            if (MainForm.editContact.customerContactsBindingSource.Count > 0)
+                MainForm.editContact.customerContactsBindingSource.Position = CurrentPosition;
             //dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
             base.HideSetting();  
         }
@@ -156,20 +167,47 @@ namespace CallTracker.View
 
         private void _ClearHistory_Click(object sender, EventArgs e)
         {
-            bindingSource1.SuspendBinding();
-            bindingSource1.Clear();
-            Properties.Settings.Default.NextContactsId = 0;
-            bindingSource1.ResumeBinding();
+            _isFilteredOnOpen = false;
+            _isFiltered = false;
+            MainForm.editContact.Contacts.RemoveFilter();
+
+            bindingSource1.RaiseListChangedEvents = false;
+            while (bindingSource1.Count > 1)
+            {
+                bindingSource1.MoveFirst();
+                bindingSource1.RemoveCurrent();
+            }
             bindingSource1.AddNew();
+            bindingSource1.Position = 0;
+            bindingSource1.RemoveCurrent();
+            bindingSource1.RaiseListChangedEvents = true;
+            Properties.Settings.Default.NextContactsId = ((ObjectView<CustomerContact>)bindingSource1.Current).Object.Id + 1;
+            bindingSource1.ResetBindings(false);
+
+
+            var dates = new List<string> { "All", ((ObjectView<CustomerContact>)bindingSource1.Current).Object.Contacts.StartDate.ToString("dd/MM") };
+            _DateSelect._ComboBox.DataSource = dates;
+            _DateSelect._ComboBox.SelectedItem = MainForm.SelectedContact.Contacts.StartDate.ToString("dd/MM");
+            _isFilteredOnOpen = false;
         }
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            if (MainForm.ContactsDataStore.Contacts.Count == 1)
+            if (dataGridView1.Rows.Count == 1)
             {
-                MainForm.ContactsDataStore.Contacts.AddNew();
-                MainForm.editContact.customerContactsBindingSource.Position = 1;
-            }else if(bindingSource1.Position == e.Row.Index)
+                MainForm.editContact.Contacts.RemoveFilter();
+                if (dataGridView1.Rows.Count == 1)
+                {
+                    bindingSource1.AddNew();
+                    bindingSource1.Position = 0;
+
+                    var dates = new List<string> {"All", DateTime.Today.ToString("dd/MM")};
+                    _DateSelect._ComboBox.DataSource = dates;
+                    _DateSelect._ComboBox.SelectedItem = MainForm.SelectedContact.Contacts.StartDate.ToString("dd/MM");
+                    _isFilteredOnOpen = false;
+                }
+            }
+            else if (bindingSource1.Position == e.Row.Index)
             {
                 bindingSource1.Position -= 1;
             }
@@ -178,7 +216,7 @@ namespace CallTracker.View
         private bool _isFiltered = true;
         private void _DateSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MainForm.editContact.Contacts == null) return;
+            if (MainForm.editContact.Contacts == null || MainForm.editContact.Contacts.Count == 0) return;
 
             var selectedDate = _DateSelect._ComboBox.Text;
             

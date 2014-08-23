@@ -30,10 +30,10 @@ namespace CallTracker.Model
         public static void LogNewEvent(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
         {
             EventLog.Add(new EventLogModel(_event, _logLevel));
-            File.AppendAllText("Log.txt", String.Format("\r\n{0}: {1}", DateTime.Now.ToString("dd/MM/yy hh:mm:ss"), _event));
+            File.AppendAllText("Data\\Log.txt", String.Format("\r\n{0}: {1}", DateTime.Now.ToString("dd/MM/yy hh:mm:ss"), _event));
             if (_logLevel.CompareTo(StatusLabel.Tag) >= 0)
                 StatusLabel.Text = _event;
-            else if(_logLevel == EventLogLevel.ClearStatus && ClearMessage == true)
+            else if(_logLevel == EventLogLevel.ClearStatus && ClearMessage)
                 StatusLabel.Text = String.Empty;
         }
 

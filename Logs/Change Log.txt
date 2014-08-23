@@ -28,12 +28,13 @@ Yellow: 255,198,0
 
 
 0.3.5.1
+| Clear History playign up again.
 - Resources are now saved on settings close.
 - Affected service is ding strange things on reload. Perhaps the filter changes the order.
 - Contact count resets on first IPCC login for the day, data saves on the last logout.
 
 0.3.5.0
-| Contacts moved to thier own file Contacts.bin. Data.bin renamed UserData.bin.
+| Contacts moved to their own file Contacts.bin. Data.bin renamed UserData.bin.
 | Added date filter to CallHistory.
 
 0.3.4.4
