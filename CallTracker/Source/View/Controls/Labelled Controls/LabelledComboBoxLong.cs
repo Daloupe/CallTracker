@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -95,18 +96,32 @@ namespace CallTracker.View
             //}
         }
 
-        public void BindComboBox(List<string> _dataSource, BindingSource _bindingSource)
+        public void BindComboBox(List<string> dataSource, BindingSource bindingSource)
         {
             //_ComboBox.DataSource = null;
             _ComboBox.DataBindings.Clear();
             _ComboBox.Leave -= _ComboBox_Leave<List<string>>;
-            if (_dataSource.Count > 0)
+            if (dataSource.Count > 0)
             {
-                _ComboBox.DataSource = _dataSource;
+                _ComboBox.DataSource = dataSource;
                 _ComboBox.SelectedIndex = InitialIndex;
                 _ComboBox.Leave += _ComboBox_Leave<List<string>>;
             }
-            _ComboBox.DataBindings.Add("Text", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+            _ComboBox.DataBindings.Add("Text", bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+        public void BindComboBox<T>(List<T> dataSource, BindingSource bindingSource)
+        {
+            //_ComboBox.DataSource = null;
+            _ComboBox.DataBindings.Clear();
+            _ComboBox.Leave -= _ComboBox_Leave<List<T>>;
+            if (dataSource.Count > 0)
+            {
+                _ComboBox.DataSource = dataSource;
+                _ComboBox.SelectedIndex = InitialIndex;
+                _ComboBox.Leave += _ComboBox_Leave<List<T>>;
+            }
+            _ComboBox.DataBindings.Add("Text", bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         //public void BindComboBox(Array _dataSource, BindingSource _bindingSource)
@@ -118,19 +133,19 @@ namespace CallTracker.View
         //    //_ComboBox.Leave += _ComboBox_Leave<Array>;
         //}
 
-        public void BindComboBox(BindingList<string> _dataSource, BindingSource _bindingSource)
+        public void BindComboBox(BindingList<string> dataSource, BindingSource bindingSource)
         {
             //Console.WriteLine("yep");
             //_ComboBox.DataSource = null;
             _ComboBox.DataBindings.Clear();
             _ComboBox.Leave -= _ComboBox_Leave<BindingList<string>>;
-            if (_dataSource.Count > 0)
+            if (dataSource.Count > 0)
             {
-                _ComboBox.DataSource = _dataSource;
+                _ComboBox.DataSource = dataSource;
                 _ComboBox.SelectedIndex = InitialIndex;
                 _ComboBox.Leave += _ComboBox_Leave<BindingList<string>>;
             }
-            _ComboBox.DataBindings.Add("Text", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+            _ComboBox.DataBindings.Add("Text", bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
         public void UpdateComboBox(List<string> dataSource)
@@ -177,13 +192,13 @@ namespace CallTracker.View
             
         }
 
-        private void _ComboBox_Leave<T>(object sender, EventArgs e) where T : IEnumerable<string>
+        private void _ComboBox_Leave<T>(object sender, EventArgs e) where T : IEnumerable
         {
             bool ok = false;
             if (_ComboBox.DataSource != null)
-                foreach (string data in ((T)_ComboBox.DataSource))
+                foreach (var data in ((T)_ComboBox.DataSource))
                 {
-                    if (data.ToLower() == _ComboBox.Text.ToLower())
+                    if (String.Equals(data.ToString(), _ComboBox.Text, StringComparison.CurrentCultureIgnoreCase))
                         ok = true;
                 }
             if (!ok)

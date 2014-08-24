@@ -26,6 +26,9 @@ Yellow: 255,198,0
 - Added Contact model to DataSet;
 - Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
 
+0.3.6.0
+| Added DailyData model to house contacts and keep statistics.
+| Symptom PropertyName was set to Fault.Outcome.
 
 0.3.5.1
 | Clear History playign up again.

@@ -10,6 +10,8 @@ using CallTracker.Model;
 using Equin.ApplicationFramework;
 using ProtoBuf.Meta;
 
+using PropertyChanged;
+
 namespace CallTracker.View
 {
     public partial class CallHistory : ViewControlBase
@@ -71,28 +73,15 @@ namespace CallTracker.View
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
-            //bindingSource1.DataSource = MainForm.editContact.customerContactsBindingSource;
+            bindingSource1 = MainForm.editContact.customerContactsBindingSource;//MainForm._DailyDataBindingSource;//
+            //bindingSource1.DataMember = "Contacts";
 
-            //_DateSelect._ComboBox.DataSource = new List<DateFilterItem> { new DateFilterItem("All") };
-            
+            //_DateSelect._ComboBox.DataSource = MainForm.editContact._DateSelector.ComboBox.DataSource;
 
-            //callHistoryPanel1.SetBindingSource(bindingSource1);
-            //dataGridView1.DataSource = bindingSource1;
-            //dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
+            callHistoryPanel1.SetBindingSource(MainForm.editContact.customerContactsBindingSource);//bindingSource1);//
+            dataGridView1.DataSource = MainForm.editContact.customerContactsBindingSource; //bindingSource1;//
+            dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
         }
-
-        protected override void _Done_Click(object sender, EventArgs e)
-        {
-            //MainForm.editContact.customerContactsBindingSource.Position = bindingSource1.Position;
-
-            CurrentPosition = bindingSource1.Position;//bindingSource1.Count - bindingSource1.Position - 1;
-
-            MainForm.editContact._CallMenuButton.Text = _DateSelect._ComboBox.Text;
-
-            _isFilteredOnOpen = false;
-            base._Done_Click(sender, e);
-        }
-
         protected override void PaintBorder(object sender, PaintEventArgs e)
         {
             base.PaintBorder(sender, e);
@@ -104,96 +93,85 @@ namespace CallTracker.View
         }
 
         private string _filter;
-        private bool _isFilteredOnOpen = true;
-        private bool _emptyFilter;
+        private int _position;
         private bool _opening;
         public override void ShowSetting()
         {
-            MainForm.editContact.customerContactsBindingSource.EndEdit();
-            bindingSource1.DataSource = MainForm.editContact.customerContactsBindingSource;
-            callHistoryPanel1.SetBindingSource(bindingSource1);
-            dataGridView1.DataSource = bindingSource1;
-            dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
-            
+
             CurrentPosition = MainForm.editContact.customerContactsBindingSource.Position;
-            _filter = MainForm.editContact.customerContactsBindingSource.Filter;
-            _isFilteredOnOpen = !String.IsNullOrEmpty(_filter);
+            _position = MainForm.DateBindingSource.Position;
+            //_filter = MainForm._DailyDataBindingSource.Filter;//MainForm.ContactsDataStore.Contacts.Filter;
+            //_emptyFilter = MainForm._DailyDataBindingSource.Count == 0 ? true : false;//MainForm.editContact.customerContactsBindingSource.Count == 0 ? true : false;
 
-            _emptyFilter = MainForm.editContact.customerContactsBindingSource.Count == 0 ? true : false;
-            if (MainForm.ContactsDataStore.Contacts.Count > 0)
-            {
-                _opening = true;
-                MainForm.ContactsDataStore.Contacts.RemoveFilter();
-                var newDateFilterItems = new List<DateFilterItem>{ new DateFilterItem("All") };
-                newDateFilterItems.AddRange(MainForm.ContactsDataStore.Contacts
-                    .Select(x => x.Contacts.StartDate)
-                    .Distinct()
-                    .Select(y => new DateFilterItem(y)));
-
-                //var oldFilterItems = _dateFilterItems.ToList();
-
-                //foreach (var item in oldFilterItems)
-                //    if (!newDateFilterItems.Exists(x => x.ShortDate == item.ShortDate))
-                //        _dateFilterItems.Remove(item);
-
-                //foreach (var item in newDateFilterItems)
-                //    if (!oldFilterItems.Exists(x => x.ShortDate == item.ShortDate))
-                //        _dateFilterItems.Add(item);
-                _DateSelect._ComboBox.DataSource = newDateFilterItems;  
-                _DateSelect._ComboBox.DisplayMember = "ShortDate";
-                _DateSelect._ComboBox.ValueMember = "LongDate";
-
-                _opening = false;
-
-                if (_isFilteredOnOpen && !_emptyFilter)
-                    _DateSelect._ComboBox.Text = MainForm.SelectedContact.Contacts.StartDate.ToString("dd/MM");
-                else if (_isFilteredOnOpen && _emptyFilter)
-                    _DateSelect._ComboBox.Text = DateTime.Today.ToString("dd/MM");
-                else
-                    _DateSelect._ComboBox.SelectedIndex = 0;
-            }
-
-            //if (bindingSource1.Count == 1)
+            //if (MainForm.DailyData.TotalCount > 0)//MainForm.ContactsDataStore.Contacts.TotalCount > 0)
             //{
-            //    callHistoryPanel1.SetBindingSource(MainForm.callHistory.bindingSource1);
-            //    dataGridView1.DataSource = MainForm.callHistory.bindingSource1;
-            //    dataGridView1.Refresh();
-            //}
-            //MainForm.editContact.customerContactsBindingSource.Sort = "ContactDateTime DESC";//.Contacts.ApplySort("ContactDateTime ASC");
-           // dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Descending);
+            //    _opening = true;
+            //    //var newDateFilterItems = MainForm.editContact.comboBox1.DataSource;
+            //    ////var newDateFilterItems = new List<DateFilterItem> { new DateFilterItem("All") };
+            //    ////newDateFilterItems.AddRange(MainForm.ContactsDataStore.Contacts.AllItems
+            //    ////    .Select(x => x.Contacts.StartDate)
+            //    ////    .Distinct()
+            //    ////    .Select(y => new DateFilterItem(y)));
 
-            //MainForm.editContact.customerContactsBindingSource.Position = bindingSource1.Count - CurrentPosition - 1;
+            //    //_DateSelect._ComboBox.DataSource = newDateFilterItems;
+            //    //_DateSelect._ComboBox.DisplayMember = "ShortDate";
+            //    //_DateSelect._ComboBox.ValueMember = "LongDate";
+
+                
+
+            //    //_DateSelect._ComboBox.SelectedValue = ((DailyModel)MainForm._DailyDataBindingSource.Current).Date;
+
+            //    _opening = false;
+            //    //if (MainForm.DailyData.IsFiltered)
+            //    //    _DateSelect._ComboBox.SelectedValue = ((DailyModel) MainForm._DailyDataBindingSource.Current).Date;
+            //    //        //MainForm.SelectedContact.Contacts.StartDate.ToString("dd/MM");
+            //    ////else if (MainForm.ContactsDataStore.Contacts.IsFiltered && _emptyFilter)
+            //    ////    _DateSelect._ComboBox.Text = DateTime.Today.ToString("dd/MM");
+            //    //else
+            //    //    _DateSelect._ComboBox.SelectedIndex = 0;
+            //}
+           // dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Descending);
             base.ShowSetting();
             
         }
 
         public override void HideSetting()
         {
-            callHistoryPanel1.RemoveBindingSource();
-            dataGridView1.DataSource = null;
-
-            if (MainForm.editContact.customerContactsBindingSource.Count > 0)
-                MainForm.editContact.customerContactsBindingSource.Position = CurrentPosition;
-
-
-            if (_isFilteredOnOpen)
-                MainForm.editContact.customerContactsBindingSource.Filter = _filter;
-
             dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
             base.HideSetting();  
         }
 
         private void Cancel_Click(object sender, EventArgs e)
         {
+            //if (!String.IsNullOrEmpty(_filter))
+            //    MainForm._DailyDataBindingSource.Filter = _filter;//MainForm.editContact.customerContactsBindingSource.Filter = _filter;
+
+            MainForm.DateBindingSource.Position = _position;
+            MainForm.editContact.customerContactsBindingSource.Position = CurrentPosition;
+
+            dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
+
+            if (MainForm.ContactsDataStore.Contacts.Count > 0)
+                MainForm._DailyDataBindingSource.Position = CurrentPosition;// MainForm.editContact.customerContactsBindingSource.Position = CurrentPosition;
 
             base._Done_Click(sender, e);
         }
+
+        protected override void _Done_Click(object sender, EventArgs e)
+        {
+            //MainForm.editContact.customerContactsBindingSource.Position = bindingSource1.Position;
+
+            //MainForm.editContact._CallMenuButton.Text = _DateSelect._ComboBox.Text;
+
+            base._Done_Click(sender, e);
+        }
+
 
         private void dataGridView1_DataError(object sender,DataGridViewDataErrorEventArgs e)
         {
             // If the data source raises an exception when a cell value is  
             // commited, display an error message. 
-            Console.WriteLine("Error");
+            //Console.WriteLine("Error");
             if (e.Exception != null &&
                 e.Context == DataGridViewDataErrorContexts.Commit)
             {
@@ -203,27 +181,19 @@ namespace CallTracker.View
 
         private void _ClearHistory_Click(object sender, EventArgs e)
         {
-            _isFilteredOnOpen = false;
+            _filter = String.Empty;
 
-            MainForm.editContact.customerContactsBindingSource.RemoveFilter();
-            MainForm.ContactsDataStore.Contacts.RaiseListChangedEvents = false;
-            MainForm.editContact.customerContactsBindingSource.SuspendBinding();
-            MainForm.ContactsDataStore.Contacts.Clear();
-            MainForm.ContactsDataStore.Contacts.RaiseListChangedEvents = true;
-            MainForm.editContact.customerContactsBindingSource.ResumeBinding();
-            MainForm.ContactsDataStore.Contacts.ResetBindings();
+            MainForm.editContact.DeleteCalls();
 
             var dates = new List<DateFilterItem> { new DateFilterItem("All") };
             _DateSelect._ComboBox.DataSource = dates;
             _DateSelect._ComboBox.SelectedIndex = 0;
-
         }
 
         private void dataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
             if (dataGridView1.Rows.Count == 1)
             {
-                MainForm.editContact.customerContactsBindingSource.RemoveFilter();
                 if (dataGridView1.Rows.Count == 1)
                 {
                     bindingSource1.AddNew();
@@ -232,7 +202,7 @@ namespace CallTracker.View
                     var dates = new List<DateFilterItem> { new DateFilterItem("All"), new DateFilterItem(DateTime.Today) };
                     _DateSelect._ComboBox.DataSource = dates;
                     _DateSelect._ComboBox.SelectedValue = MainForm.SelectedContact.Contacts.StartDate;
-                    _isFilteredOnOpen = false;
+                    //_isFilteredOnOpen = false;
                 }
             }
             else if (bindingSource1.Position == e.Row.Index)
@@ -243,27 +213,19 @@ namespace CallTracker.View
 
         private void _DateSelect_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MainForm.editContact.customerContactsBindingSource == null || _opening == true) return;// || _emptyFilter) return;
+            //if (MainForm._DailyDataBindingSource == null || _opening) return;//MainForm.editContact.customerContactsBindingSource == null || _opening) return;
 
-            if (_DateSelect._ComboBox.Text == "All")
-            {
-                //bindingSource1.RaiseListChangedEvents = false;
-                MainForm.editContact.customerContactsBindingSource.RemoveFilter();
-                //bindingSource1.RaiseListChangedEvents = true;
-                //bindingSource1.ResetBindings(false);
-            }
-            else
-            {
-                MainForm.editContact.customerContactsBindingSource.RaiseListChangedEvents = false;
-                MainForm.editContact.customerContactsBindingSource.Filter = "Contacts.StartDate = " + _DateSelect._ComboBox.SelectedValue;
-                MainForm.editContact.customerContactsBindingSource.RaiseListChangedEvents = true;
-                MainForm.editContact.customerContactsBindingSource.ResetBindings(false);
-            }
-            dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
+            //MainForm._DailyDataBindingSource.Filter = "Date = " + _DateSelect._ComboBox.SelectedValue;
+
+            ////if (_DateSelect._ComboBox.Text == "All" || String.IsNullOrEmpty(_DateSelect._ComboBox.Text))
+            ////    MainForm.editContact.FilterCalls();
+            ////else
+            ////    MainForm.editContact.FilterCalls(_DateSelect._ComboBox.SelectedValue.ToString());
+            dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);       
         }
-
-
     }
+
+     [ImplementPropertyChanged]
     public class DateFilterItem
     {
         public DateTime LongDate { get; set; }

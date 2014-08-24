@@ -176,19 +176,12 @@ namespace CallTracker.Model
     [ProtoContract]
     internal class ContactDataStore : DataRepository<ContactDataStore>
     {
-        //[ProtoMember(1)]
-        //internal SortableBindingList<CustomerContact> Contacts { get; set; }
-        //[ProtoMember(1)]
-        //internal List<CustomerContact> _contactsList;
         [ProtoMember(1)]
         internal FilterableBindingList<CustomerContact> Contacts { get; set; }
-
-        
 
         public ContactDataStore()
         {
             Filename = "Data/Contacts.bin";
-            //_contactsList = new List<CustomerContact>();
             Contacts = new FilterableBindingList<CustomerContact>();
         }
 
@@ -207,67 +200,15 @@ namespace CallTracker.Model
             //if (dataStore.Contacts.Count == 0)
             //    dataStore.Contacts.AddNew();
 
-            //_contactsList = dataStore._contactsList;
-            //Contacts = dataStore.Contacts.ToList();// new FilterableBindingList<CustomerContact>(_contactsList);
-            //if (Contacts == null)
-            Contacts = dataStore.Contacts;
-
-            //ContactsTable = ConvertToDataTable(Contacts);
-
-            Console.WriteLine(Contacts.Count);
-
-            //if (!File.Exists(Filename))
-            //{
-            //    File.Create(Filename).Close();
-            //    Properties.Settings.Default.NextContactsId = 0;
-            //    Contacts.NewRow();
-            //    WriteData();
-            //}
-            //else
-            //{
-
-            //    using (Stream stream = File.OpenRead(Filename))
-            //    using (IDataReader reader = DataSerializer.Deserialize(stream))
-            //    {
-            //        Contacts.Load(reader);
-            //    }
-            //}
-
+            Contacts = new FilterableBindingList<CustomerContact>(dataStore.Contacts.ToList());
         }
 
         public void WriteData()
         {
-            
+          
             using (var file = File.Create(Filename))
                 Serializer.Serialize(file, this);
-
-            //using (Stream stream = File.OpenWrite(Filename))
-            //using (IDataReader reader = Contacts.CreateDataReader())
-            //{
-            //    DataSerializer.Serialize(stream, reader);
-            //    stream.SetLength(stream.Position);
-            //}
-
         }
-
-
-        //public DataTable ConvertToDataTable<T>(IList<T> data)
-        //{
-        //    PropertyDescriptorCollection properties =
-        //       TypeDescriptor.GetProperties(typeof(T));
-        //    DataTable table = new DataTable();
-        //    foreach (PropertyDescriptor prop in properties)
-        //        table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
-        //    foreach (T item in data)
-        //    {
-        //        DataRow row = table.NewRow();
-        //        foreach (PropertyDescriptor prop in properties)
-        //            row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
-        //        table.Rows.Add(row);
-        //    }
-        //    return table;
-
-        //}
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////

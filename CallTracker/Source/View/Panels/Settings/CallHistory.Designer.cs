@@ -33,16 +33,16 @@
             this._Done = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new CallTracker.View.CustomDataGrid();
+            this.Important = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.contactDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.getOutcomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.callHistoryPanel1 = new CallTracker.View.CallHistoryPanel();
             this.label6 = new System.Windows.Forms.Label();
             this._Cancel = new System.Windows.Forms.Button();
             this._ClearHistory = new System.Windows.Forms.Button();
             this._DateSelect = new CallTracker.View.LabelledComboBoxLong();
-            this.Important = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.contactDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.getOutcomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -82,7 +82,7 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.callHistoryPanel1);
             this.splitContainer1.Size = new System.Drawing.Size(580, 213);
-            this.splitContainer1.SplitterDistance = 358;
+            this.splitContainer1.SplitterDistance = 364;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 11;
             // 
@@ -112,10 +112,58 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(358, 213);
+            this.dataGridView1.Size = new System.Drawing.Size(364, 213);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
+            // 
+            // Important
+            // 
+            this.Important.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Important.DataPropertyName = "Important";
+            this.Important.FillWeight = 20F;
+            this.Important.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Important.HeaderText = "";
+            this.Important.MinimumWidth = 20;
+            this.Important.Name = "Important";
+            this.Important.ReadOnly = true;
+            this.Important.ToolTipText = "Flagged As Important";
+            this.Important.Width = 20;
+            // 
+            // contactDateTimeDataGridViewTextBoxColumn
+            // 
+            this.contactDateTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.contactDateTimeDataGridViewTextBoxColumn.DataPropertyName = "ContactDateTime";
+            this.contactDateTimeDataGridViewTextBoxColumn.FillWeight = 98F;
+            this.contactDateTimeDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.contactDateTimeDataGridViewTextBoxColumn.MinimumWidth = 90;
+            this.contactDateTimeDataGridViewTextBoxColumn.Name = "contactDateTimeDataGridViewTextBoxColumn";
+            this.contactDateTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.contactDateTimeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.contactDateTimeDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.FillWeight = 175F;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 175;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.nameDataGridViewTextBoxColumn.Width = 175;
+            // 
+            // getOutcomeDataGridViewTextBoxColumn
+            // 
+            this.getOutcomeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.getOutcomeDataGridViewTextBoxColumn.DataPropertyName = "GetOutcome";
+            this.getOutcomeDataGridViewTextBoxColumn.FillWeight = 70F;
+            this.getOutcomeDataGridViewTextBoxColumn.HeaderText = "Outcome";
+            this.getOutcomeDataGridViewTextBoxColumn.MinimumWidth = 70;
+            this.getOutcomeDataGridViewTextBoxColumn.Name = "getOutcomeDataGridViewTextBoxColumn";
+            this.getOutcomeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.getOutcomeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // bindingSource1
             // 
@@ -128,7 +176,7 @@
             this.callHistoryPanel1.Font = new System.Drawing.Font("Verdana", 7F);
             this.callHistoryPanel1.Location = new System.Drawing.Point(0, 0);
             this.callHistoryPanel1.Name = "callHistoryPanel1";
-            this.callHistoryPanel1.Size = new System.Drawing.Size(220, 213);
+            this.callHistoryPanel1.Size = new System.Drawing.Size(214, 213);
             this.callHistoryPanel1.TabIndex = 0;
             // 
             // label6
@@ -195,58 +243,10 @@
             this._DateSelect.MenuButtonImage = null;
             this._DateSelect.Name = "_DateSelect";
             this._DateSelect.OverlapLabel = false;
-            this._DateSelect.PropertyName = null;
+            this._DateSelect.PropertyName = "LongDate";
             this._DateSelect.Size = new System.Drawing.Size(130, 20);
             this._DateSelect.TabIndex = 17;
             this._DateSelect.SelectedIndexChanged += new System.EventHandler(this._DateSelect_SelectedIndexChanged);
-            // 
-            // Important
-            // 
-            this.Important.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.Important.DataPropertyName = "Important";
-            this.Important.FillWeight = 20F;
-            this.Important.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Important.HeaderText = "";
-            this.Important.MinimumWidth = 20;
-            this.Important.Name = "Important";
-            this.Important.ReadOnly = true;
-            this.Important.ToolTipText = "Flagged As Important";
-            this.Important.Width = 20;
-            // 
-            // contactDateTimeDataGridViewTextBoxColumn
-            // 
-            this.contactDateTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.contactDateTimeDataGridViewTextBoxColumn.DataPropertyName = "ContactDateTime";
-            this.contactDateTimeDataGridViewTextBoxColumn.FillWeight = 98F;
-            this.contactDateTimeDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.contactDateTimeDataGridViewTextBoxColumn.MinimumWidth = 90;
-            this.contactDateTimeDataGridViewTextBoxColumn.Name = "contactDateTimeDataGridViewTextBoxColumn";
-            this.contactDateTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.contactDateTimeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.contactDateTimeDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.FillWeight = 175F;
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.MinimumWidth = 175;
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.nameDataGridViewTextBoxColumn.Width = 175;
-            // 
-            // getOutcomeDataGridViewTextBoxColumn
-            // 
-            this.getOutcomeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.getOutcomeDataGridViewTextBoxColumn.DataPropertyName = "GetOutcome";
-            this.getOutcomeDataGridViewTextBoxColumn.FillWeight = 70F;
-            this.getOutcomeDataGridViewTextBoxColumn.HeaderText = "Outcome";
-            this.getOutcomeDataGridViewTextBoxColumn.MinimumWidth = 70;
-            this.getOutcomeDataGridViewTextBoxColumn.Name = "getOutcomeDataGridViewTextBoxColumn";
-            this.getOutcomeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.getOutcomeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // CallHistory
             // 

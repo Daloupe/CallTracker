@@ -53,11 +53,15 @@ namespace CallTracker.View
             _ServicePanel.Init();
 
             ContactsDataStore = MainForm.ContactsDataStore;
+            MainForm._DailyDataBindingSource.ListChanged += _DailyDataBindingSource_PositionChanged;
+            MainForm._DailyDataBindingSource.PositionChanged +=_DailyDataBindingSource_PositionChanged;
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
-           
-            customerContactsBindingSource.DataSource = ContactsDataStore.Contacts;
-            customerContactsBindingSource.Filter = "Contacts.StartDate = " + DateTime.Today;
-            _CallMenuButton.Text = DateTime.Today.ToString("dd/MM");
+
+            customerContactsBindingSource.DataSource = ((DailyModel)MainForm._DailyDataBindingSource.Current).Contacts;
+            //customerContactsBindingSource.DataMember = "Contacts";
+            //MainForm.ContactsDataStore.Contacts.ApplyFilter("Date = " + DateTime.Today);
+            //customerContactsBindingSource.Filter = "Date = " + DateTime.Today;
+            //_CallMenuButton.Text = DateTime.Today.ToString("dd/MM");
 
 
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
@@ -75,6 +79,14 @@ namespace CallTracker.View
                 FaultPanel.Enabled = false;
                 _Note.Enabled = false;
             }
+        }
+
+        void _DailyDataBindingSource_PositionChanged(object sender, EventArgs e)
+        {
+            if (MainForm._DailyDataBindingSource.Count == 0)
+                return;
+            customerContactsBindingSource.DataSource = ((DailyModel)MainForm._DailyDataBindingSource.Current).Contacts;
+            customerContactsBindingSource.ResetBindings(false);
         }
 
         public void Init()
@@ -103,35 +115,40 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
-            if (customerContactsBindingSource.Count == 0 || customerContactsBindingSource.Position < 0)
+            if (customerContactsBindingSource.Count == 0 || customerContactsBindingSource.Position == -1)
             {
                 DisableInterface();
             }
             else
             {
-                flowLayoutPanel1.Enabled = true;
-                ServiceTypePanel.Enabled = true;
-                FaultPanel.Enabled = true;
-                _Note.Enabled = true;
-
+                _IsDisabled = false;
 
                 MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
                 MainForm.SelectedContact = (CustomerContact)customerContactsBindingSource.Current;//((ObjectView<CustomerContact>)customerContactsBindingSource.Current).Object;
                 MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
 
-                _BookingDate.BindDatePickerBox(customerContactsBindingSource);
-
+                flowLayoutPanel1.Enabled = true;
+                ServiceTypePanel.Enabled = true;
+                FaultPanel.Enabled = true;
+                _Note.Enabled = true;
                 _NoteContextMenuStrip.Items[0].PerformClick();
-                //CurrentService = MainForm.SelectedContact.Fault.AffectedServices;
-                UpdateCurrentPanel();
+                _BookingDate.BindDatePickerBox(customerContactsBindingSource);
                 _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
+
+                UpdateCurrentPanel();
                 UpdateActions();
                 _ImportantToolStripMenuItem.Checked = MainForm.SelectedContact.Important;
             }
         }
 
+        private bool _IsDisabled;
         public void DisableInterface()
         {
+            if (_IsDisabled)
+                return;
+            MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
+            MainForm.SelectedContact = null;
+
             flowLayoutPanel1.Enabled = false;
             ServiceTypePanel.Enabled = false;
             FaultPanel.Enabled = false;
@@ -139,8 +156,9 @@ namespace CallTracker.View
             _Note.DataBindings.Clear();
             _BookingDate._DateTimePicker.DataBindings.Clear();
             _Outcome._ComboBox.DataBindings.Clear();
-            
-            _ServicePanel.ChangeService(ServiceTypes.NONE);
+            CurrentService = ServiceTypes.NONE;
+            //_ServicePanel.ChangeService(ServiceTypes.NONE);
+            _IsDisabled = true;
         }
 
         public void SelectedContact_NestedChange(object sender, PropertyChangedEventArgs e)
@@ -159,18 +177,37 @@ namespace CallTracker.View
 
         public void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            customerContactsBindingSource.RemoveFilter();
+            //customerContactsBindingSource.RemoveFilter();
             customerContactsBindingSource.AddNew();    
-            customerContactsBindingSource.Filter = "Contacts.StartDate = " + DateTime.Today;
-            _CallMenuButton.Text = DateTime.Today.ToString("dd/MM");
-            customerContactsBindingSource.MoveLast();
+            //MainForm.ContactsDataStore.Contacts.ApplyFilter("Date = " + DateTime.Today);
+            //_CallMenuButton.Text = DateTime.Today.ToString("dd/MM");
             customerContactsBindingSource.EndEdit();
+            customerContactsBindingSource.MoveLast();
         }
 
         public void DeleteCalls()
         {
-            customerContactsBindingSource.DataSource = ContactsDataStore.Contacts;
-            customerContactsBindingSource.MoveLast();
+            customerContactsBindingSource.RaiseListChangedEvents = false;
+            customerContactsBindingSource.SuspendBinding();
+
+            MainForm.DailyData.ClearList();
+
+            customerContactsBindingSource.ResumeBinding();
+            customerContactsBindingSource.RaiseListChangedEvents = true;
+            customerContactsBindingSource.ResetBindings(false);
+        }
+
+        public void FilterCalls(string value = "")
+        {
+            customerContactsBindingSource.RaiseListChangedEvents = false;
+
+            if(String.IsNullOrEmpty(value))
+                MainForm.DailyData.RemoveFilter();
+            else
+                MainForm.DailyData.ApplyFilter("Date = " + value);
+            
+            customerContactsBindingSource.RaiseListChangedEvents = true;
+            customerContactsBindingSource.ResetBindings(false);
         }
 
         public void UpdateActions()
@@ -250,6 +287,7 @@ namespace CallTracker.View
                     //        CurrentService = service;   
                     //    }
                     //}
+                    //Console.WriteLine(service);
                     CurrentService = service;  
                     break;
                 }
@@ -666,11 +704,6 @@ namespace CallTracker.View
             base.OnPaint(e);
         }
 
-        private void PaintLightGrayBorder(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void PaintGrayBorderMain(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawRectangle(Pens.WhiteSmoke,
@@ -702,7 +735,6 @@ namespace CallTracker.View
             var checkBox = (CheckBox)sender;
             checkBox.ImageIndex = checkBox.Checked ? 1 : 0;
         }
-
 
     }
 }

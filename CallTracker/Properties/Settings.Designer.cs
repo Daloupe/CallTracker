@@ -37,7 +37,7 @@ namespace CallTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.32.3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.3.6.0")]
         public string Version {
             get {
                 return ((string)(this["Version"]));

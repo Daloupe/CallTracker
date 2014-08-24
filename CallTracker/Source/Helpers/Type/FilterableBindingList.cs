@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace CallTracker.Helpers.Types
 {
@@ -36,10 +37,7 @@ namespace CallTracker.Helpers.Types
     [Serializable()]
     public class FilterableBindingList<T> : BindingList<T>, IBindingListView, IRaiseItemChangedEvents, IDisposable
     {
-
-
         private bool m_Sorted = false;
-        private bool m_Filtered = false;
         private string m_FilterString = null;
         private ListSortDirection m_SortDirection = ListSortDirection.Ascending;
         private string m_SortPropertyName = string.Empty;
@@ -50,21 +48,37 @@ namespace CallTracker.Helpers.Types
         public FilterableBindingList()
             : base()
         {
+            IsFiltered = false;
         }
+
         public FilterableBindingList(List<T> list)
             : base(list)
         {
+            IsFiltered = false;
+            //m_OriginalCollection = list;
+            //Console.WriteLine(TotalCount);
         }
+
         public FilterableBindingList(NullCompares NullComparisionHandling)
             : base()
         {
+            IsFiltered = false;
             this.m_NullComparisionHandling = NullComparisionHandling;
         }
+
         public FilterableBindingList(List<T> list, NullCompares NullComparisionHandling)
             : base(list)
         {
+            IsFiltered = false;
             this.m_NullComparisionHandling = NullComparisionHandling;
+            //m_OriginalCollection = list;
+            //Console.WriteLine(TotalCount);
         }
+
+        //object IBindingList.AddNew()
+        //{
+        //    return AddNew();
+        //}
 
         #region "Serializability support"
         [Serializable()]
@@ -208,10 +222,10 @@ namespace CallTracker.Helpers.Types
         }
         private void ApplySortInternal(SortComparer<T> comparer)
         {
-            if (m_OriginalCollection.Count == 0)
-            {
-                m_OriginalCollection.AddRange(this);
-            }
+            //if (m_OriginalCollection.Count == 0)
+            //{
+            //    m_OriginalCollection.AddRange(this);
+            //}
             List<T> listRef = this.Items as List<T>;
             if (listRef == null)
             {
@@ -245,39 +259,61 @@ namespace CallTracker.Helpers.Types
             SortComparer<T> comparer = new SortComparer<T>(sorts);
             ApplySortInternal(comparer);
         }
+
+        /// <summary>
+        /// Filters underlying collection.
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks></remarks>
         public string Filter
         {
             get { return m_FilterString; }
             set
             {
                 RaiseListChangedEvents = false;
-                RemoveFilter();
                 m_FilterString = value;
-                m_Filtered = true;
-                UpdateFilter();
+                IsFiltered = true;
+                UpdateFilter(_filterCurrent);
                 RaiseListChangedEvents = true;
                 ResetBindings();
+                _filterCurrent = false;
             }
+        }
+
+        private bool _filterCurrent;
+        /// <summary>
+        /// Filters current list.
+        /// </summary>
+        /// <returns></returns>
+        /// <remarks></remarks>
+        public void ApplyFilter(string filter, bool filterCurrent = false)
+        {
+            _filterCurrent = filterCurrent;
+            Filter = filter;
         }
         public void RemoveFilter()
         {          
-            if (!m_Filtered)
+            if (!IsFiltered)
             {
                 return;
             }
             m_FilterString = null;
-            m_Filtered = false;
+            IsFiltered = false;
             m_Sorted = false;
             SaveSorts(null);
             m_SortPropertyName = string.Empty;
 
             RaiseListChangedEvents = false;
-            Clear();
+
             foreach (T item in m_OriginalCollection)
             {
                 Add(item);
             }
             m_OriginalCollection.Clear();
+
+            //ApplySort(RestoreSorts());
+
+            //Console.WriteLine(test[0]);
             RaiseListChangedEvents = true;
             ResetBindings();
         }
@@ -294,8 +330,10 @@ namespace CallTracker.Helpers.Types
         {
             get { return true; }
         }
+
+        private List<string> test = new List<string>{"test", "2"};
         #endregion
-        protected virtual void UpdateFilter()
+        protected virtual void UpdateFilter(bool filterCurrent)
         {
             int equalsPos = m_FilterString.IndexOf('=');
             // Get property name
@@ -310,21 +348,52 @@ namespace CallTracker.Helpers.Types
             // string leading and trailing quotes
             // Get a property descriptor for the filter property
             //PropertyDescriptor propDesc = TypeDescriptor.GetProperties(typeof(T))[propName];
-            if (m_OriginalCollection.Count == 0)
-            {
-                m_OriginalCollection.AddRange(this);
-            }
-            List<T> currentCollection = new List<T>(this);
+            //if (m_OriginalCollection.Count == 0)
+            //{
+            //    m_OriginalCollection.AddRange(this);
+            //}
+
+            var currentCollection = filterCurrent ? new List<T>(this) : AllItems;
+            //Clear();
+            m_OriginalCollection.Clear();
             Clear();
             foreach (T item in currentCollection)
             {
-                object value = FindProperty.FollowPropertyPath(item, propName);//propDesc.GetValue(item);//
-                if (value.ToString() == criteria)
+                var value = FindProperty.FollowPropertyPath(item, propName);//propDesc.GetValue(item);//
+                if (value == criteria)
                 {
                     Add(item);
                 }
+                else
+                {
+                    m_OriginalCollection.Add(item);
+                }
             }
         }
+
+        public bool IsFiltered { get; private set; }
+
+        public int TotalCount
+        {
+            get { return m_OriginalCollection.Count + this.Count;}
+        }
+
+        public List<T> FilteredItems
+        {
+            get { return m_OriginalCollection; }
+        }
+
+        public List<T> AllItems
+        {
+            get
+            {
+                var temp = m_OriginalCollection.ToList();
+                temp.AddRange(this.ToList());
+                temp.Sort(new SortComparer<T>(TypeDescriptor.GetProperties(typeof(T))["ContactDateTime"], ListSortDirection.Ascending, m_NullComparisionHandling));
+                return temp;
+            }
+        }
+
         #region "IBindingList overrides"
         public new bool AllowNew
         {
@@ -336,7 +405,7 @@ namespace CallTracker.Helpers.Types
         }
         private bool CheckReadOnly()
         {
-            if (m_Sorted || m_Filtered)
+            if (m_Sorted || IsFiltered)
             {
                 return false;
             }
@@ -353,6 +422,12 @@ namespace CallTracker.Helpers.Types
         {
             UnregisterAllItemEventHandlers();
             base.ClearItems();
+        }
+
+        public void ClearList()
+        {
+            RemoveFilter();
+            Clear();
         }
         protected override void InsertItem(int index, T item)
         {

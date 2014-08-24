@@ -42,6 +42,7 @@
             this._IPCCState = new System.Windows.Forms.ToolStripStatusLabel();
             this.MenuPanel = new System.Windows.Forms.Panel();
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
+            this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._CallStateTime = new ContextualToolStripMenuItem();
             this.notReadyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -126,6 +127,7 @@
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
             this.MenuPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._DailyDataBindingSource)).BeginInit();
             this._MainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -266,6 +268,10 @@
             // 
             this._IPCCTimer.Interval = 1000;
             this._IPCCTimer.Tick += new System.EventHandler(this._IPCCTimer_Tick);
+            // 
+            // _DailyDataBindingSource
+            // 
+            this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
             // 
             // _CallStateTime
             // 
@@ -948,6 +954,7 @@
             this.statusStrip1.PerformLayout();
             this._StatusContextMenu.ResumeLayout(false);
             this.MenuPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._DailyDataBindingSource)).EndInit();
             this._MainMenu.ResumeLayout(false);
             this._MainMenu.PerformLayout();
             this.ResumeLayout(false);
@@ -1051,5 +1058,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem monitorIPCCToolStripMenuItem;
+        internal System.Windows.Forms.BindingSource _DailyDataBindingSource;
     }
 }

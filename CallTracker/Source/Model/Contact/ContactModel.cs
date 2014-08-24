@@ -93,6 +93,8 @@ namespace CallTracker.Model
         public bool IDok { get; set; }
         [ProtoMember(15)]
         public bool Important { get; set; }
+        [ProtoMember(16)]
+        public EventsModel<CallStats> Statistics { get; set; } 
 
         protected List<PRTemplateModel> PRTemplateReplacements = new List<PRTemplateModel>();
         public void UpdatePrTemplateReplacements(List<PRTemplateModel> _replacements)
@@ -119,7 +121,17 @@ namespace CallTracker.Model
         }
 
         public string ICONNote { get { return Main.NoteGen.GenerateNoteManually(this); } set { ; } }
-
+        public string GetAddress
+        {
+            get
+            {
+                return Address.Address;
+            }
+            set
+            {
+                Address.Address = value;
+            }
+        } 
         public string GetOutcome
         {
             get 
@@ -163,6 +175,11 @@ namespace CallTracker.Model
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
         }
+
+        //public ContactArchiveModel ArchiveContact()
+        //{
+            
+        //}
 
         public event PropertyChangedEventHandler NestedChange;
 

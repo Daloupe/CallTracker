@@ -1,15 +1,18 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Diagnostics;
+using System.Collections.Generic;
 
 using PropertyChanged;
 
 using CallTracker.Model;
 using CallTracker.Helpers;
+using CallTracker.Helpers.Types;
 
 using TestStack.White.Factory;
 using TestStack.White.UIItems.Finders;
@@ -28,6 +31,11 @@ namespace CallTracker.View
         internal ContactDataStore ContactsDataStore = new ContactDataStore();
         internal static ServicesData ServicesStore = new ServicesData();
         internal CustomerContact SelectedContact { get; set; }
+
+        internal BindingList<DateFilterItem> DateFilterItems { get; set; }
+        internal BindingSource DateBindingSource = new BindingSource();
+
+        internal FilterableBindingList<DailyModel> DailyData = new FilterableBindingList<DailyModel>(); 
 
         internal EditLogins editLogins;
         internal EditGridLinks editGridLinks;
@@ -94,6 +102,22 @@ namespace CallTracker.View
             _splash.UpdateProgress("Loading User Data", 20);
             ContactsDataStore.ReadData();
             _splash.UpdateProgress("Loading Contact Data", 25);
+
+
+            DateFilterItems = new BindingList<DateFilterItem>(ContactsDataStore.Contacts.AllItems
+                .Select(x => x.Contacts.StartDate)
+                .Distinct()
+                .Select(y => new DateFilterItem(y)).ToList());
+
+            foreach (var date in DateFilterItems)
+            {
+                ContactsDataStore.Contacts.ApplyFilter("Contacts.StartDate = " + date.LongDate);
+                DailyData.Add(new DailyModel() {Date = date.LongDate, Contacts = new FilterableBindingList<CustomerContact>(ContactsDataStore.Contacts.ToList())});
+            }
+
+            DateBindingSource.DataSource = DateFilterItems;
+            _DailyDataBindingSource.DataSource = DailyData;
+            CheckWorkingDate();
 
             SelectedContact = new CustomerContact();
 
@@ -196,7 +220,24 @@ namespace CallTracker.View
 
             FadingToolTip = new FadingTooltip();
 
-            CheckWorkingDate();
+            editContact._DateSelector.ComboBox.BindingContext = BindingContext;
+            editContact._DateSelector.ComboBox.DataSource = DateBindingSource;
+            editContact._DateSelector.ComboBox.DisplayMember = "ShortDate";
+            editContact._DateSelector.ComboBox.ValueMember = "LongDate";
+
+            callHistory._DateSelect._ComboBox.BindingContext = BindingContext;
+            callHistory._DateSelect._ComboBox.DataSource = DateBindingSource;
+            callHistory._DateSelect._ComboBox.DisplayMember = "ShortDate";
+            callHistory._DateSelect._ComboBox.ValueMember = "LongDate";
+
+            DateBindingSource.PositionChanged += _DateSelector_PositionChanged;
+            //editContact.customerContactsBindingSource.ResetBindings(false);
+        }
+
+        void _DateSelector_PositionChanged(object sender, EventArgs e)
+        {
+            //_DailyDataBindingSource.Filter = "Date = " + ((DateFilterItem)DateBindingSource.Current).LongDate;
+            _DailyDataBindingSource.Position = _DailyDataBindingSource.IndexOf(DailyData.FirstOrDefault(x => x.Date == ((DateFilterItem)DateBindingSource.Current).LongDate));
         } 
 
         private void Main_Shown(object sender, EventArgs e)
@@ -811,11 +852,20 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void CheckWorkingDate()
         {
+            //if (!DailyData.Select(x => x.Date == DateTime.Today).Any())
+            //{
+            //    DailyData.AddNew();
+            //    DailyData[DailyData.Count - 1].Contacts = new FilterableBindingList<CustomerContact>(ContactsDataStore.Contacts.AllItems.Where(x => x.Contacts.StartDate == DateTime.Today).ToList());
+            //    //Properties.Settings.Default.WorkingDate = DateTime.Today;
+            //}
+            DateBindingSource.Position = DateFilterItems.IndexOf(DateFilterItems.FirstOrDefault(x => x.LongDate == DateTime.Today));
+            if(_DailyDataBindingSource != null)
+                _DailyDataBindingSource.Position = _DailyDataBindingSource.IndexOf(DailyData.FirstOrDefault(x => x.Date == ((DateFilterItem)DateBindingSource.Current).LongDate));
             if (DateTime.Today == Properties.Settings.Default.WorkingDate)
                 return;
 
             Properties.Settings.Default.WorkingDate = DateTime.Today;
-            editContact.customerContactsBindingSource.Filter = "Contacts.StartDate = " + DateTime.Today;//"ContactDate = " + DateTime.Today.ToString();//.Contacts.ApplyFilter(x => x.Contacts.StartDate == DateTime.Today);
+            //editContact.customerContactsBindingSource.Filter = "Contacts.StartDate = " + DateTime.Today;
             File.Delete("Data\\Log.txt");
             // Archive/Delete Contacts older than 7 days.
             // Reset Log.
