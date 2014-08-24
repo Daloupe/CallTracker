@@ -7,7 +7,7 @@ using System.Data;
 
 using CallTracker.Helpers;
 using CallTracker.DataSets;
-
+using CallTracker.Helpers.Types;
 using ProtoBuf;
 using ProtoBuf.Data;
 
@@ -178,18 +178,18 @@ namespace CallTracker.Model
     {
         //[ProtoMember(1)]
         //internal SortableBindingList<CustomerContact> Contacts { get; set; }
+        //[ProtoMember(1)]
+        //internal List<CustomerContact> _contactsList;
         [ProtoMember(1)]
-        internal List<CustomerContact> _contactsList;
-
-        internal BindingListView<CustomerContact> Contacts { get; set; }
+        internal FilterableBindingList<CustomerContact> Contacts { get; set; }
 
         
 
         public ContactDataStore()
         {
             Filename = "Data/Contacts.bin";
-            _contactsList = new List<CustomerContact>();
-            Contacts = new BindingListView<CustomerContact>(_contactsList);
+            //_contactsList = new List<CustomerContact>();
+            Contacts = new FilterableBindingList<CustomerContact>();
         }
 
         public void ReadData()
@@ -204,14 +204,17 @@ namespace CallTracker.Model
             using (var file = File.OpenRead(Filename))
                 dataStore = Serializer.Deserialize<ContactDataStore>(file);
 
-            if (dataStore.Contacts.Count == 0)
-                dataStore.Contacts.AddNew();
+            //if (dataStore.Contacts.Count == 0)
+            //    dataStore.Contacts.AddNew();
 
-            _contactsList = dataStore._contactsList;
-            Contacts = new BindingListView<CustomerContact>(_contactsList);
+            //_contactsList = dataStore._contactsList;
+            //Contacts = dataStore.Contacts.ToList();// new FilterableBindingList<CustomerContact>(_contactsList);
+            //if (Contacts == null)
+            Contacts = dataStore.Contacts;
+
             //ContactsTable = ConvertToDataTable(Contacts);
 
-            
+            Console.WriteLine(Contacts.Count);
 
             //if (!File.Exists(Filename))
             //{
@@ -234,6 +237,7 @@ namespace CallTracker.Model
 
         public void WriteData()
         {
+            
             using (var file = File.Create(Filename))
                 Serializer.Serialize(file, this);
 

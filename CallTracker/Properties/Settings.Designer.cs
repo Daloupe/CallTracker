@@ -121,7 +121,7 @@ namespace CallTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2014-08-23")]
+        [global::System.Configuration.DefaultSettingValueAttribute("08/23/2014 12:30:00")]
         public global::System.DateTime WorkingDate {
             get {
                 return ((global::System.DateTime)(this["WorkingDate"]));

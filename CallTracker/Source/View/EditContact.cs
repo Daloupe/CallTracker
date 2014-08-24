@@ -47,27 +47,26 @@ namespace CallTracker.View
             _ServicePanel.PreInit(this);
         }
 
-        internal BindingListView<CustomerContact> Contacts;
+        //internal BindingListView<CustomerContact> Contacts;
         public void OnParentLoad()
         {
             _ServicePanel.Init();
 
             ContactsDataStore = MainForm.ContactsDataStore;
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
-
-            Contacts = new BindingListView<CustomerContact>(ContactsDataStore._contactsList);
-            Contacts.ApplyFilter(x => x.Contacts.StartDate == DateTime.Today);
+           
+            customerContactsBindingSource.DataSource = ContactsDataStore.Contacts;
+            customerContactsBindingSource.Filter = "Contacts.StartDate = " + DateTime.Today;
             _CallMenuButton.Text = DateTime.Today.ToString("dd/MM");
-            customerContactsBindingSource.DataSource = Contacts;
-            //customerContactsBindingSource.Filter = "Id < 5";
 
-            customerContactsBindingSource.MoveLast();
-            //customerContactsBindingSource.Position = ContactsDataStore.Contacts.Count;
 
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
             _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)).Cast<BookingType>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
             _BookingTimeSlot.BindComboBox(Enum.GetValues(typeof(BookingTimeslot)).Cast<BookingTimeslot>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
             _Action.BindComboBox(new List<string>(), customerContactsBindingSource);
+
+            customerContactsBindingSource.MoveLast();
+
 
             if (customerContactsBindingSource.Count == 0)
             {
@@ -117,7 +116,7 @@ namespace CallTracker.View
 
 
                 MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
-                MainForm.SelectedContact = ((ObjectView<CustomerContact>)customerContactsBindingSource.Current).Object;
+                MainForm.SelectedContact = (CustomerContact)customerContactsBindingSource.Current;//((ObjectView<CustomerContact>)customerContactsBindingSource.Current).Object;
                 MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
 
                 _BookingDate.BindDatePickerBox(customerContactsBindingSource);
@@ -160,11 +159,12 @@ namespace CallTracker.View
 
         public void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            //customerContactsBindingSource.Add(new CustomerContact());
-            //customerContactsBindingSource.Position = ContactsDataStore.Contacts.Count;
-            Contacts.AddNew();
-            Contacts.ApplyFilter(x => x.Contacts.StartDate == DateTime.Today);
+            customerContactsBindingSource.RemoveFilter();
+            customerContactsBindingSource.AddNew();    
+            customerContactsBindingSource.Filter = "Contacts.StartDate = " + DateTime.Today;
+            _CallMenuButton.Text = DateTime.Today.ToString("dd/MM");
             customerContactsBindingSource.MoveLast();
+            customerContactsBindingSource.EndEdit();
         }
 
         public void DeleteCalls()
@@ -328,7 +328,8 @@ namespace CallTracker.View
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(_Note.Text);
+            if(!String.IsNullOrEmpty(_Note.Text))
+                Clipboard.SetText(_Note.Text);
             _Note.SelectAll();
         }
 

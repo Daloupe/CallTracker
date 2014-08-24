@@ -35,7 +35,8 @@ namespace CallTracker.Model
         public ContactAddress()
         {
         }
-        
+
+        [ProtoMember(9)]
         private string address;
         public string Address
         {

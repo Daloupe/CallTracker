@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -13,47 +15,60 @@ namespace CallTracker.Helpers
     public static class FindProperty
     {
         // Object Methods ///////////////////////////////////////////////////////////////////////////////////////
-        public static string FollowPropertyPath(object _value, string _path, string _altPath)
+        public static string FollowPropertyPath(object value, string[] path)
         {
-            string output = FollowPropertyPath(_value, _path);
+            var output = String.Empty;
+            var x = 0;
 
-            if (String.IsNullOrEmpty(output) && !String.IsNullOrEmpty(_altPath))
-                output = FollowPropertyPath(_value, _altPath);
+            while (String.IsNullOrEmpty(output))
+            {
+                output = FollowPropertyPath(value, path[x]);
+                ++x;
+            }
 
             return output;
         }
         
-        public static string FollowPropertyPath(object _value, string _path)
+        // Deprecated
+        public static string FollowPropertyPath(object value, string path, string altPath)
         {
-            if (String.IsNullOrEmpty(_path))
+            var output = FollowPropertyPath(value, path);
+
+            if (String.IsNullOrEmpty(output) && !String.IsNullOrEmpty(altPath))
+                output = FollowPropertyPath(value, altPath);
+
+            return output;
+        }
+        
+        public static string FollowPropertyPath(object value, string path)
+        {
+            if (String.IsNullOrEmpty(path))
                 return null;
 
-            string output = String.Empty;
-            DataSplit dataSplit = new DataSplit(_path);
+            var output = String.Empty;
+            var dataSplit = new DataSplit(path);
 
             foreach (var pathSplit in dataSplit.Data)
-                output += GetPropertyFromPath(_value, pathSplit);
+                output += GetPropertyFromPath(value, pathSplit);
 
             return output;
         }
 
-        private static string GetPropertyFromPath(object _value, PathRegex _pathSplit)
+        private static string GetPropertyFromPath(object value, PathRegex pathSplit)
         {
-            object output = _value;
-            Type currentType = output.GetType();
+            var output = value;
+            var currentType = output.GetType();
 
-            foreach (string propertyName in _pathSplit.Path)
+            foreach (string propertyName in pathSplit.Path)
             {
-                PropertyInfo property = currentType.GetProperty(propertyName);
-                if (property != null)
-                {
-                    output = property.GetValue(output, null);
-                    currentType = property.PropertyType;
-                }
+                var property = currentType.GetProperty(propertyName);
+                if (property == null) continue;
+                output = property.GetValue(output, null);
+                currentType = property.PropertyType;
             }
 
-            if (_pathSplit.HasRegex())
-                output = _pathSplit.RegexReplace(output.ToString());
+            if (pathSplit.HasRegex())
+                output = pathSplit.RegexReplace(output.ToString());
             
             return output == null ? String.Empty : output.ToString();
         }

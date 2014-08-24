@@ -29,6 +29,7 @@ Yellow: 255,198,0
 
 0.3.5.1
 | Clear History playign up again.
+| Outcoem saving as symptom?
 - Resources are now saved on settings close.
 - Affected service is ding strange things on reload. Perhaps the filter changes the order.
 - Contact count resets on first IPCC login for the day, data saves on the last logout.

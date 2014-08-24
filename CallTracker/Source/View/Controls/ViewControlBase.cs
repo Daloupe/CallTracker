@@ -6,7 +6,7 @@ namespace CallTracker.View
 {
     public partial class ViewControlBase : UserControl
     {
-        protected DataGridView dgv;
+        internal DataGridView dgv;
         public ToolStripMenuItem MenuControl { get; protected set; }
         protected Main MainForm { get; set; }
 

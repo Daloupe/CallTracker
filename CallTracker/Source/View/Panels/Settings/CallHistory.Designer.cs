@@ -33,12 +33,16 @@
             this._Done = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new CallTracker.View.CustomDataGrid();
-            this.callHistoryPanel1 = new CallTracker.View.CallHistoryPanel();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.callHistoryPanel1 = new CallTracker.View.CallHistoryPanel();
             this.label6 = new System.Windows.Forms.Label();
             this._Cancel = new System.Windows.Forms.Button();
             this._ClearHistory = new System.Windows.Forms.Button();
             this._DateSelect = new CallTracker.View.LabelledComboBoxLong();
+            this.Important = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.contactDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.getOutcomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -78,48 +82,54 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.callHistoryPanel1);
             this.splitContainer1.Size = new System.Drawing.Size(580, 213);
-            this.splitContainer1.SplitterDistance = 361;
+            this.splitContainer1.SplitterDistance = 358;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 11;
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Important,
+            this.contactDateTimeDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn,
+            this.getOutcomeDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.bindingSource1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(361, 213);
+            this.dataGridView1.Size = new System.Drawing.Size(358, 213);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
             // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
             // callHistoryPanel1
             // 
-            this.callHistoryPanel1.AutoScroll = true;
             this.callHistoryPanel1.BackColor = System.Drawing.Color.LightGray;
             this.callHistoryPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.callHistoryPanel1.Font = new System.Drawing.Font("Verdana", 7F);
             this.callHistoryPanel1.Location = new System.Drawing.Point(0, 0);
             this.callHistoryPanel1.Name = "callHistoryPanel1";
-            this.callHistoryPanel1.Size = new System.Drawing.Size(217, 213);
+            this.callHistoryPanel1.Size = new System.Drawing.Size(220, 213);
             this.callHistoryPanel1.TabIndex = 0;
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // label6
             // 
@@ -190,6 +200,54 @@
             this._DateSelect.TabIndex = 17;
             this._DateSelect.SelectedIndexChanged += new System.EventHandler(this._DateSelect_SelectedIndexChanged);
             // 
+            // Important
+            // 
+            this.Important.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Important.DataPropertyName = "Important";
+            this.Important.FillWeight = 20F;
+            this.Important.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Important.HeaderText = "";
+            this.Important.MinimumWidth = 20;
+            this.Important.Name = "Important";
+            this.Important.ReadOnly = true;
+            this.Important.ToolTipText = "Flagged As Important";
+            this.Important.Width = 20;
+            // 
+            // contactDateTimeDataGridViewTextBoxColumn
+            // 
+            this.contactDateTimeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.contactDateTimeDataGridViewTextBoxColumn.DataPropertyName = "ContactDateTime";
+            this.contactDateTimeDataGridViewTextBoxColumn.FillWeight = 98F;
+            this.contactDateTimeDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.contactDateTimeDataGridViewTextBoxColumn.MinimumWidth = 90;
+            this.contactDateTimeDataGridViewTextBoxColumn.Name = "contactDateTimeDataGridViewTextBoxColumn";
+            this.contactDateTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.contactDateTimeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.contactDateTimeDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.FillWeight = 175F;
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.MinimumWidth = 175;
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.nameDataGridViewTextBoxColumn.Width = 175;
+            // 
+            // getOutcomeDataGridViewTextBoxColumn
+            // 
+            this.getOutcomeDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.getOutcomeDataGridViewTextBoxColumn.DataPropertyName = "GetOutcome";
+            this.getOutcomeDataGridViewTextBoxColumn.FillWeight = 70F;
+            this.getOutcomeDataGridViewTextBoxColumn.HeaderText = "Outcome";
+            this.getOutcomeDataGridViewTextBoxColumn.MinimumWidth = 70;
+            this.getOutcomeDataGridViewTextBoxColumn.Name = "getOutcomeDataGridViewTextBoxColumn";
+            this.getOutcomeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.getOutcomeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // CallHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -220,11 +278,15 @@
         private System.Windows.Forms.Button _Done;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label6;
-        private CallHistoryPanel callHistoryPanel1;
         private System.Windows.Forms.Button _Cancel;
         private System.Windows.Forms.Button _ClearHistory;
-        private System.Windows.Forms.BindingSource bindingSource1;
         internal LabelledComboBoxLong _DateSelect;
-        private CustomDataGrid dataGridView1;
+        internal CustomDataGrid dataGridView1;
+        internal System.Windows.Forms.BindingSource bindingSource1;
+        internal CallHistoryPanel callHistoryPanel1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Important;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contactDateTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn getOutcomeDataGridViewTextBoxColumn;
     }
 }

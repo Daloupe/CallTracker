@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -136,21 +137,21 @@ namespace CallTracker.View
             _splash.UpdateProgress("Initializing Views", 50);
             editContact.OnParentLoad();
 
-            //Splash.StepProgress();
+            _splash.StepProgress("Edit Contacts");
             editContact.Init();
-            //Splash.StepProgress();
+            _splash.StepProgress("Call History");
             callHistory.Init(this, callHistoryToolStripMenuItem);
-            //Splash.StepProgress();
+            _splash.StepProgress("Edit Logins");
             editLogins.Init(this, loginsViewMenuItem);
-            //Splash.StepProgress();
+            _splash.StepProgress("Edit Smart Paste Binds");
             editSmartPasteBinds.Init(this, pasteBindsViewMenuItem);
-            //Splash.StepProgress();
+            _splash.StepProgress("Edit Gridlinks");
             editGridLinks.Init(this, gridLinksViewMenuItem);
-            //Splash.StepProgress();
+            _splash.StepProgress("Keycommand Help");
             helpKeyCommands.Init(this, viewKeyCommandsMenuItem);
-            //Splash.StepProgress();
+            _splash.StepProgress("Edit Database");
             databaseView.Init(this, databaseEditorToolStripMenuItem);
-            //Splash.StepProgress();
+            _splash.StepProgress("Edit Ratecodes");
             Ratecodes.Init(this, ratecodesMenuItem);
 
             //Splash.StepProgress();
@@ -194,6 +195,8 @@ namespace CallTracker.View
             ChangeCallStateMenuItem(logOutToolStripMenuItem);
 
             FadingToolTip = new FadingTooltip();
+
+            CheckWorkingDate();
         } 
 
         private void Main_Shown(object sender, EventArgs e)
@@ -208,6 +211,7 @@ namespace CallTracker.View
         {
             if (CancelLoad == false)
             {
+                editContact.customerContactsBindingSource.RemoveFilter();
                 Properties.Settings.Default.Save();
                 UserDataStore.SaveFile(UserDataStore);
                 ContactsDataStore.WriteData();
@@ -661,6 +665,8 @@ namespace CallTracker.View
                         _IPCCTimer.Interval = 1000;
                         _CallStateTime.BackColor = Color.Firebrick;
                         _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
+                        if (_IPCCState.Text == "AgentStatus:")
+                            CheckWorkingDate();
                         break;
                     case "AgentStatus: Ready":
                         _IPCCTimer.Interval = 1000;
@@ -805,11 +811,14 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void CheckWorkingDate()
         {
-            if (DateTime.Today != Properties.Settings.Default.WorkingDate)
-                Properties.Settings.Default.WorkingDate = DateTime.Today;
+            if (DateTime.Today == Properties.Settings.Default.WorkingDate)
+                return;
+
+            Properties.Settings.Default.WorkingDate = DateTime.Today;
+            editContact.customerContactsBindingSource.Filter = "Contacts.StartDate = " + DateTime.Today;//"ContactDate = " + DateTime.Today.ToString();//.Contacts.ApplyFilter(x => x.Contacts.StartDate == DateTime.Today);
+            File.Delete("Data\\Log.txt");
             // Archive/Delete Contacts older than 7 days.
             // Reset Log.
-            // Update Contacts Filter.
         }
 
 

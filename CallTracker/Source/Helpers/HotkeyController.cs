@@ -211,9 +211,9 @@ namespace CallTracker.Helpers
                 if (!FindBrowser())
                     return;
 
-                string url = browser.Url;
-                string title = browser.Title;
-                string element = browser.ActiveElement.IdOrName;
+                var url = browser.Url;
+                var title = browser.Title;
+                var element = browser.ActiveElement.IdOrName;
 
                 PasteBind query = (from
                                        bind in parent.UserDataStore.PasteBinds
@@ -227,7 +227,7 @@ namespace CallTracker.Helpers
 
                 if (query != null)
                 {
-                    query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data, query.AltData));
+                    query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, new[]{query.Data, query.AltData}));
                     EventLogger.LogNewEvent("Match Found");
                 }
 
@@ -266,7 +266,7 @@ namespace CallTracker.Helpers
 
             if (ElementMatch == null)
             {
-                string system = urlOrTitleMatches.Count() > 0 ? urlOrTitleMatches.ElementAtOrDefault(0).System : String.Empty;
+                var system = urlOrTitleMatches.Any() ? urlOrTitleMatches.FirstOrDefault().System : String.Empty;
                 ElementMatch = new PasteBind(system, url, title, browser.ActiveElement);
                 parent.UserDataStore.PasteBinds.Add(ElementMatch);
                 EventLogger.LogNewEvent("New Bind Created");
@@ -302,7 +302,7 @@ namespace CallTracker.Helpers
             {
                 EventLogger.LogNewEvent(String.Format("{0} found.", query.Count()));
                 foreach (PasteBind bind in query)
-                    bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, bind.AltData));
+                    bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, new[] { bind.Data, bind.AltData }));
             }
             if (browser.Url.Contains("CreatePR"))
             {
