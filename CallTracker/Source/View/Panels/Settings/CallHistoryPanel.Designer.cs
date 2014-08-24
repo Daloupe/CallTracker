@@ -156,7 +156,7 @@
             this.Controls.Add(this.dataField1);
             this.Name = "CallHistoryPanel";
             this.Padding = new System.Windows.Forms.Padding(0);
-            this.Size = new System.Drawing.Size(204, 213);
+            this.Size = new System.Drawing.Size(208, 213);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -724,7 +724,7 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void toolStripServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ((ToolStripComboBox)sender).GetCurrentParent().Focus();
+            ((ToolStripComboBox)sender).OwnerItem.GetCurrentParent().Focus();
             foreach (ContextualToolStripMenuItem item in resourcesToolStripMenuItem.DropDownItems.OfType<ContextualToolStripMenuItem>())
                 item.dirty = true;
         }
@@ -815,6 +815,9 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         internal void CheckWorkingDate()
         {
+            if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today)
+                return;
+
             if (DailyDataDataStore.DailyData.All(x => x.Date.LongDate != DateTime.Today))
             {
                 DailyDataDataStore.DailyData.AddNew();
