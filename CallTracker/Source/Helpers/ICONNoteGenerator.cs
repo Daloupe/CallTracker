@@ -14,10 +14,10 @@ namespace CallTracker.Helpers
         public string Value { get; set; }
         public string Note { get; set; }
 
-        public NoteItem(string _name, string _note)
+        protected NoteItem(string name, string note)
         {
-            Name = _name;
-            Note = _note;
+            Name = name;
+            Note = note;
         }
 
         public virtual string GenerateString() 
@@ -28,8 +28,8 @@ namespace CallTracker.Helpers
 
     class NoteItemHeading : NoteItem
     {
-        public NoteItemHeading(string _name, string _note)
-            : base(_name, _note) { }
+        public NoteItemHeading(string name, string note)
+            : base(name, note) { }
 
         public override string GenerateString() 
         { 
@@ -39,25 +39,25 @@ namespace CallTracker.Helpers
 
     class NoteItemString : NoteItem
     {
-        public NoteItemString(string _name, string _note)
-            : base(_name, _note){}
+        public NoteItemString(string name, string note)
+            : base(name, note){}
     }
 
     class AltNoteItemString : NoteItem
     {
         List<AltNote> AltNotes;
 
-        public AltNoteItemString(string _name, List<AltNote> _altNotes)
-            : base(_name, String.Empty) 
+        public AltNoteItemString(string name, List<AltNote> altNotes)
+            : base(name, String.Empty) 
         { 
-            AltNotes = _altNotes; 
+            AltNotes = altNotes; 
         }
         
-        public void GenerateNote(CustomerContact _contact)
+        public void GenerateNote(CustomerContact contact)
         {
             foreach (var alt in AltNotes)
             {
-                if (FindProperty.FollowPropertyPath(_contact, alt.Data) == alt.Result)
+                if (FindProperty.FollowPropertyPath(contact, alt.Data) == alt.Result)
                 {
                     Note = alt.Note;
                     return;
@@ -71,10 +71,10 @@ namespace CallTracker.Helpers
     {
         private Dictionary<string, string> AcronymLookup;
 
-        public NoteItemAcronym(string _name, string _note, Dictionary<string, string> _acronymLookup)
-            : base(_name, _note)
+        public NoteItemAcronym(string name, string note, Dictionary<string, string> acronymLookup)
+            : base(name, note)
         {
-            AcronymLookup = _acronymLookup ?? new Dictionary<string,string>();
+            AcronymLookup = acronymLookup ?? new Dictionary<string,string>();
         }
 
         public override string GenerateString()
@@ -92,11 +92,11 @@ namespace CallTracker.Helpers
         public string Data;
         public string Result;
         public string Note;
-        public AltNote(string _data, string _result, string _note)
+        public AltNote(string data, string result, string note)
         {
-            Data = _data;
-            Result = _result;
-            Note = _note;
+            Data = data;
+            Result = result;
+            Note = note;
         }
     }
 
@@ -109,19 +109,19 @@ namespace CallTracker.Helpers
         {
             //MainForm = _mainForm;
 
-            Dictionary<string, string> Symptoms= new Dictionary<string, string>
-            {
-                {"NDT", "No Dial Tone"},
-                {"NRR", "No Rings Recieved"},
-                {"DTN", "Distortion on the lind"},
-                {"DRP", "Drop Cable Down"},
-                {"COS", "Cut Off Speaking"},
-                {"LIC", "Internet Drop Outs"},
-                {"CCI", "Loss of Internet"},
-                {"MSG", "Foxtel On Screen Errors"}
-            };
+            //Dictionary<string, string> Symptoms= new Dictionary<string, string>
+            //{
+            //    {"NDT", "No Dial Tone"},
+            //    {"NRR", "No Rings Recieved"},
+            //    {"DTN", "Distortion on the lind"},
+            //    {"DRP", "Drop Cable Down"},
+            //    {"COS", "Cut Off Speaking"},
+            //    {"LIC", "Internet Drop Outs"},
+            //    {"CCI", "Loss of Internet"},
+            //    {"MSG", "Foxtel On Screen Errors"}
+            //};
 
-            List<AltNote> PRAltNotes = new List<AltNote>
+            var PRAltNotes = new List<AltNote>
             {
                 new AltNote("Booking.Type", "CRQ", "- Tech has been booked for customer requested date: {0}"),
                 new AltNote("Booking.Type", "FAQ", "- Tech has been booked for first available date: {0}"),
@@ -182,9 +182,9 @@ namespace CallTracker.Helpers
         //}
 
 
-        public string GenerateNoteManually(CustomerContact _contact)
+        public string GenerateNoteManually(CustomerContact contact)
         {
-            CustomerContact contact = _contact;
+            //var contact = _contact;
 
             foreach (var noteItem in NoteItems)
                 if (noteItem.GetType() != typeof(NoteItemHeading))
@@ -201,7 +201,7 @@ namespace CallTracker.Helpers
             //else
             //    NoteItems.Find(x => x.Name == "Booking.GetDate").Value = String.Empty;
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             foreach (var noteItem in NoteItems)
                 if (!String.IsNullOrEmpty(noteItem.Value))

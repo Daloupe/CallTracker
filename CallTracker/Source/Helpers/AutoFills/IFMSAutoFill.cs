@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 using WatiN.Core;
 
@@ -16,10 +14,10 @@ namespace CallTracker.Helpers
         {
             public string Field {get; set;}
             public string Button {get; set;}
-            public IFMSDropdownElement(string _field, string _button)
+            public IFMSDropdownElement(string field, string button)
             {
-                Field = _field;
-                Button = _button;
+                Field = field;
+                Button = button;
             }
         }
         public static Dictionary<string, IFMSDropdownElement> IFMSDropdownElements = new Dictionary<string, IFMSDropdownElement>
@@ -37,15 +35,15 @@ namespace CallTracker.Helpers
         public static void Go(Main _mainForm)
         {
             EventLogger.LogNewEvent("Attempting IFMS Create AutoFill", EventLogLevel.Brief);
-            CustomerContact data = _mainForm.SelectedContact;
-            ServiceTypes AffectedServices = data.Fault.AffectedServices;
-            string Outcome = _mainForm.SelectedContact.Fault.Outcome;
+            var data = _mainForm.SelectedContact;
+            var affectedServices = data.Fault.AffectedServices;
+            var outcome = _mainForm.SelectedContact.Fault.Outcome;
             
-            bool firstFault = false;
-            bool bundleFault = false; 
+            var firstFault = false;
+            var bundleFault = false; 
 
             // LAT ////////////////////////////////////////////////////////////////////////////////////////////////
-            if (AffectedServices.Has(ServiceTypes.LAT) || AffectedServices.Has(ServiceTypes.LIP))
+            if (affectedServices.Has(ServiceTypes.LAT) || affectedServices.Has(ServiceTypes.LIP))
             {
                 firstFault = true;
 
@@ -53,17 +51,17 @@ namespace CallTracker.Helpers
             }
 
             // ONC ////////////////////////////////////////////////////////////////////////////////////////////////
-            if (AffectedServices.Has(ServiceTypes.ONC))
+            if (affectedServices.Has(ServiceTypes.ONC))
             {
-                if (firstFault == true)
+                if (firstFault)
                     bundleFault = true;
                 firstFault = true;
 
                 DropdownTextfieldButton("CBM", StringHelpers.RemoveColons(data.Service.CMMac));
                 DropdownTextfieldButton("USER", data.Username);
-                if(Outcome != "ARO")
+                if(outcome != "ARO")
                     DropdownTextfieldButton("SUMM", "RF Tap Down");
-                else if(Outcome != "PR")
+                else if(outcome != "PR")
                 {
                     HotkeyController.browser.TextField(Find.ByName("ctl00_cphPage_tx_TruckRollStatus")).Value = Enum.GetName(typeof(BookingType), data.Booking.Type);
                     HotkeyController.browser.TextField(Find.ByName("ctl00_cphPage_tx_ScheduleStartTime")).Value = data.Booking.GetDate;
@@ -71,16 +69,13 @@ namespace CallTracker.Helpers
             }
 
             // DTV ////////////////////////////////////////////////////////////////////////////////////////////////
-            if (AffectedServices.Has(ServiceTypes.DTV))
+            if (affectedServices.Has(ServiceTypes.DTV))
             {
-                if (firstFault == true)
+                if (firstFault)
                     bundleFault = true;
                 firstFault = true;
 
-                if(bundleFault == true)
-                    DropdownTextfieldButton("STU", data.Service.DTVSmartCard);
-                else
-                    DropdownTextfieldButton("STB", data.Service.DTVSmartCard);
+                DropdownTextfieldButton(bundleFault ? "STU" : "STB", data.Service.DTVSmartCard);
 
                 if(data.Fault.Symptom == "MSG")
                     DropdownTextfieldButton("SUMM", data.Service.DTVMsg);
@@ -89,7 +84,7 @@ namespace CallTracker.Helpers
             }
 
             // NBN ////////////////////////////////////////////////////////////////////////////////////////////////
-            if (AffectedServices.Has(ServiceTypes.NFV) || AffectedServices.Has(ServiceTypes.NBF))
+            if (affectedServices.Has(ServiceTypes.NFV) || affectedServices.Has(ServiceTypes.NBF))
             {
                 DropdownTextfieldButton("UIN", data.Username);
                 if (!String.IsNullOrEmpty(data.Fault.INC))
@@ -97,26 +92,26 @@ namespace CallTracker.Helpers
             }
 
             // NFV ////////////////////////////////////////////////////////////////////////////////////////////////
-            if (AffectedServices.Has(ServiceTypes.NFV))
+            if (affectedServices.Has(ServiceTypes.NFV))
             {
-                if (firstFault == true)
+                if (firstFault)
                     bundleFault = true;
                 firstFault = true;
                 DropdownTextfieldButton("A", data.DN);             
             }
 
             // NBF ////////////////////////////////////////////////////////////////////////////////////////////////
-            if (AffectedServices.Has(ServiceTypes.NBF))
+            if (affectedServices.Has(ServiceTypes.NBF))
             {
-                if (firstFault == true)
+                if (firstFault)
                     bundleFault = true;
                 firstFault = true;
             }
 
             // MTV ////////////////////////////////////////////////////////////////////////////////////////////////
-            if (AffectedServices.Has(ServiceTypes.MTV))
+            if (affectedServices.Has(ServiceTypes.MTV))
             {
-                if (firstFault == true)
+                if (firstFault)
                     bundleFault = true;
                 firstFault = true;
 
@@ -124,18 +119,17 @@ namespace CallTracker.Helpers
             }
 
             // MISC ///////////////////////////////////////////////////////////////////////////////////////////////
-            if (bundleFault == true)
+            if (bundleFault)
                 DropdownTextfieldButton("SUMM", "Bundle Fault");
         }
 
-        public static void DropdownTextfieldButton(string _dropdown, string _field)
+        public static void DropdownTextfieldButton(string dropdown, string field)
         {
-            if(!String.IsNullOrEmpty(_field))
-            {
-                HotkeyController.browser.SelectList(Find.ById("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_ddAffectedServices")).Select(_dropdown);
-                HotkeyController.browser.TextField(Find.ById(IFMSDropdownElements[_dropdown].Field)).Value = _field;
-                HotkeyController.browser.Button(Find.ById(IFMSDropdownElements[_dropdown].Button)).Click();
-            }
+            if (String.IsNullOrEmpty(field)) return;
+
+            HotkeyController.browser.SelectList(Find.ById("ctl00_cphPage_F001_Aff_Svc_ProxyPR1_ddAffectedServices")).Select(dropdown);
+            HotkeyController.browser.TextField(Find.ById(IFMSDropdownElements[dropdown].Field)).Value = field;
+            HotkeyController.browser.Button(Find.ById(IFMSDropdownElements[dropdown].Button)).Click();
         }
     }
 }

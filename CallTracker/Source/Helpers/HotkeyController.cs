@@ -38,7 +38,7 @@ namespace CallTracker.Helpers
         public static IE browser;
         //public static string PreviousIEMatch;
         private static HotKeyManager HotKeyManager;
-        private static PropertyDescriptorCollection props;
+        //private static PropertyDescriptorCollection props;
 
         public static event ActionEventHandler OnAction;
         
@@ -55,9 +55,9 @@ namespace CallTracker.Helpers
             HotKeyManager.AddOrReplaceHotkey("AutoLogin", Modifiers.Win, Keys.Oemtilde, OnAutoLogin);
             HotKeyManager.AddOrReplaceHotkey("AutoFill", Modifiers.Win | Modifiers.Control, Keys.V, OnAutoFill);
             HotKeyManager.AddOrReplaceHotkey("AddARO", Modifiers.Win | Modifiers.Shift, Keys.C, OnAddARO);
-            foreach (var DataPasteHotkey in DataPasteHotkeys)
+            foreach (var DataPasteHotkey in _dataPasteHotkeys)
                 HotKeyManager.AddOrReplaceHotkey(DataPasteHotkey.Value, Modifiers.Control | Modifiers.Shift, DataPasteHotkey.Key, OnDataPaste);
-            foreach (var GridLinkHotKey in GridLinkHotkeys)
+            foreach (var GridLinkHotKey in _gridLinkHotkeys)
                 HotKeyManager.AddOrReplaceHotkey(GridLinkHotKey.Value, Modifiers.Win, GridLinkHotKey.Key, OnGridLinks);
 
             Settings.Instance.AutoMoveMousePointerToTopLeft = false;
@@ -66,7 +66,7 @@ namespace CallTracker.Helpers
             Settings.Instance.WaitForCompleteTimeOut = 3;
             Settings.Instance.WaitUntilExistsTimeOut = 3;
 
-            props = TypeDescriptor.GetProperties(parent.SelectedContact.Service);
+            //props = TypeDescriptor.GetProperties(parent.SelectedContact.Service);
 
             //bgw.DoWork += bgw_DoWork;
             //bgw.RunWorkerCompleted += bgw_RunWorkerCompleted;
@@ -102,7 +102,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Grid Links ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private Dictionary<Keys, string> GridLinkHotkeys = new Dictionary<Keys, string>()
+        private readonly Dictionary<Keys, string> _gridLinkHotkeys = new Dictionary<Keys, string>
         {
             {Keys.NumPad0, "0"},
             {Keys.NumPad1, "1"},
@@ -119,19 +119,19 @@ namespace CallTracker.Helpers
         private static void OnGridLinks(HotkeyPressedEventArgs e)
         {
             SystemItem systemItem = parent.UserDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name));
-            parent.SetProgressBarStep(4, String.Format("Switching to: {0}", systemItem.Url), EventLogLevel.Verbose);
+            parent.SetProgressBarStep(4, String.Format("Switching to: {0}", systemItem.Url));
 
             try
             {
                 if (systemItem.System == "MAD" || systemItem.System == "OPOM")
                 {
-                    IntPtr hWnd = IntPtr.Zero;
+                    var hWnd = IntPtr.Zero;
                     hWnd = WindowHelper.FindHWNDByTitle(systemItem.Title);
-                    if (hWnd != IntPtr.Zero)
-                    {
-                        WindowHelper.ShowWindow(hWnd, WindowHelper.SW_RESTORE);
-                        WindowHelper.SetForegroundWindow(hWnd);
-                    }
+                    
+                    if (hWnd == IntPtr.Zero) return;
+
+                    WindowHelper.ShowWindow(hWnd, WindowHelper.SW_RESTORE);
+                    WindowHelper.SetForegroundWindow(hWnd);
                 }
                 else if (NavigateOrNewIE(systemItem.Url, systemItem.Title))
                 {
@@ -149,7 +149,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Data Paste ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private Dictionary<Keys, string> DataPasteHotkeys = new Dictionary<Keys, string>()
+        private readonly Dictionary<Keys, string> _dataPasteHotkeys = new Dictionary<Keys, string>
         {
             {Keys.D1, "ICON"},
             {Keys.D2, "CMBS"},
@@ -262,18 +262,18 @@ namespace CallTracker.Helpers
                                      select
                                         bind;
 
-            PasteBind ElementMatch = urlOrTitleMatches.FirstOrDefault(bind => bind.Element == element);
+            PasteBind elementMatch = urlOrTitleMatches.FirstOrDefault(bind => bind.Element == element);
 
-            if (ElementMatch == null)
+            if (elementMatch == null)
             {
                 var system = urlOrTitleMatches.Any() ? urlOrTitleMatches.FirstOrDefault().System : String.Empty;
-                ElementMatch = new PasteBind(system, url, title, browser.ActiveElement);
-                parent.UserDataStore.PasteBinds.Add(ElementMatch);
+                elementMatch = new PasteBind(system, url, title, browser.ActiveElement);
+                parent.UserDataStore.PasteBinds.Add(elementMatch);
                 EventLogger.LogNewEvent("New Bind Created");
             }
 
-            parent.editSmartPasteBinds.SelectQuery(ElementMatch);
-            Main.ShowPopupForm<BindSmartPasteForm>().SelectQuery(ElementMatch);
+            parent.editSmartPasteBinds.SelectQuery(elementMatch);
+            Main.ShowPopupForm<BindSmartPasteForm>().SelectQuery(elementMatch);
 
             browser.Dispose();
         }
@@ -298,10 +298,10 @@ namespace CallTracker.Helpers
                         select
                             bind;
 
-            if (query != null)
+            if (query.Any())
             {
                 EventLogger.LogNewEvent(String.Format("{0} found.", query.Count()));
-                foreach (PasteBind bind in query)
+                foreach (var bind in query)
                     bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, new[] { bind.Data, bind.AltData }));
             }
             if (browser.Url.Contains("CreatePR"))
@@ -449,7 +449,7 @@ namespace CallTracker.Helpers
                 NavigateOrNewIE(_url);
 
             // Fill Search field ////////////////////////////////////////////////////////
-            PasteBind query = (from
+            var query = (from
                                     bind in parent.UserDataStore.PasteBinds
                                 where
                                     bind.Element == _searchElement &&
@@ -524,9 +524,9 @@ namespace CallTracker.Helpers
             return true;
         }
 
-        public static bool FindIEByTitle(string _title)
+        public static bool FindIEByTitle(string title)
         {
-            string currentTitle = Regex.Match(_title, @"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?").Groups[1].Value;
+            string currentTitle = Regex.Match(title, @"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?").Groups[1].Value;
 
 
             if (!Browser.Exists<IE>(Find.ByTitle(currentTitle)))
@@ -544,16 +544,16 @@ namespace CallTracker.Helpers
             return true;
         }
 
-        public static bool FindIEByUrl(string _url)
+        public static bool FindIEByUrl(string url)
         {
-            if (!Browser.Exists<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase))))
+            if (!Browser.Exists<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + url + ".*", RegexOptions.IgnoreCase))))
                 return false;
 
             //if (PreviousIEMatch != _url)
             ////{
             //    if (browser != null)
             //        browser.Dispose();
-                browser = Browser.AttachTo<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + _url + ".*", RegexOptions.IgnoreCase)));
+                browser = Browser.AttachTo<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + url + ".*", RegexOptions.IgnoreCase)));
                 browser.AutoClose = false;
                 //PreviousIEMatch = _url;
             //}
@@ -562,7 +562,7 @@ namespace CallTracker.Helpers
         }
 
         //private static Process m_Proc;
-        public static bool CreateNewIE(string _url)
+        public static bool CreateNewIE(string url)
         {
             OnAction("Unhooking brower");
             if (browser != null)
@@ -570,8 +570,8 @@ namespace CallTracker.Helpers
 
             OnAction("Creating brower");
 
-            Process m_Proc = System.Diagnostics.Process.Start("IExplore.exe", _url);
-            m_Proc.Dispose();
+            var mProc = Process.Start("IExplore.exe", url);
+            if (mProc != null) mProc.Dispose();
             return true;
         }
 

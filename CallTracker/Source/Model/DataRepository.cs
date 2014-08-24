@@ -11,8 +11,6 @@ using CallTracker.Helpers.Types;
 using ProtoBuf;
 using ProtoBuf.Data;
 
-using Equin.ApplicationFramework;
-
 namespace CallTracker.Model
 {
     //////////////////////////////////////////////////////////////////////////////////////////////////////

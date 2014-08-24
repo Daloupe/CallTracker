@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Runtime.InteropServices;
-using System.Threading;
-using System.Drawing;
 using System.Diagnostics;
-using System.Windows.Forms;
-using System.IO;
-using System.Text.RegularExpressions;
 
 namespace CallTracker.Helpers
 {
@@ -29,22 +24,16 @@ namespace CallTracker.Helpers
         [DllImport("user32.dll")]
         private static extern int GetWindowText(IntPtr hWnd, StringBuilder text, int count);
 
+        const int CHARS = 256;
         public static string GetActiveWindowTitle()
         {
-            int chars = 256;
-            StringBuilder buff = new StringBuilder(chars);
+            var buff = new StringBuilder(CHARS);
 
             // Obtain the handle of the active window.
-            IntPtr handle = GetForegroundWindow();
+            var handle = GetForegroundWindow();
 
             // Update the controls.
-            if (GetWindowText(handle, buff, chars) > 0)
-            {
-               return buff.ToString();
-               //MessageBox.Show(handle.ToString());
-            }
-
-            return String.Empty;
+            return GetWindowText(handle, buff, CHARS) > 0 ? buff.ToString() : String.Empty;
         }
 
         public static IntPtr GetActiveWindowHWND()
@@ -52,11 +41,11 @@ namespace CallTracker.Helpers
             return GetForegroundWindow();
         }
 
-        public static IntPtr FindHWNDByTitle(string _wName)
+        public static IntPtr FindHWNDByTitle(string wName)
         {
             var hWnd = IntPtr.Zero;
             foreach (Process pList in Process.GetProcesses())
-                if (pList.MainWindowTitle.Contains(_wName))
+                if (pList.MainWindowTitle.Contains(wName))
                 {
                     hWnd = pList.MainWindowHandle;
                     break;
@@ -65,9 +54,9 @@ namespace CallTracker.Helpers
             return hWnd;
         }
 
-        public static IntPtr ActivateWindowByProcessName(string _title)
+        public static IntPtr ActivateWindowByProcessName(string title)
         {
-            var prc = Process.GetProcessesByName(_title);
+            var prc = Process.GetProcessesByName(title);
             if (prc.Length > 0)
             {
                 SetForegroundWindow(prc[0].MainWindowHandle);

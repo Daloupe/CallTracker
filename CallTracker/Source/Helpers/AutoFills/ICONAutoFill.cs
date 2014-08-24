@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
 using WatiN.Core;
 
@@ -16,9 +13,9 @@ namespace CallTracker.Helpers
         {
             EventLogger.LogNewEvent("Attempting ICON Note AutoFill", EventLogLevel.Brief);
 
-            CustomerContact data = _mainForm.SelectedContact;
-            ServiceTypes AffectedServices = data.Fault.AffectedServices;
-            string Outcome = _mainForm.SelectedContact.Fault.Outcome;
+            var data = _mainForm.SelectedContact;
+            var AffectedServices = data.Fault.AffectedServices;
+            var Outcome = _mainForm.SelectedContact.Fault.Outcome;
 
             var severity = (from a in Main.ServicesStore.servicesDataSet.SeverityCodes
                            where a.IFMSCode == data.Fault.Severity
@@ -35,7 +32,7 @@ namespace CallTracker.Helpers
             var tier1query = from a in Main.ServicesStore.servicesDataSet.IFMSTier1
                              where a.ServiceId == data.Fault.Service.Id
                              select a;
-            if (tier1query.Count() == 0)
+            if (!tier1query.Any())
                 return;
             var tier1 = tier1query.FirstOrDefault();
             HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListProduct")).Select(tier1.Option);
@@ -47,7 +44,7 @@ namespace CallTracker.Helpers
                              where b.IFMSTier1Id == tier1.Id &&
                                    c.OutcomeId == outcome.Id
                              select a;
-            if (tier2query.Count() == 0)
+            if (!tier2query.Any())
                 return;
             var tier2 = tier2query.FirstOrDefault();
             HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListCallDriver")).Select(tier2.Option);
@@ -60,7 +57,7 @@ namespace CallTracker.Helpers
                                    //c.SeverityCodeId == severity.Id &&
                                    a.SymptomId == symptom.Id       
                              select a;
-            if (tier3query.Count() == 0)
+            if (!tier3query.Any())
                 return;
             var tier3 = tier3query.FirstOrDefault();
             HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListReason")).Select(tier3.Option);
@@ -72,7 +69,7 @@ namespace CallTracker.Helpers
                         where b.IFMSTier3Id == tier3.Id &&
                               c.OutcomeId == outcome.Id                              
                         select a;
-            if (tier4.Count() == 0)
+            if (!tier4.Any())
                 return;
             
             //Console.WriteLine("Tier4: {0}", tier4.First().Option);

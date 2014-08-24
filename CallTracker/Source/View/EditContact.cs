@@ -6,8 +6,6 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-using Equin.ApplicationFramework;
-
 using CallTracker.Model;
 using CallTracker.Helpers;
 
@@ -15,14 +13,12 @@ namespace CallTracker.View
 {
     public partial class EditContact : UserControl
     {
-        //private ContactDataStore ContactsDataStore;
         internal Main MainForm;
-        //internal List<CheckBox> ServiceCheckboxes;
 
-        public EditContact(Main _mainform)
+        public EditContact(Main mainform)
         {
             InitializeComponent();
-            MainForm = _mainform;
+            MainForm = mainform;
             Location = MainForm.ControlOffset;
 
             // Fault Panel Mouse Wheel Focus////////////////////////////////////////////////////////////////////
@@ -33,7 +29,7 @@ namespace CallTracker.View
             foreach (Control control in _ServicePanel.Controls)
             {
                 control.MouseHover += splitContainer2_MouseEnter;
-                foreach (LabelledBase control2 in control.Controls.OfType<LabelledBase>())
+                foreach (var control2 in control.Controls.OfType<LabelledBase>())
                     control2._Label.MouseHover += splitContainer2_MouseEnter;
             }
 
@@ -47,22 +43,15 @@ namespace CallTracker.View
             _ServicePanel.PreInit(this);
         }
 
-        //internal BindingListView<CustomerContact> Contacts;
         public void OnParentLoad()
         {
             _ServicePanel.Init();
 
-           // ContactsDataStore = MainForm.ContactsDataStore;
             MainForm._DailyDataBindingSource.ListChanged += _DailyDataBindingSource_PositionChanged;
             MainForm._DailyDataBindingSource.PositionChanged +=_DailyDataBindingSource_PositionChanged;
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
 
             customerContactsBindingSource.DataSource = ((DailyModel)MainForm._DailyDataBindingSource.Current).Contacts;
-            //customerContactsBindingSource.DataMember = "Contacts";
-            //MainForm.ContactsDataStore.Contacts.ApplyFilter("Date = " + DateTime.Today);
-            //customerContactsBindingSource.Filter = "Date = " + DateTime.Today;
-            //_CallMenuButton.Text = DateTime.Today.ToString("dd/MM");
-
 
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
             _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)).Cast<BookingType>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
@@ -70,13 +59,17 @@ namespace CallTracker.View
             _Action.BindComboBox(new List<string>(), customerContactsBindingSource);
 
             customerContactsBindingSource.MoveLast();
-            if (customerContactsBindingSource.Count == 0)
-            {
-                flowLayoutPanel1.Enabled = false;
-                ServiceTypePanel.Enabled = false;
-                FaultPanel.Enabled = false;
-                _Note.Enabled = false;
-            }
+
+            _DateSelector.ComboBox.DataSource = MainForm.DateBindingSource;
+            _DateSelector.ComboBox.DisplayMember = "ShortDate";
+            _DateSelector.ComboBox.ValueMember = "LongDate";
+
+            if (customerContactsBindingSource.Count != 0) return;
+
+            flowLayoutPanel1.Enabled = false;
+            ServiceTypePanel.Enabled = false;
+            FaultPanel.Enabled = false;
+            _Note.Enabled = false;
         }
 
         void _DailyDataBindingSource_PositionChanged(object sender, EventArgs e)
@@ -100,6 +93,7 @@ namespace CallTracker.View
                 customerContactsBindingSource.DataSource =
                    ((DailyModel)MainForm._DailyDataBindingSource.Current).Contacts;
                 customerContactsBindingSource.ResetBindings(false);
+                customerContactsBindingSource.MoveLast();
             }
 
         }
@@ -136,7 +130,7 @@ namespace CallTracker.View
             }
             else
             {
-                _IsDisabled = false;
+                _isDisabled = false;
 
                 if (MainForm.SelectedContact != null)
                     MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
@@ -157,13 +151,13 @@ namespace CallTracker.View
             }
         }
 
-        private bool _IsDisabled;
+        private bool _isDisabled;
         public void DisableInterface()
         {
-            if (_IsDisabled)
+            if (_isDisabled)
                 return;
 
-            _IsDisabled = true;
+            _isDisabled = true;
             if (MainForm.SelectedContact != null)
             {
                 MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
@@ -197,7 +191,8 @@ namespace CallTracker.View
 
         public void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
-            _DateSelector.ComboBox.SelectedValue = DateTime.Today;    
+            //_DateSelector.ComboBox.SelectedValue = DateTime.Today;
+            MainForm.CheckWorkingDate();
             customerContactsBindingSource.AddNew();    
             customerContactsBindingSource.MoveLast();
         }
@@ -248,13 +243,13 @@ namespace CallTracker.View
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Service //////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private ServiceTypes currentService;
+        private ServiceTypes _currentService;
         private ServiceTypes CurrentService
         {
-            get { return currentService; }
+            get { return _currentService; }
             set
             {
-                if (value == currentService && currentService.IsNot(ServiceTypes.NONE))
+                if (value == _currentService && _currentService.IsNot(ServiceTypes.NONE))
                     return;
                 ServicePanel.Symptoms.Clear();
                 _Symptom._ComboBox.DataSource = null;
@@ -263,53 +258,20 @@ namespace CallTracker.View
                 _Equipment._ComboBox.DataSource = null;
                 _Equipment._ComboBox.DataBindings.Clear();
 
-                //_ServicePanel.currentFlowPanel.CheckBox.ForeColor = Color.Black;
-                currentService = value;
-                //MainForm.SelectedContact.Fault.AffectedServiceType = currentService;
-                _ServicePanel.ChangeService(currentService);
-                //if (currentService.IsNot(ServiceTypes.NONE))
-                //{
-                //    MainForm.toolStripServiceSelector.Text = _ServicePanel.currentFlowPanel.Service.ProblemStylesRow.Description;
-                //}
+                _currentService = value;
+                _ServicePanel.ChangeService(_currentService);
             }
         }
 
-        //private void UpdateMainService()
-        //{
-
-        //    ServiceTypes affectedServices = MainForm.SelectedContact.Fault.AffectedServices;
-
-        //    foreach (ServiceTypes service in Enum.GetValues(typeof(ServiceTypes)))
-        //    {
-        //        if ((affectedServices & service) != 0 || affectedServices.Is(ServiceTypes.NONE))
-        //        {
-        //            CurrentService = service;
-        //            break;
-        //        }
-        //    }
-        //}
-
         private void UpdateCurrentPanel()
         {
-            //Console.WriteLine("Updating panel");
-            ServiceTypes affectedServices = MainForm.SelectedContact.Fault.AffectedServices;
+            var affectedServices = MainForm.SelectedContact.Fault.AffectedServices;
 
             foreach (ServiceTypes service in Enum.GetValues(typeof(ServiceTypes)))
             {
-                if ((affectedServices & service) != 0 || affectedServices == 0)
-                {
-                    //foreach (CheckBox control in ServiceTypePanel.Controls)
-                    //{
-                    //    if ((ServiceTypes)control.Tag == service)// && service.Is(MainForm.SelectedContact.Fault.AffectedServiceType))
-                    //    {
-                    //        control.ForeColor = Color.DarkRed;
-                    //        CurrentService = service;   
-                    //    }
-                    //}
-                    //Console.WriteLine(service);
-                    CurrentService = service;  
-                    break;
-                }
+                if ((affectedServices & service) == 0 && affectedServices != 0) continue;
+                CurrentService = service;  
+                break;
             }
         }
 
@@ -322,7 +284,7 @@ namespace CallTracker.View
         private bool HandlingRightClick { get; set; }
         private void OnMouseDown(object sender, MouseEventArgs e)
         {
-            CheckBox cb = (CheckBox)sender;
+            var cb = (CheckBox)sender;
             if (e.Button == MouseButtons.Right && !HandlingRightClick)
             {  
                 HandlingRightClick = true;
@@ -341,10 +303,7 @@ namespace CallTracker.View
             }
             else if (e.Button == MouseButtons.Left)
             {
-                if (cb.Checked == false)
-                    cb.Checked = true;
-                else
-                    cb.Checked = false;        
+                cb.Checked = cb.Checked == false;        
             }
         }
 
@@ -364,22 +323,23 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public void SwitchNote(object sender, EventArgs e)
         {
-            ToolStripMenuItem cm = (ToolStripMenuItem)sender;
-            foreach (ToolStripMenuItem item in _NoteContextMenuStrip.Items.OfType<ToolStripMenuItem>())
+            var cm = (ToolStripMenuItem)sender;
+            foreach (var item in _NoteContextMenuStrip.Items.OfType<ToolStripMenuItem>())
                 item.Checked = false;
             cm.Checked = true;
             _Note.DataBindings.Clear();
-            string tag = cm.Tag.ToString();
+            var tag = cm.Tag.ToString();
             _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
             
-            //_Note.ReadOnly = false;
-            if (tag == "ICONNote")
+            switch (tag)
             {
-                _Note.DataBindings[0].ReadValue();
-                //_Note.ReadOnly = true;
+                case "ICONNote":
+                    _Note.DataBindings[0].ReadValue();
+                    break;
+                case "PRTemplate":
+                    _Note.DataBindings[0].ReadValue();
+                    break;
             }
-            else if (tag == "PRTemplate")
-                _Note.DataBindings[0].ReadValue();
                 
         }
 
@@ -565,7 +525,7 @@ namespace CallTracker.View
 
         private void _PRContextMenu_Clicked(object sender, MouseEventArgs e)
         {
-            if (e.Button != System.Windows.Forms.MouseButtons.Right) return;
+            if (e.Button != MouseButtons.Right) return;
             if (((LabelledTextBox)sender).Name == "_NPR")
             {
                 dispatchToolStripMenuItem.Enabled = false;
@@ -587,7 +547,7 @@ namespace CallTracker.View
 
         private void _Symptom_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!currentService.Is(ServiceTypes.NONE))
+            if (!_currentService.Is(ServiceTypes.NONE))
                 _ServicePanel.UpdateSeverity();
         }
 
@@ -680,7 +640,7 @@ namespace CallTracker.View
             var menu = (ContextMenuStrip)sender;
             menu.Opening -= ContextMenuStrip_Opening;
 
-            if (DateTime.UtcNow.Subtract(_lasttime).Milliseconds < 9 && _opened == true)
+            if (DateTime.UtcNow.Subtract(_lasttime).Milliseconds < 9 && _opened)
             {
                 e.Cancel = true;
                 return;

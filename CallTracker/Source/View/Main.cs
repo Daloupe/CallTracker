@@ -12,7 +12,6 @@ using PropertyChanged;
 
 using CallTracker.Model;
 using CallTracker.Helpers;
-using CallTracker.Helpers.Types;
 
 using TestStack.White.Factory;
 using TestStack.White.UIItems.Finders;
@@ -27,16 +26,12 @@ namespace CallTracker.View
         public Point ControlOffset = new Point(0, -1);
 
         internal UserDataStore UserDataStore = new UserDataStore();
-        //internal ProgramDataStore ProgramDataStore = new ProgramDataStore();
-        //internal ContactDataStore ContactsDataStore = new ContactDataStore();
         internal DailyDataDataStore DailyDataDataStore = new DailyDataDataStore();
         internal static ServicesData ServicesStore = new ServicesData();
         internal CustomerContact SelectedContact { get; set; }
 
         internal BindingList<DateFilterItem> DateFilterItems { get; set; }
         internal BindingSource DateBindingSource = new BindingSource();
-
-        //internal FilterableBindingList<DailyModel> DailyData = new FilterableBindingList<DailyModel>(); 
 
         internal EditLogins editLogins;
         internal EditGridLinks editGridLinks;
@@ -105,20 +100,11 @@ namespace CallTracker.View
             _splash.UpdateProgress("Loading Contact Data", 25);
 
 
-            //DateFilterItems = new BindingList<DateFilterItem>(ContactsDataStore.Contacts.AllItems
-            //    .Select(x => x.Contacts.StartDate)
-            //    .Distinct()
-            //    .Select(y => new DateFilterItem(y)).ToList());
-
-            //foreach (var date in DateFilterItems)
-            //{
-            //    ContactsDataStore.Contacts.ApplyFilter("Contacts.StartDate = " + date.LongDate);
-            //    DailyData.Add(new DailyModel() {Date = date.LongDate, Contacts = new FilterableBindingList<CustomerContact>(ContactsDataStore.Contacts.ToList())});
-            //}
             DateFilterItems = new BindingList<DateFilterItem>(DailyDataDataStore.DailyData.Select(x => x.Date).ToList());
             DateBindingSource.DataSource = DateFilterItems;
             _DailyDataBindingSource.DataSource = DailyDataDataStore.DailyData;
             CheckWorkingDate();
+            DateBindingSource.PositionChanged += _DateSelector_PositionChanged;
 
             SelectedContact = new CustomerContact();
 
@@ -184,19 +170,13 @@ namespace CallTracker.View
             editContact.BringToFront();
             editContact.Visible = true;
 
-            //if (String.IsNullOrEmpty(DataStore.User))
-            //{
-            //    Splash.ShowLogins();
-            //    this.Shown -= Main_Shown;
-            //}
-
             _splash.UpdateProgress("Connecting Contextual Menu", 70);
             transfersToolStripMenuItem.UpdateObject = new TransfersMenuItem(ServicesStore.servicesDataSet);
             bookmarksContextualToolStripMenuItem.UpdateObject = new BookmarksMenuItem(ServicesStore.servicesDataSet);
             systemsContextualToolStripMenuItem.UpdateObject = new SystemsMenuItem(ServicesStore.servicesDataSet);
 
             
-            toolStripServiceSelector.ComboBox.BindingContext = this.BindingContext;
+            toolStripServiceSelector.ComboBox.BindingContext = BindingContext;
             toolStripServiceSelector.ComboBox.DataSource = ServicesStore.servicesDataSet.Services.Select(x => x.ProblemStylesRow).Distinct().ToList();
             toolStripServiceSelector.ComboBox.DisplayMember = "Description";
             toolStripServiceSelector.ComboBox.ValueMember = "IFMSCode";
@@ -212,34 +192,19 @@ namespace CallTracker.View
             IETabActivator.OnAction += UpdateProgressBar;
             HotkeyController.OnAction += UpdateProgressBar;
 
-            //this.Enabled = true;
-
             _splash.UpdateProgress("Finishing", 99);
             _splash.UpdateProgress("", 100);
             UpdateProgressBar(0, "Finished Loading", EventLogLevel.ClearStatus);
             ChangeCallStateMenuItem(logOutToolStripMenuItem);
 
             FadingToolTip = new FadingTooltip();
-
-            editContact._DateSelector.ComboBox.BindingContext = BindingContext;
-            editContact._DateSelector.ComboBox.DataSource = DateBindingSource;
-            editContact._DateSelector.ComboBox.DisplayMember = "ShortDate";
-            editContact._DateSelector.ComboBox.ValueMember = "LongDate";
-
-            callHistory._DateSelect._ComboBox.BindingContext = BindingContext;
-            callHistory._DateSelect._ComboBox.DataSource = DateBindingSource;
-            callHistory._DateSelect._ComboBox.DisplayMember = "ShortDate";
-            callHistory._DateSelect._ComboBox.ValueMember = "LongDate";
-
-            DateBindingSource.PositionChanged += _DateSelector_PositionChanged;
-            //editContact.customerContactsBindingSource.ResetBindings(false);
         }
 
         void _DateSelector_PositionChanged(object sender, EventArgs e)
         {
             //_DailyDataBindingSource.Filter = "Date = " + ((DateFilterItem)DateBindingSource.Current).LongDate;
             _DailyDataBindingSource.Position = DateBindingSource.Position;
-                //_DailyDataBindingSource.IndexOf(DailyData.FirstOrDefault(x => x.Date == ((DateFilterItem)DateBindingSource.Current).LongDate));
+            //_DailyDataBindingSource.IndexOf(DailyData.FirstOrDefault(x => x.Date == ((DateFilterItem)DateBindingSource.Current).LongDate));
         } 
 
         private void Main_Shown(object sender, EventArgs e)
@@ -390,13 +355,13 @@ namespace CallTracker.View
 
             if (item.Checked)
             {
-                this.Height = 257;
+                Height = 257;
                 statusStrip1.Show();
             }
             else
             {
                 statusStrip1.Hide();
-                this.Height = 239;
+                Height = 239;
             }
         }
 
@@ -628,6 +593,10 @@ namespace CallTracker.View
             //var status = CurrentItem.Tag.ToString();
             if (status != _IPCCState.Text)
             {
+                if (_IPCCState.Text == "AgentStatus:")
+                {
+                    CheckWorkingDate();
+                }
                 switch (status)
                 {
                     case "AgentStatus: Wrapup":
@@ -769,15 +738,7 @@ namespace CallTracker.View
         public void transfer_Click(object sender, EventArgs e)
         {
             var item = (ToolStripMenuItem)sender;
-            //Point offsets = new Point();
-            //string[] offsetFile = File.ReadAllLines("IPCCOffsets.txt");
-            //offsets.X = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[1]);
-            //offsets.Y = Convert.ToInt16(Regex.Split(offsetFile[0], ",")[2]);
-
-            //button.Click();
             DialOrTransfer(item.Tag.ToString());
-            
-            //WindowHelper.IPCCAutomation(item.Tag.ToString(), offsets);
         }
 
         private void editBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
@@ -814,7 +775,7 @@ namespace CallTracker.View
             //_StatusProgressBar.PerformStep();
         }
 
-        public void SetProgressBarStep(int _steps, string eventString, EventLogLevel logLevel = EventLogLevel.Verbose)
+        public void SetProgressBarStep(int steps, string eventString, EventLogLevel logLevel = EventLogLevel.Verbose)
         {
             //_StatusProgressBar.Maximum = _steps + 1;
             UpdateProgressBar(eventString, logLevel);
@@ -831,7 +792,7 @@ namespace CallTracker.View
         public const int HT_CAPTION = 0x2;
 
         [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
@@ -852,7 +813,7 @@ namespace CallTracker.View
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Working Date Checker /////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private void CheckWorkingDate()
+        internal void CheckWorkingDate()
         {
             if (DailyDataDataStore.DailyData.All(x => x.Date.LongDate != DateTime.Today))
             {
@@ -875,7 +836,6 @@ namespace CallTracker.View
             }
             
             // Archive/Delete Contacts older than 7 days.
-            // Reset Log.
         }
 
 

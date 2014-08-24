@@ -30,8 +30,8 @@ namespace CallTracker.View
         [DefaultValue(typeof(Padding), "3,3,3,3")]
         public Padding ControlMargin
         {
-            get { return this.Margin; }
-            set { this.Margin = value; }
+            get { return Margin; }
+            set { Margin = value; }
         }
 
         [Category("!Input")]
@@ -76,7 +76,7 @@ namespace CallTracker.View
             InitializeComponent();
             foreach (PropertyDescriptor prop in TypeDescriptor.GetProperties(this))
             {
-                DefaultValueAttribute attr = (DefaultValueAttribute)prop.Attributes[typeof(DefaultValueAttribute)];
+                var attr = (DefaultValueAttribute)prop.Attributes[typeof(DefaultValueAttribute)];
                 if (attr != null)
                 {
                     prop.SetValue(this, attr.Value);
@@ -163,7 +163,7 @@ namespace CallTracker.View
         private void _ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _ComboBox.Select(0, 0);
-            this.ParentForm.Validate();
+            ParentForm.Validate();
         }
 
         private void _ComboBox_DataSourceChanged(object sender, EventArgs e)
