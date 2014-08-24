@@ -29,6 +29,7 @@ Yellow: 255,198,0
 0.3.6.0
 | Added DailyData model to house contacts and keep statistics.
 | Symptom PropertyName was set to Fault.Outcome.
+- Sorting callhistroy datagridview prevents delete key from working, backspace still seems to work though....
 
 0.3.5.1
 | Clear History playign up again.

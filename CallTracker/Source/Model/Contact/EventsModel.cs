@@ -110,6 +110,7 @@ namespace CallTracker.Model
         }
     }
 
+    [ProtoContract]
     public class CallStats : StatsModel
     {
         public CallStats()
@@ -118,6 +119,7 @@ namespace CallTracker.Model
         }
     }
 
+    [ProtoContract]
     public class DailyStats : StatsModel
     {
         [ProtoMember(1)]

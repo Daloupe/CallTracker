@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using CallTracker.View;
 using ProtoBuf;
 using PropertyChanged;
 
@@ -16,7 +16,7 @@ namespace CallTracker.Model
         [ProtoMember(1)]
         public bool IsDirty;
         [ProtoMember(2)]
-        public DateTime Date { get; set; }
+        public DateFilterItem Date { get; set; }
         [ProtoMember(3)]
         public FilterableBindingList<CustomerContact> Contacts { get; set; }
         [ProtoMember(4)]
@@ -24,7 +24,7 @@ namespace CallTracker.Model
 
         public DailyModel()
         {
-            Date = DateTime.Today;
+            Date = new DateFilterItem(DateTime.Today);
             Contacts = new FilterableBindingList<CustomerContact>();
             Events = new EventsModel<DailyStats>();
             IsDirty = true;

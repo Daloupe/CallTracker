@@ -152,7 +152,8 @@ namespace CallTracker.View
                 UpdateSeverity();
                 ResumeLayout();
             }
-            EditContacts.MainForm.SelectedContact.Fault.AffectedServiceType = currentFlowPanel.ServiceType;
+            if (EditContacts.MainForm.SelectedContact != null)
+                EditContacts.MainForm.SelectedContact.Fault.AffectedServiceType = currentFlowPanel.ServiceType;
         }
 
         public void UpdateSymptoms()

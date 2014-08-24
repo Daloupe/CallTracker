@@ -82,7 +82,7 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.callHistoryPanel1);
             this.splitContainer1.Size = new System.Drawing.Size(580, 213);
-            this.splitContainer1.SplitterDistance = 364;
+            this.splitContainer1.SplitterDistance = 374;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 11;
             // 
@@ -112,7 +112,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(364, 213);
+            this.dataGridView1.Size = new System.Drawing.Size(374, 213);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
@@ -176,7 +176,7 @@
             this.callHistoryPanel1.Font = new System.Drawing.Font("Verdana", 7F);
             this.callHistoryPanel1.Location = new System.Drawing.Point(0, 0);
             this.callHistoryPanel1.Name = "callHistoryPanel1";
-            this.callHistoryPanel1.Size = new System.Drawing.Size(214, 213);
+            this.callHistoryPanel1.Size = new System.Drawing.Size(204, 213);
             this.callHistoryPanel1.TabIndex = 0;
             // 
             // label6
@@ -246,7 +246,6 @@
             this._DateSelect.PropertyName = "LongDate";
             this._DateSelect.Size = new System.Drawing.Size(130, 20);
             this._DateSelect.TabIndex = 17;
-            this._DateSelect.SelectedIndexChanged += new System.EventHandler(this._DateSelect_SelectedIndexChanged);
             // 
             // CallHistory
             // 

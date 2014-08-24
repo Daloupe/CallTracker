@@ -299,9 +299,9 @@ namespace CallTracker.Helpers.Types
             }
             m_FilterString = null;
             IsFiltered = false;
-            m_Sorted = false;
-            SaveSorts(null);
-            m_SortPropertyName = string.Empty;
+            //m_Sorted = false;
+            //SaveSorts(null);
+            //m_SortPropertyName = string.Empty;
 
             RaiseListChangedEvents = false;
 
