@@ -26,11 +26,15 @@ Yellow: 255,198,0
 - Added Contact model to DataSet;
 - Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
 
-0.3.6.3
+0.3.6.7
+- Dispose of IPCC and MAD processes, and other automation items.
 - Added option to switch Floating ToolTip.
 	- Created Panel Based ToolTip.
 - Timeout exceptions caught and EventLogged.
 - Fixed Resources file not building.
+
+0.3.6.6
+| Added Automation Tester
 
 0.3.6.5
 | IPCC data grid pull option added to call history menu.
