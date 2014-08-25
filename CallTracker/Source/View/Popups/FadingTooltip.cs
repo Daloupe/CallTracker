@@ -8,6 +8,7 @@ namespace CallTracker.View
         public FadingTooltip()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
         }
 
         private void FadingTooltip_Load(object sender, EventArgs e)
@@ -62,7 +63,7 @@ namespace CallTracker.View
                 point.Offset(11, 0);
             //point.Offset(-Width, 0);//-Cursor.Size.Height + Height);
             DesktopLocation = point;
-            Opacity = 1;
+            Opacity = .99;
             Show();
             _fadeTimer.Start();
         }
@@ -72,7 +73,9 @@ namespace CallTracker.View
             _timeCounter += _fadeTimer.Interval;
 
             if (_timeCounter < FadeOutDelay) return;
-            Opacity -= _opacityStep;
+            
+            if(Opacity != 0)
+                Opacity -= _opacityStep;
 
             if (_timeCounter % _distanceStep == 0)
                 Top -= 1;

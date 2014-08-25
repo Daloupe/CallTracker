@@ -13,11 +13,11 @@ namespace CallTracker.View
         public SplashScreen()
         {
             InitializeComponent();
-            var pfc = new PrivateFontCollection();
-            pfc.AddFontFile("Fonts\\OptusVoiceBETA-Bold.ttf");
+            //var pfc = new PrivateFontCollection();
+            //pfc.AddFontFile("Fonts\\OptusVoiceBETA-Bold.ttf");
 
-            Wingman.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);
-            label1.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);
+            //Wingman.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);
+            //label1.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);
         }
 
         private void SplashScreen_Load(object sender, EventArgs e)

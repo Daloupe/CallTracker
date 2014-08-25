@@ -16,6 +16,7 @@ using CallTracker.Helpers;
 using TestStack.White.Factory;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
+using System.Windows.Automation;
 
 namespace CallTracker.View
 {
@@ -439,6 +440,81 @@ namespace CallTracker.View
             _ipccProcess = null;
         }
 
+        public void PerformTests()
+        {
+            EventLogger.LogNewEvent("Getting Desktop Windows", EventLogLevel.Status);
+            GetDesktopWindows(true);
+            if (CheckForIpcc())
+            {
+                EventLogger.LogNewEvent("Getting IPCC Windows", EventLogLevel.Status);
+                GetApplicationWindows(_ipccApplication, true);
+            }
+            
+            EventLogger.LogNewEvent("Getting MAD MdiChild", EventLogLevel.Status);
+            GetMdiChildWindow("Oracle Forms Runtime", ControlType.Window, "Search");
+
+           
+            Process MADProcess = null;
+            foreach (Process pList in Process.GetProcesses())
+                if (pList.MainWindowTitle.Contains("Oracle Forms Runtime"))
+                    MADProcess = pList;
+
+            if (MADProcess == null)
+            {
+                EventLogger.LogNewEvent("Unable to Find MAD", EventLogLevel.Status);
+                return;
+            }
+            var MADApplication = TestStack.White.Application.Attach(MADProcess);
+            if (MADApplication != null)
+            {
+                EventLogger.LogNewEvent("Getting MAD Windows", EventLogLevel.Status);
+                GetApplicationWindows(MADApplication, true);
+            }
+        }
+
+        public void GetDesktopWindows(bool getModalWindows)
+        {
+            List<Window> desktopWindows = TestStack.White.Desktop.Instance.Windows();
+            foreach (var window in desktopWindows)
+            {
+                EventLogger.LogNewEvent("Desktop Window: " + window.Name, EventLogLevel.Status);
+                if (getModalWindows)
+                {
+                    List<Window> modalWindows = window.ModalWindows();
+                    foreach (var modalWindow in modalWindows)
+                        EventLogger.LogNewEvent(window.Name + " Modal Window: " + modalWindow.Name, EventLogLevel.Status);
+                }
+            }
+        }
+
+        public void GetApplicationWindows(TestStack.White.Application application, bool getModalWindows)
+        {
+            List<Window> appWindows = application.GetWindows();
+            foreach (var window in appWindows)
+            {
+                EventLogger.LogNewEvent("Application Window: " + window.Name, EventLogLevel.Status);
+                if (getModalWindows)
+                {
+                    List<Window> modalWindows = window.ModalWindows();
+                    foreach (var modalWindow in modalWindows)
+                        EventLogger.LogNewEvent(window.Name + " Modal Window: " + modalWindow.Name, EventLogLevel.Status);
+                }
+            }
+        }
+
+        public void GetMdiChildWindow(string windowTitle, System.Windows.Automation.ControlType controlType, string controlText)
+        {
+            Window window = TestStack.White.Desktop.Instance.Windows().Find(obj => obj.Title.Contains(windowTitle));
+            if(window == null)
+            {
+                EventLogger.LogNewEvent("Window Not Found: " + windowTitle, EventLogLevel.Status);
+                return;
+            }
+            var mdiChild = window.MdiChild(SearchCriteria.ByControlType(controlType).AndByText(controlText));
+            if (mdiChild == null) return;
+            EventLogger.LogNewEvent(windowTitle + " has MdiChild: " + controlText + " at x: " + mdiChild.Bounds.Left + " y: " + mdiChild.Bounds.Top, EventLogLevel.Status);      
+        }
+
         public void DialOrTransfer(string value)
         {
             if (!CheckForIpcc())
@@ -452,23 +528,14 @@ namespace CallTracker.View
 
             //var button = _ipccWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId(dialOrTransfer));
             //button.Click();
-
-            Process dialPadProcess = null;
-            foreach (Process pList in Process.GetProcesses())
-                if (pList.MainWindowTitle.Contains("CTI Dial Pad"))
-                {
-                    dialPadProcess = pList;
-                    break;
-                }
-
-            if (dialPadProcess == null)
+            //TestStack.White.Configuration.ConfigurationExtensions.FindWindowTimeout()
+            var dialPadWindow = _ipccWindow.Get<Window>(SearchCriteria.ByAutomationId("DialPadForm"));
+            if (dialPadWindow == null)
             {
                 EventLogger.LogNewEvent("Unable to Find CTI Dial Pad", EventLogLevel.Status);
                 return;
             }
 
-            var dialPadApplication = TestStack.White.Application.Attach(dialPadProcess);
-            var dialPadWindow = dialPadApplication.GetWindow(SearchCriteria.ByAutomationId("DialPadForm"), InitializeOption.NoCache);
             var dialPadNumber = dialPadWindow.Get<TestStack.White.UIItems.ListBoxItems.ComboBox>(SearchCriteria.ByAutomationId("dialedNumberComboBox"));
             dialPadNumber.SetValue(value);
 
@@ -815,8 +882,9 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         internal void CheckWorkingDate()
         {
-            if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today)
-                return;
+            if (_DailyDataBindingSource.Count > 0)
+                if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today)
+                    return;
 
             if (DailyDataDataStore.DailyData.All(x => x.Date.LongDate != DateTime.Today))
             {

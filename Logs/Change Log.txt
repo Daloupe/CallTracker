@@ -22,11 +22,20 @@ Yellow: 255,198,0
 - Added "" to Data string to enable pastes of strings.
 - Added MAC Regex.
 
-0.3.6.0
+0.3.7.0
 - Added Contact model to DataSet;
 - Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
 
-0.3.6.2
+0.3.6.5
+- IPCC data grid pull option added to call history menu.
+- Added option to switch Floating ToolTip between white text, and panel base.
+- Added Resources.bin and UserData.bin to repo.
+- TestStack.White timeouts reduced to 2 seconds. 
+- Timeout exceptions caught and EventLogged.
+
+0.3.6.4
+| Updated Dial Pad Code
+| Started Test Code.
 
 0.3.6.0
 | Added DailyData model to house contacts and keep statistics.
