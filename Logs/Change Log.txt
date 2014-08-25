@@ -26,12 +26,17 @@ Yellow: 255,198,0
 - Added Contact model to DataSet;
 - Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
 
-0.3.6.5
-- IPCC data grid pull option added to call history menu.
-- Added option to switch Floating ToolTip between white text, and panel base.
-- Added Resources.bin and UserData.bin to repo.
-- TestStack.White timeouts reduced to 2 seconds. 
+0.3.6.3
+- Added option to switch Floating ToolTip.
+	- Created Panel Based ToolTip.
 - Timeout exceptions caught and EventLogged.
+- Fixed Resources file not building.
+
+0.3.6.5
+| IPCC data grid pull option added to call history menu.
+| Added Resources.bin and UserData.bin to repo.
+| TestStack.White timeouts reduced to 2 seconds. 
+| Chanegd Tooltip Text to White.
 
 0.3.6.4
 | Updated Dial Pad Code

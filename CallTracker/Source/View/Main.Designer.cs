@@ -40,9 +40,6 @@
             this.clearMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._IPCCState = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MenuPanel = new System.Windows.Forms.Panel();
-            this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
-            this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._CallStateTime = new ContextualToolStripMenuItem();
             this.notReadyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,6 +50,7 @@
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.monitorIPCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuPanel = new System.Windows.Forms.Panel();
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -122,13 +120,16 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.sMSHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afterHoursPaymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
+            this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
+            this.pullIPCCCallDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
             this.MenuPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this._DailyDataBindingSource)).BeginInit();
             this._MainMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._DailyDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // AppPanel
@@ -252,27 +253,6 @@
             this._IPCCState.Text = "AgentStatus:";
             this._IPCCState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // MenuPanel
-            // 
-            this.MenuPanel.Controls.Add(this._MainMenu);
-            this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.MenuPanel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.MenuPanel.Location = new System.Drawing.Point(0, 0);
-            this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.MenuPanel.Name = "MenuPanel";
-            this.MenuPanel.Size = new System.Drawing.Size(584, 16);
-            this.MenuPanel.TabIndex = 27;
-            this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
-            // 
-            // _IPCCTimer
-            // 
-            this._IPCCTimer.Interval = 1000;
-            this._IPCCTimer.Tick += new System.EventHandler(this._IPCCTimer_Tick);
-            // 
-            // _DailyDataBindingSource
-            // 
-            this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
-            // 
             // _CallStateTime
             // 
             this._CallStateTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -287,7 +267,8 @@
             this.logInToolStripMenuItem,
             this.logOutToolStripMenuItem,
             this.toolStripSeparator5,
-            this.monitorIPCCToolStripMenuItem});
+            this.monitorIPCCToolStripMenuItem,
+            this.pullIPCCCallDataToolStripMenuItem});
             this._CallStateTime.Font = new System.Drawing.Font("Verdana", 7F);
             this._CallStateTime.ForeColor = System.Drawing.Color.DarkSlateGray;
             this._CallStateTime.Margin = new System.Windows.Forms.Padding(1, 2, 1, 1);
@@ -304,7 +285,7 @@
             // 
             this.notReadyToolStripMenuItem.Enabled = false;
             this.notReadyToolStripMenuItem.Name = "notReadyToolStripMenuItem";
-            this.notReadyToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.notReadyToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.notReadyToolStripMenuItem.Tag = "AgentStatus: NotReady";
             this.notReadyToolStripMenuItem.Text = "Not Ready";
             // 
@@ -312,7 +293,7 @@
             // 
             this.readyToolStripMenuItem.Enabled = false;
             this.readyToolStripMenuItem.Name = "readyToolStripMenuItem";
-            this.readyToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.readyToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.readyToolStripMenuItem.Tag = "AgentStatus: Ready";
             this.readyToolStripMenuItem.Text = "Ready";
             // 
@@ -320,7 +301,7 @@
             // 
             this.talkingToolStripMenuItem.Enabled = false;
             this.talkingToolStripMenuItem.Name = "talkingToolStripMenuItem";
-            this.talkingToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.talkingToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.talkingToolStripMenuItem.Tag = "AgentStatus: Talking";
             this.talkingToolStripMenuItem.Text = "Talking";
             // 
@@ -328,20 +309,20 @@
             // 
             this.wrapUpToolStripMenuItem.Enabled = false;
             this.wrapUpToolStripMenuItem.Name = "wrapUpToolStripMenuItem";
-            this.wrapUpToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.wrapUpToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.wrapUpToolStripMenuItem.Tag = "AgentStatus: Wrapup";
             this.wrapUpToolStripMenuItem.Text = "Wrap Up";
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(140, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(174, 6);
             // 
             // logInToolStripMenuItem
             // 
             this.logInToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallIn;
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
-            this.logInToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.logInToolStripMenuItem.Tag = "AgentStatus:";
             this.logInToolStripMenuItem.Text = "Log In";
             // 
@@ -350,14 +331,14 @@
             this.logOutToolStripMenuItem.Enabled = false;
             this.logOutToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallOut;
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.logOutToolStripMenuItem.Tag = "AgentStatus:";
             this.logOutToolStripMenuItem.Text = "Log Out";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(140, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(174, 6);
             // 
             // monitorIPCCToolStripMenuItem
             // 
@@ -365,10 +346,22 @@
             this.monitorIPCCToolStripMenuItem.CheckOnClick = true;
             this.monitorIPCCToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.monitorIPCCToolStripMenuItem.Name = "monitorIPCCToolStripMenuItem";
-            this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.monitorIPCCToolStripMenuItem.Tag = "Protected";
             this.monitorIPCCToolStripMenuItem.Text = "Monitor IPCC";
             this.monitorIPCCToolStripMenuItem.Click += new System.EventHandler(this.monitorIPCCToolStripMenuItem_Click);
+            // 
+            // MenuPanel
+            // 
+            this.MenuPanel.Controls.Add(this._MainMenu);
+            this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MenuPanel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.MenuPanel.Location = new System.Drawing.Point(0, 0);
+            this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.MenuPanel.Name = "MenuPanel";
+            this.MenuPanel.Size = new System.Drawing.Size(584, 16);
+            this.MenuPanel.TabIndex = 27;
+            this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
             // _MainMenu
             // 
@@ -923,11 +916,28 @@
             this.afterHoursPaymentsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.afterHoursPaymentsToolStripMenuItem.Text = "After Hours Payments";
             // 
+            // _IPCCTimer
+            // 
+            this._IPCCTimer.Interval = 1000;
+            this._IPCCTimer.Tick += new System.EventHandler(this._IPCCTimer_Tick);
+            // 
+            // _DailyDataBindingSource
+            // 
+            this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
+            // 
             // bindableContextMenu1
             // 
             this.bindableContextMenu1.BoundData = null;
             this.bindableContextMenu1.Name = "bindableContextMenu1";
             this.bindableContextMenu1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // pullIPCCCallDataToolStripMenuItem
+            // 
+            this.pullIPCCCallDataToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.PullIPCCCallData;
+            this.pullIPCCCallDataToolStripMenuItem.CheckOnClick = true;
+            this.pullIPCCCallDataToolStripMenuItem.Name = "pullIPCCCallDataToolStripMenuItem";
+            this.pullIPCCCallDataToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.pullIPCCCallDataToolStripMenuItem.Text = "Pull IPCC Call Data";
             // 
             // Main
             // 
@@ -954,9 +964,9 @@
             this.statusStrip1.PerformLayout();
             this._StatusContextMenu.ResumeLayout(false);
             this.MenuPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this._DailyDataBindingSource)).EndInit();
             this._MainMenu.ResumeLayout(false);
             this._MainMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._DailyDataBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1059,5 +1069,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem monitorIPCCToolStripMenuItem;
         internal System.Windows.Forms.BindingSource _DailyDataBindingSource;
+        private System.Windows.Forms.ToolStripMenuItem pullIPCCCallDataToolStripMenuItem;
     }
 }

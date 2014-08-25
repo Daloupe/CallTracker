@@ -12,7 +12,7 @@ using PropertyChanged;
 
 using CallTracker.Model;
 using CallTracker.Helpers;
-
+using TestStack.White.Configuration;
 using TestStack.White.Factory;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
@@ -68,6 +68,11 @@ namespace CallTracker.View
             //SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
 
             versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
+
+            CoreAppXmlConfiguration.Instance.BusyTimeout = 2000;
+            CoreAppXmlConfiguration.Instance.FindWindowTimeout = 2000;
+            CoreAppXmlConfiguration.Instance.PopupTimeout= 2000;
+            CoreAppXmlConfiguration.Instance.TooltipWaitTime = 2000;
         }
 
         private void SetAppLocation()
@@ -678,6 +683,9 @@ namespace CallTracker.View
                         if (_IPCCState.Text.Contains("Reserved") && editContact.autoNewCallToolStripMenuItem.Checked)
                         {
                             editContact.bindingNavigatorAddNewItem_Click(_IPCCState, new EventArgs());
+
+                            if (!Properties.Settings.Default.PullIPCCCallData)
+                                break;
 
                             var callGrid = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid"));
                             var callGridRow = callGrid.Rows[0];

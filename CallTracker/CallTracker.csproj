@@ -261,6 +261,9 @@
     <Compile Include="Source\View\Controls\Basic Controls\DataField.Designer.cs">
       <DependentUpon>DataField.cs</DependentUpon>
     </Compile>
+    <Content Include="Data\Resources.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\DataSources\CallTracker.Model.DailyModel.datasource" />
     <None Include="Source\View\Panels\Product\Archive\MTVPanel.cs">
       <SubType>UserControl</SubType>
@@ -598,6 +601,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="Data\UserData.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

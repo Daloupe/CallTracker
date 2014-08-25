@@ -130,5 +130,17 @@ namespace CallTracker.Properties {
                 this["WorkingDate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PullIPCCCallData {
+            get {
+                return ((bool)(this["PullIPCCCallData"]));
+            }
+            set {
+                this["PullIPCCCallData"] = value;
+            }
+        }
     }
 }

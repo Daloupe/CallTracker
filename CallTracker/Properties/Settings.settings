@@ -29,5 +29,8 @@
     <Setting Name="WorkingDate" Type="System.DateTime" Scope="User">
       <Value Profile="(Default)">08/23/2014 12:30:00</Value>
     </Setting>
+    <Setting Name="PullIPCCCallData" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
