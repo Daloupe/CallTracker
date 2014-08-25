@@ -50,6 +50,7 @@
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.monitorIPCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pullIPCCCallDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuPanel = new System.Windows.Forms.Panel();
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -123,7 +124,6 @@
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
-            this.pullIPCCCallDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -350,6 +350,15 @@
             this.monitorIPCCToolStripMenuItem.Tag = "Protected";
             this.monitorIPCCToolStripMenuItem.Text = "Monitor IPCC";
             this.monitorIPCCToolStripMenuItem.Click += new System.EventHandler(this.monitorIPCCToolStripMenuItem_Click);
+            // 
+            // pullIPCCCallDataToolStripMenuItem
+            // 
+            this.pullIPCCCallDataToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.PullIPCCCallData;
+            this.pullIPCCCallDataToolStripMenuItem.CheckOnClick = true;
+            this.pullIPCCCallDataToolStripMenuItem.Name = "pullIPCCCallDataToolStripMenuItem";
+            this.pullIPCCCallDataToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.pullIPCCCallDataToolStripMenuItem.Tag = "Protected";
+            this.pullIPCCCallDataToolStripMenuItem.Text = "Pull IPCC Call Data";
             // 
             // MenuPanel
             // 
@@ -930,14 +939,6 @@
             this.bindableContextMenu1.BoundData = null;
             this.bindableContextMenu1.Name = "bindableContextMenu1";
             this.bindableContextMenu1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // pullIPCCCallDataToolStripMenuItem
-            // 
-            this.pullIPCCCallDataToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.PullIPCCCallData;
-            this.pullIPCCCallDataToolStripMenuItem.CheckOnClick = true;
-            this.pullIPCCCallDataToolStripMenuItem.Name = "pullIPCCCallDataToolStripMenuItem";
-            this.pullIPCCCallDataToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.pullIPCCCallDataToolStripMenuItem.Text = "Pull IPCC Call Data";
             // 
             // Main
             // 
