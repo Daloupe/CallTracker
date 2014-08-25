@@ -264,6 +264,18 @@
     <Content Include="Data\Resources.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Fonts\OptusVoiceBETA-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Fonts\trade-gothic-lt-1361519976.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Fonts\TradeGothicLTPro-BdCn20.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Fonts\TradeGothicLTPro.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\DataSources\CallTracker.Model.DailyModel.datasource" />
     <None Include="Source\View\Panels\Product\Archive\MTVPanel.cs">
       <SubType>UserControl</SubType>
