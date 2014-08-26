@@ -10,6 +10,7 @@ using CallTracker.Model;
 using TestStack.White.Factory;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
+using System.Windows.Automation;
 
 namespace CallTracker.Helpers
 {
@@ -53,13 +54,40 @@ namespace CallTracker.Helpers
 
         public static string GetActiveElement()
         {
-            if (MADProcess == null)
-                if (InitMADMonitor() == false)
-                    return String.Empty;
+            string windowTitle = "Oracle";
+            ControlType controlType = ControlType.Window;
+            string controlText = "Search";
+
+            var window = TestStack.White.Desktop.Instance.Windows().Find(obj => obj.Title.Contains(windowTitle));
+            if (window == null)
+            {
+                EventLogger.LogNewEvent("Window Not Found: " + windowTitle + Environment.NewLine);
+                return String.Empty;
+            }
+
+            var mdiChild = window.MdiChild(SearchCriteria.ByControlType(controlType).AndByText(controlText));
+            if (mdiChild == null)
+            {
+                EventLogger.LogNewEvent(controlText + " Not Found");
+                return String.Empty;
+            }
+
+            var edit = mdiChild.Get(SearchCriteria.ByControlType(ControlType.Edit));
+            if (edit == null)
+            {
+                EventLogger.LogNewEvent("Edit Not Found");
+                return String.Empty;
+            }
+
+            return ElementOffsets.FirstOrDefault(x => x.Offset == mdiChild.Bounds.Location - edit.Bounds.Location).Name;
+
+            ////if (MADProcess == null)
+            //    if (InitMADMonitor() == false)
+            //        return String.Empty;
             
-            MADActiveElement = MADWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("1"));
+            //MADActiveElement = MADWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("1"));
             
-            return ElementOffsets.First(x => x.Offset == MADWindow.Bounds.Location - MADActiveElement.Bounds.Location).Name;
+            //return ElementOffsets.First(x => x.Offset == MADWindow.Bounds.Location - MADActiveElement.Bounds.Location).Name;
         }
 
         public static void SetElementValue(string _value)
@@ -72,26 +100,52 @@ namespace CallTracker.Helpers
             MADActiveElement.Text = _value;
         }
 
-        private static bool InitMADMonitor()
-        {
-            foreach (Process pList in Process.GetProcesses())
-                if (pList.MainWindowTitle.Contains("Oracle Forms Runtime"))
-                    MADProcess = pList;
+        //private static bool InitMADMonitor()
+        //{
+        //    //string windowTitle = "Oracle";
+        //    //ControlType controlType = ControlType.Window;
+        //    //string controlText = "Search";
 
-            if (MADProcess == null)
-            {
-                EventLogger.LogNewEvent("Unable to Find MAD", EventLogLevel.Status);
-                return false;
-            }
+        //    //var window = TestStack.White.Desktop.Instance.Windows().Find(obj => obj.Title.Contains(windowTitle));
+        //    //if (window == null)
+        //    //{
+        //    //    EventLogger.LogNewEvent("Window Not Found: " + windowTitle + Environment.NewLine);
+        //    //    return false;
+        //    //}
 
-            MADProcess.Exited += MADProcess_Exited;
-            MADApplication = TestStack.White.Application.Attach(MADProcess);
+        //    //var mdiChild = window.MdiChild(SearchCriteria.ByControlType(controlType).AndByText(controlText));
+        //    //if (mdiChild == null){
+        //    //    EventLogger.LogNewEvent(controlText + " Not Found");
+        //    //    return false;
+        //    //}
+
+        //    //var edit = mdiChild.Get(SearchCriteria.ByControlType(ControlType.Edit));
+        //    //if (edit == null)
+        //    //{
+        //    //    EventLogger.LogNewEvent("Edit Not Found");
+        //    //    return false;
+        //    //}
+
+        //    //return true;
+
+        //    //foreach (Process pList in Process.GetProcesses())
+        //    //    if (pList.MainWindowTitle.Contains("Oracle Forms Runtime"))
+        //    //        MADProcess = pList;
+
+        //    //if (MADProcess == null)
+        //    //{
+        //    //    EventLogger.LogNewEvent("Unable to Find MAD", EventLogLevel.Status);
+        //    //    return false;
+        //    //}
+
+        //    //MADProcess.Exited += MADProcess_Exited;
+        //    //MADApplication = TestStack.White.Application.Attach(MADProcess);
             
-            MADWindow = MADApplication.GetWindow(SearchCriteria.ByText("Search"), InitializeOption.NoCache);
-            if (!MADWindow.Exists(SearchCriteria.ByText("Search")))
-                return false;
-            return true;
-        }
+        //    //MADWindow = MADApplication.GetWindow(SearchCriteria.ByText("Search"), InitializeOption.NoCache);
+        //    //if (!MADWindow.Exists(SearchCriteria.ByText("Search")))
+        //    //    return false;
+        //    //return true;
+        //}
 
         static void MADProcess_Exited(object sender, EventArgs e)
         {

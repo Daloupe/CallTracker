@@ -251,17 +251,22 @@ namespace AutomationTester
                 if (!controlType.Equals(ControlType.Table)) continue;
 
                 var table = (TestStack.White.UIItems.TableItems.Table)control;
-                var rowIndex = 0;
-                foreach (var row in table.Rows)
-                {
-                    var cellIndex = 0;
-                    foreach (var cell in row.Cells)
-                    {
-                        _log.AppendText("\t\tRow[" + rowIndex + "].Cell[" + cellIndex + "] = " + cell.Value + "\n");
-                        ++cellIndex;
-                    }
-                    ++rowIndex;
-                }
+                var row = control.GetElement(SearchCriteria.(ControlType.Custom));
+                if(row != null)
+                _log.AppendText("\t\t"+row.Current.Name);
+
+                ////_log.AppendText("\t\tHas Table With " + table.Rows.Count + " Rows and " + table.Rows[0].Cells.Count + " Cells");
+                //var rowIndex = 0;
+                //foreach (var row in table.Rows)
+                //{
+                //    var cellIndex = 0;
+                //    foreach (var cell in row.Cells)
+                //    { 
+                //        _log.AppendText("\n\t\tRow[" + rowIndex + "].Cell[" + cellIndex + "] = " + cell.Value + "\n");
+                //        ++cellIndex;
+                //    }
+                //    ++rowIndex;
+                //}
             }
         }
 

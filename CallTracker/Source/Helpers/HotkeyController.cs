@@ -181,8 +181,8 @@ namespace CallTracker.Helpers
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         private static void OnSmartPaste(HotkeyPressedEventArgs e)
         {
-            EventLogger.LogNewEvent("Searching for SmartPaste Matches", EventLogLevel.Brief);
-            if (WindowHelper.GetActiveWindowTitle().Contains("Oracle Forms Runtime"))
+            EventLogger.LogNewEvent("Searching for SmartPaste Matches for Window: " + WindowHelper.GetActiveWindowTitle(), EventLogLevel.Brief);
+            if (WindowHelper.GetActiveWindowTitle().Contains("Oracle"))
             {
                 string activeelem = MadSmartPaste.GetActiveElement();
                 if (String.IsNullOrEmpty(activeelem))
