@@ -118,6 +118,9 @@
     <Compile Include="Source\View\Controls\CustomDgv.Designer.cs">
       <DependentUpon>CustomDgv.cs</DependentUpon>
     </Compile>
+    <None Include="Source\View\Controls\NullableComboBox.cs">
+      <SubType>Component</SubType>
+    </None>
     <Compile Include="Source\View\Popups\FadingTooltip.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +267,9 @@
     <Content Include="Data\Resources.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Data\Contacts.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Fonts\OptusVoiceBETA-Bold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -277,28 +283,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\DataSources\CallTracker.Model.DailyModel.datasource" />
-    <None Include="Source\View\Panels\Product\Archive\MTVPanel.cs">
-      <SubType>UserControl</SubType>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\MTVPanel.Designer.cs">
-      <DependentUpon>MTVPanel.cs</DependentUpon>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\DTVPanel.cs">
-      <SubType>UserControl</SubType>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\DTVPanel.Designer.cs">
-      <DependentUpon>DTVPanel.cs</DependentUpon>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\NFVPanel.cs">
-      <SubType>UserControl</SubType>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\NFVPanel.Designer.cs">
-      <DependentUpon>NFVPanel.cs</DependentUpon>
-    </None>
-    <Compile Include="Source\View\Panels\Product\ServicePanel.cs">
+    <Compile Include="Source\View\Main\ServicePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Panels\Product\ServicePanel.Designer.cs">
+    <Compile Include="Source\View\Main\ServicePanel.Designer.cs">
       <DependentUpon>ServicePanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Panels\Resources\DatabaseView.cs">
@@ -313,55 +301,25 @@
     <Compile Include="Source\View\Panels\Resources\Ratecodes.Designer.cs">
       <DependentUpon>Ratecodes.cs</DependentUpon>
     </Compile>
-    <None Include="Source\View\Panels\Resources\LATRatecodes.cs">
-      <SubType>UserControl</SubType>
-    </None>
-    <None Include="Source\View\Panels\Resources\LATRatecodes.Designer.cs">
-      <DependentUpon>LATRatecodes.cs</DependentUpon>
-    </None>
     <Compile Include="Source\View\Panels\Settings\CallHistoryPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Source\View\Panels\Settings\CallHistoryPanel.Designer.cs">
       <DependentUpon>CallHistoryPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Panels\Product\PanelBase.cs">
+    <Compile Include="Source\View\Panels\PanelBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Panels\Product\PanelBase.Designer.cs">
+    <Compile Include="Source\View\Panels\PanelBase.Designer.cs">
       <DependentUpon>PanelBase.cs</DependentUpon>
     </Compile>
-    <None Include="Source\View\Panels\Product\Archive\ONCPanel.cs">
-      <SubType>UserControl</SubType>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\ONCPanel.Designer.cs">
-      <DependentUpon>ONCPanel.cs</DependentUpon>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\LIPPanel.cs">
-      <SubType>UserControl</SubType>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\LIPPanel.Designer.cs">
-      <DependentUpon>LIPPanel.cs</DependentUpon>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\LATPanel.cs">
-      <SubType>UserControl</SubType>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\LATPanel.Designer.cs">
-      <DependentUpon>LATPanel.cs</DependentUpon>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\NBFPanel.cs">
-      <SubType>UserControl</SubType>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\NBFPanel.Designer.cs">
-      <DependentUpon>NBFPanel.cs</DependentUpon>
-    </None>
     <Compile Include="Source\View\Panels\Settings\CallHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Source\View\Panels\Settings\CallHistory.Designer.cs">
       <DependentUpon>CallHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Controls\ViewControlBase.cs">
+    <Compile Include="Source\View\Panels\ViewControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Source\View\Popups\EditSystems.cs">
@@ -376,7 +334,6 @@
     <Compile Include="Source\View\Popups\EditBookmarks.Designer.cs">
       <DependentUpon>EditBookmarks.cs</DependentUpon>
     </Compile>
-    <None Include="Source\View\ServiceView.cs" />
     <EmbeddedResource Include="Source\View\Controls\Basic Controls\DataArea.resx">
       <DependentUpon>DataArea.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -432,19 +389,7 @@
       <DependentUpon>DataField.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Source\View\Panels\Product\Archive\MTVPanel.resx">
-      <DependentUpon>MTVPanel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\DTVPanel.resx">
-      <DependentUpon>DTVPanel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\NFVPanel.resx">
-      <DependentUpon>NFVPanel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <EmbeddedResource Include="Source\View\Panels\Product\ServicePanel.resx">
+    <EmbeddedResource Include="Source\View\Main\ServicePanel.resx">
       <DependentUpon>ServicePanel.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -455,34 +400,18 @@
     <EmbeddedResource Include="Source\View\Panels\Resources\Ratecodes.resx">
       <DependentUpon>Ratecodes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Resources\LATRatecodes.resx">
-      <DependentUpon>LATRatecodes.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Settings\CallHistoryPanel.resx">
       <DependentUpon>CallHistoryPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Product\PanelBase.resx">
+    <EmbeddedResource Include="Source\View\Panels\PanelBase.resx">
       <DependentUpon>PanelBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="Source\View\Panels\Product\Archive\ONCPanel.resx">
-      <DependentUpon>ONCPanel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\LIPPanel.resx">
-      <DependentUpon>LIPPanel.cs</DependentUpon>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\LATPanel.resx">
-      <DependentUpon>LATPanel.cs</DependentUpon>
-    </None>
-    <None Include="Source\View\Panels\Product\Archive\NBFPanel.resx">
-      <DependentUpon>NBFPanel.cs</DependentUpon>
-    </None>
     <EmbeddedResource Include="Source\View\Panels\Settings\CallHistory.resx">
       <DependentUpon>CallHistory.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Controls\ViewControlBase.resx">
+    <EmbeddedResource Include="Source\View\Panels\ViewControlBase.resx">
       <DependentUpon>ViewControlBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -540,10 +469,10 @@
     <Compile Include="Source\View\Controls\FormControls.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Source\View\EditContact.cs">
+    <Compile Include="Source\View\Main\EditContact.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\EditContact.Designer.cs">
+    <Compile Include="Source\View\Main\EditContact.Designer.cs">
       <DependentUpon>EditContact.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Panels\Settings\EditSmartPasteBinds.cs">
@@ -558,10 +487,10 @@
     <Compile Include="Source\View\Panels\Settings\EditLogins.Designer.cs">
       <DependentUpon>EditLogins.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Main.cs">
+    <Compile Include="Source\View\Main\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Source\View\Main.Designer.cs">
+    <Compile Include="Source\View\Main\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -586,7 +515,7 @@
     <EmbeddedResource Include="Source\View\Popups\BindSmartPasteForm.resx">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\EditContact.resx">
+    <EmbeddedResource Include="Source\View\Main\EditContact.resx">
       <DependentUpon>EditContact.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -599,7 +528,7 @@
     <EmbeddedResource Include="Source\View\Panels\Settings\EditLogins.resx">
       <DependentUpon>EditLogins.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Main.resx">
+    <EmbeddedResource Include="Source\View\Main\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -667,6 +596,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.23.2\build\Fody.targets" Condition="Exists('..\packages\Fody.1.23.2\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

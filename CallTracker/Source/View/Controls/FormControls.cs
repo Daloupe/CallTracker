@@ -2,8 +2,10 @@
 using System.Drawing;
 using System.ComponentModel;
 using System;
+using System.Collections;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using CallTracker.Helpers;
 
 namespace CallTracker.View
 {
@@ -354,5 +356,154 @@ namespace CallTracker.View
                 Invalidate(); // causes control to be redrawn
             }
         }
+
+        #region fields
+
+        /// <summary>
+        /// DataSource
+        /// </summary>
+        private IList _dataSource;
+
+        /// <summary>
+        /// The name of the property of the object we bind to
+        /// </summary>
+        private string _propertyName;
+
+        /// <summary>
+        /// Name of the proeprty which is shown in the combo box
+        /// </summary>
+        private string _displayMember;
+
+        /// <summary>
+        /// Flag if comboBox is in normal or nullable mode
+        /// </summary>
+        public bool NullableMode = false;
+
+        private BindingSource _bindingSource;
+        private object _selectedItem;
+        #endregion
+
+        #region methods
+
+        /// <summary>
+        /// Method to bind data in nullable mode to the combo box
+        /// </summary>
+        /// <param name="dataSource">DataSource (IList)</param>
+        /// <param name="bindingSource">Object we bind to</param>
+        /// <param name="propertyName">Name of the property of the object we bind to</param>
+        /// <param name="displayMember">Name of the proeprty which is shown in the combo box</param>
+        public void SetDataBinding(IList dataSource, BindingSource bindingSource, string propertyName, string displayMember)
+        {
+           
+            // init combo box and delete all databinding stuff
+            if (DataSource != null)
+                DataSource = null;
+            DisplayMember = String.Empty;
+            Items.Clear();
+            ValueMember = String.Empty;
+            Text = String.Empty;
+
+            _bindingSource = bindingSource;
+            _bindingSource.CurrentChanged += mBindingSource_CurrentChanged;
+            // init private fields
+            _dataSource = dataSource;
+            _propertyName = propertyName;
+            _displayMember = displayMember;
+            NullableMode = true;
+
+            // get selected item
+            GetCurrentObject();       
+        }
+
+        void mBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+            GetCurrentObject();
+        }
+
+        public void UpdateNullableBindingSource(BindingSource bindingSource)
+        {
+            _bindingSource = bindingSource;
+            GetCurrentObject();
+        }
+
+        private void GetCurrentObject()
+        {
+            if (_bindingSource.Count > 0)
+            {
+                _selectedItem = FindProperty.FollowPropertyPath(_bindingSource.Current, _propertyName);
+                // if not null, bind to it
+                if (!String.IsNullOrEmpty(_selectedItem.ToString()))
+                {
+                    DataSource = _dataSource;
+                    SelectedItem = _selectedItem;
+                }
+                // do nothing and set datasource to null
+                else
+                    DataSource = null;
+            }
+            else
+                DataSource = null;
+        }
+
+        #endregion
+
+        #region events
+
+        /// <summary>
+        /// On drop down event
+        /// </summary>
+        protected override void OnDropDown(EventArgs e)
+        {
+            // if no datasource is set, set it
+            if (NullableMode && _dataSource != null && DataSource == null)
+                DataSource = _dataSource;
+
+            base.OnDropDown(e);
+        }
+
+        /// <summary>
+        /// On data source changed event
+        /// </summary>
+        protected override void OnDataSourceChanged(EventArgs e)
+        {
+            // reset display member
+            if (NullableMode)
+            {
+                DisplayMember = _displayMember;
+                GetCurrentObject();
+            }
+
+            base.OnDataSourceChanged(e);
+        }
+
+        /// <summary>
+        /// On selected index changed event
+        /// </summary>
+        protected override void OnSelectedIndexChanged(EventArgs e)
+        {
+            // set property to new value
+            if (NullableMode)
+                FindProperty.SetPropertyFromPath(_bindingSource.Current, _propertyName, SelectedItem);
+
+            base.OnSelectedIndexChanged(e);
+        }
+
+        /// <summary>
+        /// On key down event
+        /// </summary>
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            // if DEL or BACK is pressed set property to null and data source to null
+            if (NullableMode && (e.KeyCode == Keys.Delete || e.KeyCode == Keys.Back))
+            {
+                // next line is very important: without you may get an OutOfRangeException
+                DroppedDown = false;
+                DataSource = null;
+            }
+
+            base.OnKeyDown(e);
+        }
+
+        #endregion
     }
 }

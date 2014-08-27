@@ -137,10 +137,23 @@ namespace CallTracker.View
             ContextMenuStrip = menu;
         }
 
+        //public virtual void AttachMenu(ContextMenuStrip menu, BindingContext context )
+        //{
+        //    ContextMenuStrip = menu;
+
+        //    this._MenuButton.Show();
+        //    this.ContextMenuStrip.Opacity = 0;
+        //    this.ContextMenuStrip.Show(this, 9, 9);
+        //    this.ContextMenuStrip.BindingContext = context;
+        //    this.ContextMenuStrip.Opacity = 100;
+        //}
+
         protected DateTime lasttime;
         protected bool opened;
         protected virtual void _MenuButton_MouseClick(object sender, MouseEventArgs e)
         {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                return;
             if (this.ContextMenuStrip.Visible == false)
             {
                 this.ContextMenuStrip.Opening += ContextMenuStrip_Opening;
@@ -205,8 +218,15 @@ namespace CallTracker.View
                 this.ContextMenuStrip.Show(this, 9, 9);
                 this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
             }
-
         }
+
+        //public void SetupContextMenu(BindingContext bindingContext)
+        //{
+        //    //ContextMenuStrip.Opacity = 0;
+        //    //ContextMenuStrip.Show(this, 9, 9);
+        //    //ContextMenuStrip.BindingContext = bindingContext;
+        //    //this.ContextMenuStrip.Opacity = 100;
+        //}
 
     }
 }

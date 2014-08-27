@@ -73,6 +73,26 @@ namespace CallTracker.Helpers
             return output == null ? String.Empty : output.ToString();
         }
 
+        public static void SetPropertyFromPath(object obj, string path, object value)
+        {
+            var output = obj;
+            var currentType = output.GetType();
+            var pathSplit = path.Split('.');
+            foreach (string propertyName in pathSplit)
+            {
+                var property = currentType.GetProperty(propertyName);
+                if (property == null) continue;
+                if (propertyName == pathSplit.LastOrDefault())
+                {
+                    property.SetValue(output, value, null);
+                    break;
+                }
+                output = property.GetValue(output, null);
+                currentType = property.PropertyType;
+            }
+        }
+
+
         public class DataSplit
         {
             public List<PathRegex> Data = new List<PathRegex>();

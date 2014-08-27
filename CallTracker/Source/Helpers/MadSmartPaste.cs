@@ -32,10 +32,10 @@ namespace CallTracker.Helpers
 
     public static class MadSmartPaste
     {
-        private static Process MADProcess = null;
-        private static TestStack.White.Application MADApplication;
-        private static Window MADWindow;
-        private static TestStack.White.UIItems.TextBox MADActiveElement;
+        //private static Process MADProcess = null;
+        //private static TestStack.White.Application MADApplication;
+        //private static Window MADWindow;
+        //private static TestStack.White.UIItems.TextBox MADActiveElement;
 
         private static List<MADElementOffset> ElementOffsets = new List<MADElementOffset>
         {
@@ -52,8 +52,8 @@ namespace CallTracker.Helpers
             new MADElementOffset("Address.Postcode", 171, 162),
         };
 
-        public static string GetActiveElement()
-        {
+        public static void SetActiveElement(CustomerContact contact)
+        {           
             string windowTitle = "Oracle";
             ControlType controlType = ControlType.Window;
             string controlText = "Search";
@@ -62,43 +62,43 @@ namespace CallTracker.Helpers
             if (window == null)
             {
                 EventLogger.LogNewEvent("Window Not Found: " + windowTitle + Environment.NewLine);
-                return String.Empty;
+                return;
             }
 
             var mdiChild = window.MdiChild(SearchCriteria.ByControlType(controlType).AndByText(controlText));
             if (mdiChild == null)
             {
                 EventLogger.LogNewEvent(controlText + " Not Found");
-                return String.Empty;
+                return;
             }
 
             var edit = mdiChild.Get(SearchCriteria.ByControlType(ControlType.Edit));
             if (edit == null)
             {
                 EventLogger.LogNewEvent("Edit Not Found");
-                return String.Empty;
+                return;
             }
 
-            return ElementOffsets.FirstOrDefault(x => x.Offset == mdiChild.Bounds.Location - edit.Bounds.Location).Name;
+            var editName = ElementOffsets.FirstOrDefault(x => x.Offset == mdiChild.Bounds.Location - edit.Bounds.Location).Name;
+            if(String.IsNullOrEmpty(editName))
+            {
+                EventLogger.LogNewEvent("Edit Name Not Found");
+                return;
+            }
 
-            ////if (MADProcess == null)
-            //    if (InitMADMonitor() == false)
-            //        return String.Empty;
-            
-            //MADActiveElement = MADWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("1"));
-            
-            //return ElementOffsets.First(x => x.Offset == MADWindow.Bounds.Location - MADActiveElement.Bounds.Location).Name;
+            EventLogger.LogNewEvent("Trying to set MAD value");
+            edit.SetValue(FindProperty.FollowPropertyPath(contact, editName));           
         }
 
-        public static void SetElementValue(string _value)
-        {
-            MADActiveElement.SetValue(_value);
-        }
+        //public static void SetElementValue(string _value)
+        //{
+        //    MADActiveElement.SetValue(_value);
+        //}
 
-        public static void SetElementText(string _value)
-        {
-            MADActiveElement.Text = _value;
-        }
+        //public static void SetElementText(string _value)
+        //{
+        //    MADActiveElement.Text = _value;
+        //}
 
         //private static bool InitMADMonitor()
         //{
@@ -147,12 +147,12 @@ namespace CallTracker.Helpers
         //    //return true;
         //}
 
-        static void MADProcess_Exited(object sender, EventArgs e)
-        {
-            MADProcess.Exited -= MADProcess_Exited;
-            MADProcess.Dispose();
-            MADProcess = null;
-        }
+        //static void MADProcess_Exited(object sender, EventArgs e)
+        //{
+        //    MADProcess.Exited -= MADProcess_Exited;
+        //    MADProcess.Dispose();
+        //    MADProcess = null;
+        //}
 
     }
 }

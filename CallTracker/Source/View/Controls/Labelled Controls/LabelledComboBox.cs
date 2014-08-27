@@ -94,6 +94,14 @@ namespace CallTracker.View
             _ComboBox.DataBindings.Add("SelectedItem", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
+        public void UpdateBindingSource(BindingSource bindingSource)
+        {
+            _ComboBox.DataBindings.Clear();
+            if (_ComboBox.Items.Count > 0)
+                _ComboBox.SelectedIndex = InitialIndex;
+            _ComboBox.DataBindings.Add("SelectedItem", bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
         public void UpdateComboBox(BindingList<string> _dataSource)
         {
             //_ComboBox.DataSource = null;

@@ -67,13 +67,19 @@
             this._ModemCMMac = new CallTracker.View.LabelledTextBoxLong();
             this._ModemMTAMac = new CallTracker.View.LabelledTextBoxLong();
             this._ModemSN = new CallTracker.View.LabelledTextBoxLong();
+            this._Equipment = new CallTracker.View.LabelledComboBoxLong();
             this._ServiceHeading = new CallTracker.View.LabelledBase();
+            this._EquipmentMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.userGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.simulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dfgfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._LATPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this._NBNPanel.SuspendLayout();
             this._DTVPanel.SuspendLayout();
             this._MTVPanel.SuspendLayout();
             this._ONCPanel.SuspendLayout();
+            this._EquipmentMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // _LATPanel
@@ -81,10 +87,10 @@
             this._LATPanel.Controls.Add(this._Node);
             this._LATPanel.Controls.Add(this._CauPing);
             this._LATPanel.Controls.Add(this._NitResults);
-            this._LATPanel.Location = new System.Drawing.Point(372, 11);
+            this._LATPanel.Location = new System.Drawing.Point(372, 35);
             this._LATPanel.Name = "_LATPanel";
-            this._LATPanel.Padding = new System.Windows.Forms.Padding(4, 4, 4, 0);
-            this._LATPanel.Size = new System.Drawing.Size(180, 200);
+            this._LATPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
+            this._LATPanel.Size = new System.Drawing.Size(180, 176);
             this._LATPanel.TabIndex = 70;
             // 
             // _Node
@@ -109,7 +115,8 @@
             this._Node.LabelText = "node";
             this._Node.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Node.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Node.Location = new System.Drawing.Point(4, 4);
+            this._Node.LabelToolTip = "";
+            this._Node.Location = new System.Drawing.Point(4, 1);
             this._Node.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._Node.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._Node.MenuButtonImage = null;
@@ -146,11 +153,13 @@
             this._CauPing.LabelText = "cau ping";
             this._CauPing.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._CauPing.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._CauPing.Location = new System.Drawing.Point(4, 25);
+            this._CauPing.LabelToolTip = "";
+            this._CauPing.Location = new System.Drawing.Point(4, 22);
             this._CauPing.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._CauPing.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
             this._CauPing.MenuButtonImage = null;
             this._CauPing.Name = "_CauPing";
+            this._CauPing.OverlapLabel = false;
             this._CauPing.PropertyName = "Service.CauPing";
             this._CauPing.Size = new System.Drawing.Size(171, 20);
             this._CauPing.TabIndex = 78;
@@ -176,7 +185,8 @@
             this._NitResults.LabelText = "  nit results";
             this._NitResults.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._NitResults.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._NitResults.Location = new System.Drawing.Point(4, 46);
+            this._NitResults.LabelToolTip = "";
+            this._NitResults.Location = new System.Drawing.Point(4, 43);
             this._NitResults.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._NitResults.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._NitResults.MenuButtonImage = null;
@@ -197,10 +207,10 @@
             this._NBNPanel.Controls.Add(this._PRI);
             this._NBNPanel.Controls.Add(this._INC);
             this._NBNPanel.Controls.Add(this._APT);
-            this._NBNPanel.Location = new System.Drawing.Point(558, 11);
+            this._NBNPanel.Location = new System.Drawing.Point(558, 35);
             this._NBNPanel.Name = "_NBNPanel";
-            this._NBNPanel.Padding = new System.Windows.Forms.Padding(4, 4, 4, 0);
-            this._NBNPanel.Size = new System.Drawing.Size(180, 200);
+            this._NBNPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
+            this._NBNPanel.Size = new System.Drawing.Size(180, 176);
             this._NBNPanel.TabIndex = 97;
             // 
             // _Bras
@@ -225,7 +235,8 @@
             this._Bras.LabelText = "bras";
             this._Bras.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Bras.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Bras.Location = new System.Drawing.Point(4, 4);
+            this._Bras.LabelToolTip = "";
+            this._Bras.Location = new System.Drawing.Point(4, 1);
             this._Bras.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._Bras.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._Bras.MenuButtonImage = null;
@@ -258,11 +269,13 @@
             this._Sip.LabelText = "sip";
             this._Sip.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Sip.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Sip.Location = new System.Drawing.Point(108, 4);
+            this._Sip.LabelToolTip = "";
+            this._Sip.Location = new System.Drawing.Point(108, 1);
             this._Sip.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
             this._Sip.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
             this._Sip.MenuButtonImage = null;
             this._Sip.Name = "_Sip";
+            this._Sip.OverlapLabel = false;
             this._Sip.PropertyName = "Service.Sip";
             this._Sip.Size = new System.Drawing.Size(67, 20);
             this._Sip.TabIndex = 76;
@@ -289,7 +302,8 @@
             this._AVC.LabelText = "avc";
             this._AVC.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._AVC.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._AVC.Location = new System.Drawing.Point(4, 25);
+            this._AVC.LabelToolTip = "";
+            this._AVC.Location = new System.Drawing.Point(4, 22);
             this._AVC.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._AVC.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._AVC.MenuButtonImage = null;
@@ -322,7 +336,8 @@
             this._CSA.LabelText = "csa";
             this._CSA.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._CSA.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._CSA.Location = new System.Drawing.Point(4, 46);
+            this._CSA.LabelToolTip = "";
+            this._CSA.Location = new System.Drawing.Point(4, 43);
             this._CSA.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._CSA.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._CSA.MenuButtonImage = null;
@@ -355,7 +370,8 @@
             this._CVC.LabelText = "cvc";
             this._CVC.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._CVC.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._CVC.Location = new System.Drawing.Point(4, 67);
+            this._CVC.LabelToolTip = "";
+            this._CVC.Location = new System.Drawing.Point(4, 64);
             this._CVC.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._CVC.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._CVC.MenuButtonImage = null;
@@ -388,7 +404,8 @@
             this._NNI.LabelText = "nni";
             this._NNI.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._NNI.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._NNI.Location = new System.Drawing.Point(4, 88);
+            this._NNI.LabelToolTip = "";
+            this._NNI.Location = new System.Drawing.Point(4, 85);
             this._NNI.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._NNI.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._NNI.MenuButtonImage = null;
@@ -421,7 +438,8 @@
             this._PRI.LabelText = "pri";
             this._PRI.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._PRI.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._PRI.Location = new System.Drawing.Point(4, 109);
+            this._PRI.LabelToolTip = "";
+            this._PRI.Location = new System.Drawing.Point(4, 106);
             this._PRI.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._PRI.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._PRI.MenuButtonImage = null;
@@ -454,7 +472,8 @@
             this._INC.LabelText = "inc";
             this._INC.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._INC.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._INC.Location = new System.Drawing.Point(4, 130);
+            this._INC.LabelToolTip = "";
+            this._INC.Location = new System.Drawing.Point(4, 127);
             this._INC.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._INC.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._INC.MenuButtonImage = null;
@@ -487,7 +506,8 @@
             this._APT.LabelText = "apt";
             this._APT.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._APT.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._APT.Location = new System.Drawing.Point(4, 151);
+            this._APT.LabelToolTip = "";
+            this._APT.Location = new System.Drawing.Point(4, 148);
             this._APT.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._APT.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._APT.MenuButtonImage = null;
@@ -507,10 +527,10 @@
             this._DTVPanel.Controls.Add(this._STBSmartCard);
             this._DTVPanel.Controls.Add(this._STBLot);
             this._DTVPanel.Controls.Add(this._STBBox);
-            this._DTVPanel.Location = new System.Drawing.Point(0, 11);
+            this._DTVPanel.Location = new System.Drawing.Point(0, 35);
             this._DTVPanel.Name = "_DTVPanel";
-            this._DTVPanel.Padding = new System.Windows.Forms.Padding(4, 4, 4, 0);
-            this._DTVPanel.Size = new System.Drawing.Size(180, 200);
+            this._DTVPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
+            this._DTVPanel.Size = new System.Drawing.Size(180, 176);
             this._DTVPanel.TabIndex = 77;
             this._DTVPanel.MouseEnter += new System.EventHandler(this._DTVPanel_MouseEnter);
             // 
@@ -536,7 +556,8 @@
             this._DTVNode.LabelText = "node";
             this._DTVNode.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._DTVNode.LabelTextColor = System.Drawing.SystemColors.Info;
-            this._DTVNode.Location = new System.Drawing.Point(4, 4);
+            this._DTVNode.LabelToolTip = "";
+            this._DTVNode.Location = new System.Drawing.Point(4, 1);
             this._DTVNode.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._DTVNode.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._DTVNode.MenuButtonImage = null;
@@ -569,7 +590,8 @@
             this._DTVMsg.LabelText = "msg";
             this._DTVMsg.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._DTVMsg.LabelTextColor = System.Drawing.SystemColors.Info;
-            this._DTVMsg.Location = new System.Drawing.Point(4, 25);
+            this._DTVMsg.LabelToolTip = "";
+            this._DTVMsg.Location = new System.Drawing.Point(4, 22);
             this._DTVMsg.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._DTVMsg.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._DTVMsg.MenuButtonImage = null;
@@ -602,11 +624,13 @@
             this._DTVConnection.LabelText = "connection";
             this._DTVConnection.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._DTVConnection.LabelTextColor = System.Drawing.SystemColors.Info;
-            this._DTVConnection.Location = new System.Drawing.Point(4, 46);
+            this._DTVConnection.LabelToolTip = "";
+            this._DTVConnection.Location = new System.Drawing.Point(4, 43);
             this._DTVConnection.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._DTVConnection.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
             this._DTVConnection.MenuButtonImage = null;
             this._DTVConnection.Name = "_DTVConnection";
+            this._DTVConnection.OverlapLabel = false;
             this._DTVConnection.PropertyName = "Service.ConnectionType";
             this._DTVConnection.Size = new System.Drawing.Size(171, 20);
             this._DTVConnection.TabIndex = 93;
@@ -630,7 +654,8 @@
             this._STBHeading.LabelText = "//STB";
             this._STBHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._STBHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._STBHeading.Location = new System.Drawing.Point(4, 67);
+            this._STBHeading.LabelToolTip = "";
+            this._STBHeading.Location = new System.Drawing.Point(4, 64);
             this._STBHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._STBHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._STBHeading.MenuButtonImage = null;
@@ -661,7 +686,8 @@
             this._STBSmartCard.LabelText = "smartcard";
             this._STBSmartCard.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._STBSmartCard.LabelTextColor = System.Drawing.SystemColors.Info;
-            this._STBSmartCard.Location = new System.Drawing.Point(4, 80);
+            this._STBSmartCard.LabelToolTip = "";
+            this._STBSmartCard.Location = new System.Drawing.Point(4, 77);
             this._STBSmartCard.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._STBSmartCard.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._STBSmartCard.MenuButtonImage = null;
@@ -694,7 +720,8 @@
             this._STBLot.LabelText = "lot";
             this._STBLot.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._STBLot.LabelTextColor = System.Drawing.SystemColors.Info;
-            this._STBLot.Location = new System.Drawing.Point(4, 101);
+            this._STBLot.LabelToolTip = "";
+            this._STBLot.Location = new System.Drawing.Point(4, 98);
             this._STBLot.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._STBLot.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._STBLot.MenuButtonImage = null;
@@ -728,7 +755,8 @@
             this._STBBox.LabelText = "box";
             this._STBBox.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._STBBox.LabelTextColor = System.Drawing.SystemColors.Info;
-            this._STBBox.Location = new System.Drawing.Point(71, 101);
+            this._STBBox.LabelToolTip = "";
+            this._STBBox.Location = new System.Drawing.Point(71, 98);
             this._STBBox.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
             this._STBBox.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._STBBox.MenuButtonImage = null;
@@ -745,10 +773,10 @@
             this._MTVPanel.Controls.Add(this._MTVHeading);
             this._MTVPanel.Controls.Add(this._MTVMac);
             this._MTVPanel.Controls.Add(this._MTVSN);
-            this._MTVPanel.Location = new System.Drawing.Point(744, 11);
+            this._MTVPanel.Location = new System.Drawing.Point(744, 35);
             this._MTVPanel.Name = "_MTVPanel";
-            this._MTVPanel.Padding = new System.Windows.Forms.Padding(4, 4, 4, 0);
-            this._MTVPanel.Size = new System.Drawing.Size(180, 200);
+            this._MTVPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
+            this._MTVPanel.Size = new System.Drawing.Size(180, 176);
             this._MTVPanel.TabIndex = 98;
             // 
             // _MTVHeading
@@ -770,7 +798,8 @@
             this._MTVHeading.LabelText = "//STB";
             this._MTVHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._MTVHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._MTVHeading.Location = new System.Drawing.Point(4, 4);
+            this._MTVHeading.LabelToolTip = "";
+            this._MTVHeading.Location = new System.Drawing.Point(4, 1);
             this._MTVHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._MTVHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._MTVHeading.MenuButtonImage = null;
@@ -801,7 +830,8 @@
             this._MTVMac.LabelText = "mac";
             this._MTVMac.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._MTVMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._MTVMac.Location = new System.Drawing.Point(4, 17);
+            this._MTVMac.LabelToolTip = "";
+            this._MTVMac.Location = new System.Drawing.Point(4, 14);
             this._MTVMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._MTVMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._MTVMac.MenuButtonImage = null;
@@ -834,7 +864,8 @@
             this._MTVSN.LabelText = "serial";
             this._MTVSN.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._MTVSN.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._MTVSN.Location = new System.Drawing.Point(4, 38);
+            this._MTVSN.LabelToolTip = "";
+            this._MTVSN.Location = new System.Drawing.Point(4, 35);
             this._MTVSN.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._MTVSN.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._MTVSN.MenuButtonImage = null;
@@ -857,10 +888,10 @@
             this._ONCPanel.Controls.Add(this._ModemCMMac);
             this._ONCPanel.Controls.Add(this._ModemMTAMac);
             this._ONCPanel.Controls.Add(this._ModemSN);
-            this._ONCPanel.Location = new System.Drawing.Point(186, 11);
+            this._ONCPanel.Location = new System.Drawing.Point(186, 35);
             this._ONCPanel.Name = "_ONCPanel";
-            this._ONCPanel.Padding = new System.Windows.Forms.Padding(4, 4, 4, 0);
-            this._ONCPanel.Size = new System.Drawing.Size(180, 200);
+            this._ONCPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
+            this._ONCPanel.Size = new System.Drawing.Size(180, 176);
             this._ONCPanel.TabIndex = 100;
             // 
             // _ONCNode
@@ -885,7 +916,8 @@
             this._ONCNode.LabelText = "node";
             this._ONCNode.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._ONCNode.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ONCNode.Location = new System.Drawing.Point(4, 4);
+            this._ONCNode.LabelToolTip = "";
+            this._ONCNode.Location = new System.Drawing.Point(4, 1);
             this._ONCNode.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._ONCNode.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._ONCNode.MenuButtonImage = null;
@@ -915,7 +947,8 @@
             this._SpeedTestHeading.LabelText = "//SPEED TEST RESULTS(MBPS)";
             this._SpeedTestHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._SpeedTestHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._SpeedTestHeading.Location = new System.Drawing.Point(4, 25);
+            this._SpeedTestHeading.LabelToolTip = "";
+            this._SpeedTestHeading.Location = new System.Drawing.Point(4, 22);
             this._SpeedTestHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._SpeedTestHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._SpeedTestHeading.MenuButtonImage = null;
@@ -946,7 +979,8 @@
             this._SpeedTestDown.LabelText = "down";
             this._SpeedTestDown.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._SpeedTestDown.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._SpeedTestDown.Location = new System.Drawing.Point(4, 38);
+            this._SpeedTestDown.LabelToolTip = "";
+            this._SpeedTestDown.Location = new System.Drawing.Point(4, 35);
             this._SpeedTestDown.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._SpeedTestDown.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._SpeedTestDown.MenuButtonImage = null;
@@ -979,7 +1013,8 @@
             this._SpeedTestUp.LabelText = "up";
             this._SpeedTestUp.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._SpeedTestUp.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._SpeedTestUp.Location = new System.Drawing.Point(91, 38);
+            this._SpeedTestUp.LabelToolTip = "";
+            this._SpeedTestUp.Location = new System.Drawing.Point(91, 35);
             this._SpeedTestUp.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
             this._SpeedTestUp.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._SpeedTestUp.MenuButtonImage = null;
@@ -1009,7 +1044,8 @@
             this._ModemDetailsHeading.LabelText = "//MODEM DETAILS";
             this._ModemDetailsHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._ModemDetailsHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemDetailsHeading.Location = new System.Drawing.Point(4, 59);
+            this._ModemDetailsHeading.LabelToolTip = "";
+            this._ModemDetailsHeading.Location = new System.Drawing.Point(4, 56);
             this._ModemDetailsHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._ModemDetailsHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._ModemDetailsHeading.MenuButtonImage = null;
@@ -1040,7 +1076,8 @@
             this._ModemStatus.LabelText = "status";
             this._ModemStatus.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._ModemStatus.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemStatus.Location = new System.Drawing.Point(4, 72);
+            this._ModemStatus.LabelToolTip = "";
+            this._ModemStatus.Location = new System.Drawing.Point(4, 69);
             this._ModemStatus.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._ModemStatus.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
             this._ModemStatus.MenuButtonImage = null;
@@ -1071,11 +1108,13 @@
             this._ModemRF.LabelText = "rf";
             this._ModemRF.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._ModemRF.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemRF.Location = new System.Drawing.Point(110, 72);
+            this._ModemRF.LabelToolTip = "";
+            this._ModemRF.Location = new System.Drawing.Point(110, 69);
             this._ModemRF.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
             this._ModemRF.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
             this._ModemRF.MenuButtonImage = null;
             this._ModemRF.Name = "_ModemRF";
+            this._ModemRF.OverlapLabel = false;
             this._ModemRF.PropertyName = "Service.RFIssues";
             this._ModemRF.Size = new System.Drawing.Size(65, 20);
             this._ModemRF.TabIndex = 103;
@@ -1102,7 +1141,8 @@
             this._ModemCMMac.LabelText = "cm mac";
             this._ModemCMMac.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._ModemCMMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemCMMac.Location = new System.Drawing.Point(4, 93);
+            this._ModemCMMac.LabelToolTip = "";
+            this._ModemCMMac.Location = new System.Drawing.Point(4, 90);
             this._ModemCMMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._ModemCMMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._ModemCMMac.MenuButtonImage = null;
@@ -1135,7 +1175,8 @@
             this._ModemMTAMac.LabelText = "mta mac";
             this._ModemMTAMac.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._ModemMTAMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemMTAMac.Location = new System.Drawing.Point(4, 114);
+            this._ModemMTAMac.LabelToolTip = "";
+            this._ModemMTAMac.Location = new System.Drawing.Point(4, 111);
             this._ModemMTAMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._ModemMTAMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._ModemMTAMac.MenuButtonImage = null;
@@ -1168,7 +1209,8 @@
             this._ModemSN.LabelText = "serial";
             this._ModemSN.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._ModemSN.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemSN.Location = new System.Drawing.Point(4, 135);
+            this._ModemSN.LabelToolTip = "";
+            this._ModemSN.Location = new System.Drawing.Point(4, 132);
             this._ModemSN.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this._ModemSN.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._ModemSN.MenuButtonImage = null;
@@ -1178,6 +1220,37 @@
             this._ModemSN.TabIndex = 101;
             this._ModemSN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._ModemSN.TextField = "";
+            // 
+            // _Equipment
+            // 
+            this._Equipment.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Equipment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Equipment.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._Equipment.ControlHeight = 20;
+            this._Equipment.DataSource = null;
+            this._Equipment.DefaultText = "";
+            this._Equipment.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Equipment.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Equipment.LabelAutoSize = false;
+            this._Equipment.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._Equipment.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Equipment.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Equipment.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Equipment.LabelOffset = new System.Drawing.Point(2, 0);
+            this._Equipment.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Equipment.LabelSize = new System.Drawing.Size(50, 20);
+            this._Equipment.LabelText = "equipment";
+            this._Equipment.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Equipment.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Equipment.LabelToolTip = "";
+            this._Equipment.Location = new System.Drawing.Point(4, 14);
+            this._Equipment.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
+            this._Equipment.MenuButtonImage = null;
+            this._Equipment.Name = "_Equipment";
+            this._Equipment.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this._Equipment.PropertyName = "Service.Equipment";
+            this._Equipment.Size = new System.Drawing.Size(171, 20);
+            this._Equipment.TabIndex = 101;
             // 
             // _ServiceHeading
             // 
@@ -1198,6 +1271,7 @@
             this._ServiceHeading.LabelText = "//NONE";
             this._ServiceHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._ServiceHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._ServiceHeading.LabelToolTip = "";
             this._ServiceHeading.Location = new System.Drawing.Point(0, 0);
             this._ServiceHeading.Margin = new System.Windows.Forms.Padding(0);
             this._ServiceHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1207,11 +1281,40 @@
             this._ServiceHeading.Size = new System.Drawing.Size(180, 12);
             this._ServiceHeading.TabIndex = 71;
             // 
+            // _EquipmentMenu
+            // 
+            this._EquipmentMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._EquipmentMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userGuideToolStripMenuItem,
+            this.simulatorToolStripMenuItem,
+            this.dfgfdToolStripMenuItem});
+            this._EquipmentMenu.Name = "_EquipmentContextMenu";
+            this._EquipmentMenu.Size = new System.Drawing.Size(153, 92);
+            // 
+            // userGuideToolStripMenuItem
+            // 
+            this.userGuideToolStripMenuItem.Name = "userGuideToolStripMenuItem";
+            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.userGuideToolStripMenuItem.Text = "User Guide";
+            // 
+            // simulatorToolStripMenuItem
+            // 
+            this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
+            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.simulatorToolStripMenuItem.Text = "Simulator";
+            // 
+            // dfgfdToolStripMenuItem
+            // 
+            this.dfgfdToolStripMenuItem.Name = "dfgfdToolStripMenuItem";
+            this.dfgfdToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dfgfdToolStripMenuItem.Text = "dfgfd";
+            // 
             // ServicePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LemonChiffon;
+            this.Controls.Add(this._Equipment);
             this.Controls.Add(this._LATPanel);
             this.Controls.Add(this._ONCPanel);
             this.Controls.Add(this._MTVPanel);
@@ -1228,6 +1331,7 @@
             this._DTVPanel.ResumeLayout(false);
             this._MTVPanel.ResumeLayout(false);
             this._ONCPanel.ResumeLayout(false);
+            this._EquipmentMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1273,6 +1377,11 @@
         internal System.Windows.Forms.FlowLayoutPanel _MTVPanel;
         internal System.Windows.Forms.FlowLayoutPanel _ONCPanel;
         internal System.Windows.Forms.FlowLayoutPanel _DTVPanel;
+        internal LabelledComboBoxLong _Equipment;
+        private System.Windows.Forms.ContextMenuStrip _EquipmentMenu;
+        private System.Windows.Forms.ToolStripMenuItem userGuideToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem simulatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dfgfdToolStripMenuItem;
 
 
 

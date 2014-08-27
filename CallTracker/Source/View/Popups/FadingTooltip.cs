@@ -53,6 +53,11 @@ namespace CallTracker.View
 
         public void ShowandFade(string text)
         {
+            if(Visible)
+            {
+                _fadeTimer.Stop();
+                _timeCounter = 0;
+            }
             label1.Text = text;
             var point = MousePosition;
             if (Cursor.Current == Cursors.Default || Cursor.Current == Cursors.Arrow)

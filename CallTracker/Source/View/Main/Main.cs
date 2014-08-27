@@ -24,7 +24,7 @@ namespace CallTracker.View
     public partial class Main : Form
     {
         public static string SelectedMenuProduct = String.Empty;
-        public Point ControlOffset = new Point(0, -1);
+        public readonly Point ControlOffset = new Point(0, -1);
 
         internal UserDataStore UserDataStore = new UserDataStore();
         internal DailyDataDataStore DailyDataDataStore = new DailyDataDataStore();
@@ -221,10 +221,25 @@ namespace CallTracker.View
         public bool CancelLoad = false;
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (HotKeys != null)
+            {
+                HotkeyController.OnAction -= UpdateProgressBar;
+                HotKeys.Dispose();
+            }
+
+            IETabActivator.OnAction -= UpdateProgressBar;      
+
+            if (FadingToolTip != null)
+                FadingToolTip.Dispose();
+
             if (CancelLoad == false)
             {
-                editContact.customerContactsBindingSource.RemoveFilter();
+                DisposeIPCC();
+
                 Properties.Settings.Default.Save();
+
+                editContact.customerContactsBindingSource.RemoveFilter();
+                DailyDataDataStore.DailyData.RemoveFilter();
                 UserDataStore.SaveFile(UserDataStore);
                 DailyDataDataStore.WriteData();
                 ServicesStore.WriteData();
@@ -233,8 +248,8 @@ namespace CallTracker.View
             if (ServicesStore != null)
                 ServicesStore.servicesDataSet.Dispose();
 
-            if(HotKeys != null)
-                HotKeys.Dispose();
+            if (DateBindingSource != null)
+                DateBindingSource.Dispose();
         }
 
         public void RemovePasteBind(PasteBind bind)
@@ -355,9 +370,10 @@ namespace CallTracker.View
 
         private void showStatusBarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var item = (ToolStripMenuItem)sender;
+            Properties.Settings.Default.ShowStatusBar = showStatusBarToolStripMenuItem.Checked;
+            //var item = (ToolStripMenuItem)sender;
 
-            if (item.Checked)
+            if (showStatusBarToolStripMenuItem.Checked)
             {
                 Height = 257;
                 statusStrip1.Show();
@@ -435,12 +451,20 @@ namespace CallTracker.View
         }
 
         void IPCCProcess_Exited(object sender, EventArgs e)
+        {        
+            monitorIPCCToolStripMenuItem.Checked = false;
+            DisposeIPCC();
+        }
+
+        void DisposeIPCC()
         {
             _IPCCTimer.Enabled = false;
-            monitorIPCCToolStripMenuItem.Checked = false;
-            _ipccProcess.Exited -= IPCCProcess_Exited;
-            _ipccProcess.Dispose();
-            _ipccProcess = null;
+            if (_ipccProcess != null)
+            {
+                _ipccProcess.Exited -= IPCCProcess_Exited;
+                _ipccProcess.Dispose();
+                _ipccProcess = null;
+            }
         }
 
         public void DialOrTransfer(string value)
@@ -864,6 +888,16 @@ namespace CallTracker.View
                 cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
                 return cp;
             }
+        }
+
+        private void pullIPCCCallDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.PullIPCCCallData = pullIPCCCallDataToolStripMenuItem.Checked;
+        }
+
+        private void clearMessagesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.WarningLevel = clearMessagesToolStripMenuItem.Checked;
         }
     }
 }

@@ -4,20 +4,30 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
 
+using System.IO;
+
 namespace CallTracker.View
 {
     public partial class SplashScreen : Form
     {
         Main MainForm;
-        
+        PrivateFontCollection pfc = new PrivateFontCollection();
+
         public SplashScreen()
         {
             InitializeComponent();
-            //var pfc = new PrivateFontCollection();
-            //pfc.AddFontFile("Fonts\\OptusVoiceBETA-Bold.ttf");
 
-            //Wingman.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);
-            //label1.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);
+            if(File.Exists("Fonts\\OptusVoiceBETA-Bold.ttf"))
+            {
+                pfc.AddFontFile("Fonts\\OptusVoiceBETA-Bold.ttf");
+                Wingman.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);
+            }
+
+            if (File.Exists("Fonts\\trade-gothic-lt-1361519976.ttf"))
+            {
+                pfc.AddFontFile("Fonts\\trade-gothic-lt-1361519976.ttf");
+                _LoadingText.Font = new Font(pfc.Families[1], 12, FontStyle.Regular);
+            } 
         }
 
         private void SplashScreen_Load(object sender, EventArgs e)

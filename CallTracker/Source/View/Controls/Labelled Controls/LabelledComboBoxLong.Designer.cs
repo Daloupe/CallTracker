@@ -34,8 +34,7 @@
             // 
             // _MenuButton
             // 
-            this._MenuButton.Dock = System.Windows.Forms.DockStyle.Left;
-            this._MenuButton.Location = new System.Drawing.Point(30, 0);
+            this._MenuButton.Location = new System.Drawing.Point(172, 0);
             this._MenuButton.Size = new System.Drawing.Size(8, 20);
             // 
             // _Label
@@ -49,7 +48,7 @@
             this._ComboBox.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._ComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._ComboBox.FormattingEnabled = true;
-            this._ComboBox.Location = new System.Drawing.Point(38, 0);
+            this._ComboBox.Location = new System.Drawing.Point(30, 0);
             this._ComboBox.Margin = new System.Windows.Forms.Padding(0);
             this._ComboBox.MaxDropDownItems = 15;
             this._ComboBox.Name = "_ComboBox";
@@ -58,7 +57,7 @@
             this._ComboBox.DropDown += new System.EventHandler(this._ComboBox_DropDown);
             this._ComboBox.SelectedIndexChanged += new System.EventHandler(this._ComboBox_SelectedIndexChanged);
             this._ComboBox.DropDownClosed += new System.EventHandler(this._ComboBox_DropDownClosed);
-            this._ComboBox.DataSourceChanged += new System.EventHandler(this._ComboBox_DataSourceChanged);
+            this._ComboBox.Leave += new System.EventHandler(this._ComboBox_Leave_1);
             // 
             // LabelledComboBoxLong
             // 
@@ -67,7 +66,6 @@
             this.ControlHeight = 20;
             this.Controls.Add(this._ComboBox);
             this.LabelOffset = new System.Drawing.Point(0, 0);
-            this.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
             this.Name = "LabelledComboBoxLong";
             this.Size = new System.Drawing.Size(180, 20);
             this.Controls.SetChildIndex(this._Label, 0);

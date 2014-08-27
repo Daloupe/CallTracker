@@ -21,6 +21,12 @@ namespace CallTracker.Model
         {
             Equipment = String.Empty;
             Node = String.Empty;
+            CauPing = String.Empty;
+            NitResults = String.Empty;
+            ModemStatus = String.Empty;
+            RFIssues = String.Empty;
+            ConnectionType = String.Empty;
+            Throttled = String.Empty;
         }
 
         public object GetValue(string property)
@@ -70,7 +76,7 @@ namespace CallTracker.Model
         public string MTAMac { get; set; }
         [ProtoMember(19)]
         public string ModemSN { get; set; }
-
+        
         [ProtoMember(20)]
         public string DownloadSpeed { get; set; }
         [ProtoMember(21)]

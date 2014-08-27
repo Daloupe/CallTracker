@@ -251,9 +251,9 @@ namespace AutomationTester
                 if (!controlType.Equals(ControlType.Table)) continue;
 
                 var table = (TestStack.White.UIItems.TableItems.Table)control;
-                var row = control.GetElement(SearchCriteria.(ControlType.Custom));
+                var row = control.GetElement(SearchCriteria.ByControlType(ControlType.Custom));
                 if(row != null)
-                _log.AppendText("\t\t"+row.Current.Name);
+                    _log.AppendText("\t\t"+row.Current.Name);
 
                 ////_log.AppendText("\t\tHas Table With " + table.Rows.Count + " Rows and " + table.Rows[0].Cells.Count + " Cells");
                 //var rowIndex = 0;

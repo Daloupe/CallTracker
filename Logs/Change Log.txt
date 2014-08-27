@@ -1,36 +1,59 @@
-﻿Colours:
-Blue: 0,156,173
-Light Blue: 2,188, 201
-Dark Blue: 53, 143, 169
-23, 103, 129
-Yellow: 255,198,0
+﻿//1.2.0.0
+//- Added Contact model to DataSet.
+//- Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
 
-0.33.00
-- Added Chrome support.
+//1.1.0.0
+//- Added Chrome support.
 
-0.32.00
-- Added MAD support. 
-	- Create Tester: Popup with Texbox Name, Input, and Application Name fields, pressing OK triggers test.
+//1.0.0.0
+//- Added ARO GUI.
+//- Added Glance GUI.
+//- Selecting "Clear and Close" brings up a PopUp with a single dropdown to select from before actioning the pr.
+//- PasteBind AltData accepts "," for multiple AltData types eg AltData = "Username,Mobile|0$1$2".
 
-0.31.00
-- Added Glance GUI.
-- Selecting "Clear and Close" brings up a PopUp with a single dropdown to select from before actioning the pr.
 
-0.30.00
-- Added ARO GUI.
-- Added DataType Modem IP address, PRI, NTD Serial number, Address ID(LIP), ESN(LAT). (CMR 1000000000021266_12494541)
-- Added "" to Data string to enable pastes of strings.
-- Added MAC Regex.
-
-0.3.7.0
-- Added Contact model to DataSet;
-- Pastebinds moved to Resources.bin so Data.bin only hold Contacts and Logins.
-- Pull Data from IPCC setting isn't saving.
-- Dispose of IPCC and MAD processes, and other automation items.
-- Added option to switch Floating ToolTip.
-	- Created Panel Based ToolTip.
-- Timeout exceptions caught and EventLogged.
+0.6.1.1
+(Major Features)
+- IPCC Data Pull working.
+(Minor Feature)
+- White Timeout exceptions caught and EventLogged.
+(Bugs/Changes)
 - Fixed Resources file not building.
+
+0.5.0.0
+(Major Features)
+/ MAD Smart Paste working.
+
+0.4.1.0
+(Major Features)
+- Auto search Working.
+(Minor Features)
+- GridLinks Auto Search working.
+
+0.3.11.0
+(Minor Features)
+- Added MAC Regex.
+- Added DataTypes: Modem IP address, NTD Serial number, Address ID(LIP), ESN(LAT)
+
+0.3.9.2
+(Minor Features)
+| Smart Copy sets _Equipmnet by checking if _Equipment.Items contains input.
+/ Equipment Context Menu with guides and simulators.
+(Bugs/Changes)
+| Moved Equipment combo to service panel.
+| Fixed problems with drop downs filling other records if empty. Combo Boxes now nullable.
+
+0.3.7.5
+(Bugs/Changes)
+| Fixed custom font code. PFC a class variable. Only load if File.Exists.
+| Pull Data from IPCC setting isn't saving.
+| Floating ToolTip working. May need to have control box = true.
+| Reduced Smart Copy Flush Timeout to .5sec;
+/ Application not quitting properly/RAM fluctuating
+	/ Dispose of Process objects without quitting connected program?
+	/ Dispose of Browser object?
+	/ Dispose of IPCC and MAD processes, and other automation items.
+
 
 0.3.6.7
 / Fixed MAD Smart Paste. (May need to take window height into account for systems that use different visual style)

@@ -102,7 +102,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Grid Links ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private readonly Dictionary<Keys, string> _gridLinkHotkeys = new Dictionary<Keys, string>
+        private static readonly Dictionary<Keys, string> _gridLinkHotkeys = new Dictionary<Keys, string>
         {
             {Keys.NumPad0, "0"},
             {Keys.NumPad1, "1"},
@@ -149,7 +149,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Data Paste ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private readonly Dictionary<Keys, string> _dataPasteHotkeys = new Dictionary<Keys, string>
+        private static readonly Dictionary<Keys, string> _dataPasteHotkeys = new Dictionary<Keys, string>
         {
             {Keys.D1, "ICON"},
             {Keys.D2, "CMBS"},
@@ -184,27 +184,7 @@ namespace CallTracker.Helpers
             EventLogger.LogNewEvent("Searching for SmartPaste Matches for Window: " + WindowHelper.GetActiveWindowTitle(), EventLogLevel.Brief);
             if (WindowHelper.GetActiveWindowTitle().Contains("Oracle"))
             {
-                string activeelem = MadSmartPaste.GetActiveElement();
-                if (String.IsNullOrEmpty(activeelem))
-                {
-                    EventLogger.LogNewEvent("No Active Element Found", EventLogLevel.Status);
-                    return;
-                }
-
-                var propvalue = FindProperty.FollowPropertyPath(parent.SelectedContact, activeelem);
-
-                EventLogger.LogNewEvent("Trying to set value", EventLogLevel.Status);
-                MadSmartPaste.SetElementValue(propvalue);
-
-                //EventLogger.LogNewEvent("Trying to Set Text", EventLogLevel.Status);
-                //MadSmartPaste.SetElementText(propvalue);
-                
-                //EventLogger.LogNewEvent("Ctrl-V in MAD value", EventLogLevel.Status);
-                //Clipboard.SetText(propvalue);
-                //SendKeys.SendWait("+^");
-                //SendKeys.SendWait("^v");
-                //Application.DoEvents();
-                //SendKeys.Flush();  
+                MadSmartPaste.SetActiveElement(parent.SelectedContact);
             }
             else
             {
@@ -360,29 +340,36 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        //private static readonly Stopwatch StopwatchTester = new Stopwatch();
         private static readonly Stopwatch Stopwatch = new Stopwatch();
         private static void OnSmartCopy(HotkeyPressedEventArgs e)
         {
+            //StopwatchTester.Start();
             EventLogger.LogNewEvent("Starting Smart Copy", EventLogLevel.Brief);
+            
+            var oldClip = String.Empty;
+            if (Clipboard.ContainsText())
+            {
+                oldClip = Clipboard.GetText();
+                Clipboard.Clear();
+            }
 
-            var oldClip = Clipboard.GetText();
-            Clipboard.Clear();
             SendKeys.SendWait("^c");
             SendKeys.Flush();
-
             Stopwatch.Start();
             while (!Clipboard.ContainsText())
             {
                 SendKeys.Flush();
-                if (Stopwatch.ElapsedMilliseconds > 1000)
-                    break;
+                if (Stopwatch.ElapsedMilliseconds > 500)
+                {
+                    Main.FadingToolTip.ShowandFade("Nothing selected");
+                    Stopwatch.Reset();
+                    return;
+                }
             }
-            var text = Clipboard.GetText().Trim();
-            EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1}ticks", text, Stopwatch.ElapsedTicks));
-            if (!String.IsNullOrEmpty(oldClip))
-                Clipboard.SetText(oldClip);
-            Stopwatch.Reset();
+            Stopwatch.Stop();
 
+            var text = Clipboard.GetText().Trim();
             var textlen = text.Length;
             if (textlen == 0)
             {
@@ -391,44 +378,71 @@ namespace CallTracker.Helpers
             }
             var firstchar = text.Substring(0, 1);
 
-            var contact = parent.SelectedContact;
-            
-            // If text is all digits ////////////////////////////////////////////////////////////////////////////////
+            var contact = parent.SelectedContact;        
             if(new DigitPattern().IsMatch(text))
             {
                 if (firstchar == "1" && textlen == 8)
                 {
                     contact.Fault.PR = text;
-                    Main.FadingToolTip.ShowandFade("PR: " + contact.Fault.PR);
-                    return;
-                } 
-                if (contact.FindMobileMatch(text)) return;
-                if (contact.FindDNMatch(text)) return;
-                if (contact.FindCMBSMatch(text)) return;
-                if (contact.FindICONMatch(text)) return;
-                if (contact.Fault.FindITCaseMatch(text)) return;
+                    Main.FadingToolTip.ShowandFade("PR: " + contact.Fault.PR);                   
+                }
+                else if (contact.FindMobileMatch(text)) { }
+                else if (contact.FindDNMatch(text)) { }
+                else if (contact.FindCMBSMatch(text)) { }
+                else if (contact.FindICONMatch(text)) { }
+                else if (contact.Fault.FindITCaseMatch(text)) { }
+                else
+                {
+                    contact.Note += text;
+                    Main.FadingToolTip.ShowandFade("Added to Note");
+                }
             } 
             else if (new AlphaPattern().IsMatch(text))
             {
-                if (contact.FindNameMatch(text)) return;
-                if (contact.FindUsernameMatch(text)) return;
+                if (contact.FindNameMatch(text)) { }
+                else if (contact.FindUsernameMatch(text)) { }
+                else
+                {
+                    contact.Note += text;
+                    Main.FadingToolTip.ShowandFade("Added to Note");
+                }
             } 
             else if (Char.IsLetter(text, 0))
             {
-                if (contact.Service.FindBRASMatch(text)) return;
-                if (contact.Service.FindNBNMatch(text)) return;
-                if (contact.FindUsernameMatch(text)) return;
-                if (contact.Address.FindAddressMatch(text)) return;
+                if (parent.editContact._ServicePanel._Equipment._ComboBox.Items.Contains(text))
+                {
+                    contact.Service.Equipment = text;
+                    Main.FadingToolTip.ShowandFade("Equipment: " + text);
+                }
+                else if (contact.Service.FindBRASMatch(text)) { }
+                else if (contact.Service.FindNBNMatch(text)) { }
+                else if (contact.FindUsernameMatch(text)) { }
+                else if (contact.Address.FindAddressMatch(text)) { }
+                else
+                {
+                    contact.Note += text;
+                    Main.FadingToolTip.ShowandFade("Added to Note");
+                }
             }
             else
             {
-                if (contact.Service.FindNodeMatch(text)) return;
-                if (contact.FindCMBSMatch(text)) return;
-                if (contact.Address.FindAddressMatch(text)) return;
+                if (contact.Service.FindNodeMatch(text)) { }
+                else if (contact.FindCMBSMatch(text)) { }
+                else if (contact.Address.FindAddressMatch(text)) { }
+                else
+                {
+                    contact.Note += text;
+                    Main.FadingToolTip.ShowandFade("Added to Note");
+                }
             }
 
-            contact.Note += text;
-            Main.FadingToolTip.ShowandFade("Added to Note");   
+            EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1}ticks", text, Stopwatch.ElapsedTicks));
+            if (!String.IsNullOrEmpty(oldClip))
+                Clipboard.SetText(oldClip);
+            Stopwatch.Reset();
+
+            //EventLogger.LogNewEvent(StopwatchTester.ElapsedMilliseconds + "ms", EventLogLevel.Status);
+            //StopwatchTester.Reset();
         }
 
 

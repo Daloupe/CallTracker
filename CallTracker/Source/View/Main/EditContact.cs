@@ -38,8 +38,8 @@ namespace CallTracker.View
                 control.MouseHover += splitContainer2_MouseEnter;
             ////////////////////////////////////////////////////////////////////////////////////////////////////     
 
-            ServicePanel.Symptoms = new BindingList<string>();
-            ServicePanel.Equipment = new BindingList<string>();
+            //ServicePanel.Symptoms = new BindingList<string>();
+            //ServicePanel.Equipment = new BindingList<string>();
             _ServicePanel.PreInit(this);
         }
 
@@ -56,7 +56,7 @@ namespace CallTracker.View
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
             _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)).Cast<BookingType>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
             _BookingTimeSlot.BindComboBox(Enum.GetValues(typeof(BookingTimeslot)).Cast<BookingTimeslot>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
-            _Action.BindComboBox(new List<string>(), customerContactsBindingSource);
+            //_Action.BindComboBox(new List<string>(), customerContactsBindingSource);
 
             customerContactsBindingSource.MoveLast();
 
@@ -171,6 +171,7 @@ namespace CallTracker.View
             _Note.DataBindings.Clear();
             _BookingDate._DateTimePicker.DataBindings.Clear();
             _Outcome._ComboBox.DataBindings.Clear();
+
             CurrentService = ServiceTypes.NONE;
             //_ServicePanel.ChangeService(ServiceTypes.NONE);         
         }
@@ -232,8 +233,9 @@ namespace CallTracker.View
             if(query.Count > 0)
                 _Action.BindComboBox(query, customerContactsBindingSource);
 
-            if (!query.Contains(MainForm.SelectedContact.Fault.Action))
-                MainForm.SelectedContact.Fault.Action = "";
+            if (MainForm.SelectedContact != null)
+                if (!query.Contains(MainForm.SelectedContact.Fault.Action))
+                    MainForm.SelectedContact.Fault.Action = "";
         }
 
 
@@ -249,15 +251,6 @@ namespace CallTracker.View
             get { return _currentService; }
             set
             {
-                if (value == _currentService && _currentService.IsNot(ServiceTypes.NONE))
-                    return;
-                ServicePanel.Symptoms.Clear();
-                _Symptom._ComboBox.DataSource = null;
-                _Symptom._ComboBox.DataBindings.Clear();
-                ServicePanel.Equipment.Clear();
-                _Equipment._ComboBox.DataSource = null;
-                _Equipment._ComboBox.DataBindings.Clear();
-
                 _currentService = value;
                 _ServicePanel.ChangeService(_currentService);
             }
@@ -384,7 +377,7 @@ namespace CallTracker.View
             splitContainer1.SplitterDistance = dist;
         }
 
-        private static List<int> SplitterRows = new List<int> { 0, 25, 55, 84, 114, 135, 164};// 153, 122, 99, 67, 35, 0};
+        private static List<int> SplitterRows = new List<int> { 0, 25, 55, 84, 114, 144, 164};// 153, 122, 99, 67, 35, 0};
         private const int SPLITTER_2_MIN = 0;
         private const int SPLITTER_2_MAX = 164;
         private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
@@ -590,7 +583,7 @@ namespace CallTracker.View
 
         private void _TextFieldContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            e.ClickedItem.Tag = ((LabelledTextBoxLong)((ContextMenuStrip)sender).SourceControl.Parent)._DataField.Text;
+            e.ClickedItem.Tag = ((LabelledTextBoxLong)((ContextMenuStrip)sender).SourceControl.Parent)._DataField.Text ?? String.Empty;
         }
 
 

@@ -17,6 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{CB733810-5
 		18.8 = 18.8
 		Logs\9.8.txt = Logs\9.8.txt
 		Logs\Change Log.txt = Logs\Change Log.txt
+		Logs\SearchStrings.txt = Logs\SearchStrings.txt
 		Logs\Test Outcome 29.07.txt = Logs\Test Outcome 29.07.txt
 		Logs\Test Outcome 31.07.txt = Logs\Test Outcome 31.07.txt
 		Logs\Tests.rtf = Logs\Tests.rtf
@@ -24,6 +25,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{CB733810-5
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationTester", "AutomationTester\AutomationTester.csproj", "{05758AE7-AF35-4B9F-B7B1-CAA307E7A412}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5DEADF0B-DC7B-430F-982E-647F7B05455D} = {5DEADF0B-DC7B-430F-982E-647F7B05455D}
+		{E9FEB68C-D688-4E53-BA93-D23A176BE58A} = {E9FEB68C-D688-4E53-BA93-D23A176BE58A}
+		{391A87E7-B716-4C1C-9FF2-FACEA8B54820} = {391A87E7-B716-4C1C-9FF2-FACEA8B54820}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

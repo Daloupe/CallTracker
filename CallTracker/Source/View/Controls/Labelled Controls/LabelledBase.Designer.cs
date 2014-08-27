@@ -63,6 +63,7 @@
             this._MenuButton.BackColor = System.Drawing.Color.Transparent;
             this._MenuButton.BackgroundImage = global::CallTracker.Properties.Resources.TinyArrow2;
             this._MenuButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._MenuButton.Cursor = System.Windows.Forms.Cursors.Arrow;
             this._MenuButton.Dock = System.Windows.Forms.DockStyle.Right;
             this._MenuButton.Location = new System.Drawing.Point(164, 0);
             this._MenuButton.Margin = new System.Windows.Forms.Padding(0);
