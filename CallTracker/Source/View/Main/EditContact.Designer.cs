@@ -1704,6 +1704,7 @@
             // customerContactsBindingSource
             // 
             this.customerContactsBindingSource.AllowNew = true;
+            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // _PrevCallButton
             // 
