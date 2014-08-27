@@ -166,8 +166,9 @@
             this.MainPanel.SuspendLayout();
             this._UsernameContextMenu.SuspendLayout();
             this._NameContextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
+            this.bindingNavigator1.SuspendLayout();
             this.SuspendLayout();
             // 
             // servicesDataSet
@@ -1500,6 +1501,7 @@
             this.bindingNavigator1.AddNewItem = null;
             this.bindingNavigator1.AutoSize = false;
             this.bindingNavigator1.BackColor = System.Drawing.Color.LightGray;
+            this.bindingNavigator1.BindingSource = this.customerContactsBindingSource;
             this.bindingNavigator1.ContextMenuStrip = this._CallHistoryContextMenu;
             this.bindingNavigator1.CountItem = null;
             this.bindingNavigator1.DeleteItem = null;
@@ -1507,21 +1509,103 @@
             this.bindingNavigator1.Font = new System.Drawing.Font("Verdana", 7F);
             this.bindingNavigator1.GripMargin = new System.Windows.Forms.Padding(0);
             this.bindingNavigator1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._PrevCallButton,
+            this._CurrentPosition,
+            this._NextCallButton,
+            this._CallMenuButton,
+            this._DateSelector,
+            this.toolStripSeparator4,
+            this.toolStripSeparator8});
             this.bindingNavigator1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator1.MoveFirstItem = null;
             this.bindingNavigator1.MoveLastItem = null;
-            this.bindingNavigator1.MoveNextItem = null;
-            this.bindingNavigator1.MovePreviousItem = null;
+            this.bindingNavigator1.MoveNextItem = this._NextCallButton;
+            this.bindingNavigator1.MovePreviousItem = this._PrevCallButton;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.bindingNavigator1.PositionItem = null;
+            this.bindingNavigator1.PositionItem = this._CurrentPosition;
             this.bindingNavigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.bindingNavigator1.Size = new System.Drawing.Size(331, 29);
             this.bindingNavigator1.Stretch = true;
             this.bindingNavigator1.TabIndex = 0;
             this.bindingNavigator1.Text = "bindingNavigatorIgnoreFocus1";
             this.bindingNavigator1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
+            // 
+            // _PrevCallButton
+            // 
+            this._PrevCallButton.AutoSize = false;
+            this._PrevCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._PrevCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_PrevCallButton.Image")));
+            this._PrevCallButton.Margin = new System.Windows.Forms.Padding(1, 1, 0, 2);
+            this._PrevCallButton.Name = "_PrevCallButton";
+            this._PrevCallButton.RightToLeftAutoMirrorImage = true;
+            this._PrevCallButton.Size = new System.Drawing.Size(20, 18);
+            this._PrevCallButton.Text = "Move previous";
+            // 
+            // _CurrentPosition
+            // 
+            this._CurrentPosition.AccessibleName = "Position";
+            this._CurrentPosition.AutoSize = false;
+            this._CurrentPosition.BackColor = System.Drawing.Color.GhostWhite;
+            this._CurrentPosition.Font = new System.Drawing.Font("Verdana", 7F);
+            this._CurrentPosition.Margin = new System.Windows.Forms.Padding(0);
+            this._CurrentPosition.Name = "_CurrentPosition";
+            this._CurrentPosition.Size = new System.Drawing.Size(46, 19);
+            this._CurrentPosition.Text = "0";
+            this._CurrentPosition.ToolTipText = "Selected Call";
+            // 
+            // _NextCallButton
+            // 
+            this._NextCallButton.AutoSize = false;
+            this._NextCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._NextCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_NextCallButton.Image")));
+            this._NextCallButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._NextCallButton.Name = "_NextCallButton";
+            this._NextCallButton.RightToLeftAutoMirrorImage = true;
+            this._NextCallButton.Size = new System.Drawing.Size(20, 18);
+            this._NextCallButton.Text = "Move next";
+            // 
+            // _CallMenuButton
+            // 
+            this._CallMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this._CallMenuButton.AutoSize = false;
+            this._CallMenuButton.AutoToolTip = false;
+            this._CallMenuButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._CallMenuButton.Image = global::CallTracker.Properties.Resources.ContextMenu_Closed_Dark;
+            this._CallMenuButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this._CallMenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._CallMenuButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._CallMenuButton.Margin = new System.Windows.Forms.Padding(0);
+            this._CallMenuButton.Name = "_CallMenuButton";
+            this._CallMenuButton.Size = new System.Drawing.Size(14, 28);
+            this._CallMenuButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._CallMenuButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this._CallMenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
+            // 
+            // _DateSelector
+            // 
+            this._DateSelector.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this._DateSelector.AutoSize = false;
+            this._DateSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._DateSelector.Font = new System.Drawing.Font("Verdana", 7F);
+            this._DateSelector.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this._DateSelector.Name = "_DateSelector";
+            this._DateSelector.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._DateSelector.Size = new System.Drawing.Size(60, 20);
+            this._DateSelector.ToolTipText = "Selected Date";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 28);
             // 
             // _Symptom
             // 
@@ -1700,85 +1784,11 @@
             this._ServicePanel.Padding = new System.Windows.Forms.Padding(3);
             this._ServicePanel.Size = new System.Drawing.Size(180, 211);
             this._ServicePanel.TabIndex = 1;
-            // 
+                        // 
             // customerContactsBindingSource
             // 
             this.customerContactsBindingSource.AllowNew = true;
             this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
-            // 
-            // _PrevCallButton
-            // 
-            this._PrevCallButton.AutoSize = false;
-            this._PrevCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._PrevCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_PrevCallButton.Image")));
-            this._PrevCallButton.Margin = new System.Windows.Forms.Padding(1, 1, 0, 2);
-            this._PrevCallButton.Name = "_PrevCallButton";
-            this._PrevCallButton.RightToLeftAutoMirrorImage = true;
-            this._PrevCallButton.Size = new System.Drawing.Size(20, 18);
-            this._PrevCallButton.Text = "Move previous";
-            // 
-            // _CurrentPosition
-            // 
-            this._CurrentPosition.AccessibleName = "Position";
-            this._CurrentPosition.AutoSize = false;
-            this._CurrentPosition.BackColor = System.Drawing.Color.GhostWhite;
-            this._CurrentPosition.Font = new System.Drawing.Font("Verdana", 7F);
-            this._CurrentPosition.Margin = new System.Windows.Forms.Padding(0);
-            this._CurrentPosition.Name = "_CurrentPosition";
-            this._CurrentPosition.Size = new System.Drawing.Size(46, 19);
-            this._CurrentPosition.Text = "0";
-            this._CurrentPosition.ToolTipText = "Selected Call";
-            // 
-            // _NextCallButton
-            // 
-            this._NextCallButton.AutoSize = false;
-            this._NextCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._NextCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_NextCallButton.Image")));
-            this._NextCallButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._NextCallButton.Name = "_NextCallButton";
-            this._NextCallButton.RightToLeftAutoMirrorImage = true;
-            this._NextCallButton.Size = new System.Drawing.Size(20, 18);
-            this._NextCallButton.Text = "Move next";
-            // 
-            // _CallMenuButton
-            // 
-            this._CallMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this._CallMenuButton.AutoSize = false;
-            this._CallMenuButton.AutoToolTip = false;
-            this._CallMenuButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._CallMenuButton.Image = global::CallTracker.Properties.Resources.ContextMenu_Closed_Dark;
-            this._CallMenuButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this._CallMenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._CallMenuButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._CallMenuButton.Margin = new System.Windows.Forms.Padding(0);
-            this._CallMenuButton.Name = "_CallMenuButton";
-            this._CallMenuButton.Size = new System.Drawing.Size(14, 28);
-            this._CallMenuButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this._CallMenuButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this._CallMenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
-            // 
-            // _DateSelector
-            // 
-            this._DateSelector.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this._DateSelector.AutoSize = false;
-            this._DateSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._DateSelector.Font = new System.Drawing.Font("Verdana", 7F);
-            this._DateSelector.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this._DateSelector.Name = "_DateSelector";
-            this._DateSelector.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._DateSelector.Size = new System.Drawing.Size(60, 20);
-            this._DateSelector.ToolTipText = "Selected Date";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 28);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 28);
             // 
             // EditContact
             // 
@@ -1821,6 +1831,8 @@
             this._UsernameContextMenu.ResumeLayout(false);
             this._NameContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
+            this.bindingNavigator1.ResumeLayout(false);
+            this.bindingNavigator1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
