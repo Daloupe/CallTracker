@@ -381,6 +381,7 @@ namespace CallTracker.View
 
         private BindingSource _bindingSource;
         private object _selectedItem;
+        private bool _active;
         #endregion
 
         #region methods
@@ -394,7 +395,7 @@ namespace CallTracker.View
         /// <param name="displayMember">Name of the proeprty which is shown in the combo box</param>
         public void SetDataBinding(IList dataSource, BindingSource bindingSource, string propertyName, string displayMember)
         {
-           
+            _active = true;
             // init combo box and delete all databinding stuff
             if (DataSource != null)
                 DataSource = null;
@@ -415,6 +416,13 @@ namespace CallTracker.View
             GetCurrentObject();       
         }
 
+        public void UnSetDataBinding()
+        {
+            _active = false;
+            _bindingSource = null;
+            DataSource = null;
+        }
+
         void mBindingSource_CurrentChanged(object sender, EventArgs e)
         {
             GetCurrentObject();
@@ -428,6 +436,8 @@ namespace CallTracker.View
 
         private void GetCurrentObject()
         {
+            if (_active == false)
+                return;
             if (_bindingSource.Count > 0)
             {
                 _selectedItem = FindProperty.FollowPropertyPath(_bindingSource.Current, _propertyName);
@@ -467,7 +477,7 @@ namespace CallTracker.View
         protected override void OnDataSourceChanged(EventArgs e)
         {
             // reset display member
-            if (NullableMode)
+            if (NullableMode && _active)
             {
                 DisplayMember = _displayMember;
                 GetCurrentObject();
@@ -482,7 +492,7 @@ namespace CallTracker.View
         protected override void OnSelectedIndexChanged(EventArgs e)
         {
             // set property to new value
-            if (NullableMode)
+            if (NullableMode && _active)
                 FindProperty.SetPropertyFromPath(_bindingSource.Current, _propertyName, SelectedItem);
 
             base.OnSelectedIndexChanged(e);

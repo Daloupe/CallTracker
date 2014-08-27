@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.BindingSource bindingSource1;
             this._LATPanel = new System.Windows.Forms.FlowLayoutPanel();
             this._Node = new CallTracker.View.LabelledTextBoxLong();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this._CauPing = new CallTracker.View.LabelledComboBoxLong();
             this._NitResults = new CallTracker.View.LabelledTextField();
             this._NBNPanel = new System.Windows.Forms.FlowLayoutPanel();
@@ -73,8 +73,9 @@
             this.userGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dfgfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this._LATPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(bindingSource1)).BeginInit();
             this._NBNPanel.SuspendLayout();
             this._DTVPanel.SuspendLayout();
             this._MTVPanel.SuspendLayout();
@@ -100,7 +101,7 @@
             this._Node.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._Node.ControlHeight = 20;
             this._Node.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._Node.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Node.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Node.DefaultText = "";
             this._Node.Font = new System.Drawing.Font("Verdana", 7F);
             this._Node.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -129,7 +130,7 @@
             // 
             // bindingSource1
             // 
-            this.bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
+            bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // _CauPing
             // 
@@ -171,7 +172,7 @@
             this._NitResults.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._NitResults.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._NitResults.ControlHeight = 93;
-            this._NitResults.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.NitResults", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._NitResults.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.NitResults", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._NitResults.Font = new System.Drawing.Font("Verdana", 7F);
             this._NitResults.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._NitResults.LabelAutoSize = false;
@@ -220,7 +221,7 @@
             this._Bras.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._Bras.ControlHeight = 20;
             this._Bras.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._Bras.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.Bras", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Bras.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.Bras", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Bras.DefaultText = "";
             this._Bras.Font = new System.Drawing.Font("Verdana", 7F);
             this._Bras.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -287,7 +288,7 @@
             this._AVC.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._AVC.ControlHeight = 20;
             this._AVC.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._AVC.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.AVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._AVC.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.AVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._AVC.DefaultText = "";
             this._AVC.Font = new System.Drawing.Font("Verdana", 7F);
             this._AVC.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -321,7 +322,7 @@
             this._CSA.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._CSA.ControlHeight = 20;
             this._CSA.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._CSA.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.CSA", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._CSA.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.CSA", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._CSA.DefaultText = "";
             this._CSA.Font = new System.Drawing.Font("Verdana", 7F);
             this._CSA.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -355,7 +356,7 @@
             this._CVC.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._CVC.ControlHeight = 20;
             this._CVC.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._CVC.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.CVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._CVC.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.CVC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._CVC.DefaultText = "";
             this._CVC.Font = new System.Drawing.Font("Verdana", 7F);
             this._CVC.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -389,7 +390,7 @@
             this._NNI.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._NNI.ControlHeight = 20;
             this._NNI.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._NNI.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.NNI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._NNI.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.NNI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._NNI.DefaultText = "";
             this._NNI.Font = new System.Drawing.Font("Verdana", 7F);
             this._NNI.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -423,7 +424,7 @@
             this._PRI.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._PRI.ControlHeight = 20;
             this._PRI.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._PRI.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.PRI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._PRI.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.PRI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._PRI.DefaultText = "";
             this._PRI.Font = new System.Drawing.Font("Verdana", 7F);
             this._PRI.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -457,7 +458,7 @@
             this._INC.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._INC.ControlHeight = 20;
             this._INC.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._INC.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Fault.INC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._INC.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Fault.INC", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._INC.DefaultText = "";
             this._INC.Font = new System.Drawing.Font("Verdana", 7F);
             this._INC.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -491,7 +492,7 @@
             this._APT.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._APT.ControlHeight = 20;
             this._APT.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._APT.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Fault.APT", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._APT.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Fault.APT", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._APT.DefaultText = "";
             this._APT.Font = new System.Drawing.Font("Verdana", 7F);
             this._APT.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -541,7 +542,7 @@
             this._DTVNode.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._DTVNode.ControlHeight = 20;
             this._DTVNode.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._DTVNode.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._DTVNode.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._DTVNode.DefaultText = "";
             this._DTVNode.Font = new System.Drawing.Font("Verdana", 7F);
             this._DTVNode.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -575,7 +576,7 @@
             this._DTVMsg.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._DTVMsg.ControlHeight = 20;
             this._DTVMsg.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._DTVMsg.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DTVMsg", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._DTVMsg.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.DTVMsg", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._DTVMsg.DefaultText = "";
             this._DTVMsg.Font = new System.Drawing.Font("Verdana", 7F);
             this._DTVMsg.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -671,7 +672,7 @@
             this._STBSmartCard.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._STBSmartCard.ControlHeight = 20;
             this._STBSmartCard.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._STBSmartCard.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DTVSmartCard", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._STBSmartCard.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.DTVSmartCard", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._STBSmartCard.DefaultText = "";
             this._STBSmartCard.Font = new System.Drawing.Font("Verdana", 7F);
             this._STBSmartCard.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -705,7 +706,7 @@
             this._STBLot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._STBLot.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._STBLot.ControlHeight = 32;
-            this._STBLot.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DTVLot", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._STBLot.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.DTVLot", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._STBLot.DefaultText = "";
             this._STBLot.Font = new System.Drawing.Font("Verdana", 7F);
             this._STBLot.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -740,7 +741,7 @@
             this._STBBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._STBBox.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._STBBox.ControlHeight = 32;
-            this._STBBox.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DTVBox", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._STBBox.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.DTVBox", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._STBBox.DefaultText = "";
             this._STBBox.Font = new System.Drawing.Font("Verdana", 7F);
             this._STBBox.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -815,7 +816,7 @@
             this._MTVMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._MTVMac.ControlHeight = 20;
             this._MTVMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._MTVMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MeTVMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._MTVMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.MeTVMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._MTVMac.DefaultText = "";
             this._MTVMac.Font = new System.Drawing.Font("Verdana", 7F);
             this._MTVMac.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -849,7 +850,7 @@
             this._MTVSN.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._MTVSN.ControlHeight = 20;
             this._MTVSN.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._MTVSN.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MeTVSN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._MTVSN.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.MeTVSN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._MTVSN.DefaultText = "";
             this._MTVSN.Font = new System.Drawing.Font("Verdana", 7F);
             this._MTVSN.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -901,7 +902,7 @@
             this._ONCNode.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._ONCNode.ControlHeight = 20;
             this._ONCNode.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ONCNode.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._ONCNode.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ONCNode.DefaultText = "";
             this._ONCNode.Font = new System.Drawing.Font("Verdana", 7F);
             this._ONCNode.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -964,7 +965,7 @@
             this._SpeedTestDown.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._SpeedTestDown.ControlHeight = 20;
             this._SpeedTestDown.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._SpeedTestDown.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DownloadSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._SpeedTestDown.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.DownloadSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._SpeedTestDown.DefaultText = "";
             this._SpeedTestDown.Font = new System.Drawing.Font("Verdana", 7F);
             this._SpeedTestDown.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -998,7 +999,7 @@
             this._SpeedTestUp.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._SpeedTestUp.ControlHeight = 20;
             this._SpeedTestUp.ControlMargin = new System.Windows.Forms.Padding(2, 0, 0, 1);
-            this._SpeedTestUp.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.UploadSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._SpeedTestUp.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.UploadSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._SpeedTestUp.DefaultText = "";
             this._SpeedTestUp.Font = new System.Drawing.Font("Verdana", 7F);
             this._SpeedTestUp.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -1126,7 +1127,7 @@
             this._ModemCMMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._ModemCMMac.ControlHeight = 20;
             this._ModemCMMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemCMMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.CMMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._ModemCMMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.CMMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ModemCMMac.DefaultText = "";
             this._ModemCMMac.Font = new System.Drawing.Font("Verdana", 7F);
             this._ModemCMMac.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -1160,7 +1161,7 @@
             this._ModemMTAMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._ModemMTAMac.ControlHeight = 20;
             this._ModemMTAMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemMTAMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MTAMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._ModemMTAMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.MTAMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ModemMTAMac.DefaultText = "";
             this._ModemMTAMac.Font = new System.Drawing.Font("Verdana", 7F);
             this._ModemMTAMac.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -1194,7 +1195,7 @@
             this._ModemSN.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._ModemSN.ControlHeight = 20;
             this._ModemSN.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemSN.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.ModemSN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._ModemSN.DataBindings.Add(new System.Windows.Forms.Binding("TextField", bindingSource1, "Service.ModemSN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ModemSN.DefaultText = "";
             this._ModemSN.Font = new System.Drawing.Font("Verdana", 7F);
             this._ModemSN.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -1289,24 +1290,24 @@
             this.simulatorToolStripMenuItem,
             this.dfgfdToolStripMenuItem});
             this._EquipmentMenu.Name = "_EquipmentContextMenu";
-            this._EquipmentMenu.Size = new System.Drawing.Size(153, 92);
+            this._EquipmentMenu.Size = new System.Drawing.Size(132, 70);
             // 
             // userGuideToolStripMenuItem
             // 
             this.userGuideToolStripMenuItem.Name = "userGuideToolStripMenuItem";
-            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.userGuideToolStripMenuItem.Text = "User Guide";
             // 
             // simulatorToolStripMenuItem
             // 
             this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
-            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.simulatorToolStripMenuItem.Text = "Simulator";
             // 
             // dfgfdToolStripMenuItem
             // 
             this.dfgfdToolStripMenuItem.Name = "dfgfdToolStripMenuItem";
-            this.dfgfdToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dfgfdToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.dfgfdToolStripMenuItem.Text = "dfgfd";
             // 
             // ServicePanel
@@ -1326,7 +1327,7 @@
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(995, 211);
             this._LATPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(bindingSource1)).EndInit();
             this._NBNPanel.ResumeLayout(false);
             this._DTVPanel.ResumeLayout(false);
             this._MTVPanel.ResumeLayout(false);
@@ -1351,7 +1352,6 @@
         internal LabelledComboBoxLong _CauPing;
         internal LabelledTextField _NitResults;
         internal LabelledBase _ServiceHeading;
-        internal System.Windows.Forms.BindingSource bindingSource1;
         internal LabelledTextBoxLong _DTVNode;
         internal LabelledTextBoxLong _DTVMsg;
         internal LabelledComboBoxLong _DTVConnection;

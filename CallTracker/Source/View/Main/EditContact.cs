@@ -47,7 +47,7 @@ namespace CallTracker.View
         {
             _ServicePanel.Init();
 
-            MainForm._DailyDataBindingSource.ListChanged += _DailyDataBindingSource_PositionChanged;
+            //MainForm._DailyDataBindingSource.ListChanged += _DailyDataBindingSource_PositionChanged;
             MainForm._DailyDataBindingSource.PositionChanged +=_DailyDataBindingSource_PositionChanged;
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
 
@@ -76,26 +76,26 @@ namespace CallTracker.View
         {
             if (MainForm._DailyDataBindingSource.Count == 0)
                 return;
+
             if (((DailyModel) MainForm._DailyDataBindingSource.Current).Contacts.Count == 0)
             {
-                customerContactsBindingSource.RaiseListChangedEvents = false;
+                
                 customerContactsBindingSource.SuspendBinding();
-
-                customerContactsBindingSource.DataSource =
-                    ((DailyModel) MainForm._DailyDataBindingSource.Current).Contacts;
-
+                customerContactsBindingSource.DataSource = ((DailyModel) MainForm._DailyDataBindingSource.Current).Contacts;
                 customerContactsBindingSource.ResumeBinding();
-                customerContactsBindingSource.RaiseListChangedEvents = true;
-                customerContactsBindingSource.ResetBindings(false);
+                
             }
             else
             {
-                customerContactsBindingSource.DataSource =
-                   ((DailyModel)MainForm._DailyDataBindingSource.Current).Contacts;
-                customerContactsBindingSource.ResetBindings(false);
+                customerContactsBindingSource.PositionChanged -= contactsListBindingSource_PositionChanged;
+                //customerContactsBindingSource.RaiseListChangedEvents = false;
+                //_ServicePanel.ChangingDays();
+                customerContactsBindingSource.DataSource = ((DailyModel)MainForm._DailyDataBindingSource.Current).Contacts;
+                //customerContactsBindingSource.RaiseListChangedEvents = true;
+                customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
+                //_ServicePanel.ChangedDays();
                 customerContactsBindingSource.MoveLast();
-            }
-
+            }   
         }
 
         public void Init()
@@ -141,6 +141,7 @@ namespace CallTracker.View
                 ServiceTypePanel.Enabled = true;
                 FaultPanel.Enabled = true;
                 _Note.Enabled = true;
+
                 _NoteContextMenuStrip.Items[0].PerformClick();
                 _BookingDate.BindDatePickerBox(customerContactsBindingSource);
                 _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
@@ -168,6 +169,7 @@ namespace CallTracker.View
             ServiceTypePanel.Enabled = false;
             FaultPanel.Enabled = false;
             _Note.Enabled = false;
+
             _Note.DataBindings.Clear();
             _BookingDate._DateTimePicker.DataBindings.Clear();
             _Outcome._ComboBox.DataBindings.Clear();
@@ -227,15 +229,15 @@ namespace CallTracker.View
 
         public void UpdateActions()
         {
-            List<string> query = (from a in Main.ServicesStore.servicesDataSet.Actions
+            var query = (from a in Main.ServicesStore.servicesDataSet.Actions
                                   where a.OutcomesRow.Description == MainForm.SelectedContact.Fault.Outcome
                                   select a.Description).ToList();
             if(query.Count > 0)
                 _Action.BindComboBox(query, customerContactsBindingSource);
 
-            if (MainForm.SelectedContact != null)
-                if (!query.Contains(MainForm.SelectedContact.Fault.Action))
-                    MainForm.SelectedContact.Fault.Action = "";
+            if (MainForm.SelectedContact == null) return;
+            if (!query.Contains(MainForm.SelectedContact.Fault.Action))
+                MainForm.SelectedContact.Fault.Action = "";
         }
 
 

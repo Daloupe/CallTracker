@@ -35,7 +35,7 @@
 - Added MAC Regex.
 - Added DataTypes: Modem IP address, NTD Serial number, Address ID(LIP), ESN(LAT)
 
-0.3.9.2
+0.3.9.4
 (Minor Features)
 | Smart Copy sets _Equipmnet by checking if _Equipment.Items contains input.
 / Equipment Context Menu with guides and simulators.

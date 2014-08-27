@@ -141,6 +141,21 @@ namespace CallTracker.View
             }
         }
 
+        public void UnbindComboBox<T>()
+        {
+            if (_ComboBox.NullableMode)
+            {
+                _ComboBox.Leave -= _ComboBox_Leave<List<T>>;
+                _ComboBox.UnSetDataBinding();
+            }
+            else
+            {
+                _ComboBox.DataBindings.Clear();
+                _ComboBox.Leave -= _ComboBox_Leave<List<T>>;
+                _ComboBox.DataSource = null;
+            }
+        }
+
         //public void BindComboBox(Array _dataSource, BindingSource _bindingSource)
         //{
         //    _ComboBox.DataSource = null;

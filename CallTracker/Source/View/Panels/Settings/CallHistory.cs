@@ -18,17 +18,14 @@ namespace CallTracker.View
         public override void Init(Main _parent, ToolStripMenuItem _menuItem)
         {
             base.Init(_parent, _menuItem);
-            bindingSource1 = MainForm.editContact.customerContactsBindingSource;
-
-            callHistoryPanel1.SetBindingSource(bindingSource1);
-            dataGridView1.DataSource = bindingSource1;
-
             _DateSelect._ComboBox.DataSource = MainForm.DateBindingSource;
             _DateSelect._ComboBox.DisplayMember = "ShortDate";
             _DateSelect._ComboBox.ValueMember = "LongDate";
+            
 
             //dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
         }
+
         protected override void PaintBorder(object sender, PaintEventArgs e)
         {
             base.PaintBorder(sender, e);
@@ -42,6 +39,10 @@ namespace CallTracker.View
         private int _position;
         public override void ShowSetting()
         {
+            bindingSource1.DataSource = MainForm.editContact.customerContactsBindingSource;
+            callHistoryPanel1.SetBindingSource(bindingSource1);
+            dataGridView1.DataSource = bindingSource1;
+
             CurrentPosition = MainForm.editContact.customerContactsBindingSource.Position;
             _position = MainForm.DateBindingSource.Position;
 
@@ -50,6 +51,10 @@ namespace CallTracker.View
 
         public override void HideSetting()
         {
+            callHistoryPanel1.RemoveBindingSource();
+            dataGridView1.DataSource = null;
+            bindingSource1.DataSource = null;
+
             //dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
             base.HideSetting();  
         }
