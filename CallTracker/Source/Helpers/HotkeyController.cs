@@ -621,7 +621,10 @@ namespace CallTracker.Helpers
         public static bool FindIEByUrl(string url)
         {
             if (!Browser.Exists<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + url + ".*", RegexOptions.IgnoreCase))))
+            {
+                Console.WriteLine("Couldnt find");
                 return false;
+            }
 
             //if (PreviousIEMatch != _url)
             ////{
@@ -668,6 +671,31 @@ namespace CallTracker.Helpers
 
             if (CreateNewIE(url))
                 return true;
+
+            if (browser != null)
+                browser.Dispose();
+            return false;
+        }
+
+        public static bool SilentSearch(string search, string title, string url)
+        {
+            Console.WriteLine("Searchig By Title");
+            if (FindIEByTitle(title))
+            {
+                Console.WriteLine("Found By Title");
+                browser.GoToNoWait(search);
+                browser.Dispose();
+                return true;
+            }
+
+            Console.WriteLine("Searchign by url");
+            if (FindIEByUrl(url))
+            {
+                Console.WriteLine("Found By URL");
+                browser.GoToNoWait(search);
+                browser.Dispose();
+                return true;
+            }
 
             if (browser != null)
                 browser.Dispose();

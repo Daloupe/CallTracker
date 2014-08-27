@@ -29,7 +29,19 @@ namespace CallTracker.View
         internal UserDataStore UserDataStore = new UserDataStore();
         internal DailyDataDataStore DailyDataDataStore = new DailyDataDataStore();
         internal static ServicesData ServicesStore = new ServicesData();
-        internal CustomerContact SelectedContact { get; set; }
+
+        private CustomerContact _selectedContact { get; set; }
+
+        internal CustomerContact SelectedContact
+        {
+            get {return _selectedContact; }
+            set
+            {
+                if (_selectedContact != null)
+                    _selectedContact.FinishUp();
+                _selectedContact = value;
+            }
+        }
 
         internal BindingList<DateFilterItem> DateFilterItems { get; set; }
         internal BindingSource DateBindingSource = new BindingSource();
@@ -898,6 +910,11 @@ namespace CallTracker.View
         private void clearMessagesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.WarningLevel = clearMessagesToolStripMenuItem.Checked;
+        }
+
+        private void autoSearchToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoSearch = autoSearchToolStripMenuItem.Checked;
         }
     }
 }

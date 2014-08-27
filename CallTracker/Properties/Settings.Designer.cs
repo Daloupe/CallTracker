@@ -142,5 +142,17 @@ namespace CallTracker.Properties {
                 this["PullIPCCCallData"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSearch {
+            get {
+                return ((bool)(this["AutoSearch"]));
+            }
+            set {
+                this["AutoSearch"] = value;
+            }
+        }
     }
 }

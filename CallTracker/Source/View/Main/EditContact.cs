@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 using CallTracker.Model;
@@ -635,16 +636,23 @@ namespace CallTracker.View
                 field = (LabelledTextBoxLong)fieldtest;
 
             var searchString = field._DataField.Text;
+            Match match;
             switch (field._Label.Text)
             {
                 case "cmbs":
-                    searchString = new CMBSPattern().Match(MainForm.SelectedContact.CMBS).Result("3$1${2}0$3");
+                    match = new CMBSPattern().Match(MainForm.SelectedContact.CMBS);
+                    if(match.Success)
+                        searchString = match.Result("3$1${2}0$3");
                     break;
                 case "dn":
-                    searchString = new DNPattern().Match(MainForm.SelectedContact.DN).Result("0$1$2$3");
+                    match = new DNPattern().Match(MainForm.SelectedContact.DN);
+                    if(match.Success)
+                        searchString = match.Result("0$1$2$3");
                     break;
                 case "mobile":
-                    searchString = new MobilePattern().Match(MainForm.SelectedContact.Mobile).Result("0$1$2");
+                    match = new MobilePattern().Match(MainForm.SelectedContact.Mobile);
+                    if(match.Success)
+                        searchString = match.Result("0$1$2");
                     break;
             }
             Console.WriteLine(searchString);
@@ -774,6 +782,11 @@ namespace CallTracker.View
         {
             var checkBox = (CheckBox)sender;
             checkBox.ImageIndex = checkBox.Checked ? 1 : 0;
+        }
+
+        private void _Cmbs_Leave(object sender, EventArgs e)
+        {
+            Console.WriteLine("left");
         }
 
 

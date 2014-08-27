@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 using ProtoBuf;
@@ -28,6 +29,7 @@ namespace CallTracker.Model
             RFIssues = String.Empty;
             ConnectionType = String.Empty;
             Throttled = String.Empty;
+            WasSearched = new Dictionary<string, bool>{ { "IFMS", false }, { "Nexus", false }, { "SCAMPS", false }, { "NSI", false }, { "DIMPS", false }, { "UNMT", false } };
         }
 
         public object GetValue(string property)
@@ -104,6 +106,9 @@ namespace CallTracker.Model
         public string MeTVSN { get; set; }
 
         //public INetworkInfo NetworkInfo { get; set; }
+
+        [ProtoMember(40)]
+        public Dictionary<string, bool> WasSearched { get; set; }
 
         public bool FindBRASMatch(string text)
         {

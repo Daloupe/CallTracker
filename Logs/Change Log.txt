@@ -19,6 +19,7 @@
 - White Timeout exceptions caught and EventLogged.
 (Bugs/Changes)
 - Fixed Resources file not building.
+- PR Template not cleaning itself of outage replacements.
 
 0.5.0.0
 (Major Features)
@@ -26,10 +27,11 @@
 (Bugs/Changes)
 - IPCC menu not drawing back color.
 
-0.4.1.0
+0.4.2.0
 (Major Features)
 | Search context menus added.
 (Minor Features)
+| Auto Search added. The 6 searchable systems are searched once at most by the first type of data that is able. 
 | Added GridLinks Search - Win-Ctrl-Numpad.
 
 0.3.11.0

@@ -29,15 +29,15 @@ namespace CallTracker.Helpers
         }
         
         // Deprecated
-        public static string FollowPropertyPath(object value, string path, string altPath)
-        {
-            var output = FollowPropertyPath(value, path);
+        //public static string FollowPropertyPath(object value, string path, string altPath)
+        //{
+        //    var output = FollowPropertyPath(value, path);
 
-            if (String.IsNullOrEmpty(output) && !String.IsNullOrEmpty(altPath))
-                output = FollowPropertyPath(value, altPath);
+        //    if (String.IsNullOrEmpty(output) && !String.IsNullOrEmpty(altPath))
+        //        output = FollowPropertyPath(value, altPath);
 
-            return output;
-        }
+        //    return output;
+        //}
         
         public static string FollowPropertyPath(object value, string path)
         {

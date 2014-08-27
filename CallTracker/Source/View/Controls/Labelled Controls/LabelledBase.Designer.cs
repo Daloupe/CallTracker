@@ -50,6 +50,7 @@
             this._Label.TabIndex = 26;
             this._Label.Text = "AVC:";
             this._Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._Label.Click += new System.EventHandler(this._Label_Click);
             // 
             // _ToolTip
             // 

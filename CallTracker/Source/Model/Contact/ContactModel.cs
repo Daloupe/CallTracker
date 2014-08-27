@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using Castle.Core.Internal;
 using PropertyChanged;
 using ProtoBuf;
 using Utilities.RegularExpressions;
@@ -94,17 +95,27 @@ namespace CallTracker.Model
         [ProtoMember(15)]
         public bool Important { get; set; }
         [ProtoMember(16)]
-        public EventsModel<CallStats> Statistics { get; set; } 
+        public EventsModel<CallStats> Statistics { get; set; }
+        [ProtoMember(20)]
+        public bool OriginalCall { get; set; }
+
+        public void FinishUp()
+        {
+            if (OriginalCall)
+                foreach (var key in Service.WasSearched.Keys.ToList())
+                    Service.WasSearched[key] = true;
+            OriginalCall = false;
+        }
 
         protected List<PRTemplateModel> PRTemplateReplacements = new List<PRTemplateModel>();
-        public void UpdatePrTemplateReplacements(List<PRTemplateModel> _replacements)
+        public void UpdatePrTemplateReplacements(List<PRTemplateModel> replacements)
         {
-            foreach (PRTemplateModel model in _replacements)
+            foreach (var model in replacements)
             {
                 var query = PRTemplateReplacements.FirstOrDefault(x => x.Question == model.Question);
                 if (query != null)
                 {
-                    int idx = PRTemplateReplacements.IndexOf(query);
+                    var idx = PRTemplateReplacements.IndexOf(query);
                     PRTemplateReplacements[idx] = model;
                 }
                 else
@@ -148,6 +159,8 @@ namespace CallTracker.Model
         {
             Id = Properties.Settings.Default.NextContactsId;
             Properties.Settings.Default.NextContactsId = Id + 1;
+
+            OriginalCall = true;
 
             NameSplit = new NameModel();
             Name = String.Empty;
@@ -245,6 +258,28 @@ namespace CallTracker.Model
                 Service.Sip = query.Sip;
 
                 Main.FadingToolTip.ShowandFade("DN: " + DN);
+
+                if (!Properties.Settings.Default.AutoSearch) return true;
+
+                Console.WriteLine(Service.WasSearched["Nexus"]);
+                if (!Service.WasSearched["Nexus"])
+                {
+                    HotkeyController.SilentSearch("https://dimps.optusnet.com.au/search/servno?servno=" + DN, "Nexus", "nexus.optus.com.au");
+                    Service.WasSearched["Nexus"] = true;
+                    Console.WriteLine(  
+                    Service.WasSearched["Nexus"]);
+                }
+                if (!Service.WasSearched["SCAMPS"])
+                {
+                    HotkeyController.SilentSearch("https://scamps.optusnet.com.au/cm.html?q=" + DN, "SCAMPS", "scamps.optusnet.com.au");
+                    Service.WasSearched["SCAMPS"] = true;
+                }
+                if (!Service.WasSearched["DIMPS"])
+                {
+                    HotkeyController.SilentSearch("https://dimps.optusnet.com.au/search/servno?servno=" + DN, "DIMPS", "dimps.optusnet.com.au");
+                    Service.WasSearched["DIMPS"] = true;
+                }
+
                 return true;
             };
             return false;
@@ -257,6 +292,15 @@ namespace CallTracker.Model
             {
                 Mobile = match.Result("0$1$2");
                 Main.FadingToolTip.ShowandFade("Mobile: " + Mobile);
+
+                if (!Properties.Settings.Default.AutoSearch) return true;
+
+                if (!Service.WasSearched["Nexus"])
+                {
+                    HotkeyController.SilentSearch("http://nexus.optus.com.au/index.php?#service/" + Mobile, "Nexus", "nexus.optus.com.au");
+                    Service.WasSearched["Nexus"] = true;
+                }
+
                 return true;
             };
             return false;
@@ -270,6 +314,15 @@ namespace CallTracker.Model
                 ICON = text;
 
                 Main.FadingToolTip.ShowandFade("ICON: " + ICON);
+
+                if (!Properties.Settings.Default.AutoSearch) return true;
+
+                if (!Service.WasSearched["Nexus"])
+                {
+                    HotkeyController.SilentSearch("http://nexus.optus.com.au/index.php?#account/" + ICON, "Nexus", "nexus.optus.com.au");
+                    Service.WasSearched["Nexus"] = true;
+                }
+
                 return true;
             };
             return false;
@@ -288,6 +341,15 @@ namespace CallTracker.Model
                 Service.Sip = query.Sip;
 
                 Main.FadingToolTip.ShowandFade("CMBS: " + CMBS);
+
+                if (!Properties.Settings.Default.AutoSearch) return true;
+
+                if (!Service.WasSearched["Nexus"])
+                {
+                    HotkeyController.SilentSearch("http://nexus.optus.com.au/index.php?#account/" + match.Result("3$1${2}0$3"), "Nexus", "nexus.optus.com.au");
+                    Service.WasSearched["Nexus"] = true;
+                }
+
                 return true;
             };
             return false;
@@ -300,6 +362,27 @@ namespace CallTracker.Model
             {
                 Username = text;
                 Main.FadingToolTip.ShowandFade("Username: " + Username);
+
+                if (!Properties.Settings.Default.AutoSearch) return true;
+
+                if (!Service.WasSearched["DIMPS"])
+                {
+                    HotkeyController.SilentSearch("https://dimps.optusnet.com.au/search/account?account_no=" + Username, "DIMPS", "dimps.optusnet.com.au");
+                    Service.WasSearched["DIMPS"] = true;
+                }
+
+                if (!Service.WasSearched["SCAMPS"])
+                {
+                    HotkeyController.SilentSearch("https://scamps.optusnet.com.au/cm.html?q=" + Username, "SCAMPS", "scamps.optusnet.com.au");
+                    Service.WasSearched["SCAMPS"] = true;
+                }
+
+                if (!Service.WasSearched["UNMT"])
+                {
+                    HotkeyController.SilentSearch("https://staff.optusnet.com.au/tools/usernames/users.html?username=" + Username, "Staff", "staff.optusnet.com.au/tools/usernames");
+                    Service.WasSearched["UNMT"] = true;
+                }
+
                 return true;
             };
 
@@ -308,6 +391,20 @@ namespace CallTracker.Model
             {
                 Username = text.ToLower();
                 Main.FadingToolTip.ShowandFade("Username: " + Username);
+
+                if (!Properties.Settings.Default.AutoSearch) return true;
+
+                if (!Service.WasSearched["DIMPS"])
+                {
+                    HotkeyController.SilentSearch("https://dimps.optusnet.com.au/search/account?account_no=" + Username.ToLower(), "DIMPS", "dimps.optusnet.com.au");
+                    Service.WasSearched["DIMPS"] = true;
+                }
+                if (!Service.WasSearched["SCAMPS"])
+                {
+                    HotkeyController.SilentSearch("https://scamps.optusnet.com.au/cm.html?q=" + Username.ToLower(), "SCAMPS", "scamps.optusnet.com.au");
+                    Service.WasSearched["SCAMPS"] = true;
+                }
+                    
                 return true;
             };
 

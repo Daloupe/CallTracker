@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            CallTracker.DataSets.ServicesDataSet servicesDataSet;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditContact));
+            CallTracker.DataSets.ServicesDataSet servicesDataSet;
             this.FaultPanel = new System.Windows.Forms.Panel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -70,7 +70,6 @@
             this._ImportantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.newCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.autoNewCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.callHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -121,14 +120,15 @@
             this._ICONContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoNewCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._Icon = new CallTracker.View.LabelledTextBoxLong();
+            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._Cmbs = new CallTracker.View.LabelledTextBoxLong();
             this._Username = new CallTracker.View.LabelledTextBoxLong();
             this._Dn = new CallTracker.View.LabelledTextBoxLong();
             this._Name = new CallTracker.View.LabelledTextBoxLong();
             this._Mobile = new CallTracker.View.LabelledTextBoxLong();
             this._Address = new CallTracker.View.LabelledTextBoxLong();
-            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigator1 = new CallTracker.View.BindingNavigatorIgnoreFocus();
             this._PrevCallButton = new System.Windows.Forms.ToolStripButton();
             this._CurrentPosition = new System.Windows.Forms.ToolStripTextBox();
@@ -148,7 +148,6 @@
             this._PR = new CallTracker.View.LabelledTextBox();
             this._ServicePanel = new CallTracker.View.ServicePanel();
             servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
-            ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).BeginInit();
             this.FaultPanel.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -176,15 +175,11 @@
             this._NameContextMenu.SuspendLayout();
             this._CMBSContextMenu.SuspendLayout();
             this._ICONContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // servicesDataSet
-            // 
-            servicesDataSet.DataSetName = "ServicesDataSet";
-            servicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // FaultPanel
             // 
@@ -597,15 +592,6 @@
             this.newCallToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.newCallToolStripMenuItem.Text = "New Call";
             this.newCallToolStripMenuItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // autoNewCallToolStripMenuItem
-            // 
-            this.autoNewCallToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.AutoNewCall;
-            this.autoNewCallToolStripMenuItem.CheckOnClick = true;
-            this.autoNewCallToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autoNewCallToolStripMenuItem.Name = "autoNewCallToolStripMenuItem";
-            this.autoNewCallToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.autoNewCallToolStripMenuItem.Text = "Auto New Call";
             // 
             // toolStripSeparator6
             // 
@@ -1211,6 +1197,20 @@
             this.toolStripMenuItem23.Text = "ICON";
             this.toolStripMenuItem23.Click += new System.EventHandler(this._SearchICON_click);
             // 
+            // autoNewCallToolStripMenuItem
+            // 
+            this.autoNewCallToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.AutoNewCall;
+            this.autoNewCallToolStripMenuItem.CheckOnClick = true;
+            this.autoNewCallToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.autoNewCallToolStripMenuItem.Name = "autoNewCallToolStripMenuItem";
+            this.autoNewCallToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.autoNewCallToolStripMenuItem.Text = "Auto New Call";
+            // 
+            // servicesDataSet
+            // 
+            servicesDataSet.DataSetName = "ServicesDataSet";
+            servicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // _Icon
             // 
             this._Icon.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
@@ -1247,6 +1247,11 @@
             this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Icon.TextField = "";
             // 
+            // customerContactsBindingSource
+            // 
+            this.customerContactsBindingSource.AllowNew = true;
+            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
             // _Cmbs
             // 
             this._Cmbs.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
@@ -1282,6 +1287,7 @@
             this._Cmbs.TabIndex = 14;
             this._Cmbs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Cmbs.TextField = "";
+            this._Cmbs.Leave += new System.EventHandler(this._Cmbs_Leave);
             // 
             // _Username
             // 
@@ -1463,11 +1469,6 @@
             this._Address.TabIndex = 19;
             this._Address.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this._Address.TextField = "";
-            // 
-            // customerContactsBindingSource
-            // 
-            this.customerContactsBindingSource.AllowNew = true;
-            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // bindingNavigator1
             // 
@@ -1690,8 +1691,8 @@
             this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DateField = new System.DateTime(2014, 9, 8, 0, 0, 0, 0);
-            this._BookingDate.DateText = "08/09";
+            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 0, 0, 0, 0);
+            this._BookingDate.DateText = "09/08";
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingDate.HasContextMenu = false;
             this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -1917,7 +1918,6 @@
             this.Size = new System.Drawing.Size(584, 222);
             this.Tag = "584, 222";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorderMain);
-            ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).EndInit();
             this.FaultPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -1946,6 +1946,7 @@
             this._NameContextMenu.ResumeLayout(false);
             this._CMBSContextMenu.ResumeLayout(false);
             this._ICONContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);

@@ -227,6 +227,11 @@ namespace CallTracker.View
             }
         }
 
+        private void _Label_Click(object sender, EventArgs e)
+        {
+            Parent.Focus();
+        }
+
         //public void SetupContextMenu(BindingContext bindingContext)
         //{
         //    //ContextMenuStrip.Opacity = 0;
