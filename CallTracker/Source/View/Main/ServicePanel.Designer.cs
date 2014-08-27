@@ -72,16 +72,19 @@
             this._EquipmentMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.userGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dfgfdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this._LATPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(bindingSource1)).BeginInit();
+            this._LATPanel.SuspendLayout();
             this._NBNPanel.SuspendLayout();
             this._DTVPanel.SuspendLayout();
             this._MTVPanel.SuspendLayout();
             this._ONCPanel.SuspendLayout();
             this._EquipmentMenu.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // bindingSource1
+            // 
+            bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // _LATPanel
             // 
@@ -127,10 +130,6 @@
             this._Node.TabIndex = 77;
             this._Node.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Node.TextField = "";
-            // 
-            // bindingSource1
-            // 
-            bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
             // 
             // _CauPing
             // 
@@ -1284,31 +1283,27 @@
             // 
             // _EquipmentMenu
             // 
+            this._EquipmentMenu.Enabled = false;
             this._EquipmentMenu.Font = new System.Drawing.Font("Verdana", 7F);
             this._EquipmentMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.userGuideToolStripMenuItem,
-            this.simulatorToolStripMenuItem,
-            this.dfgfdToolStripMenuItem});
+            this.simulatorToolStripMenuItem});
             this._EquipmentMenu.Name = "_EquipmentContextMenu";
-            this._EquipmentMenu.Size = new System.Drawing.Size(132, 70);
+            this._EquipmentMenu.Size = new System.Drawing.Size(153, 70);
             // 
             // userGuideToolStripMenuItem
             // 
+            this.userGuideToolStripMenuItem.Enabled = false;
             this.userGuideToolStripMenuItem.Name = "userGuideToolStripMenuItem";
-            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.userGuideToolStripMenuItem.Text = "User Guide";
             // 
             // simulatorToolStripMenuItem
             // 
+            this.simulatorToolStripMenuItem.Enabled = false;
             this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
-            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.simulatorToolStripMenuItem.Text = "Simulator";
-            // 
-            // dfgfdToolStripMenuItem
-            // 
-            this.dfgfdToolStripMenuItem.Name = "dfgfdToolStripMenuItem";
-            this.dfgfdToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.dfgfdToolStripMenuItem.Text = "dfgfd";
             // 
             // ServicePanel
             // 
@@ -1326,8 +1321,8 @@
             this.Name = "ServicePanel";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(995, 211);
-            this._LATPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(bindingSource1)).EndInit();
+            this._LATPanel.ResumeLayout(false);
             this._NBNPanel.ResumeLayout(false);
             this._DTVPanel.ResumeLayout(false);
             this._MTVPanel.ResumeLayout(false);
@@ -1381,7 +1376,6 @@
         private System.Windows.Forms.ContextMenuStrip _EquipmentMenu;
         private System.Windows.Forms.ToolStripMenuItem userGuideToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem simulatorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dfgfdToolStripMenuItem;
 
 
 
