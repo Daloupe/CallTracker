@@ -58,7 +58,9 @@ namespace RegexAssembly
                 new MyRegex("ITCase",   @"\b(1[4-6])" +                           // Year
                                         @"(0\d|1[0-2])" +                       // Month
                                         @"(0\d|[1-3]\d|3[0-1])" +               // Date
-                                        @"(\d{4})$")                             // 4 Digit id
+                                        @"(\d{4})$"),                             // 4 Digit id
+                new MyRegex("MAC",      @"\b(?:([0-9A-F]{2})(-|:)?){6}", RegexOptions.IgnoreCase)                          // Year
+  
             };
 
             Regex.CompileToAssembly(CreateCompilationInfo(RegexList), ASSEMBLYNAME);

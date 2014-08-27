@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 using CallTracker.Model;
 using CallTracker.Helpers;
+using Utilities.RegularExpressions;
 
 namespace CallTracker.View
 {
@@ -103,6 +104,8 @@ namespace CallTracker.View
             _PR.AttachMenu(_PRContextMenu);
             _NPR.AttachMenu(_PRContextMenu);
             _Dn.AttachMenu(_DialContextMenu);
+            _Cmbs.AttachMenu(_CMBSContextMenu);
+            _Icon.AttachMenu(_ICONContextMenu);
             _Name.AttachMenu(_NameContextMenu);
             _Mobile.AttachMenu(_DialContextMenu);
             _Symptom.AttachMenu(_SeverityMenuStrip);
@@ -580,12 +583,79 @@ namespace CallTracker.View
        
         private void _SearchSCAMPS_click(object sender, EventArgs e)
         {
-            HotkeyController.CreateNewIE("https://scamps.optusnet.com.au/cm.html?q=" + ((ToolStripMenuItem)sender).Tag.ToString());
+            HotkeyController.NavigateOrNewIE("https://scamps.optusnet.com.au/cm.html?q=" + ((ToolStripMenuItem)sender).Tag.ToString(), "SCAMPS");
+        }
+
+        private void _SearchDIMPSUsername_click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("https://dimps.optusnet.com.au/display.html?username=" + ((ToolStripMenuItem)sender).Tag.ToString().ToLower(), "DIMPS");
+        }
+
+        private void _SearchDIMPSDn_click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("https://dimps.optusnet.com.au/search/servno?servno=" + ((ToolStripMenuItem)sender).Tag.ToString(), "DIMPS");
+        }
+
+        private void _SearchDIMPSCmbs_click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("https://dimps.optusnet.com.au/search/account?account_no=" + ((ToolStripMenuItem)sender).Tag.ToString(), "DIMPS");
+        }
+
+        private void _SearchNexusService_click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/index.php?#service/" + ((ToolStripMenuItem)sender).Tag.ToString(), "Nexus");
+        }
+
+        private void _SearchNexusAccount_click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/index.php?#account/" + ((ToolStripMenuItem)sender).Tag.ToString(), "Nexus");
+        }
+        private void _SearchICON_click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void _SearchUNMT_click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("https://staff.optusnet.com.au/tools/usernames/users.html?username=" + ((ToolStripMenuItem)sender).Tag.ToString() + "&namespace=optus", "Staff");
+        }
+
+        private void _SearchIFMS_click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F012_ProblemDetail.aspx?SD_NO=" + ((ToolStripMenuItem)sender).Tag.ToString(), "IFMS");
         }
 
         private void _TextFieldContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            e.ClickedItem.Tag = ((LabelledTextBoxLong)((ContextMenuStrip)sender).SourceControl.Parent)._DataField.Text ?? String.Empty;
+            LabelledTextBoxLong field;
+            var fieldtest = ((ContextMenuStrip) sender).SourceControl;
+            if (fieldtest.GetType() != typeof (LabelledTextBoxLong))
+                field = (LabelledTextBoxLong)fieldtest.Parent;
+            else
+                field = (LabelledTextBoxLong)fieldtest;
+
+            var searchString = field._DataField.Text;
+            switch (field._Label.Text)
+            {
+                case "cmbs":
+                    searchString = new CMBSPattern().Match(MainForm.SelectedContact.CMBS).Result("3$1${2}0$3");
+                    break;
+                case "dn":
+                    searchString = new DNPattern().Match(MainForm.SelectedContact.DN).Result("0$1$2$3");
+                    break;
+                case "mobile":
+                    searchString = new MobilePattern().Match(MainForm.SelectedContact.Mobile).Result("0$1$2");
+                    break;
+            }
+            Console.WriteLine(searchString);
+
+            e.ClickedItem.Tag = searchString ?? String.Empty;
+        }
+
+        private void _DialContextMenu_Opening(object sender, CancelEventArgs e)
+        {
+            //if (((ContextMenuStrip)sender).SourceControl != null)
+            //    Console.WriteLine(((ContextMenuStrip)sender).SourceControl.Name);
         }
 
 
@@ -688,11 +758,7 @@ namespace CallTracker.View
 
         }
 
-        private void _DialContextMenu_Opening(object sender, CancelEventArgs e)
-        {
-            //if (((ContextMenuStrip)sender).SourceControl != null)
-            //    Console.WriteLine(((ContextMenuStrip)sender).SourceControl.Name);
-        }
+
 
         private void _Important_CheckedChanged(object sender, EventArgs e)
         {
@@ -709,6 +775,9 @@ namespace CallTracker.View
             var checkBox = (CheckBox)sender;
             checkBox.ImageIndex = checkBox.Checked ? 1 : 0;
         }
+
+
+
 
     }
 }

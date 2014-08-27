@@ -124,6 +124,8 @@ namespace CallTracker.View
             set { _MenuButton.Image = value; }
         }
 
+        public bool HasContextMenu { get; set; }
+
         public LabelledBase()
         {
             InitializeComponent();
@@ -135,6 +137,7 @@ namespace CallTracker.View
         public virtual void AttachMenu(ContextMenuStrip menu)
         {
             ContextMenuStrip = menu;
+            HasContextMenu = true;
         }
 
         //public virtual void AttachMenu(ContextMenuStrip menu, BindingContext context )
@@ -201,12 +204,16 @@ namespace CallTracker.View
             if (ContextMenuStrip != null)
             {
                 _MenuButton.Show();
+                HasContextMenu = true;
                 this.ContextMenuStrip.Opacity = 100;
             }
             else
+            {
+                HasContextMenu = false;
                 _MenuButton.Hide();
+            }
 
-            
+
         }
 
         private void LabelledBase_Load(object sender, EventArgs e)

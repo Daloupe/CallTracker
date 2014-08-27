@@ -16,6 +16,7 @@ namespace CallTracker.Model
         public static BRASPattern BRASPattern = new BRASPattern();
         public static CommonNBNPattern NBNPattern = new CommonNBNPattern();
         public static NodePattern NodePattern = new NodePattern();
+        public static MACPattern MACPattern = new MACPattern();
 
         public ServiceModel()
         {
@@ -136,6 +137,18 @@ namespace CallTracker.Model
             {
                 Node = text;
                 Main.FadingToolTip.ShowandFade("Node: " + Node);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindMACMatch(string text)
+        {
+            var match = MACPattern.Match(text);
+            if (match.Success)
+            {
+                CMMac = text;
+                Main.FadingToolTip.ShowandFade("MAC: " + CMMac);
                 return true;
             };
             return false;

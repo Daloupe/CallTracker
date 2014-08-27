@@ -58,8 +58,13 @@ namespace CallTracker.Helpers
             HotKeyManager.AddOrReplaceHotkey("AddARO", Modifiers.Win | Modifiers.Shift, Keys.C, OnAddARO);
             foreach (var DataPasteHotkey in _dataPasteHotkeys)
                 HotKeyManager.AddOrReplaceHotkey(DataPasteHotkey.Value, Modifiers.Control | Modifiers.Shift, DataPasteHotkey.Key, OnDataPaste);
-            foreach (var GridLinkHotKey in _gridLinkHotkeys)
-                HotKeyManager.AddOrReplaceHotkey(GridLinkHotKey.Value, Modifiers.Win, GridLinkHotKey.Key, OnGridLinks);
+            foreach (var GridLinkHotKey in GridLinkHotkeys)
+            {
+                HotKeyManager.AddOrReplaceHotkey("GL" + GridLinkHotKey.Value, Modifiers.Win, GridLinkHotKey.Key, OnGridLinks);
+                HotKeyManager.AddOrReplaceHotkey("GLS" + GridLinkHotKey.Value, Modifiers.Win | Modifiers.Control, GridLinkHotKey.Key, OnGridLinksSearch);
+            }
+
+
 
             Settings.Instance.AutoMoveMousePointerToTopLeft = false;
             Settings.Instance.AutoCloseDialogs = false;
@@ -103,13 +108,13 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Grid Links ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private static readonly Dictionary<Keys, string> _gridLinkHotkeys = new Dictionary<Keys, string>
+        private static readonly Dictionary<Keys, string> GridLinkHotkeys = new Dictionary<Keys, string>
         {
             {Keys.NumPad0, "0"},
             {Keys.NumPad1, "1"},
             {Keys.NumPad2, "2"},
             {Keys.NumPad3, "3"},
-            {Keys.NumPad4, "4"},
+            {Keys.G, "4"},
             {Keys.NumPad5, "5"},
             {Keys.NumPad6, "6"},
             {Keys.NumPad7, "7"},
@@ -119,7 +124,7 @@ namespace CallTracker.Helpers
 
         private static void OnGridLinks(HotkeyPressedEventArgs e)
         {
-            SystemItem systemItem = parent.UserDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name));
+            SystemItem systemItem = parent.UserDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name.Remove(0,2)));
             parent.SetProgressBarStep(4, String.Format("Switching to: {0}", systemItem.Url));
 
             try
@@ -137,8 +142,60 @@ namespace CallTracker.Helpers
                 else if (NavigateOrNewIE(systemItem.Url, systemItem.Title))
                 {
                     if (Browser.Exists<IE>(Find.ByTitle(systemItem.Title)))
+                    {
                         WindowHelper.ShowWindow(browser.hWnd, WindowHelper.SW_RESTORE);
-                    AutoLogin();
+                        AutoLogin();
+                    }
+                }
+            }
+            finally
+            {
+                parent.UpdateProgressBar(0, String.Format("Switched to: {0}", systemItem.Url), EventLogLevel.ClearStatus);
+            }
+        }
+
+        private static void OnGridLinksSearch(HotkeyPressedEventArgs e)
+        { 
+            var systemItem = parent.UserDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name.Remove(0, 3)));
+            EventLogger.LogNewEvent("Starting Grid Link Search: " + systemItem.Url, EventLogLevel.Brief);
+            parent.SetProgressBarStep(4, String.Format("Searching: {0}", systemItem.Url));
+
+            try
+            {
+                if (systemItem.System == "MAD" || systemItem.System == "OPOM")
+                {
+                    var hWnd = IntPtr.Zero;
+                    hWnd = WindowHelper.FindHWNDByTitle(systemItem.Title);
+
+                    if (hWnd == IntPtr.Zero) return;
+
+                    WindowHelper.ShowWindow(hWnd, WindowHelper.SW_RESTORE);
+                    WindowHelper.SetForegroundWindow(hWnd);
+                }
+                else
+                {
+                    var url = String.Empty;
+                    foreach (var search in systemItem.Searches)
+                    {
+                        var data = FindProperty.FollowPropertyPath(parent.SelectedContact, search.SearchData);
+                        if (String.IsNullOrEmpty(data)) continue;
+                        url = search.SearchURL + data;
+                        break;
+                    }
+
+                    if (String.IsNullOrEmpty(url))
+                    {
+                        EventLogger.LogNewEvent("No relevant data found", EventLogLevel.Brief);
+                        url = systemItem.Url;
+                    }
+
+                    NavigateOrNewIE(url, systemItem.Title);     
+
+                    if (Browser.Exists<IE>(Find.ByTitle(systemItem.Title)))
+                    {
+                        WindowHelper.ShowWindow(browser.hWnd, WindowHelper.SW_RESTORE);
+                        AutoLogin();
+                    }
                 }
             }
             finally
@@ -418,6 +475,7 @@ namespace CallTracker.Helpers
                 else if (contact.Service.FindBRASMatch(text)) { }
                 else if (contact.Service.FindNBNMatch(text)) { }
                 else if (contact.FindUsernameMatch(text)) { }
+                else if (contact.Service.FindMACMatch(text)) { }
                 else if (contact.Address.FindAddressMatch(text)) { }
                 else
                 {
@@ -429,6 +487,7 @@ namespace CallTracker.Helpers
             {
                 if (contact.Service.FindNodeMatch(text)) { }
                 else if (contact.FindCMBSMatch(text)) { }
+                else if (contact.Service.FindMACMatch(text)) { }
                 else if (contact.Address.FindAddressMatch(text)) { }
                 else
                 {

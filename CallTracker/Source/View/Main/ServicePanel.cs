@@ -57,7 +57,7 @@ namespace CallTracker.View
         public void Init()
         {
             //EditContacts.customerContactsBindingSource.PositionChanged += customerContactsBindingSource_PositionChanged;
-            //bindingSource1.DataSource = EditContacts.customerContactsBindingSource;
+            bindingSource1.DataSource = EditContacts.customerContactsBindingSource;
 
             //bindingSource1 = EditContacts.customerContactsBindingSource;
 
@@ -105,6 +105,12 @@ namespace CallTracker.View
             _Equipment.BringToFront();
             _Equipment.Hide();
 
+            _Node.AttachMenu(_NodeContextMenu);
+            _ONCNode.AttachMenu(_NodeContextMenu);
+            _DTVNode.AttachMenu(_NodeContextMenu);
+            _CSA.AttachMenu(_CVCContextMenu);
+            _AVC.AttachMenu(_AVCContextMenu);
+            _PRI.AttachMenu(_PRIContextMenu);
         }
 
         //void customerContactsBindingSource_PositionChanged(object sender, EventArgs e)
@@ -278,6 +284,35 @@ namespace CallTracker.View
 
         private void _DTVPanel_MouseEnter(object sender, EventArgs e)
         {
+        }
+
+        private void _NBNContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (((ContextMenuStrip)sender).SourceControl.Name)
+            {
+                case "_PRI":
+                    HotkeyController.NavigateOrNewIE(
+                    "https://staff.optusnet.com.au/tools/nsi/avc_detail.html?gsid=" +
+                    EditContacts.MainForm.SelectedContact.Service.PRI.Remove(0,3), "NSI");
+                    break;
+                case "_AVC":
+                    HotkeyController.NavigateOrNewIE(
+                    "https://staff.optusnet.com.au/tools/nsi/avc_detail.html?avcid=" +
+                    EditContacts.MainForm.SelectedContact.Service.AVC, "NSI");
+                    break;
+                case "_CVC":
+                    HotkeyController.NavigateOrNewIE(
+                    "https://staff.optusnet.com.au/tools/nsi/avc_detail.html?cvcid=" +
+                    EditContacts.MainForm.SelectedContact.Service.CVC, "NSI");
+                    break;
+            }
+        }
+
+        private void _NodeContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE(
+                "http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F139_SearchByNode.aspx?id=" +
+                EditContacts.MainForm.SelectedContact.Service.Node, "IFMS");
         }
     }
 

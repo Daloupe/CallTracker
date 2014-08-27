@@ -68,7 +68,7 @@ namespace Shortcut
         private void StoreHotkeyCombinationInDictionary(HotkeyCombination hotkeyCombination, HotkeyCallback callback)
         {
             if (_hotkeyCallbacks.ContainsKey(hotkeyCombination)) 
-                throw new HotkeyAlreadyBoundException("This HotkeyCombination has already been bound");
+                throw new HotkeyAlreadyBoundException("This HotkeyCombination has already been bound: " + hotkeyCombination.Modifier + hotkeyCombination.Key);
 
             _hotkeyCallbacks.Add(hotkeyCombination, callback);
         }

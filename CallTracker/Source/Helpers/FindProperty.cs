@@ -18,12 +18,11 @@ namespace CallTracker.Helpers
         public static string FollowPropertyPath(object value, string[] path)
         {
             var output = String.Empty;
-            var x = 0;
 
-            while (String.IsNullOrEmpty(output))
+            for (var x = 0; x < path.Count(); ++x)
             {
                 output = FollowPropertyPath(value, path[x]);
-                ++x;
+                if (!String.IsNullOrEmpty(output)) break;
             }
 
             return output;

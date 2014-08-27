@@ -123,6 +123,7 @@ namespace CallTracker.Model
 
             DecryptData(dataStore);
 
+            //dataStore.GridLinks.SystemItems = new List<SystemItem>();
             dataStore.GridLinks.PopulateIfEmpty();
 
             return dataStore;
