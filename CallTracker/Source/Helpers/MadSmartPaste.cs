@@ -14,18 +14,18 @@ using System.Windows.Automation;
 
 namespace CallTracker.Helpers
 {
-    class MADElementOffset
+    public class MADElementOffset
     {
         public string Name {get; set;}
         public Vector Offset { get; set; }
         public int X {get; set;}
         public int Y {get; set;}
 
-        public MADElementOffset(string _name, int _x, int _y)
+        public MADElementOffset(string name, int x, int y)
         {
-            Name = _name;
-            X = _x;
-            Y = _y;
+            Name = name;
+            X = x;
+            Y = y;
             Offset = new Vector(X, Y);
         }
     }
@@ -54,9 +54,9 @@ namespace CallTracker.Helpers
 
         public static void SetActiveElement(CustomerContact contact)
         {           
-            string windowTitle = "Oracle";
-            ControlType controlType = ControlType.Window;
-            string controlText = "Search";
+            var windowTitle = "Oracle";
+            var controlType = ControlType.Window;
+            var controlText = "Search";
 
             var window = TestStack.White.Desktop.Instance.Windows().Find(obj => obj.Title.Contains(windowTitle));
             if (window == null)

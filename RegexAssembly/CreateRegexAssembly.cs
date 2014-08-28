@@ -13,13 +13,13 @@ namespace RegexAssembly
 
         public static void Main()
         {
-            List<MyRegex> RegexList = new List<MyRegex>
+            var RegexList = new List<MyRegex>
             {
-                new MyRegex("Alpha",    @"^[a-z\-\s]+$", RegexOptions.IgnoreCase),
-                new MyRegex("AlphaNum", @"^[a-z0-9\-\s]+$", RegexOptions.IgnoreCase),
-                new MyRegex("Digit",    @"^[0-9\-\s]+$"),
-                new MyRegex("UsernameLower", @"^[a-z]+[a-z0-9._]*[a-z0-9]+(?:@optusnet.com.au)?$"),
-                new MyRegex("UsernameUpper", @"^[A-Z]+[A-Z0-9._]*[A-Z0-9]+(?:@optusnet.com.au)?$"),
+                new MyRegex("Alpha",    @"^[a-z\-\s\.]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled),
+                new MyRegex("AlphaNum", @"^[a-z\d\-\s]+$", RegexOptions.IgnoreCase),
+                new MyRegex("Digit",    @"^[\d\-\s\.]+$"),
+                new MyRegex("UsernameLower", @"^[a-z]+[a-z\d._]*[a-z\d]+(?:@optusnet.com.au)?$"),
+                new MyRegex("UsernameUpper", @"^[A-Z]+[A-Z\d._]*[A-Z\d]+(?:@optusnet.com.au)?$"),
                 new MyRegex("BRAS",     @"^[a-z]{3}\d{3}\.[a-z]{2}$"),
                 new MyRegex("CommonNBN",@"^([AVCSNIGPR]{3})" +                // Data Type
                                         @"(\d{12})$"),                      // Id
@@ -59,8 +59,11 @@ namespace RegexAssembly
                                         @"(0\d|1[0-2])" +                       // Month
                                         @"(0\d|[1-3]\d|3[0-1])" +               // Date
                                         @"(\d{4})$"),                             // 4 Digit id
-                new MyRegex("MAC",      @"\b(?:([0-9A-F]{2})(-|:)?){6}", RegexOptions.IgnoreCase)                          // Year
-  
+                new MyRegex("MAC",      @"\b(?:([0-9A-F]{2})(-|:)?){6}", RegexOptions.IgnoreCase),
+                new MyRegex("AddressId",@"\b(\d{6})"),
+                new MyRegex("ESN",      @"\b(\d{6})", RegexOptions.IgnoreCase),
+                new MyRegex("NTDSN",    @"\b(\d{12})", RegexOptions.IgnoreCase),
+                new MyRegex("IP",       @"\b(\d{3}\.){3}(\d{3})", RegexOptions.IgnoreCase),
             };
 
             Regex.CompileToAssembly(CreateCompilationInfo(RegexList), ASSEMBLYNAME);
@@ -68,9 +71,9 @@ namespace RegexAssembly
 
         private static RegexCompilationInfo[] CreateCompilationInfo(List<MyRegex> regexList)
         {
-            RegexCompilationInfo[] regexes = new RegexCompilationInfo[regexList.Count];
+           var regexes = new RegexCompilationInfo[regexList.Count];
 
-            for (int i = 0; i < regexList.Count; i++)
+            for (var i = 0; i < regexList.Count; i++)
                 regexes[i] = new RegexCompilationInfo(regexList[i].Pattern,
                                                       regexList[i].Options,
                                                       regexList[i].Name + NAMESUFFIX,

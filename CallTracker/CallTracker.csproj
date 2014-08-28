@@ -128,6 +128,12 @@
     <Compile Include="Source\View\Popups\FadingTooltip.Designer.cs">
       <DependentUpon>FadingTooltip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\View\Popups\AboutScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\AboutScreen.Designer.cs">
+      <DependentUpon>AboutScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Popups\SplashScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -136,6 +142,9 @@
     </Compile>
     <EmbeddedResource Include="Source\View\Popups\FadingTooltip.resx">
       <DependentUpon>FadingTooltip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\AboutScreen.resx">
+      <DependentUpon>AboutScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Popups\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
@@ -268,9 +277,7 @@
     <Content Include="Data\Resources.bin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Data\Contacts.bin">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Include="Data\Contacts.bin" />
     <None Include="Fonts\OptusVoiceBETA-Bold.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

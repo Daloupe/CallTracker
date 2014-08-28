@@ -1,19 +1,19 @@
 ﻿using System;
 using System.ComponentModel;
-using System.IO;
 using System.Windows.Forms;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Drawing;
 using System.Diagnostics;
 using System.Collections.Generic;
 
 using TestStack.White.Configuration;
 using TestStack.White.Factory;
+using TestStack.White.ScreenMap;
+using TestStack.White.UIA;
 using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
 using System.Windows.Automation;
+using TestStack.White.UIItems.WPFUIItems;
 using Application = TestStack.White.Application;
 
 using Shortcut;
@@ -54,7 +54,7 @@ namespace AutomationTester
             controlTypeCombo.DisplayMember = "ProgrammaticName";
 
             HotKeyManager = new HotKeyManager();
-            HotKeyManager.AddOrReplaceHotkey("Controls", Modifiers.Control | Modifiers.Shift, Keys.C, listWindowControls);
+            HotKeyManager.AddOrReplaceHotkey("Controls", Modifiers.Control | Modifiers.Shift, Keys.T, getControlValue);
 
             //_modalWindowsBindingSource.DataSource = _modalWindows;
             //_mdiChildrenBindingSource.DataSource = _mdiChildren;
@@ -140,7 +140,7 @@ namespace AutomationTester
         private void listDesktopWindows_Click(object sender, EventArgs e)
         {
             _log.AppendText("Getting Desktop Windows" + Environment.NewLine);
-             ListWindows("Desktop", TestStack.White.Desktop.Instance.Windows(), true);
+             ListWindows("Desktop", TestStack.White.Desktop.Instance.Windows(), listModalWindowsCheckBox.Checked);
         }
 
         private void listApplicationWindows_Click(object sender, EventArgs e)
@@ -174,6 +174,21 @@ namespace AutomationTester
             ListControls(applicationTitle.Text, (ControlType)controlTypeCombo.SelectedItem);
         }
 
+        private void getControlValue(HotkeyPressedEventArgs e)
+        {
+            _log.AppendText("Getting " + applicationName.Text + " Control with name " + controlName.Text + Environment.NewLine);
+            GetControlValue(applicationTitle.Text, (ControlType)controlTypeCombo.SelectedItem, controlName.Text);
+        }
+
+        private void getWindowControlButton_Click(object sender, EventArgs e)
+        {
+            _log.AppendText("Getting " + applicationName.Text + " Control with name " + controlName.Text + Environment.NewLine);
+            GetControlValue(applicationTitle.Text, (ControlType)controlTypeCombo.SelectedItem, controlName.Text);
+        }
+
+
+
+
         public void ListApplicationWindowsFromProcessTitle(string name, string title)
         {
             var process = Process.GetProcesses().FirstOrDefault(pList => pList.MainWindowTitle.Contains(title));
@@ -202,7 +217,7 @@ namespace AutomationTester
                 return;
             }
 
-            ListWindows(name, application.GetWindows(), true);
+            ListWindows(name, application.GetWindows(), listModalWindowsCheckBox.Checked);
         }
 
         public void ListWindows(string name, List<Window> windows, bool getModalWindows = false)
@@ -250,24 +265,70 @@ namespace AutomationTester
 
                 if (!controlType.Equals(ControlType.Table)) continue;
 
-                var table = (TestStack.White.UIItems.TableItems.Table)control;
-                var row = control.GetElement(SearchCriteria.ByControlType(ControlType.Custom));
-                if(row != null)
-                    _log.AppendText("\t\t"+row.Current.Name);
+                var table = ((TestStack.White.UIItems.TableItems.Table)control).AutomationElement;
 
-                ////_log.AppendText("\t\tHas Table With " + table.Rows.Count + " Rows and " + table.Rows[0].Cells.Count + " Cells");
-                //var rowIndex = 0;
-                //foreach (var row in table.Rows)
-                //{
-                //    var cellIndex = 0;
-                //    foreach (var cell in row.Cells)
-                //    { 
-                //        _log.AppendText("\n\t\tRow[" + rowIndex + "].Cell[" + cellIndex + "] = " + cell.Value + "\n");
-                //        ++cellIndex;
-                //    }
-                //    ++rowIndex;
-                //}
+                // Now it's using UI Automation
+                var headerLine = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Header));
+                var cacheRequest = new CacheRequest { AutomationElementMode = AutomationElementMode.Full, TreeScope = TreeScope.Children };
+                cacheRequest.Add(AutomationElement.NameProperty);
+                cacheRequest.Add(ValuePattern.Pattern);
+                cacheRequest.Push();
+                var gridLines = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
+                cacheRequest.Pop();
+
+                Console.WriteLine(headerLine.Count + " columns");
+                Console.WriteLine(gridLines.Count + " rows");
+
+                var gridData = new string[headerLine.Count, gridLines.Count];
+
+                var headerIndex = 0;
+                foreach (AutomationElement header in headerLine)
+                {
+                    gridData[headerIndex++, 0] = header.Current.Name;
+                }
+
+                var rowIndex = 1;
+                foreach (AutomationElement row in gridLines)
+                {
+                    foreach (AutomationElement col in row.CachedChildren)
+                    {
+                        // Marry up data with headers (for some reason the orders were different
+                        // when viewing in something like UISpy so this makes sure it's correct
+                        headerIndex = 0;
+                        for (headerIndex = 0; headerIndex < headerLine.Count; headerIndex++)
+                        {
+                            if (gridData[headerIndex, 0] == col.Cached.Name)
+                                break;
+                        }
+
+                        gridData[headerIndex, rowIndex] = (col.GetCachedPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
+                        _log.AppendText(gridData[headerIndex, rowIndex] + Environment.NewLine);
+                    }
+                    rowIndex++;
+                }
             }
+        }
+
+        public void GetControlValue(string windowTitle, ControlType controlType, string controlName)
+        {
+            var window = TestStack.White.Desktop.Instance.Windows().Find(obj => obj.Title.Contains(windowTitle));
+            if (window == null)
+            {
+                _log.AppendText("Window Not Found: " + windowTitle + Environment.NewLine);
+                return;
+            }
+
+            var control = window.Get(SearchCriteria.ByControlType(controlType).AndByText(controlName));
+            //control.LogStructure();
+            if(control == null)
+            {
+                _log.AppendText("Control Not Found: " + controlName + Environment.NewLine);
+                return;
+            }
+            //_log.AppendText(control.CachedChildren.Count + Environment.NewLine);
+            //control.GetMultiple(SearchCriteria.All);
+            //foreach (var prop in control.Focus())
+            _log.AppendText(control + Environment.NewLine);
         }
 
 
@@ -419,6 +480,7 @@ namespace AutomationTester
             _windowsBindingSource.RaiseListChangedEvents = true;
             _windowsBindingSource.ResetBindings(false);
         }
+
 
 
 

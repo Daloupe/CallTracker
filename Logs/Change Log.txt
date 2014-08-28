@@ -24,24 +24,31 @@
 (Bugs/Changes)
 - Fixed Resources file not building.
 - PR Template not cleaning itself of outage replacements.
-- Added DataTypes: Modem IP address, NTD Serial number, Address ID(LIP), ESN(LAT)
 
 0.5.0.0
 (Major Features)
 / MAD Smart Paste working.
 (Bugs/Changes)
+- Confirmed Bras, NTDSN, AddressId, and ESN Regexes.
 - IPCC menu not drawing back color.
+
+0.4.3.0
+(Minor Features)
+| Added About Screen.
 
 0.4.2.3
 (Major Features)
 | Search context menus added.
 (Minor Features)
 | Auto Search added. The 6 searchable systems are searched once at most by the first type of data that is able. 
-| Added GridLinks Search - Win-Ctrl-Numpad.
-(Bugs/Changes)
 | Added option to not Auto Search on Active Window.
+| Added GridLinks Search - Win-Ctrl-Numpad.
+| Added DataTypes: Modem IP address, NTD Serial number, Address ID(LIP), ESN(LAT) and guessed at Regexes.
+(Bugs/Changes)
 | Splash Screen doesnt show in taskbar.
 | Fixed a derserialization issue by setting WasSearched list to OverwriteList = true, skipping the constructer on other classes that used other types of lists and added a ProtoBeforeDeserialization attirbute to initialize them.
+| Adjusted Auto tesing to try capture ipcc table data.
+
 
 0.3.11.0
 (Minor Features)

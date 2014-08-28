@@ -1,6 +1,6 @@
 ﻿namespace CallTracker.View
 {
-    partial class SplashScreen
+    partial class AboutScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.Wingman = new System.Windows.Forms.Label();
-            this._LoadingBar = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
-            this._LoadingText = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this._VersionLabel = new System.Windows.Forms.Label();
             this._Version = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,17 +49,6 @@
             this.Wingman.TabIndex = 0;
             this.Wingman.Text = "Wingman";
             // 
-            // _LoadingBar
-            // 
-            this._LoadingBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(173)))));
-            this._LoadingBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this._LoadingBar.Location = new System.Drawing.Point(25, 180);
-            this._LoadingBar.Name = "_LoadingBar";
-            this._LoadingBar.Size = new System.Drawing.Size(250, 23);
-            this._LoadingBar.Step = 1;
-            this._LoadingBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
-            this._LoadingBar.TabIndex = 1;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -75,15 +61,45 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Wingman";
             // 
-            // _LoadingText
+            // _VersionLabel
             // 
-            this._LoadingText.BackColor = System.Drawing.Color.Transparent;
-            this._LoadingText.Font = new System.Drawing.Font("Gautami", 11.75F);
-            this._LoadingText.ForeColor = System.Drawing.Color.PowderBlue;
-            this._LoadingText.Location = new System.Drawing.Point(19, 204);
-            this._LoadingText.Name = "_LoadingText";
-            this._LoadingText.Size = new System.Drawing.Size(250, 28);
-            this._LoadingText.TabIndex = 3;
+            this._VersionLabel.BackColor = System.Drawing.Color.Transparent;
+            this._VersionLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._VersionLabel.Font = new System.Drawing.Font("Gautami", 7.75F);
+            this._VersionLabel.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this._VersionLabel.Location = new System.Drawing.Point(183, 66);
+            this._VersionLabel.Margin = new System.Windows.Forms.Padding(0);
+            this._VersionLabel.Name = "_VersionLabel";
+            this._VersionLabel.Size = new System.Drawing.Size(49, 14);
+            this._VersionLabel.TabIndex = 4;
+            this._VersionLabel.Text = "Version: 0.32.3";
+            // 
+            // _Version
+            // 
+            this._Version.BackColor = System.Drawing.Color.Transparent;
+            this._Version.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CallTracker.Properties.Settings.Default, "Version", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Version.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Version.Font = new System.Drawing.Font("Gautami", 7.75F);
+            this._Version.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this._Version.Location = new System.Drawing.Point(225, 66);
+            this._Version.Margin = new System.Windows.Forms.Padding(0);
+            this._Version.Name = "_Version";
+            this._Version.Size = new System.Drawing.Size(65, 14);
+            this._Version.TabIndex = 6;
+            this._Version.Text = global::CallTracker.Properties.Settings.Default.Version;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.Font = new System.Drawing.Font("Gautami", 7.75F);
+            this.label3.ForeColor = System.Drawing.Color.PaleTurquoise;
+            this.label3.Location = new System.Drawing.Point(75, 215);
+            this.label3.Margin = new System.Windows.Forms.Padding(0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(152, 14);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "jesse.poulton@optus.com.au";
             // 
             // pictureBox1
             // 
@@ -96,59 +112,29 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // _Version
-            // 
-            this._Version.BackColor = System.Drawing.Color.Transparent;
-            this._Version.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::CallTracker.Properties.Settings.Default, "Version", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Version.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Version.Font = new System.Drawing.Font("Gautami", 7.75F);
-            this._Version.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this._Version.Location = new System.Drawing.Point(225, 67);
-            this._Version.Margin = new System.Windows.Forms.Padding(0);
-            this._Version.Name = "_Version";
-            this._Version.Size = new System.Drawing.Size(65, 14);
-            this._Version.TabIndex = 11;
-            this._Version.Text = global::CallTracker.Properties.Settings.Default.Version;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label3.Font = new System.Drawing.Font("Gautami", 7.75F);
-            this.label3.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.label3.Location = new System.Drawing.Point(183, 67);
-            this.label3.Margin = new System.Windows.Forms.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 14);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Version: 0.32.3";
-            // 
-            // SplashScreen
+            // AboutScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::CallTracker.Properties.Resources.blue_gradient_300;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(300, 238);
-            this.Controls.Add(this._Version);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this._LoadingBar);
-            this.Controls.Add(this._LoadingText);
+            this.Controls.Add(this._Version);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this._VersionLabel);
             this.Controls.Add(this.Wingman);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "SplashScreen";
+            this.Name = "AboutScreen";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SplashScreen";
             this.TopMost = true;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SplashScreen_FormClosed);
-            this.Load += new System.EventHandler(this.SplashScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -158,12 +144,10 @@
         #endregion
 
         private System.Windows.Forms.Label Wingman;
-        private System.Windows.Forms.ProgressBar _LoadingBar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        internal System.Windows.Forms.Label _LoadingText;
-        internal System.Windows.Forms.Timer timer1;
+        internal System.Windows.Forms.Label _VersionLabel;
         internal System.Windows.Forms.Label _Version;
         internal System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

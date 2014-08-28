@@ -18,6 +18,10 @@ namespace CallTracker.Model
         public static CommonNBNPattern NBNPattern = new CommonNBNPattern();
         public static NodePattern NodePattern = new NodePattern();
         public static MACPattern MACPattern = new MACPattern();
+        public static IPPattern IPPattern = new IPPattern();
+        public static AddressIdPattern AddressIdPattern = new AddressIdPattern();
+        public static ESNPattern ESNPattern = new ESNPattern();
+        public static NTDSNPattern NTDSNPattern = new NTDSNPattern();
 
         public ServiceModel()
         {
@@ -27,7 +31,7 @@ namespace CallTracker.Model
             NitResults = String.Empty;
             ModemStatus = String.Empty;
             RFIssues = String.Empty;
-            ConnectionType = String.Empty;
+            DTVLights = String.Empty;
             Throttled = String.Empty;
             WasSearched = new Dictionary<string, bool>{ { "IFMS", false }, { "Nexus", false }, { "SCAMPS", false }, { "NSI", false }, { "DIMPS", false }, { "UNMT", false } };
         }
@@ -40,81 +44,96 @@ namespace CallTracker.Model
 
         public object GetValue(string property)
         {
-            PropertyInfo prop = this.GetType().GetProperty(property);
+            var prop = GetType().GetProperty(property);
             return prop.GetValue(this, null);
         }
 
         public void SetValue(string property, string value)
         {
-            PropertyInfo prop = this.GetType().GetProperty(property);
+            var prop = GetType().GetProperty(property);
             prop.SetValue(this, value, null);
         }
 
         [ProtoMember(1)]
         public string Equipment { get; set; }
-        [ProtoMember(2)]
+        [ProtoMember(2, OverwriteList = true)]
+        public Dictionary<string, bool> WasSearched { get; set; }
+
+        // HFC
+        [ProtoMember(10)]
         public string Node { get; set; }
 
-        [ProtoMember(3)]
+        // NBN
+        [ProtoMember(20)]
         public string AVC { get; set; }
-        [ProtoMember(4)]
+        [ProtoMember(21)]
         public string CVC { get; set; }
-        [ProtoMember(5)]
+        [ProtoMember(22)]
         public string CSA { get; set; }
-        [ProtoMember(6)]
+        [ProtoMember(23)]
         public string NNI { get; set; }
-        [ProtoMember(7)]
+        [ProtoMember(24)]
         public string PRI { get; set; }
-        [ProtoMember(8)]
+        [ProtoMember(25)]
         public string Bras { get; set; }
-        [ProtoMember(9)]
+        [ProtoMember(26)]
         public string Sip { get; set; }
+        [ProtoMember(27)]
+        public string NTDSN { get; set; }
 
-        [ProtoMember(10)]
+        // LAT
+        [ProtoMember(30)]
         public string CauPing { get; set; }
-        [ProtoMember(11)]
+        [ProtoMember(30)]
         public string NitResults { get; set; }
+        [ProtoMember(32)]
+        public string ESN { get; set; }
 
-        [ProtoMember(15)]
-        public string ModemStatus { get; set; }
-        [ProtoMember(16)]
-        public string RFIssues { get; set; }
-        [ProtoMember(17)]
-        public string CMMac { get; set; }
-        [ProtoMember(18)]
+        // LIP
+        [ProtoMember(40)]
+        public string AddressId { get; set; }
+        [ProtoMember(41)]
         public string MTAMac { get; set; }
-        [ProtoMember(19)]
+
+        // Modem
+        [ProtoMember(50)]
+        public string ModemStatus { get; set; }
+        [ProtoMember(51)]
+        public string RFIssues { get; set; }
+        [ProtoMember(52)]
+        public string CMMac { get; set; }
+        [ProtoMember(54)]
         public string ModemSN { get; set; }
         
-        [ProtoMember(20)]
+        // Internet
+        [ProtoMember(60)]
         public string DownloadSpeed { get; set; }
-        [ProtoMember(21)]
+        [ProtoMember(61)]
         public string UploadSpeed { get; set; }
-        [ProtoMember(22)]
+        [ProtoMember(62)]
         public string Throttled { get; set; }
-        [ProtoMember(23)]
+        [ProtoMember(63)]
         public string ModemIP { get; set; }
 
-        [ProtoMember(25)]
+        //DTV
+        [ProtoMember(71)]
         public string DTVMsg { get; set; }
-        [ProtoMember(26)]
+        [ProtoMember(72)]
         public string DTVSmartCard { get; set; }
-        [ProtoMember(27)]
+        [ProtoMember(73)]
         public string DTVLot { get; set; }
-        [ProtoMember(28)]
+        [ProtoMember(74)]
         public string DTVBox { get; set; }
-        [ProtoMember(29)]
-        public string ConnectionType { get; set; }
+        [ProtoMember(75)]
+        public string DTVLights { get; set; }
 
-        [ProtoMember(30)]
+        // MTV
+        [ProtoMember(80)]
         public string MeTVMac { get; set; }
-        [ProtoMember(31)]
+        [ProtoMember(81)]
         public string MeTVSN { get; set; }
 
         //public INetworkInfo NetworkInfo { get; set; }
-
-        [ProtoMember(40, OverwriteList = true)]
-        public Dictionary<string, bool> WasSearched { get; set; }
 
         public bool FindBRASMatch(string text)
         {
@@ -160,6 +179,54 @@ namespace CallTracker.Model
             {
                 CMMac = text;
                 Main.FadingToolTip.ShowandFade("MAC: " + CMMac);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindIPMatch(string text)
+        {
+            var match = IPPattern.Match(text);
+            if (match.Success)
+            {
+                ModemIP = text;
+                Main.FadingToolTip.ShowandFade("IP: " + ModemIP);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindNTDSNMatch(string text)
+        {
+            var match = NTDSNPattern.Match(text);
+            if (match.Success)
+            {
+                NTDSN = text;
+                Main.FadingToolTip.ShowandFade("NTD SN: " + NTDSN);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindAddressIdMatch(string text)
+        {
+            var match = AddressIdPattern.Match(text);
+            if (match.Success)
+            {
+                AddressId = text;
+                Main.FadingToolTip.ShowandFade("Address Id: " + AddressId);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindESNMatch(string text)
+        {
+            var match = ESNPattern.Match(text);
+            if (match.Success)
+            {
+                ESN = text;
+                Main.FadingToolTip.ShowandFade("ESN: " + ESN);
                 return true;
             };
             return false;

@@ -87,7 +87,7 @@ namespace CallTracker.View
                                      .Where(x => x.EquipmentRow.Type == "CAU")
                                      .Select(x => x.EquipmentStatusesRow.Status)
                                      .ToList(), EditContacts.customerContactsBindingSource, true);
-            _DTVConnection.BindComboBox(Main.ServicesStore.servicesDataSet.EquipmentEquipmentStatusesMatch
+            _DTVLights.BindComboBox(Main.ServicesStore.servicesDataSet.EquipmentEquipmentStatusesMatch
                                      .Where(x => x.EquipmentRow.Type == "STB")
                                      .Select(x => x.EquipmentStatusesRow.Status)
                                      .ToList(), EditContacts.customerContactsBindingSource, true);

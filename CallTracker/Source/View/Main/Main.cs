@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Diagnostics;
+using System.Drawing.Text;
 using System.Collections.Generic;
 
 using PropertyChanged;
@@ -54,16 +55,20 @@ namespace CallTracker.View
         internal HelpKeyCommands helpKeyCommands;
         internal DatabaseView databaseView;
         internal Ratecodes Ratecodes;
+        internal AboutScreen AboutScreen;
 
         internal static ICONNoteGenerator NoteGen;
         public HotkeyController HotKeys;
 
         public static FadingTooltip FadingToolTip;
 
+        
+
         private readonly SplashScreen _splash;
         public Main(SplashScreen splash)
         {
             InitializeComponent();
+
             _splash = splash;
             _splash.Init(this);
 
@@ -79,7 +84,7 @@ namespace CallTracker.View
             SetStyle(ControlStyles.DoubleBuffer, true);
             //SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
 
-            versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
+            //versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
 
             CoreAppXmlConfiguration.Instance.BusyTimeout = 2000;
             CoreAppXmlConfiguration.Instance.FindWindowTimeout = 2000;
@@ -214,6 +219,7 @@ namespace CallTracker.View
             ChangeCallStateMenuItem(logOutToolStripMenuItem);
 
             FadingToolTip = new FadingTooltip();
+            AboutScreen = new AboutScreen();
         }
 
         void _DateSelector_PositionChanged(object sender, EventArgs e)
@@ -922,6 +928,16 @@ namespace CallTracker.View
         private void autoSearchActiveWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.AutoSearchActiveWindow = autoSearchActiveWindowToolStripMenuItem.Checked;
+        }
+
+        private void toolTipAsControlBoxToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.ToolTipAsControlBox = toolTipAsControlBoxToolStripMenuItem.Checked;
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutScreen.Show();
         }
     }
 }

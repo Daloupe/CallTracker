@@ -2,6 +2,7 @@
 
 using System.Drawing;
 using System.Drawing.Text;
+using System.Linq;
 using System.Windows.Forms;
 
 using System.IO;
@@ -10,43 +11,32 @@ namespace CallTracker.View
 {
     public partial class SplashScreen : Form
     {
-        Main MainForm;
-        PrivateFontCollection pfc = new PrivateFontCollection();
-
+        Main _mainForm;
+        
         public SplashScreen()
         {
             InitializeComponent();
-
-            if(File.Exists("Fonts\\OptusVoiceBETA-Bold.ttf"))
-            {
-                pfc.AddFontFile("Fonts\\OptusVoiceBETA-Bold.ttf");
-                Wingman.Font = new Font(pfc.Families[0], 40, FontStyle.Bold);
-            }
-
-            if (File.Exists("Fonts\\trade-gothic-lt-1361519976.ttf"))
-            {
-                pfc.AddFontFile("Fonts\\trade-gothic-lt-1361519976.ttf");
-                _LoadingText.Font = new Font(pfc.Families[1], 12, FontStyle.Regular);
-            } 
+            var fontCount = Program.Fonts.Families.Count();
+            if (fontCount > 0)
+                Wingman.Font = new Font(Program.Fonts.Families[0], 40, FontStyle.Bold);
+            if (fontCount > 1)
+                _LoadingText.Font = new Font(Program.Fonts.Families[1], 12, FontStyle.Regular);
+     
         }
 
         private void SplashScreen_Load(object sender, EventArgs e)
         {
-            _Version.Text = "Version: " + Properties.Settings.Default.Version;
-            //var pfc2 = new PrivateFontCollection();
-            //pfc2.AddFontFile("trade-gothic-lt-1361519976.ttf");
-            //_LoadingText.Font = new Font(pfc2.Families[0], 11, FontStyle.Regular);
+            //_Version.Text = Properties.Settings.Default.Version;
         }
-        public void Init(Main _mainForm)
+        public void Init(Main mainForm)
         {
-            MainForm = _mainForm;
-            
+            _mainForm = mainForm; 
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            MainForm.quitToolStripMenuItem_Click(sender, e);
-            MainForm.CancelLoad = true;
+            _mainForm.quitToolStripMenuItem_Click(sender, e);
+            _mainForm.CancelLoad = true;
         }
 
         public void UpdateProgress(string _update, int _value)
@@ -78,7 +68,7 @@ namespace CallTracker.View
 
         public void pictureBox3_Click(object sender, EventArgs e)
         {
-            MainForm.Opacity = 100;
+            _mainForm.Opacity = 100;
             this.Close();      
         }
 

@@ -62,6 +62,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.listExeWindowsButton = new System.Windows.Forms.Button();
             this.listWindowControlsButton = new System.Windows.Forms.Button();
+            this.getWindowControlButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -310,6 +311,7 @@
             this.applicationTitle.Name = "applicationTitle";
             this.applicationTitle.Size = new System.Drawing.Size(138, 20);
             this.applicationTitle.TabIndex = 15;
+            this.applicationTitle.Text = "CMake";
             // 
             // listMdiChildButton
             // 
@@ -367,6 +369,7 @@
             this.controlName.Name = "controlName";
             this.controlName.Size = new System.Drawing.Size(94, 20);
             this.controlName.TabIndex = 15;
+            this.controlName.Text = "Search:";
             // 
             // label10
             // 
@@ -391,17 +394,28 @@
             // 
             this.listWindowControlsButton.Location = new System.Drawing.Point(310, 149);
             this.listWindowControlsButton.Name = "listWindowControlsButton";
-            this.listWindowControlsButton.Size = new System.Drawing.Size(62, 34);
+            this.listWindowControlsButton.Size = new System.Drawing.Size(81, 34);
             this.listWindowControlsButton.TabIndex = 22;
             this.listWindowControlsButton.Text = "List Window Controls";
             this.listWindowControlsButton.UseVisualStyleBackColor = true;
             this.listWindowControlsButton.Click += new System.EventHandler(this.listWindowControlsButton_Click);
+            // 
+            // getWindowControlButton
+            // 
+            this.getWindowControlButton.Location = new System.Drawing.Point(397, 149);
+            this.getWindowControlButton.Name = "getWindowControlButton";
+            this.getWindowControlButton.Size = new System.Drawing.Size(81, 34);
+            this.getWindowControlButton.TabIndex = 23;
+            this.getWindowControlButton.Text = "Get Window Control";
+            this.getWindowControlButton.UseVisualStyleBackColor = true;
+            this.getWindowControlButton.Click += new System.EventHandler(this.getWindowControlButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 301);
+            this.Controls.Add(this.getWindowControlButton);
             this.Controls.Add(this.listWindowControlsButton);
             this.Controls.Add(this.listExeWindowsButton);
             this.Controls.Add(this.label9);
@@ -466,6 +480,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button listExeWindowsButton;
         private System.Windows.Forms.Button listWindowControlsButton;
+        private System.Windows.Forms.Button getWindowControlButton;
     }
 }
 

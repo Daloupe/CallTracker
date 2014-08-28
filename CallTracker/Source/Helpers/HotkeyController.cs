@@ -400,6 +400,7 @@ namespace CallTracker.Helpers
         private static readonly Stopwatch Stopwatch = new Stopwatch();
         private static void OnSmartCopy(HotkeyPressedEventArgs e)
         {
+            //StopwatchTester.Reset();
             //StopwatchTester.Start();
             EventLogger.LogNewEvent("Starting Smart Copy", EventLogLevel.Brief);
             
@@ -436,33 +437,31 @@ namespace CallTracker.Helpers
             var firstchar = text.Substring(0, 1);
 
             var contact = parent.SelectedContact;        
-            if(new DigitPattern().IsMatch(text))
+            if(text.IsDigits())
             {
                 if (firstchar == "1" && textlen == 8)
                 {
                     contact.Fault.PR = text;
                     Main.FadingToolTip.ShowandFade("PR: " + contact.Fault.PR);                   
                 }
-                else if (contact.FindMobileMatch(text)) { }
                 else if (contact.FindDNMatch(text)) { }
                 else if (contact.FindCMBSMatch(text)) { }
                 else if (contact.FindICONMatch(text)) { }
-                else if (contact.Fault.FindITCaseMatch(text)) { }
+                else if (contact.FindMobileMatch(text)) { }
+                //else if (contact.Service.FindNTDSNMatch(text)) { }
+                //else if (contact.Service.FindAddressIdMatch(text)) { }
+                else if (contact.Service.FindIPMatch(text)) { }
+                else if (contact.Fault.FindITCaseMatch(text)) { }         
                 else
-                {
-                    contact.Note += text;
-                    Main.FadingToolTip.ShowandFade("Added to Note");
-                }
+                    contact.AddToNote(text);
+                    
             } 
-            else if (new AlphaPattern().IsMatch(text))
+            else if (text.IsLetters())
             {
                 if (contact.FindNameMatch(text)) { }
                 else if (contact.FindUsernameMatch(text)) { }
                 else
-                {
-                    contact.Note += text;
-                    Main.FadingToolTip.ShowandFade("Added to Note");
-                }
+                    contact.AddToNote(text);
             } 
             else if (Char.IsLetter(text, 0))
             {
@@ -471,28 +470,22 @@ namespace CallTracker.Helpers
                     contact.Service.Equipment = text;
                     Main.FadingToolTip.ShowandFade("Equipment: " + text);
                 }
-                else if (contact.Service.FindBRASMatch(text)) { }
-                else if (contact.Service.FindNBNMatch(text)) { }
                 else if (contact.FindUsernameMatch(text)) { }
+                else if (contact.Service.FindNBNMatch(text)) { }
+                else if (contact.Service.FindBRASMatch(text)) { }
                 else if (contact.Service.FindMACMatch(text)) { }
                 else if (contact.Address.FindAddressMatch(text)) { }
                 else
-                {
-                    contact.Note += text;
-                    Main.FadingToolTip.ShowandFade("Added to Note");
-                }
+                    contact.AddToNote(text);
             }
             else
             {
                 if (contact.Service.FindNodeMatch(text)) { }
-                else if (contact.FindCMBSMatch(text)) { }
                 else if (contact.Service.FindMACMatch(text)) { }
+                //else if (contact.Service.FindESNMatch(text)) { }
                 else if (contact.Address.FindAddressMatch(text)) { }
                 else
-                {
-                    contact.Note += text;
-                    Main.FadingToolTip.ShowandFade("Added to Note");
-                }
+                    contact.AddToNote(text);
             }
 
             EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1}ticks", text, Stopwatch.ElapsedTicks));
@@ -500,14 +493,8 @@ namespace CallTracker.Helpers
                 Clipboard.SetText(oldClip);
 
             //EventLogger.LogNewEvent(StopwatchTester.ElapsedMilliseconds + "ms", EventLogLevel.Status);
-            //StopwatchTester.Reset();
+            //StopwatchTester.Stop();
         }
-
-
-
-
-
-
 
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -562,12 +549,12 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public static bool FindBrowser()
         {
-            string title = WindowHelper.GetActiveWindowTitle();
+            var title = WindowHelper.GetActiveWindowTitle();
             if (!FindIEByTitle(title))
             {
                 EventLogger.LogNewEvent(String.Format("Unable to find page by title: {0}", title));
 
-                IntPtr hwnd = WindowHelper.GetActiveWindowHWND();
+                var hwnd = WindowHelper.GetActiveWindowHWND();
                 if (!FindIEByHWND(hwnd))
                 {
                     EventLogger.LogNewEvent(String.Format("Unable to find page by HWND: {0}", hwnd.ToString()));
@@ -598,8 +585,8 @@ namespace CallTracker.Helpers
 
         public static bool FindIEByTitle(string title)
         {      
-            var currentTitle = Regex.Match(title, @"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?").Groups[1].Value;
-
+            var currentTitle = Regex.Match(title, @"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?", RegexOptions.IgnoreCase).Groups[1].Value;
+            //var currentTitle = new Regex(".*" + title + ".*", RegexOptions.IgnoreCase);//new Regex("(http(s)?://)?.*" + title + ".*", RegexOptions.IgnoreCase);
             EventLogger.LogNewEvent("Finding IE by Title", EventLogLevel.Brief);
             if (!Browser.Exists<IE>(Find.ByTitle(currentTitle)))
             {
@@ -611,7 +598,7 @@ namespace CallTracker.Helpers
             //{
                 //if (browser != null)
                 //    browser.Dispose();
-                browser = Browser.AttachTo<IE>(Find.ByTitle(currentTitle));
+            browser = Browser.AttachTo<IE>(Find.ByTitle(currentTitle));
                 browser.AutoClose = false;
                 //PreviousIEMatch = currentTitle;
             //}
@@ -621,8 +608,9 @@ namespace CallTracker.Helpers
 
         public static bool FindIEByUrl(string url)
         {
+            var urlRegex = new Regex("(http(s)?://)?.*" + url + ".*", RegexOptions.IgnoreCase);
             EventLogger.LogNewEvent("Finding IE by URL", EventLogLevel.Brief);
-            if (!Browser.Exists<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + url + ".*", RegexOptions.IgnoreCase))))
+            if (!Browser.Exists<IE>(Find.ByUrl(urlRegex)))
             {
                 EventLogger.LogNewEvent("Unable to Find IE by URL", EventLogLevel.Brief);
                 return false;
@@ -632,8 +620,8 @@ namespace CallTracker.Helpers
             ////{
             //    if (browser != null)
             //        browser.Dispose();
-                browser = Browser.AttachTo<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + url + ".*", RegexOptions.IgnoreCase)));
-                browser.AutoClose = false;
+            browser = Browser.AttachTo<IE>(Find.ByUrl(urlRegex));
+            browser.AutoClose = false;
                 //PreviousIEMatch = _url;
             //}
 
@@ -682,26 +670,28 @@ namespace CallTracker.Helpers
         public static bool SilentSearch(string search, string title, string url)
         {
             // Browser object should be disposed of manually after caller is done calling SilenetSearch.
+            var activeHwnd = WindowHelper.GetActiveWindowHWND();
             if (FindIEByTitle(title))
             {
-                if (WindowHelper.GetActiveWindowHWND() == browser.hWnd && !Properties.Settings.Default.AutoSearchActiveWindow)
+                if (activeHwnd == browser.hWnd && !Properties.Settings.Default.AutoSearchActiveWindow)
                 {
                     EventLogger.LogNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
                     return false;
                 }
                 browser.GoToNoWait(search);
+                EventLogger.LogNewEvent("Searching: "+ search, EventLogLevel.Brief);
                 return true;
             }
 
             if (FindIEByUrl(url))
             {
-                if (WindowHelper.GetActiveWindowHWND() == browser.hWnd && !Properties.Settings.Default.AutoSearchActiveWindow)
+                if (activeHwnd == browser.hWnd && !Properties.Settings.Default.AutoSearchActiveWindow)
                 {
                     EventLogger.LogNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
                     return false;
                 }
-
                 browser.GoToNoWait(search);
+                EventLogger.LogNewEvent("Searching: " + search, EventLogLevel.Brief);
                 return true;
             }
 

@@ -3,10 +3,12 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
+using System.Text.RegularExpressions;
 using Castle.Core.Internal;
 using PropertyChanged;
 using ProtoBuf;
 using Utilities.RegularExpressions;
+using System.Diagnostics;
 
 using CallTracker.View;
 using CallTracker.Helpers;
@@ -255,20 +257,26 @@ namespace CallTracker.Model
         //    if (currentObject != null)
         //        currentObject.SetValue(nestedObject, value, null);
         //}
-
+        public void AddToNote(string text)
+        {
+            if (String.IsNullOrEmpty(Note) || Note.EndsWith("\r\n"))
+                Note += text;
+            else
+                Note += Environment.NewLine + text;
+        }
         public bool FindDNMatch(string text)
         {
             var match = DNPattern.Match(text);
             if (match.Success)
             {
                 DN = match.Result("0$1$2$3");
+                Main.FadingToolTip.ShowandFade("DN: " + DN);
+
                 var query = (from a in Main.ServicesStore.servicesDataSet.States
                              where a.Areacode == match.Groups[1].Value
                              select a).First();
                 Address.State = query.NameShort;
                 Service.Sip = query.Sip;
-
-                Main.FadingToolTip.ShowandFade("DN: " + DN);
 
                 if (Properties.Settings.Default.AutoSearch)
                 {
@@ -290,9 +298,8 @@ namespace CallTracker.Model
                             "DIMPS", "dimps.optusnet.com.au");
                         Service.WasSearched["DIMPS"] = true;
                     }
-
                     if (HotkeyController.browser != null)
-                        HotkeyController.browser.Dispose();
+                        HotkeyController.browser.Dispose();      
                 }
 
                 return true;

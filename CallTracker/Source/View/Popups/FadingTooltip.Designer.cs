@@ -63,7 +63,9 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.Wheat;
             this.ClientSize = new System.Drawing.Size(87, 33);
+            this.ControlBox = global::CallTracker.Properties.Settings.Default.ToolTipAsControlBox;
             this.Controls.Add(this.label1);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ControlBox", global::CallTracker.Properties.Settings.Default, "ToolTipAsControlBox", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
