@@ -39,9 +39,9 @@
             this._SetupLoginsPanel = new System.Windows.Forms.Panel();
             this._LoginConfirm = new System.Windows.Forms.PictureBox();
             this._LoginCancel = new System.Windows.Forms.PictureBox();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this._Name = new CallTracker.View.LabelledTextBox();
             this._Id = new CallTracker.View.LabelledTextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this._SetupLoginsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._LoginConfirm)).BeginInit();
@@ -56,7 +56,7 @@
             this.Wingman.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
             this.Wingman.Location = new System.Drawing.Point(22, 16);
             this.Wingman.Name = "Wingman";
-            this.Wingman.Size = new System.Drawing.Size(256, 65);
+            this.Wingman.Size = new System.Drawing.Size(256, 64);
             this.Wingman.TabIndex = 0;
             this.Wingman.Text = "Wingman";
             // 
@@ -79,7 +79,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(173)))));
             this.label1.Location = new System.Drawing.Point(19, 66);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 65);
+            this.label1.Size = new System.Drawing.Size(256, 64);
             this.label1.TabIndex = 2;
             this.label1.Text = "Wingman";
             // 
@@ -181,6 +181,7 @@
             this._Name.ControlHeight = 30;
             this._Name.DefaultText = "";
             this._Name.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Name.HasContextMenu = false;
             this._Name.LabelActiveColor = System.Drawing.Color.Empty;
             this._Name.LabelAutoSize = true;
             this._Name.LabelBorderColor = System.Drawing.Color.Empty;
@@ -216,6 +217,7 @@
             this._Id.ControlHeight = 30;
             this._Id.DefaultText = "";
             this._Id.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Id.HasContextMenu = false;
             this._Id.LabelActiveColor = System.Drawing.Color.Empty;
             this._Id.LabelAutoSize = true;
             this._Id.LabelBorderColor = System.Drawing.Color.Empty;
@@ -257,7 +259,12 @@
             this.Controls.Add(this._SetupLoginsPanel);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SplashScreen";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SplashScreen";
             this.TopMost = true;

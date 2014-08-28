@@ -916,5 +916,10 @@ namespace CallTracker.View
         {
             Properties.Settings.Default.AutoSearch = autoSearchToolStripMenuItem.Checked;
         }
+
+        private void autoSearchActiveWindowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoSearchActiveWindow = autoSearchActiveWindowToolStripMenuItem.Checked;
+        }
     }
 }

@@ -154,5 +154,17 @@ namespace CallTracker.Properties {
                 this["AutoSearch"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSearchActiveWindow {
+            get {
+                return ((bool)(this["AutoSearchActiveWindow"]));
+            }
+            set {
+                this["AutoSearchActiveWindow"] = value;
+            }
+        }
     }
 }

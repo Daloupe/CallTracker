@@ -49,7 +49,7 @@ namespace CallTracker.View
         {
             _ServicePanel.Init();
 
-            //MainForm._DailyDataBindingSource.ListChanged += _DailyDataBindingSource_PositionChanged;
+            MainForm._DailyDataBindingSource.ListChanged += _DailyDataBindingSource_PositionChanged;
             MainForm._DailyDataBindingSource.PositionChanged +=_DailyDataBindingSource_PositionChanged;
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
 
@@ -79,7 +79,7 @@ namespace CallTracker.View
             if (MainForm._DailyDataBindingSource.Count == 0)
                 return;
 
-            if (((DailyModel) MainForm._DailyDataBindingSource.Current).Contacts.Count == 0)
+            if (((DailyModel) MainForm._DailyDataBindingSource.Current).Contacts.Count < 2)
             {
                 
                 customerContactsBindingSource.SuspendBinding();
@@ -96,7 +96,10 @@ namespace CallTracker.View
                 //customerContactsBindingSource.RaiseListChangedEvents = true;
                 customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
                 //_ServicePanel.ChangedDays();
-                customerContactsBindingSource.MoveLast();
+                //if (customerContactsBindingSource.Count < 2)
+                //    customerContactsBindingSource.ResetBindings(false);
+                //else
+                    customerContactsBindingSource.MoveLast();
             }   
         }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-
+using CallTracker.Helpers;
 using ProtoBuf;
 using PropertyChanged;
 
@@ -11,7 +11,7 @@ using CallTracker.View;
 namespace CallTracker.Model
 {
     [ImplementPropertyChanged]
-    [ProtoContract]
+    [ProtoContract(SkipConstructor = true)]
     public class ServiceModel
     {
         public static BRASPattern BRASPattern = new BRASPattern();
@@ -128,7 +128,7 @@ namespace CallTracker.Model
             var match = NBNPattern.Match(text);
             if (match.Success)
             {
-                CustomerContact.SetProperty(this, text.Substring(0, 3), text);
+                FindProperty.SetPropertyFromPath(this, text.Substring(0, 3), text);
                 Main.FadingToolTip.ShowandFade(text.Substring(0, 3) + ": " + text);
                 return true;
             };

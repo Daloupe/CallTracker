@@ -13,7 +13,7 @@ using CallTracker.Helpers;
 
 namespace CallTracker.Model
 {
-    [ProtoContract]
+    [ProtoContract(SkipConstructor = true)]
     [ImplementPropertyChanged]
     public class CustomerContact : INotifyPropertyChanged
     {
@@ -47,6 +47,46 @@ namespace CallTracker.Model
                 new DataBindType("GSI","Service.GSI"),
                 new DataBindType("Equipment","Service.Equipment"),
             };
+
+        
+        public CustomerContact()
+        {
+            Id = Properties.Settings.Default.NextContactsId;
+            Properties.Settings.Default.NextContactsId = Id + 1;
+
+            OriginalCall = true;
+
+            NameSplit = new NameModel();
+            Name = String.Empty;
+            Username = String.Empty;
+            DN = String.Empty;
+            Mobile = String.Empty;
+            CMBS = String.Empty;
+            ICON = String.Empty;
+            Note = String.Empty;
+            IDok = false;
+
+            Address = new ContactAddress();
+            Service = new ServiceModel();
+            Fault = new FaultModel();
+            Contacts = new ContactStatistics();
+            Booking = new BookingModel();
+
+            //PRTemplateList.AddRange(HFCTemplate);
+
+            Contacts.StartDate = DateTime.Today;
+            Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();
+
+            ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)NameSplit).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
+        }
+        //[ProtoBeforeDeserialization]
+        //private void Foo()
+        //{
+        //    Dict.Clear();
+        //}
 
         [ProtoMember(1)]
         public int Id { get; set; }
@@ -155,40 +195,6 @@ namespace CallTracker.Model
             }
         }
 
-        public CustomerContact()
-        {
-            Id = Properties.Settings.Default.NextContactsId;
-            Properties.Settings.Default.NextContactsId = Id + 1;
-
-            OriginalCall = true;
-
-            NameSplit = new NameModel();
-            Name = String.Empty;
-            Username = String.Empty;
-            DN = String.Empty;
-            Mobile = String.Empty;
-            CMBS = String.Empty;
-            ICON = String.Empty;
-            Note = String.Empty;
-            IDok = false;
-
-            Address = new ContactAddress();
-            Service = new ServiceModel();
-            Fault = new FaultModel();
-            Contacts = new ContactStatistics();
-            Booking = new BookingModel();
-
-            //PRTemplateList.AddRange(HFCTemplate);
-
-            Contacts.StartDate = DateTime.Today;
-            Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();
-
-            ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
-            ((INotifyPropertyChanged)NameSplit).PropertyChanged += CustomerContact_PropertyChanged;
-            ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
-            ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
-        }
-
         //public ContactArchiveModel ArchiveContact()
         //{
             
@@ -203,47 +209,47 @@ namespace CallTracker.Model
                 NestedChange(sender, e);
         }
 
-        public static object GetProperty(object target, string property)
-        {
-            if (String.IsNullOrEmpty(property)) return null;
+        //public static object GetProperty(object target, string property)
+        //{
+        //    if (String.IsNullOrEmpty(property)) return null;
 
-            Type currentType = target.GetType();
-            object value = target;
+        //    Type currentType = target.GetType();
+        //    object value = target;
 
-            foreach (string propertyName in property.Split('.'))
-            {
-                PropertyInfo prop = currentType.GetProperty(propertyName);
-                if (prop != null)
-                {
-                    value = prop.GetValue(value, null);
-                    currentType = prop.PropertyType;
-                }
-            }
-            return value;
-        }
+        //    foreach (string propertyName in property.Split('.'))
+        //    {
+        //        PropertyInfo prop = currentType.GetProperty(propertyName);
+        //        if (prop != null)
+        //        {
+        //            value = prop.GetValue(value, null);
+        //            currentType = prop.PropertyType;
+        //        }
+        //    }
+        //    return value;
+        //}
 
-        public static void SetProperty(object target, string property, string value)
-        {
-            if (String.IsNullOrEmpty(property)) return;
+        //public static void SetProperty(object target, string property, string value)
+        //{
+        //    if (String.IsNullOrEmpty(property)) return;
 
-            Type currentType = target.GetType();
-            PropertyInfo currentObject = null;
-            object nestedObject = target;
+        //    Type currentType = target.GetType();
+        //    PropertyInfo currentObject = null;
+        //    object nestedObject = target;
 
-            string[] propSplit = property.Split('.');
+        //    string[] propSplit = property.Split('.');
 
-            for (int i = 0; i < propSplit.Length; i++)
-            {
-                currentObject = currentType.GetProperty(propSplit[i]);
-                if (currentObject != null)
-                    currentType = currentObject.PropertyType;
-                if (i < propSplit.Length - 1)
-                    nestedObject = currentObject.GetValue(nestedObject, null);
-            }
+        //    for (int i = 0; i < propSplit.Length; i++)
+        //    {
+        //        currentObject = currentType.GetProperty(propSplit[i]);
+        //        if (currentObject != null)
+        //            currentType = currentObject.PropertyType;
+        //        if (i < propSplit.Length - 1)
+        //            nestedObject = currentObject.GetValue(nestedObject, null);
+        //    }
 
-            if (currentObject != null)
-                currentObject.SetValue(nestedObject, value, null);
-        }
+        //    if (currentObject != null)
+        //        currentObject.SetValue(nestedObject, value, null);
+        //}
 
         public bool FindDNMatch(string text)
         {
@@ -261,13 +267,10 @@ namespace CallTracker.Model
 
                 if (!Properties.Settings.Default.AutoSearch) return true;
 
-                Console.WriteLine(Service.WasSearched["Nexus"]);
                 if (!Service.WasSearched["Nexus"])
                 {
                     HotkeyController.SilentSearch("https://dimps.optusnet.com.au/search/servno?servno=" + DN, "Nexus", "nexus.optus.com.au");
                     Service.WasSearched["Nexus"] = true;
-                    Console.WriteLine(  
-                    Service.WasSearched["Nexus"]);
                 }
                 if (!Service.WasSearched["SCAMPS"])
                 {

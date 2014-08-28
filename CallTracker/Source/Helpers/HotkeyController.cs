@@ -413,6 +413,7 @@ namespace CallTracker.Helpers
             }
 
             SendKeys.SendWait("^c");
+            Stopwatch.Reset();
             SendKeys.Flush();
             Stopwatch.Start();
             while (!Clipboard.ContainsText())
@@ -499,7 +500,6 @@ namespace CallTracker.Helpers
             EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1}ticks", text, Stopwatch.ElapsedTicks));
             if (!String.IsNullOrEmpty(oldClip))
                 Clipboard.SetText(oldClip);
-            Stopwatch.Reset();
 
             //EventLogger.LogNewEvent(StopwatchTester.ElapsedMilliseconds + "ms", EventLogLevel.Status);
             //StopwatchTester.Reset();
@@ -599,12 +599,15 @@ namespace CallTracker.Helpers
         }
 
         public static bool FindIEByTitle(string title)
-        {
-            string currentTitle = Regex.Match(title, @"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?").Groups[1].Value;
+        {      
+            var currentTitle = Regex.Match(title, @"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?").Groups[1].Value;
 
-
+            EventLogger.LogNewEvent("Finding IE by Title", EventLogLevel.Brief);
             if (!Browser.Exists<IE>(Find.ByTitle(currentTitle)))
+            {
+                EventLogger.LogNewEvent("Unable to Find IE by Title", EventLogLevel.Brief);
                 return false;
+            }
 
             //if (PreviousIEMatch != currentTitle)
             //{
@@ -620,9 +623,10 @@ namespace CallTracker.Helpers
 
         public static bool FindIEByUrl(string url)
         {
+            EventLogger.LogNewEvent("Finding IE by URL", EventLogLevel.Brief);
             if (!Browser.Exists<IE>(Find.ByUrl(new Regex("(http(s)?://)?.*" + url + ".*", RegexOptions.IgnoreCase))))
             {
-                Console.WriteLine("Couldnt find");
+                EventLogger.LogNewEvent("Unable to Find IE by URL", EventLogLevel.Brief);
                 return false;
             }
 
@@ -653,7 +657,7 @@ namespace CallTracker.Helpers
         }
 
         public static bool NavigateOrNewIE(string url, string title = "")
-        {
+        {      
             if (FindIEByUrl(url))
             {
                 new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
@@ -668,7 +672,7 @@ namespace CallTracker.Helpers
                     return true;
                 }
             }
-
+            EventLogger.LogNewEvent("Creating new IE window", EventLogLevel.Brief);
             if (CreateNewIE(url))
                 return true;
 
@@ -679,19 +683,28 @@ namespace CallTracker.Helpers
 
         public static bool SilentSearch(string search, string title, string url)
         {
-            Console.WriteLine("Searchig By Title");
             if (FindIEByTitle(title))
             {
-                Console.WriteLine("Found By Title");
+                if (WindowHelper.GetActiveWindowHWND() == browser.hWnd && !Properties.Settings.Default.AutoSearchActiveWindow)
+                {
+                    EventLogger.LogNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
+                    browser.Dispose();
+                    return false;
+                }
                 browser.GoToNoWait(search);
                 browser.Dispose();
                 return true;
             }
 
-            Console.WriteLine("Searchign by url");
             if (FindIEByUrl(url))
             {
-                Console.WriteLine("Found By URL");
+                if (WindowHelper.GetActiveWindowHWND() == browser.hWnd && !Properties.Settings.Default.AutoSearchActiveWindow)
+                {
+                    EventLogger.LogNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
+                    browser.Dispose();
+                    return false;
+                }
+
                 browser.GoToNoWait(search);
                 browser.Dispose();
                 return true;

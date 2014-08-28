@@ -27,12 +27,15 @@
 (Bugs/Changes)
 - IPCC menu not drawing back color.
 
-0.4.2.0
+0.4.2.1
 (Major Features)
 | Search context menus added.
 (Minor Features)
 | Auto Search added. The 6 searchable systems are searched once at most by the first type of data that is able. 
 | Added GridLinks Search - Win-Ctrl-Numpad.
+/ Added option to not Auto Search on Active Window.
+(Bugs/Changes)
+| Splash Screen doesnt show in taskbar.
 
 0.3.11.0
 (Minor Features)
