@@ -154,7 +154,8 @@ namespace CallTracker.View
                 if (MainForm.SelectedContact != null)
                     MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
                 MainForm.SelectedContact = (CustomerContact)customerContactsBindingSource.Current;//((ObjectView<CustomerContact>)customerContactsBindingSource.Current).Object;
-                MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
+                if (MainForm.SelectedContact != null)
+                    MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
 
                 flowLayoutPanel1.Enabled = true;
                 ServiceTypePanel.Enabled = true;

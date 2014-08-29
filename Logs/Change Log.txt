@@ -12,25 +12,27 @@
 //- PasteBind AltData accepts "," for multiple AltData types eg AltData = "Username,Mobile|0$1$2".
 
 
-0.7.0.0
-(Major Features)
-- Cretaed Daily Stats interface.
 
-0.6.1.3
+
+0.7.1.3
 (Major Features)
-- IPCC Data Pull working.
+/ IPCC Data Pull working.
 (Minor Feature)
 - White Timeout exceptions caught and EventLogged.
 (Bugs/Changes)
 - Fixed Resources file not building.
 - PR Template not cleaning itself of outage replacements.
 
-0.5.0.0
+0.6.0.0
 (Major Features)
 / MAD Smart Paste working.
 (Bugs/Changes)
 - Confirmed Bras, NTDSN, AddressId, and ESN Regexes.
 - IPCC menu not drawing back color.
+
+0.5.0.0
+(Major Features)
+/ Created Daily Stats interface.
 
 0.4.4.3
 (Minor Features)

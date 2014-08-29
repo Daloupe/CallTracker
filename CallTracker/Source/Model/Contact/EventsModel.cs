@@ -11,26 +11,30 @@ using WatiN.Core;
 namespace CallTracker.Model
 {
     [ProtoContract]
-    public class EventsModel<T> where T : StatsModel
+    internal class EventsModel<T> where T : StatsModel
     {      
         [ProtoMember(1)]
-        public bool IsDirty;
+        protected bool IsDirty;
         [ProtoMember(2)]
-        public List<EventModel<CallEventTypes>> CallEvents { get; set; }
+        protected List<EventModel<CallEventTypes>> CallEvents { get; set; }
         [ProtoMember(3)]
-        public List<EventModel<AppEventTypes>> AppEvents { get; set; }
+        protected List<EventModel<AppEventTypes>> AppEvents { get; set; }
         [ProtoMember(4)]
-        public T Statistics { get; set; }
+        internal T Statistics { get; set; }
 
-        public EventsModel()
+        internal CallEventTypes LastCallEvent { get; set; }
+
+        internal EventsModel()
         {
             CallEvents = new List<EventModel<CallEventTypes>>();
             AppEvents = new List<EventModel<AppEventTypes>>();
             Statistics = default(T);
+            AddCallEvent(CallEventTypes.RecordCreated);
+            AddAppEvent(AppEventTypes.RecordCreated);
             IsDirty = true;
         }
 
-        public T ComputeStatistics()
+        internal T ComputeStatistics()
         {
             if (Statistics.IsDirty == false)
                 return Statistics;
@@ -39,7 +43,7 @@ namespace CallTracker.Model
             return Statistics;
         }
 
-        public T ComputeStatistics(List<CallStats> callStats)
+        internal T ComputeStatistics(List<CallStats> callStats)
         {
             if (Statistics.IsDirty == false)
                 return Statistics;
@@ -49,15 +53,18 @@ namespace CallTracker.Model
             return Statistics;
         }
 
-        public void AddCallEvent(EventModel<CallEventTypes> newEvent)
+        internal void AddCallEvent(CallEventTypes newEvent)
         {
-            CallEvents.Add(newEvent);
+            CallEvents.Add(new EventModel<CallEventTypes>(newEvent));
+            LastCallEvent = newEvent;
             IsDirty = true;
         }
 
-        public void AddAppEvent(EventModel<AppEventTypes> newEvent)
+        internal void AddAppEvent(AppEventTypes newEvent)
         {
-            AppEvents.Add(newEvent);
+            AppEvents.Add(new EventModel<AppEventTypes>(newEvent));
+
+            EventLogger.LogNewEvent(typeof(T).ToString() + " > " + Enum.GetName(typeof(AppEventTypes), newEvent));
             IsDirty = true;
         }
 
@@ -68,26 +75,26 @@ namespace CallTracker.Model
     }
 
     [ProtoContract]
-    public class EventModel<T>
+    internal class EventModel<T>
     {
         [ProtoMember(1)]
-        public DateTime Timestamp { get; set; }
+        internal DateTime Timestamp { get; set; }
         [ProtoMember(2)]
-        public T EventType { get; set; }
+        internal T EventType { get; set; }
 
-        public EventModel(DateTime timeStamp, T eventType)
+        internal EventModel(T eventType)
         {
-            Timestamp = timeStamp;
+            Timestamp = DateTime.Now;
             EventType = eventType;
         }
     }
     [ProtoContract]
     [ProtoInclude(10, typeof(CallStats))]
     [ProtoInclude(20, typeof(DailyStats))]
-    public abstract class StatsModel
+    internal abstract class StatsModel
     {
         [ProtoMember(1)]
-        public bool IsDirty;
+        protected bool _isDirty;
         [ProtoMember(2)]
         public TimeSpan TalkTime;
         [ProtoMember(3)]
@@ -108,46 +115,55 @@ namespace CallTracker.Model
             DNOut = TimeSpan.Zero;
             IsDirty = true;
         }
+
+        public bool IsDirty { get { return IsDirty; } set { _isDirty = value; }}
     }
 
     [ProtoContract]
-    public class CallStats : StatsModel
+    internal class CallStats : StatsModel
     {
-        public CallStats()
-            : base()
+        internal CallStats()
         {
         }
     }
 
     [ProtoContract]
-    public class DailyStats : StatsModel
+    internal class DailyStats : StatsModel
     {
         [ProtoMember(1)]
-        public TimeSpan Login { get; set; }
+        internal TimeSpan Login { get; set; }
         [ProtoMember(2)]
-        public int Transfers { get; set; }
+        internal int Transfers { get; set; }
 
-        public DailyStats() : base()
+        internal DailyStats()
         {
             Login = TimeSpan.Zero;
             Transfers = 0;
         }
     }
 
-    public enum CallEventTypes
+    [Flags]
+    internal enum CallEventTypes
     {
+        None,
+        RecordCreated,
         LogIn,
         LogOut,
+        CallStart,
+        CallEnd,
         Talking,
         Ready,
         NotReady,
         Wrapup,
         Reserved,
-        Hold
+        Hold,
     }
 
-    public enum AppEventTypes
+    [Flags]
+    internal enum AppEventTypes
     {
+        None,
+        RecordCreated,
         SmartCopy,
         SmartPaste,
         Gridlink,

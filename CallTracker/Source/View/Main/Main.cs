@@ -31,16 +31,29 @@ namespace CallTracker.View
         internal DailyDataDataStore DailyDataDataStore = new DailyDataDataStore();
         internal static ServicesData ServicesStore = new ServicesData();
 
-        private CustomerContact _selectedContact { get; set; }
-
+        private CustomerContact _selectedContact;
         internal CustomerContact SelectedContact
         {
             get {return _selectedContact; }
             set
             {
-                if (_selectedContact != null)
+                if (_IPCCState.Text == "Talking")
+                        CurrentContact = _selectedContact;
+                else if (_selectedContact != null)
                     _selectedContact.FinishUp();
                 _selectedContact = value;
+            }
+        }
+
+        private CustomerContact _currentContact;
+        internal CustomerContact CurrentContact
+        {
+            get { return _currentContact; }
+            set
+            {
+                if (_currentContact != null)
+                    _currentContact.FinishUp();
+                _currentContact = value;
             }
         }
 
@@ -121,7 +134,7 @@ namespace CallTracker.View
             DateFilterItems = new BindingList<DateFilterItem>(DailyDataDataStore.DailyData.Select(x => x.Date).ToList());
             DateBindingSource.DataSource = DateFilterItems;
             _DailyDataBindingSource.DataSource = DailyDataDataStore.DailyData;
-            CheckWorkingDate();
+            IsDifferentShift();
             DateBindingSource.PositionChanged += _DateSelector_PositionChanged;
 
             SelectedContact = new CustomerContact();
@@ -491,7 +504,7 @@ namespace CallTracker.View
                 return;
             
             //string dialOrTransfer = "btnDial";
-            if (_ipccCallStatus.Name == "AgentStatus: Talking")
+            if (_IPCCState.Text == "Talking")
                 _ipccTransferButton.Click();
             else
                 _ipccDialButton.Click();
@@ -581,13 +594,13 @@ namespace CallTracker.View
             }
         }
         private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {    
-            //if (e.ClickedItem != monitorIPCCToolStripMenuItem)
-            //{
-            //    ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
-            //    if (CheckForIpcc())
-            //        _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
-            //}
+        {
+            if (e.ClickedItem != monitorIPCCToolStripMenuItem)
+            {
+                ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
+                if (CheckForIpcc())
+                    _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
+            }
         }
 
         private void ChangeCallStateMenuItem(string callState)
@@ -610,9 +623,16 @@ namespace CallTracker.View
             CurrentItem.Checked = true;
         }
 
+        private bool DoesIPCCExist()
+        {
+            if (_ipccProcess == null) return false;
+            return !_ipccProcess.HasExited;
+        }
+
         private void _IPCCTimer_Tick(object sender, EventArgs e)
         {
-            if (_ipccProcess.HasExited)
+            // Exit if IPCC doesn't exist and IPCC monitoring is on.
+            if (!DoesIPCCExist() && monitorIPCCToolStripMenuItem.Checked)
             {
                 _callStateTimeElapsed = TimeSpan.Zero;
                 _CallStateTime.BackColor = Color.WhiteSmoke;
@@ -623,112 +643,131 @@ namespace CallTracker.View
                 return;
             }
 
-            var status = _ipccCallStatus.Name;
+            // If IPCC monitoring is off, pass in values from IPCC menu for testing.
+            string status;
+            if (monitorIPCCToolStripMenuItem.Checked)
+            {
+                status = _ipccCallStatus.Name;
+                status = status.Remove(0, Math.Max(13, status.Length));
+            }
+            else
+                status = CurrentItem.Tag.ToString();
+
             if (CurrentItem.Name == "logInToolStripMenuItem")
                 ChangeCallStateMenuItem(notReadyToolStripMenuItem);
 
-            //var status = CurrentItem.Tag.ToString();
             if (status != _IPCCState.Text)
             {
-                if (_IPCCState.Text == "AgentStatus:")
+                var dailyData = (DailyModel) _DailyDataBindingSource.Current;
+                if (String.IsNullOrEmpty(_IPCCState.Text))
                 {
-                    CheckWorkingDate();
+                    if(IsDifferentShift())
+                        dailyData = (DailyModel) _DailyDataBindingSource.Current;
+                    dailyData.Events.AddCallEvent(CallEventTypes.LogIn);
                 }
+
                 switch (status)
                 {
-                    case "AgentStatus: Wrapup":
+                    case "Wrapup":
                         _IPCCTimer.Interval = 1000;
                         _CallStateTime.BackColor = Color.Firebrick;
                         _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
+                        if (CurrentContact != null)
+                        {
+                            CurrentContact.AddCallEvent(CallEventTypes.CallEnd);
+                            CurrentContact = null;
+                        }
+                        SelectedContact.Events.AddCallEvent(CallEventTypes.Wrapup);
                         break;
-                    case "AgentStatus: Talking":
+                    case "Reserved":
+                        _IPCCTimer.Interval = 500;
+                        SelectedContact.Events.AddCallEvent(CallEventTypes.Reserved);
+                        dailyData.Events.AddCallEvent(CallEventTypes.Reserved);
+                        if (editContact.autoNewCallToolStripMenuItem.Checked)
+                        {
+                            editContact.bindingNavigatorAddNewItem_Click(_IPCCState, new EventArgs());
+                        }
+
+                        if (Properties.Settings.Default.PullIPCCCallData)
+                        {
+                            EventLogger.LogAndSaveNewEvent("Getting Svc No From IPCC");
+                            var serviceNumber =
+                                _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
+                                    SearchCriteria.ByText("Svc No"));
+                            SelectedContact.FindDNMatch(serviceNumber.Value.ToString());
+                            SelectedContact.FindMobileMatch(serviceNumber.Value.ToString());
+
+                            EventLogger.LogAndSaveNewEvent("Getting Caller ID From IPCC");
+                            var contactNumber =
+                                _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
+                                    SearchCriteria.ByText("Caller ID"));
+                            SelectedContact.FindDNMatch(contactNumber.Value.ToString());
+                            SelectedContact.FindMobileMatch(contactNumber.Value.ToString());
+
+                            EventLogger.LogAndSaveNewEvent("Getting Acc No From IPCC");
+                            var accountNumber =
+                                _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
+                                    SearchCriteria.ByText("Acc No"));
+                            SelectedContact.FindCMBSMatch(accountNumber.Value.ToString());
+                            SelectedContact.FindICONMatch(accountNumber.Value.ToString());
+
+                            EventLogger.LogAndSaveNewEvent("Getting ID ok From IPCC");
+                            var idok =
+                                _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
+                                    SearchCriteria.ByText("IVR Status"));
+                            if (idok.Value.ToString().Contains("OK"))
+                                SelectedContact.IDok = true;
+
+                            EventLogger.LogAndSaveNewEvent("Getting IVR Selection From IPCC");
+                            var ivrSelection =
+                                _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
+                                    SearchCriteria.ByText("IVR Selection"));
+                        }
+
+                        break;
+                    case "Talking":
                         _IPCCTimer.Interval = 1000;
                         _CallStateTime.BackColor = Color.Chocolate;
                         _CallStateTime.ForeColor = Color.PaleGoldenrod;
-                        if (_IPCCState.Text.Contains("Reserved") && editContact.autoNewCallToolStripMenuItem.Checked)
-                        {
-                            editContact.bindingNavigatorAddNewItem_Click(_IPCCState, new EventArgs());
-
-                            if (!Properties.Settings.Default.PullIPCCCallData)
-                                break;
-
-                            var callGrid = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid"));
-                            var callGridRow = callGrid.Rows[0];
-                            // Caller ID
-                            if (callGridRow.Cells[3].Value != null)
-                            {
-                                SelectedContact.FindMobileMatch(callGridRow.Cells[3].Value.ToString());
-                                SelectedContact.FindDNMatch(callGridRow.Cells[3].Value.ToString());
-                            }
-                            // Service No
-                            if (callGridRow.Cells[4].Value != null)
-                            {
-                                SelectedContact.FindMobileMatch(callGridRow.Cells[4].Value.ToString());
-                                SelectedContact.FindDNMatch(callGridRow.Cells[4].Value.ToString());
-                            }
-                            // Acc No
-                            if (callGridRow.Cells[5].Value != null)
-                            {
-                                SelectedContact.FindCMBSMatch(callGridRow.Cells[5].Value.ToString());
-                                SelectedContact.FindICONMatch(callGridRow.Cells[5].Value.ToString());
-                            }
-                            // IVR Selection
-                            if (callGridRow.Cells[6].Value != null)
-                            {
-                                var selection = callGridRow.Cells[6].Value.ToString();
-                                if (selection.Contains("LAT"))
-                                    SelectedContact.Fault.LAT = true;
-                                else if (selection.Contains("LIP"))
-                                    SelectedContact.Fault.LIP = true;
-                                else if (selection.Contains("ONC"))
-                                    SelectedContact.Fault.ONC = true;
-                                else if (selection.Contains("NBN"))
-                                    SelectedContact.Fault.NFV = true;
-                                else if (selection.Contains("MTV"))
-                                    SelectedContact.Fault.MTV = true;
-                            }
-                            // ID ok
-                            if (callGridRow.Cells[8].Value != null)
-                            {
-                                if (callGridRow.Cells[8].Value.ToString().Contains("OK"))
-                                    SelectedContact.IDok = true;
-                            }
-
-                            //var serviceNumber = _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(SearchCriteria.ByText("Service No"));
-                            //SelectedContact.FindMobileMatch(serviceNumber.Value.ToString());
-                            //SelectedContact.FindDNMatch(serviceNumber.Value.ToString());
-
-                            //var contactNumber = _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(SearchCriteria.ByText("Caller ID"));
-                            //SelectedContact.FindMobileMatch(contactNumber.Value.ToString());
-                            //SelectedContact.FindDNMatch(contactNumber.Value.ToString());
-
-                            //var accountNumber = _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(SearchCriteria.ByText("Acc No"));
-                            //SelectedContact.FindCMBSMatch(accountNumber.Value.ToString());
-                            //SelectedContact.FindICONMatch(accountNumber.Value.ToString());
-
-                            //var idok = _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(SearchCriteria.ByText("IVR Status"));
-                            //if (idok.Value.ToString().Contains("OK"))
-                            //    SelectedContact.IDok = true;
-
-                            //var ivrSelection = _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(SearchCriteria.ByText("IVR Selection"));
-                        }
+                        if (CurrentContact != null)
+                            CurrentContact.AddCallEvent(CallEventTypes.Talking);
+                        else
+                            SelectedContact.Events.AddCallEvent(CallEventTypes.Talking);
+                        dailyData.Events.AddCallEvent(CallEventTypes.Talking);                     
                         break;
-                    case "AgentStatus: NotReady":
+                    case "Hold":
                         _IPCCTimer.Interval = 1000;
                         _CallStateTime.BackColor = Color.Firebrick;
                         _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
-                        if (_IPCCState.Text == "AgentStatus:")
-                            CheckWorkingDate();
+                        if (CurrentContact != null)
+                            CurrentContact.AddCallEvent(CallEventTypes.Hold);
+                        else
+                            SelectedContact.Events.AddCallEvent(CallEventTypes.Hold);
                         break;
-                    case "AgentStatus: Ready":
+                    case "NotReady":
+                        _IPCCTimer.Interval = 1000;
+                        _CallStateTime.BackColor = Color.Firebrick;
+                        _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
+                        SelectedContact.Events.AddCallEvent(CallEventTypes.NotReady);
+                        break;
+                    case "Ready":
                         _IPCCTimer.Interval = 1000;
                         _CallStateTime.BackColor = Color.OliveDrab;
                         _CallStateTime.ForeColor = Color.PaleGoldenrod;
+                        SelectedContact.AddCallEvent(CallEventTypes.Ready);
+                        dailyData.Events.AddCallEvent(CallEventTypes.Ready);
                         break;
-                    case "AgentStatus:":
+                    case "":
                         _IPCCTimer.Interval = 2000;
                         _CallStateTime.BackColor = Color.WhiteSmoke;
                         _CallStateTime.ForeColor = Color.DarkSlateGray;
+                        if (CurrentContact != null)
+                        {
+                            CurrentContact.AddCallEvent(CallEventTypes.CallEnd);
+                            CurrentContact = null;
+                        }
+                        SelectedContact.Events.AddCallEvent(CallEventTypes.LogOut);
+                        dailyData.Events.AddCallEvent(CallEventTypes.LogOut);
                         break;
                     default:
                         _IPCCTimer.Interval = 1000;
@@ -853,12 +892,14 @@ namespace CallTracker.View
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Working Date Checker /////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        internal void CheckWorkingDate()
+        internal bool IsDifferentShift()
         {
+            // If Date is right, or Agent isn't logged out, then don't do anything.
             if (_DailyDataBindingSource.Count > 0)
-                if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today)
-                    return;
-
+                if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today || !String.IsNullOrEmpty(_IPCCState.Text))
+                    return false;
+            
+            // If today doesnt exist, create it, otherwise change the day.
             if (DailyDataDataStore.DailyData.All(x => x.Date.LongDate != DateTime.Today))
             {
                 DailyDataDataStore.DailyData.AddNew();
@@ -878,7 +919,8 @@ namespace CallTracker.View
                 Properties.Settings.Default.WorkingDate = DateTime.Today;
                 File.Delete("Data\\Log.txt");
             }
-            
+
+            return true;
             // Archive/Delete Contacts older than 7 days.
         }
 
@@ -895,18 +937,18 @@ namespace CallTracker.View
              0,
              ((Control)sender).Width - 1,
              ((Control)sender).Height - 1);
-            base.OnPaint(e);
+            //base.OnPaint(e);
         }
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
-                return cp;
-            }
-        }
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+        //        cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+        //        return cp;
+        //    }
+        //}
 
         private void pullIPCCCallDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -939,3 +981,55 @@ namespace CallTracker.View
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+//var callGrid = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid"));
+//                            var callGridRow = callGrid.Rows[0];
+//                            // Caller ID
+//                            if (callGridRow.Cells[3].Value != null)
+//                            {
+//                                SelectedContact.FindMobileMatch(callGridRow.Cells[3].Value.ToString());
+//                                SelectedContact.FindDNMatch(callGridRow.Cells[3].Value.ToString());
+//                            }
+//                            // Service No
+//                            if (callGridRow.Cells[4].Value != null)
+//                            {
+//                                SelectedContact.FindMobileMatch(callGridRow.Cells[4].Value.ToString());
+//                                SelectedContact.FindDNMatch(callGridRow.Cells[4].Value.ToString());
+//                            }
+//                            // Acc No
+//                            if (callGridRow.Cells[5].Value != null)
+//                            {
+//                                SelectedContact.FindCMBSMatch(callGridRow.Cells[5].Value.ToString());
+//                                SelectedContact.FindICONMatch(callGridRow.Cells[5].Value.ToString());
+//                            }
+//                            // IVR Selection
+//                            if (callGridRow.Cells[6].Value != null)
+//                            {
+//                                var selection = callGridRow.Cells[6].Value.ToString();
+//                                if (selection.Contains("LAT"))
+//                                    SelectedContact.Fault.LAT = true;
+//                                else if (selection.Contains("LIP"))
+//                                    SelectedContact.Fault.LIP = true;
+//                                else if (selection.Contains("ONC"))
+//                                    SelectedContact.Fault.ONC = true;
+//                                else if (selection.Contains("NBN"))
+//                                    SelectedContact.Fault.NFV = true;
+//                                else if (selection.Contains("MTV"))
+//                                    SelectedContact.Fault.MTV = true;
+//                            }
+//                            // ID ok
+//                            if (callGridRow.Cells[8].Value != null)
+//                            {
+//                                if (callGridRow.Cells[8].Value.ToString().Contains("OK"))
+//                                    SelectedContact.IDok = true;
+//                            }

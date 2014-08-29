@@ -68,7 +68,11 @@
     </Reference>
     <Reference Include="RegexLib, Version=1.0.0.1001, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RegexAssembly\bin\Release\RegexLib.dll</HintPath>
+      <HintPath>..\References\RegexLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Shortcut, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\Shortcut.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -594,12 +598,6 @@
     <None Include="Resources\keyboard.png" />
     <None Include="Resources\Shift.png" />
     <None Include="Resources\Close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shortcut\Shortcut.csproj">
-      <Project>{5deadf0b-dc7b-430f-982e-647f7b05455d}</Project>
-      <Name>Shortcut</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

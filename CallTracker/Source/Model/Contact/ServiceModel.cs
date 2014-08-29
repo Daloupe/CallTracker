@@ -84,7 +84,7 @@ namespace CallTracker.Model
         // LAT
         [ProtoMember(30)]
         public string CauPing { get; set; }
-        [ProtoMember(30)]
+        [ProtoMember(31)]
         public string NitResults { get; set; }
         [ProtoMember(32)]
         public string ESN { get; set; }

@@ -1,15 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Linq;
-using System.Text.RegularExpressions;
-using Castle.Core.Internal;
+
 using PropertyChanged;
 using ProtoBuf;
-using Utilities.RegularExpressions;
-using System.Diagnostics;
 
+using Utilities.RegularExpressions;
 using CallTracker.View;
 using CallTracker.Helpers;
 
@@ -20,36 +17,6 @@ namespace CallTracker.Model
     public class CustomerContact : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public static DNPattern DNPattern = new DNPattern();
-        public static ICONPattern ICONPattern = new ICONPattern();
-        public static CMBSPattern CMBSPattern = new CMBSPattern();
-        public static MobilePattern MobilePattern = new MobilePattern();
-        public static UsernameUpperPattern UNUpperPattern = new UsernameUpperPattern();
-        public static UsernameLowerPattern UNLowerPattern = new UsernameLowerPattern();
-
-        public static List<DataBindType> PropertyStrings = new List<DataBindType>()
-            {
-                new DataBindType("Name", "Name"),
-                new DataBindType("Username","Username"),
-                new DataBindType("DN","DN"),
-                new DataBindType("Mobile","Mobile"),
-                new DataBindType("CMBS","CMBS"),
-                new DataBindType("ICON", "ICON"),
-                new DataBindType("Note", "Note"),
-                new DataBindType("ICONNote", "ICONNote"),
-                new DataBindType("Address", "Address"),
-                new DataBindType("PR", "Fault.PR"),
-                new DataBindType("NPR", "Fault.NPR"),
-                new DataBindType("Node","Service.Node"),
-                new DataBindType("AVC","Service.AVC"),
-                new DataBindType("CVC","Service.CVC"),
-                new DataBindType("CSA","Service.CSA"),
-                new DataBindType("NNI","Service.NNI"),
-                new DataBindType("GSI","Service.GSI"),
-                new DataBindType("Equipment","Service.Equipment"),
-            };
-
         
         public CustomerContact()
         {
@@ -84,16 +51,21 @@ namespace CallTracker.Model
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
         }
-        //[ProtoBeforeDeserialization]
-        //private void FieldInitializer()
-        //{
-        //    NameSplit = new NameModel();
-        //    //Address = new ContactAddress();
-        //    //Service = new ServiceModel();
-        //    //Fault = new FaultModel();
-        //    //Contacts = new ContactStatistics();
-        //    //Booking = new BookingModel();
-        //}
+
+        public void FinishUp()
+        {
+            if (OriginalCall)
+                foreach (var key in Service.WasSearched.Keys.ToList())
+                    Service.WasSearched[key] = true;
+            OriginalCall = false;
+        }
+
+        public event PropertyChangedEventHandler NestedChange;
+        void CustomerContact_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (NestedChange != null)
+                NestedChange(sender, e);
+        }
 
         [ProtoMember(1)]
         public int Id { get; set; }
@@ -122,38 +94,78 @@ namespace CallTracker.Model
         public string CMBS { get; set; }
         [ProtoMember(7)]
         public string ICON { get; set; }
-        [ProtoMember(8)]
-        public string Note { get; set; }
-        [ProtoMember(9)]
-        public ContactAddress Address { get; set; }
-        [ProtoMember(10)]
-        public ServiceModel Service { get; set; }
-        [ProtoMember(11)]
-        public FaultModel Fault { get; set; }
-        [ProtoMember(12)]
-        public ContactStatistics Contacts { get; set; }
-        public string ContactDateTime { get { return Contacts.StartDate.Add(Contacts.StartTime).ToString("dd/MM HH:mm"); } }
-        public string ContactDate { get { return Contacts.StartDate.ToString(); } }
-        public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
-        [ProtoMember(13)]
-        public BookingModel Booking { get; set; }
-        [ProtoMember(14)]
-        public bool IDok { get; set; }
-        [ProtoMember(15)]
-        public bool Important { get; set; }
-        [ProtoMember(16, OverwriteList = true)]
-        public EventsModel<CallStats> Statistics { get; set; }
-        [ProtoMember(20)]
-        public bool OriginalCall { get; set; }
 
-        public void FinishUp()
+        [ProtoMember(20)]
+        public ContactAddress Address { get; set; }
+        [ProtoMember(21)]
+        public ServiceModel Service { get; set; }
+        [ProtoMember(22)]
+        public FaultModel Fault { get; set; }
+        [ProtoMember(23)]
+        public BookingModel Booking { get; set; }
+
+
+        [ProtoMember(30)]
+        public bool IDok { get; set; }
+        [ProtoMember(31)]
+        public bool Important { get; set; }
+        [ProtoMember(32)]
+        public string Note { get; set; }
+
+        [ProtoMember(40)]
+        public bool OriginalCall { get; set; }
+        [ProtoMember(41, OverwriteList = true)]
+        internal EventsModel<CallStats> Events { get; set; }
+        [ProtoMember(42)]
+        public ContactStatistics Contacts { get; set; }
+
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Events //////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        internal void AddCallEvent(CallEventTypes newEvent)
         {
-            if (OriginalCall)
-                foreach (var key in Service.WasSearched.Keys.ToList())
-                    Service.WasSearched[key] = true;
-            OriginalCall = false;
+            switch (Events.LastCallEvent)
+            {
+                case CallEventTypes.RecordCreated:
+                    Events.AddCallEvent(newEvent.Is(CallEventTypes.NotReady) ? CallEventTypes.LogIn : newEvent);
+                    break;
+                case CallEventTypes.Reserved:
+                    Events.AddCallEvent(newEvent.Is(CallEventTypes.Talking) ? CallEventTypes.CallStart : newEvent);
+                    break;
+                case CallEventTypes.CallEnd:
+                    if (!newEvent.Has(CallEventTypes.Ready | CallEventTypes.LogOut | CallEventTypes.CallEnd))
+                        Events.AddCallEvent(newEvent.Is(CallEventTypes.Talking) ? CallEventTypes.CallStart : newEvent);
+                    break;
+                default:
+                    Events.AddCallEvent(newEvent.Has(CallEventTypes.Ready | CallEventTypes.LogOut)
+                        ? CallEventTypes.CallEnd
+                        : newEvent);
+                    break;
+            }
+
+            EventLogger.LogNewEvent(Id + " " + DN + " > " + Enum.GetName(typeof(CallEventTypes), Events.LastCallEvent));
         }
 
+        internal void AddAppEvent(AppEventTypes newEvent)
+        {
+            Events.AddAppEvent(newEvent);
+        }
+
+
+
+
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        // PR Templates ////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public string PRTemplate { get { return PRGenerators.Generate(this, PRTemplateReplacements); } }
         protected List<PRTemplateModel> PRTemplateReplacements = new List<PRTemplateModel>();
         public void UpdatePrTemplateReplacements(List<PRTemplateModel> replacements)
         {
@@ -170,93 +182,84 @@ namespace CallTracker.Model
             }
         }
 
-        public string PRTemplate
-        {
-            get
-            {
-                return PRGenerators.Generate(this, PRTemplateReplacements);
-            }
-        }
+        
 
+
+
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Getters  ////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public string ContactDateTime { get { return Contacts.StartDate.Add(Contacts.StartTime).ToString("dd/MM HH:mm"); } }
+        public string ContactDate { get { return Contacts.StartDate.ToString(); } }
+        public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
         public string ICONNote { get { return Main.NoteGen.GenerateNoteManually(this); } set { ; } }
         public string GetAddress
         {
-            get
-            {
-                return Address.Address;
-            }
-            set
-            {
-                Address.Address = value;
-            }
+            get { return Address.Address; }
+            set {Address.Address = value;}
         } 
         public string GetOutcome
         {
-            get 
-            {
-                return Fault.Outcome;
-            }
-            set
-            {
-                Fault.Outcome = value;
-            }
+            get {return Fault.Outcome;}
+            set {Fault.Outcome = value;}
         }
 
-        //public ContactArchiveModel ArchiveContact()
-        //{
-            
-        //}
-
-        public event PropertyChangedEventHandler NestedChange;
 
 
-        void CustomerContact_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if(NestedChange != null)
-                NestedChange(sender, e);
-        }
 
-        //public static object GetProperty(object target, string property)
-        //{
-        //    if (String.IsNullOrEmpty(property)) return null;
 
-        //    Type currentType = target.GetType();
-        //    object value = target;
 
-        //    foreach (string propertyName in property.Split('.'))
-        //    {
-        //        PropertyInfo prop = currentType.GetProperty(propertyName);
-        //        if (prop != null)
-        //        {
-        //            value = prop.GetValue(value, null);
-        //            currentType = prop.PropertyType;
-        //        }
-        //    }
-        //    return value;
-        //}
 
-        //public static void SetProperty(object target, string property, string value)
-        //{
-        //    if (String.IsNullOrEmpty(property)) return;
 
-        //    Type currentType = target.GetType();
-        //    PropertyInfo currentObject = null;
-        //    object nestedObject = target;
 
-        //    string[] propSplit = property.Split('.');
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Data ////////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public static List<DataBindType> PropertyStrings = new List<DataBindType>()
+            {
+                new DataBindType("Name", "Name"),
+                new DataBindType("Username","Username"),
+                new DataBindType("DN","DN"),
+                new DataBindType("Mobile","Mobile"),
+                new DataBindType("CMBS","CMBS"),
+                new DataBindType("ICON", "ICON"),
+                new DataBindType("Note", "Note"),
+                new DataBindType("ICONNote", "ICONNote"),
+                new DataBindType("Address", "Address"),
+                new DataBindType("PR", "Fault.PR"),
+                new DataBindType("NPR", "Fault.NPR"),
+                new DataBindType("Node","Service.Node"),
+                new DataBindType("AVC","Service.AVC"),
+                new DataBindType("CVC","Service.CVC"),
+                new DataBindType("CSA","Service.CSA"),
+                new DataBindType("NNI","Service.NNI"),
+                new DataBindType("GSI","Service.GSI"),
+                new DataBindType("Equipment","Service.Equipment"),
+            };
 
-        //    for (int i = 0; i < propSplit.Length; i++)
-        //    {
-        //        currentObject = currentType.GetProperty(propSplit[i]);
-        //        if (currentObject != null)
-        //            currentType = currentObject.PropertyType;
-        //        if (i < propSplit.Length - 1)
-        //            nestedObject = currentObject.GetValue(nestedObject, null);
-        //    }
 
-        //    if (currentObject != null)
-        //        currentObject.SetValue(nestedObject, value, null);
-        //}
+
+
+
+
+
+
+
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Regex Logic /////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public static DNPattern DNPattern = new DNPattern();
+        public static ICONPattern ICONPattern = new ICONPattern();
+        public static CMBSPattern CMBSPattern = new CMBSPattern();
+        public static MobilePattern MobilePattern = new MobilePattern();
+        public static UsernameUpperPattern UNUpperPattern = new UsernameUpperPattern();
+        public static UsernameLowerPattern UNLowerPattern = new UsernameLowerPattern();
+
         public void AddToNote(string text)
         {
             if (String.IsNullOrEmpty(Note) || Note.EndsWith("\r\n"))
@@ -264,6 +267,7 @@ namespace CallTracker.Model
             else
                 Note += Environment.NewLine + text;
         }
+
         public bool FindDNMatch(string text)
         {
             var match = DNPattern.Match(text);
@@ -298,8 +302,6 @@ namespace CallTracker.Model
                             "DIMPS", "dimps.optusnet.com.au");
                         Service.WasSearched["DIMPS"] = true;
                     }
-                    //if (HotkeyController.browser != null)
-                    //    HotkeyController.browser.Dispose();      
                 }
 
                 return true;
@@ -323,8 +325,6 @@ namespace CallTracker.Model
                             "nexus.optus.com.au");
                         Service.WasSearched["Nexus"] = true;
                     }
-                    if (HotkeyController.browser != null)
-                        HotkeyController.browser.Dispose();
                 }
 
                 return true;
@@ -349,8 +349,6 @@ namespace CallTracker.Model
                             "nexus.optus.com.au");
                         Service.WasSearched["Nexus"] = true;
                     }
-                    if (HotkeyController.browser != null)
-                        HotkeyController.browser.Dispose();
                 }
 
                 return true;
@@ -381,8 +379,6 @@ namespace CallTracker.Model
                             "nexus.optus.com.au");
                         Service.WasSearched["Nexus"] = true;
                     }
-                    if (HotkeyController.browser != null)
-                        HotkeyController.browser.Dispose();
                 }
 
                 return true;
@@ -422,8 +418,6 @@ namespace CallTracker.Model
                             "staff.optusnet.com.au/tools/usernames");
                         Service.WasSearched["UNMT"] = true;
                     }
-                    if (HotkeyController.browser != null)
-                        HotkeyController.browser.Dispose();
                 }
 
                 return true;
@@ -457,9 +451,6 @@ namespace CallTracker.Model
                             "staff.optusnet.com.au/tools/usernames");
                         Service.WasSearched["UNMT"] = true;
                     }
-
-                    if (HotkeyController.browser != null)
-                        HotkeyController.browser.Dispose();
                 }
 
                 return true;
@@ -482,17 +473,4 @@ namespace CallTracker.Model
             return false;
         }
     }
-
-
-
-    //[ImplementPropertyChanged]
-    //public class ContactsList : List<CustomerContact>
-    //{
-    //    public ContactsList() : base()
-    //    {
-    //        //this.Add(new CustomerContact(0));
-    //        //InsertItem(0, new CustomerContact(0) { Name = "Dick", DN = "0294813387", ICON = "40", Address = new ContactAddress { Number = "6", Street = "ho street", Type = "st" } });
-    //        //Add(new CustomerContact(1) { Name = "Harry", DN = "0294813388", ICON = "60", Address = new ContactAddress { Number = "7", Street = "lo street" } });
-    //    }
-    //}
 }
