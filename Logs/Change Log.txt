@@ -30,9 +30,9 @@
 - Confirmed Bras, NTDSN, AddressId, and ESN Regexes.
 - IPCC menu not drawing back color.
 
-0.5.0.0
+0.5.0.1
 (Major Features)
-/ Created Daily Stats interface.
+| Created basic Call and Daily Stats system.
 
 0.4.4.3
 (Minor Features)

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using Utilities.RegularExpressions;
 using ProtoBuf;
 using PropertyChanged;
@@ -11,7 +11,7 @@ using WatiN.Core;
 namespace CallTracker.Model
 {
     [ProtoContract]
-    internal class EventsModel<T> where T : StatsModel
+    public class EventsModel<T> where T : StatsModel
     {      
         [ProtoMember(1)]
         protected bool IsDirty;
@@ -22,9 +22,9 @@ namespace CallTracker.Model
         [ProtoMember(4)]
         internal T Statistics { get; set; }
 
-        internal CallEventTypes LastCallEvent { get; set; }
+        internal EventModel<CallEventTypes> LastCallEvent { get; set; }
 
-        internal EventsModel()
+        public EventsModel()
         {
             CallEvents = new List<EventModel<CallEventTypes>>();
             AppEvents = new List<EventModel<AppEventTypes>>();
@@ -56,7 +56,8 @@ namespace CallTracker.Model
         internal void AddCallEvent(CallEventTypes newEvent)
         {
             CallEvents.Add(new EventModel<CallEventTypes>(newEvent));
-            LastCallEvent = newEvent;
+            LastCallEvent = CallEvents.LastOrDefault();
+            Console.WriteLine("Last event set to: " + Enum.GetName(typeof(CallEventTypes), LastCallEvent.EventType));
             IsDirty = true;
         }
 
@@ -64,7 +65,7 @@ namespace CallTracker.Model
         {
             AppEvents.Add(new EventModel<AppEventTypes>(newEvent));
 
-            EventLogger.LogNewEvent(typeof(T).ToString() + " > " + Enum.GetName(typeof(AppEventTypes), newEvent));
+            //EventLogger.LogNewEvent(typeof(T).ToString() + " > " + Enum.GetName(typeof(AppEventTypes), newEvent));
             IsDirty = true;
         }
 
@@ -75,14 +76,17 @@ namespace CallTracker.Model
     }
 
     [ProtoContract]
-    internal class EventModel<T>
+    public class EventModel<T>
     {
         [ProtoMember(1)]
         internal DateTime Timestamp { get; set; }
         [ProtoMember(2)]
         internal T EventType { get; set; }
 
-        internal EventModel(T eventType)
+        public EventModel()
+        { }
+
+        public EventModel(T eventType)
         {
             Timestamp = DateTime.Now;
             EventType = eventType;
@@ -91,7 +95,7 @@ namespace CallTracker.Model
     [ProtoContract]
     [ProtoInclude(10, typeof(CallStats))]
     [ProtoInclude(20, typeof(DailyStats))]
-    internal abstract class StatsModel
+    public abstract class StatsModel
     {
         [ProtoMember(1)]
         protected bool _isDirty;
@@ -120,30 +124,29 @@ namespace CallTracker.Model
     }
 
     [ProtoContract]
-    internal class CallStats : StatsModel
+    public class CallStats : StatsModel
     {
-        internal CallStats()
+        public CallStats()
         {
         }
     }
 
     [ProtoContract]
-    internal class DailyStats : StatsModel
+    public class DailyStats : StatsModel
     {
         [ProtoMember(1)]
         internal TimeSpan Login { get; set; }
         [ProtoMember(2)]
         internal int Transfers { get; set; }
 
-        internal DailyStats()
+        public DailyStats()
         {
             Login = TimeSpan.Zero;
             Transfers = 0;
         }
     }
 
-    [Flags]
-    internal enum CallEventTypes
+    public enum CallEventTypes
     {
         None,
         RecordCreated,
@@ -159,8 +162,7 @@ namespace CallTracker.Model
         Hold,
     }
 
-    [Flags]
-    internal enum AppEventTypes
+    public enum AppEventTypes
     {
         None,
         RecordCreated,

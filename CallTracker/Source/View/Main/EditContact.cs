@@ -215,7 +215,7 @@ namespace CallTracker.View
         public void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
             //_DateSelector.ComboBox.SelectedValue = DateTime.Today;
-            MainForm.CheckWorkingDate();
+            MainForm.IsDifferentShift();
             customerContactsBindingSource.AddNew();    
             customerContactsBindingSource.MoveLast();
         }

@@ -40,6 +40,7 @@ namespace CallTracker.Model
             Fault = new FaultModel();
             Contacts = new ContactStatistics();
             Booking = new BookingModel();
+            Events = new EventsModel<CallStats>();
 
             //PRTemplateList.AddRange(HFCTemplate);
 
@@ -54,6 +55,7 @@ namespace CallTracker.Model
 
         public void FinishUp()
         {
+            AddCallEvent(CallEventTypes.CallEnd);
             if (OriginalCall)
                 foreach (var key in Service.WasSearched.Keys.ToList())
                     Service.WasSearched[key] = true;
@@ -115,7 +117,7 @@ namespace CallTracker.Model
         [ProtoMember(40)]
         public bool OriginalCall { get; set; }
         [ProtoMember(41, OverwriteList = true)]
-        internal EventsModel<CallStats> Events { get; set; }
+        private EventsModel<CallStats> Events { get; set; }
         [ProtoMember(42)]
         public ContactStatistics Contacts { get; set; }
 
@@ -128,7 +130,7 @@ namespace CallTracker.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         internal void AddCallEvent(CallEventTypes newEvent)
         {
-            switch (Events.LastCallEvent)
+            switch (Events.LastCallEvent.EventType)
             {
                 case CallEventTypes.RecordCreated:
                     Events.AddCallEvent(newEvent.Is(CallEventTypes.NotReady) ? CallEventTypes.LogIn : newEvent);
@@ -137,7 +139,7 @@ namespace CallTracker.Model
                     Events.AddCallEvent(newEvent.Is(CallEventTypes.Talking) ? CallEventTypes.CallStart : newEvent);
                     break;
                 case CallEventTypes.CallEnd:
-                    if (!newEvent.Has(CallEventTypes.Ready | CallEventTypes.LogOut | CallEventTypes.CallEnd))
+                    if (!newEvent.Has(CallEventTypes.Ready | CallEventTypes.LogOut | CallEventTypes.CallEnd | CallEventTypes.Reserved))
                         Events.AddCallEvent(newEvent.Is(CallEventTypes.Talking) ? CallEventTypes.CallStart : newEvent);
                     break;
                 default:
@@ -147,7 +149,7 @@ namespace CallTracker.Model
                     break;
             }
 
-            EventLogger.LogNewEvent(Id + " " + DN + " > " + Enum.GetName(typeof(CallEventTypes), Events.LastCallEvent));
+            EventLogger.LogAndSaveNewEvent(Id + " " + DN + " > " + Enum.GetName(typeof(CallEventTypes), Events.LastCallEvent.EventType) + " at " + Events.LastCallEvent.Timestamp.ToString("dd/MM/yy hh:mm:ss"), EventLogLevel.Status);
         }
 
         internal void AddAppEvent(AppEventTypes newEvent)

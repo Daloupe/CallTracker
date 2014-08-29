@@ -45,7 +45,9 @@
             this._CallStateTime = new ContextualToolStripMenuItem();
             this.notReadyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.talkingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.holdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wrapUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.logInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -284,7 +286,9 @@
             this._CallStateTime.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.notReadyToolStripMenuItem,
             this.readyToolStripMenuItem,
+            this.reservedToolStripMenuItem,
             this.talkingToolStripMenuItem,
+            this.holdToolStripMenuItem,
             this.wrapUpToolStripMenuItem,
             this.toolStripSeparator10,
             this.logInToolStripMenuItem,
@@ -320,6 +324,14 @@
             this.readyToolStripMenuItem.Tag = "Ready";
             this.readyToolStripMenuItem.Text = "Ready";
             // 
+            // reservedToolStripMenuItem
+            // 
+            this.reservedToolStripMenuItem.Enabled = false;
+            this.reservedToolStripMenuItem.Name = "reservedToolStripMenuItem";
+            this.reservedToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.reservedToolStripMenuItem.Tag = "Reserved";
+            this.reservedToolStripMenuItem.Text = "Reserved";
+            // 
             // talkingToolStripMenuItem
             // 
             this.talkingToolStripMenuItem.Enabled = false;
@@ -327,6 +339,14 @@
             this.talkingToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.talkingToolStripMenuItem.Tag = "Talking";
             this.talkingToolStripMenuItem.Text = "Talking";
+            // 
+            // holdToolStripMenuItem
+            // 
+            this.holdToolStripMenuItem.Enabled = false;
+            this.holdToolStripMenuItem.Name = "holdToolStripMenuItem";
+            this.holdToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.holdToolStripMenuItem.Tag = "Hold";
+            this.holdToolStripMenuItem.Text = "Hold";
             // 
             // wrapUpToolStripMenuItem
             // 
@@ -346,7 +366,7 @@
             this.logInToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallIn;
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
             this.logInToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.logInToolStripMenuItem.Tag = " ";
+            this.logInToolStripMenuItem.Tag = "";
             this.logInToolStripMenuItem.Text = "Log In";
             // 
             // logOutToolStripMenuItem
@@ -355,7 +375,7 @@
             this.logOutToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallOut;
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
             this.logOutToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.logOutToolStripMenuItem.Tag = " ";
+            this.logOutToolStripMenuItem.Tag = "";
             this.logOutToolStripMenuItem.Text = "Log Out";
             // 
             // toolStripSeparator5
@@ -1144,5 +1164,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoSearchActiveWindowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reservedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem holdToolStripMenuItem;
     }
 }

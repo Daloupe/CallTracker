@@ -28,7 +28,7 @@ namespace CallTracker.View
         public readonly Point ControlOffset = new Point(0, -1);
 
         internal UserDataStore UserDataStore = new UserDataStore();
-        internal DailyDataDataStore DailyDataDataStore = new DailyDataDataStore();
+        internal DailyDataRepository DailyDataDataStore;
         internal static ServicesData ServicesStore = new ServicesData();
 
         private CustomerContact _selectedContact;
@@ -51,6 +51,7 @@ namespace CallTracker.View
             get { return _currentContact; }
             set
             {
+                Console.WriteLine("Current Contact Set");
                 if (_currentContact != null)
                     _currentContact.FinishUp();
                 _currentContact = value;
@@ -127,7 +128,7 @@ namespace CallTracker.View
             _splash.UpdateProgress("Loading Resources", 15);
             UserDataStore = UserDataStore.ReadFile();
             _splash.UpdateProgress("Loading User Data", 20);
-            DailyDataDataStore.ReadData();
+            DailyDataDataStore = DailyDataRepository.ReadData();
             _splash.UpdateProgress("Loading Contact Data", 25);
 
 
@@ -541,49 +542,73 @@ namespace CallTracker.View
                 _currentItem = value;
                 switch (_currentItem.Name)
                 {
+                    case "logInToolStripMenuItem":
+                        logInToolStripMenuItem.Enabled = false;
+                        holdToolStripMenuItem.Enabled = false;
+                        reservedToolStripMenuItem.Enabled = false;
+                        readyToolStripMenuItem.Enabled = false;
+                        wrapUpToolStripMenuItem.Enabled = false;
+                        talkingToolStripMenuItem.Enabled = false;
+                        logOutToolStripMenuItem.Enabled = true;
+                        notReadyToolStripMenuItem.Enabled = true;
+                        break;
+                    case "notReadyToolStripMenuItem":
+                        holdToolStripMenuItem.Enabled = false;
+                        reservedToolStripMenuItem.Enabled = false;
+                        readyToolStripMenuItem.Enabled = true;
+                        wrapUpToolStripMenuItem.Enabled = true;
+                        talkingToolStripMenuItem.Enabled = false;
+                        logInToolStripMenuItem.Enabled = false;
+                        logOutToolStripMenuItem.Enabled = true;
+                        break;
                     case "readyToolStripMenuItem":
+                        holdToolStripMenuItem.Enabled = false;
+                        reservedToolStripMenuItem.Enabled = true;
                         wrapUpToolStripMenuItem.Enabled = false;
                         talkingToolStripMenuItem.Enabled = true;
                         notReadyToolStripMenuItem.Enabled = true;
                         logInToolStripMenuItem.Enabled = false;
                         logOutToolStripMenuItem.Enabled = true;
                         break;
-                    case "wrapUpToolStripMenuItem":
-                        readyToolStripMenuItem.Enabled = true;
-                        talkingToolStripMenuItem.Enabled = false;
+                    case "reservedToolStripMenuItem":
+                        holdToolStripMenuItem.Enabled = false;
+                        reservedToolStripMenuItem.Enabled = false;
+                        readyToolStripMenuItem.Enabled = false;
+                        wrapUpToolStripMenuItem.Enabled = false;
+                        talkingToolStripMenuItem.Enabled = true;
+                        logOutToolStripMenuItem.Enabled = false;
                         notReadyToolStripMenuItem.Enabled = true;
-                        logInToolStripMenuItem.Enabled = false;
-                        logOutToolStripMenuItem.Enabled = true;
                         break;
                     case "talkingToolStripMenuItem":
+                        holdToolStripMenuItem.Enabled = true;
+                        reservedToolStripMenuItem.Enabled = false;
                         readyToolStripMenuItem.Enabled = false;
                         wrapUpToolStripMenuItem.Enabled = true;
                         notReadyToolStripMenuItem.Enabled = false;
                         logInToolStripMenuItem.Enabled = false;
                         logOutToolStripMenuItem.Enabled = false;
                         break;
-                    case "notReadyToolStripMenuItem":
+                    case "holdToolStripMenuItem":
+                        holdToolStripMenuItem.Enabled = false;
+                        reservedToolStripMenuItem.Enabled = false;
+                        readyToolStripMenuItem.Enabled = false;
+                        talkingToolStripMenuItem.Enabled = true;
+                        notReadyToolStripMenuItem.Enabled = false;
+                        logInToolStripMenuItem.Enabled = false;
+                        logOutToolStripMenuItem.Enabled = false;
+                        break;
+                    case "wrapUpToolStripMenuItem":
+                        holdToolStripMenuItem.Enabled = false;
+                        reservedToolStripMenuItem.Enabled = false;
                         readyToolStripMenuItem.Enabled = true;
-                        wrapUpToolStripMenuItem.Enabled = true;
                         talkingToolStripMenuItem.Enabled = false;
+                        notReadyToolStripMenuItem.Enabled = true;
                         logInToolStripMenuItem.Enabled = false;
                         logOutToolStripMenuItem.Enabled = true;
                         break;
                     case "logOutToolStripMenuItem":
-                        readyToolStripMenuItem.Enabled = false;
-                        wrapUpToolStripMenuItem.Enabled = false;
-                        talkingToolStripMenuItem.Enabled = false;
-                        logInToolStripMenuItem.Enabled = true;
-                        notReadyToolStripMenuItem.Enabled = false;
-                        break;
-                    case "logInToolStripMenuItem":
-                        readyToolStripMenuItem.Enabled = false;
-                        wrapUpToolStripMenuItem.Enabled = false;
-                        talkingToolStripMenuItem.Enabled = false;
-                        logOutToolStripMenuItem.Enabled = true;
-                        notReadyToolStripMenuItem.Enabled = true;
-                        break;
-                    default:
+                        holdToolStripMenuItem.Enabled = false;
+                        reservedToolStripMenuItem.Enabled = false;
                         readyToolStripMenuItem.Enabled = false;
                         wrapUpToolStripMenuItem.Enabled = false;
                         talkingToolStripMenuItem.Enabled = false;
@@ -595,12 +620,12 @@ namespace CallTracker.View
         }
         private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            if (e.ClickedItem != monitorIPCCToolStripMenuItem)
-            {
+            //if (e.ClickedItem != monitorIPCCToolStripMenuItem)
+            //{
                 ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
-                if (CheckForIpcc())
-                    _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
-            }
+                if (!monitorIPCCToolStripMenuItem.Checked && !_IPCCTimer.Enabled)
+                    _IPCCTimer.Enabled = true;
+            //}
         }
 
         private void ChangeCallStateMenuItem(string callState)
@@ -643,6 +668,9 @@ namespace CallTracker.View
                 return;
             }
 
+            //if (CurrentItem.Name == "logInToolStripMenuItem")
+            //    ChangeCallStateMenuItem(notReadyToolStripMenuItem);
+
             // If IPCC monitoring is off, pass in values from IPCC menu for testing.
             string status;
             if (monitorIPCCToolStripMenuItem.Checked)
@@ -653,9 +681,6 @@ namespace CallTracker.View
             else
                 status = CurrentItem.Tag.ToString();
 
-            if (CurrentItem.Name == "logInToolStripMenuItem")
-                ChangeCallStateMenuItem(notReadyToolStripMenuItem);
-
             if (status != _IPCCState.Text)
             {
                 var dailyData = (DailyModel) _DailyDataBindingSource.Current;
@@ -663,111 +688,99 @@ namespace CallTracker.View
                 {
                     if(IsDifferentShift())
                         dailyData = (DailyModel) _DailyDataBindingSource.Current;
-                    dailyData.Events.AddCallEvent(CallEventTypes.LogIn);
+                    dailyData.AddCallEvent(CallEventTypes.LogIn);
                 }
 
                 switch (status)
                 {
                     case "Wrapup":
-                        _IPCCTimer.Interval = 1000;
-                        _CallStateTime.BackColor = Color.Firebrick;
-                        _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
+                        IPCCLevel("red");
                         if (CurrentContact != null)
                         {
                             CurrentContact.AddCallEvent(CallEventTypes.CallEnd);
                             CurrentContact = null;
                         }
-                        SelectedContact.Events.AddCallEvent(CallEventTypes.Wrapup);
+                        SelectedContact.AddCallEvent(CallEventTypes.Wrapup);
                         break;
                     case "Reserved":
                         _IPCCTimer.Interval = 500;
-                        SelectedContact.Events.AddCallEvent(CallEventTypes.Reserved);
-                        dailyData.Events.AddCallEvent(CallEventTypes.Reserved);
+                        dailyData.AddCallEvent(CallEventTypes.Reserved);
                         if (editContact.autoNewCallToolStripMenuItem.Checked)
                         {
                             editContact.bindingNavigatorAddNewItem_Click(_IPCCState, new EventArgs());
+                            SelectedContact.AddCallEvent(CallEventTypes.Reserved);
                         }
 
-                        if (Properties.Settings.Default.PullIPCCCallData)
-                        {
-                            EventLogger.LogAndSaveNewEvent("Getting Svc No From IPCC");
-                            var serviceNumber =
-                                _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
-                                    SearchCriteria.ByText("Svc No"));
-                            SelectedContact.FindDNMatch(serviceNumber.Value.ToString());
-                            SelectedContact.FindMobileMatch(serviceNumber.Value.ToString());
+                        //if (Properties.Settings.Default.PullIPCCCallData)
+                        //{
+                        //    EventLogger.LogAndSaveNewEvent("Getting Svc No From IPCC");
+                        //    var serviceNumber =
+                        //        _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
+                        //            SearchCriteria.ByText("Svc No"));
+                        //    SelectedContact.FindDNMatch(serviceNumber.Value.ToString());
+                        //    SelectedContact.FindMobileMatch(serviceNumber.Value.ToString());
 
-                            EventLogger.LogAndSaveNewEvent("Getting Caller ID From IPCC");
-                            var contactNumber =
-                                _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
-                                    SearchCriteria.ByText("Caller ID"));
-                            SelectedContact.FindDNMatch(contactNumber.Value.ToString());
-                            SelectedContact.FindMobileMatch(contactNumber.Value.ToString());
+                        //    EventLogger.LogAndSaveNewEvent("Getting Caller ID From IPCC");
+                        //    var contactNumber =
+                        //        _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
+                        //            SearchCriteria.ByText("Caller ID"));
+                        //    SelectedContact.FindDNMatch(contactNumber.Value.ToString());
+                        //    SelectedContact.FindMobileMatch(contactNumber.Value.ToString());
 
-                            EventLogger.LogAndSaveNewEvent("Getting Acc No From IPCC");
-                            var accountNumber =
-                                _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
-                                    SearchCriteria.ByText("Acc No"));
-                            SelectedContact.FindCMBSMatch(accountNumber.Value.ToString());
-                            SelectedContact.FindICONMatch(accountNumber.Value.ToString());
+                        //    EventLogger.LogAndSaveNewEvent("Getting Acc No From IPCC");
+                        //    var accountNumber =
+                        //        _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
+                        //            SearchCriteria.ByText("Acc No"));
+                        //    SelectedContact.FindCMBSMatch(accountNumber.Value.ToString());
+                        //    SelectedContact.FindICONMatch(accountNumber.Value.ToString());
 
-                            EventLogger.LogAndSaveNewEvent("Getting ID ok From IPCC");
-                            var idok =
-                                _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
-                                    SearchCriteria.ByText("IVR Status"));
-                            if (idok.Value.ToString().Contains("OK"))
-                                SelectedContact.IDok = true;
+                        //    EventLogger.LogAndSaveNewEvent("Getting ID ok From IPCC");
+                        //    var idok =
+                        //        _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
+                        //            SearchCriteria.ByText("IVR Status"));
+                        //    if (idok.Value.ToString().Contains("OK"))
+                        //        SelectedContact.IDok = true;
 
-                            EventLogger.LogAndSaveNewEvent("Getting IVR Selection From IPCC");
-                            var ivrSelection =
-                                _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
-                                    SearchCriteria.ByText("IVR Selection"));
-                        }
+                        //    EventLogger.LogAndSaveNewEvent("Getting IVR Selection From IPCC");
+                        //    var ivrSelection =
+                        //        _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
+                        //            SearchCriteria.ByText("IVR Selection"));
+                        //}
 
                         break;
                     case "Talking":
-                        _IPCCTimer.Interval = 1000;
-                        _CallStateTime.BackColor = Color.Chocolate;
-                        _CallStateTime.ForeColor = Color.PaleGoldenrod;
+                        IPCCLevel("amber");
                         if (CurrentContact != null)
                             CurrentContact.AddCallEvent(CallEventTypes.Talking);
                         else
-                            SelectedContact.Events.AddCallEvent(CallEventTypes.Talking);
-                        dailyData.Events.AddCallEvent(CallEventTypes.Talking);                     
+                            SelectedContact.AddCallEvent(CallEventTypes.Talking);                   
                         break;
                     case "Hold":
-                        _IPCCTimer.Interval = 1000;
-                        _CallStateTime.BackColor = Color.Firebrick;
-                        _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
+                        IPCCLevel("red");
                         if (CurrentContact != null)
                             CurrentContact.AddCallEvent(CallEventTypes.Hold);
                         else
-                            SelectedContact.Events.AddCallEvent(CallEventTypes.Hold);
+                            SelectedContact.AddCallEvent(CallEventTypes.Hold);
                         break;
                     case "NotReady":
-                        _IPCCTimer.Interval = 1000;
-                        _CallStateTime.BackColor = Color.Firebrick;
-                        _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
-                        SelectedContact.Events.AddCallEvent(CallEventTypes.NotReady);
+                        IPCCLevel("red");
+                        if (SelectedContact != null)
+                            SelectedContact.AddCallEvent(CallEventTypes.NotReady);
                         break;
                     case "Ready":
-                        _IPCCTimer.Interval = 1000;
-                        _CallStateTime.BackColor = Color.OliveDrab;
-                        _CallStateTime.ForeColor = Color.PaleGoldenrod;
+                        IPCCLevel("green");
+                        dailyData.AddCallEvent(CallEventTypes.Ready);
                         SelectedContact.AddCallEvent(CallEventTypes.Ready);
-                        dailyData.Events.AddCallEvent(CallEventTypes.Ready);
                         break;
                     case "":
-                        _IPCCTimer.Interval = 2000;
-                        _CallStateTime.BackColor = Color.WhiteSmoke;
-                        _CallStateTime.ForeColor = Color.DarkSlateGray;
+                        IPCCLevel("white");
+                        dailyData.AddCallEvent(CallEventTypes.LogOut);
                         if (CurrentContact != null)
                         {
                             CurrentContact.AddCallEvent(CallEventTypes.CallEnd);
                             CurrentContact = null;
                         }
-                        SelectedContact.Events.AddCallEvent(CallEventTypes.LogOut);
-                        dailyData.Events.AddCallEvent(CallEventTypes.LogOut);
+                        SelectedContact.AddCallEvent(CallEventTypes.LogOut);
                         break;
                     default:
                         _IPCCTimer.Interval = 1000;
@@ -790,6 +803,32 @@ namespace CallTracker.View
             return time.Hours > 0 ? String.Format("{0}:{1:00}:{2:00}",time.Hours, time.Minutes, time.Seconds) : String.Format("{0:00}:{1:00}", time.Minutes, time.Seconds);
         }
 
+        private void IPCCLevel(string level)
+        {
+            switch (level)
+            {
+                case "white":
+                    _IPCCTimer.Interval = 2000;
+                    _CallStateTime.BackColor = Color.WhiteSmoke;
+                    _CallStateTime.ForeColor = Color.DarkSlateGray;
+                    break;
+                case "green":
+                    _IPCCTimer.Interval = 1000;
+                    _CallStateTime.BackColor = Color.OliveDrab;
+                    _CallStateTime.ForeColor = Color.PaleGoldenrod;
+                    break;
+                case "amber":
+                    _IPCCTimer.Interval = 1000;
+                    _CallStateTime.BackColor = Color.Chocolate;
+                    _CallStateTime.ForeColor = Color.PaleGoldenrod;
+                    break;
+                case "red":
+                    _IPCCTimer.Interval = 1000;
+                    _CallStateTime.BackColor = Color.Firebrick;
+                    _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
+                    break;
+            }
+        }
 
 
 
@@ -897,7 +936,8 @@ namespace CallTracker.View
             // If Date is right, or Agent isn't logged out, then don't do anything.
             if (_DailyDataBindingSource.Count > 0)
                 if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today || !String.IsNullOrEmpty(_IPCCState.Text))
-                    return false;
+                {return false;}
+
             
             // If today doesnt exist, create it, otherwise change the day.
             if (DailyDataDataStore.DailyData.All(x => x.Date.LongDate != DateTime.Today))

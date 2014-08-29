@@ -1,15 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.RightsManagement;
-using System.Text;
-using System.Windows.Forms.VisualStyles;
 using ProtoBuf;
 using PropertyChanged;
-
-using System.Collections.Generic;
-
-using CallTracker.Helpers;
 
 namespace CallTracker.Model
 {

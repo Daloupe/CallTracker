@@ -215,14 +215,15 @@ namespace CallTracker.Model
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     [ProtoContract(SkipConstructor = true)]
-    internal class DailyDataDataStore : DataRepository<DailyDataDataStore>
+    internal class DailyDataRepository : DataRepository<DailyDataRepository>
     {
         [ProtoMember(1)]
         internal FilterableBindingList<DailyModel> DailyData { get; set; }
 
-        public DailyDataDataStore()
+        private const string _filename = "Data/Contacts.bin";
+        public DailyDataRepository()
         {
-            Filename = "Data/Contacts.bin";
+        //    Filename = "Data/Contacts.bin";
             DailyData = new FilterableBindingList<DailyModel>();
         }
 
@@ -232,24 +233,30 @@ namespace CallTracker.Model
             DailyData = new FilterableBindingList<DailyModel>();
         }
 
-        public void ReadData()
+        public static DailyDataRepository ReadData()
         {
-            DailyDataDataStore dataStore;
+            DailyDataRepository dataStore;
 
-            if (!File.Exists(Filename))
+            if (!File.Exists(_filename))
             {
-                File.Create(Filename).Close();
+                File.Create(_filename).Close();
                 Properties.Settings.Default.NextContactsId = 0;
             }
-            using (var file = File.OpenRead(Filename))
-                dataStore = Serializer.Deserialize<DailyDataDataStore>(file);
+            using (var file = File.OpenRead(_filename))
+                dataStore = Serializer.Deserialize<DailyDataRepository>(file);
 
-            DailyData = new FilterableBindingList<DailyModel>(dataStore.DailyData.ToList());
+            if (dataStore == null)
+            {
+                dataStore = new DailyDataRepository();
+                dataStore.DailyData.AddNew();
+            }
+            return dataStore;
+            //DailyData = new FilterableBindingList<DailyModel>(dataStore.DailyData.ToList());
         }
 
         public void WriteData()
         {
-            using (var file = File.Create(Filename))
+            using (var file = File.Create(_filename))
                 Serializer.Serialize(file, this);
         }
     }

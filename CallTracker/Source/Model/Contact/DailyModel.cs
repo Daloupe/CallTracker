@@ -9,9 +9,9 @@ using CallTracker.Helpers.Types;
 namespace CallTracker.Model
 {
 
-    [ProtoContract(SkipConstructor = true)]
+    [ProtoContract]
     [ImplementPropertyChanged]
-    internal class DailyModel
+    public class DailyModel
     {
         [ProtoMember(1)]
         internal bool IsDirty;
@@ -20,9 +20,9 @@ namespace CallTracker.Model
         [ProtoMember(3)]
         internal FilterableBindingList<CustomerContact> Contacts { get; set; }
         [ProtoMember(4)]
-        internal EventsModel<DailyStats> Events { get; set; }
+        private EventsModel<DailyStats> Events { get; set; }
 
-        internal DailyModel()
+        public DailyModel()
         {
             Date = new DateFilterItem(DateTime.Today);
             Contacts = new FilterableBindingList<CustomerContact>();
@@ -44,10 +44,10 @@ namespace CallTracker.Model
         internal void ComputeStatistics()
         {
             var callStats = new List<CallStats>();
-            foreach (var contact in Contacts)
-            {
-                callStats.Add(contact.Events.ComputeStatistics());
-            }
+            //foreach (var contact in Contacts)
+            //{
+            //    callStats.Add(contact.Events.ComputeStatistics());
+            //}
             Events.ComputeStatistics(callStats);
         }
 
@@ -57,7 +57,10 @@ namespace CallTracker.Model
         internal void AddCallEvent(CallEventTypes newEvent)
         {
             Events.AddCallEvent(newEvent);
-            EventLogger.LogNewEvent(Date.ShortDate + " > " + Enum.GetName(typeof(CallEventTypes), Events.LastCallEvent));
+            
+            EventLogger.LogNewEvent("Daily Data: " + Date.ShortDate + " > " +
+                                 Enum.GetName(typeof (CallEventTypes), Events.LastCallEvent.EventType) + " at " +
+                                 Events.LastCallEvent.Timestamp.ToString("dd/MM/yy hh:mm:ss"), EventLogLevel.Status);
         }
 
         internal void AddAppEvent(AppEventTypes newEvent)
