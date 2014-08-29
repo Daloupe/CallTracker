@@ -249,6 +249,8 @@ namespace CallTracker.View
                 DisposeIPCC();
 
                 Properties.Settings.Default.Save();
+                if (SelectedContact != null)
+                    SelectedContact.FinishUp();
 
                 editContact.customerContactsBindingSource.RemoveFilter();
                 DailyDataDataStore.DailyData.RemoveFilter();

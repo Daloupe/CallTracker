@@ -63,7 +63,10 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.autoSearchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoSearchActiveWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.loginsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gridLinksViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -125,9 +128,6 @@
             this.afterHoursPaymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.autoSearchActiveWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -375,6 +375,7 @@
             // 
             // pullIPCCCallDataToolStripMenuItem
             // 
+            this.pullIPCCCallDataToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.PullIPCCCallData;
             this.pullIPCCCallDataToolStripMenuItem.CheckOnClick = true;
             this.pullIPCCCallDataToolStripMenuItem.Name = "pullIPCCCallDataToolStripMenuItem";
             this.pullIPCCCallDataToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
@@ -480,7 +481,7 @@
             // 
             // showStatusBarToolStripMenuItem
             // 
-            this.showStatusBarToolStripMenuItem.Checked = true;
+            this.showStatusBarToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.ShowStatusBar;
             this.showStatusBarToolStripMenuItem.CheckOnClick = true;
             this.showStatusBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showStatusBarToolStripMenuItem.Name = "showStatusBarToolStripMenuItem";
@@ -488,13 +489,33 @@
             this.showStatusBarToolStripMenuItem.Text = "Show Status Bar";
             this.showStatusBarToolStripMenuItem.Click += new System.EventHandler(this.showStatusBarToolStripMenuItem_Click);
             // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(215, 6);
+            // 
             // autoSearchToolStripMenuItem
             // 
+            this.autoSearchToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.AutoSearch;
             this.autoSearchToolStripMenuItem.CheckOnClick = true;
             this.autoSearchToolStripMenuItem.Name = "autoSearchToolStripMenuItem";
             this.autoSearchToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.autoSearchToolStripMenuItem.Text = "Auto Search";
             this.autoSearchToolStripMenuItem.CheckedChanged += new System.EventHandler(this.autoSearchToolStripMenuItem_CheckedChanged);
+            // 
+            // autoSearchActiveWindowToolStripMenuItem
+            // 
+            this.autoSearchActiveWindowToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.AutoSearchActiveWindow;
+            this.autoSearchActiveWindowToolStripMenuItem.CheckOnClick = true;
+            this.autoSearchActiveWindowToolStripMenuItem.Name = "autoSearchActiveWindowToolStripMenuItem";
+            this.autoSearchActiveWindowToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.autoSearchActiveWindowToolStripMenuItem.Text = "Auto Search Active Window";
+            this.autoSearchActiveWindowToolStripMenuItem.Click += new System.EventHandler(this.autoSearchActiveWindowToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(215, 6);
             // 
             // loginsViewMenuItem
             // 
@@ -956,24 +977,6 @@
             this.bindableContextMenu1.BoundData = null;
             this.bindableContextMenu1.Name = "bindableContextMenu1";
             this.bindableContextMenu1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(215, 6);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(215, 6);
-            // 
-            // autoSearchActiveWindowToolStripMenuItem
-            // 
-            this.autoSearchActiveWindowToolStripMenuItem.CheckOnClick = true;
-            this.autoSearchActiveWindowToolStripMenuItem.Name = "autoSearchActiveWindowToolStripMenuItem";
-            this.autoSearchActiveWindowToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.autoSearchActiveWindowToolStripMenuItem.Text = "Auto Search Active Window";
-            this.autoSearchActiveWindowToolStripMenuItem.Click += new System.EventHandler(this.autoSearchActiveWindowToolStripMenuItem_Click);
             // 
             // Main
             // 

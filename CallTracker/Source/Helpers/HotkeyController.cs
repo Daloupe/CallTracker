@@ -4,8 +4,6 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
-using System.ComponentModel;
-using CallTracker.Helpers.Types;
 using Shortcut;
 
 using WatiN.Core;
@@ -683,16 +681,15 @@ namespace CallTracker.Helpers
 
         public static bool SilentSearch(string search, string title, string url)
         {
+            // Browser object should be disposed of manually after caller is done calling SilenetSearch.
             if (FindIEByTitle(title))
             {
                 if (WindowHelper.GetActiveWindowHWND() == browser.hWnd && !Properties.Settings.Default.AutoSearchActiveWindow)
                 {
                     EventLogger.LogNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
-                    browser.Dispose();
                     return false;
                 }
                 browser.GoToNoWait(search);
-                browser.Dispose();
                 return true;
             }
 
@@ -701,12 +698,10 @@ namespace CallTracker.Helpers
                 if (WindowHelper.GetActiveWindowHWND() == browser.hWnd && !Properties.Settings.Default.AutoSearchActiveWindow)
                 {
                     EventLogger.LogNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
-                    browser.Dispose();
                     return false;
                 }
 
                 browser.GoToNoWait(search);
-                browser.Dispose();
                 return true;
             }
 

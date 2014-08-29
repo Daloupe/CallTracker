@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-//using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
 
 using CallTracker.View;
@@ -21,24 +17,23 @@ namespace CallTracker
         [STAThread]
         static void Main()
         {
-            bool createdNew = true;
-            SplashScreen Splash;
-            using (Mutex mutex = new Mutex(true, "CallTracker", out createdNew))
+            var createdNew = true;
+            using (var mutex = new Mutex(true, "CallTracker", out createdNew))
             {
                 if (createdNew)
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
-                    Splash = new SplashScreen();
+                    var splash = new SplashScreen();
                     //Splash._Version.Text = "Version " + Properties.Settings.Default.Version;
-                    Splash.Show();
+                    splash.Show();
                     Application.DoEvents();
-                    Application.Run(new Main(Splash));
+                    Application.Run(new Main(splash));
                 }
                 else
                 {
-                    Process current = Process.GetCurrentProcess();
-                    foreach (Process process in Process.GetProcessesByName(current.ProcessName))
+                    var current = Process.GetCurrentProcess();
+                    foreach (var process in Process.GetProcessesByName(current.ProcessName))
                     {
                         if (process.Id != current.Id)
                         {

@@ -226,6 +226,12 @@ namespace CallTracker.Model
             DailyData = new FilterableBindingList<DailyModel>();
         }
 
+        [ProtoBeforeDeserialization]
+        private void Initializer()
+        {
+            DailyData = new FilterableBindingList<DailyModel>();
+        }
+
         public void ReadData()
         {
             DailyDataDataStore dataStore;
@@ -237,9 +243,6 @@ namespace CallTracker.Model
             }
             using (var file = File.OpenRead(Filename))
                 dataStore = Serializer.Deserialize<DailyDataDataStore>(file);
-
-            //if (dataStore.Contacts.Count == 0)
-            //    dataStore.Contacts.AddNew();
 
             DailyData = new FilterableBindingList<DailyModel>(dataStore.DailyData.ToList());
         }

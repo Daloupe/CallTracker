@@ -6,7 +6,7 @@ using PropertyChanged;
 namespace CallTracker.Model
 {
     //[ImplementPropertyChanged]
-    [ProtoContract]
+    [ProtoContract]//(SkipConstructor = true)]
     public class ContactStatistics
     {
         [ProtoMember(1)]
@@ -29,6 +29,13 @@ namespace CallTracker.Model
             StartDate = new DateTime();
             StartTime = new TimeSpan();
         }
+
+        //[ProtoBeforeDeserialization]
+        //private void FieldInitializer()
+        //{
+        //    StartDate = new DateTime();
+        //    StartTime = new TimeSpan();
+        //}
     }
 
     [ImplementPropertyChanged]

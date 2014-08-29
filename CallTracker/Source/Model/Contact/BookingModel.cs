@@ -7,7 +7,7 @@ using PropertyChanged;
 namespace CallTracker.Model
 {
     [ImplementPropertyChanged]
-    [ProtoContract]
+    [ProtoContract]//(SkipConstructor = true)]
     public class BookingModel
     {
         [ProtoMember(1)]
@@ -35,6 +35,12 @@ namespace CallTracker.Model
             Date = DateTime.Today;
             Timeslot = "AM";
         }
+
+        //[ProtoBeforeDeserialization]
+        //private void FieldInitializer()
+        //{
+        //    Date = DateTime.Today;
+        //}
 
         public Dictionary<string, string> Timeslots = new Dictionary<string, string>
         {

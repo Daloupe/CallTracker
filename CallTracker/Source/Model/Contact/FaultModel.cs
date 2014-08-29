@@ -14,7 +14,7 @@ using CallTracker.DataSets;
 namespace CallTracker.Model
 {
     [ImplementPropertyChanged]
-    [ProtoContract]
+    [ProtoContract]//(SkipConstructor = true)]
     public class FaultModel
     {
         public FaultModel()
@@ -30,6 +30,13 @@ namespace CallTracker.Model
             AffectedServices = ServiceTypes.NONE;
             AffectedServiceType = ServiceTypes.NONE;
         }
+
+        //[ProtoBeforeDeserialization]
+        //private void FieldInitializer()
+        //{
+        //    AffectedServices = ServiceTypes.NONE;
+        //    AffectedServiceType = ServiceTypes.NONE;
+        //}
 
         public static ITCasePattern ITCasePattern = new ITCasePattern();
 

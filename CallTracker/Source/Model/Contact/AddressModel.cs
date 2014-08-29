@@ -10,7 +10,7 @@ using CallTracker.View;
 namespace CallTracker.Model
 {
     [ImplementPropertyChanged]
-    [ProtoContract]
+    [ProtoContract]//(SkipConstructor = true)]
     public class ContactAddress
     {
         public static Address2Pattern Pattern = new Address2Pattern();
@@ -35,6 +35,12 @@ namespace CallTracker.Model
         public ContactAddress()
         {
         }
+
+        //[ProtoBeforeDeserialization]
+        //private void FieldInitializer()
+        //{
+
+        //}
 
         [ProtoMember(9)]
         private string address;

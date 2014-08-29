@@ -9,7 +9,7 @@ using CallTracker.Helpers.Types;
 namespace CallTracker.Model
 {
 
-    [ProtoContract]
+    [ProtoContract(SkipConstructor = true)]
     [ImplementPropertyChanged]
     public class DailyModel
     {
@@ -28,6 +28,12 @@ namespace CallTracker.Model
             Contacts = new FilterableBindingList<CustomerContact>();
             Events = new EventsModel<DailyStats>();
             IsDirty = true;
+        }
+
+        [ProtoBeforeDeserialization]
+        private void Initializer()
+        {
+            Contacts = new FilterableBindingList<CustomerContact>();
         }
 
         public void ArchiveContacts()

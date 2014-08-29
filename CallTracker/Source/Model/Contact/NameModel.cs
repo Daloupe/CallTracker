@@ -8,7 +8,7 @@ using PropertyChanged;
 namespace CallTracker.Model
 {
     [ImplementPropertyChanged]
-    [ProtoContract]
+    [ProtoContract]//(SkipConstructor = true)]
     public class NameModel
     {
         public static NamePattern Pattern = new NamePattern();
@@ -30,7 +30,7 @@ namespace CallTracker.Model
             } 
             set 
             {
-                Match match = Pattern.Match(value);
+                var match = Pattern.Match(value);
                 Title = match.Groups[1].Value;
                 First = match.Groups[2].Value;
                 Initial = match.Groups[3].Value;
@@ -47,6 +47,11 @@ namespace CallTracker.Model
             First = String.Empty;
             Last = String.Empty;
         }
+        //[ProtoBeforeDeserialization]
+        //private void FieldInitializer()
+        //{
+          
+        //}
 
         
 

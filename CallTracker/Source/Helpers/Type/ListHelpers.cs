@@ -105,10 +105,10 @@ namespace CallTracker.Helpers
 
             public PropertyComparer(PropertyDescriptor property, ListSortDirection direction)
             {
-                this.propertyDescriptor = property;
-                Type comparerForPropertyType = typeof(Comparer<>).MakeGenericType(property.PropertyType);
-                this.comparer = (IComparer)comparerForPropertyType.InvokeMember("Default", BindingFlags.Static | BindingFlags.GetProperty | BindingFlags.Public, null, null, null);
-                this.SetListSortDirection(direction);
+                propertyDescriptor = property;
+                var comparerForPropertyType = typeof(Comparer<>).MakeGenericType(property.PropertyType);
+                comparer = (IComparer)comparerForPropertyType.InvokeMember("Default", BindingFlags.Static | BindingFlags.GetProperty | BindingFlags.Public, null, null, null);
+                SetListSortDirection(direction);
             }
 
             #region IComparer<T> Members
@@ -122,12 +122,12 @@ namespace CallTracker.Helpers
 
             private void SetPropertyDescriptor(PropertyDescriptor descriptor)
             {
-                this.propertyDescriptor = descriptor;
+                propertyDescriptor = descriptor;
             }
 
             private void SetListSortDirection(ListSortDirection direction)
             {
-                this.reverse = direction == ListSortDirection.Ascending ? 1 : -1;
+                reverse = direction == ListSortDirection.Ascending ? 1 : -1;
             }
 
             public void SetPropertyAndDirection(PropertyDescriptor descriptor, ListSortDirection direction)

@@ -11,7 +11,7 @@ using CallTracker.View;
 namespace CallTracker.Model
 {
     [ImplementPropertyChanged]
-    [ProtoContract(SkipConstructor = true)]
+    [ProtoContract]//(SkipConstructor = true)]
     public class ServiceModel
     {
         public static BRASPattern BRASPattern = new BRASPattern();
@@ -31,6 +31,12 @@ namespace CallTracker.Model
             Throttled = String.Empty;
             WasSearched = new Dictionary<string, bool>{ { "IFMS", false }, { "Nexus", false }, { "SCAMPS", false }, { "NSI", false }, { "DIMPS", false }, { "UNMT", false } };
         }
+
+        //[ProtoBeforeDeserialization]
+        //private void FieldInitializer()
+        //{
+        //    WasSearched = new Dictionary<string, bool> { { "IFMS", false }, { "Nexus", false }, { "SCAMPS", false }, { "NSI", false }, { "DIMPS", false }, { "UNMT", false } };
+        //}
 
         public object GetValue(string property)
         {
@@ -107,7 +113,7 @@ namespace CallTracker.Model
 
         //public INetworkInfo NetworkInfo { get; set; }
 
-        [ProtoMember(40)]
+        [ProtoMember(40, OverwriteList = true)]
         public Dictionary<string, bool> WasSearched { get; set; }
 
         public bool FindBRASMatch(string text)

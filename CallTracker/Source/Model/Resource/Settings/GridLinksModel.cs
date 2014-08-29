@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
-
+using System.Windows.Forms.VisualStyles;
 using ProtoBuf;
 using PropertyChanged;
+
+using System.Collections.Generic;
+
+using CallTracker.Helpers;
 
 namespace CallTracker.Model
 {
@@ -16,7 +21,7 @@ namespace CallTracker.Model
         public List<GridLinksItem> GridLinkList { get; set; }
         [ProtoMember(2)]
         public List<SystemItem> SystemItems { get; set; }
-
+ 
         public GridLinksModel()
         {
             SystemItems = new List<SystemItem>();
@@ -102,7 +107,7 @@ namespace CallTracker.Model
             return SystemItems.Find(s => s.System == GridLinkList[_index].System);   
         }
     }
-
+    
     //[ImplementPropertyChanged]
     [ProtoContract]
     public class GridLinksItem
@@ -118,7 +123,6 @@ namespace CallTracker.Model
             Index = 0;
         }
     }
-
     [ProtoContract]
     public class SystemItem
     {
@@ -143,9 +147,10 @@ namespace CallTracker.Model
             Searches = new List<SearchItem>();
         }
     }
-     [ProtoContract]
+    
+    [ProtoContract]
     public class SearchItem
-    {
+     {
         [ProtoMember(1)]
         public string SearchURL { get; set; }
         [ProtoMember(2)]
@@ -155,5 +160,7 @@ namespace CallTracker.Model
         {
             SearchURL = String.Empty;
         }
+
+
     }
 }

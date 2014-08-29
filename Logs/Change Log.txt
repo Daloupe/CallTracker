@@ -12,7 +12,11 @@
 //- PasteBind AltData accepts "," for multiple AltData types eg AltData = "Username,Mobile|0$1$2".
 
 
-0.6.1.1
+0.7.0.0
+(Major Features)
+- Cretaed Daily Stats interface.
+
+0.6.1.3
 (Major Features)
 - IPCC Data Pull working.
 (Minor Feature)
@@ -20,6 +24,7 @@
 (Bugs/Changes)
 - Fixed Resources file not building.
 - PR Template not cleaning itself of outage replacements.
+- Added DataTypes: Modem IP address, NTD Serial number, Address ID(LIP), ESN(LAT)
 
 0.5.0.0
 (Major Features)
@@ -27,20 +32,20 @@
 (Bugs/Changes)
 - IPCC menu not drawing back color.
 
-0.4.2.1
+0.4.2.3
 (Major Features)
 | Search context menus added.
 (Minor Features)
 | Auto Search added. The 6 searchable systems are searched once at most by the first type of data that is able. 
 | Added GridLinks Search - Win-Ctrl-Numpad.
-/ Added option to not Auto Search on Active Window.
 (Bugs/Changes)
+| Added option to not Auto Search on Active Window.
 | Splash Screen doesnt show in taskbar.
+| Fixed a derserialization issue by setting WasSearched list to OverwriteList = true, skipping the constructer on other classes that used other types of lists and added a ProtoBeforeDeserialization attirbute to initialize them.
 
 0.3.11.0
 (Minor Features)
 | Added MAC Regex.
-- Added DataTypes: Modem IP address, NTD Serial number, Address ID(LIP), ESN(LAT)
 
 0.3.9.4
 (Minor Features)
