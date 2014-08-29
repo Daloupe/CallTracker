@@ -20,6 +20,8 @@ namespace CallTracker.View
         public EditContact(Main mainform)
         {
             InitializeComponent();
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
+
             MainForm = mainform;
             Location = MainForm.ControlOffset;
 
@@ -44,6 +46,15 @@ namespace CallTracker.View
             //ServicePanel.Equipment = new BindingList<string>();
             _ServicePanel.PreInit(this);
         }
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+        //        cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+        //        return cp;
+        //    }
+        //}
 
         public void OnParentLoad()
         {
@@ -131,6 +142,7 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
+            EventLogger.SaveLog();
             if (customerContactsBindingSource.Count == 0 || customerContactsBindingSource.Position == -1)
             {
                 DisableInterface();

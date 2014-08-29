@@ -84,6 +84,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.Controls.Add(this._MenuButton);
             this.Controls.Add(this._Label);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "LabelledBase";

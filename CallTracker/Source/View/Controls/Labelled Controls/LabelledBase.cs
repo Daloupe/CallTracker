@@ -129,6 +129,8 @@ namespace CallTracker.View
         public LabelledBase()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            UpdateStyles();
             this.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             lasttime = DateTime.UtcNow;
             this.ContextMenuStripChanged += LabelledTextBox_ContextMenuStripChanged;

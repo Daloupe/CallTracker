@@ -35,6 +35,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Ivory;
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "PanelBase";
             this.Padding = new System.Windows.Forms.Padding(3);

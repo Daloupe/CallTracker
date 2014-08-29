@@ -36,8 +36,9 @@ namespace CallTracker.View
 
         public BorderedTextBox() : base()
         {
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            BorderStyle = BorderStyle.FixedSingle;
+            DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;         
         }
 
         protected override void WndProc(ref Message m)
@@ -51,6 +52,24 @@ namespace CallTracker.View
                 ControlPaint.DrawBorder(g, bounds, _borderColor, _buttonBorderStyle);
             }
         }
+
+        //protected override void OnPaint(PaintEventArgs pe)
+        //{
+        //    // draw background
+        //    ControlGraphics.FillRectangle(Brushes.Black, ClientRectangle);
+        //    // draw border
+        //    ControlGraphics.DrawRectangle(Pens.White, ClientRectangle);
+        //    // draw progress 
+        //    ControlGraphics.FillRectangle(Brushes.SkyBlue, 0, 0,
+        //            this.Width * ProgressBarPercentValue, this.Height);
+        //    // draw percent
+        //    ControlGraphics.DrawString(ProgressBarPercentValue.ToString(),
+        //                       this.Font, Brushes.Red,
+        //                       new Point(this.Width / 2, this.Height / 2));
+            //var g = Graphics.FromHwnd(Handle);
+            //var bounds = new Rectangle(0, 0, Width, Height);
+            //ControlPaint.DrawBorder(g, bounds, _borderColor, _buttonBorderStyle);
+        //}
 
         [Category("Appearance")]
         public Color BorderColor
@@ -73,10 +92,17 @@ namespace CallTracker.View
         public BorderedTextField()
             : base()
         {
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+            SetStyle( ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            BorderStyle = BorderStyle.FixedSingle;
+            DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
         }
 
+        //protected override void OnPaint(PaintEventArgs pe)
+        //{
+        //    var g = Graphics.FromHwnd(Handle);
+        //    var bounds = new Rectangle(0, 0, Width, Height);
+        //    ControlPaint.DrawBorder(g, bounds, _borderColor, _buttonBorderStyle);
+        //}
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
@@ -200,15 +226,17 @@ namespace CallTracker.View
         public BorderedDateTimePicker()
             : base()
         {
-            this.SetStyle(ControlStyles.DoubleBuffer, true);
-            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            this.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer | ControlStyles.DoubleBuffer, true);
+            //this.SetStyle(ControlStyles.DoubleBuffer, true);
+            //this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             //this.DropDownStyle = ComboBoxStyle.DropDown;
         }
         protected override void OnValueChanged(EventArgs eventargs)
         {
             base.OnValueChanged(eventargs);
-            this.Invalidate();
+            Invalidate();
         }
         protected override void WndProc(ref Message m)
         {
@@ -329,10 +357,18 @@ namespace CallTracker.View
         public BorderedCombobox()
             : base()
         {
-            this.FlatStyle = FlatStyle.Popup;
-            this.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            FlatStyle = FlatStyle.Popup;
+            DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             //this.DropDownStyle = ComboBoxStyle.DropDown;
         }
+
+        //protected override void OnPaint(PaintEventArgs pe)
+        //{
+        //    var g = Graphics.FromHwnd(Handle);
+        //    var bounds = new Rectangle(0, 0, Width, Height);
+        //    ControlPaint.DrawBorder(g, bounds, _borderColor, _buttonBorderStyle);
+        //}
 
         protected override void WndProc(ref Message m)
         {

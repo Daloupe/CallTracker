@@ -14,10 +14,10 @@ namespace CallTracker.View
         public DataControlBase()
         {
             InitializeComponent();
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.UserPaint, true);
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            //SetStyle(ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.UserPaint, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         }
 
         //[Category("A1")]

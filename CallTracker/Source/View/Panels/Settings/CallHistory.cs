@@ -39,7 +39,7 @@ namespace CallTracker.View
         private int _position;
         public override void ShowSetting()
         {
-            bindingSource1.DataSource = MainForm.editContact.customerContactsBindingSource;
+            bindingSource1 = MainForm.editContact.customerContactsBindingSource;
             callHistoryPanel1.SetBindingSource(bindingSource1);
             dataGridView1.DataSource = bindingSource1;
 
@@ -53,7 +53,7 @@ namespace CallTracker.View
         {
             callHistoryPanel1.RemoveBindingSource();
             dataGridView1.DataSource = null;
-            bindingSource1.DataSource = null;
+            bindingSource1 = null;
 
             //dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
             base.HideSetting();  

@@ -68,7 +68,8 @@ namespace CallTracker.View
         public Main(SplashScreen splash)
         {
             InitializeComponent();
-
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            
             _splash = splash;
             _splash.Init(this);
 
@@ -79,10 +80,6 @@ namespace CallTracker.View
 
             _splash.StepProgress("Setting App Location");
             SetAppLocation();
-            //this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            SetStyle(ControlStyles.DoubleBuffer, true);
-            //SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint, true);
 
             //versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
 
@@ -239,6 +236,7 @@ namespace CallTracker.View
         public bool CancelLoad = false;
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            EventLogger.SaveLog();
             if (HotKeys != null)
             {
                 HotkeyController.OnAction -= UpdateProgressBar;

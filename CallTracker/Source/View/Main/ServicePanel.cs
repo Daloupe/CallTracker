@@ -26,8 +26,9 @@ namespace CallTracker.View
         public ServicePanel()
         {
             InitializeComponent();
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
 
-            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.DoubleBuffer, true);
             //SetStyle(ControlStyles.DoubleBuffer, true);
             //SetStyle(ControlStyles.UserPaint, true);
             //SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -36,6 +37,15 @@ namespace CallTracker.View
 
 
         }
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+        //        cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+        //        return cp;
+        //    }
+        //}
         public void PreInit(EditContact _Parent)
         {
 
@@ -111,6 +121,8 @@ namespace CallTracker.View
             _CSA.AttachMenu(_CVCContextMenu);
             _AVC.AttachMenu(_AVCContextMenu);
             _PRI.AttachMenu(_PRIContextMenu);
+
+            UpdateStyles();
         }
 
         //void customerContactsBindingSource_PositionChanged(object sender, EventArgs e)

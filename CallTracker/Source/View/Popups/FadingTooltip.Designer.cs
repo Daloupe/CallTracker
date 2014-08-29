@@ -66,7 +66,6 @@
             this.ControlBox = global::CallTracker.Properties.Settings.Default.ToolTipAsControlBox;
             this.Controls.Add(this.label1);
             this.DataBindings.Add(new System.Windows.Forms.Binding("ControlBox", global::CallTracker.Properties.Settings.Default, "ToolTipAsControlBox", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

@@ -13,5 +13,11 @@ namespace CallTracker.View
 
             base.WndProc(ref m);
         }
+
+        public BindingNavigatorIgnoreFocus()
+        {
+            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+        }
+                        
     }
 }

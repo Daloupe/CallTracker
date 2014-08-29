@@ -298,8 +298,8 @@ namespace CallTracker.Model
                             "DIMPS", "dimps.optusnet.com.au");
                         Service.WasSearched["DIMPS"] = true;
                     }
-                    if (HotkeyController.browser != null)
-                        HotkeyController.browser.Dispose();      
+                    //if (HotkeyController.browser != null)
+                    //    HotkeyController.browser.Dispose();      
                 }
 
                 return true;

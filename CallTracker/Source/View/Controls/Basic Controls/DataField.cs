@@ -54,5 +54,10 @@ namespace CallTracker.View
             get { return propertyName; }
             set { propertyName = value; }
         }
+
+        public IDataField() : base()
+        {
+            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+        }
     }
 }

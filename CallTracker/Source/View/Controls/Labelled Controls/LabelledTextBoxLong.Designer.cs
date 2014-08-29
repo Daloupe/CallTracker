@@ -70,6 +70,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlHeight = 20;
             this.Controls.Add(this._DataField);
+            this.DoubleBuffered = true;
             this.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this.LabelOffset = new System.Drawing.Point(0, 0);
             this.LabelSize = new System.Drawing.Size(34, 23);

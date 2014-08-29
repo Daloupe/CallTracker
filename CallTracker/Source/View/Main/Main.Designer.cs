@@ -37,27 +37,34 @@
             this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.highToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.clearMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._IPCCState = new System.Windows.Forms.ToolStripStatusLabel();
             this.MenuPanel = new System.Windows.Forms.Panel();
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
-            this.clearMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._CallStateTime = new ContextualToolStripMenuItem();
             this.notReadyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.talkingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wrapUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.logInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.monitorIPCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pullIPCCCallDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
+            this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewKeyCommandsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.callHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loginsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gridLinksViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.showStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
@@ -65,6 +72,8 @@
             this.autoSearchActiveWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
             this.advancedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteBindsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databaseEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolTipAsControlBoxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,8 +91,10 @@
             this.ratecodesMenuItem = new ContextualToolStripMenuItem();
             this.bookmarksContextualToolStripMenuItem = new ContextualToolStripMenuItem();
             this.bookmarksSeperator = new System.Windows.Forms.ToolStripSeparator();
+            this.editBookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemsContextualToolStripMenuItem = new ContextualToolStripMenuItem();
             this.systemsSeperator = new System.Windows.Forms.ToolStripSeparator();
+            this.editSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.systemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iCONToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,18 +131,7 @@
             this.sMSHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afterHoursPaymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
-            this.logInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gridLinksViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteBindsViewMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databaseEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editBookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editSystemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -226,6 +226,16 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(173, 6);
             // 
+            // clearMessagesToolStripMenuItem
+            // 
+            this.clearMessagesToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.WarningLevel;
+            this.clearMessagesToolStripMenuItem.CheckOnClick = true;
+            this.clearMessagesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.clearMessagesToolStripMenuItem.Name = "clearMessagesToolStripMenuItem";
+            this.clearMessagesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.clearMessagesToolStripMenuItem.Text = "Clear Last Warning";
+            this.clearMessagesToolStripMenuItem.CheckedChanged += new System.EventHandler(this.clearMessagesToolStripMenuItem_Click);
+            // 
             // _StatusLabel
             // 
             this._StatusLabel.AutoSize = false;
@@ -268,16 +278,6 @@
             // 
             this._IPCCTimer.Interval = 1000;
             this._IPCCTimer.Tick += new System.EventHandler(this._IPCCTimer_Tick);
-            // 
-            // clearMessagesToolStripMenuItem
-            // 
-            this.clearMessagesToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.WarningLevel;
-            this.clearMessagesToolStripMenuItem.CheckOnClick = true;
-            this.clearMessagesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.clearMessagesToolStripMenuItem.Name = "clearMessagesToolStripMenuItem";
-            this.clearMessagesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.clearMessagesToolStripMenuItem.Text = "Clear Last Warning";
-            this.clearMessagesToolStripMenuItem.CheckedChanged += new System.EventHandler(this.clearMessagesToolStripMenuItem_Click);
             // 
             // _CallStateTime
             // 
@@ -344,6 +344,23 @@
             this.toolStripSeparator10.Name = "toolStripSeparator10";
             this.toolStripSeparator10.Size = new System.Drawing.Size(174, 6);
             // 
+            // logInToolStripMenuItem
+            // 
+            this.logInToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallIn;
+            this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.logInToolStripMenuItem.Tag = "AgentStatus:";
+            this.logInToolStripMenuItem.Text = "Log In";
+            // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Enabled = false;
+            this.logOutToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallOut;
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.logOutToolStripMenuItem.Tag = "AgentStatus:";
+            this.logOutToolStripMenuItem.Text = "Log Out";
+            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
@@ -391,6 +408,15 @@
             this._MainMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             this._MainMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MainMenu_MouseDown);
             // 
+            // quitToolStripMenuItem1
+            // 
+            this.quitToolStripMenuItem1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.quitToolStripMenuItem1.Image = global::CallTracker.Properties.Resources.Close;
+            this.quitToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.quitToolStripMenuItem1.Name = "quitToolStripMenuItem1";
+            this.quitToolStripMenuItem1.Size = new System.Drawing.Size(22, 17);
+            this.quitToolStripMenuItem1.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -408,6 +434,18 @@
             this.viewKeyCommandsMenuItem.Size = new System.Drawing.Size(158, 22);
             this.viewKeyCommandsMenuItem.Text = "Key Commands";
             this.viewKeyCommandsMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(155, 6);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -451,6 +489,22 @@
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
             this.viewToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.viewToolStripMenuItem.Text = "Settings";
+            // 
+            // loginsViewMenuItem
+            // 
+            this.loginsViewMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
+            this.loginsViewMenuItem.Name = "loginsViewMenuItem";
+            this.loginsViewMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.loginsViewMenuItem.Text = "Logins";
+            this.loginsViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            // 
+            // gridLinksViewMenuItem
+            // 
+            this.gridLinksViewMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
+            this.gridLinksViewMenuItem.Name = "gridLinksViewMenuItem";
+            this.gridLinksViewMenuItem.Size = new System.Drawing.Size(218, 22);
+            this.gridLinksViewMenuItem.Text = "Grid Links";
+            this.gridLinksViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
@@ -505,6 +559,23 @@
             this.advancedToolStripMenuItem.Name = "advancedToolStripMenuItem";
             this.advancedToolStripMenuItem.Size = new System.Drawing.Size(218, 22);
             this.advancedToolStripMenuItem.Text = "Advanced";
+            // 
+            // pasteBindsViewMenuItem
+            // 
+            this.pasteBindsViewMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pasteBindsViewMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
+            this.pasteBindsViewMenuItem.Name = "pasteBindsViewMenuItem";
+            this.pasteBindsViewMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.pasteBindsViewMenuItem.Text = "Smart Paste Binds";
+            this.pasteBindsViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            // 
+            // databaseEditorToolStripMenuItem
+            // 
+            this.databaseEditorToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
+            this.databaseEditorToolStripMenuItem.Name = "databaseEditorToolStripMenuItem";
+            this.databaseEditorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.databaseEditorToolStripMenuItem.Text = "Database";
+            this.databaseEditorToolStripMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
@@ -650,6 +721,14 @@
             this.bookmarksSeperator.Name = "bookmarksSeperator";
             this.bookmarksSeperator.Size = new System.Drawing.Size(154, 6);
             // 
+            // editBookmarksToolStripMenuItem
+            // 
+            this.editBookmarksToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
+            this.editBookmarksToolStripMenuItem.Name = "editBookmarksToolStripMenuItem";
+            this.editBookmarksToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
+            this.editBookmarksToolStripMenuItem.Text = "Edit Bookmarks";
+            this.editBookmarksToolStripMenuItem.Click += new System.EventHandler(this.editBookmarksToolStripMenuItem_Click);
+            // 
             // systemsContextualToolStripMenuItem
             // 
             this.systemsContextualToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -665,6 +744,14 @@
             // 
             this.systemsSeperator.Name = "systemsSeperator";
             this.systemsSeperator.Size = new System.Drawing.Size(138, 6);
+            // 
+            // editSystemsToolStripMenuItem
+            // 
+            this.editSystemsToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
+            this.editSystemsToolStripMenuItem.Name = "editSystemsToolStripMenuItem";
+            this.editSystemsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.editSystemsToolStripMenuItem.Text = "Edit Systems";
+            this.editSystemsToolStripMenuItem.Click += new System.EventHandler(this.editSystemsToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -919,96 +1006,9 @@
             this.bindableContextMenu1.Name = "bindableContextMenu1";
             this.bindableContextMenu1.Size = new System.Drawing.Size(61, 4);
             // 
-            // logInToolStripMenuItem
-            // 
-            this.logInToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallIn;
-            this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
-            this.logInToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.logInToolStripMenuItem.Tag = "AgentStatus:";
-            this.logInToolStripMenuItem.Text = "Log In";
-            // 
-            // logOutToolStripMenuItem
-            // 
-            this.logOutToolStripMenuItem.Enabled = false;
-            this.logOutToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallOut;
-            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.logOutToolStripMenuItem.Tag = "AgentStatus:";
-            this.logOutToolStripMenuItem.Text = "Log Out";
-            // 
-            // quitToolStripMenuItem1
-            // 
-            this.quitToolStripMenuItem1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.quitToolStripMenuItem1.Image = global::CallTracker.Properties.Resources.Close;
-            this.quitToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.quitToolStripMenuItem1.Name = "quitToolStripMenuItem1";
-            this.quitToolStripMenuItem1.Size = new System.Drawing.Size(22, 17);
-            this.quitToolStripMenuItem1.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
-            // 
-            // loginsViewMenuItem
-            // 
-            this.loginsViewMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
-            this.loginsViewMenuItem.Name = "loginsViewMenuItem";
-            this.loginsViewMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.loginsViewMenuItem.Text = "Logins";
-            this.loginsViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
-            // 
-            // gridLinksViewMenuItem
-            // 
-            this.gridLinksViewMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
-            this.gridLinksViewMenuItem.Name = "gridLinksViewMenuItem";
-            this.gridLinksViewMenuItem.Size = new System.Drawing.Size(218, 22);
-            this.gridLinksViewMenuItem.Text = "Grid Links";
-            this.gridLinksViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
-            // 
-            // pasteBindsViewMenuItem
-            // 
-            this.pasteBindsViewMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pasteBindsViewMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
-            this.pasteBindsViewMenuItem.Name = "pasteBindsViewMenuItem";
-            this.pasteBindsViewMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.pasteBindsViewMenuItem.Text = "Smart Paste Binds";
-            this.pasteBindsViewMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
-            // 
-            // databaseEditorToolStripMenuItem
-            // 
-            this.databaseEditorToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
-            this.databaseEditorToolStripMenuItem.Name = "databaseEditorToolStripMenuItem";
-            this.databaseEditorToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.databaseEditorToolStripMenuItem.Text = "Database";
-            this.databaseEditorToolStripMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
-            // 
-            // editBookmarksToolStripMenuItem
-            // 
-            this.editBookmarksToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
-            this.editBookmarksToolStripMenuItem.Name = "editBookmarksToolStripMenuItem";
-            this.editBookmarksToolStripMenuItem.Size = new System.Drawing.Size(157, 22);
-            this.editBookmarksToolStripMenuItem.Text = "Edit Bookmarks";
-            this.editBookmarksToolStripMenuItem.Click += new System.EventHandler(this.editBookmarksToolStripMenuItem_Click);
-            // 
-            // editSystemsToolStripMenuItem
-            // 
-            this.editSystemsToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Property_501;
-            this.editSystemsToolStripMenuItem.Name = "editSystemsToolStripMenuItem";
-            this.editSystemsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
-            this.editSystemsToolStripMenuItem.Text = "Edit Systems";
-            this.editSystemsToolStripMenuItem.Click += new System.EventHandler(this.editSystemsToolStripMenuItem_Click);
-            // 
             // _DailyDataBindingSource
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(155, 6);
             // 
             // Main
             // 
@@ -1018,6 +1018,7 @@
             this.ClientSize = new System.Drawing.Size(586, 257);
             this.ControlBox = false;
             this.Controls.Add(this.AppPanel);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;

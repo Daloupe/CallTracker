@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -30,11 +31,22 @@ namespace CallTracker.Model
         public static void LogNewEvent(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
         {
             EventLog.Add(new EventLogModel(_event, _logLevel));
-            File.AppendAllText("Data\\Log.txt", String.Format("\r\n{0}: {1}", DateTime.Now.ToString("dd/MM/yy hh:mm:ss"), _event));
+            //File.AppendAllText("Data\\Log.txt", String.Format("\r\n{0}: {1}", DateTime.Now.ToString("dd/MM/yy hh:mm:ss"), _event));
             if (_logLevel.CompareTo(StatusLabel.Tag) >= 0)
                 StatusLabel.Text = _event;
             else if(_logLevel == EventLogLevel.ClearStatus && ClearMessage)
                 StatusLabel.Text = String.Empty;
+        }
+
+        public static void SaveLog()
+        {
+            var sb = new StringBuilder();
+            foreach (var entry in EventLog)
+            {
+                sb.AppendLine(entry.GetLogEntry());
+            }
+            File.AppendAllText("Data\\Log.txt", sb.ToString());
+            EventLog.Clear();
         }
 
         public static void ClearStatusBar()
@@ -48,22 +60,23 @@ namespace CallTracker.Model
     public class EventLogModel
     {
         [ProtoMember(1)]
-        public string DateStamp { get; set; }
+        public DateTime TimeStamp { get; set; }
         [ProtoMember(2)]
-        public string TimeStamp { get; set; }
-        [ProtoMember(3)]
         public string Event{ get; set; }
-        [ProtoMember(4)]
+        [ProtoMember(3)]
         public EventLogLevel LogLevel { get; set; }
 
         public EventLogModel(string _event, EventLogLevel _logLevel)
         {
-            DateStamp = DateTime.Now.ToLongDateString();
-            TimeStamp = DateTime.Now.ToLongTimeString();
+            TimeStamp = DateTime.Now;
             Event = _event;
             LogLevel = _logLevel;
         }
 
+        public string GetLogEntry()
+        {
+            return String.Format("{0}: {1}", TimeStamp.ToString("dd/MM/yy hh:mm:ss"), Event);
+        }
     }    
     public enum EventLogLevel
     {

@@ -63,12 +63,12 @@ namespace CallTracker.Helpers
             }
 
 
-
-            Settings.Instance.AutoMoveMousePointerToTopLeft = false;
-            Settings.Instance.AutoCloseDialogs = false;
-            Settings.Instance.AttachToBrowserTimeOut = 3;
-            Settings.Instance.WaitForCompleteTimeOut = 3;
-            Settings.Instance.WaitUntilExistsTimeOut = 3;
+            Settings.AutoStartDialogWatcher = false;
+            Settings.AutoMoveMousePointerToTopLeft = false;
+            Settings.AutoCloseDialogs = false;
+            Settings.AttachToBrowserTimeOut = 3;
+            Settings.WaitForCompleteTimeOut = 3;
+            Settings.WaitUntilExistsTimeOut = 3;
 
             //props = TypeDescriptor.GetProperties(parent.SelectedContact.Service);
 
@@ -598,8 +598,8 @@ namespace CallTracker.Helpers
             //{
                 //if (browser != null)
                 //    browser.Dispose();
-            browser = Browser.AttachTo<IE>(Find.ByTitle(currentTitle));
-                browser.AutoClose = false;
+            browser = Browser.AttachToNoWait<IE>(Find.ByTitle(currentTitle));
+            browser.AutoClose = false;
                 //PreviousIEMatch = currentTitle;
             //}
 
@@ -620,7 +620,7 @@ namespace CallTracker.Helpers
             ////{
             //    if (browser != null)
             //        browser.Dispose();
-            browser = Browser.AttachTo<IE>(Find.ByUrl(urlRegex));
+            browser = Browser.AttachToNoWait<IE>(Find.ByUrl(urlRegex));
             browser.AutoClose = false;
                 //PreviousIEMatch = _url;
             //}
@@ -680,6 +680,7 @@ namespace CallTracker.Helpers
                 }
                 browser.GoToNoWait(search);
                 EventLogger.LogNewEvent("Searching: "+ search, EventLogLevel.Brief);
+                browser.Dispose();
                 return true;
             }
 
@@ -692,6 +693,7 @@ namespace CallTracker.Helpers
                 }
                 browser.GoToNoWait(search);
                 EventLogger.LogNewEvent("Searching: " + search, EventLogLevel.Brief);
+                browser.Dispose();
                 return true;
             }
 
