@@ -34,9 +34,11 @@
 - Confirmed Bras, NTDSN, AddressId, and ESN Regexes.
 - IPCC menu not drawing back color.
 
-0.6.0.0
+0.6.1.0
 (Major Features)
 - Created "Did You Know?" startup screen.
+(Minor Features)
+- Added Help buttons to screens which link to their "Did You Know?" slide.
 
 0.5.4.7
 (Minor Features)

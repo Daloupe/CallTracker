@@ -41,7 +41,7 @@ namespace CallTracker.Model
                     new SystemItem { System = "SCAMPS", Title = "SCaMPS", Url = "https://scamps.optusnet.com.au/", 
                         Searches = new List<SearchItem>
                         {
-                            new SearchItem{SearchURL = "https://scamps.optusnet.com.au/cm.html?q=", SearchData = "Username,DN"},
+                            new SearchItem{SearchURL = "https://scamps.optusnet.com.au/cm.html?q=", SearchData = "^ONCUsername,DN^LIPDN,Username"},
                         }},
                     
                         

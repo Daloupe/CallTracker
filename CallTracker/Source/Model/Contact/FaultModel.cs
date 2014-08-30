@@ -103,29 +103,34 @@ namespace CallTracker.Model
         }
         public string ProblemStyle 
         { 
-            get 
+            get
             {
                 if (AffectedServiceType == ServiceTypes.NONE)
                     return String.Empty;
-                return (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
-                        where a.Id == Service.ProblemStyleId
-                        select a).FirstOrDefault().IFMSCode; 
-            } 
+                var problemStylesRow = (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
+                    where a.Id == Service.ProblemStyleId
+                    select a).FirstOrDefault();
+
+                return problemStylesRow != null ? problemStylesRow.IFMSCode : String.Empty;
+            }
         }
 
         public string SymptomGroup 
         { 
-            get 
+            get
             {
                 if (AffectedServiceType == ServiceTypes.NONE)
                     return String.Empty;
-                return (from a in Main.ServicesStore.servicesDataSet.SymptomGroups
-                        from b in a.GetServiceSymptomGroupMatchRows()
-                        from c in a.GetSymptomGroupSymptomMatchRows()
-                        where b.ServiceId == Service.Id &&
-                              c.SymptomsRow.IFMSCode == Symptom
-                        select a).FirstOrDefault().IFMSCode;
-            } 
+                
+                var symptomGroupsRow = (from a in Main.ServicesStore.servicesDataSet.SymptomGroups
+                    from b in a.GetServiceSymptomGroupMatchRows()
+                    from c in a.GetSymptomGroupSymptomMatchRows()
+                    where b.ServiceId == Service.Id &&
+                          c.SymptomsRow.IFMSCode == Symptom
+                    select a).FirstOrDefault();
+
+                return symptomGroupsRow != null ? symptomGroupsRow.IFMSCode : String.Empty;
+            }
         }
 
         public string SymptomFull

@@ -1,8 +1,9 @@
 Smart Copy
 - Uses this Hotkey.
-- Will analyze your selection and copy into appropriate field.
-- Will recognize data in multiple forms eg CMBS 31-123456-7, 31123456 7, 3112345607, 1123456007.
-- A Tooltip will pop up to let you know what was copied.
+- Will analyze your highlight text and copy it in to the appropriate field.
+- Will recognize data in multiple formats eg CMBS 31-123456-7, 31123456 7, 3112345607, 1123456007.
+? A Tooltip will pop up to let you know what was copied.
+- Information like DN or CMBS tell us which state the customer is in, so data like the NBN Sip server and State are prefilled.
 
 Smart Paste
 - Uses this Hotkey.
@@ -20,6 +21,10 @@ Call History
 - Calls archived after 7 days.
 - Deleted after 30 days.
 - Calls are filtered by day, change it Here.
+
+Flag Call
+- Can be accessed Here.
+- Calls you Flag will be highlighted in Call History so you can easily find them.
 
 GridLinks
 - Uses this Hotkey.
@@ -40,7 +45,7 @@ IPCC Monitor
 
 Context Menus
 - Wingman has a lot of functions, but in order to simplfy the interface they are tucked away in context menus.
-- Fields with context menus willhave an arrow. Right click the field, or click on the arrow to open it up.
+- Fields with context menus will have an arrow. Right click the field, or click on the arrow to open it up.
 
 	Dial
 	- The DN and Mobile context menus have the Dial option, which will pop the number into IPCC for you.
@@ -49,15 +54,15 @@ Context Menus
 	Data Search
 	- Any menu item with this icon indicates it will search that system with the data in the selected field. 
 
-		Auto Search
-		- Enable it Here.
-		- When a field is first filled, Auto Search will inititate a Data Search. It does so silently - It won't bring the searched system to the front. This means when you get around to needing a system, it should already have the customers infomation loaded.
-		- Each system will only be searched once eg if I Smart Copy DN, then the DN is searched in SCAMPS. If I then Smart Copy Username, SCAMPS isn't searched(But UNMT still will!).
-		- Ignore Active Window will prevent Auto Search from searching in the window you have focussed.
-		- Open New If None Found tells Wingman to open up a new IE window if you don't already have that system open.
-
 	Template Generators
 	- Right clicking the Note field will let you generate ICON and PR notes. The notes are prefilled with data you've collected.
+		
+Auto Search
+- Enable it Here.
+- When a field is first filled, Auto Search will inititate a Data Search. It does so silently - It won't bring the searched system to the front. This means when you get around to needing a system, it should already have the customers infomation loaded.
+- Each system will only be searched once per call eg if I Smart Copy DN, then the DN is searched in SCAMPS. If I then Smart Copy Username, SCAMPS isn't searched(But UNMT still will!).
+- Ignore Active Window will prevent Auto Search from searching in the window you have focussed.
+- Open New If None Found tells Wingman to open up a new IE window if you don't already have that system open.
 
 Affected Service
 - Wingman tries to select the most appropriate service eg if cust has both internet and phone issues, it will select phone.
@@ -102,3 +107,4 @@ Smart Paste Bind(Advanced)
 Database Editor(Advanced)
 - Can be access Here.
 - All data that Wingman uses can be changed eg If a department changes their External contact number, you can update it here.
+- If you change something and things stop working, just copy the Data\Resources.bin from a colleague.
