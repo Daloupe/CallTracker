@@ -178,5 +178,17 @@ namespace CallTracker.Properties {
                 this["ToolTipAsControlBox"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSearchOpenNew {
+            get {
+                return ((bool)(this["AutoSearchOpenNew"]));
+            }
+            set {
+                this["AutoSearchOpenNew"] = value;
+            }
+        }
     }
 }

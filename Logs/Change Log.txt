@@ -30,6 +30,16 @@
 - Confirmed Bras, NTDSN, AddressId, and ESN Regexes.
 - IPCC menu not drawing back color.
 
+0.6.0.0
+(Major Features)
+- Created "Did You Know?" startup screen.
+
+0.5.1.1
+(Minor Features)
+/ Added Auto Search Option "Open Page If Required" to create new IE i system can't be found.
+(Bugs/Changes)
+| Moved AutoSearch Options into a dropdown.
+
 0.5.0.1
 (Major Features)
 | Created basic Call and Daily Stats system.
@@ -450,6 +460,7 @@ Features:
 	| Context Sensitive pastes
 	| Alternate data
 	| Regex replace and data concatenation
+| Auto Search
 | ICON Note generator
 | Form Prefills
 	/ ICON
@@ -461,15 +472,16 @@ Features:
 	- Templates
 | Context sensitive resources
 	| Searchable Ratecode Lists
-	- Links
-	- Nexus Articles
+	| Links
+	| Nexus Articles
 | IPCC Control
 	| Transfers
 | Auto Login
 	| Encrypted logins
 | Grid Links
 | Data Paste
+- Did You Know
 - ARO Tracker
 - Breaks Tracker
-- Realtime KPI's
+/ Realtime KPI's
 - Call type business intelligence

@@ -1019,6 +1019,16 @@ namespace CallTracker.View
         {
             AboutScreen.Show();
         }
+
+        private void newPageIfRequiredToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoSearchOpenNew = newPageIfRequiredToolStripMenuItem.Checked;
+        }
+
+        private void didYouKnowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
