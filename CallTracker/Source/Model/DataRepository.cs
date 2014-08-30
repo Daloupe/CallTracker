@@ -135,7 +135,7 @@ namespace CallTracker.Model
 
             EncryptData(dataStore);
             using (var file = File.Create(Filename))
-                Serializer.Serialize<UserDataStore>(file, dataStore);
+                Serializer.Serialize(file, dataStore);
         }
 
         public override void DecryptData(UserDataStore _dataStore)
@@ -177,35 +177,36 @@ namespace CallTracker.Model
     {
         [ProtoMember(1)]
         internal FilterableBindingList<CustomerContact> Contacts { get; set; }
+        private const string _filename = "Data/Contacts.bin";
 
         public ContactDataStore()
         {
-            Filename = "Data/Contacts.bin";
+            //_filename = "Data/Contacts.bin";
             Contacts = new FilterableBindingList<CustomerContact>();
         }
 
-        public void ReadData()
+        public static ContactDataStore ReadData()
         {
             ContactDataStore dataStore;
 
-            if (!File.Exists(Filename))
+            if (!File.Exists(_filename))
             {
-                File.Create(Filename).Close();
+                File.Create(_filename).Close();
                 Properties.Settings.Default.NextContactsId = 0;
             }
-            using (var file = File.OpenRead(Filename))
+            using (var file = File.OpenRead(_filename))
                 dataStore = Serializer.Deserialize<ContactDataStore>(file);
 
             //if (dataStore.Contacts.Count == 0)
             //    dataStore.Contacts.AddNew();
-
-            Contacts = new FilterableBindingList<CustomerContact>(dataStore.Contacts.ToList());
+            return dataStore;
+            //Contacts = new FilterableBindingList<CustomerContact>(dataStore.Contacts.ToList());
         }
 
         public void WriteData()
         {
           
-            using (var file = File.Create(Filename))
+            using (var file = File.Create(_filename))
                 Serializer.Serialize(file, this);
         }
     }
@@ -214,42 +215,44 @@ namespace CallTracker.Model
     // DailyData /////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    [ProtoContract(SkipConstructor = true)]
-    internal class DailyDataDataStore : DataRepository<DailyDataDataStore>
+    [ProtoContract]
+    internal class DailyDataRepository : DataRepository<DailyDataRepository>
     {
         [ProtoMember(1)]
         internal FilterableBindingList<DailyModel> DailyData { get; set; }
+        private const string _filename = "Data/Contacts.bin";
 
-        public DailyDataDataStore()
+        //public DailyDataRepository()
+        //{
+        //    Filename = "Data/Contacts.bin";
+        //    DailyData = new FilterableBindingList<DailyModel>();
+        //}
+
+        //[ProtoBeforeDeserialization]
+        //private void Initializer()
+        //{
+        //    DailyData = new FilterableBindingList<DailyModel>();
+        //}
+
+        public static DailyDataRepository ReadData()
         {
-            Filename = "Data/Contacts.bin";
-            DailyData = new FilterableBindingList<DailyModel>();
-        }
+            DailyDataRepository dataStore;
 
-        [ProtoBeforeDeserialization]
-        private void Initializer()
-        {
-            DailyData = new FilterableBindingList<DailyModel>();
-        }
-
-        public void ReadData()
-        {
-            DailyDataDataStore dataStore;
-
-            if (!File.Exists(Filename))
+            if (!File.Exists(_filename))
             {
-                File.Create(Filename).Close();
+                File.Create(_filename).Close();
                 Properties.Settings.Default.NextContactsId = 0;
             }
-            using (var file = File.OpenRead(Filename))
-                dataStore = Serializer.Deserialize<DailyDataDataStore>(file);
+            using (var file = File.OpenRead(_filename))
+                dataStore = Serializer.Deserialize<DailyDataRepository>(file);
 
-            DailyData = new FilterableBindingList<DailyModel>(dataStore.DailyData.ToList());
+            return dataStore;
+            //DailyData = new FilterableBindingList<DailyModel>(dataStore.DailyData.ToList());
         }
 
         public void WriteData()
         {
-            using (var file = File.Create(Filename))
+            using (var file = File.Create(_filename))
                 Serializer.Serialize(file, this);
         }
     }

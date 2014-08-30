@@ -1678,7 +1678,6 @@
             this.Controls.Add(this._ServiceHeading);
             this.Controls.Add(this._NBNPanel);
             this.Controls.Add(this._DTVPanel);
-            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "ServicePanel";
             this.Padding = new System.Windows.Forms.Padding(3);

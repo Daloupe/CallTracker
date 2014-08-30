@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing.Text;
+using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
 using System;
@@ -36,7 +37,7 @@ namespace CallTracker.View
 
         public BorderedTextBox() : base()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             BorderStyle = BorderStyle.FixedSingle;
             DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;         
         }
@@ -53,22 +54,27 @@ namespace CallTracker.View
             }
         }
 
-        //protected override void OnPaint(PaintEventArgs pe)
+        //protected override void OnPaint(PaintEventArgs e)
         //{
-        //    // draw background
-        //    ControlGraphics.FillRectangle(Brushes.Black, ClientRectangle);
-        //    // draw border
-        //    ControlGraphics.DrawRectangle(Pens.White, ClientRectangle);
-        //    // draw progress 
-        //    ControlGraphics.FillRectangle(Brushes.SkyBlue, 0, 0,
-        //            this.Width * ProgressBarPercentValue, this.Height);
-        //    // draw percent
-        //    ControlGraphics.DrawString(ProgressBarPercentValue.ToString(),
-        //                       this.Font, Brushes.Red,
-        //                       new Point(this.Width / 2, this.Height / 2));
-            //var g = Graphics.FromHwnd(Handle);
-            //var bounds = new Rectangle(0, 0, Width, Height);
-            //ControlPaint.DrawBorder(g, bounds, _borderColor, _buttonBorderStyle);
+        //    var line = TextRenderer.MeasureText(Text, Font);
+        //    //e.Graphics.TextRenderingHint = TextRenderingHint.SystemDefault;
+        //    //ControlPaint.DrawBorder(e.Graphics, new Rectangle(0, 0, Width, Height), _borderColor, _buttonBorderStyle);
+        //    e.Graphics.DrawString(Text, new Font("Verdana", 7.25f),
+        //            new SolidBrush(ForeColor),
+        //            new Rectangle(0, 0, line.Width, line.Height));
+        //    //e.Graphics.TextRenderingHint = TextRenderingHint.AntiAlias;
+
+        //    //TextRenderer.DrawText(e.Graphics, Text, Font, new Point(0, 0), Color.Black);
+
+        //    e.Graphics.DrawRectangle(new Pen(_borderColor),
+        //     0,
+        //     0,
+        //     Width,
+        //     Height);
+
+
+        //    base.OnPaint(e);
+
         //}
 
         [Category("Appearance")]
@@ -92,7 +98,7 @@ namespace CallTracker.View
         public BorderedTextField()
             : base()
         {
-            SetStyle( ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle( ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             BorderStyle = BorderStyle.FixedSingle;
             DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
         }
@@ -226,7 +232,7 @@ namespace CallTracker.View
         public BorderedDateTimePicker()
             : base()
         {
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer | ControlStyles.DoubleBuffer, true);
             //this.SetStyle(ControlStyles.DoubleBuffer, true);
             //this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -357,7 +363,7 @@ namespace CallTracker.View
         public BorderedCombobox()
             : base()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             FlatStyle = FlatStyle.Popup;
             DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             //this.DropDownStyle = ComboBoxStyle.DropDown;

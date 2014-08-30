@@ -29,30 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.AppPanel = new System.Windows.Forms.Panel();
+            this.AppPanel = new CallTracker.View.MyPanel();
             this._ViewPanel = new System.Windows.Forms.Panel();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this._StatusContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.lowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.highToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.clearMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this._IPCCState = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MenuPanel = new System.Windows.Forms.Panel();
-            this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
-            this._CallStateTime = new ContextualToolStripMenuItem();
-            this.notReadyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.readyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.talkingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.wrapUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.logInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.monitorIPCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pullIPCCCallDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuPanel = new CallTracker.View.MyPanel();
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -130,13 +109,34 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.sMSHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afterHoursPaymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this._StatusContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.lowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.highToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.clearMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this._IPCCState = new System.Windows.Forms.ToolStripStatusLabel();
+            this._CallStateTime = new ContextualToolStripMenuItem();
+            this.notReadyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.readyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.talkingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wrapUpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.logInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.monitorIPCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pullIPCCCallDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AppPanel.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this._StatusContextMenu.SuspendLayout();
             this.MenuPanel.SuspendLayout();
             this._MainMenu.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this._StatusContextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this._DailyDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -147,10 +147,11 @@
             this.AppPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.AppPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AppPanel.Controls.Add(this._ViewPanel);
-            this.AppPanel.Controls.Add(this.statusStrip1);
             this.AppPanel.Controls.Add(this.MenuPanel);
+            this.AppPanel.Controls.Add(this.statusStrip1);
             this.AppPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AppPanel.Location = new System.Drawing.Point(0, 0);
+            this.AppPanel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.AppPanel.Name = "AppPanel";
             this.AppPanel.Size = new System.Drawing.Size(586, 257);
             this.AppPanel.TabIndex = 25;
@@ -158,234 +159,25 @@
             // 
             // _ViewPanel
             // 
+            this._ViewPanel.AutoSize = true;
             this._ViewPanel.BackColor = System.Drawing.Color.LightSlateGray;
             this._ViewPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this._ViewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ViewPanel.Location = new System.Drawing.Point(0, 16);
+            this._ViewPanel.Margin = new System.Windows.Forms.Padding(0);
             this._ViewPanel.Name = "_ViewPanel";
             this._ViewPanel.Size = new System.Drawing.Size(584, 220);
             this._ViewPanel.TabIndex = 29;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.AutoSize = false;
-            this.statusStrip1.BackColor = System.Drawing.Color.LightGray;
-            this.statusStrip1.ContextMenuStrip = this._StatusContextMenu;
-            this.statusStrip1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.statusStrip1.GripMargin = new System.Windows.Forms.Padding(0);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._StatusLabel,
-            this._IPCCState,
-            this._CallStateTime});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 236);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(584, 19);
-            this.statusStrip1.SizingGrip = false;
-            this.statusStrip1.TabIndex = 28;
-            this.statusStrip1.Text = "00:00";
-            // 
-            // _StatusContextMenu
-            // 
-            this._StatusContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
-            this._StatusContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lowToolStripMenuItem,
-            this.mediumToolStripMenuItem,
-            this.highToolStripMenuItem,
-            this.toolStripSeparator4,
-            this.clearMessagesToolStripMenuItem});
-            this._StatusContextMenu.Name = "_StatusContextMenu";
-            this._StatusContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this._StatusContextMenu.Size = new System.Drawing.Size(177, 98);
-            this._StatusContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._StatusContextMenu_ItemClicked);
-            // 
-            // lowToolStripMenuItem
-            // 
-            this.lowToolStripMenuItem.Checked = true;
-            this.lowToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.lowToolStripMenuItem.Name = "lowToolStripMenuItem";
-            this.lowToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.lowToolStripMenuItem.Tag = "8";
-            this.lowToolStripMenuItem.Text = "Low Warnings";
-            // 
-            // mediumToolStripMenuItem
-            // 
-            this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.mediumToolStripMenuItem.Tag = "4";
-            this.mediumToolStripMenuItem.Text = "Medium Warnings";
-            // 
-            // highToolStripMenuItem
-            // 
-            this.highToolStripMenuItem.Name = "highToolStripMenuItem";
-            this.highToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.highToolStripMenuItem.Tag = "2";
-            this.highToolStripMenuItem.Text = "High Warnings";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(173, 6);
-            // 
-            // clearMessagesToolStripMenuItem
-            // 
-            this.clearMessagesToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.WarningLevel;
-            this.clearMessagesToolStripMenuItem.CheckOnClick = true;
-            this.clearMessagesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.clearMessagesToolStripMenuItem.Name = "clearMessagesToolStripMenuItem";
-            this.clearMessagesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.clearMessagesToolStripMenuItem.Text = "Clear Last Warning";
-            this.clearMessagesToolStripMenuItem.CheckedChanged += new System.EventHandler(this.clearMessagesToolStripMenuItem_Click);
-            // 
-            // _StatusLabel
-            // 
-            this._StatusLabel.AutoSize = false;
-            this._StatusLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this._StatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
-            this._StatusLabel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 1);
-            this._StatusLabel.Name = "_StatusLabel";
-            this._StatusLabel.Size = new System.Drawing.Size(391, 15);
-            this._StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // _IPCCState
-            // 
-            this._IPCCState.AutoSize = false;
-            this._IPCCState.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
-            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this._IPCCState.BorderStyle = System.Windows.Forms.Border3DStyle.Adjust;
-            this._IPCCState.Font = new System.Drawing.Font("Verdana", 7F);
-            this._IPCCState.Margin = new System.Windows.Forms.Padding(0, 3, 0, 1);
-            this._IPCCState.Name = "_IPCCState";
-            this._IPCCState.Size = new System.Drawing.Size(134, 15);
-            this._IPCCState.Text = "AgentStatus:";
-            this._IPCCState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MenuPanel
             // 
             this.MenuPanel.Controls.Add(this._MainMenu);
             this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.MenuPanel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.MenuPanel.Location = new System.Drawing.Point(0, 0);
             this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
             this.MenuPanel.Name = "MenuPanel";
             this.MenuPanel.Size = new System.Drawing.Size(584, 16);
             this.MenuPanel.TabIndex = 27;
-            this.MenuPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
-            // 
-            // _IPCCTimer
-            // 
-            this._IPCCTimer.Interval = 1000;
-            this._IPCCTimer.Tick += new System.EventHandler(this._IPCCTimer_Tick);
-            // 
-            // _CallStateTime
-            // 
-            this._CallStateTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this._CallStateTime.AutoSize = false;
-            this._CallStateTime.BackColor = System.Drawing.Color.WhiteSmoke;
-            this._CallStateTime.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.notReadyToolStripMenuItem,
-            this.readyToolStripMenuItem,
-            this.talkingToolStripMenuItem,
-            this.wrapUpToolStripMenuItem,
-            this.toolStripSeparator10,
-            this.logInToolStripMenuItem,
-            this.logOutToolStripMenuItem,
-            this.toolStripSeparator5,
-            this.monitorIPCCToolStripMenuItem,
-            this.pullIPCCCallDataToolStripMenuItem});
-            this._CallStateTime.Font = new System.Drawing.Font("Verdana", 7F);
-            this._CallStateTime.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this._CallStateTime.Margin = new System.Windows.Forms.Padding(1, 2, 1, 1);
-            this._CallStateTime.Name = "_CallStateTime";
-            this._CallStateTime.Padding = new System.Windows.Forms.Padding(0);
-            this._CallStateTime.ShowShortcutKeys = false;
-            this._CallStateTime.Size = new System.Drawing.Size(57, 16);
-            this._CallStateTime.Text = "00:00";
-            this._CallStateTime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this._CallStateTime.UpdateObject = null;
-            this._CallStateTime.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._CallStateTime_DropDownItemClicked);
-            // 
-            // notReadyToolStripMenuItem
-            // 
-            this.notReadyToolStripMenuItem.Enabled = false;
-            this.notReadyToolStripMenuItem.Name = "notReadyToolStripMenuItem";
-            this.notReadyToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.notReadyToolStripMenuItem.Tag = "AgentStatus: NotReady";
-            this.notReadyToolStripMenuItem.Text = "Not Ready";
-            // 
-            // readyToolStripMenuItem
-            // 
-            this.readyToolStripMenuItem.Enabled = false;
-            this.readyToolStripMenuItem.Name = "readyToolStripMenuItem";
-            this.readyToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.readyToolStripMenuItem.Tag = "AgentStatus: Ready";
-            this.readyToolStripMenuItem.Text = "Ready";
-            // 
-            // talkingToolStripMenuItem
-            // 
-            this.talkingToolStripMenuItem.Enabled = false;
-            this.talkingToolStripMenuItem.Name = "talkingToolStripMenuItem";
-            this.talkingToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.talkingToolStripMenuItem.Tag = "AgentStatus: Talking";
-            this.talkingToolStripMenuItem.Text = "Talking";
-            // 
-            // wrapUpToolStripMenuItem
-            // 
-            this.wrapUpToolStripMenuItem.Enabled = false;
-            this.wrapUpToolStripMenuItem.Name = "wrapUpToolStripMenuItem";
-            this.wrapUpToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.wrapUpToolStripMenuItem.Tag = "AgentStatus: Wrapup";
-            this.wrapUpToolStripMenuItem.Text = "Wrap Up";
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(174, 6);
-            // 
-            // logInToolStripMenuItem
-            // 
-            this.logInToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallIn;
-            this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
-            this.logInToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.logInToolStripMenuItem.Tag = "AgentStatus:";
-            this.logInToolStripMenuItem.Text = "Log In";
-            // 
-            // logOutToolStripMenuItem
-            // 
-            this.logOutToolStripMenuItem.Enabled = false;
-            this.logOutToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallOut;
-            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.logOutToolStripMenuItem.Tag = "AgentStatus:";
-            this.logOutToolStripMenuItem.Text = "Log Out";
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(174, 6);
-            // 
-            // monitorIPCCToolStripMenuItem
-            // 
-            this.monitorIPCCToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.MonitorIPCC;
-            this.monitorIPCCToolStripMenuItem.CheckOnClick = true;
-            this.monitorIPCCToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.monitorIPCCToolStripMenuItem.Name = "monitorIPCCToolStripMenuItem";
-            this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.monitorIPCCToolStripMenuItem.Tag = "Protected";
-            this.monitorIPCCToolStripMenuItem.Text = "Monitor IPCC";
-            this.monitorIPCCToolStripMenuItem.CheckedChanged += new System.EventHandler(this.monitorIPCCToolStripMenuItem_Click);
-            // 
-            // pullIPCCCallDataToolStripMenuItem
-            // 
-            this.pullIPCCCallDataToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.PullIPCCCallData;
-            this.pullIPCCCallDataToolStripMenuItem.CheckOnClick = true;
-            this.pullIPCCCallDataToolStripMenuItem.Name = "pullIPCCCallDataToolStripMenuItem";
-            this.pullIPCCCallDataToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.pullIPCCCallDataToolStripMenuItem.Tag = "Protected";
-            this.pullIPCCCallDataToolStripMenuItem.Text = "Pull IPCC Call Data";
-            this.pullIPCCCallDataToolStripMenuItem.CheckedChanged += new System.EventHandler(this.pullIPCCCallDataToolStripMenuItem_Click);
             // 
             // _MainMenu
             // 
@@ -393,6 +185,7 @@
             this._MainMenu.BackColor = System.Drawing.Color.LightGray;
             this._MainMenu.Font = new System.Drawing.Font("Verdana", 7F);
             this._MainMenu.GripMargin = new System.Windows.Forms.Padding(0);
+            this._MainMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this._MainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.quitToolStripMenuItem1,
             this.helpToolStripMenuItem,
@@ -401,11 +194,9 @@
             this._MainMenu.Location = new System.Drawing.Point(0, 0);
             this._MainMenu.Name = "_MainMenu";
             this._MainMenu.Padding = new System.Windows.Forms.Padding(0);
-            this._MainMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this._MainMenu.Size = new System.Drawing.Size(584, 17);
+            this._MainMenu.Size = new System.Drawing.Size(584, 16);
             this._MainMenu.TabIndex = 3;
             this._MainMenu.Text = "_MainMenu";
-            this._MainMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             this._MainMenu.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MainMenu_MouseDown);
             // 
             // quitToolStripMenuItem1
@@ -414,7 +205,7 @@
             this.quitToolStripMenuItem1.Image = global::CallTracker.Properties.Resources.Close;
             this.quitToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.quitToolStripMenuItem1.Name = "quitToolStripMenuItem1";
-            this.quitToolStripMenuItem1.Size = new System.Drawing.Size(22, 17);
+            this.quitToolStripMenuItem1.Size = new System.Drawing.Size(22, 16);
             this.quitToolStripMenuItem1.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
@@ -425,7 +216,7 @@
             this.toolStripSeparator13,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 17);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 16);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // viewKeyCommandsMenuItem
@@ -457,7 +248,7 @@
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 7F);
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(70, 17);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(70, 16);
             this.fileToolStripMenuItem.Text = "Wingman";
             this.fileToolStripMenuItem.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             // 
@@ -612,7 +403,7 @@
             this.linksToolStripMenuItem});
             this.resourcesToolStripMenuItem.Name = "resourcesToolStripMenuItem";
             this.resourcesToolStripMenuItem.ShowShortcutKeys = false;
-            this.resourcesToolStripMenuItem.Size = new System.Drawing.Size(74, 17);
+            this.resourcesToolStripMenuItem.Size = new System.Drawing.Size(74, 16);
             this.resourcesToolStripMenuItem.Text = "Resources";
             // 
             // toolStripServiceSelector
@@ -1000,6 +791,215 @@
             this.afterHoursPaymentsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.afterHoursPaymentsToolStripMenuItem.Text = "After Hours Payments";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.AutoSize = false;
+            this.statusStrip1.BackColor = System.Drawing.Color.LightGray;
+            this.statusStrip1.ContextMenuStrip = this._StatusContextMenu;
+            this.statusStrip1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.statusStrip1.GripMargin = new System.Windows.Forms.Padding(0);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._StatusLabel,
+            this._IPCCState,
+            this._CallStateTime});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 236);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(584, 19);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 28;
+            this.statusStrip1.Text = "00:00";
+            // 
+            // _StatusContextMenu
+            // 
+            this._StatusContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._StatusContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lowToolStripMenuItem,
+            this.mediumToolStripMenuItem,
+            this.highToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.clearMessagesToolStripMenuItem});
+            this._StatusContextMenu.Name = "_StatusContextMenu";
+            this._StatusContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this._StatusContextMenu.Size = new System.Drawing.Size(177, 98);
+            this._StatusContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._StatusContextMenu_ItemClicked);
+            // 
+            // lowToolStripMenuItem
+            // 
+            this.lowToolStripMenuItem.Checked = true;
+            this.lowToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.lowToolStripMenuItem.Name = "lowToolStripMenuItem";
+            this.lowToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.lowToolStripMenuItem.Tag = "8";
+            this.lowToolStripMenuItem.Text = "Low Warnings";
+            // 
+            // mediumToolStripMenuItem
+            // 
+            this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
+            this.mediumToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.mediumToolStripMenuItem.Tag = "4";
+            this.mediumToolStripMenuItem.Text = "Medium Warnings";
+            // 
+            // highToolStripMenuItem
+            // 
+            this.highToolStripMenuItem.Name = "highToolStripMenuItem";
+            this.highToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.highToolStripMenuItem.Tag = "2";
+            this.highToolStripMenuItem.Text = "High Warnings";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(173, 6);
+            // 
+            // clearMessagesToolStripMenuItem
+            // 
+            this.clearMessagesToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.WarningLevel;
+            this.clearMessagesToolStripMenuItem.CheckOnClick = true;
+            this.clearMessagesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.clearMessagesToolStripMenuItem.Name = "clearMessagesToolStripMenuItem";
+            this.clearMessagesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.clearMessagesToolStripMenuItem.Text = "Clear Last Warning";
+            this.clearMessagesToolStripMenuItem.CheckedChanged += new System.EventHandler(this.clearMessagesToolStripMenuItem_Click);
+            // 
+            // _StatusLabel
+            // 
+            this._StatusLabel.AutoSize = false;
+            this._StatusLabel.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this._StatusLabel.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this._StatusLabel.Margin = new System.Windows.Forms.Padding(0, 3, 0, 1);
+            this._StatusLabel.Name = "_StatusLabel";
+            this._StatusLabel.Size = new System.Drawing.Size(391, 15);
+            this._StatusLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // _IPCCState
+            // 
+            this._IPCCState.AutoSize = false;
+            this._IPCCState.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this._IPCCState.BorderStyle = System.Windows.Forms.Border3DStyle.Adjust;
+            this._IPCCState.Font = new System.Drawing.Font("Verdana", 7F);
+            this._IPCCState.Margin = new System.Windows.Forms.Padding(0, 3, 0, 1);
+            this._IPCCState.Name = "_IPCCState";
+            this._IPCCState.Size = new System.Drawing.Size(134, 15);
+            this._IPCCState.Text = "AgentStatus:";
+            this._IPCCState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // _CallStateTime
+            // 
+            this._CallStateTime.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this._CallStateTime.AutoSize = false;
+            this._CallStateTime.BackColor = System.Drawing.Color.WhiteSmoke;
+            this._CallStateTime.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.notReadyToolStripMenuItem,
+            this.readyToolStripMenuItem,
+            this.talkingToolStripMenuItem,
+            this.wrapUpToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.logInToolStripMenuItem,
+            this.logOutToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.monitorIPCCToolStripMenuItem,
+            this.pullIPCCCallDataToolStripMenuItem});
+            this._CallStateTime.Font = new System.Drawing.Font("Verdana", 7F);
+            this._CallStateTime.ForeColor = System.Drawing.Color.DarkSlateGray;
+            this._CallStateTime.Margin = new System.Windows.Forms.Padding(1, 2, 1, 1);
+            this._CallStateTime.Name = "_CallStateTime";
+            this._CallStateTime.Padding = new System.Windows.Forms.Padding(0);
+            this._CallStateTime.ShowShortcutKeys = false;
+            this._CallStateTime.Size = new System.Drawing.Size(57, 16);
+            this._CallStateTime.Text = "00:00";
+            this._CallStateTime.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this._CallStateTime.UpdateObject = null;
+            this._CallStateTime.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._CallStateTime_DropDownItemClicked);
+            // 
+            // notReadyToolStripMenuItem
+            // 
+            this.notReadyToolStripMenuItem.Enabled = false;
+            this.notReadyToolStripMenuItem.Name = "notReadyToolStripMenuItem";
+            this.notReadyToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.notReadyToolStripMenuItem.Tag = "AgentStatus: NotReady";
+            this.notReadyToolStripMenuItem.Text = "Not Ready";
+            // 
+            // readyToolStripMenuItem
+            // 
+            this.readyToolStripMenuItem.Enabled = false;
+            this.readyToolStripMenuItem.Name = "readyToolStripMenuItem";
+            this.readyToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.readyToolStripMenuItem.Tag = "AgentStatus: Ready";
+            this.readyToolStripMenuItem.Text = "Ready";
+            // 
+            // talkingToolStripMenuItem
+            // 
+            this.talkingToolStripMenuItem.Enabled = false;
+            this.talkingToolStripMenuItem.Name = "talkingToolStripMenuItem";
+            this.talkingToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.talkingToolStripMenuItem.Tag = "AgentStatus: Talking";
+            this.talkingToolStripMenuItem.Text = "Talking";
+            // 
+            // wrapUpToolStripMenuItem
+            // 
+            this.wrapUpToolStripMenuItem.Enabled = false;
+            this.wrapUpToolStripMenuItem.Name = "wrapUpToolStripMenuItem";
+            this.wrapUpToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.wrapUpToolStripMenuItem.Tag = "AgentStatus: Wrapup";
+            this.wrapUpToolStripMenuItem.Text = "Wrap Up";
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(174, 6);
+            // 
+            // logInToolStripMenuItem
+            // 
+            this.logInToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallIn;
+            this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
+            this.logInToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.logInToolStripMenuItem.Tag = "AgentStatus:";
+            this.logInToolStripMenuItem.Text = "Log In";
+            // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Enabled = false;
+            this.logOutToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallOut;
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.logOutToolStripMenuItem.Tag = "AgentStatus:";
+            this.logOutToolStripMenuItem.Text = "Log Out";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(174, 6);
+            // 
+            // monitorIPCCToolStripMenuItem
+            // 
+            this.monitorIPCCToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.MonitorIPCC;
+            this.monitorIPCCToolStripMenuItem.CheckOnClick = true;
+            this.monitorIPCCToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.monitorIPCCToolStripMenuItem.Name = "monitorIPCCToolStripMenuItem";
+            this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.monitorIPCCToolStripMenuItem.Tag = "Protected";
+            this.monitorIPCCToolStripMenuItem.Text = "Monitor IPCC";
+            this.monitorIPCCToolStripMenuItem.CheckedChanged += new System.EventHandler(this.monitorIPCCToolStripMenuItem_Click);
+            // 
+            // pullIPCCCallDataToolStripMenuItem
+            // 
+            this.pullIPCCCallDataToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.PullIPCCCallData;
+            this.pullIPCCCallDataToolStripMenuItem.CheckOnClick = true;
+            this.pullIPCCCallDataToolStripMenuItem.Name = "pullIPCCCallDataToolStripMenuItem";
+            this.pullIPCCCallDataToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.pullIPCCCallDataToolStripMenuItem.Tag = "Protected";
+            this.pullIPCCCallDataToolStripMenuItem.Text = "Pull IPCC Call Data";
+            this.pullIPCCCallDataToolStripMenuItem.CheckedChanged += new System.EventHandler(this.pullIPCCCallDataToolStripMenuItem_Click);
+            // 
+            // _IPCCTimer
+            // 
+            this._IPCCTimer.Interval = 1000;
+            this._IPCCTimer.Tick += new System.EventHandler(this._IPCCTimer_Tick);
+            // 
             // bindableContextMenu1
             // 
             this.bindableContextMenu1.BoundData = null;
@@ -1018,7 +1018,6 @@
             this.ClientSize = new System.Drawing.Size(586, 257);
             this.ControlBox = false;
             this.Controls.Add(this.AppPanel);
-            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -1032,12 +1031,13 @@
             this.Load += new System.EventHandler(this.Main_Load);
             this.Shown += new System.EventHandler(this.Main_Shown);
             this.AppPanel.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this._StatusContextMenu.ResumeLayout(false);
+            this.AppPanel.PerformLayout();
             this.MenuPanel.ResumeLayout(false);
             this._MainMenu.ResumeLayout(false);
             this._MainMenu.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this._StatusContextMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this._DailyDataBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1047,8 +1047,8 @@
         #endregion
 
         //private System.Windows.Forms.BindingSource customerContactBindingSource;
-        private System.Windows.Forms.Panel AppPanel;
-        private System.Windows.Forms.Panel MenuPanel;
+        private MyPanel AppPanel;
+        private MyPanel MenuPanel;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel _StatusLabel;
         private ToolStripMenuIgnoreFocus _MainMenu;

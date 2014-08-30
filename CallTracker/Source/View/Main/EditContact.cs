@@ -20,7 +20,7 @@ namespace CallTracker.View
         public EditContact(Main mainform)
         {
             InitializeComponent();
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
 
             MainForm = mainform;
             Location = MainForm.ControlOffset;
@@ -79,9 +79,9 @@ namespace CallTracker.View
 
             if (customerContactsBindingSource.Count != 0) return;
 
-            flowLayoutPanel1.Enabled = false;
-            ServiceTypePanel.Enabled = false;
-            FaultPanel.Enabled = false;
+            _DataPanel.Enabled = false;
+            _ServiceTypePanel.Enabled = false;
+            _FaultPanel.Enabled = false;
             _Note.Enabled = false;
         }
 
@@ -156,9 +156,9 @@ namespace CallTracker.View
                 MainForm.SelectedContact = (CustomerContact)customerContactsBindingSource.Current;//((ObjectView<CustomerContact>)customerContactsBindingSource.Current).Object;
                 MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
 
-                flowLayoutPanel1.Enabled = true;
-                ServiceTypePanel.Enabled = true;
-                FaultPanel.Enabled = true;
+                _DataPanel.Enabled = true;
+                _ServiceTypePanel.Enabled = true;
+                _FaultPanel.Enabled = true;
                 _Note.Enabled = true;
 
                 _NoteContextMenuStrip.Items[0].PerformClick();
@@ -184,9 +184,9 @@ namespace CallTracker.View
                 MainForm.SelectedContact = null;
             }
 
-            flowLayoutPanel1.Enabled = false;
-            ServiceTypePanel.Enabled = false;
-            FaultPanel.Enabled = false;
+            _DataPanel.Enabled = false;
+            _ServiceTypePanel.Enabled = false;
+            _FaultPanel.Enabled = false;
             _Note.Enabled = false;
 
             _Note.DataBindings.Clear();
@@ -798,14 +798,6 @@ namespace CallTracker.View
             var checkBox = (CheckBox)sender;
             checkBox.ImageIndex = checkBox.Checked ? 1 : 0;
         }
-
-        private void _Cmbs_Leave(object sender, EventArgs e)
-        {
-            Console.WriteLine("left");
-        }
-
-
-
 
     }
 }

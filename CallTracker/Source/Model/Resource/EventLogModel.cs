@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -28,18 +29,20 @@ namespace CallTracker.Model
             ClearMessage = true;
         }
 
-        public static void LogNewEvent(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
+        public static void LogNewEvent(string eventString, EventLogLevel logLevel = EventLogLevel.Verbose)
         {
-            EventLog.Add(new EventLogModel(_event, _logLevel));
+            EventLog.Add(new EventLogModel(eventString, logLevel));
             //File.AppendAllText("Data\\Log.txt", String.Format("\r\n{0}: {1}", DateTime.Now.ToString("dd/MM/yy hh:mm:ss"), _event));
-            if (_logLevel.CompareTo(StatusLabel.Tag) >= 0)
-                StatusLabel.Text = _event;
-            else if(_logLevel == EventLogLevel.ClearStatus && ClearMessage)
+            if (logLevel.CompareTo(StatusLabel.Tag) >= 0)
+                StatusLabel.Text = eventString;
+            else if(logLevel == EventLogLevel.ClearStatus && ClearMessage)
                 StatusLabel.Text = String.Empty;
         }
 
         public static void SaveLog()
         {
+            if (!EventLog.Any())
+                return;
             var sb = new StringBuilder();
             foreach (var entry in EventLog)
             {

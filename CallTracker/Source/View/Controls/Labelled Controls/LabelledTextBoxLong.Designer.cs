@@ -41,9 +41,9 @@
             // _Label
             // 
             this._Label.Dock = System.Windows.Forms.DockStyle.Left;
-            this._Label.Font = new System.Drawing.Font("Gautami", 8.25F);
+            this._Label.Font = new System.Drawing.Font("Verdana", 7F);
             this._Label.Location = new System.Drawing.Point(0, 0);
-            this._Label.Size = new System.Drawing.Size(34, 23);
+            this._Label.Size = new System.Drawing.Size(32, 12);
             // 
             // _DataField
             // 
@@ -52,13 +52,13 @@
             this._DataField.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._DataField.Dock = System.Windows.Forms.DockStyle.Bottom;
             this._DataField.Font = new System.Drawing.Font("Verdana", 7F);
-            this._DataField.Location = new System.Drawing.Point(34, 0);
+            this._DataField.Location = new System.Drawing.Point(32, 1);
             this._DataField.Margin = new System.Windows.Forms.Padding(0);
             this._DataField.MaximumSize = new System.Drawing.Size(500, 20);
             this._DataField.MinimumSize = new System.Drawing.Size(10, 20);
             this._DataField.Name = "_DataField";
             this._DataField.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._DataField.Size = new System.Drawing.Size(132, 20);
+            this._DataField.Size = new System.Drawing.Size(134, 19);
             this._DataField.TabIndex = 27;
             this._DataField.TextChanged += new System.EventHandler(this._DataField_TextChanged);
             this._DataField.Leave += new System.EventHandler(this._DataField_Leave);
@@ -70,10 +70,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlHeight = 20;
             this.Controls.Add(this._DataField);
-            this.DoubleBuffered = true;
-            this.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.LabelFont = new System.Drawing.Font("Verdana", 7F);
             this.LabelOffset = new System.Drawing.Point(0, 0);
-            this.LabelSize = new System.Drawing.Size(34, 23);
+            this.LabelSize = new System.Drawing.Size(32, 12);
             this.Name = "LabelledTextBoxLong";
             this.Size = new System.Drawing.Size(174, 20);
             this.Load += new System.EventHandler(this.LabelledTextBox_Load);

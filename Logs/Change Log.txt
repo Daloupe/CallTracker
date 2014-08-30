@@ -32,13 +32,17 @@
 - Confirmed Bras, NTDSN, AddressId, and ESN Regexes.
 - IPCC menu not drawing back color.
 
+0.4.4.4
+(Bugs/Changes)
+- Created own draw events for base items.
+
 0.4.4.3
 (Minor Features)
 | Added IsLetter and IsDigit Extensions to string to get quicker detection over Regex in smart copy method.
 (Bugs/Changes)
 | Changed FindIEByUrl to AttachNoWait to avoid timeouts.
 | Set bindingSource in callhistory to main bindingsource, rather than just the datasource.
-| EventLogger now only writes when Contact is changed, or form is closing.
+| EventLogger now only writes when Contact is changed, Call State changes to Ready, or form is closing.
 
 0.4.3.0
 (Minor Features)

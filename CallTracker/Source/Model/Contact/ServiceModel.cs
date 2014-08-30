@@ -84,7 +84,7 @@ namespace CallTracker.Model
         // LAT
         [ProtoMember(30)]
         public string CauPing { get; set; }
-        [ProtoMember(30)]
+        [ProtoMember(31)]
         public string NitResults { get; set; }
         [ProtoMember(32)]
         public string ESN { get; set; }
@@ -102,7 +102,7 @@ namespace CallTracker.Model
         public string RFIssues { get; set; }
         [ProtoMember(52)]
         public string CMMac { get; set; }
-        [ProtoMember(54)]
+        [ProtoMember(53)]
         public string ModemSN { get; set; }
         
         // Internet

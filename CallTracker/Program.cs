@@ -25,7 +25,7 @@ namespace CallTracker
                 if (createdNew)
                 {
                     Application.EnableVisualStyles();
-                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.SetCompatibleTextRenderingDefault(true);
                     Fonts = new PrivateFontCollection();
                     if (File.Exists("Fonts\\OptusVoiceBETA-Bold.ttf"))
                         Fonts.AddFontFile("Fonts\\OptusVoiceBETA-Bold.ttf");

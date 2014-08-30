@@ -28,7 +28,7 @@ namespace CallTracker.View
         public readonly Point ControlOffset = new Point(0, -1);
 
         internal UserDataStore UserDataStore = new UserDataStore();
-        internal DailyDataDataStore DailyDataDataStore = new DailyDataDataStore();
+        internal DailyDataRepository DailyDataDataStore;
         internal static ServicesData ServicesStore = new ServicesData();
 
         private CustomerContact _selectedContact { get; set; }
@@ -60,9 +60,7 @@ namespace CallTracker.View
         internal static ICONNoteGenerator NoteGen;
         public HotkeyController HotKeys;
 
-        public static FadingTooltip FadingToolTip;
-
-        
+        public static FadingTooltip FadingToolTip;      
 
         private readonly SplashScreen _splash;
         public Main(SplashScreen splash)
@@ -104,6 +102,8 @@ namespace CallTracker.View
             }
         }
 
+
+
         private void Main_Load(object sender, EventArgs e)
         {
             EventLogger.LogNewEvent("------------------------------------------------------");
@@ -114,7 +114,7 @@ namespace CallTracker.View
             _splash.UpdateProgress("Loading Resources", 15);
             UserDataStore = UserDataStore.ReadFile();
             _splash.UpdateProgress("Loading User Data", 20);
-            DailyDataDataStore.ReadData();
+            DailyDataDataStore = DailyDataRepository.ReadData();
             _splash.UpdateProgress("Loading Contact Data", 25);
 
 
@@ -724,6 +724,7 @@ namespace CallTracker.View
                         _IPCCTimer.Interval = 1000;
                         _CallStateTime.BackColor = Color.OliveDrab;
                         _CallStateTime.ForeColor = Color.PaleGoldenrod;
+                        EventLogger.SaveLog();
                         break;
                     case "AgentStatus:":
                         _IPCCTimer.Interval = 2000;
@@ -895,18 +896,18 @@ namespace CallTracker.View
              0,
              ((Control)sender).Width - 1,
              ((Control)sender).Height - 1);
-            base.OnPaint(e);
+            //base.OnPaint(e);
         }
 
-        protected override CreateParams CreateParams
-        {
-            get
-            {
-                CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
-                return cp;
-            }
-        }
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+        //        cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+        //        return cp;
+        //    }
+        //}
 
         private void pullIPCCCallDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
