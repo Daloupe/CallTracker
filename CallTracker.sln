@@ -31,6 +31,35 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomationTester", "Automat
 		{391A87E7-B716-4C1C-9FF2-FACEA8B54820} = {391A87E7-B716-4C1C-9FF2-FACEA8B54820}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{84F45492-5077-43D0-930E-440B8C08DFE0}"
+	ProjectSection(SolutionItems) = preProject
+		Resources\data.xlsx = Resources\data.xlsx
+		Resources\IPCC.JPG = Resources\IPCC.JPG
+		Resources\Services from 31.7.bin = Resources\Services from 31.7.bin
+		Resources\Services.bin = Resources\Services.bin
+		WingMan.ico = WingMan.ico
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{47F929B3-070E-4DEC-AE0E-9DEB95B061F0}"
+	ProjectSection(SolutionItems) = preProject
+		References\Castle.Core.dll = References\Castle.Core.dll
+		References\Castle.Core.xml = References\Castle.Core.xml
+		References\Equin.ApplicationFramework.BindingListView.dll = References\Equin.ApplicationFramework.BindingListView.dll
+		References\Init.ps1 = References\Init.ps1
+		References\readme.txt = References\readme.txt
+		References\RegexAssembly.exe = References\RegexAssembly.exe
+		References\RegexAssembly.vshost.exe = References\RegexAssembly.vshost.exe
+		References\RegexAssembly.vshost.exe.manifest = References\RegexAssembly.vshost.exe.manifest
+		References\RegexLib.dll = References\RegexLib.dll
+		References\Shortcut.dll = References\Shortcut.dll
+		References\TestStack.White.dll = References\TestStack.White.dll
+		References\TestStack.White.dll.config = References\TestStack.White.dll.config
+		References\TestStack.White.pdb = References\TestStack.White.pdb
+		References\TestStack.White.psm1 = References\TestStack.White.psm1
+		References\VS2008StripRenderingLibrary.dll = References\VS2008StripRenderingLibrary.dll
+		References\VS2008StripRenderingLibrary.pdb = References\VS2008StripRenderingLibrary.pdb
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -18,27 +18,9 @@ namespace CallTracker.Helpers
 
     public class HotkeyController : IDisposable
     {
-        // HotkeyController Methods:
-            // HotKey Methods:
-                // private void OnGridLinks(HotkeyPressedEventArgs e)
-                // private void OnDataPaste(HotkeyPressedEventArgs e)
-                // private void OnSmartPaste(HotkeyPressedEventArgs e)
-                // private void OnBindSmartPaste(HotkeyPressedEventArgs e)
-                // private void OnAutoFill(HotkeyPressedEventArgs e)
-                // private void OnAutoLogin(HotkeyPressedEventArgs e)
-                // private void OnSmartCopy(HotkeyPressedEventArgs e)
-            // Browser Methods:
-                // private bool FindIEByHWND(IntPtr _HWND)
-                // private bool FindIEByTitle(string _title)
-            // Object Methods:
-                // public static string FollowPropertyPath(object value, string path)
-                // public static string FollowPropertyPath(object value, string path, string altPath)
         private static Main parent;
         public static IE browser;
-        //public static string PreviousIEMatch;
         private static HotKeyManager HotKeyManager;
-        //private static PropertyDescriptorCollection props;
-
         public static event ActionEventHandler OnAction;
         
         public HotkeyController(Main _parent)
@@ -54,7 +36,7 @@ namespace CallTracker.Helpers
             HotKeyManager.AddOrReplaceHotkey("AutoLogin", Modifiers.Win, Keys.Oemtilde, OnAutoLogin);
             HotKeyManager.AddOrReplaceHotkey("AutoFill", Modifiers.Win | Modifiers.Control, Keys.V, OnAutoFill);
             HotKeyManager.AddOrReplaceHotkey("AddARO", Modifiers.Win | Modifiers.Shift, Keys.C, OnAddARO);
-            foreach (var DataPasteHotkey in _dataPasteHotkeys)
+            foreach (var DataPasteHotkey in DataPasteHotkeys)
                 HotKeyManager.AddOrReplaceHotkey(DataPasteHotkey.Value, Modifiers.Control | Modifiers.Shift, DataPasteHotkey.Key, OnDataPaste);
             foreach (var GridLinkHotKey in GridLinkHotkeys)
             {
@@ -62,21 +44,13 @@ namespace CallTracker.Helpers
                 HotKeyManager.AddOrReplaceHotkey("GLS" + GridLinkHotKey.Value, Modifiers.Win | Modifiers.Control, GridLinkHotKey.Key, OnGridLinksSearch);
             }
 
-
             Settings.AutoStartDialogWatcher = false;
             Settings.AutoMoveMousePointerToTopLeft = false;
             Settings.AutoCloseDialogs = false;
             Settings.AttachToBrowserTimeOut = 3;
             Settings.WaitForCompleteTimeOut = 3;
             Settings.WaitUntilExistsTimeOut = 3;
-
-            //props = TypeDescriptor.GetProperties(parent.SelectedContact.Service);
-
-            //bgw.DoWork += bgw_DoWork;
-            //bgw.RunWorkerCompleted += bgw_RunWorkerCompleted;
         }
-
-
 
         public void Dispose()
         {
@@ -112,7 +86,7 @@ namespace CallTracker.Helpers
             {Keys.NumPad1, "1"},
             {Keys.NumPad2, "2"},
             {Keys.NumPad3, "3"},
-            {Keys.G, "4"},
+            {Keys.NumPad4, "4"},
             {Keys.NumPad5, "5"},
             {Keys.NumPad6, "6"},
             {Keys.NumPad7, "7"},
@@ -205,7 +179,7 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Data Paste ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private static readonly Dictionary<Keys, string> _dataPasteHotkeys = new Dictionary<Keys, string>
+        private static readonly Dictionary<Keys, string> DataPasteHotkeys = new Dictionary<Keys, string>
         {
             {Keys.D1, "ICON"},
             {Keys.D2, "CMBS"},
@@ -244,7 +218,7 @@ namespace CallTracker.Helpers
             }
             else
             {
-                if (!FindBrowser())
+                if (!GetActiveBrowser())
                     return;
 
                 var url = browser.Url;
@@ -274,7 +248,7 @@ namespace CallTracker.Helpers
         private static void OnBindSmartPaste(HotkeyPressedEventArgs e)
         {
             EventLogger.LogNewEvent("Searching for matching binds", EventLogLevel.Brief);
-            if (!FindBrowser())
+            if (!GetActiveBrowser())
                 return;
 
             string url = browser.Url;
@@ -320,7 +294,7 @@ namespace CallTracker.Helpers
         private static void OnAutoFill(HotkeyPressedEventArgs e)
         {
             EventLogger.LogNewEvent("Searching for AutoFill Matches", EventLogLevel.Brief);
-            if (!FindBrowser())
+            if (!GetActiveBrowser())
                 return;
 
             string url = browser.Url;
@@ -367,7 +341,7 @@ namespace CallTracker.Helpers
         private static void AutoLogin()
         {
             OnAction("Searching for matches");
-            if (!FindBrowser())
+            if (!GetActiveBrowser())
                 return;
 
             string title = browser.Title;
@@ -412,19 +386,11 @@ namespace CallTracker.Helpers
             }
 
             SendKeys.SendWait("^c");
-            Stopwatch.Reset();
             SendKeys.Flush();
+            Stopwatch.Reset();
             Stopwatch.Start();
-            while (!Clipboard.ContainsText())
-            {
+            while (!Clipboard.ContainsText() && Stopwatch.ElapsedMilliseconds <= 500)
                 SendKeys.Flush();
-                if (Stopwatch.ElapsedMilliseconds > 500)
-                {
-                    Main.FadingToolTip.ShowandFade("Nothing selected");
-                    Stopwatch.Reset();
-                    return;
-                }
-            }
             Stopwatch.Stop();
 
             var text = Clipboard.GetText().Trim();
@@ -434,12 +400,11 @@ namespace CallTracker.Helpers
                 Main.FadingToolTip.ShowandFade("Nothing selected");
                 return;
             }
-            var firstchar = text.Substring(0, 1);
 
             var contact = parent.SelectedContact;        
             if(text.IsDigits())
             {
-                if (firstchar == "1" && textlen == 8)
+                if (text.Substring(0, 1) == "1" && textlen == 8)
                 {
                     contact.Fault.PR = text;
                     Main.FadingToolTip.ShowandFade("PR: " + contact.Fault.PR);                   
@@ -453,8 +418,7 @@ namespace CallTracker.Helpers
                 else if (contact.Service.FindIPMatch(text)) { }
                 else if (contact.Fault.FindITCaseMatch(text)) { }         
                 else
-                    contact.AddToNote(text);
-                    
+                    contact.AddToNote(text);                  
             } 
             else if (text.IsLetters())
             {
@@ -547,21 +511,17 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Browser Methods //////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public static bool FindBrowser()
+        public static bool GetActiveBrowser()
         {
             var title = WindowHelper.GetActiveWindowTitle();
-            if (!FindIEByTitle(title))
-            {
-                EventLogger.LogNewEvent(String.Format("Unable to find page by title: {0}", title));
+            if (FindIEByTitle(title)) return true;
+            EventLogger.LogNewEvent(String.Format("Unable to find page by title: {0}", title));
 
-                var hwnd = WindowHelper.GetActiveWindowHWND();
-                if (!FindIEByHWND(hwnd))
-                {
-                    EventLogger.LogNewEvent(String.Format("Unable to find page by HWND: {0}", hwnd.ToString()));
-                    return false;
-                }
-            }
-            return true;
+            var hwnd = WindowHelper.GetActiveWindowHWND();
+            if (FindIEByHWND(hwnd)) return true;
+            EventLogger.LogNewEvent(String.Format("Unable to find page by HWND: {0}", hwnd.ToString()));
+
+            return false;
         }
 
         public static bool FindIEByHWND(IntPtr _HWND)
@@ -667,9 +627,11 @@ namespace CallTracker.Helpers
             return false;
         }
 
-        public static bool SilentSearch(string search, string title, string url)
+        /// <summary>
+        /// Searches a system.
+        /// </summary>
+        public static bool AutoSearch(string search, string title, string url)
         {
-            // Browser object should be disposed of manually after caller is done calling SilenetSearch.
             var activeHwnd = WindowHelper.GetActiveWindowHWND();
             if (FindIEByTitle(title))
             {
@@ -693,6 +655,14 @@ namespace CallTracker.Helpers
                 }
                 browser.GoToNoWait(search);
                 EventLogger.LogNewEvent("Searching: " + search, EventLogLevel.Brief);
+                browser.Dispose();
+                return true;
+            }
+
+            if (Properties.Settings.Default.AutoSearchOpenNew)
+            {
+                CreateNewIE(search);
+                EventLogger.LogNewEvent("Creating New and Searching: " + search, EventLogLevel.Brief);
                 browser.Dispose();
                 return true;
             }

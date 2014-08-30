@@ -36,7 +36,7 @@ namespace CallTracker.Model
             if (search == null ) return;
             if (contact.Service.WasSearched[Name]) return;
 
-            HotkeyController.SilentSearch(search.GetSearchUrl(contact), Title, Url);
+            HotkeyController.AutoSearch(search.GetSearchUrl(contact), Title, Url);
             contact.Service.WasSearched[Name] = true;
         }
 

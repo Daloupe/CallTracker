@@ -20,7 +20,7 @@ namespace CallTracker
         static void Main()
         {
             var createdNew = true;
-            using (var mutex = new Mutex(true, "CallTracker", out createdNew))
+            using (var mutex = new Mutex(true, "Wingman", out createdNew))
             {
                 if (createdNew)
                 {

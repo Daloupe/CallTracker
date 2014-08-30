@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CallTracker</RootNamespace>
-    <AssemblyName>CallTracker</AssemblyName>
+    <AssemblyName>Wingman</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
@@ -29,13 +29,16 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>CallTracker.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>WingMan.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
@@ -113,7 +116,7 @@
     <Compile Include="Source\Model\Contact\DailyModel.cs" />
     <Compile Include="Source\Model\Contact\DateFilterItem.cs" />
     <Compile Include="Source\Model\Contact\EventsModel.cs" />
-    <Compile Include="Source\Model\Resource\Settings\SearchModel.cs" />
+    <None Include="Source\Model\Resource\Settings\SearchModel.cs" />
     <Compile Include="Source\View\Controls\CustomDataGrid.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -123,6 +126,8 @@
     <Compile Include="Source\View\Controls\CustomDgv.Designer.cs">
       <DependentUpon>CustomDgv.cs</DependentUpon>
     </Compile>
+    <Content Include="WingMan.ico" />
+    <None Include="Resources\WingMan.ico" />
     <None Include="Source\View\Controls\NullableComboBox.cs">
       <SubType>Component</SubType>
     </None>
