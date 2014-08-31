@@ -16,6 +16,7 @@ namespace CallTracker.View
     public partial class EditContact : UserControl
     {
         internal Main MainForm;
+        private bool _updateNote = true;
 
         public EditContact(Main mainform)
         {
@@ -208,7 +209,7 @@ namespace CallTracker.View
             //    UpdateActions();
 
             // Update Note
-            if (_Note.DataBindings.Count > 0)
+            if (_Note.DataBindings.Count > 0 && _updateNote)
                 _Note.DataBindings[0].ReadValue();
         }
 
@@ -466,13 +467,16 @@ namespace CallTracker.View
             UpdateActions();
             if (MainForm.SelectedContact.Fault.Outcome == "Outage")
             {
-                //_BookingType._ComboBox.SelectedItem = BookingType.NRQ;
-                //customerContactsBindingSource.ResetCurrentItem();
+                _updateNote = false;
+
+                MainForm.SelectedContact.Booking.Type = BookingType.NRQ.ToString();
 
                 MainForm.SelectedContact.UpdatePrTemplateReplacements(PRGenerators.AROAnswers);
 
                 if (((ToolStripMenuItem)_NoteContextMenuStrip.Items["pRTemplateToolStripMenuItem"]).Checked)
                     _Note.DataBindings[0].ReadValue();
+
+                _updateNote = true;
             }
             else
             {

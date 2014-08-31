@@ -8,8 +8,8 @@ namespace CallTracker.View
 
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg == WM_MOUSEACTIVATE && this.CanFocus && !this.Focused)
-                this.Focus();
+            if (m.Msg == WM_MOUSEACTIVATE && CanFocus && !Focused)
+                Focus();
 
             base.WndProc(ref m);
         }
@@ -25,7 +25,7 @@ namespace CallTracker.View
         {
             get
             {
-                CreateParams cp = base.CreateParams;
+                var cp = base.CreateParams;
                 cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
                 return cp;
             }

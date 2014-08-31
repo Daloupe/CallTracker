@@ -23,7 +23,7 @@ namespace CallTracker.Model
     {
         public IEInteractBase()
         {
-            ContextForm = new Func<Browser, IElementContainer>(b => b.Form(IEFormConstraint(FormElement)));
+            ContextForm = b => b.Form(IEFormConstraint(FormElement));
 
             IEContext = ContextBrowser;
             IEType = typeof(Element);
@@ -132,7 +132,7 @@ namespace CallTracker.Model
 
         public virtual void Paste(Browser browser, string element, string value)
         {
-            MethodInfo paste = this.GetType().GetMethod("PasteData").MakeGenericMethod(IEType);
+            var paste = GetType().GetMethod("PasteData").MakeGenericMethod(IEType);
             paste.Invoke(this, new object[] { browser, element, value });
         }
 
@@ -144,7 +144,7 @@ namespace CallTracker.Model
             elem.FindNativeElement().SetFocus();
             IEMethod(elem, value);
             //Main.FadingToolTip.ShowandFade("Pasting " + element + ": " + value);
-            browser.WaitForComplete(5000);
+            browser.WaitForComplete(5);
         }
 
         protected Func<Browser, IElementContainer> IEContext;

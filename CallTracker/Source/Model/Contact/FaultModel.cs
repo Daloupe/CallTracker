@@ -132,11 +132,16 @@ namespace CallTracker.Model
         {
             get
             {
-                if (AffectedServiceType == ServiceTypes.NONE)
+                if (AffectedServiceType == ServiceTypes.NONE || Symptom == null)
                     return String.Empty;
-                return Symptom + " - " + (from a in Main.ServicesStore.servicesDataSet.Symptoms
-                        where a.IFMSCode == Symptom
-                        select a).FirstOrDefault().Description;
+
+                var firstOrDefault = (from a in Main.ServicesStore.servicesDataSet.Symptoms
+                    where a.IFMSCode == Symptom
+                    select a).FirstOrDefault();
+                if (firstOrDefault != null)
+                    return Symptom + " - " + firstOrDefault.Description;
+                
+                return String.Empty;
             }
         }
 

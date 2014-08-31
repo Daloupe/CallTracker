@@ -11,6 +11,8 @@ namespace CallTracker.Helpers
     {
         public static string Generate(CustomerContact service, List<PRTemplateModel> replacementQuestions)
         {
+            Console.WriteLine("Generating PR");
+
             // Remove Missed Dependanices.
             var newTemplate = PRTemplate.Where(x => (service.Fault.AffectedServices & x.ServiceRestrictions) != 0 
                                                                       || x.ServiceRestrictions.Is(ServiceTypes.NONE))

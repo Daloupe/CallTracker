@@ -57,14 +57,13 @@ namespace CallTracker.Model
         {
             CallEvents.Add(new EventModel<CallEventTypes>(newEvent));
             LastCallEvent = CallEvents.LastOrDefault();
-            Console.WriteLine("Last event set to: " + Enum.GetName(typeof(CallEventTypes), LastCallEvent.EventType));
+            //Console.WriteLine("Last event set to: " + Enum.GetName(typeof(CallEventTypes), LastCallEvent.EventType));
             IsDirty = true;
         }
 
         internal void AddAppEvent(AppEventTypes newEvent)
         {
             AppEvents.Add(new EventModel<AppEventTypes>(newEvent));
-
             //EventLogger.LogNewEvent(typeof(T).ToString() + " > " + Enum.GetName(typeof(AppEventTypes), newEvent));
             IsDirty = true;
         }

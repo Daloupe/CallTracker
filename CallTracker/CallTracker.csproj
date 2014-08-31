@@ -190,7 +190,7 @@
     <Compile Include="Source\Model\Resource\EventLogModel.cs" />
     <Compile Include="Source\Model\Resource\PRTemplateModel.cs" />
     <Compile Include="Source\Model\Resource\Settings\AROModel.cs" />
-    <Compile Include="Source\Model\Resource\Settings\IEInteractBase.cs" />
+    <Compile Include="Source\Model\Contact\IEInteractBase.cs" />
     <Compile Include="Source\Model\Resource\Settings\ElementBinds.cs" />
     <Compile Include="Source\Model\Resource\RatePlanModel.cs" />
     <Compile Include="Source\View\Controls\BindableContextMenu.cs">

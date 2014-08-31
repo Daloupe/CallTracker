@@ -149,7 +149,7 @@ namespace CallTracker.Model
                     break;
             }
 
-            EventLogger.LogAndSaveNewEvent(Id + " " + DN + " > " + Enum.GetName(typeof(CallEventTypes), Events.LastCallEvent.EventType) + " at " + Events.LastCallEvent.Timestamp.ToString("dd/MM/yy hh:mm:ss"), EventLogLevel.Status);
+            //EventLogger.LogAndSaveNewEvent(Id + " " + DN + " > " + Enum.GetName(typeof(CallEventTypes), Events.LastCallEvent.EventType) + " at " + Events.LastCallEvent.Timestamp.ToString("dd/MM/yy hh:mm:ss"), EventLogLevel.Status);
         }
 
         internal void AddAppEvent(AppEventTypes newEvent)
