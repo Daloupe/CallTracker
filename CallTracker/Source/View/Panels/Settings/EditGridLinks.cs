@@ -25,17 +25,16 @@ namespace CallTracker.View
             dataGridView1.AutoGenerateColumns = false;
         }
 
-        public override void Init(Main _parent, ToolStripMenuItem _menuItem)
+        public override void Init(Main mainForm, ToolStripMenuItem menuItem)
         {
-            base.Init(_parent, _menuItem);
+            base.Init(mainForm, menuItem);
             
             systemItemBindingSource.DataSource = MainForm.UserDataStore.GridLinks.SystemItems;
             gridLinksBindingSource.DataSource = MainForm.UserDataStore.GridLinks.GridLinkList;
 
             for (var x = 0; x <10; x++)
             {
-                bs[x] = new BindingSource();
-                bs[x].DataSource = MainForm.UserDataStore.GridLinks.SystemItems;
+                bs[x] = new BindingSource {DataSource = MainForm.UserDataStore.GridLinks.SystemItems};
             }
 
             comboBox0.DataSource = bs[0];

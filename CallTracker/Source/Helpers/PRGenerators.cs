@@ -9,42 +9,32 @@ namespace CallTracker.Helpers
 {
     public static class PRGenerators
     {
-        public static string Generate(CustomerContact _service, List<PRTemplateModel> _replacementQuestions)
+        public static string Generate(CustomerContact service, List<PRTemplateModel> replacementQuestions)
         {
             // Remove Missed Dependanices.
-            List<PRTemplateModel> newTemplate = PRTemplate.Where(x => (_service.Fault.AffectedServices & x.ServiceRestrictions) != 0 
+            var newTemplate = PRTemplate.Where(x => (service.Fault.AffectedServices & x.ServiceRestrictions) != 0 
                                                                       || x.ServiceRestrictions.Is(ServiceTypes.NONE))
                                                                       .ToList();
+            newTemplate.AddRange(replacementQuestions);
+            newTemplate = newTemplate.GroupBy(a => a.Question)
+                                     .Select(b => b.Last())
+                                     .ToList();
 
-            foreach (PRTemplateModel model in _replacementQuestions)
-            {
-                var query = newTemplate.Exists(x => x.Question == model.Question);
-                if (query != false)
-                {
-                    int idx = newTemplate.IndexOf(newTemplate.First(x => x.Question == model.Question));
-                    newTemplate[idx] = model;
-                }
-            }
-
-            foreach (PRTemplateModel model in newTemplate)
-            {
-                if (model.RequiresObject)
-                    model.SetObject(_service);
-            }
+            foreach (var model in newTemplate.Where(model => model.RequiresObject))
+                model.SetObject(service);
 
             // Remove Case Management Callback Time.
-            if(_service.Booking.Type != "CM")
+            if(service.Booking.Type != "CM")
                   newTemplate.RemoveAt(newTemplate.Count-1);
 
-            StringBuilder sb = new StringBuilder();
-            foreach (PRTemplateModel line in newTemplate)
+            var sb = new StringBuilder();
+            foreach (var line in newTemplate)
             {
                 sb.Append(line.Question);
                 sb.AppendLine(line.GetAnswer());
             };
                 
-            return sb.ToString();
-            
+            return sb.ToString();          
         }
 
         public static ServiceTypes NBNOnly = (ServiceTypes.NBF | ServiceTypes.NFV);
@@ -53,14 +43,14 @@ namespace CallTracker.Helpers
             new PRTemplateFindProperty("Name: ", "Name"),
             new PRTemplateFunc("Contact Number: ", (x) => 
             { 
-                string mobile = FindProperty.FollowPropertyPath(x, "Mobile");
+                var mobile = FindProperty.FollowPropertyPath(x, "Mobile");
                 return String.IsNullOrEmpty(mobile) ? FindProperty.FollowPropertyPath(x, "DN") + "- No Alt" : mobile;
             }),
             new PRTemplateFindProperty("Symptoms: ", "Fault.SymptomFull"),
             new PRTemplateFunc("Configuration: ", (x) => 
             {
-                string output = FindProperty.FollowPropertyPath(x, "Service.Equipment");
-                string username = FindProperty.FollowPropertyPath(x, "Username");
+                var output = FindProperty.FollowPropertyPath(x, "Service.Equipment");
+                var username = FindProperty.FollowPropertyPath(x, "Username");
                 if (!String.IsNullOrEmpty(username))
                     output += Environment.NewLine + username;
                 return output;
@@ -76,10 +66,10 @@ namespace CallTracker.Helpers
             new PRTemplateString("Next Action: "),
             new PRTemplateFunc("Callback Window ", (x) =>  
             { 
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
                 sb.Append(FindProperty.FollowPropertyPath(x, "Booking.Type"));
                 sb.Append(": ");
-                DateTime bookingDate = new DateTime();
+                var bookingDate = new DateTime();
                 DateTime.TryParse(FindProperty.FollowPropertyPath(x, "Booking.Date"), out bookingDate);
                 sb.Append(bookingDate.ToString("yyyy-MM-dd"));
                 sb.AppendLine(" " + FindProperty.FollowPropertyPath(x, "Booking.Timeslot"));

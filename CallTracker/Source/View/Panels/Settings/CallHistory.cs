@@ -15,9 +15,9 @@ namespace CallTracker.View
             dataGridView1.DataError += dataGridView1_DataError;
         }
 
-        public override void Init(Main _parent, ToolStripMenuItem _menuItem)
+        public override void Init(Main mainForm, ToolStripMenuItem menuItem)
         {
-            base.Init(_parent, _menuItem);
+            base.Init(mainForm, menuItem);
             _DateSelect._ComboBox.DataSource = MainForm.DateBindingSource;
             _DateSelect._ComboBox.DisplayMember = "ShortDate";
             _DateSelect._ComboBox.ValueMember = "LongDate";

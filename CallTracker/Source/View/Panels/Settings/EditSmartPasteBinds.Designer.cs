@@ -44,9 +44,6 @@
             this.textBox1 = new CallTracker.View.BorderedTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
-            this._Data = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this._AltData = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new CallTracker.View.BorderedTextBox();
@@ -57,6 +54,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this._FormElement = new CallTracker.View.BorderedTextBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this._Data = new CallTracker.View.BorderedTextBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -180,8 +178,6 @@
             this.flowLayoutPanel1.Controls.Add(this.panel1);
             this.flowLayoutPanel1.Controls.Add(this.label4);
             this.flowLayoutPanel1.Controls.Add(this._Data);
-            this.flowLayoutPanel1.Controls.Add(this.label8);
-            this.flowLayoutPanel1.Controls.Add(this._AltData);
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.label3);
             this.flowLayoutPanel1.Controls.Add(this.textBox2);
@@ -261,40 +257,10 @@
             this.label4.Text = "Data:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // _Data
-            // 
-            this._Data.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this._Data.FormattingEnabled = true;
-            this._Data.Location = new System.Drawing.Point(6, 90);
-            this._Data.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this._Data.Name = "_Data";
-            this._Data.Size = new System.Drawing.Size(190, 20);
-            this._Data.TabIndex = 16;
-            // 
-            // label8
-            // 
-            this.label8.Location = new System.Drawing.Point(6, 110);
-            this.label8.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(189, 10);
-            this.label8.TabIndex = 27;
-            this.label8.Text = "Alternate Data:";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // _AltData
-            // 
-            this._AltData.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this._AltData.FormattingEnabled = true;
-            this._AltData.Location = new System.Drawing.Point(6, 123);
-            this._AltData.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this._AltData.Name = "_AltData";
-            this._AltData.Size = new System.Drawing.Size(190, 20);
-            this._AltData.TabIndex = 18;
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Location = new System.Drawing.Point(6, 149);
+            this.panel2.Location = new System.Drawing.Point(6, 177);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 1);
@@ -302,7 +268,7 @@
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(6, 153);
+            this.label3.Location = new System.Drawing.Point(6, 181);
             this.label3.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(189, 10);
@@ -315,7 +281,7 @@
             this.textBox2.BorderColor = System.Drawing.Color.Gray;
             this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Element", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.textBox2.Location = new System.Drawing.Point(6, 166);
+            this.textBox2.Location = new System.Drawing.Point(6, 194);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(189, 19);
@@ -323,7 +289,7 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(6, 185);
+            this.label5.Location = new System.Drawing.Point(6, 213);
             this.label5.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(189, 13);
@@ -336,7 +302,7 @@
             this._ElementType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedItem", this.pasteBindBindingSource, "ElementType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ElementType.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this._ElementType.FormattingEnabled = true;
-            this._ElementType.Location = new System.Drawing.Point(6, 201);
+            this._ElementType.Location = new System.Drawing.Point(6, 229);
             this._ElementType.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._ElementType.Name = "_ElementType";
             this._ElementType.Size = new System.Drawing.Size(190, 20);
@@ -346,7 +312,7 @@
             // 
             this._FindByName.AutoSize = true;
             this._FindByName.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindByName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._FindByName.Location = new System.Drawing.Point(6, 224);
+            this._FindByName.Location = new System.Drawing.Point(6, 252);
             this._FindByName.Name = "_FindByName";
             this._FindByName.Size = new System.Drawing.Size(100, 16);
             this._FindByName.TabIndex = 25;
@@ -356,7 +322,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(6, 249);
+            this.panel3.Location = new System.Drawing.Point(6, 277);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 1);
@@ -364,7 +330,7 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(6, 253);
+            this.label7.Location = new System.Drawing.Point(6, 281);
             this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(189, 10);
@@ -377,7 +343,7 @@
             this._FormElement.BorderColor = System.Drawing.Color.Gray;
             this._FormElement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._FormElement.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "FormElement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._FormElement.Location = new System.Drawing.Point(6, 266);
+            this._FormElement.Location = new System.Drawing.Point(6, 294);
             this._FormElement.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._FormElement.Name = "_FormElement";
             this._FormElement.Size = new System.Drawing.Size(189, 19);
@@ -387,12 +353,25 @@
             // 
             this.checkBox3.AutoSize = true;
             this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindInForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox3.Location = new System.Drawing.Point(6, 288);
+            this.checkBox3.Location = new System.Drawing.Point(6, 316);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(118, 16);
             this.checkBox3.TabIndex = 18;
             this.checkBox3.Text = "Find Within Form";
             this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // _Data
+            // 
+            this._Data.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this._Data.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this._Data.BorderColor = System.Drawing.Color.Gray;
+            this._Data.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Data.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Data", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Data.Location = new System.Drawing.Point(6, 93);
+            this._Data.Multiline = true;
+            this._Data.Name = "_Data";
+            this._Data.Size = new System.Drawing.Size(189, 75);
+            this._Data.TabIndex = 28;
             // 
             // EditSmartPasteBinds
             // 
@@ -423,8 +402,6 @@
 
         private System.Windows.Forms.Button _Done;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ComboBox _Data;
-        private System.Windows.Forms.ComboBox _AltData;
         private System.Windows.Forms.DataGridViewTextBoxColumn systemDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label6;
@@ -446,8 +423,8 @@
         private System.Windows.Forms.CheckBox _FindByName;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox _ElementType;
+        private BorderedTextBox _Data;
     }
 }

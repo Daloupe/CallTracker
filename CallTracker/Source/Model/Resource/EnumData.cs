@@ -35,6 +35,7 @@ namespace CallTracker.Model
         };
     }
 
+    [Flags]
     public enum ServiceTypes
     {
         NONE = 0,

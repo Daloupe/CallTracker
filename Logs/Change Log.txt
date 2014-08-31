@@ -20,6 +20,7 @@
 (Minor Feature)
 - White Timeout exceptions caught and EventLogged.
 - Added SMS template generators.
+- Add AutoComplete to BindSmartPasteForm data field.
 (Bugs/Changes)
 - Fixed Resources file not building.
 - PR Template not cleaning itself of outage replacements.
@@ -36,12 +37,28 @@
 (Major Features)
 - Created "Did You Know?" startup screen.
 
+0.5.4.5
+(Minor Features)
+| Smart Paste changes:
+	| Removed 'Alt Data' combo from from. Made 'Data' a textfield. Changed 'Url' from textfield to textbox.
+	| '^' signifies context eg product specific: ^LATDN^ONCUsername.
+	| ',' signfies alternate data: ^LATDN,Username,Mobile^ONCUsername,DN,Mobile.
+(Bugs/Changes)
+| Changed PRTemplates generate code to make question replacement more readable by using LINQ instead of a foreach loop.
+| Replacement questions are now cleared when "Outage" is no longer selected.
+- Change Booking type to NRQ on outage, properly reset item.
+| Updates GridLinks Search Items to use Context, rather than string[].
+| Added parent.SelectedContact null check to each relevant HotkeyController method.
+| EventLogger.LogAndSaveNewEvent will add event to list, then initiate a save.
+
 0.5.1.2
 (Minor Features)
 | Added Auto Search Option "Open Page If Required" to create new IE i system can't be found.
 (Bugs/Changes)
 | Created a wingman icon.
 | Moved AutoSearch Options into a dropdown.
+| IgnoreActiveWindow wasn't searching if any of the tabs in a window matched. Using Title instead of HWND now.
+! Somethign about creating new IE windows.
 
 0.5.0.1
 (Major Features)
@@ -470,10 +487,11 @@ Considerations
 Features:
 | Call History
 | Smart Copy
-| Smart Paste
-	| Context Sensitive pastes
-	| Alternate data
-	| Regex replace and data concatenation
+| Smart Paste eg "^LATDN|0{1}{2},Username,Mobile{0}{1}^ONCUsername,DN|0{1}{2},Mobile{0}{1}^NBFPRI|cmr {1}_+Fault.PR"
+	| Context Sensitive pastes '^'
+	| Alternate data ","
+	| Regex replace ","
+	| Data concatenation "+"
 | Auto Search
 | ICON Note generator
 | Form Prefills

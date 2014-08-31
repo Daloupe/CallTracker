@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using Castle.Core.Internal;
 using Shortcut;
 
 using WatiN.Core;
@@ -127,7 +128,13 @@ namespace CallTracker.Helpers
         }
 
         private static void OnGridLinksSearch(HotkeyPressedEventArgs e)
-        { 
+        {
+            if (parent.SelectedContact == null)
+            {
+                EventLogger.LogNewEvent("GridLinks Search Error: Not Contact Selected", EventLogLevel.Brief);
+                return;
+            }
+
             var systemItem = parent.UserDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name.Remove(0, 3)));
             EventLogger.LogNewEvent("Starting Grid Link Search: " + systemItem.Url, EventLogLevel.Brief);
             parent.SetProgressBarStep(4, String.Format("Searching: {0}", systemItem.Url));
@@ -149,7 +156,7 @@ namespace CallTracker.Helpers
                     var url = String.Empty;
                     foreach (var search in systemItem.Searches)
                     {
-                        var data = FindProperty.FollowPropertyPath(parent.SelectedContact, search.SearchData);
+                        var data = FindProperty.FollowPropertyPath(parent.SelectedContact, search.SearchData, parent.SelectedContact.Fault.AffectedServiceType.ToString());
                         if (String.IsNullOrEmpty(data)) continue;
                         url = search.SearchURL + data;
                         break;
@@ -193,13 +200,20 @@ namespace CallTracker.Helpers
 
         private static void OnDataPaste(HotkeyPressedEventArgs e)
         {
+            if (parent.SelectedContact == null)
+            {
+                EventLogger.LogNewEvent("DataPaste Error: Not Contact Selected", EventLogLevel.Brief);
+                return;
+            }
+
             EventLogger.LogNewEvent(String.Format("Pasting: {0}", e.Name), EventLogLevel.Brief);
-            string dataToPaste = FindProperty.FollowPropertyPath(parent.SelectedContact, e.Name);
+            var dataToPaste = FindProperty.FollowPropertyPath(parent.SelectedContact, e.Name);
 
             if (!String.IsNullOrEmpty(dataToPaste))
             {
                 Clipboard.SetText(dataToPaste);
                 SendKeys.SendWait("+^");
+                SendKeys.Flush();
                 SendKeys.SendWait("^v");
                 Application.DoEvents();
                 SendKeys.Flush();
@@ -211,6 +225,12 @@ namespace CallTracker.Helpers
         /////////////////////////////////////////////////////////////////////////////////////////////////////
         private static void OnSmartPaste(HotkeyPressedEventArgs e)
         {
+            if (parent.SelectedContact == null)
+            {
+                EventLogger.LogNewEvent("SmartPaste Error: Not Contact Selected", EventLogLevel.Brief);
+                return;
+            }
+
             EventLogger.LogNewEvent("Searching for SmartPaste Matches for Window: " + WindowHelper.GetActiveWindowTitle(), EventLogLevel.Brief);
             if (WindowHelper.GetActiveWindowTitle().Contains("Oracle"))
             {
@@ -225,19 +245,19 @@ namespace CallTracker.Helpers
                 var title = browser.Title;
                 var element = browser.ActiveElement.IdOrName;
 
-                PasteBind query = (from
-                                       bind in parent.UserDataStore.PasteBinds
-                                   where
-                                       bind.Element == element &&
-                                       (url.Contains(bind.Url) ||
-                                        title.Contains(bind.Title))
-                                   select
-                                       bind)
-                                   .FirstOrDefault();
+                var query = (from
+                                bind in parent.UserDataStore.PasteBinds
+                             where
+                                bind.Element == element &&
+                                (url.Contains(bind.Url) ||
+                                title.Contains(bind.Title))
+                             select
+                                bind)
+                             .FirstOrDefault();
 
                 if (query != null)
                 {
-                    query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, new[]{query.Data, query.AltData}));
+                    query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data, parent.SelectedContact.Fault.AffectedServiceType.ToString()));
                     EventLogger.LogNewEvent("Match Found");
                 }
 
@@ -251,9 +271,9 @@ namespace CallTracker.Helpers
             if (!GetActiveBrowser())
                 return;
 
-            string url = browser.Url;
-            string title = browser.Title;
-            string element = browser.ActiveElement.IdOrName;
+            var url = browser.Url;
+            var title = browser.Title;
+            var element = browser.ActiveElement.IdOrName;
 
             //Console.WriteLine(browser.ActiveElement.GetAttributeValue("type"));
 
@@ -272,7 +292,7 @@ namespace CallTracker.Helpers
                                      select
                                         bind;
 
-            PasteBind elementMatch = urlOrTitleMatches.FirstOrDefault(bind => bind.Element == element);
+            var elementMatch = urlOrTitleMatches.FirstOrDefault(bind => bind.Element == element);
 
             if (elementMatch == null)
             {
@@ -293,6 +313,12 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private static void OnAutoFill(HotkeyPressedEventArgs e)
         {
+            if (parent.SelectedContact == null)
+            {
+                EventLogger.LogNewEvent("GridLinks Search Error: Not Contact Selected", EventLogLevel.Brief);
+                return;
+            }
+
             EventLogger.LogNewEvent("Searching for AutoFill Matches", EventLogLevel.Brief);
             if (!GetActiveBrowser())
                 return;
@@ -632,10 +658,10 @@ namespace CallTracker.Helpers
         /// </summary>
         public static bool AutoSearch(string search, string title, string url)
         {
-            var activeHwnd = WindowHelper.GetActiveWindowHWND();
+            var activeWindowTitle = Regex.Match(WindowHelper.GetActiveWindowTitle(), @"(\w+)(?:\s-(?: Windows)? Internet Explorer)?", RegexOptions.IgnoreCase).Groups[1].Value;
             if (FindIEByTitle(title))
             {
-                if (activeHwnd == browser.hWnd && !Properties.Settings.Default.AutoSearchActiveWindow)
+                if (browser.Title == activeWindowTitle && Properties.Settings.Default.AutoSearchIgnoreActiveWindow)
                 {
                     EventLogger.LogNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
                     return false;
@@ -648,7 +674,7 @@ namespace CallTracker.Helpers
 
             if (FindIEByUrl(url))
             {
-                if (activeHwnd == browser.hWnd && !Properties.Settings.Default.AutoSearchActiveWindow)
+                if (browser.Title == activeWindowTitle && Properties.Settings.Default.AutoSearchIgnoreActiveWindow)
                 {
                     EventLogger.LogNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
                     return false;

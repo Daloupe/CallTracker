@@ -15,11 +15,11 @@ namespace CallTracker.View
         //   // SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
         //}
 
-        public virtual void Init(Main _parent, ToolStripMenuItem _menuItem)
+        public virtual void Init(Main mainForm, ToolStripMenuItem menuItem)
         {
-            MenuControl = _menuItem;
+            MenuControl = menuItem;
             MenuControl.Tag = this;
-            MainForm = _parent;
+            MainForm = mainForm;
 
             Location = MainForm.ControlOffset;
 

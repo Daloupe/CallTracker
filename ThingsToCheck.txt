@@ -1,0 +1,3 @@
+Finding by Title uses regex:"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?" to strip things windows sees in title, but not WaTiN's Browser.Exists(Find.ByTitle()) function. 
+	- Is the http group neccessary?
+	- Does browser.Title give the same output as the Find.By function?

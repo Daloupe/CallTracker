@@ -171,19 +171,16 @@ namespace CallTracker.Model
         protected List<PRTemplateModel> PRTemplateReplacements = new List<PRTemplateModel>();
         public void UpdatePrTemplateReplacements(List<PRTemplateModel> replacements)
         {
-            foreach (var model in replacements)
-            {
-                var query = PRTemplateReplacements.FirstOrDefault(x => x.Question == model.Question);
-                if (query != null)
-                {
-                    var idx = PRTemplateReplacements.IndexOf(query);
-                    PRTemplateReplacements[idx] = model;
-                }
-                else
-                    PRTemplateReplacements.Add(model);
-            }
+            PRTemplateReplacements.AddRange(replacements);
+            PRTemplateReplacements = PRTemplateReplacements.GroupBy(a => a.Question)
+                                                          .Select(b => b.Last())
+                                                          .ToList();
         }
 
+        public void ClearPrTemplateReplacements()
+        {
+            PRTemplateReplacements.Clear();
+        }
         
 
 

@@ -1002,12 +1002,12 @@ namespace CallTracker.View
 
         private void autoSearchToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.AutoSearch = autoSearchToolStripMenuItem.Checked;
+            Properties.Settings.Default.AutoSearch = autoSearchEnabledToolStripMenuItem.Checked;
         }
 
         private void autoSearchActiveWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default.AutoSearchActiveWindow = autoSearchActiveWindowToolStripMenuItem.Checked;
+            Properties.Settings.Default.AutoSearchIgnoreActiveWindow = autoSearchActiveWindowToolStripMenuItem.Checked;
         }
 
         private void toolTipAsControlBoxToolStripMenuItem_CheckedChanged(object sender, EventArgs e)

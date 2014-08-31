@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
-
-using CallTracker.View;
 using CallTracker.Model;
 using CallTracker.Helpers;
 
@@ -25,15 +21,15 @@ namespace CallTracker.View
             dataGridView1.AutoGenerateColumns = false;
         }
 
-        public override void Init(Main _parent, ToolStripMenuItem _menuItem)
+        public override void Init(Main mainForm, ToolStripMenuItem menuItem)
         {
-            base.Init(_parent, _menuItem);
+            base.Init(mainForm, menuItem);
             //databaseBindingSource.ListChanged += rateplanBindingSource_ListChanged;
 
             databaseBindingSource.DataSource = Main.ServicesStore.servicesDataSet;
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = databaseBindingSource;
-            List<string> tables = new List<string>();
+            var tables = new List<string>();
             foreach(DataTable table in Main.ServicesStore.servicesDataSet.Tables)
                 tables.Add(StringHelpers.SeperateCamelCase(table.TableName));
             _DatabaseSelect.DataSource = tables;

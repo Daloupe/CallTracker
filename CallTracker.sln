@@ -21,6 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{CB733810-5
 		Logs\Test Outcome 29.07.txt = Logs\Test Outcome 29.07.txt
 		Logs\Test Outcome 31.07.txt = Logs\Test Outcome 31.07.txt
 		Logs\Tests.rtf = Logs\Tests.rtf
+		ThingsToCheck.txt = ThingsToCheck.txt
 		Logs\ToDo.txt = Logs\ToDo.txt
 	EndProjectSection
 EndProject

@@ -17,8 +17,7 @@ namespace CallTracker.Helpers
 
     public static class EnumerationExtensions
     {
-
-        public static bool Has<T>(this System.Enum type, T value)
+        public static bool Has<T>(this Enum type, T value)
         {
             try
             {
@@ -30,7 +29,7 @@ namespace CallTracker.Helpers
             }
         }
 
-        public static bool Is<T>(this System.Enum type, T value)
+        public static bool Is<T>(this Enum type, T value)
         {
             try
             {
@@ -42,7 +41,7 @@ namespace CallTracker.Helpers
             }
         }
 
-        public static bool IsNot<T>(this System.Enum type, T value)
+        public static bool IsNot<T>(this Enum type, T value)
         {
             try
             {
@@ -54,7 +53,7 @@ namespace CallTracker.Helpers
             }
         }
 
-        public static T Add<T>(this System.Enum type, T value)
+        public static T Add<T>(this Enum type, T value)
         {
             try
             {
@@ -71,7 +70,7 @@ namespace CallTracker.Helpers
         }
 
 
-        public static T Remove<T>(this System.Enum type, T value)
+        public static T Remove<T>(this Enum type, T value)
         {
             try
             {
@@ -87,7 +86,7 @@ namespace CallTracker.Helpers
             }
         }
 
-        public static T Change<T>(this System.Enum type, T value, bool action)
+        public static T Change<T>(this Enum type, T value, bool action)
         {
             if (action)
                 return (T)type.Add(value);

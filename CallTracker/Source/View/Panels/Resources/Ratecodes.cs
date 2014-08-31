@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
-using CallTracker.View;
 using CallTracker.Model;
 using CallTracker.Helpers;
 
@@ -23,9 +16,9 @@ namespace CallTracker.View
             //dataGridView1.AutoGenerateColumns = false;
         }
 
-        public override void Init(Main _parent, ToolStripMenuItem _menuItem)
+        public override void Init(Main mainForm, ToolStripMenuItem menuItem)
         {
-            base.Init(_parent, _menuItem);
+            base.Init(mainForm, menuItem);
             rateplanBindingSource.DataSource = Main.ServicesStore.servicesDataSet;
             dataGridView1.AutoGenerateColumns = true;
             dataGridView1.DataSource = rateplanBindingSource;

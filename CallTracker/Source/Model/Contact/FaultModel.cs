@@ -62,14 +62,14 @@ namespace CallTracker.Model
         [ProtoMember(6), DefaultValue(ServiceTypes.NONE)]
         public ServiceTypes AffectedServiceType
         {
-            get { return affectedServiceType; }
+            get { return _affectedServiceType; }
             set 
             { 
-                affectedServiceType = value;
-                ProductCode = Enum.GetName(typeof(ServiceTypes), affectedServiceType);
+                _affectedServiceType = value;
+                ProductCode = Enum.GetName(typeof(ServiceTypes), _affectedServiceType);
             }
         }
-        public ServiceTypes affectedServiceType { get; set; }
+        private ServiceTypes _affectedServiceType;
         
         [ProtoMember(10)]
         public string Severity { get; set; }

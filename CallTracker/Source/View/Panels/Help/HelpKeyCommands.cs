@@ -1,15 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-
-using CallTracker.View;
-using CallTracker.Model;
 
 namespace CallTracker.View
 {
@@ -22,9 +12,9 @@ namespace CallTracker.View
 
         }
 
-        public override void Init(Main _parent, ToolStripMenuItem _menuItem)
+        public override void Init(Main mainForm, ToolStripMenuItem menuItem)
         {
-            base.Init(_parent, _menuItem);
+            base.Init(mainForm, menuItem);
      
         }
 

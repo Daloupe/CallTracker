@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
-using CallTracker.View;
 using CallTracker.Model;
 
 namespace CallTracker.View
@@ -22,9 +15,9 @@ namespace CallTracker.View
             dataGridView1.CellClick += dataGridView1_CellClick;
         }
 
-        public override void Init(Main _parent, ToolStripMenuItem _menuItem)
+        public override void Init(Main mainForm, ToolStripMenuItem menuItem)
         {
-            base.Init(_parent, _menuItem);
+            base.Init(mainForm, menuItem);
             loginsModelBindingSource.DataSource = MainForm.UserDataStore.Logins;
         }
 

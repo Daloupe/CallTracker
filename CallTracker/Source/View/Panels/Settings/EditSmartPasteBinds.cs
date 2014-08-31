@@ -1,22 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
-using CallTracker.View;
 using CallTracker.Model;
 
 namespace CallTracker.View
 {
     public partial class EditSmartPasteBinds : ViewControlBase
     {
-        private BindingSource source1 = new BindingSource();
-        private BindingSource source2 = new BindingSource();
+        //private BindingSource source1 = new BindingSource();
+        //private BindingSource source2 = new BindingSource();
 
         public EditSmartPasteBinds()
         {
@@ -26,9 +18,9 @@ namespace CallTracker.View
             dataGridView1.CellClick += dataGridView1_CellClick;
         }
 
-        public override void Init(Main _parent, ToolStripMenuItem _menuItem)
+        public override void Init(Main mainForm, ToolStripMenuItem menuItem) 
         {
-            base.Init(_parent, _menuItem);
+            base.Init(mainForm, menuItem);
 
             _ElementType.DataSource = Enum.GetValues(typeof(ElementTypes));
 
@@ -36,27 +28,27 @@ namespace CallTracker.View
 
             pasteBindBindingSource.DataSource = MainForm.UserDataStore.PasteBinds;
 
-            source1.DataSource = CustomerContact.PropertyStrings;
-            _Data.DataSource = source1;
-            _Data.DisplayMember = "Name";
-            _Data.ValueMember = "Path";
-            _Data.DataBindings.Add(new Binding(
-                                      "Text",
-                                      this.pasteBindBindingSource,
-                                      "Data",
-                                      true,
-                                      DataSourceUpdateMode.OnPropertyChanged));
+            //source1.DataSource = CustomerContact.PropertyStrings;
+            //_Data.DataSource = source1;
+            //_Data.DisplayMember = "Name";
+            //_Data.ValueMember = "Path";
+            //_Data.DataBindings.Add(new Binding(
+            //                          "Text",
+            //                          this.pasteBindBindingSource,
+            //                          "Data",
+            //                          true,
+            //                          DataSourceUpdateMode.OnPropertyChanged));
 
-            source2.DataSource = CustomerContact.PropertyStrings;
-            _AltData.DataSource = source2;
-            _AltData.DisplayMember = "Name";
-            _AltData.ValueMember = "Path";
-            _AltData.DataBindings.Add(new Binding(
-                                      "Text",
-                                      this.pasteBindBindingSource,
-                                      "AltData",
-                                      true,
-                                      DataSourceUpdateMode.OnPropertyChanged));
+            //source2.DataSource = CustomerContact.PropertyStrings;
+            //_AltData.DataSource = source2;
+            //_AltData.DisplayMember = "Name";
+            //_AltData.ValueMember = "Path";
+            //_AltData.DataBindings.Add(new Binding(
+            //                          "Text",
+            //                          this.pasteBindBindingSource,
+            //                          "AltData",
+            //                          true,
+            //                          DataSourceUpdateMode.OnPropertyChanged));
         }
 
         
@@ -66,13 +58,13 @@ namespace CallTracker.View
             if (e.Exception != null &&
                 e.Context == DataGridViewDataErrorContexts.Commit)
             {
-                EventLogger.LogNewEvent("Error: "+this.Name+" couldn't commit data to cell");
+                EventLogger.LogNewEvent("Error: " + Name + " couldn't commit data to cell");
             }
         }
 
-        public void SelectQuery(PasteBind _query)
+        public void SelectQuery(PasteBind query)
         {
-            pasteBindBindingSource.Position = pasteBindBindingSource.IndexOf(_query);
+            pasteBindBindingSource.Position = pasteBindBindingSource.IndexOf(query);
         }
 
         protected override void _Done_Click(object sender, EventArgs e)

@@ -474,6 +474,13 @@ namespace CallTracker.View
                 if (((ToolStripMenuItem)_NoteContextMenuStrip.Items["pRTemplateToolStripMenuItem"]).Checked)
                     _Note.DataBindings[0].ReadValue();
             }
+            else
+            {
+                MainForm.SelectedContact.ClearPrTemplateReplacements();
+
+                if (((ToolStripMenuItem)_NoteContextMenuStrip.Items["pRTemplateToolStripMenuItem"]).Checked)
+                    _Note.DataBindings[0].ReadValue();
+            }
             
         }
 

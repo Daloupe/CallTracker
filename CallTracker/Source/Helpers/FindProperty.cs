@@ -1,20 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Reflection;
 using System.Text.RegularExpressions;
-
+using CallTracker.Model;
 using Utilities.RegularExpressions;
-using CallTracker.Data;
 
 namespace CallTracker.Helpers
 {
     public static class FindProperty
     {
         // Object Methods ///////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Splits path by the context'^', then by alternates',', then finds the value of the first property that doesn't return null.
+        /// '|' can be used to signify a Regex replace, '+' will concatenate extra data types.
+        /// </summary>
+        public static string FollowPropertyPath(object value, string path, string context)
+        {
+            var data = path.Split('^');
+            if (data.Length > 1)
+            {
+                var match = data.FirstOrDefault(d => d.StartsWith(context));
+                data = (String.IsNullOrEmpty(match) ? data[1].Remove(0, 3) : match.Remove(0, 3)).Split(',');
+            }
+            else
+                data = (path.StartsWith("^") ? data[0].Remove(0, 3) : data[0]).Split(',');
+
+            return FollowPropertyPath(value, data);
+        }
+
         public static string FollowPropertyPath(object value, string[] path)
         {
             var output = String.Empty;
@@ -27,18 +41,7 @@ namespace CallTracker.Helpers
 
             return output;
         }
-        
-        // Deprecated
-        //public static string FollowPropertyPath(object value, string path, string altPath)
-        //{
-        //    var output = FollowPropertyPath(value, path);
 
-        //    if (String.IsNullOrEmpty(output) && !String.IsNullOrEmpty(altPath))
-        //        output = FollowPropertyPath(value, altPath);
-
-        //    return output;
-        //}
-        
         public static string FollowPropertyPath(object value, string path)
         {
             if (String.IsNullOrEmpty(path))
@@ -55,6 +58,11 @@ namespace CallTracker.Helpers
 
         private static string GetPropertyFromPath(object value, PathRegex pathSplit)
         {
+            if (value == null)
+            {
+                EventLogger.LogNewEvent("FindProperty Error: Object is Null");
+                return String.Empty;
+            }
             var output = value;
             var currentType = output.GetType();
 
