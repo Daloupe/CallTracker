@@ -1,0 +1,104 @@
+Smart Copy
+- Uses this Hotkey.
+- Will analyze your selection and copy into appropriate field.
+- Will recognize data in multiple forms eg CMBS 31-123456-7, 31123456 7, 3112345607, 1123456007.
+- A Tooltip will pop up to let you know what was copied.
+
+Smart Paste
+- Uses this Hotkey.
+- Will Change based on where you trying to paste, and which product is selected.
+- Will paste the data in the appropriate format eg CMBS will paste a 31123456 7 into IFMS, and 3112345607 into ICON.
+- Doesn't yet work in Chrome, or IE pages that use Chrome Frame like Nexus and the PR Templates.
+- Will work in MAD!
+
+	Prefills
+	- Uses this Hotkey.
+	- This will perform all the known Smart Pastes on a page. Pressing this in IFMS will fill most of the fields.
+
+Call History
+- Can be accessed from Here.
+- Calls archived after 7 days.
+- Deleted after 30 days.
+- Calls are filtered by day, change it Here.
+
+GridLinks
+- Uses this Hotkey.
+- Will jump straight to the desired system so you don't need to track it down from the taskbar.
+- You can change which key is which system Here.
+
+	GridLinks Search
+	- Uses this Hotkey.
+	- Wingman will jump straight to the desired system and perform a search. 
+	- Wingman will try and search with the most appropriate data eg If the product is ONC and you have the DN and Username, pressing ctrl-win-3 will search SCAMPS for the username, but if LIP is selected it will use the DN.
+
+IPCC Monitor
+- Can be enabled Here.
+- Keeps an eye on IPCC to see when your all state changes.
+- Will automatically create a new record and prefill it with IPCC call data when a call pops on. (You can switch this off Here).
+- You can see how long you've been in a state Here.
+- Daily stats and IPCC dialling will only work if it's enabled.
+
+Context Menus
+- Wingman has a lot of functions, but in order to simplfy the interface they are tucked away in context menus.
+- Fields with context menus willhave an arrow. Right click the field, or click on the arrow to open it up.
+
+	Dial
+	- The DN and Mobile context menus have the Dial option, which will pop the number into IPCC for you.
+	- IPCC Monitor needs to be enabled.
+
+	Data Search
+	- Any menu item with this icon indicates it will search that system with the data in the selected field. 
+
+		Auto Search
+		- Enable it Here.
+		- When a field is first filled, Auto Search will inititate a Data Search. It does so silently - It won't bring the searched system to the front. This means when you get around to needing a system, it should already have the customers infomation loaded.
+		- Each system will only be searched once eg if I Smart Copy DN, then the DN is searched in SCAMPS. If I then Smart Copy Username, SCAMPS isn't searched(But UNMT still will!).
+		- Ignore Active Window will prevent Auto Search from searching in the window you have focussed.
+		- Open New If None Found tells Wingman to open up a new IE window if you don't already have that system open.
+
+	Template Generators
+	- Right clicking the Note field will let you generate ICON and PR notes. The notes are prefilled with data you've collected.
+
+Affected Service
+- Wingman tries to select the most appropriate service eg if cust has both internet and phone issues, it will select phone.
+- You can override this by right clicking on the preferred product.
+
+Resources Menu
+- Accessed Here.
+- Items change based on the product you select in this list.
+- Changing the product Here will also change the selected product.
+- You can add your own bookmarks and system Here.
+
+	Transfers
+	- Can be accessed Here.
+	- Hovering over a department will give you their contact numbers, and opening times.
+	- Clicking on a department Here will put the number into IPCC, and Prefill the call data section so the next rep can get it straight from IPCC. Wingman wont hit the dial button for you though! (but you can change that Here?)
+
+	Rateplans
+	- Can be accessed Here.
+	- Just start typing into this window and it will search for that ratecode.
+	- You can add new rateplans by typing into the row at the bottom.
+
+Auto Login
+- Uses this Hotkey.
+- Will detect which system you're trying to log into, and will pop your details in.
+- You update your logins Here.
+
+Data Paste
+- Uses this Hotkey
+- The most common fields can also be pasted with these hotkeys.
+- Useful for pasting into systems that can't be bound to.
+
+Daily Stats
+- Can be viewed Here.
+- Gives an estimate of your daily stats.
+
+Smart Paste Bind(Advanced)
+- Uses this Hotkey.
+- Allows you to setup which data is bound to which field.
+- Click on the desired field, then hit the Hotkey. Most of the fields will prefill, just type in which data you want it to paste. The help button in the Smart Paste Bind form will tell you what you can type into the data field.
+- If the Bind Smart Paste form doens't pop up, it means that page can't be bound to.
+
+Database Editor(Advanced)
+- Can be access Here.
+- All data that Wingman uses can be changed eg If a department changes their External contact number, you can update it here.

@@ -51,6 +51,7 @@ namespace CallTracker.View
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.bindSmartPasteToolStripMenuItem = new System.Windows.Forms.ToolStripTextBox();
+            this._Help = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -227,6 +228,7 @@ namespace CallTracker.View
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSlateGray;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this._Help);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Controls.Add(this._Cancel);
@@ -275,6 +277,20 @@ namespace CallTracker.View
             this.bindSmartPasteToolStripMenuItem.ReadOnly = true;
             this.bindSmartPasteToolStripMenuItem.Size = new System.Drawing.Size(113, 18);
             this.bindSmartPasteToolStripMenuItem.Text = "Bind Smart Paste";
+            // 
+            // _Help
+            // 
+            this._Help.BackColor = System.Drawing.Color.LightGray;
+            this._Help.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._Help.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this._Help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Help.Location = new System.Drawing.Point(3, 236);
+            this._Help.Name = "_Help";
+            this._Help.Size = new System.Drawing.Size(68, 21);
+            this._Help.TabIndex = 4;
+            this._Help.Text = "Help";
+            this._Help.UseVisualStyleBackColor = false;
+            this._Help.Click += new System.EventHandler(this._Help_Click);
             // 
             // BindSmartPasteForm
             // 
@@ -328,5 +344,6 @@ namespace CallTracker.View
         private ToolStripTextBox bindSmartPasteToolStripMenuItem;
         private BorderedTextBox _Url;
         private BorderedTextBox _Data;
+        private Button _Help;
     }
 }

@@ -38,12 +38,13 @@
 (Major Features)
 - Created "Did You Know?" startup screen.
 
-0.5.4.6
+0.5.4.7
 (Minor Features)
 | Smart Paste changes:
 	| Removed 'Alt Data' combo from from. Made 'Data' a textfield. Changed 'Url' from textfield to textbox.
 	| '^' signifies context eg product specific: ^LATDN^ONCUsername.
 	| ',' signfies alternate data: ^LATDN,Username,Mobile^ONCUsername,DN,Mobile.
+	| Added "Help" button which opens up a text document with Smart Paste Reference.
 (Bugs/Changes)
 | Changed PRTemplates generate code to make question replacement more readable by using LINQ instead of a foreach loop.
 | Replacement questions are now cleared when "Outage" is no longer selected.

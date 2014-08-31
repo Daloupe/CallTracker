@@ -4,14 +4,12 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
-using Castle.Core.Internal;
 using Shortcut;
 
 using WatiN.Core;
 
 using CallTracker.View;
 using CallTracker.Model;
-using Utilities.RegularExpressions;
 
 namespace CallTracker.Helpers
 {
@@ -323,8 +321,8 @@ namespace CallTracker.Helpers
             if (!GetActiveBrowser())
                 return;
 
-            string url = browser.Url;
-            string title = browser.Title;
+            var url = browser.Url;
+            var title = browser.Title;
 
             var query = from
                             bind in parent.UserDataStore.PasteBinds
@@ -337,8 +335,9 @@ namespace CallTracker.Helpers
             if (query.Any())
             {
                 EventLogger.LogNewEvent(String.Format("{0} found.", query.Count()));
+                var affectedService = parent.SelectedContact.Fault.AffectedServiceType.ToString();
                 foreach (var bind in query)
-                    bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, new[] { bind.Data, bind.AltData }));
+                    bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, affectedService));
             }
             if (browser.Url.Contains("CreatePR"))
             {
@@ -490,19 +489,19 @@ namespace CallTracker.Helpers
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
         // System Search /////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////////////////////////////////////////////////////////////////////
-        public static void SearchSystem(string _url, string _searchValue, string _searchElement, string _submitElement = "")
+        public static void SearchSystem(string url, string searchValue, string searchElement, string submitElement = "")
         {
             EventLogger.LogNewEvent("Searching System", EventLogLevel.Brief);
 
-            if (!FindIEByUrl(_url))
-                NavigateOrNewIE(_url);
+            if (!FindIEByUrl(url))
+                NavigateOrNewIE(url);
 
             // Fill Search field ////////////////////////////////////////////////////////
             var query = (from
                                     bind in parent.UserDataStore.PasteBinds
                                 where
-                                    bind.Element == _searchElement &&
-                                    (_url.Contains(bind.Url))
+                                    bind.Element == searchElement &&
+                                    (url.Contains(bind.Url))
                                 select
                                     bind)
                                 .FirstOrDefault();
@@ -510,16 +509,16 @@ namespace CallTracker.Helpers
             if (query != null)
             {
                 EventLogger.LogNewEvent("Element Match Found");
-                query.Paste(browser, _searchElement, _searchValue);        
+                query.Paste(browser, searchElement, searchValue);        
             };
 
             // Click Submit /////////////////////////////////////////////////////////////
-            if (!String.IsNullOrEmpty(_submitElement))
+            if (!String.IsNullOrEmpty(submitElement))
             {
                 query = (from bind in parent.UserDataStore.PasteBinds
                         where
-                            bind.Element == _submitElement &&
-                            (_url.Contains(bind.Url))
+                            bind.Element == submitElement &&
+                            (url.Contains(bind.Url))
                         select
                             bind)
                         .FirstOrDefault();
@@ -527,7 +526,7 @@ namespace CallTracker.Helpers
                 if (query != null)
                 {
                     EventLogger.LogNewEvent("Button Match Found");
-                    query.Paste(browser, _submitElement, "");
+                    query.Paste(browser, submitElement, "");
                 }
             }
 
@@ -550,9 +549,9 @@ namespace CallTracker.Helpers
             return false;
         }
 
-        public static bool FindIEByHWND(IntPtr _HWND)
+        public static bool FindIEByHWND(IntPtr hwnd)
         {
-            string currentHWND = _HWND.ToString();
+            var currentHWND = hwnd.ToString();
 
             if (!Browser.Exists<IE>(Find.By("hwnd", currentHWND)))
                 return false;

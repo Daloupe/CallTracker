@@ -6,9 +6,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Diagnostics;
-using System.Drawing.Text;
-using System.Collections.Generic;
-
 using PropertyChanged;
 
 using CallTracker.Model;

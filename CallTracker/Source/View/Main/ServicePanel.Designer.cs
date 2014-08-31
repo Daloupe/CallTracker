@@ -722,7 +722,7 @@
             this._DTVNode.LabelMargin = new System.Windows.Forms.Padding(0);
             this._DTVNode.LabelOffset = new System.Drawing.Point(0, 0);
             this._DTVNode.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._DTVNode.LabelSize = new System.Drawing.Size(40, 20);
+            this._DTVNode.LabelSize = new System.Drawing.Size(44, 20);
             this._DTVNode.LabelText = "node";
             this._DTVNode.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._DTVNode.LabelTextColor = System.Drawing.SystemColors.Info;
@@ -757,7 +757,7 @@
             this._DTVMsg.LabelMargin = new System.Windows.Forms.Padding(0);
             this._DTVMsg.LabelOffset = new System.Drawing.Point(0, 0);
             this._DTVMsg.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._DTVMsg.LabelSize = new System.Drawing.Size(40, 20);
+            this._DTVMsg.LabelSize = new System.Drawing.Size(44, 20);
             this._DTVMsg.LabelText = "msg";
             this._DTVMsg.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._DTVMsg.LabelTextColor = System.Drawing.SystemColors.Info;
@@ -785,14 +785,14 @@
             this._DTVLights.Font = new System.Drawing.Font("Verdana", 7F);
             this._DTVLights.HasContextMenu = false;
             this._DTVLights.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._DTVLights.LabelAutoSize = true;
+            this._DTVLights.LabelAutoSize = false;
             this._DTVLights.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
             this._DTVLights.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this._DTVLights.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
             this._DTVLights.LabelMargin = new System.Windows.Forms.Padding(0);
             this._DTVLights.LabelOffset = new System.Drawing.Point(0, 0);
             this._DTVLights.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._DTVLights.LabelSize = new System.Drawing.Size(36, 23);
+            this._DTVLights.LabelSize = new System.Drawing.Size(44, 20);
             this._DTVLights.LabelText = "lights";
             this._DTVLights.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._DTVLights.LabelTextColor = System.Drawing.SystemColors.Info;
@@ -856,7 +856,7 @@
             this._STBSmartCard.LabelMargin = new System.Windows.Forms.Padding(0);
             this._STBSmartCard.LabelOffset = new System.Drawing.Point(0, 0);
             this._STBSmartCard.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._STBSmartCard.LabelSize = new System.Drawing.Size(64, 20);
+            this._STBSmartCard.LabelSize = new System.Drawing.Size(50, 20);
             this._STBSmartCard.LabelText = "smartcard";
             this._STBSmartCard.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._STBSmartCard.LabelTextColor = System.Drawing.SystemColors.Info;
@@ -902,9 +902,9 @@
             this._STBLot.MenuButtonImage = null;
             this._STBLot.Name = "_STBLot";
             this._STBLot.PropertyName = null;
-            this._STBLot.Size = new System.Drawing.Size(65, 32);
+            this._STBLot.Size = new System.Drawing.Size(51, 32);
             this._STBLot.TabIndex = 96;
-            this._STBLot.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this._STBLot.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._STBLot.TextField = "";
             this._STBLot.TextFieldBackColour = System.Drawing.SystemColors.Window;
             // 
@@ -932,13 +932,13 @@
             this._STBBox.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._STBBox.LabelTextColor = System.Drawing.SystemColors.Info;
             this._STBBox.LabelToolTip = "";
-            this._STBBox.Location = new System.Drawing.Point(71, 98);
+            this._STBBox.Location = new System.Drawing.Point(57, 98);
             this._STBBox.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
             this._STBBox.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._STBBox.MenuButtonImage = null;
             this._STBBox.Name = "_STBBox";
             this._STBBox.PropertyName = null;
-            this._STBBox.Size = new System.Drawing.Size(104, 32);
+            this._STBBox.Size = new System.Drawing.Size(118, 32);
             this._STBBox.TabIndex = 97;
             this._STBBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this._STBBox.TextField = "";

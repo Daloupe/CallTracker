@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -81,6 +82,11 @@ namespace CallTracker.View
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             _parent = null;
+        }
+
+        private void _Help_Click(object sender, EventArgs e)
+        {
+            Process.Start(@"Data\Data Names.txt");
         }
 
     }

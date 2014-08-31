@@ -35,6 +35,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{84F45492-5077-43D0-930E-440B8C08DFE0}"
 	ProjectSection(SolutionItems) = preProject
 		Resources\data.xlsx = Resources\data.xlsx
+		DidYouKnowSlides.txt = DidYouKnowSlides.txt
 		Resources\IPCC.JPG = Resources\IPCC.JPG
 		Resources\Services from 31.7.bin = Resources\Services from 31.7.bin
 		Resources\Services.bin = Resources\Services.bin
