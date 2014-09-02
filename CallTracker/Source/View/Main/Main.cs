@@ -617,12 +617,11 @@ namespace CallTracker.View
         }
         private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            //if (e.ClickedItem != monitorIPCCToolStripMenuItem)
-            //{
-                ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
-                if (!monitorIPCCToolStripMenuItem.Checked && !_IPCCTimer.Enabled)
-                    _IPCCTimer.Enabled = true;
-            //}
+            if (e.ClickedItem == monitorIPCCToolStripMenuItem) return;
+
+            ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
+            if (!monitorIPCCToolStripMenuItem.Checked && !_IPCCTimer.Enabled)
+                _IPCCTimer.Enabled = true;
         }
 
         private void ChangeCallStateMenuItem(string callState)

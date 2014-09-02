@@ -202,7 +202,7 @@ namespace CallTracker.View
             if (dataSource.Count > 0)
             {
                 _ComboBox.DataSource = dataSource;
-                _ComboBox.SelectedIndex = InitialIndex;
+                //_ComboBox.SelectedIndex = InitialIndex;
             }
         }
 

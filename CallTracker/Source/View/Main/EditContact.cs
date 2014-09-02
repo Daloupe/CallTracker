@@ -257,6 +257,7 @@ namespace CallTracker.View
                 _Action.BindComboBox(query, customerContactsBindingSource);
 
             if (MainForm.SelectedContact == null) return;
+
             if (!query.Contains(MainForm.SelectedContact.Fault.Action))
                 MainForm.SelectedContact.Fault.Action = "";
         }

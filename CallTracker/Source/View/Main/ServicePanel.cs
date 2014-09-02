@@ -16,7 +16,7 @@ namespace CallTracker.View
     {
         private EditContact EditContacts;
 
-        //internal static List<string> Equipment;
+        //internal static BindingList<string> Equipment = new BindingList<string>();
         //internal static List<string> Symptoms;
 
         //internal ToolStripItemCollection Severity;
@@ -46,10 +46,10 @@ namespace CallTracker.View
         //        return cp;
         //    }
         //}
-        public void PreInit(EditContact _Parent)
+        public void PreInit(EditContact editContacts)
         {
 
-            EditContacts = _Parent;
+            EditContacts = editContacts;
             ServiceFields = new List<ServicePanelDetails>
             {
                 new ServicePanelDetails(ServiceTypes.NONE),
@@ -67,7 +67,7 @@ namespace CallTracker.View
         public void Init()
         {
             //EditContacts.customerContactsBindingSource.PositionChanged += customerContactsBindingSource_PositionChanged;
-            bindingSource1.DataSource = EditContacts.customerContactsBindingSource;
+            bindingSource1 = EditContacts.customerContactsBindingSource;
 
             //bindingSource1 = EditContacts.customerContactsBindingSource;
 
@@ -96,24 +96,21 @@ namespace CallTracker.View
             _CauPing.BindComboBox(Main.ServicesStore.servicesDataSet.EquipmentEquipmentStatusesMatch
                                      .Where(x => x.EquipmentRow.Type == "CAU")
                                      .Select(x => x.EquipmentStatusesRow.Status)
-                                     .ToList(), EditContacts.customerContactsBindingSource, true);
+                                     .ToList(), bindingSource1, true);
             _DTVLights.BindComboBox(Main.ServicesStore.servicesDataSet.EquipmentEquipmentStatusesMatch
                                      .Where(x => x.EquipmentRow.Type == "STB")
                                      .Select(x => x.EquipmentStatusesRow.Status)
-                                     .ToList(), EditContacts.customerContactsBindingSource, true);
-            _ModemStatus.BindComboBox(new List<string> { "Online", "Offline" }, EditContacts.customerContactsBindingSource, true);
-            _ModemRF.BindComboBox(new List<string> { "Yes", "No" }, EditContacts.customerContactsBindingSource, true);
-            _Sip.BindComboBox(new List<string> { "1", "2", "3", "4", "5", "6" }, EditContacts.customerContactsBindingSource, true);
+                                     .ToList(), bindingSource1, true);
+            _ModemStatus.BindComboBox(new List<string> { "Online", "Offline" }, bindingSource1, true);
+            _ModemRF.BindComboBox(new List<string> { "Yes", "No" }, bindingSource1, true);
+            _Sip.BindComboBox(new List<string> { "1", "2", "3", "4", "5", "6" }, bindingSource1, true);
 
-            foreach (var control in this.Controls.OfType<FlowLayoutPanel>())
+            foreach (var control in Controls.OfType<FlowLayoutPanel>())
             {
                 control.Location = new Point(0, 35);
                 control.BringToFront();
                 control.Hide();
             };
-            _Equipment.AttachMenu(_EquipmentMenu);//, EditContacts.BindingContext);
-            _Equipment.BringToFront();
-            _Equipment.Hide();
 
             _Node.AttachMenu(_NodeContextMenu);
             _ONCNode.AttachMenu(_NodeContextMenu);
@@ -122,7 +119,11 @@ namespace CallTracker.View
             _AVC.AttachMenu(_AVCContextMenu);
             _PRI.AttachMenu(_PRIContextMenu);
 
-            UpdateStyles();
+            
+            _Equipment.AttachMenu(_EquipmentMenu);//, EditContacts.BindingContext);
+            _Equipment.BringToFront();
+            _Equipment.Hide();
+            //UpdateStyles();
         }
 
         //void customerContactsBindingSource_PositionChanged(object sender, EventArgs e)
@@ -130,17 +131,17 @@ namespace CallTracker.View
         //    bindingSource1.Position = EditContacts.customerContactsBindingSource.Position;
         //}
 
-        void Symptoms_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
+        void Symptoms_RowChanged(object sender, DataRowChangeEventArgs e)
         {
             UpdateSymptoms();
         }
 
-        void Equipment_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
+        void Equipment_RowChanged(object sender, DataRowChangeEventArgs e)
         {
             UpdateEquipment();
         }
 
-        void Severity_RowChanged(object sender, System.Data.DataRowChangeEventArgs e)
+        void Severity_RowChanged(object sender, DataRowChangeEventArgs e)
         {
             UpdateSeverity();
         }
@@ -174,13 +175,12 @@ namespace CallTracker.View
 
         //public delegate void AddListItem();
         //public AddListItem myDelegate;
-        public void ChangeService(ServiceTypes _service)
+        public void ChangeService(ServiceTypes service)
         {
-
-            if (currentFlowPanel.ServiceType.IsNot(_service))
+            if (currentFlowPanel.ServiceType.IsNot(service))
             {
                 currentFlowPanel.HidePanel();
-                currentFlowPanel = ServiceFields.First(x => x.ServiceType == _service);
+                currentFlowPanel = ServiceFields.First(x => x.ServiceType == service);
                 _ServiceHeading.LabelText = "//" + currentFlowPanel.ProductCode;
                 currentFlowPanel.ShowPanel();
             }
@@ -219,7 +219,7 @@ namespace CallTracker.View
                                c.ServicesRow == currentFlowPanel.Service
                          select a.IFMSCode).Distinct().ToList();
 
-            EditContacts._Symptom.BindComboBox(query, EditContacts.customerContactsBindingSource);
+            EditContacts._Symptom.BindComboBox(query, bindingSource1);
 
             //if (!query.Contains(EditContacts.MainForm.SelectedContact.Fault.Symptom))
             //    EditContacts.MainForm.SelectedContact.Fault.Symptom = query[0];
@@ -240,19 +240,19 @@ namespace CallTracker.View
                          where b.ServicesRow == currentFlowPanel.Service
                          select a.Description).Distinct().ToList();
 
-            _Equipment.BindComboBox(query, EditContacts.customerContactsBindingSource, true);
+            _Equipment.BindComboBox(query, bindingSource1, true);
         }
 
         public void UpdateSeverity()
         {
-            string symp = EditContacts._Symptom._ComboBox.Text ?? "NONE";
+            var symp = EditContacts._Symptom._ComboBox.Text ?? "NONE";
             var query = (from a in Main.ServicesStore.servicesDataSet.SeverityCodes
                          from b in a.GetSeverityCodeSymptomMatchRows()
                          where b.SymptomsRow.IFMSCode == symp
-                         select a.IFMSCode).Distinct().ToArray<string>();
+                         select a.IFMSCode).Distinct().ToArray();
 
 
-            string current = String.Empty;
+            var current = String.Empty;
             if (EditContacts.MainForm.SelectedContact != null)
                 current = EditContacts.MainForm.SelectedContact.Fault.Severity;
 
@@ -338,18 +338,18 @@ namespace CallTracker.View
         public CheckBox CheckBox;
         public ToolStripMenuItem ContextMenuItem;
 
-        public ServicePanelDetails(ServiceTypes _serviceType, FlowLayoutPanel _panel = null, CheckBox _checkBox = null, ToolStripMenuItem _menuItem = null, List<LabelledBase> _hiddenControls = null)
+        public ServicePanelDetails(ServiceTypes serviceType, FlowLayoutPanel panel = null, CheckBox checkBox = null, ToolStripMenuItem menuItem = null, List<LabelledBase> hiddenControls = null)
         {
-            ServiceType = _serviceType;
+            ServiceType = serviceType;
             ProductCode = Enum.GetName(typeof(ServiceTypes), ServiceType);
-            HiddenControls = _hiddenControls ?? new List<LabelledBase>();
-            Panel = _panel;
-            CheckBox = _checkBox;
-            ContextMenuItem = _menuItem;
+            HiddenControls = hiddenControls ?? new List<LabelledBase>();
+            Panel = panel;
+            CheckBox = checkBox;
+            ContextMenuItem = menuItem;
             if (ServiceType.IsNot(ServiceTypes.NONE))
             {
                 CheckBox.Tag = ServiceType;
-                ContextMenuItem.Tag = _serviceType;
+                ContextMenuItem.Tag = serviceType;
                 Service = Main.ServicesStore.servicesDataSet.Services.First(x => x.ProductCode == ProductCode);
             }
         }
@@ -359,7 +359,7 @@ namespace CallTracker.View
             if (ServiceType.IsNot(ServiceTypes.NONE))
             {
                 CheckBox.ForeColor = Color.DarkRed;
-                foreach (LabelledBase control in HiddenControls)
+                foreach (var control in HiddenControls)
                     control.Hide();
                 Panel.Show();
                 ContextMenuItem.Checked = true;

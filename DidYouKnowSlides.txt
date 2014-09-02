@@ -31,17 +31,11 @@ GridLinks
 - Will jump straight to the desired system so you don't need to track it down from the taskbar.
 - You can change which key is which system Here.
 
-	GridLinks Search
-	- Uses this Hotkey.
-	- Wingman will jump straight to the desired system and perform a search. 
-	- Wingman will try and search with the most appropriate data eg If the product is ONC and you have the DN and Username, pressing ctrl-win-3 will search SCAMPS for the username, but if LIP is selected it will use the DN.
-
 IPCC Monitor
 - Can be enabled Here.
-- Keeps an eye on IPCC to see when your all state changes.
+- Keeps an eye on IPCC to see when your call state changes.
 - Will automatically create a new record and prefill it with IPCC call data when a call pops on. (You can switch this off Here).
 - You can see how long you've been in a state Here.
-- Daily stats and IPCC dialling will only work if it's enabled.
 
 Context Menus
 - Wingman has a lot of functions, but in order to simplfy the interface they are tucked away in context menus.
@@ -51,11 +45,11 @@ Context Menus
 	- The DN and Mobile context menus have the Dial option, which will pop the number into IPCC for you.
 	- IPCC Monitor needs to be enabled.
 
-	Data Search
-	- Any menu item with this icon indicates it will search that system with the data in the selected field. 
-
 	Template Generators
 	- Right clicking the Note field will let you generate ICON and PR notes. The notes are prefilled with data you've collected.
+
+	Data Search
+	- Any menu item with this icon indicates it will search that system with the data in the selected field. 
 		
 Auto Search
 - Enable it Here.
@@ -63,6 +57,11 @@ Auto Search
 - Each system will only be searched once per call eg if I Smart Copy DN, then the DN is searched in SCAMPS. If I then Smart Copy Username, SCAMPS isn't searched(But UNMT still will!).
 - Ignore Active Window will prevent Auto Search from searching in the window you have focussed.
 - Open New If None Found tells Wingman to open up a new IE window if you don't already have that system open.
+
+GridLinks Search
+	- Uses this Hotkey.
+	- Wingman will jump straight to the desired system and perform a search. 
+	- Wingman will try and search with the most appropriate data eg If the product is ONC and you have the DN and Username, pressing ctrl-win-3 will search SCAMPS for the username, but if LIP is selected it will use the DN.
 
 Affected Service
 - Wingman tries to select the most appropriate service eg if cust has both internet and phone issues, it will select phone.

@@ -6,6 +6,7 @@ using System.Collections;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using CallTracker.Helpers;
+using Castle.Core.Smtp;
 
 namespace CallTracker.View
 {
@@ -431,7 +432,7 @@ namespace CallTracker.View
         /// <param name="displayMember">Name of the proeprty which is shown in the combo box</param>
         public void SetDataBinding(IList dataSource, BindingSource bindingSource, string propertyName, string displayMember)
         {
-            _active = true;
+            _active = false;
             // init combo box and delete all databinding stuff
             if (DataSource != null)
                 DataSource = null;
@@ -440,16 +441,20 @@ namespace CallTracker.View
             ValueMember = String.Empty;
             Text = String.Empty;
 
+            if (_bindingSource != null)
+                _bindingSource.CurrentChanged -= mBindingSource_CurrentChanged;
             _bindingSource = bindingSource;
             _bindingSource.CurrentChanged += mBindingSource_CurrentChanged;
+
             // init private fields
             _dataSource = dataSource;
             _propertyName = propertyName;
             _displayMember = displayMember;
             NullableMode = true;
 
+            _active = true;
             // get selected item
-            GetCurrentObject();       
+            GetCurrentObject();
         }
 
         public void UnSetDataBinding()
@@ -483,9 +488,8 @@ namespace CallTracker.View
                     DataSource = _dataSource;
                     SelectedItem = _selectedItem;
                 }
-                // do nothing and set datasource to null
                 else
-                    DataSource = null;
+                    DataSource = null;   // do nothing and set datasource to null
             }
             else
                 DataSource = null;
