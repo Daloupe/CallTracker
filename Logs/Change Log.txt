@@ -40,12 +40,17 @@
 (Minor Features)
 - Added Help buttons to screens which link to their "Did You Know?" slide.
 
-0.6.0.0.
-(Major Features)
-- Created Daily Stats view.
+0.6.2.0
+(Minor Features)
+- Converted Call States into Menu Item subclass.
+
+0.6.1.0
 (Minor Features)
 - Added methods for storing app events.
 
+0.6.0.0
+(Major Features)
+- Created Daily Stats view.
 
 0.5.4.9
 (Minor Features)
