@@ -39,13 +39,14 @@
 (Minor Features)
 - Added Help buttons to screens which link to their "Did You Know?" slide.
 
-0.7.4.3
+0.7.4.4
 (Minor Features)
 | SplitPanel now receives mousewheel messages properly, without needing to attach lots of events.
 (Bugs/Changes)
 | Fixed Tips panel not reopening.
 | Calls are archived after 7 days, leaving only symptom, action, outcome, note, affeceted service and call events.
 | Calls are deleted completly after 31 days.
+| Updated Tips.
 
 0.7.3.13
 (Minor Features)

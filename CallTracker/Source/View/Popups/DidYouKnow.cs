@@ -236,7 +236,7 @@ namespace CallTracker.View
                     new TipModel("- <Smart Paste> pastes the most appropriate data depending on where you want to paste. "),
                     new TipModel("- It picks the most relevant data based on what is available, and which product you've selected.  ", "- Pressing <Smart Paste> in ICON's Service Number field will paste <Username> only if <Wingman> doesn't have <DN>. Vice Versa if the product is <ONC> or <NVF>."),
                     new TipModel("- It will paste data in the appropriate format.  ", "- <CMBS> will paste as 31123456 7 into <IFMS>, and 3112345607 into <ICON>."),
-                    new TipModel("- Doesn't yet work in Chrome, or IE pages that use a Chrome Frame like Nexus and the PR Templates, but it will work in <MAD>!")
+                    new TipModel("- Doesn't yet work in Chrome, or IE pages that use a Chrome Frame like Nexus and the PR Templates, but it will work in MAD!")
                 }),
             new TipSlide("Auto Fill - Win+Ctrl+V",
                 new List<TipModel>
@@ -248,9 +248,8 @@ namespace CallTracker.View
                 new List<TipModel>
                 {
                     new TipModel("- <Call History> keeps track of previous calls, filtered by date."),
-                    new TipModel("- Calls can be sorted by outcome, to help find particular call types."),
-                    new TipModel("- Flagged Calls will be checked, so they can be found easily."),
-                    new TipModel("- Calls are archived after 7 days - only call symptom, outcome, action, affected service type, note, and daily stats are kept."),
+                    new TipModel("- Calls can be sorted by <Outcome>, <Time>, <Name>, or <Flagged>."),
+                    new TipModel("- Calls are archived after 7 days - only <Symptom>, <Outcome>, <Action>, <Affected Service Type>, <Note>, and <Daily Stats> are kept."),
                     new TipModel("- Calls are deleted after 31 days."),
                     new TipModel("- Can be access from <Wingman> > <Call History>.")
                 }),
@@ -260,7 +259,7 @@ namespace CallTracker.View
                     new TipModel("- <GridLinks> jumps straight to the desired system so you don't need to track it down from the taskbar."),
                     new TipModel("- Each number on the NumPad is assigned a different system."),
                     new TipModel("- Also holding Ctrl will initiate a <GridLinks Search> which will also attempt to search the selected system."),
-                    new TipModel("- System assignment can be changed from <Wingman> > <Settings> > <Edit GridLinks>.")
+                    new TipModel("- System assignment can be changed from <Wingman> > <Settings> > <Grid Links>.")
                 }),
             new TipSlide("IPCC Monitor",
                 new List<TipModel>
@@ -268,7 +267,7 @@ namespace CallTracker.View
                     new TipModel("- <IPCC Monitor> keeps track of call state changes."),
                     new TipModel("- When a new call pops in, it will automatically create a new record and prefill it with IPCC call data."),
                     new TipModel("- You can see how long you have spent in a call state in the bottom right hand corner of <Wingman>."),
-                    new TipModel("- Clicking this timer will give you the option to enable <IPCC Monitoring>.")
+                    new TipModel("- Clicking this timer will give you the <Monitor IPCC> option.")
                 }),
             new TipSlide("Context Menus",
                 new List<TipModel>
@@ -283,7 +282,7 @@ namespace CallTracker.View
                 new List<TipModel>
                 {
                     new TipModel("- When a field is first filled, <Auto Search> will inititate a <Search>. It does so silently - It won't bring the searched system to the front. This means when you get around to needing a system, it should already have the customers infomation loaded."),
-                    new TipModel("- Each system will only be searched once per call.  ", "- If I <Smart Copy> DN, then the DN is searched in SCAMPS. If I then <Smart Copy> Username, SCAMPS isn't searched(But UNMT still will!)."),
+                    new TipModel("- Each system will only be searched once per call.  ", "- I <Smart Copy> a DN, <Auto Search> searches the <DN> in SCAMPS. I then <Smart Copy> a Username, SCAMPS won't <Auto Search> again (But UNMT still will!)."),
                     new TipModel("- The <Ignore Active Window> option will prevent Auto Search from searching in the window you have focussed."),
                     new TipModel("- The <Open New If None Found> option tells Wingman to open up a new IE window if you don't already have that system open."),
                     new TipModel("- Auto Search and its options can be found in <Wingman> > <Settings> > <Auto Search>.")
@@ -314,7 +313,7 @@ namespace CallTracker.View
                 new List<TipModel>
                 {
                     new TipModel("- <Daily Stats> gives you an estimate of your KPI's, as long as <IPCC Monitor> is on."),
-                    new TipModel("- Stats can be viewed from <Wingman> > <Daily Stats>.")
+                    new TipModel("- Stats can be viewed from <Wingman> > <View Stats>.")
                 }),
             new TipSlide("Smart Paste Bind - Win+Shift+V",
                 new List<TipModel>
@@ -322,14 +321,14 @@ namespace CallTracker.View
                     new TipModel("- Allows you to setup which data is bound to which field."),
                     new TipModel("- Click on the desired field, then hit the Hotkey. Most of the fields will prefill, just type in which data you want it to paste. The help button in the Smart Paste Bind form will tell you what you can type into the data field."),
                     new TipModel("- If the Bind Smart Paste form doens't pop up, it means that page can't be bound to."),
-                    new TipModel("- You can view all binds from <Wingman> > <Settings> > <Advanced> > <Edit Smart Paste Binds>.")
+                    new TipModel("- You can view all binds from <Wingman> > <Settings> > <Advanced> > <Smart Paste Binds>.")
                 }),
             new TipSlide("Database Editor",
                 new List<TipModel>
                 {
                     new TipModel("- All data that Wingman uses can be changed eg If a department changes their External contact number, you can update it here."),
                     new TipModel(@"- If you change something and things stop working, just copy the Data\Resources.bin from a colleague."),
-                    new TipModel("- <Database Editor> can be accessed from <Wingman> > <Settings> > <Advanced> > Database Editor.")
+                    new TipModel("- <Database Editor> can be accessed from <Wingman> > <Settings> > <Advanced> > <Database Editor>.")
                 })
         };
     }
