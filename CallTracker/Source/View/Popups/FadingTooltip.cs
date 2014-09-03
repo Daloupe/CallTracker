@@ -1,39 +1,28 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
+using CallTracker.Helpers;
 namespace CallTracker.View
 {
     public partial class FadingTooltip : Form
     {
-        public FadingTooltip()
-        {
-            InitializeComponent();
-            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-        }
-
-        private void FadingTooltip_Load(object sender, EventArgs e)
-        {
-            FadeOutDelay = 200;
-            FadeTime = 350;
-            MoveInterval = 2;
-        }
-
         private int _timeCounter;
         public int FadeOutDelay;
-        
+
         private float _opacityStep;
         private float _fadeTime;
-        public float FadeTime 
+        public float FadeTime
         {
             get
             {
                 return _fadeTime;
-            } 
-            set 
-            { 
+            }
+            set
+            {
                 _fadeTime = value;
-                _opacityStep = _fadeTimer.Interval /_fadeTime;
-            } 
+                _opacityStep = _fadeTimer.Interval / _fadeTime;
+            }
         }
 
         private int _distanceStep;
@@ -50,6 +39,46 @@ namespace CallTracker.View
                 _distanceStep = _fadeTimer.Interval * _moveInterval;
             }
         }
+
+        public FadingTooltip()
+        {
+            InitializeComponent();
+            SetStyle(ControlStyles.SupportsTransparentBackColor, true);
+            FadeOutDelay = 1500;
+            FadeTime = 350;
+            MoveInterval = 2;
+        }
+
+        protected override bool ShowWithoutActivation
+        {
+            get { return true; }
+        }
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams createParams = base.CreateParams;
+                createParams.ExStyle |= 0x00000020; // WS_EX_TRANSPARENT
+
+                return createParams;
+            }
+        }
+
+        protected override void DefWndProc(ref Message m)
+        {
+            const int WM_MOUSEACTIVATE = 0x21;
+            const int MA_NOACTIVATE = 0x0003;
+
+            switch (m.Msg)
+            {
+                case WM_MOUSEACTIVATE:
+                    m.Result = (IntPtr)MA_NOACTIVATE;
+                    return;
+            }
+            base.DefWndProc(ref m);
+        }
+
 
         public void ShowandFade(string text)
         {
@@ -69,7 +98,8 @@ namespace CallTracker.View
             //point.Offset(-Width, 0);//-Cursor.Size.Height + Height);
             DesktopLocation = point;
             Opacity = .99;
-            Show();
+            WindowHelper.ShowWindow(Handle, 8);
+            //Show();
             _fadeTimer.Start();
         }
 

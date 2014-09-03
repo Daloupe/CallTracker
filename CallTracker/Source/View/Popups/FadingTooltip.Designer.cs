@@ -77,7 +77,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FadingTooltip";
             this.TopMost = true;
-            this.Load += new System.EventHandler(this.FadingTooltip_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

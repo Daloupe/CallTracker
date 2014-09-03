@@ -92,10 +92,8 @@ namespace CallTracker.Model
         }
 
         [ProtoMember(1)]
-        [DoNotNotify]
         public int Id { get; set; }
         [ProtoMember(2)]
-        [DoNotNotify]
         public string Name 
         {
             get
@@ -108,23 +106,19 @@ namespace CallTracker.Model
                 NameSplit.Full = name;
             }
         }
+        [DoNotNotify]
         public string name;
         [DoNotNotify]
         public NameModel NameSplit { get; set; }
         [ProtoMember(3)]
-        [DoNotNotify]
         public string Username { get; set; }
         [ProtoMember(4)]
-        [DoNotNotify]
         public string DN { get; set; }
         [ProtoMember(5)]
-        [DoNotNotify]
         public string Mobile { get; set; }
         [ProtoMember(6)]
-        [DoNotNotify]
         public string CMBS { get; set; }
         [ProtoMember(7)]
-        [DoNotNotify]
         public string ICON { get; set; }
 
         [ProtoMember(20)]
@@ -138,23 +132,18 @@ namespace CallTracker.Model
 
 
         [ProtoMember(30)]
-        [DoNotNotify]
         public bool IDok { get; set; }
         [ProtoMember(31)]
-        [DoNotNotify]
         public bool Important { get; set; }
         [ProtoMember(32)]
-        [DoNotNotify]
         public string Note { get; set; }
 
         [ProtoMember(40)]
-        [DoNotNotify]
         public bool OriginalCall { get; set; }
         [ProtoMember(41, OverwriteList = true)]
         [DoNotNotify]
         private EventsModel<CallStats> Events { get; set; }
         [ProtoMember(42)]
-        [DoNotNotify]
         public ContactStatistics Contacts { get; set; }
 
 
