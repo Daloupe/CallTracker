@@ -52,6 +52,20 @@ namespace CallTracker.View
             _rtfWriter = new RtfWriter();
 
             SelectSlide();
+
+            richTextBox1.MouseWheel += richTextBox1_MouseWheel;
+        }
+
+        void richTextBox1_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta < 0)
+            {
+                SendMessage(richTextBox1.Handle, WM_VSCROLL, (IntPtr)SB_LINEDOWN, IntPtr.Zero);// Scrolls down
+            }
+            else
+            {
+                SendMessage(richTextBox1.Handle, WM_VSCROLL, (IntPtr)SB_LINEUP, IntPtr.Zero);// Scrolls up
+            }
         }
 
         private void SelectSlide()
@@ -123,17 +137,17 @@ namespace CallTracker.View
 
         private void ok_MouseUp(object sender, MouseEventArgs e)
         {
-            headingPanel.Focus();
+            richTextBox1.Focus();
         }
 
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
-            headingPanel.Focus();
+            richTextBox1.Focus();
         }
 
         private void DidYouKnow_Load(object sender, EventArgs e)
         {
-            headingPanel.Focus();
+            richTextBox1.Focus();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -155,6 +169,17 @@ namespace CallTracker.View
             SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             //Properties.Settings.Default.Main_Position = Location;
         }
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+        uint WM_VSCROLL = 0x115;
+        private const uint SB_LINEUP = 0;
+        private const uint SB_LINEDOWN = 1;
+        private const uint SB_PAGEUP = 2;
+        private const uint SB_PAGEDOWN = 3;
+        private const uint SB_TOP = 6;
+        private const uint SB_BOTTOM = 7;
+        private const uint SB_ENDSCROLL = 8;
 
         [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, Int32 wMsg, bool wParam, Int32 lParam);
@@ -211,7 +236,7 @@ namespace CallTracker.View
                 new List<TipModel>
                 {
                     new TipModel("- <Smart Paste> pastes the most appropriate data depending on where you want to paste. "),
-                    new TipModel("- It picks the most relevant data based on what is available, and which product you've selected.  ", "- The <ICON> Service No. field will paste <Username> only if it doesn't have <DN>. Vice Versa if the product is <ONC> or <NVF>"),
+                    new TipModel("- It picks the most relevant data based on what is available, and which product you've selected.  ", "- Pressing <Smart Paste> in ICON's Service Number field will paste <Username> only if <Wingman> doesn't have <DN>. Vice Versa if the product is <ONC> or <NVF>."),
                     new TipModel("- It will paste data in the appropriate format.  ", "- <CMBS> will paste as 31123456 7 into <IFMS>, and 3112345607 into <ICON>."),
                     new TipModel("- Doesn't yet work in Chrome, or IE pages that use a Chrome Frame like Nexus and the PR Templates, but it will work in <MAD>!")
                 }),
@@ -225,24 +250,86 @@ namespace CallTracker.View
                 new List<TipModel>
                 {
                     new TipModel("- <Call History> keeps track of previous calls, filtered by date."),
-                    new TipModel("- Calls can be sorted by outcome, useful for tracking down Transfers."),
-                    new TipModel("- Flagged Calls will be highlight in red."),
-                    new TipModel("- Can be access from Wingman > Call History")
+                    new TipModel("- Calls can be sorted by outcome, to help find particular call types."),
+                    new TipModel("- Flagged Calls will be checked, so they can be found easily."),
+                    new TipModel("- Can be access from <Wingman> > <Call History>.")
                 }),
             new TipSlide("GridLinks - Win+NumPad",
                 new List<TipModel>
                 {
                     new TipModel("- <GridLinks> jumps straight to the desired system so you don't need to track it down from the taskbar."),
                     new TipModel("- Each number on the NumPad is assigned a different system."),
-                    new TipModel("- System assignment can be changed from Wingman > Settings > Edit GridLinks")
+                    new TipModel("- Also holding Ctrl will initiate a <GridLinks Search> which will also attempt to search the selected system."),
+                    new TipModel("- System assignment can be changed from <Wingman> > <Settings> > <Edit GridLinks>.")
                 }),
             new TipSlide("IPCC Monitor",
                 new List<TipModel>
                 {
                     new TipModel("- <IPCC Monitor> keeps track of call state changes."),
                     new TipModel("- When a new call pops in, it will automatically create a new record and prefill it with IPCC call data."),
-                    new TipModel("- You can see how long you have spent in a call state."),
-                    new TipModel("- It must be renabled if IPCC quits.")
+                    new TipModel("- You can see how long you have spent in a call state in the bottom right hand corner of <Wingman>."),
+                    new TipModel("- Clicking this timer will give you the option to enable <IPCC Monitoring>.")
+                }),
+            new TipSlide("Context Menus",
+                new List<TipModel>
+                {
+                    new TipModel("- <Wingman> has a lot of functions, but in order to simplfy the interface they are tucked away in context menus."),
+                    new TipModel("- Fields with context menus will have an arrow. Right click the field, or click on the arrow to open it up."),
+                    new TipModel("- The <DN> and <Mobile> context menus have the <Dial> option, which will pop the number into IPCC for you."),
+                    new TipModel("- Right clicking the <Note> field will let you generate ICON and PR templates that have been prefilled with data you've collected."),
+                    new TipModel("- Clicking a menu item with the Search Glass icon will perform a <Search>.")
+                }),
+            new TipSlide("Auto Search",
+                new List<TipModel>
+                {
+                    new TipModel("- When a field is first filled, <Auto Search> will inititate a <Search>. It does so silently - It won't bring the searched system to the front. This means when you get around to needing a system, it should already have the customers infomation loaded."),
+                    new TipModel("- Each system will only be searched once per call.  ", "- If I <Smart Copy> DN, then the DN is searched in SCAMPS. If I then <Smart Copy> Username, SCAMPS isn't searched(But UNMT still will!)."),
+                    new TipModel("- The <Ignore Active Window> option will prevent Auto Search from searching in the window you have focussed."),
+                    new TipModel("- The <Open New If None Found> option tells Wingman to open up a new IE window if you don't already have that system open."),
+                    new TipModel("- Auto Search and its options can be found in <Wingman> > <Settings> > <Auto Search>.")
+                }),
+            new TipSlide("Resources Menu",
+                new List<TipModel>
+                {
+                    new TipModel("- The <Resources Menu> is context sensitive - it's items change based on the product you select in this list."),
+                    new TipModel("- The departments in the <Numbers To Know> menu will change with the selected product. Hovering over a department will give you their contact numbers, and opening times."),
+                    new TipModel("- Clicking on a department will put the number into IPCC, and Prefill the call data section."),
+                    new TipModel("- <Rateplans> provides a list of <CMBS> changes codes. Once you open the window, you can just type the product code to start searching. New ratecodes can be added to the last row"),
+                    new TipModel("- You can add your own context sensitive <Bookmarks> and <Systems> in their relative menus.")         
+                }),
+            new TipSlide("Auto Login - Win+`",
+                new List<TipModel>
+                {
+                    new TipModel("- <Auto Login> will detect which system you're trying to log into, and pop your details in."),
+                    new TipModel("- You can update your logins from <Wingman> > <Settings> > <Logins>.")
+                }),
+            new TipSlide("Data Paste - Ctrl+Shift+",
+                new List<TipModel>
+                {
+                    new TipModel("- The most common fields can also be pasted directly with these hotkeys. These are useful for pasting into systems that can't be bound to."),
+                    new TipModel("- They are assigned to 1,2,Q,W,A,S,Z,X.  ", "- Pressing Ctrl+Shift+Q will paste <Username>"),
+                    new TipModel("- Hover over the main data fields to see their hotkey.")
+                }),
+            new TipSlide("Daily Stats",
+                new List<TipModel>
+                {
+                    new TipModel("- <Daily Stats> gives you an estimate of your KPI's, as long as <IPCC Monitor> is on."),
+                    new TipModel("- Stats can be viewed from <Wingman> > <Daily Stats>.")
+                }),
+            new TipSlide("Smart Paste Bind - Win+Shift+V",
+                new List<TipModel>
+                {
+                    new TipModel("- Allows you to setup which data is bound to which field."),
+                    new TipModel("- Click on the desired field, then hit the Hotkey. Most of the fields will prefill, just type in which data you want it to paste. The help button in the Smart Paste Bind form will tell you what you can type into the data field."),
+                    new TipModel("- If the Bind Smart Paste form doens't pop up, it means that page can't be bound to."),
+                    new TipModel("- You can view all binds from <Wingman> > <Settings> > <Advanced> > <Edit Smart Paste Binds>.")
+                }),
+            new TipSlide("Database Editor",
+                new List<TipModel>
+                {
+                    new TipModel("- All data that Wingman uses can be changed eg If a department changes their External contact number, you can update it here."),
+                    new TipModel(@"- If you change something and things stop working, just copy the Data\Resources.bin from a colleague."),
+                    new TipModel("- <Database Editor> can be accessed from <Wingman> > <Settings> > <Advanced> > Database Editor.")
                 })
         };
     }
