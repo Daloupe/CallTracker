@@ -17,6 +17,8 @@ namespace CallTracker.View
     {
         internal Main MainForm;
         private bool _updateNote = true;
+        private bool _isDrawingSuspended;
+        private bool _isChangingDays;
 
         public EditContact(Main mainform)
         {
@@ -90,7 +92,8 @@ namespace CallTracker.View
         {
             if (MainForm._DailyDataBindingSource.Count == 0)
                 return;
-
+            WindowHelper.SuspendDrawing(this);
+            _isChangingDays = true;
             if (((DailyModel) MainForm._DailyDataBindingSource.Current).Contacts.Count < 2)
             {
                 
@@ -113,6 +116,8 @@ namespace CallTracker.View
                 //else
                     customerContactsBindingSource.MoveLast();
             }   
+            WindowHelper.ResumeDrawing(this);
+            _isChangingDays = false;
         }
 
         public void Init()
@@ -144,6 +149,11 @@ namespace CallTracker.View
         public void contactsListBindingSource_PositionChanged(object sender, EventArgs e)
         {
             EventLogger.SaveLog();
+            if (!_isChangingDays)
+            {
+                WindowHelper.SuspendDrawing(this);
+                _isDrawingSuspended = true;
+            }
             if (customerContactsBindingSource.Count == 0 || customerContactsBindingSource.Position == -1)
             {
                 DisableInterface();
@@ -170,6 +180,11 @@ namespace CallTracker.View
                 UpdateCurrentPanel();
                 UpdateActions();
                 _ImportantToolStripMenuItem.Checked = MainForm.SelectedContact.Important;
+            }
+            if (!_isChangingDays)
+            {
+                WindowHelper.ResumeDrawing(this);
+                _isDrawingSuspended = false;
             }
         }
 
@@ -280,7 +295,8 @@ namespace CallTracker.View
                 _currentService = value;
                 _ServicePanel.ChangeService(_currentService);
                 //_isChangingService = false;
-                _Note.DataBindings[0].ReadValue();
+                if (_Note.DataBindings.Count > 0)
+                    _Note.DataBindings[0].ReadValue();
             }
         }
 
@@ -587,7 +603,8 @@ namespace CallTracker.View
             if (!_currentService.Is(ServiceTypes.NONE))
                 _ServicePanel.UpdateSeverity();
 
-            _Note.DataBindings[0].ReadValue();
+            if (_Note.DataBindings.Count > 0)
+                _Note.DataBindings[0].ReadValue();
         }
 
 

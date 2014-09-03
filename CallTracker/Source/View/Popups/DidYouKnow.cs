@@ -70,7 +70,7 @@ namespace CallTracker.View
 
         private void SelectSlide()
         {
-            SuspendDrawing(panel1);
+            WindowHelper.SuspendDrawing(panel1);
             examplePanel.Hide();
             tipsPanel.Height = 161;
             var slide = TipSlides[Properties.Settings.Default.TipsPosition];
@@ -94,21 +94,33 @@ namespace CallTracker.View
                 linkPos += 10 * index;
             }
             _rtf.Contents.Clear();
-            ResumeDrawing(panel1);
+            WindowHelper.ResumeDrawing(panel1);
         }
 
+        private int _currentExample = -1;
         private void richTextBox1_LinkClicked(object sender, LinkClickedEventArgs e)
         {
-            SuspendDrawing(panel1);
-            var p = new RtfFormattedParagraph(_formatting);
-            RtfHelpers.Parse(ref p, TipSlides[Properties.Settings.Default.TipsPosition].Tips[Convert.ToInt32(e.LinkText.Split('#')[1])].Example);
+            var index = Convert.ToInt32(e.LinkText.Split('#')[1]);
+            WindowHelper.SuspendDrawing(panel1);
+            if (_currentExample == index)
+            {
+                examplePanel.Hide();
+                tipsPanel.Height = 161;
+                _currentExample = -1;
+            }
+            else
+            {
+                var p = new RtfFormattedParagraph(_formatting);
+                RtfHelpers.Parse(ref p, TipSlides[Properties.Settings.Default.TipsPosition].Tips[index].Example);
 
-            _rtf.Contents.Add(p);
-            exampleRichTextBox.Rtf = _rtfWriter.Write(_rtf);
-            examplePanel.Show();
-            tipsPanel.Height = 113;
-            _rtf.Contents.Clear();
-            ResumeDrawing(panel1);
+                _rtf.Contents.Add(p);
+                exampleRichTextBox.Rtf = _rtfWriter.Write(_rtf);
+                _rtf.Contents.Clear();
+                examplePanel.Show();
+                tipsPanel.Height = 113;
+                _currentExample = index;
+            }
+            WindowHelper.ResumeDrawing(panel1);     
         }
 
         private void prevTip_Click(object sender, EventArgs e)
@@ -181,21 +193,7 @@ namespace CallTracker.View
         private const uint SB_BOTTOM = 7;
         private const uint SB_ENDSCROLL = 8;
 
-        [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, Int32 wMsg, bool wParam, Int32 lParam);
-
-        private const int WM_SETREDRAW = 11;
-
-        public static void SuspendDrawing(Control parent)
-        {
-            SendMessage(parent.Handle, WM_SETREDRAW, false, 0);
-        }
-
-        public static void ResumeDrawing(Control parent)
-        {
-            SendMessage(parent.Handle, WM_SETREDRAW, true, 0);
-            parent.Refresh();
-        }
+        
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Borders //////////////////////////////////////////////////////////////////////////////////////////
