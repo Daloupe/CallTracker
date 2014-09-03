@@ -66,12 +66,12 @@ namespace CallTracker.View
 
         public void Init()
         {
-            BindingContext = EditContacts.BindingContext;
-            EditContacts.customerContactsBindingSource.PositionChanged += customerContactsBindingSource_PositionChanged;
-            bindingSource1.DataSource = EditContacts.customerContactsBindingSource;
-            
-            //bindingSource1 = EditContacts.customerContactsBindingSource;
+           // BindingContext = EditContacts.BindingContext;
+            //bindingSource1.DataSource = EditContacts.customerContactsBindingSource;
+            //EditContacts.customerContactsBindingSource.PositionChanged += customerContactsBindingSource_PositionChanged;
 
+            bindingSource1.DataSource = EditContacts.customerContactsBindingSource;
+            EditContacts.customerContactsBindingSource.PositionChanged += customerContactsBindingSource_PositionChanged;
             //CauPings = Main.ServicesStore.servicesDataSet.EquipmentEquipmentStatusesMatch
             //    .Where(x => x.EquipmentRow.Type == "CAU")
             //    .Select(x => x.EquipmentStatusesRow.Status)
@@ -94,17 +94,7 @@ namespace CallTracker.View
 
             EditContacts._Symptom.SelectedIndexChanged += _Symptom_SelectedIndexChanged;
 
-            _CauPing.BindComboBox(Main.ServicesStore.servicesDataSet.EquipmentEquipmentStatusesMatch
-                                     .Where(x => x.EquipmentRow.Type == "CAU")
-                                     .Select(x => x.EquipmentStatusesRow.Status)
-                                     .ToList(), bindingSource1, true);
-            _DTVLights.BindComboBox(Main.ServicesStore.servicesDataSet.EquipmentEquipmentStatusesMatch
-                                     .Where(x => x.EquipmentRow.Type == "STB")
-                                     .Select(x => x.EquipmentStatusesRow.Status)
-                                     .ToList(), bindingSource1, true);
-            _ModemStatus.BindComboBox(new List<string> { "Online", "Offline" }, bindingSource1, true);
-            _ModemRF.BindComboBox(new List<string> { "Yes", "No" }, bindingSource1, true);
-            _Sip.BindComboBox(new List<string> { "1", "2", "3", "4", "5", "6" }, bindingSource1, true);
+            SetupBinds();
 
             foreach (var control in Controls.OfType<FlowLayoutPanel>())
             {
@@ -125,6 +115,21 @@ namespace CallTracker.View
             _Equipment.BringToFront();
             _Equipment.Hide();
             //UpdateStyles();
+        }
+
+        public void SetupBinds()
+        {
+            _CauPing.BindComboBox(Main.ServicesStore.servicesDataSet.EquipmentEquipmentStatusesMatch
+                         .Where(x => x.EquipmentRow.Type == "CAU")
+                         .Select(x => x.EquipmentStatusesRow.Status)
+                         .ToList(), EditContacts.customerContactsBindingSource, true);
+            _DTVLights.BindComboBox(Main.ServicesStore.servicesDataSet.EquipmentEquipmentStatusesMatch
+                                     .Where(x => x.EquipmentRow.Type == "STB")
+                                     .Select(x => x.EquipmentStatusesRow.Status)
+                                     .ToList(), EditContacts.customerContactsBindingSource, true);
+            _ModemStatus.BindComboBox(new List<string> { "Online", "Offline" }, EditContacts.customerContactsBindingSource, true);
+            _ModemRF.BindComboBox(new List<string> { "Yes", "No" }, EditContacts.customerContactsBindingSource, true);
+            _Sip.BindComboBox(new List<string> { "1", "2", "3", "4", "5", "6" }, EditContacts.customerContactsBindingSource, true);
         }
 
         void customerContactsBindingSource_PositionChanged(object sender, EventArgs e)

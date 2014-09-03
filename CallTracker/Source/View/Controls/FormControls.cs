@@ -441,17 +441,17 @@ namespace CallTracker.View
             ValueMember = String.Empty;
             Text = String.Empty;
 
-            NullableMode = true;
+            if (_bindingSource != null)
+                _bindingSource.CurrentChanged -= mBindingSource_CurrentChanged;
+            _bindingSource = bindingSource;
+            _bindingSource.CurrentChanged += mBindingSource_CurrentChanged;
 
             // init private fields
             _dataSource = dataSource;
             _propertyName = propertyName;
             _displayMember = displayMember;
-
-            if (_bindingSource != null)
-                _bindingSource.CurrentChanged -= mBindingSource_CurrentChanged;
-            _bindingSource = bindingSource;
-            _bindingSource.CurrentChanged += mBindingSource_CurrentChanged;
+            
+            NullableMode = true;
 
             _active = true;
             // get selected item
@@ -478,7 +478,7 @@ namespace CallTracker.View
 
         public void GetCurrentObject()
         {
-            if (_active == false)
+            if (_active == false || _bindingSource == null)
                 return;
             if (_bindingSource.Count > 0)
             {

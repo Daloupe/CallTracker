@@ -37,7 +37,7 @@ namespace CallTracker.View
             //flowLayoutPanel1.Enabled = !propertyLock.Checked;
         }
 
-        private int _position;
+        //private int _position;
         public override void ShowSetting()
         {
             var average = TimeSpan.Zero;

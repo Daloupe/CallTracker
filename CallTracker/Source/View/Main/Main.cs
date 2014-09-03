@@ -1062,9 +1062,14 @@ namespace CallTracker.View
 
         private void didYouKnowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!DidYouKnow.IsDisposed) return;
-            DidYouKnow = new DidYouKnow();
-            DidYouKnow.Show();
+            if (DidYouKnow.IsDisposed)
+            {
+                DidYouKnow = new DidYouKnow();
+                DidYouKnow.Show();
+            }
+            else
+                DidYouKnow.Show();
+
         }
     }
 }

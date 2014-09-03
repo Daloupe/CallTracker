@@ -79,18 +79,20 @@ namespace CallTracker.View
 
         public void OnParentLoad()
         {
-            _ServicePanel.Init();
-
             MainForm._DailyDataBindingSource.ListChanged += _DailyDataBindingSource_PositionChanged;
             MainForm._DailyDataBindingSource.PositionChanged +=_DailyDataBindingSource_PositionChanged;
             customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
 
             customerContactsBindingSource.DataSource = ((DailyModel)MainForm._DailyDataBindingSource.Current).Contacts;
+            
+            _ServicePanel.Init();
 
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
             _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)).Cast<BookingType>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
             _BookingTimeSlot.BindComboBox(Enum.GetValues(typeof(BookingTimeslot)).Cast<BookingTimeslot>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
             //_Action.BindComboBox(new List<string>(), customerContactsBindingSource);
+
+            //_ServicePanel.SetupBinds();
 
             customerContactsBindingSource.MoveLast();
 
@@ -98,7 +100,7 @@ namespace CallTracker.View
             _DateSelector.ComboBox.DisplayMember = "ShortDate";
             _DateSelector.ComboBox.ValueMember = "LongDate";
 
-
+            
 
             if (customerContactsBindingSource.Count != 0) return;
 
@@ -240,10 +242,8 @@ namespace CallTracker.View
             if (e.PropertyName == "Sip")
                 _ServicePanel._Sip._ComboBox.GetCurrentObject();
 
-            Console.WriteLine("nested Change");
-            Console.WriteLine(e.PropertyName);
             // Update Note
-            if (_Note.DataBindings.Count > 0 && _Note.Tag != "Note" && _updateNote && !IsChangingService)
+            if (_Note.DataBindings.Count > 0 && _Note.Tag.ToString() != "Note" && _updateNote && !IsChangingService)
                 _Note.DataBindings[0].ReadValue();
         }
 

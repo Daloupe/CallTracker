@@ -2,3 +2,12 @@ Finding by Title uses regex:"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Int
 	- Is the http group neccessary?
 	- Does browser.Title give the same output as the Find.By function?
 RAM Fluctuations.
+IPCC Dialling.
+MAD Paste.
+Average Copy time.
+Tool Tips click through.
+Fault Panel Scrollable.
+Autosearch.
+GridLinks Search.
+Tips.
+Daily stats compared with Rox.
