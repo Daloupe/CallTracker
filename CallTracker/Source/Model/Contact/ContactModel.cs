@@ -154,6 +154,27 @@ namespace CallTracker.Model
 
         internal void AddAppEvent(AppEventTypes newEvent)
         {
+            switch (newEvent)
+            {
+                case AppEventTypes.AutoFill:
+                    Events.Statistics.AutoFills += 1;
+                    break;
+                case AppEventTypes.AutoSearch:
+                    Events.Statistics.AutoSearches += 1;
+                    break;
+                case AppEventTypes.DataPaste:
+                    Events.Statistics.DataPastes += 1;
+                    break;
+                case AppEventTypes.GridlinkSearch:
+                    Events.Statistics.GridLinkSearches += 1;
+                    break;
+                case AppEventTypes.SmartCopy:
+                    Events.Statistics.SmartCopies += 1;
+                    break;
+                case AppEventTypes.SmartPaste:
+                    Events.Statistics.SmartPastes += 1;
+                    break;
+            }
             Events.AddAppEvent(newEvent);
         }
 

@@ -46,11 +46,11 @@
 
 0.6.1.0
 (Minor Features)
-- Added methods for storing app events.
+| Added methods for storing app events.
 
 0.6.0.0
 (Major Features)
-- Created Daily Stats view. Stats will be skewed if rep uses New Call Option. Not Ready will be a little skewed unless logged out.
+| Created Daily Stats view. Stats will be skewed if rep uses New Call Option. Not Ready will be a little skewed unless logged out.
 
 0.5.4.9
 (Minor Features)

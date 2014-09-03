@@ -95,7 +95,7 @@ namespace CallTracker.Helpers
 
         private static void OnGridLinks(HotkeyPressedEventArgs e)
         {
-            SystemItem systemItem = parent.UserDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name.Remove(0,2)));
+            var systemItem = parent.UserDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name.Remove(0,2)));
             parent.SetProgressBarStep(4, String.Format("Switching to: {0}", systemItem.Url));
 
             try
@@ -121,6 +121,7 @@ namespace CallTracker.Helpers
             }
             finally
             {
+                parent.AddAppEvent(AppEventTypes.Gridlink);
                 parent.UpdateProgressBar(0, String.Format("Switched to: {0}", systemItem.Url), EventLogLevel.ClearStatus);
             }
         }
@@ -177,6 +178,7 @@ namespace CallTracker.Helpers
             }
             finally
             {
+                parent.AddAppEvent(AppEventTypes.GridlinkSearch);
                 parent.UpdateProgressBar(0, String.Format("Switched to: {0}", systemItem.Url), EventLogLevel.ClearStatus);
             }
         }
@@ -215,7 +217,8 @@ namespace CallTracker.Helpers
                 SendKeys.SendWait("^v");
                 Application.DoEvents();
                 SendKeys.Flush();
-            } 
+                parent.AddAppEvent(AppEventTypes.DataPaste);
+            }
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -256,6 +259,7 @@ namespace CallTracker.Helpers
                 if (query != null)
                 {
                     query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data, parent.SelectedContact.Fault.AffectedServiceType.ToString()));
+                    parent.AddAppEvent(AppEventTypes.SmartPaste);
                     EventLogger.LogNewEvent("Match Found");
                 }
 
@@ -349,6 +353,7 @@ namespace CallTracker.Helpers
                 EventLogger.LogNewEvent("Attempting ICON AutoFills", EventLogLevel.Status);
                 ICONAutoFill.Go(parent);
             }
+            parent.AddAppEvent(AppEventTypes.AutoFill);
             //PreviousIEMatch = browser.Title;
             browser.Dispose();
         }
@@ -388,7 +393,7 @@ namespace CallTracker.Helpers
             query.Paste(browser, query.PasswordElement, query.Password);
             query.Submit(browser);
             //PreviousIEMatch = browser.Title;
-
+            parent.AddAppEvent(AppEventTypes.AutoLogin);
             browser.Dispose();
         }
 
@@ -481,6 +486,7 @@ namespace CallTracker.Helpers
             if (!String.IsNullOrEmpty(oldClip))
                 Clipboard.SetText(oldClip);
 
+            parent.AddAppEvent(AppEventTypes.SmartCopy);
             //EventLogger.LogNewEvent(StopwatchTester.ElapsedMilliseconds + "ms", EventLogLevel.Status);
             //StopwatchTester.Stop();
         }
@@ -529,7 +535,7 @@ namespace CallTracker.Helpers
                     query.Paste(browser, submitElement, "");
                 }
             }
-
+            parent.AddAppEvent(AppEventTypes.SystemSearch);
             browser.Dispose();
         }
 
@@ -668,6 +674,7 @@ namespace CallTracker.Helpers
                 browser.GoToNoWait(search);
                 EventLogger.LogNewEvent("Searching: "+ search, EventLogLevel.Brief);
                 browser.Dispose();
+                parent.AddAppEvent(AppEventTypes.AutoSearch);
                 return true;
             }
 
@@ -681,6 +688,7 @@ namespace CallTracker.Helpers
                 browser.GoToNoWait(search);
                 EventLogger.LogNewEvent("Searching: " + search, EventLogLevel.Brief);
                 browser.Dispose();
+                parent.AddAppEvent(AppEventTypes.AutoSearch);
                 return true;
             }
 
@@ -689,6 +697,7 @@ namespace CallTracker.Helpers
                 CreateNewIE(search);
                 EventLogger.LogNewEvent("Creating New and Searching: " + search, EventLogLevel.Brief);
                 browser.Dispose();
+                parent.AddAppEvent(AppEventTypes.AutoSearch);
                 return true;
             }
 

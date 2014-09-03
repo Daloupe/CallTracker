@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Forms;
 using ProtoBuf;
 using PropertyChanged;
 
@@ -31,11 +32,18 @@ namespace CallTracker.Model
             IsDirty = true;
         }
 
-        [ProtoBeforeDeserialization]
-        private void Initializer()
-        {
-            Contacts = new FilterableBindingList<CustomerContact>();
-        }
+        //[ProtoAfterDeserialization]
+        //private void AfterDeserialization()
+        //{
+        //    ContactsBindingSource.DataSource = Contacts;
+        //    ContactsBindingSource.Position = Position;
+        //}
+
+        //[ProtoBeforeDeserialization]
+        //private void Initializer()
+        //{
+        //    Contacts = new FilterableBindingList<CustomerContact>();
+        //}
 
         internal void ArchiveContacts()
         {
@@ -47,19 +55,23 @@ namespace CallTracker.Model
             //if (Events.Statistics.IsDirty == false)
             //    return Events.Statistics;
 
-            var callStats = new List<CallStats>();
+            //var callStats = new List<CallStats>();
 
-            foreach (var contact in Contacts)
-            {
-                var callStat = contact.ComputeStatistics();
-                callStats.Add(callStat);
-                //Events.Statistics.Calls += 1;
-            }
+            //foreach (var contact in Contacts)
+            //{
+            //    var callStat = contact.ComputeStatistics();
+            //    callStats.Add(callStat);
+            //    //Events.Statistics.Calls += 1;
+            //}
 
-            Events.ComputeStatistics(callStats);
-            Events.Statistics.Calls = Contacts.Count;
+            //Events.ComputeStatistics(callStats);
+            //Events.Statistics.Calls = Contacts.Count;
 
             var stats = (DailyStats)Events.Statistics.Clone();
+
+            foreach (var contact in Contacts)
+                stats.Add(contact.ComputeStatistics());
+            stats.Calls = Contacts.Count;
 
             var lastLogInIndex = Events.CallEvents.IndexOf(Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogIn)));
             var lastLogOutIndex = Events.CallEvents.IndexOf(Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogOut)));

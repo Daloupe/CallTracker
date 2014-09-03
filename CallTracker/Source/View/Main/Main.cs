@@ -48,7 +48,6 @@ namespace CallTracker.View
             get { return _currentContact; }
             set
             {
-                Console.WriteLine("Current Contact Set");
                 if (_currentContact != null)
                     _currentContact.FinishUp();
                 _currentContact = value;
@@ -772,7 +771,8 @@ namespace CallTracker.View
                     case "Ready":
                         IPCCLevel("green");
                         dailyData.AddCallEvent(CallEventTypes.Ready);
-                        SelectedContact.AddCallEvent(CallEventTypes.Ready);
+                        if (SelectedContact != null)
+                            SelectedContact.AddCallEvent(CallEventTypes.Ready);
                         break;
                     case "":
                         IPCCLevel("white");
@@ -991,6 +991,14 @@ namespace CallTracker.View
         //        return cp;
         //    }
         //}
+
+        public void AddAppEvent(AppEventTypes newEvent)
+        {
+            if(SelectedContact != null)
+                SelectedContact.AddAppEvent(newEvent);
+            else
+                ((DailyModel)_DailyDataBindingSource.Current).AddAppEvent(newEvent);
+        }
 
         private void pullIPCCCallDataToolStripMenuItem_Click(object sender, EventArgs e)
         {

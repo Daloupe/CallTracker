@@ -69,7 +69,7 @@ namespace CallTracker.View
             _HandlingTime._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.HandlingTime.Hours, stats.HandlingTime.Minutes, stats.HandlingTime.Seconds);
             average = new TimeSpan(stats.HandlingTime.Ticks / stats.Calls);
             _HandlingTimeA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes, average.Seconds);
-            
+
             //bindingSource1 = MainForm.editContact.customerContactsBindingSource;
 
             //CurrentPosition = MainForm.editContact.customerContactsBindingSource.Position;

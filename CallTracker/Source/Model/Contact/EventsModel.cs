@@ -56,27 +56,43 @@ namespace CallTracker.Model
             //Statistics.IsDirty = false;
         }
 
-        internal T ComputeStatistics(List<CallStats> callStats)
-        {
-            //if (Statistics.IsDirty == false)
-            //    return Statistics;
-            Statistics.TalkTime = TimeSpan.Zero;
-            Statistics.Hold = TimeSpan.Zero;
-            Statistics.NotReady = TimeSpan.Zero;
-            Statistics.Wrapup = TimeSpan.Zero;
-            Statistics.HandlingTime = TimeSpan.Zero;
-            foreach (var call in callStats)
-            {
-                Statistics.TalkTime = Statistics.TalkTime.Add(call.TalkTime);
-                Statistics.Hold = Statistics.Hold.Add(call.Hold);
-                Statistics.NotReady = Statistics.NotReady.Add(call.NotReady);
-                Statistics.Wrapup = Statistics.Wrapup.Add(call.Wrapup);
-                Statistics.HandlingTime = Statistics.Hold.Add(call.HandlingTime);
-            }
+        //internal T ComputeStatistics(List<CallStats> callStats)
+        //{
+        //    //if (Statistics.IsDirty == false)
+        //    //    return Statistics;
+        //    Statistics.TalkTime = TimeSpan.Zero;
+        //    Statistics.Hold = TimeSpan.Zero;
+        //    Statistics.NotReady = TimeSpan.Zero;
+        //    Statistics.Wrapup = TimeSpan.Zero;
+        //    Statistics.HandlingTime = TimeSpan.Zero;
+        //    Statistics.AutoFills = 0;
+        //    Statistics.AutoLogins = 0;
+        //    Statistics.AutoSearches = 0;
+        //    Statistics.DataPastes = 0;
+        //    Statistics.GridLinkSearches = 0;
+        //    Statistics.GridLinks = 0;
+        //    Statistics.SmartCopies = 0;
+        //    Statistics.SmartPastes = 0;
+        //    foreach (var call in callStats)
+        //    {
+        //        Statistics.TalkTime = Statistics.TalkTime.Add(call.TalkTime);
+        //        Statistics.Hold = Statistics.Hold.Add(call.Hold);
+        //        Statistics.NotReady = Statistics.NotReady.Add(call.NotReady);
+        //        Statistics.Wrapup = Statistics.Wrapup.Add(call.Wrapup);
+        //        Statistics.HandlingTime = Statistics.Hold.Add(call.HandlingTime);
+        //        Statistics.AutoFills += call.AutoFills;
+        //        Statistics.AutoLogins += call.AutoLogins;
+        //        Statistics.AutoSearches += call.AutoSearches;
+        //        Statistics.DataPastes += call.DataPastes;
+        //        Statistics.GridLinkSearches += call.GridLinkSearches;
+        //        Statistics.GridLinks += call.GridLinks;
+        //        Statistics.SmartCopies += call.SmartCopies;
+        //        Statistics.SmartPastes += call.SmartPastes;
+        //    }
 
-            //Statistics.IsDirty = false;
-            return Statistics;
-        }
+        //    //Statistics.IsDirty = false;
+        //    return Statistics;
+        //}
 
         internal void AddCallEvent(CallEventTypes newEvent)
         {
@@ -115,6 +131,15 @@ namespace CallTracker.Model
 
         internal void AddAppEvent(AppEventTypes newEvent)
         {
+            switch (newEvent)
+            {
+                case AppEventTypes.AutoLogin:
+                    Statistics.AutoLogins += 1;
+                    break;
+                case AppEventTypes.Gridlink:
+                    Statistics.GridLinks += 1;
+                    break;
+            }
             AppEvents.Add(new EventModel<AppEventTypes>(newEvent));
             //EventLogger.LogNewEvent(typeof(T).ToString() + " > " + Enum.GetName(typeof(AppEventTypes), newEvent));
             IsDirty = true;
@@ -144,8 +169,8 @@ namespace CallTracker.Model
         }
     }
     [ProtoContract]
-    [ProtoInclude(10, typeof(CallStats))]
-    [ProtoInclude(20, typeof(DailyStats))]
+    [ProtoInclude(20, typeof(CallStats))]
+    [ProtoInclude(30, typeof(DailyStats))]
     public abstract class StatsModel : ICloneable
     {
         [ProtoMember(1)]
@@ -163,6 +188,23 @@ namespace CallTracker.Model
         [ProtoMember(7)]
         public TimeSpan Hold { get; set; }
 
+        [ProtoMember(10)]
+        public int AutoLogins { get; set; }
+        [ProtoMember(11)]
+        public int AutoSearches { get; set; }
+        [ProtoMember(12)]
+        public int SmartCopies { get; set; }
+        [ProtoMember(13)]
+        public int SmartPastes { get; set; }
+        [ProtoMember(14)]
+        public int AutoFills { get; set; }
+        [ProtoMember(15)]
+        public int DataPastes { get; set; }
+        [ProtoMember(16)]
+        public int GridLinks { get; set; }
+        [ProtoMember(17)]
+        public int GridLinkSearches { get; set; }
+
         protected StatsModel()
         {
             TalkTime = TimeSpan.Zero;
@@ -172,6 +214,31 @@ namespace CallTracker.Model
             DNOut = TimeSpan.Zero;
             Hold = TimeSpan.Zero;
             IsDirty = true;
+            AutoLogins = 0;
+            GridLinks = 0;
+            SmartCopies = 0;
+            SmartPastes = 0;
+            AutoFills = 0;
+            DataPastes = 0;
+            AutoSearches = 0;
+            GridLinkSearches = 0;
+        }
+
+        public void Add(StatsModel statsModel)
+        {
+            TalkTime = TalkTime.Add(statsModel.TalkTime);
+            Hold = Hold.Add(statsModel.Hold);
+            NotReady = NotReady.Add(statsModel.NotReady);
+            Wrapup = Wrapup.Add(statsModel.Wrapup);
+            HandlingTime = Hold.Add(statsModel.HandlingTime);
+            AutoFills += statsModel.AutoFills;
+            AutoLogins += statsModel.AutoLogins;
+            AutoSearches += statsModel.AutoSearches;
+            DataPastes += statsModel.DataPastes;
+            GridLinkSearches += statsModel.GridLinkSearches;
+            GridLinks += statsModel.GridLinks;
+            SmartCopies += statsModel.SmartCopies;
+            SmartPastes += statsModel.SmartPastes;
         }
 
         public object Clone()
@@ -185,8 +252,10 @@ namespace CallTracker.Model
     [ProtoContract]
     public class CallStats : StatsModel
     {
+
         public CallStats()
         {
+            
         }
     }
 
@@ -235,6 +304,11 @@ namespace CallTracker.Model
         SmartCopy,
         SmartPaste,
         Gridlink,
+        GridlinkSearch,
+        AutoLogin,
+        AutoFill,
+        AutoSearch,
+        SystemSearch,
         DataPaste
     }
 
