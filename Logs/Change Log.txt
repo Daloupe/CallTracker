@@ -44,9 +44,11 @@
 (Minor Features)
 - Converted Call States into Menu Item subclass.
 
-0.6.1.0
+0.6.1.1
 (Minor Features)
 | Added methods for storing app events.
+(Bugs/Changes)
+| Fixed crash when viewing stats with 0 calls.
 
 0.6.0.0
 (Major Features)

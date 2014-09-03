@@ -48,28 +48,33 @@ namespace CallTracker.View
             _Calls._DataField.Text = stats.Calls.ToString();
 
             _TalkTime._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.TalkTime.Hours, stats.TalkTime.Minutes, stats.TalkTime.Seconds);
-            average = new TimeSpan(stats.TalkTime.Ticks/stats.Calls);
-
-            Console.WriteLine(stats.TalkTime);
-            Console.WriteLine(average);
-            _TalkTimeA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes, average.Seconds);
-            
             _WrapUp._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.Wrapup.Hours, stats.Wrapup.Minutes, stats.Wrapup.Seconds);
-            average = new TimeSpan(stats.Wrapup.Ticks / stats.Calls);
-            _WrapUpA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes, average.Seconds);
-            
             _NotReady._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.NotReady.Hours, stats.NotReady.Minutes, stats.NotReady.Seconds);
-            average = new TimeSpan(stats.NotReady.Ticks / stats.Calls);
-            _NotReadyA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes, average.Seconds);
-            
             _Ready._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.Ready.Hours, stats.Ready.Minutes, stats.Ready.Seconds);
-            average = new TimeSpan(stats.Ready.Ticks / stats.Calls);
-            _ReadyA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes, average.Seconds);
-            
             _HandlingTime._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.HandlingTime.Hours, stats.HandlingTime.Minutes, stats.HandlingTime.Seconds);
-            average = new TimeSpan(stats.HandlingTime.Ticks / stats.Calls);
-            _HandlingTimeA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes, average.Seconds);
 
+            if (stats.Calls > 0)
+            {
+                average = new TimeSpan(stats.TalkTime.Ticks/stats.Calls);
+                _TalkTimeA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes,
+                    average.Seconds);
+
+                average = new TimeSpan(stats.Wrapup.Ticks/stats.Calls);
+                _WrapUpA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes,
+                    average.Seconds);
+
+                average = new TimeSpan(stats.NotReady.Ticks/stats.Calls);
+                _NotReadyA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes,
+                    average.Seconds);
+
+                average = new TimeSpan(stats.Ready.Ticks/stats.Calls);
+                _ReadyA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes,
+                    average.Seconds);
+
+                average = new TimeSpan(stats.HandlingTime.Ticks/stats.Calls);
+                _HandlingTimeA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes,
+                    average.Seconds);
+            }
             //bindingSource1 = MainForm.editContact.customerContactsBindingSource;
 
             //CurrentPosition = MainForm.editContact.customerContactsBindingSource.Position;
