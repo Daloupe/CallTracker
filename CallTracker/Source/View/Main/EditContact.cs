@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 using CallTracker.Model;
 using CallTracker.Helpers;
@@ -13,42 +14,60 @@ using Utilities.RegularExpressions;
 
 namespace CallTracker.View
 {
-    public partial class EditContact : UserControl
+    public partial class EditContact : UserControl, IMessageFilter
     {
         internal Main MainForm;
         private bool _updateNote = true;
         private bool _isDrawingSuspended;
         private bool _isChangingDays;
 
+
         public EditContact(Main mainform)
         {
             InitializeComponent();
+            Application.AddMessageFilter(this);
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
 
             MainForm = mainform;
             Location = MainForm.ControlOffset;
 
+            
             // Fault Panel Mouse Wheel Focus////////////////////////////////////////////////////////////////////
             splitContainer2.MouseWheel += splitContainer2_MouseWheel;
-            splitContainer2.MouseHover += splitContainer2_MouseEnter;
 
-            _ServicePanel.MouseHover += splitContainer2_MouseEnter;
-            foreach (Control control in _ServicePanel.Controls)
-            {
-                control.MouseHover += splitContainer2_MouseEnter;
-                foreach (var control2 in control.Controls.OfType<LabelledBase>())
-                    control2._Label.MouseHover += splitContainer2_MouseEnter;
-            }
-
-            HfcPanel.MouseHover += splitContainer2_MouseEnter;
-            foreach (Control control in HfcPanel.Controls)
-                control.MouseHover += splitContainer2_MouseEnter;
+            //_ServicePanel.MouseHover += splitContainer2_MouseEnter;
+            //foreach (Control control in _ServicePanel.Controls)
+            //{
+            //    control.MouseHover += splitContainer2_MouseEnter;
+            //    foreach (var control2 in control.Controls.OfType<LabelledBase>())
+            //        control2._Label.MouseHover += splitContainer2_MouseEnter;
+            //}
             ////////////////////////////////////////////////////////////////////////////////////////////////////     
-
-            //ServicePanel.Symptoms = new BindingList<string>();
-            //ServicePanel.Equipment = new BindingList<string>();
             _ServicePanel.PreInit(this);
         }
+
+        public bool PreFilterMessage(ref Message m)
+        {
+            if (m.Msg == 0x20a)
+            {
+                // WM_MOUSEWHEEL, find the control at screen position m.LParam
+                var pos = new Point(m.LParam.ToInt32() & 0xffff, m.LParam.ToInt32() >> 16);
+                var hWnd = WindowFromPoint(pos);
+                if (hWnd != IntPtr.Zero && hWnd != m.HWnd && FromHandle(hWnd) != null)
+                {
+                    SendMessage(hWnd, m.Msg, m.WParam, m.LParam);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // P/Invoke declarations
+        [DllImport("user32.dll")]
+        private static extern IntPtr WindowFromPoint(Point pt);
+        [DllImport("user32.dll")]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
+
         //protected override CreateParams CreateParams
         //{
         //    get

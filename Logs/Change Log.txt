@@ -39,6 +39,9 @@
 (Minor Features)
 - Added Help buttons to screens which link to their "Did You Know?" slide.
 
+0.7.4.0
+(Minor Features)
+| SplitPanel now receives mousewheel messages properly, without needing to attach lots of events.
 
 0.7.3.13
 (Minor Features)
