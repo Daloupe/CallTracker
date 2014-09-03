@@ -31,6 +31,18 @@ namespace CallTracker.Model
             AffectedServiceType = ServiceTypes.NONE;
         }
 
+        public FaultModel(string symptom, string action, string outcome, ServiceTypes affectedService)
+        {
+            PR = String.Empty;
+            NPR = String.Empty;
+            ITCase = String.Empty;
+            Symptom = symptom;
+            Action = action;
+            Outcome = outcome;
+            AffectedServices = affectedService;
+
+        }
+
         //[ProtoBeforeDeserialization]
         //private void FieldInitializer()
         //{

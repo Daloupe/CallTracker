@@ -177,7 +177,7 @@ namespace CallTracker.View
         //public AddListItem myDelegate;
         public void ChangeService(ServiceTypes service)
         {
-            EditContacts._isChangingService = true;
+            EditContacts.IsChangingService = true;
             if (currentFlowPanel.ServiceType.IsNot(service))
             {
                 currentFlowPanel.HidePanel();
@@ -203,7 +203,7 @@ namespace CallTracker.View
             if (EditContacts.MainForm.SelectedContact != null)
                 EditContacts.MainForm.SelectedContact.Fault.AffectedServiceType = currentFlowPanel.ServiceType;
 
-            EditContacts._isChangingService = false;
+            EditContacts.IsChangingService = false;
         }
 
         public void UpdateSymptoms()

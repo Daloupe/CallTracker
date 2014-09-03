@@ -133,7 +133,7 @@ namespace CallTracker.View
             this.exampleHeading.Font = new System.Drawing.Font("Verdana", 7F, System.Drawing.FontStyle.Bold);
             this.exampleHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
             this.exampleHeading.Location = new System.Drawing.Point(0, 0);
-            this.exampleHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.exampleHeading.Margin = new System.Windows.Forms.Padding(0);
             this.exampleHeading.Name = "exampleHeading";
             this.exampleHeading.Size = new System.Drawing.Size(408, 15);
             this.exampleHeading.TabIndex = 3;
@@ -323,7 +323,7 @@ namespace CallTracker.View
             this.toolStripTextBox1.ReadOnly = true;
             this.toolStripTextBox1.ShortcutsEnabled = false;
             this.toolStripTextBox1.Size = new System.Drawing.Size(100, 16);
-            this.toolStripTextBox1.Text = "Did You Know";
+            this.toolStripTextBox1.Text = "Tips";
             this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
             // 
             // DidYouKnow

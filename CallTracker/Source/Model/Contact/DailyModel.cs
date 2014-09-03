@@ -23,6 +23,8 @@ namespace CallTracker.Model
         internal FilterableBindingList<CustomerContact> Contacts { get; set; }
         [ProtoMember(4)]
         public EventsModel<DailyStats> Events { get; set; }
+        [ProtoMember(5)]
+        internal bool IsArchived;
 
         public DailyModel()
         {
@@ -47,7 +49,15 @@ namespace CallTracker.Model
 
         internal void ArchiveContacts()
         {
-            
+            var archivedContacts = new FilterableBindingList<CustomerContact>();
+            foreach (var contact in Contacts)
+            {
+                archivedContacts.Add(new CustomerContact(contact.GetEvents(), contact.Note, contact.Fault.Symptom,
+                    contact.Fault.Action, contact.Fault.Outcome, contact.Fault.AffectedServices));
+            }
+            Contacts = archivedContacts;
+            IsDirty = true;
+            IsArchived = true;
         }
 
         internal DailyStats ComputeStatistics()

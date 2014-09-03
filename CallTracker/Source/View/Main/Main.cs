@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
@@ -15,6 +16,9 @@ using TestStack.White.Factory;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
 using System.Windows.Automation;
+using WatiN.Core;
+using Control = System.Windows.Forms.Control;
+using Form = System.Windows.Forms.Form;
 
 namespace CallTracker.View
 {
@@ -967,8 +971,24 @@ namespace CallTracker.View
                 File.Delete("Data\\Log.txt");
             }
 
+            var daysToDelete = new List<DailyModel>();
+            foreach (var day in DailyDataDataStore.DailyData)
+            {
+                if ((DateTime.Today - day.Date.LongDate).Days > 31)
+                {
+                    daysToDelete.Add(day);
+                    continue;
+                }
+                if((DateTime.Today - day.Date.LongDate).Days > 7 && !day.IsArchived)
+                    day.ArchiveContacts();
+            }
+            foreach (var day in daysToDelete)
+            {
+                DateFilterItems.Remove(day.Date);
+                DailyDataDataStore.DailyData.Remove(day);
+            }
+
             return true;
-            // Archive/Delete Contacts older than 7 days.
         }
 
 
@@ -1042,6 +1062,8 @@ namespace CallTracker.View
 
         private void didYouKnowToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!DidYouKnow.IsDisposed) return;
+            DidYouKnow = new DidYouKnow();
             DidYouKnow.Show();
         }
     }

@@ -48,7 +48,29 @@ namespace CallTracker.Model
             Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();
 
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
-            //((INotifyPropertyChanged)NameSplit).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
+        }
+
+        public CustomerContact(EventsModel<CallStats> events, string note, string symptom, string action, string outcome, ServiceTypes affectedService)
+        {
+            NameSplit = new NameModel();
+            Name = String.Empty;
+            Username = String.Empty;
+            DN = String.Empty;
+            Mobile = String.Empty;
+            CMBS = String.Empty;
+            ICON = String.Empty;
+            Note = String.Empty;
+            Fault = new FaultModel(symptom, action, outcome, affectedService);
+            Note = note;
+            Events = events;
+            Address = new ContactAddress();
+            Service = new ServiceModel();
+            Contacts = new ContactStatistics();
+            Booking = new BookingModel();
+
+            ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
         }
@@ -195,6 +217,11 @@ namespace CallTracker.Model
         internal CallStats ComputeStatistics()
         {
             return Events.ComputeStatistics();
+        }
+
+        internal EventsModel<CallStats> GetEvents()
+        {
+            return Events;
         }
 
 

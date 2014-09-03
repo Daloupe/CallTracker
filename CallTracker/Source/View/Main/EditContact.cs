@@ -18,9 +18,8 @@ namespace CallTracker.View
     {
         internal Main MainForm;
         private bool _updateNote = true;
-        private bool _isDrawingSuspended;
         private bool _isChangingDays;
-
+        internal bool IsChangingService;
 
         public EditContact(Main mainform)
         {
@@ -169,10 +168,8 @@ namespace CallTracker.View
         {
             EventLogger.SaveLog();
             if (!_isChangingDays)
-            {
                 WindowHelper.SuspendDrawing(this);
-                _isDrawingSuspended = true;
-            }
+
             if (customerContactsBindingSource.Count == 0 || customerContactsBindingSource.Position == -1)
             {
                 DisableInterface();
@@ -198,13 +195,12 @@ namespace CallTracker.View
 
                 UpdateCurrentPanel();
                 UpdateActions();
-                _ImportantToolStripMenuItem.Checked = MainForm.SelectedContact.Important;
+                if (MainForm.SelectedContact != null)
+                    _ImportantToolStripMenuItem.Checked = MainForm.SelectedContact.Important;
             }
+
             if (!_isChangingDays)
-            {
                 WindowHelper.ResumeDrawing(this);
-                _isDrawingSuspended = false;
-            }
         }
 
         private bool _isDisabled;
@@ -243,7 +239,7 @@ namespace CallTracker.View
             //    UpdateActions();
 
             // Update Note
-            if (_Note.DataBindings.Count > 0 && _updateNote && !_isChangingService)
+            if (_Note.DataBindings.Count > 0 && _updateNote && !IsChangingService)
                 _Note.DataBindings[0].ReadValue();
         }
 
@@ -303,7 +299,7 @@ namespace CallTracker.View
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Service //////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        internal bool _isChangingService;
+
         private ServiceTypes _currentService;
         private ServiceTypes CurrentService
         {
@@ -446,7 +442,7 @@ namespace CallTracker.View
             splitContainer1.SplitterDistance = dist;
         }
 
-        private static List<int> SplitterRows = new List<int> { 0, 25, 55, 84, 114, 144, 164};// 153, 122, 99, 67, 35, 0};
+        private static readonly List<int> SplitterRows = new List<int> { 0, 25, 55, 84, 114, 144, 164};// 153, 122, 99, 67, 35, 0};
         private const int SPLITTER_2_MIN = 0;
         private const int SPLITTER_2_MAX = 164;
         private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
@@ -492,10 +488,10 @@ namespace CallTracker.View
             }
         }
 
-        void splitContainer2_MouseEnter(object sender, EventArgs e)
-        {
-            splitContainer2.Focus();
-        }
+        //void splitContainer2_MouseEnter(object sender, EventArgs e)
+        //{
+        //    splitContainer2.Focus();
+        //}
 
 
 

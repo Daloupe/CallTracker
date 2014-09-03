@@ -117,7 +117,7 @@ namespace CallTracker.View
                 exampleRichTextBox.Rtf = _rtfWriter.Write(_rtf);
                 _rtf.Contents.Clear();
                 examplePanel.Show();
-                tipsPanel.Height = 113;
+                tipsPanel.Height = 114;
                 _currentExample = index;
             }
             WindowHelper.ResumeDrawing(panel1);     
@@ -250,6 +250,8 @@ namespace CallTracker.View
                     new TipModel("- <Call History> keeps track of previous calls, filtered by date."),
                     new TipModel("- Calls can be sorted by outcome, to help find particular call types."),
                     new TipModel("- Flagged Calls will be checked, so they can be found easily."),
+                    new TipModel("- Calls are archived after 7 days - only call symptom, outcome, action, affected service type, note, and daily stats are kept."),
+                    new TipModel("- Calls are deleted after 31 days."),
                     new TipModel("- Can be access from <Wingman> > <Call History>.")
                 }),
             new TipSlide("GridLinks - Win+NumPad",
