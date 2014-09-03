@@ -1,7 +1,7 @@
 Smart Copy
 - Uses this Hotkey.
 - Will analyze your highlight text and copy it in to the appropriate field.
-- Will recognize data in multiple formats eg CMBS 31-123456-7, 31123456 7, 3112345607, 1123456007.
+- Will recognize data in multiple formats eg CMBS 31-123456-7, 31123456 7, 3112345607, 1123456076.
 ? A Tooltip will pop up to let you know what was copied.
 - Information like DN or CMBS tell us which state the customer is in, so data like the NBN Sip server and State are prefilled.
 

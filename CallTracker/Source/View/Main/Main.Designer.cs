@@ -38,11 +38,9 @@
             this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.highToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.clearMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._StatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this._IPCCState = new System.Windows.Forms.ToolStripStatusLabel();
-            this.MenuPanel = new System.Windows.Forms.Panel();
-            this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
-            this.clearMessagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._CallStateTime = new ContextualToolStripMenuItem();
             this.notReadyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,6 +54,7 @@
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.monitorIPCCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pullIPCCCallDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuPanel = new System.Windows.Forms.Panel();
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,6 +64,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.callHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showStatusBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -135,9 +135,9 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.sMSHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afterHoursPaymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.viewStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -232,6 +232,16 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(173, 6);
             // 
+            // clearMessagesToolStripMenuItem
+            // 
+            this.clearMessagesToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.WarningLevel;
+            this.clearMessagesToolStripMenuItem.CheckOnClick = true;
+            this.clearMessagesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.clearMessagesToolStripMenuItem.Name = "clearMessagesToolStripMenuItem";
+            this.clearMessagesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.clearMessagesToolStripMenuItem.Text = "Clear Last Warning";
+            this.clearMessagesToolStripMenuItem.CheckedChanged += new System.EventHandler(this.clearMessagesToolStripMenuItem_Click);
+            // 
             // _StatusLabel
             // 
             this._StatusLabel.AutoSize = false;
@@ -256,32 +266,6 @@
             this._IPCCState.Name = "_IPCCState";
             this._IPCCState.Size = new System.Drawing.Size(134, 15);
             this._IPCCState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // MenuPanel
-            // 
-            this.MenuPanel.Controls.Add(this._MainMenu);
-            this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.MenuPanel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.MenuPanel.Location = new System.Drawing.Point(0, 0);
-            this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.MenuPanel.Name = "MenuPanel";
-            this.MenuPanel.Size = new System.Drawing.Size(584, 16);
-            this.MenuPanel.TabIndex = 27;
-            // 
-            // _IPCCTimer
-            // 
-            this._IPCCTimer.Interval = 1000;
-            this._IPCCTimer.Tick += new System.EventHandler(this._IPCCTimer_Tick);
-            // 
-            // clearMessagesToolStripMenuItem
-            // 
-            this.clearMessagesToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.WarningLevel;
-            this.clearMessagesToolStripMenuItem.CheckOnClick = true;
-            this.clearMessagesToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.clearMessagesToolStripMenuItem.Name = "clearMessagesToolStripMenuItem";
-            this.clearMessagesToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
-            this.clearMessagesToolStripMenuItem.Text = "Clear Last Warning";
-            this.clearMessagesToolStripMenuItem.CheckedChanged += new System.EventHandler(this.clearMessagesToolStripMenuItem_Click);
             // 
             // _CallStateTime
             // 
@@ -409,6 +393,17 @@
             this.pullIPCCCallDataToolStripMenuItem.Text = "Pull IPCC Call Data";
             this.pullIPCCCallDataToolStripMenuItem.CheckedChanged += new System.EventHandler(this.pullIPCCCallDataToolStripMenuItem_Click);
             // 
+            // MenuPanel
+            // 
+            this.MenuPanel.Controls.Add(this._MainMenu);
+            this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MenuPanel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.MenuPanel.Location = new System.Drawing.Point(0, 0);
+            this.MenuPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.MenuPanel.Name = "MenuPanel";
+            this.MenuPanel.Size = new System.Drawing.Size(584, 16);
+            this.MenuPanel.TabIndex = 27;
+            // 
             // _MainMenu
             // 
             this._MainMenu.AutoSize = false;
@@ -455,26 +450,26 @@
             // viewKeyCommandsMenuItem
             // 
             this.viewKeyCommandsMenuItem.Name = "viewKeyCommandsMenuItem";
-            this.viewKeyCommandsMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.viewKeyCommandsMenuItem.Text = "Key Commands";
+            this.viewKeyCommandsMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.viewKeyCommandsMenuItem.Text = "Show Key Commands";
             this.viewKeyCommandsMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
             // didYouKnowToolStripMenuItem
             // 
             this.didYouKnowToolStripMenuItem.Name = "didYouKnowToolStripMenuItem";
-            this.didYouKnowToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.didYouKnowToolStripMenuItem.Text = "Did You Know?";
+            this.didYouKnowToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.didYouKnowToolStripMenuItem.Text = "Show Tips";
             this.didYouKnowToolStripMenuItem.Click += new System.EventHandler(this.didYouKnowToolStripMenuItem_Click);
             // 
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(155, 6);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(187, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -497,14 +492,22 @@
             // callHistoryToolStripMenuItem
             // 
             this.callHistoryToolStripMenuItem.Name = "callHistoryToolStripMenuItem";
-            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.callHistoryToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.callHistoryToolStripMenuItem.Text = "Call History";
             this.callHistoryToolStripMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            // 
+            // viewStatsToolStripMenuItem
+            // 
+            this.viewStatsToolStripMenuItem.CheckOnClick = true;
+            this.viewStatsToolStripMenuItem.Name = "viewStatsToolStripMenuItem";
+            this.viewStatsToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.viewStatsToolStripMenuItem.Text = "View Stats";
+            this.viewStatsToolStripMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(130, 6);
             // 
             // viewToolStripMenuItem
             // 
@@ -517,7 +520,7 @@
             this.gridLinksViewMenuItem,
             this.advancedToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.viewToolStripMenuItem.Text = "Settings";
             // 
             // showStatusBarToolStripMenuItem
@@ -644,7 +647,7 @@
             // 
             this.quitToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -1051,6 +1054,11 @@
             this.afterHoursPaymentsToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.afterHoursPaymentsToolStripMenuItem.Text = "After Hours Payments";
             // 
+            // _IPCCTimer
+            // 
+            this._IPCCTimer.Interval = 1000;
+            this._IPCCTimer.Tick += new System.EventHandler(this._IPCCTimer_Tick);
+            // 
             // bindableContextMenu1
             // 
             this.bindableContextMenu1.BoundData = null;
@@ -1060,14 +1068,6 @@
             // _DailyDataBindingSource
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
-            // 
-            // viewStatsToolStripMenuItem
-            // 
-            this.viewStatsToolStripMenuItem.CheckOnClick = true;
-            this.viewStatsToolStripMenuItem.Name = "viewStatsToolStripMenuItem";
-            this.viewStatsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.viewStatsToolStripMenuItem.Text = "View Stats";
-            this.viewStatsToolStripMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
             // 
             // Main
             // 

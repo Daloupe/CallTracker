@@ -67,6 +67,7 @@ namespace CallTracker.View
         internal Ratecodes Ratecodes;
         internal AboutScreen AboutScreen;
         internal StatsView StatsView;
+        internal DidYouKnow DidYouKnow;
 
         internal static ICONNoteGenerator NoteGen;
         public HotkeyController HotKeys;
@@ -83,6 +84,10 @@ namespace CallTracker.View
             
             _splash = splash;
             _splash.Init(this);
+
+            DidYouKnow = new DidYouKnow();
+            if (Properties.Settings.Default.ShowTipsOnStartup)
+                DidYouKnow.Show();  
 
             _splash.UpdateProgress("Main setup",0);
             _splash.StepProgress("Setting up Logs");
@@ -233,6 +238,7 @@ namespace CallTracker.View
 
             FadingToolTip = new FadingTooltip();
             AboutScreen = new AboutScreen();
+        
         }
 
         void _DateSelector_PositionChanged(object sender, EventArgs e)
@@ -1037,7 +1043,7 @@ namespace CallTracker.View
 
         private void didYouKnowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            DidYouKnow.Show();
         }
     }
 }

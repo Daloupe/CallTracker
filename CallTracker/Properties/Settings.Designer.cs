@@ -190,5 +190,17 @@ namespace CallTracker.Properties {
                 this["AutoSearchOpenNew"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowTipsOnStartup {
+            get {
+                return ((bool)(this["ShowTipsOnStartup"]));
+            }
+            set {
+                this["ShowTipsOnStartup"] = value;
+            }
+        }
     }
 }

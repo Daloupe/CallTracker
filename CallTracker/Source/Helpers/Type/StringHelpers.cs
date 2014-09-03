@@ -27,6 +27,16 @@ namespace CallTracker.Helpers
 
     public static class StringExtensions
     {
+        public static string ToBold(this string s)
+        {
+            return String.Format("\b {0}\b0 ", s);
+        }
+
+        public static string ToRtf(this string s)
+        {
+            return @"{\rtf1\ansi" + s + "}";
+        }
+
         /// <summary>
         /// Returns True if string is only numbers and contains '.', '-', ' '. Returns false if no numbers.
         /// </summary>

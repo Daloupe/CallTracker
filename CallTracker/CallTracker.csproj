@@ -73,6 +73,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\RegexLib.dll</HintPath>
     </Reference>
+    <Reference Include="Rtf">
+      <HintPath>..\References\Rtf.dll</HintPath>
+    </Reference>
     <Reference Include="Shortcut, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\Shortcut.dll</HintPath>
@@ -113,6 +116,7 @@
     <Compile Include="Source\Helpers\PRGenerators.cs" />
     <Compile Include="Source\Helpers\Type\DataGridExtentions.cs" />
     <Compile Include="Source\Helpers\Type\FilterableBindingList.cs" />
+    <Compile Include="Source\Helpers\Type\RtfExtensions.cs" />
     <Compile Include="Source\Model\Contact\DailyModel.cs" />
     <Compile Include="Source\Model\Contact\DateFilterItem.cs" />
     <Compile Include="Source\Model\Contact\EventsModel.cs" />
