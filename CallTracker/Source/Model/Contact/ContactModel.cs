@@ -141,7 +141,6 @@ namespace CallTracker.Model
         [ProtoMember(40)]
         public bool OriginalCall { get; set; }
         [ProtoMember(41, OverwriteList = true)]
-        [DoNotNotify]
         private EventsModel<CallStats> Events { get; set; }
         [ProtoMember(42)]
         public ContactStatistics Contacts { get; set; }

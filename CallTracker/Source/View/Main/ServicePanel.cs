@@ -66,9 +66,10 @@ namespace CallTracker.View
 
         public void Init()
         {
-            //EditContacts.customerContactsBindingSource.PositionChanged += customerContactsBindingSource_PositionChanged;
-            bindingSource1 = EditContacts.customerContactsBindingSource;
-
+            BindingContext = EditContacts.BindingContext;
+            EditContacts.customerContactsBindingSource.PositionChanged += customerContactsBindingSource_PositionChanged;
+            bindingSource1.DataSource = EditContacts.customerContactsBindingSource;
+            
             //bindingSource1 = EditContacts.customerContactsBindingSource;
 
             //CauPings = Main.ServicesStore.servicesDataSet.EquipmentEquipmentStatusesMatch
@@ -126,10 +127,10 @@ namespace CallTracker.View
             //UpdateStyles();
         }
 
-        //void customerContactsBindingSource_PositionChanged(object sender, EventArgs e)
-        //{
-        //    bindingSource1.Position = EditContacts.customerContactsBindingSource.Position;
-        //}
+        void customerContactsBindingSource_PositionChanged(object sender, EventArgs e)
+        {
+            bindingSource1.Position = EditContacts.customerContactsBindingSource.Position;
+        }
 
         void Symptoms_RowChanged(object sender, DataRowChangeEventArgs e)
         {

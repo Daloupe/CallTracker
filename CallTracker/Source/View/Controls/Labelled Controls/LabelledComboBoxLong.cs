@@ -125,6 +125,7 @@ namespace CallTracker.View
             {
                 _ComboBox.Leave -= _ComboBox_Leave<List<T>>;
                 _ComboBox.SetDataBinding(dataSource, bindingSource, PropertyName, String.Empty);
+                _ComboBox.SelectedIndex = InitialIndex;
                 _ComboBox.Leave += _ComboBox_Leave<List<T>>;
             }
             else

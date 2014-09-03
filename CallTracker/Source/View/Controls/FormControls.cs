@@ -416,7 +416,7 @@ namespace CallTracker.View
         /// </summary>
         public bool NullableMode = false;
 
-        private BindingSource _bindingSource;
+        internal BindingSource _bindingSource;
         private object _selectedItem;
         private bool _active;
         #endregion
@@ -441,16 +441,17 @@ namespace CallTracker.View
             ValueMember = String.Empty;
             Text = String.Empty;
 
-            if (_bindingSource != null)
-                _bindingSource.CurrentChanged -= mBindingSource_CurrentChanged;
-            _bindingSource = bindingSource;
-            _bindingSource.CurrentChanged += mBindingSource_CurrentChanged;
+            NullableMode = true;
 
             // init private fields
             _dataSource = dataSource;
             _propertyName = propertyName;
             _displayMember = displayMember;
-            NullableMode = true;
+
+            if (_bindingSource != null)
+                _bindingSource.CurrentChanged -= mBindingSource_CurrentChanged;
+            _bindingSource = bindingSource;
+            _bindingSource.CurrentChanged += mBindingSource_CurrentChanged;
 
             _active = true;
             // get selected item
@@ -475,13 +476,14 @@ namespace CallTracker.View
             GetCurrentObject();
         }
 
-        private void GetCurrentObject()
+        public void GetCurrentObject()
         {
             if (_active == false)
                 return;
             if (_bindingSource.Count > 0)
             {
                 _selectedItem = FindProperty.FollowPropertyPath(_bindingSource.Current, _propertyName);
+                
                 // if not null, bind to it
                 if (!String.IsNullOrEmpty(_selectedItem.ToString()))
                 {

@@ -44,7 +44,7 @@ namespace CallTracker.View
         {
             InitializeComponent();
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
-            FadeOutDelay = 1500;
+            FadeOutDelay = 200;
             FadeTime = 350;
             MoveInterval = 2;
         }

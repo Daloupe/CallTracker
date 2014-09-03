@@ -98,6 +98,8 @@ namespace CallTracker.View
             _DateSelector.ComboBox.DisplayMember = "ShortDate";
             _DateSelector.ComboBox.ValueMember = "LongDate";
 
+
+
             if (customerContactsBindingSource.Count != 0) return;
 
             flowLayoutPanel1.Enabled = false;
@@ -235,11 +237,13 @@ namespace CallTracker.View
             if (e.PropertyName == "AffectedServices")
                 UpdateCurrentPanel();
 
-            //if (e.PropertyName == "Outcome")
-            //    UpdateActions();
+            if (e.PropertyName == "Sip")
+                _ServicePanel._Sip._ComboBox.GetCurrentObject();
 
+            Console.WriteLine("nested Change");
+            Console.WriteLine(e.PropertyName);
             // Update Note
-            if (_Note.DataBindings.Count > 0 && _updateNote && !IsChangingService)
+            if (_Note.DataBindings.Count > 0 && _Note.Tag != "Note" && _updateNote && !IsChangingService)
                 _Note.DataBindings[0].ReadValue();
         }
 
@@ -306,10 +310,8 @@ namespace CallTracker.View
             get { return _currentService; }
             set
             {
-                //_isChangingService = true;
                 _currentService = value;
                 _ServicePanel.ChangeService(_currentService);
-                //_isChangingService = false;
                 if (_Note.DataBindings.Count > 0)
                     _Note.DataBindings[0].ReadValue();
             }
@@ -381,8 +383,8 @@ namespace CallTracker.View
             cm.Checked = true;
             _Note.DataBindings.Clear();
             var tag = cm.Tag.ToString();
-           
-            
+
+            _Note.Tag = tag;
             switch (tag)
             {
                 case "ICONNote":
@@ -394,8 +396,10 @@ namespace CallTracker.View
                     _Note.DataBindings[0].ReadValue();
                     break;
                 default:
-                    _Note.DataBindings.Add(new Binding("Rtf", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
+                    _Note.Clear();
                     _Note.ForeColor = Color.Black;
+                    _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
+                    _Note.DataBindings[0].ReadValue();
                     break;
             }
                 

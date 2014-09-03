@@ -14,13 +14,14 @@
 
 
 
-0.9.2.5
+0.9.4.5
 (Major Features)
 / IPCC Data Pull working.
 (Minor Feature)
 - White Timeout exceptions caught and EventLogged.
 - Added SMS template generators.
 - Add AutoComplete to BindSmartPasteForm data field.
+- Added Help buttons to screens which link to their "Did You Know?" slide.
 (Bugs/Changes)
 - Fixed Resources file not building.
 - PR Template not cleaning itself of outage replacements.
@@ -35,11 +36,7 @@
 - Confirmed Bras, NTDSN, AddressId, GSID, and ESN Regexes.
 - IPCC menu not drawing back color.
 
-0.7.6.2
-(Minor Features)
-- Added Help buttons to screens which link to their "Did You Know?" slide.
-
-0.7.4.5
+0.7.4.6
 (Minor Features)
 | SplitPanel now receives mousewheel messages properly, without needing to attach lots of events.
 (Bugs/Changes)
@@ -48,6 +45,7 @@
 | Calls are deleted completly after 31 days.
 | Updated Tips.
 | Fading Tooltip doesnt activate or take mouse clicks.
+| SIP wasn't updating with DN grab. Manually updating object with nested change events.
 
 0.7.3.13
 (Minor Features)
