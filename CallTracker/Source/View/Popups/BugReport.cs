@@ -23,8 +23,8 @@ namespace CallTracker.View
         {
             EventLogger.SaveLog();
             var objApp = new Outlook.Application();
-            Outlook.MailItem mail = null;
-            mail = (Outlook.MailItem)objApp.CreateItem(Outlook.OlItemType.olMailItem);
+            var mail = (Outlook.MailItem)objApp.CreateItem(Outlook.OlItemType.olMailItem);
+
             mail.To = "jesse.poulton@optus.com.au";
             mail.Subject = "Wingman Bug Report";
             mail.HTMLBody = _Info.Text;
