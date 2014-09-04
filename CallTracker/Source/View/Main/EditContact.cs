@@ -500,7 +500,7 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void _NewCallMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            ToolStripMenuItem ownerItem = e.ClickedItem.OwnerItem as ToolStripMenuItem;
+            var ownerItem = e.ClickedItem.OwnerItem as ToolStripMenuItem;
             if (ownerItem == null) return;
             foreach (ToolStripMenuItem item in ownerItem.DropDownItems)
                 item.Checked = false;
@@ -811,13 +811,6 @@ namespace CallTracker.View
             var checkBox = (CheckBox)sender;
             checkBox.ImageIndex = checkBox.Checked ? 1 : 0;
         }
-
-        private void _Cmbs_Leave(object sender, EventArgs e)
-        {
-            Console.WriteLine("left");
-        }
-
-
 
 
     }

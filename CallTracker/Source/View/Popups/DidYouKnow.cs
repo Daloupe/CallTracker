@@ -74,7 +74,7 @@ namespace CallTracker.View
             var linkPos = 0;
             for(var index = 0; index < slide.Tips.Count; ++index)
             {
-                linkPos += Convert.ToInt32(slide.Tips[index].TipLength)+ 1;
+                linkPos += Convert.ToInt32(slide.Tips[index].TipLength);
                 if (String.IsNullOrEmpty(slide.Tips[index].Example)) continue;         
                 richTextBox1.InsertLink("Example", index.ToString(), linkPos);
                 linkPos += 10 * index;
@@ -203,30 +203,30 @@ namespace CallTracker.View
             new TipSlide("Smart Copy - Win+C",
                 new List<TipModel>
                 {
-                    new TipModel("- <Smart Copy> copies your selected text in to the appropriate field."),
-                    new TipModel("- It will recognize data in multiple formats. ", "- <CMBS> will be detected as either 31-123456-7, 31123456 7, 3112345607, or 1123456076."),
+                    new TipModel("- <Smart Copy> copies your selected text in to the appropriate field. "),
+                    new TipModel("- It will recognize data in multiple formats.  ", "- <CMBS> will be detected as either 31-123456-7, 31123456 7, 3112345607, or 1123456076."),
                     new TipModel("- When copying information like <DN> and <CMBS>, <Smart Copy> will also infer the NBN <SIP> server and <State>.")
                 }),
             new TipSlide("Smart Paste - Win+V",
                 new List<TipModel>
                 {
-                    new TipModel("- <Smart Paste> pastes the most appropriate data depending on where you want to paste."),
-                    new TipModel("- It picks the most relevant data based on what is available, and which product you've selected. ", "- The <ICON> Service No. field will paste <Username> only if it doesn't have <DN>. Vice Versa if the product is <ONC> or <NVF>"),
-                    new TipModel("- It will paste data in the appropriate format. ", "- <CMBS> will paste as 31123456 7 into <IFMS>, and 3112345607 into <ICON>."),
+                    new TipModel("- <Smart Paste> pastes the most appropriate data depending on where you want to paste. "),
+                    new TipModel("- It picks the most relevant data based on what is available, and which product you've selected.  ", "- The <ICON> Service No. field will paste <Username> only if it doesn't have <DN>. Vice Versa if the product is <ONC> or <NVF>"),
+                    new TipModel("- It will paste data in the appropriate format.  ", "- <CMBS> will paste as 31123456 7 into <IFMS>, and 3112345607 into <ICON>."),
                     new TipModel("- Doesn't yet work in Chrome, or IE pages that use a Chrome Frame like Nexus and the PR Templates, but it will work in <MAD>!")
                 }),
             new TipSlide("Auto Fill - Win+Ctrl+V",
                 new List<TipModel>
                 {
                     new TipModel("- <Auto Fill> performs all known Smart Pastes on a page."),
-                    new TipModel("- Useful from systems with lots of required fields eg IFMS.")
+                    new TipModel("- Useful for systems with lots of required fields eg IFMS.")
                 }),
             new TipSlide("Call History",
                 new List<TipModel>
                 {
                     new TipModel("- <Call History> keeps track of previous calls, filtered by date."),
-                    new TipModel("- Calls can be sorted by outcome, useful for tracking down Transfers"),
-                    new TipModel("- Flagged Calls with be highlight in red."),
+                    new TipModel("- Calls can be sorted by outcome, useful for tracking down Transfers."),
+                    new TipModel("- Flagged Calls will be highlight in red."),
                     new TipModel("- Can be access from Wingman > Call History")
                 }),
             new TipSlide("GridLinks - Win+NumPad",

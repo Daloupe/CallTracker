@@ -30,8 +30,8 @@ namespace RegexAssembly
                 new MyRegex("CMBS",     @"^3?([1-3])" +                      // State
                                         @"-?" +                             // Divider
                                         @"(\d{6})" +                        // Account
-                                        @"(?:-|0{0,2}|\s)?"+                     // Divider
-                                        @"(\d)$"),                          // Flip
+                                        @"(?:-|0|\s)?"+                     // Divider
+                                        @"\d?(\d)$"),                          // Flip
                 new MyRegex("ICON",     @"^((?:1|5|8|9)\d{7})(\d{6})$"),
                 new MyRegex("Name",     @"(?:(Mr|Mrs|miss|dr)\.?)?\s?" +             // Title (Followed by a ".")
                                         @"([a-z]+)" +                       // First Name

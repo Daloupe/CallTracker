@@ -48,10 +48,10 @@ namespace CallTracker.View
             this._Data = new CallTracker.View.BorderedTextBox();
             this._Cancel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this._Help = new System.Windows.Forms.Button();
+            this._Save = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.bindSmartPasteToolStripMenuItem = new System.Windows.Forms.ToolStripTextBox();
-            this._Help = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pasteBindBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -229,7 +229,7 @@ namespace CallTracker.View
             this.panel1.BackColor = System.Drawing.Color.LightSlateGray;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this._Help);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this._Save);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Controls.Add(this._Cancel);
             this.panel1.Controls.Add(this.menuStrip1);
@@ -239,19 +239,33 @@ namespace CallTracker.View
             this.panel1.Size = new System.Drawing.Size(238, 262);
             this.panel1.TabIndex = 2;
             // 
-            // button1
+            // _Help
             // 
-            this.button1.BackColor = System.Drawing.Color.LightGray;
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(77, 236);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 21);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this._Ok_Click);
+            this._Help.BackColor = System.Drawing.Color.LightGray;
+            this._Help.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._Help.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this._Help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Help.Location = new System.Drawing.Point(3, 236);
+            this._Help.Name = "_Help";
+            this._Help.Size = new System.Drawing.Size(68, 21);
+            this._Help.TabIndex = 4;
+            this._Help.Text = "Help";
+            this._Help.UseVisualStyleBackColor = false;
+            this._Help.Click += new System.EventHandler(this._Help_Click);
+            // 
+            // _Save
+            // 
+            this._Save.BackColor = System.Drawing.Color.LightGray;
+            this._Save.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this._Save.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this._Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Save.Location = new System.Drawing.Point(77, 236);
+            this._Save.Name = "_Save";
+            this._Save.Size = new System.Drawing.Size(75, 21);
+            this._Save.TabIndex = 3;
+            this._Save.Text = "Save";
+            this._Save.UseVisualStyleBackColor = false;
+            this._Save.Click += new System.EventHandler(this._Ok_Click);
             // 
             // menuStrip1
             // 
@@ -278,26 +292,12 @@ namespace CallTracker.View
             this.bindSmartPasteToolStripMenuItem.Size = new System.Drawing.Size(113, 18);
             this.bindSmartPasteToolStripMenuItem.Text = "Bind Smart Paste";
             // 
-            // _Help
-            // 
-            this._Help.BackColor = System.Drawing.Color.LightGray;
-            this._Help.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this._Help.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
-            this._Help.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Help.Location = new System.Drawing.Point(3, 236);
-            this._Help.Name = "_Help";
-            this._Help.Size = new System.Drawing.Size(68, 21);
-            this._Help.TabIndex = 4;
-            this._Help.Text = "Help";
-            this._Help.UseVisualStyleBackColor = false;
-            this._Help.Click += new System.EventHandler(this._Help_Click);
-            // 
             // BindSmartPasteForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.CancelButton = this._Cancel;
+            this.CancelButton = this._Save;
             this.ClientSize = new System.Drawing.Size(238, 262);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Verdana", 7F);
@@ -340,7 +340,7 @@ namespace CallTracker.View
         private System.Windows.Forms.Label label6;
         private BorderedTextBox textBox1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button _Save;
         private ToolStripTextBox bindSmartPasteToolStripMenuItem;
         private BorderedTextBox _Url;
         private BorderedTextBox _Data;

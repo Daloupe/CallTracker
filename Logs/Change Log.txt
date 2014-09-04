@@ -40,11 +40,8 @@
 - Added Help buttons to screens which link to their "Did You Know?" slide.
 - Added Text formatting to templates.
 - Added GSID data.
-(Bugs/Changes)
-- BindSmartPaste doenst delete on esc, just ok.
-- 1123456076 from doesn't work.
 
-0.7.3.2
+0.7.3.4
 (Minor Features)
 | Added Example windows to tips, hyperlinked example text.
 | Tip position saves with settings.
@@ -52,6 +49,8 @@
 | Tips 
 	| Removed SubHeading.
 	| Example section fold away.
+| Pressing ESC on BindSmartPasteForm Saves, rather than deleting.
+| 1123456076 from doesn't work.
 
 0.7.1.0
 (Major Features)
