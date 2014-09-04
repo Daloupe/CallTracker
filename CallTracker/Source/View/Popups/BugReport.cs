@@ -30,6 +30,9 @@ namespace CallTracker.View
             mail.HTMLBody = _Info.Text;
             mail.Attachments.Add(@".\Data\Log.txt", Outlook.OlAttachmentType.olEmbeddeditem, 1, "Log.txt");
             mail.Display();
+            
+            objApp = null;
+            mail = null;
 
             Hide();
             _Info.Text = String.Empty;
