@@ -373,17 +373,17 @@ namespace CallTracker.View
 
         public static T ShowPopupForm<T>() where T : Form, new()
         {
-            var findForm = Application.OpenForms.OfType<T>().ToList();
-            if (!findForm.Any())
+            var findForm = Application.OpenForms.OfType<T>().ToList().FirstOrDefault();
+            if (findForm == null)
             {
-                var form = new T();
-                form.Show();
+                findForm = new T();
+                findForm.Show();
             }
             else
             {
-                findForm.First().Activate();
+                findForm.Activate();
             }
-            return findForm.First();
+            return findForm;
         }
 
 

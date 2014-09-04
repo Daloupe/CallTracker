@@ -17,7 +17,7 @@ namespace CallTracker.View
         {
             InitializeComponent();
             MainForm = Application.OpenForms.OfType<Main>().First();
-            Int16 query = (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
+            var query = (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
                            where a.Description == MainForm.toolStripServiceSelector.Text
                            select a).First().Id;
             systemLinksBindingSource.Filter = "ProblemStyleId in (" + query + ")";
@@ -60,6 +60,15 @@ namespace CallTracker.View
         private void EditBookmarks_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            listBox1.DataSource = null;
+            systemLinksBindingSource.RemoveCurrent();
+            listBox1.DataSource = systemLinksBindingSource;
+            listBox1.DisplayMember = "Name";
+            MainForm.systemsContextualToolStripMenuItem.dirty = true;
         }
 
     }

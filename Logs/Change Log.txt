@@ -39,6 +39,7 @@
 | .dlls are embedded in the .exe.
 (Bugs/Changes)
 | Selecting product from resource menu wasn't giving focus back properly.
+- Removing bookmakrs not working.
 
 0.7.6.16
 (Minor Features)

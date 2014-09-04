@@ -34,9 +34,9 @@ namespace CallTracker.View
             CallTracker.DataSets.ServicesDataSet servicesDataSet;
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.bookmarksBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this._Name = new CallTracker.View.BorderedTextBox();
+            this.bookmarksBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this._Url = new CallTracker.View.BorderedTextBox();
             this._Done = new System.Windows.Forms.Button();
@@ -83,11 +83,6 @@ namespace CallTracker.View
             this.listBox1.Size = new System.Drawing.Size(222, 160);
             this.listBox1.TabIndex = 14;
             // 
-            // bookmarksBindingSource
-            // 
-            this.bookmarksBindingSource.DataMember = "Bookmarks";
-            this.bookmarksBindingSource.DataSource = servicesDataSet;
-            // 
             // label4
             // 
             this.label4.Location = new System.Drawing.Point(3, 165);
@@ -111,6 +106,11 @@ namespace CallTracker.View
             this._Name.Size = new System.Drawing.Size(161, 19);
             this._Name.TabIndex = 9;
             this._Name.KeyUp += new System.Windows.Forms.KeyEventHandler(this._Name_KeyUp);
+            // 
+            // bookmarksBindingSource
+            // 
+            this.bookmarksBindingSource.DataMember = "Bookmarks";
+            this.bookmarksBindingSource.DataSource = servicesDataSet;
             // 
             // label6
             // 
@@ -173,6 +173,7 @@ namespace CallTracker.View
             this.button3.TabIndex = 16;
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 

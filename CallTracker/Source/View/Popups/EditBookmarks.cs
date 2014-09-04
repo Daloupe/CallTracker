@@ -40,7 +40,7 @@ namespace CallTracker.View
         private void button2_Click(object sender, EventArgs e)
         {
             listBox1.DataSource = null;
-            ServicesDataSet.BookmarksRow newRow = Main.ServicesStore.servicesDataSet.Bookmarks.NewBookmarksRow();
+            var newRow = Main.ServicesStore.servicesDataSet.Bookmarks.NewBookmarksRow();
             newRow.Name = "New Bookmark";
             newRow.ProblemStyleId = (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
                                     where a.Description == MainForm.toolStripServiceSelector.Text
@@ -60,6 +60,17 @@ namespace CallTracker.View
         private void EditBookmarks_Load(object sender, EventArgs e)
         {
             
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ////listBox1.DataSource = null;
+            //if (bookmarksBindingSource.Count == 1) return;
+            //bookmarksBindingSource.Current;
+            //Main.ServicesStore.servicesDataSet.Bookmarks.Rows.Find()
+            ////listBox1.DataSource = bookmarksBindingSource;
+            ////listBox1.DisplayMember = "Name";
+            //MainForm.bookmarksContextualToolStripMenuItem.dirty = true;
         }
 
     }
