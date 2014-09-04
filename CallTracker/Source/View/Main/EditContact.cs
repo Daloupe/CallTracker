@@ -355,7 +355,7 @@ namespace CallTracker.View
             switch (tag)
             {
                 case "ICONNote":
-                    _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
+                    _Note.DataBindings.Add(new Binding("Rtf", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
                     _Note.DataBindings[0].ReadValue();
                     break;
                 case "PRTemplate":

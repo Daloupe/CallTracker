@@ -11,7 +11,7 @@ namespace CallTracker.Helpers
     abstract class NoteItem
     {
         public string Name { get; set; }
-        public string Value { get; set; }
+        public virtual string Value { get; set; }
         public string Note { get; set; }
 
         protected NoteItem(string name, string note)
@@ -41,6 +41,19 @@ namespace CallTracker.Helpers
     {
         public NoteItemString(string name, string note)
             : base(name, note){}
+    }
+    class NoteItemBool : NoteItem
+    {
+        private string _value;
+        public override string Value { get { return _value; } set { if (value == "True" || value == "Yes") _value = value; } }
+
+        public NoteItemBool(string name, string note)
+            : base(name, note) { }
+
+        public override string GenerateString()
+        {
+            return Note;
+        }
     }
 
     class AltNoteItemString : NoteItem
@@ -130,16 +143,19 @@ namespace CallTracker.Helpers
             };
 
             NoteItems = new List<NoteItem>();
-            NoteItems.Add(new NoteItemHeading("Situation", "{0}:"));
-            NoteItems.Add(new NoteItemString("Name", "- Spoke with {0}"));
-            NoteItems.Add(new NoteItemAcronym("Fault.Symptom", "- Customer is experiencing {0}", ds.Symptoms.ToDictionary(x => x.IFMSCode, x => x.Description)));
-            NoteItems.Add(new NoteItemHeading("Action", "{0}:"));
-            NoteItems.Add(new NoteItemString("Fault.NPR", "- Area Outage PR#{0} is currently open."));
+            NoteItems.Add(new NoteItemHeading(@"\cf1 Situation\cf0 ", "{0}:"));
+            NoteItems.Add(new NoteItemString("Name", "- Spoke with {0}."));
+            NoteItems.Add(new NoteItemBool("IDok", "- ID ok."));
+            NoteItems.Add(new NoteItemAcronym("Fault.Symptom", "- Customer is experiencing {0}.", ds.Symptoms.ToDictionary(x => x.IFMSCode, x => x.Description)));
+            NoteItems.Add(new NoteItemHeading(@"\cf1 Action\cf0 ", "{0}:"));
+            NoteItems.Add(new NoteItemString("Service.ModemStatus", "- Modem is {0}."));
+            NoteItems.Add(new NoteItemBool("Service.RFIssues", "- Systems show RF Issues."));
             NoteItems.Add(new NoteItemString("Service.DownloadSpeed", "- Speed test shows download speed of {0}mbps."));
             NoteItems.Add(new NoteItemString("Service.Throttled", "- Service is currently throttled."));
-            NoteItems.Add(new NoteItemString("Service.DTVMsg", "- Customer is seeing error message: {0}"));
-            NoteItems.Add(new NoteItemHeading("Outcome", "{0}:"));
-            NoteItems.Add(new NoteItemString("Fault.PR", "- PR#{0} has been raised"));
+            NoteItems.Add(new NoteItemString("Service.DTVMsg", "- Customer is seeing error message: {0}."));
+            NoteItems.Add(new NoteItemString("Fault.NPR", "- Area Outage PR#{0} is currently open."));
+            NoteItems.Add(new NoteItemHeading(@"\cf1 Outcome\cf0 ", "{0}:"));
+            NoteItems.Add(new NoteItemString("Fault.PR", "- PR#{0} has been raised."));
             NoteItems.Add(new AltNoteItemString("Booking.GetDate", PRAltNotes));
         }
 
@@ -202,13 +218,23 @@ namespace CallTracker.Helpers
             //    NoteItems.Find(x => x.Name == "Booking.GetDate").Value = String.Empty;
 
             var sb = new StringBuilder();
-
+            sb.Append(@"{\rtf1\ansi{\colortbl;\red75\green70\blue85;}");
             foreach (var noteItem in NoteItems)
+            {
                 if (!String.IsNullOrEmpty(noteItem.Value))
+                {
                     sb.AppendLine(noteItem.GenerateString());
-                else if (noteItem.GetType() == typeof(NoteItemHeading))
+                    sb.Append(@"\line ");
+                }
+                else if (noteItem.GetType() == typeof (NoteItemHeading))
+                {
                     sb.AppendLine(noteItem.GenerateString());
+                    sb.Append(@"\line ");
+                }
 
+            }
+
+            sb.Append(@"\cf0}");
             return sb.ToString();
         }
     }
