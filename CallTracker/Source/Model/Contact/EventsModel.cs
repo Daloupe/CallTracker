@@ -162,7 +162,7 @@ namespace CallTracker.Model
                     break;
             }
             AppEvents.Add(new EventModel<AppEventTypes>(newEvent));
-            //EventLogger.LogNewEvent(typeof(T).ToString() + " > " + Enum.GetName(typeof(AppEventTypes), newEvent));
+            EventLogger.LogNewEvent(typeof(T).ToString() + " > " + Enum.GetName(typeof(AppEventTypes), newEvent));
             IsDirty = true;
         }
 
