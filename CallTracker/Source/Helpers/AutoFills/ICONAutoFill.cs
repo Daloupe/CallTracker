@@ -48,6 +48,7 @@ namespace CallTracker.Helpers
             var listInForm = form.SelectList(Find.ById("usr_NewActivityDetails_DropDownListProduct"));
             var option = listInForm.Option(tier1.Option);
             option.Select();
+            listInForm.Change();
             EventLogger.LogNewEvent(String.Format("Product: {0}, Form Exists: {1}, List Exists: {2}, List In Form Exists: {3}, Option Exists{4}", tier1.Option, form.Exists, list.Exists, listInForm.Exists, option.Exists));
 
 
@@ -73,8 +74,9 @@ namespace CallTracker.Helpers
                 return;
             }
             var tier2 = tier2Query.First();
-            HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListCallDriver")).Select(tier2.Option);
-
+            list = HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListCallDriver"));
+            list.Select(tier2.Option);
+            list.Change();
             
 
 
@@ -99,8 +101,9 @@ namespace CallTracker.Helpers
                 return;
             }
             var tier3 = tier3Query.First();
-            HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListReason")).Select(tier3.Option);
-
+            list = HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListReason"));
+            list.Select(tier3.Option);
+            list.Change();
 
 
 
@@ -119,7 +122,9 @@ namespace CallTracker.Helpers
                 return;
             }
             var tier4 = tier4Query.First();
-            HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListOutcome")).Select(tier4.Option); 
+            list = HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListOutcome"));
+            list.Select(tier4.Option);
+            list.Change();
 
             EventLogger.SaveLog();
         }

@@ -250,7 +250,7 @@ namespace CallTracker.View
                 new List<TipModel>
                 {
                     new TipModel("- <Smart Paste> pastes the most appropriate data depending on where you want to paste."),
-                    new TipModel("- It picks the most relevant data based on what is available, and which product you've selected. ", "- Pressing (|2|Win-V|1|) in ICON's \"Service Number\" field will paste <Username> only if <Wingman> doesn't have <DN>. Vice Versa if the product is <ONC> or <NVF>."),
+                    new TipModel("- It picks the most relevant data based on what is available, and which product you've selected. ", "- Pressing (|2|Win-V|1) in ICON's \"Service Number\" field will paste <Username> only if <Wingman> doesn't have <DN>. Vice Versa if the product is <ONC> or <NVF>."),
                     new TipModel("- It will paste data in the appropriate format. ", "- <CMBS> will paste as \"31123456 7\" into <IFMS>, and \"3112345607\" into <ICON>."),
                     new TipModel("- Doesn't yet work in Chrome, or IE pages that use a Chrome Frame like Nexus and the PR Templates, but it will work in MAD!")
                 }),
