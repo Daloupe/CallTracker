@@ -16,6 +16,7 @@ namespace CallTracker.View
         private void _Cancel_Click(object sender, EventArgs e)
         {
             Hide();
+            _Info.Text = String.Empty;
         }
 
         private void _Ok_Click(object sender, EventArgs e)
@@ -26,7 +27,7 @@ namespace CallTracker.View
             mail = (Outlook.MailItem)objApp.CreateItem(Outlook.OlItemType.olMailItem);
             mail.To = "jesse.poulton@optus.com.au";
             mail.Subject = "Wingman Bug Report";
-            mail.HTMLBody = "";
+            mail.HTMLBody = _Info.Text;
             mail.Attachments.Add(@".\Data\Log.txt", Outlook.OlAttachmentType.olEmbeddeditem, 1, "Log.txt");
             mail.Display();
 
