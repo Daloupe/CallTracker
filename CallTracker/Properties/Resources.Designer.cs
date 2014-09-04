@@ -9,6 +9,9 @@
 //------------------------------------------------------------------------------
 
 namespace CallTracker.Properties {
+    using System;
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -484,6 +487,16 @@ namespace CallTracker.Properties {
             get {
                 object obj = ResourceManager.GetObject("Windows", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon WingMan {
+            get {
+                object obj = ResourceManager.GetObject("WingMan", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }

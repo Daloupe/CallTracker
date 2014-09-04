@@ -89,7 +89,7 @@ namespace CallTracker.View
 
         private void _Help_Click(object sender, EventArgs e)
         {
-            Process.Start(@"Data\Data Names.txt");
+            Process.Start(@"Bind_ReadMe.txt");
         }
 
         private void _FireOnChangeNoWait_CheckedChanged(object sender, EventArgs e)

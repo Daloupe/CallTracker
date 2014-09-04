@@ -27,11 +27,11 @@ namespace CallTracker
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
                     Fonts = new PrivateFontCollection();
-                    if (File.Exists("Fonts\\OptusVoiceBETA-Bold.ttf"))
-                        Fonts.AddFontFile("Fonts\\OptusVoiceBETA-Bold.ttf");
+                    if (File.Exists("Data\\Fonts\\OptusVoiceBETA-Bold.ttf"))
+                        Fonts.AddFontFile("Data\\Fonts\\OptusVoiceBETA-Bold.ttf");
 
-                    if (File.Exists("Fonts\\trade-gothic-lt-1361519976.ttf"))
-                        Fonts.AddFontFile("Fonts\\trade-gothic-lt-1361519976.ttf");
+                    if (File.Exists("Data\\Fonts\\trade-gothic-lt-1361519976.ttf"))
+                        Fonts.AddFontFile("Data\\Fonts\\trade-gothic-lt-1361519976.ttf");
 
                     var splash = new SplashScreen();
                     //Splash._Version.Text = "Version " + Properties.Settings.Default.Version;

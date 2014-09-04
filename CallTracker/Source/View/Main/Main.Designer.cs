@@ -58,9 +58,11 @@
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.viewKeyCommandsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.didYouKnowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.callHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -138,8 +140,6 @@
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -451,6 +451,18 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 16);
             this.helpToolStripMenuItem.Text = "Help";
             // 
+            // reportBugToolStripMenuItem
+            // 
+            this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
+            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.reportBugToolStripMenuItem.Text = "Report Bug";
+            this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(187, 6);
+            // 
             // viewKeyCommandsMenuItem
             // 
             this.viewKeyCommandsMenuItem.Name = "viewKeyCommandsMenuItem";
@@ -465,10 +477,10 @@
             this.didYouKnowToolStripMenuItem.Text = "Show Tips";
             this.didYouKnowToolStripMenuItem.Click += new System.EventHandler(this.didYouKnowToolStripMenuItem_Click);
             // 
-            // toolStripSeparator13
+            // toolStripSeparator9
             // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(187, 6);
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(187, 6);
             // 
             // aboutToolStripMenuItem
             // 
@@ -1072,18 +1084,6 @@
             // _DailyDataBindingSource
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
-            // 
-            // reportBugToolStripMenuItem
-            // 
-            this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
-            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.reportBugToolStripMenuItem.Text = "Report Bug";
-            this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(187, 6);
             // 
             // Main
             // 

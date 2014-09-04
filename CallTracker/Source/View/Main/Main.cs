@@ -959,7 +959,7 @@ namespace CallTracker.View
                 _DailyDataBindingSource.Position = DailyDataDataStore.DailyData.Count - 1;
 
                 Properties.Settings.Default.WorkingDate = DateTime.Today;
-                File.Delete("Data\\Log.txt");
+                File.Delete("Log.txt");
             }
             else if (((DailyModel)_DailyDataBindingSource.Current).Date.LongDate != DateTime.Today)
             {
@@ -967,7 +967,7 @@ namespace CallTracker.View
                 _DailyDataBindingSource.Position = DateBindingSource.Position;
 
                 Properties.Settings.Default.WorkingDate = DateTime.Today;
-                File.Delete("Data\\Log.txt");
+                File.Delete("Log.txt");
             }
 
             var daysToDelete = new List<DailyModel>();

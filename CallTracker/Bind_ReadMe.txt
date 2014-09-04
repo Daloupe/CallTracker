@@ -5,7 +5,7 @@ Regex Replace '|'
 
 Concatenate '+'
 	You can bind a field to paste multiple bits of data.
-	eg "PRI|cmr {2}_+Fault.PR" will paste: "cmr 1234567890123_1234567"
+	eg "GSID|cmr {1}_+Fault.PR" will paste: "cmr 1234567890123_1234567"
 
 Alternate Data ','
 	Smart Paste will paste the first data that isn't empty.
@@ -64,6 +64,7 @@ Service.Node - (33)(EB)_(123)
 	.CSA	 - (CSA)(123456789)
 	.NNI	 - (NNI)(123456789)
 	.PRI	 - (PRI)(123456789)
+	.GSID
 	.Bras
 	.Sip
 	.NTDSN

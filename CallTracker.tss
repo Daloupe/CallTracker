@@ -1,2 +1,26 @@
 <?xml version="1.0"?>
-<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" />
+<ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ArrayOfArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\Logs\Change Log.txt</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\ThingsToCheck.txt</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\FodyWeavers.xml</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Resource\EventLogModel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Popups\BugReport.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Popups\BindSmartPasteForm.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Program.cs</string>
+    </ArrayOfString>
+  </ArrayOfArrayOfString>
+</ArrayOfArrayOfArrayOfString>
