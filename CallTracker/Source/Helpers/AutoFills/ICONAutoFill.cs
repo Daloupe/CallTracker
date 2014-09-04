@@ -49,7 +49,7 @@ namespace CallTracker.Helpers
             var option = listInForm.Option(tier1.Option);
             option.Select();
             listInForm.Change();
-            EventLogger.LogNewEvent(String.Format("Product: {0}, Form Exists: {1}, List Exists: {2}, List In Form Exists: {3}, Option Exists{4}", tier1.Option, form.Exists, list.Exists, listInForm.Exists, option.Exists));
+            EventLogger.LogAndSaveNewEvent(String.Format("Product: {0}, Form Exists: {1}, List Exists: {2}, List In Form Exists: {3}, Option Exists{4}", tier1.Option, form.Exists, list.Exists, listInForm.Exists, option.Exists));
 
 
 
