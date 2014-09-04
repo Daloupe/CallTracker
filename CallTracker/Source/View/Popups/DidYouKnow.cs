@@ -245,8 +245,9 @@ namespace CallTracker.View
             new TipSlide("Smart Copy - Win+C",
                 new List<TipModel>
                 {
-                    new TipModel("- <Smart Copy> copies your selected text in to the appropriate field. "),
-                    new TipModel("- It will recognize data in multiple formats.  ", "- <CMBS> will be detected as either \"31-123456-7\", \"31123456 7\", \"3112345607\", or \"1123456076\"."),
+                    new TipModel("- <Smart Copy> copies your selected text in to the appropriate field."),
+                    new TipModel("- It will recognize data in multiple formats. ", "- <CMBS> will be detected as either \"31-123456-7\", \"31123456 7\", \"3112345607\", or \"1123456076\"."),
+                    new TipModel("- <Smart Copy> won't change what is currently in the copy buffer.", "- If i |2<Ctrl-C>|1 \"Some text\", then |2<Win-C>|1 \"61394811234\", pressing |2<Ctrl-V>|1 will still paste \"Some text\"."),
                     new TipModel("- When copying information like <DN> and <CMBS>, <Smart Copy> will also infer the NBN <SIP> server and <State>.")
                 }),
             new TipSlide("Smart Paste - Win+V",

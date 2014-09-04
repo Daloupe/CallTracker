@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
@@ -473,56 +474,87 @@ namespace CallTracker.Helpers
                 return;
             }
 
-            var contact = parent.SelectedContact;        
-            if(text.IsDigits())
+            var contact = parent.SelectedContact;
+            if (WindowHelper.GetActiveWindowTitle() == "OPOM" && text.Contains('\t'))
             {
-                if (text.Substring(0, 1) == "1" && textlen == 8)
+                var split = text.Split('\t');
+                var sb = new StringBuilder("OPOM: ");
+                if (split[0].IsDigits())
                 {
-                    contact.Fault.PR = text;
-                    Main.FadingToolTip.ShowandFade("PR: " + contact.Fault.PR);                   
+                    contact.DN = split[0];
+                    sb.Append("DN");
                 }
-                else if (contact.FindDNMatch(text)) { }
-                else if (contact.FindCMBSMatch(text)) { }
-                else if (contact.FindICONMatch(text)) { }
-                else if (contact.FindMobileMatch(text)) { }
-                //else if (contact.Service.FindNTDSNMatch(text)) { }
-                //else if (contact.Service.FindAddressIdMatch(text)) { }
-                //else if (contact.Service.FindGSIDMatch(text)) { }
-                else if (contact.Service.FindIPMatch(text)) { }
-                else if (contact.Fault.FindITCaseMatch(text)) { }         
                 else
-                    contact.AddToNote(text);                  
-            } 
-            else if (text.IsLetters())
-            {
-                if (contact.FindNameMatch(text)) { }
-                else if (contact.FindUsernameMatch(text)) { }
-                else
-                    contact.AddToNote(text);
-            } 
-            else if (Char.IsLetter(text, 0))
-            {
-                if (parent.editContact._ServicePanel._Equipment._ComboBox.Items.Contains(text))
                 {
-                    contact.Service.Equipment = text;
-                    Main.FadingToolTip.ShowandFade("Equipment: " + text);
+                    contact.Username = split[0];
+                    sb.Append("Username");
                 }
-                else if (contact.FindUsernameMatch(text)) { }
-                else if (contact.Service.FindNBNMatch(text)) { }
-                else if (contact.Service.FindBRASMatch(text)) { }
-                else if (contact.Service.FindMACMatch(text)) { }
-                else if (contact.Address.FindAddressMatch(text)) { }
-                else
-                    contact.AddToNote(text);
+
+                if (!String.IsNullOrEmpty(split[1]))
+                {
+                    contact.Name = split[1];
+                    sb.Append(", Name");
+                }
+                if (!String.IsNullOrEmpty(split[9]))
+                {
+                    contact.ICON = split[9];
+                    sb.Append(", ICON");
+                }
+                
+                Main.FadingToolTip.ShowandFade(sb.ToString());
             }
             else
             {
-                if (contact.Service.FindNodeMatch(text)) { }
-                else if (contact.Service.FindMACMatch(text)) { }
-                //else if (contact.Service.FindESNMatch(text)) { }
-                else if (contact.Address.FindAddressMatch(text)) { }
+                if(text.IsDigits())
+                {
+                    if (text.Substring(0, 1) == "1" && textlen == 8)
+                    {
+                        contact.Fault.PR = text;
+                        Main.FadingToolTip.ShowandFade("PR: " + contact.Fault.PR);                   
+                    }
+                    else if (contact.FindDNMatch(text)) { }
+                    else if (contact.FindCMBSMatch(text)) { }
+                    else if (contact.FindICONMatch(text)) { }
+                    else if (contact.FindMobileMatch(text)) { }
+                    //else if (contact.Service.FindNTDSNMatch(text)) { }
+                    //else if (contact.Service.FindAddressIdMatch(text)) { }
+                    //else if (contact.Service.FindGSIDMatch(text)) { }
+                    else if (contact.Service.FindIPMatch(text)) { }
+                    else if (contact.Fault.FindITCaseMatch(text)) { }         
+                    else
+                        contact.AddToNote(text);                  
+                } 
+                else if (text.IsLetters())
+                {
+                    if (contact.FindNameMatch(text)) { }
+                    else if (contact.FindUsernameMatch(text)) { }
+                    else
+                        contact.AddToNote(text);
+                } 
+                else if (Char.IsLetter(text, 0))
+                {
+                    if (parent.editContact._ServicePanel._Equipment._ComboBox.Items.Contains(text))
+                    {
+                        contact.Service.Equipment = text;
+                        Main.FadingToolTip.ShowandFade("Equipment: " + text);
+                    }
+                    else if (contact.FindUsernameMatch(text)) { }
+                    else if (contact.Service.FindNBNMatch(text)) { }
+                    else if (contact.Service.FindBRASMatch(text)) { }
+                    else if (contact.Service.FindMACMatch(text)) { }
+                    else if (contact.Address.FindAddressMatch(text)) { }
+                    else
+                        contact.AddToNote(text);
+                }
                 else
-                    contact.AddToNote(text);
+                {
+                    if (contact.Service.FindNodeMatch(text)) { }
+                    else if (contact.Service.FindMACMatch(text)) { }
+                    //else if (contact.Service.FindESNMatch(text)) { }
+                    else if (contact.Address.FindAddressMatch(text)) { }
+                    else
+                        contact.AddToNote(text);
+                }
             }
 
             EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1}ticks", text, Stopwatch.ElapsedTicks));

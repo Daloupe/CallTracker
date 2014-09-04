@@ -38,8 +38,8 @@
 
 0.7.6.13
 (Minor Features)
-- Created Report Bug popup which sends email with log and bug text.
-- OPOM smart copy "0393364915	MARY TANTI	VoIP Second Line Service	Residential	14/08/2014		New		803374653	80337465300177	29/07/2014	ret_caitly_mcin		803374653		100060831702".
+| Created Report Bug popup which sends email with log and bug text.
+| Added OPOM smart copy "0393364915	MARY TANTI	VoIP Second Line Service	Residential	14/08/2014		New		803374653	80337465300177	29/07/2014	ret_caitly_mcin		803374653		100060831702".
 (Bugs/Changes)
 | Smart Function enumerate query straight to list to avoid repeating the LINQ operation.
 | Added EventLogs to ICONAutoFill.
@@ -55,7 +55,6 @@
 	| Added Color Parsing.
 	| Examples can be clicked without window having focus.
 	| currentExample is reset when changing slides.
-- Updated Outcome acronyms to match new Outcomes.
 
 0.7.4.6
 (Minor Features)

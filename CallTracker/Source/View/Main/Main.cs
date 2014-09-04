@@ -79,6 +79,7 @@ namespace CallTracker.View
         public static FadingTooltip FadingToolTip;
 
         public static BindSmartPasteForm BindSmartPasteForm;
+        public static BugReport BugReport;
 
         private readonly SplashScreen _splash;
         public Main(SplashScreen splash)
@@ -239,6 +240,7 @@ namespace CallTracker.View
             FadingToolTip = new FadingTooltip();
             AboutScreen = new AboutScreen();
             BindSmartPasteForm = new BindSmartPasteForm(this);
+            BugReport = new BugReport();
 
             DidYouKnow = new DidYouKnow();
             if (Properties.Settings.Default.ShowTipsOnStartup)
@@ -1069,6 +1071,11 @@ namespace CallTracker.View
             else
                 DidYouKnow.Show();
 
+        }
+
+        private void reportBugToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            BugReport.Show();
         }
     }
 }
