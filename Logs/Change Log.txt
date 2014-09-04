@@ -34,6 +34,10 @@
 - IPCC menu not drawing back color.
 - ICON Tier4 linked to Action rather than Outcome.
 
+0.7.7.0
+(Minor Features)
+- .dlls are embedded in the .exe.
+
 0.7.6.16
 (Minor Features)
 | Created Report Bug popup which sends email with log and bug text.
