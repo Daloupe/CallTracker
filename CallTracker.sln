@@ -41,7 +41,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{
 		Resources\IPCC.JPG = Resources\IPCC.JPG
 		Resources\Services from 31.7.bin = Resources\Services from 31.7.bin
 		Resources\Services.bin = Resources\Services.bin
-		WingMan.ico = WingMan.ico
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", "{47F929B3-070E-4DEC-AE0E-9DEB95B061F0}"

@@ -9,8 +9,6 @@
 //- Added ARO GUI.
 //- Added Glance GUI.
 //- Selecting "Clear and Close" brings up a PopUp with a single dropdown to select from before actioning the pr.
-//- PasteBind AltData accepts "," for multiple AltData types eg AltData = "Username,Mobile|0$1$2".
-
 
 
 
@@ -24,9 +22,8 @@
 - Added Help buttons to screens which link to their "Did You Know?" slide.
 (Bugs/Changes)
 - Fixed Resources file not building.
-- PR Template not cleaning itself of outage replacements.
 - New IE pages can now be loaded as tabs.
-- Ensured PR and ICON templates are only being generated when they need to be.
+/ Ensured PR and ICON templates are only being generated when they need to be.
 - Converted Call States into Menu Item subclass.
 
 0.8.0.0
@@ -36,7 +33,7 @@
 - Confirmed Bras, NTDSN, AddressId, GSID, and ESN Regexes.
 - IPCC menu not drawing back color.
 
-0.7.6.14
+0.7.6.15
 (Minor Features)
 | Created Report Bug popup which sends email with log and bug text.
 | Added OPOM smart copy "0393364915	MARY TANTI	VoIP Second Line Service	Residential	14/08/2014		New		803374653	80337465300177	29/07/2014	ret_caitly_mcin		803374653		100060831702".
@@ -56,6 +53,7 @@
 	| Examples can be clicked without window having focus.
 	| currentExample is reset when changing slides.
 	| Changing Tips scrolls back to the top.
+| Made 48x48 sized icon.
 
 0.7.4.6
 (Minor Features)
