@@ -37,7 +37,7 @@ namespace CallTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.7.6.15")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.7.7.1")]
         public string Version {
             get {
                 return ((string)(this["Version"]));
@@ -85,7 +85,7 @@ namespace CallTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool MonitorIPCC {
             get {
                 return ((bool)(this["MonitorIPCC"]));

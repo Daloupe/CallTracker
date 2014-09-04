@@ -852,7 +852,7 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void toolStripServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ((ToolStripComboBox)sender).OwnerItem.GetCurrentParent().Focus();
+            ((ToolStripComboBox)sender).GetCurrentParent().Focus();
             foreach (ContextualToolStripMenuItem item in resourcesToolStripMenuItem.DropDownItems.OfType<ContextualToolStripMenuItem>())
                 item.dirty = true;
         }

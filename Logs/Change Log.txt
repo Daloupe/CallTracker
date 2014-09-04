@@ -34,9 +34,11 @@
 - IPCC menu not drawing back color.
 - ICON Tier4 linked to Action rather than Outcome.
 
-0.7.7.0
+0.7.7.1
 (Minor Features)
-- .dlls are embedded in the .exe.
+| .dlls are embedded in the .exe.
+(Bugs/Changes)
+| Selecting product from resource menu wasn't giving focus back properly.
 
 0.7.6.16
 (Minor Features)
