@@ -35,7 +35,7 @@
 - Confirmed Bras, NTDSN, AddressId, and ESN Regexes.
 - IPCC menu not drawing back color.
 
-0.7.4.2
+0.7.6.2
 (Minor Features)
 - Added Help buttons to screens which link to their "Did You Know?" slide.
 - Added Text formatting to templates.
@@ -43,6 +43,11 @@
 (Bugs/Changes)
 - BindSmartPaste doenst delete on esc, just ok.
 - 1123456076 from doesn't work.
+
+0.7.3.0
+(Minor Features)
+| Added Example windows to tips, hyperlinked example text.
+| Tip position saves with settings.
 
 0.7.1.0
 (Major Features)

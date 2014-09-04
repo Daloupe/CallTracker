@@ -85,10 +85,6 @@ namespace CallTracker.View
             _splash = splash;
             _splash.Init(this);
 
-            DidYouKnow = new DidYouKnow();
-            if (Properties.Settings.Default.ShowTipsOnStartup)
-                DidYouKnow.Show();  
-
             _splash.UpdateProgress("Main setup",0);
             _splash.StepProgress("Setting up Logs");
             _StatusLabel.Tag = EventLogLevel.Status;
@@ -238,7 +234,10 @@ namespace CallTracker.View
 
             FadingToolTip = new FadingTooltip();
             AboutScreen = new AboutScreen();
-        
+
+            DidYouKnow = new DidYouKnow();
+            if (Properties.Settings.Default.ShowTipsOnStartup)
+                DidYouKnow.Show();  
         }
 
         void _DateSelector_PositionChanged(object sender, EventArgs e)

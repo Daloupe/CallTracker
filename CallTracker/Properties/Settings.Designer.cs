@@ -202,5 +202,17 @@ namespace CallTracker.Properties {
                 this["ShowTipsOnStartup"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int TipsPosition {
+            get {
+                return ((int)(this["TipsPosition"]));
+            }
+            set {
+                this["TipsPosition"] = value;
+            }
+        }
     }
 }

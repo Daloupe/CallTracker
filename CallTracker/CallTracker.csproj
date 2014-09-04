@@ -73,6 +73,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\References\RegexLib.dll</HintPath>
     </Reference>
+    <Reference Include="RichTextBoxLinks">
+      <HintPath>..\References\RichTextBoxLinks.dll</HintPath>
+    </Reference>
     <Reference Include="Rtf">
       <HintPath>..\References\Rtf.dll</HintPath>
     </Reference>

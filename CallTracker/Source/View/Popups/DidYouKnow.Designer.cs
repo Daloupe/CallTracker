@@ -1,4 +1,6 @@
-﻿namespace CallTracker.View
+﻿using RichTextBoxLinks;
+
+namespace CallTracker.View
 {
     partial class DidYouKnow
     {
@@ -29,32 +31,45 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.featureHeading = new System.Windows.Forms.Label();
-            this.info1 = new System.Windows.Forms.Label();
+            this.examplePanel = new System.Windows.Forms.Panel();
+            this.exampleTextPanel = new System.Windows.Forms.Panel();
+            this.exampleRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.exampleHeadingPanel = new System.Windows.Forms.Panel();
+            this.exampleHeading = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tipsPanel = new System.Windows.Forms.Panel();
+            this.tipsTextPanel = new System.Windows.Forms.Panel();
+            this.richTextBox1 = new RichTextBoxLinks.RichTextBoxEx();
+            this.tipsHeadingPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tips = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.prevTip = new System.Windows.Forms.Button();
+            this.nextTip = new System.Windows.Forms.Button();
             this.showTipsOnStartup = new System.Windows.Forms.CheckBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.heading = new System.Windows.Forms.Label();
+            this.subHeading = new System.Windows.Forms.Label();
             this.menuStrip1 = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.tips = new System.Windows.Forms.Label();
-            this.tipsPanel = new System.Windows.Forms.Panel();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.examplePanel.SuspendLayout();
+            this.exampleTextPanel.SuspendLayout();
+            this.exampleHeadingPanel.SuspendLayout();
             this.tipsPanel.SuspendLayout();
+            this.tipsTextPanel.SuspendLayout();
+            this.tipsHeadingPanel.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.examplePanel);
+            this.panel1.Controls.Add(this.tipsPanel);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -65,84 +80,171 @@
             this.panel1.Size = new System.Drawing.Size(414, 222);
             this.panel1.TabIndex = 3;
             // 
-            // panel3
+            // examplePanel
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(143)))), ((int)(((byte)(169)))));
-            this.panel3.Controls.Add(this.richTextBox1);
-            this.panel3.Controls.Add(this.tipsPanel);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.panel3.Location = new System.Drawing.Point(3, 46);
-            this.panel3.Margin = new System.Windows.Forms.Padding(0);
-            this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.panel3.Size = new System.Drawing.Size(408, 147);
-            this.panel3.TabIndex = 5;
+            this.examplePanel.Controls.Add(this.exampleTextPanel);
+            this.examplePanel.Controls.Add(this.exampleHeadingPanel);
+            this.examplePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.examplePanel.Location = new System.Drawing.Point(3, 146);
+            this.examplePanel.Name = "examplePanel";
+            this.examplePanel.Size = new System.Drawing.Size(408, 47);
+            this.examplePanel.TabIndex = 7;
+            // 
+            // exampleTextPanel
+            // 
+            this.exampleTextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(143)))), ((int)(((byte)(169)))));
+            this.exampleTextPanel.Controls.Add(this.exampleRichTextBox);
+            this.exampleTextPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.exampleTextPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.exampleTextPanel.Location = new System.Drawing.Point(0, 15);
+            this.exampleTextPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.exampleTextPanel.Name = "exampleTextPanel";
+            this.exampleTextPanel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.exampleTextPanel.Size = new System.Drawing.Size(408, 32);
+            this.exampleTextPanel.TabIndex = 5;
+            // 
+            // exampleRichTextBox
+            // 
+            this.exampleRichTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(103)))), ((int)(((byte)(129)))));
+            this.exampleRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.exampleRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.exampleRichTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(228)))), ((int)(((byte)(162)))));
+            this.exampleRichTextBox.Location = new System.Drawing.Point(0, 0);
+            this.exampleRichTextBox.Margin = new System.Windows.Forms.Padding(2);
+            this.exampleRichTextBox.Name = "exampleRichTextBox";
+            this.exampleRichTextBox.ReadOnly = true;
+            this.exampleRichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.exampleRichTextBox.Size = new System.Drawing.Size(408, 30);
+            this.exampleRichTextBox.TabIndex = 4;
+            this.exampleRichTextBox.Text = "";
+            // 
+            // exampleHeadingPanel
+            // 
+            this.exampleHeadingPanel.BackColor = System.Drawing.Color.Transparent;
+            this.exampleHeadingPanel.Controls.Add(this.exampleHeading);
+            this.exampleHeadingPanel.Controls.Add(this.label3);
+            this.exampleHeadingPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.exampleHeadingPanel.Location = new System.Drawing.Point(0, 0);
+            this.exampleHeadingPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.exampleHeadingPanel.Name = "exampleHeadingPanel";
+            this.exampleHeadingPanel.Size = new System.Drawing.Size(408, 15);
+            this.exampleHeadingPanel.TabIndex = 5;
+            // 
+            // exampleHeading
+            // 
+            this.exampleHeading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(119)))));
+            this.exampleHeading.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.exampleHeading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exampleHeading.Font = new System.Drawing.Font("Verdana", 7F, System.Drawing.FontStyle.Bold);
+            this.exampleHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.exampleHeading.Location = new System.Drawing.Point(0, 0);
+            this.exampleHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.exampleHeading.Name = "exampleHeading";
+            this.exampleHeading.Size = new System.Drawing.Size(408, 15);
+            this.exampleHeading.TabIndex = 3;
+            this.exampleHeading.Text = "Example:";
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(119)))));
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label3.Font = new System.Drawing.Font("Verdana", 7F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(408, 15);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Tips:";
+            // 
+            // tipsPanel
+            // 
+            this.tipsPanel.Controls.Add(this.tipsTextPanel);
+            this.tipsPanel.Controls.Add(this.tipsHeadingPanel);
+            this.tipsPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tipsPanel.Location = new System.Drawing.Point(3, 46);
+            this.tipsPanel.Name = "tipsPanel";
+            this.tipsPanel.Size = new System.Drawing.Size(408, 100);
+            this.tipsPanel.TabIndex = 6;
+            // 
+            // tipsTextPanel
+            // 
+            this.tipsTextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(143)))), ((int)(((byte)(169)))));
+            this.tipsTextPanel.Controls.Add(this.richTextBox1);
+            this.tipsTextPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tipsTextPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.tipsTextPanel.Location = new System.Drawing.Point(0, 15);
+            this.tipsTextPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.tipsTextPanel.Name = "tipsTextPanel";
+            this.tipsTextPanel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.tipsTextPanel.Size = new System.Drawing.Size(408, 85);
+            this.tipsTextPanel.TabIndex = 5;
             // 
             // richTextBox1
             // 
+            this.richTextBox1.AutoWordSelection = true;
             this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(103)))), ((int)(((byte)(129)))));
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(228)))), ((int)(((byte)(162)))));
-            this.richTextBox1.Location = new System.Drawing.Point(0, 15);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox1.Size = new System.Drawing.Size(408, 130);
+            this.richTextBox1.Size = new System.Drawing.Size(408, 83);
             this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "- Can recognize data in multiple formats. eg CMBS 31-123456-7, 31123456 7, 311234" +
-    "5607, 1123456076.";
-            this.richTextBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.richTextBox1_MouseUp);
+            this.richTextBox1.Text = "";
+            this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox1_LinkClicked);
             // 
-            // panel2
+            // tipsHeadingPanel
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(103)))), ((int)(((byte)(129)))));
-            this.panel2.Controls.Add(this.featureHeading);
-            this.panel2.Controls.Add(this.info1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.panel2.Location = new System.Drawing.Point(3, 2);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0, 0, 2, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 2, 2);
-            this.panel2.Size = new System.Drawing.Size(408, 44);
-            this.panel2.TabIndex = 4;
+            this.tipsHeadingPanel.BackColor = System.Drawing.Color.Transparent;
+            this.tipsHeadingPanel.Controls.Add(this.label1);
+            this.tipsHeadingPanel.Controls.Add(this.tips);
+            this.tipsHeadingPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tipsHeadingPanel.Location = new System.Drawing.Point(0, 0);
+            this.tipsHeadingPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.tipsHeadingPanel.Name = "tipsHeadingPanel";
+            this.tipsHeadingPanel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.tipsHeadingPanel.Size = new System.Drawing.Size(408, 15);
+            this.tipsHeadingPanel.TabIndex = 5;
             // 
-            // featureHeading
+            // label1
             // 
-            this.featureHeading.AutoSize = true;
-            this.featureHeading.BackColor = System.Drawing.Color.Transparent;
-            this.featureHeading.Dock = System.Windows.Forms.DockStyle.Left;
-            this.featureHeading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.featureHeading.Font = new System.Drawing.Font("Optus Voice BETA Bold", 18F, System.Drawing.FontStyle.Bold);
-            this.featureHeading.Location = new System.Drawing.Point(0, 0);
-            this.featureHeading.Margin = new System.Windows.Forms.Padding(0);
-            this.featureHeading.Name = "featureHeading";
-            this.featureHeading.Size = new System.Drawing.Size(229, 29);
-            this.featureHeading.TabIndex = 0;
-            this.featureHeading.Text = "Smart Copy - Win+C";
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(119)))));
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label1.Font = new System.Drawing.Font("Verdana", 7F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(0, 2);
+            this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(408, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Tips:";
             // 
-            // info1
+            // tips
             // 
-            this.info1.BackColor = System.Drawing.Color.Transparent;
-            this.info1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.info1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.info1.Font = new System.Drawing.Font("Gautami", 8F);
-            this.info1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(228)))), ((int)(((byte)(162)))));
-            this.info1.Location = new System.Drawing.Point(0, 25);
-            this.info1.Margin = new System.Windows.Forms.Padding(0);
-            this.info1.Name = "info1";
-            this.info1.Size = new System.Drawing.Size(406, 17);
-            this.info1.TabIndex = 1;
-            this.info1.Text = "Analyzes the selected text and copies it in to the appropriate field.";
+            this.tips.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(119)))));
+            this.tips.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tips.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.tips.Font = new System.Drawing.Font("Verdana", 7F, System.Drawing.FontStyle.Bold);
+            this.tips.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.tips.Location = new System.Drawing.Point(0, 2);
+            this.tips.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
+            this.tips.Name = "tips";
+            this.tips.Size = new System.Drawing.Size(408, 13);
+            this.tips.TabIndex = 2;
+            this.tips.Text = "Tips:";
             // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(103)))), ((int)(((byte)(129)))));
-            this.panel4.Controls.Add(this.button2);
-            this.panel4.Controls.Add(this.button1);
+            this.panel4.Controls.Add(this.prevTip);
+            this.panel4.Controls.Add(this.nextTip);
             this.panel4.Controls.Add(this.showTipsOnStartup);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(3, 193);
@@ -151,6 +253,38 @@
             this.panel4.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
             this.panel4.Size = new System.Drawing.Size(408, 26);
             this.panel4.TabIndex = 6;
+            // 
+            // prevTip
+            // 
+            this.prevTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(83)))), ((int)(((byte)(109)))));
+            this.prevTip.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.prevTip.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.prevTip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.prevTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.prevTip.Location = new System.Drawing.Point(276, 2);
+            this.prevTip.Name = "prevTip";
+            this.prevTip.Size = new System.Drawing.Size(64, 22);
+            this.prevTip.TabIndex = 4;
+            this.prevTip.Text = "Prev Tip";
+            this.prevTip.UseVisualStyleBackColor = false;
+            this.prevTip.Click += new System.EventHandler(this.prevTip_Click);
+            this.prevTip.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ok_MouseUp);
+            // 
+            // nextTip
+            // 
+            this.nextTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(83)))), ((int)(((byte)(109)))));
+            this.nextTip.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.nextTip.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.nextTip.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.nextTip.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.nextTip.Location = new System.Drawing.Point(342, 2);
+            this.nextTip.Name = "nextTip";
+            this.nextTip.Size = new System.Drawing.Size(64, 22);
+            this.nextTip.TabIndex = 3;
+            this.nextTip.Text = "Next Tip";
+            this.nextTip.UseVisualStyleBackColor = false;
+            this.nextTip.Click += new System.EventHandler(this.nextTip_Click);
+            this.nextTip.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ok_MouseUp);
             // 
             // showTipsOnStartup
             // 
@@ -166,6 +300,48 @@
             this.showTipsOnStartup.TabIndex = 0;
             this.showTipsOnStartup.Text = "Show On Startup";
             this.showTipsOnStartup.UseVisualStyleBackColor = true;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(103)))), ((int)(((byte)(129)))));
+            this.panel2.Controls.Add(this.heading);
+            this.panel2.Controls.Add(this.subHeading);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.panel2.Location = new System.Drawing.Point(3, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0, 0, 2, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 2, 2);
+            this.panel2.Size = new System.Drawing.Size(408, 44);
+            this.panel2.TabIndex = 4;
+            // 
+            // heading
+            // 
+            this.heading.AutoSize = true;
+            this.heading.BackColor = System.Drawing.Color.Transparent;
+            this.heading.Dock = System.Windows.Forms.DockStyle.Left;
+            this.heading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.heading.Font = new System.Drawing.Font("Optus Voice BETA Bold", 18F, System.Drawing.FontStyle.Bold);
+            this.heading.Location = new System.Drawing.Point(0, 0);
+            this.heading.Margin = new System.Windows.Forms.Padding(0);
+            this.heading.Name = "heading";
+            this.heading.Size = new System.Drawing.Size(229, 29);
+            this.heading.TabIndex = 0;
+            this.heading.Text = "Smart Copy - Win+C";
+            // 
+            // subHeading
+            // 
+            this.subHeading.BackColor = System.Drawing.Color.Transparent;
+            this.subHeading.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.subHeading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.subHeading.Font = new System.Drawing.Font("Gautami", 8F);
+            this.subHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(228)))), ((int)(((byte)(162)))));
+            this.subHeading.Location = new System.Drawing.Point(0, 25);
+            this.subHeading.Margin = new System.Windows.Forms.Padding(0);
+            this.subHeading.Name = "subHeading";
+            this.subHeading.Size = new System.Drawing.Size(406, 17);
+            this.subHeading.TabIndex = 1;
+            this.subHeading.Text = "Analyzes the selected text and copies it in to the appropriate field.";
             // 
             // menuStrip1
             // 
@@ -196,68 +372,12 @@
             this.quitToolStripMenuItem1.Size = new System.Drawing.Size(22, 15);
             this.quitToolStripMenuItem1.Click += new System.EventHandler(this.ok_Click);
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(83)))), ((int)(((byte)(109)))));
-            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(341, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(64, 22);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Next Tip";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ok_MouseUp);
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(83)))), ((int)(((byte)(109)))));
-            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.button2.Location = new System.Drawing.Point(275, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(64, 22);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Prev Tip";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ok_MouseUp);
-            // 
-            // tips
-            // 
-            this.tips.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(119)))));
-            this.tips.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tips.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tips.Font = new System.Drawing.Font("Verdana", 7F, System.Drawing.FontStyle.Bold);
-            this.tips.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.tips.Location = new System.Drawing.Point(0, 2);
-            this.tips.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.tips.Name = "tips";
-            this.tips.Size = new System.Drawing.Size(408, 13);
-            this.tips.TabIndex = 2;
-            this.tips.Text = "Tips:";
-            // 
-            // tipsPanel
-            // 
-            this.tipsPanel.BackColor = System.Drawing.Color.Transparent;
-            this.tipsPanel.Controls.Add(this.tips);
-            this.tipsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tipsPanel.Location = new System.Drawing.Point(0, 0);
-            this.tipsPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tipsPanel.Name = "tipsPanel";
-            this.tipsPanel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.tipsPanel.Size = new System.Drawing.Size(408, 15);
-            this.tipsPanel.TabIndex = 5;
-            // 
             // toolStripTextBox1
             // 
             this.toolStripTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(83)))), ((int)(((byte)(109)))));
             this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.toolStripTextBox1.CausesValidation = false;
-            this.toolStripTextBox1.Font = new System.Drawing.Font("Verdana", 7.25F, System.Drawing.FontStyle.Bold);
+            this.toolStripTextBox1.Font = new System.Drawing.Font("Verdana", 7.25F);
             this.toolStripTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
             this.toolStripTextBox1.Margin = new System.Windows.Forms.Padding(0, -2, 0, 0);
             this.toolStripTextBox1.Name = "toolStripTextBox1";
@@ -292,13 +412,17 @@
             this.Load += new System.EventHandler(this.DidYouKnow_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             this.panel1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
+            this.examplePanel.ResumeLayout(false);
+            this.exampleTextPanel.ResumeLayout(false);
+            this.exampleHeadingPanel.ResumeLayout(false);
+            this.tipsPanel.ResumeLayout(false);
+            this.tipsTextPanel.ResumeLayout(false);
+            this.tipsHeadingPanel.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.tipsPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -307,18 +431,26 @@
 
         private System.Windows.Forms.CheckBox showTipsOnStartup;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label info1;
-        private System.Windows.Forms.Label featureHeading;
+        private System.Windows.Forms.Label subHeading;
+        private System.Windows.Forms.Label heading;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Panel tipsTextPanel;
+        private RichTextBoxEx richTextBox1;
         private System.Windows.Forms.Panel panel4;
         private ToolStripMenuIgnoreFocus menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label tips;
-        private System.Windows.Forms.Panel tipsPanel;
+        private System.Windows.Forms.Button prevTip;
+        private System.Windows.Forms.Button nextTip;
+        private System.Windows.Forms.Panel tipsHeadingPanel;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.Panel examplePanel;
+        private System.Windows.Forms.Panel exampleHeadingPanel;
+        private System.Windows.Forms.Label exampleHeading;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel exampleTextPanel;
+        private System.Windows.Forms.RichTextBox exampleRichTextBox;
+        private System.Windows.Forms.Panel tipsPanel;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label tips;
     }
 }

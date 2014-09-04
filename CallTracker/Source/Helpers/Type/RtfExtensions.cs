@@ -34,24 +34,24 @@ namespace CallTracker.Source.Helpers.Type
             }
         }
 
-        //public static void ParseBold(ref RtfFormattedParagraph p, string s)
-        //{
-        //    var substring = s;
-        //    while (substring.Contains('<'))
-        //    {
-        //        var indexLeft = substring.IndexOf('<');
-        //        var indexRight = substring.IndexOf('>', indexLeft);
-        //        var prebold = substring.Substring(0, indexLeft);
-        //        if (!String.IsNullOrEmpty(prebold))
-        //            p.AppendText(prebold);
-        //        p.AppendText(new RtfFormattedText(
-        //            substring.Substring(indexLeft + 1, indexRight - indexLeft - 1),
-        //            RtfCharacterFormatting.Bold));
-        //        substring = substring.Remove(0, indexRight + 1);
-        //    }
-        //    if (!String.IsNullOrEmpty(substring))
-        //        p.AppendText(substring);
-        //}
+        public static void ParseBold(ref RtfFormattedParagraph p, string s)
+        {
+            var substring = s;
+            while (substring.Contains('<'))
+            {
+                var indexLeft = substring.IndexOf('<');
+                var indexRight = substring.IndexOf('>', indexLeft);
+                var prebold = substring.Substring(0, indexLeft);
+                if (!String.IsNullOrEmpty(prebold))
+                    p.AppendText(prebold);
+                p.AppendText(new RtfHyperlink("test1", new RtfFormattedText(
+                    substring.Substring(indexLeft + 1, indexRight - indexLeft - 1),
+                    RtfCharacterFormatting.Bold)));
+                substring = substring.Remove(0, indexRight + 1);
+            }
+            if (!String.IsNullOrEmpty(substring))
+                p.AppendText(substring);
+        }
 
         public static void ParseBold(ref RtfFormattedParagraph p, string s, int fontIndex, float fontSize)
         {
