@@ -236,13 +236,13 @@ namespace CallTracker.View
             UpdateProgressBar(0, "Finished Loading", EventLogLevel.ClearStatus);
             ChangeCallStateMenuItem(logOutToolStripMenuItem);
 
-            DidYouKnow = new DidYouKnow();
-            if (Properties.Settings.Default.ShowTipsOnStartup)
-                DidYouKnow.Show();
-
             FadingToolTip = new FadingTooltip();
             AboutScreen = new AboutScreen();
             BindSmartPasteForm = new BindSmartPasteForm(this);
+
+            DidYouKnow = new DidYouKnow();
+            if (Properties.Settings.Default.ShowTipsOnStartup)
+                DidYouKnow.Show();
         }
 
         void _DateSelector_PositionChanged(object sender, EventArgs e)
@@ -516,16 +516,14 @@ namespace CallTracker.View
             if (!CheckForIpcc())
                 return;
             
-            //string dialOrTransfer = "btnDial";
             if (_IPCCState.Text == "Talking")
                 _ipccTransferButton.Click();
             else
                 _ipccDialButton.Click();
 
-            //var button = _ipccWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId(dialOrTransfer));
-            //button.Click();
-            //TestStack.White.Configuration.ConfigurationExtensions.FindWindowTimeout()
-            var dialPadWindow = _ipccWindow.Get<Window>(SearchCriteria.ByAutomationId("DialPadForm"));
+            _ipccApplication.WaitWhileBusy();
+            //var dialPadWindow = _ipccWindow.Get<Window>(SearchCriteria.ByAutomationId("DialPadForm"));
+            var dialPadWindow = _ipccApplication.GetWindow(SearchCriteria.ByAutomationId("DialPadForm"), InitializeOption.NoCache);
             if (dialPadWindow == null)
             {
                 EventLogger.LogNewEvent("Unable to Find CTI Dial Pad", EventLogLevel.Status);

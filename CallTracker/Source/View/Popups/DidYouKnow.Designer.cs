@@ -100,8 +100,10 @@ namespace CallTracker.View
             // 
             // exampleRichTextBox
             // 
+            this.exampleRichTextBox.AutoWordSelection = true;
             this.exampleRichTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(103)))), ((int)(((byte)(129)))));
             this.exampleRichTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.exampleRichTextBox.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.exampleRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.exampleRichTextBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(228)))), ((int)(((byte)(162)))));
             this.exampleRichTextBox.Location = new System.Drawing.Point(0, 0);

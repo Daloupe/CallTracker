@@ -1,3 +1,15 @@
+-Wingman
+	- <Wingman> works by always trying to hand you the best tool for the job, reducing system friction and the need for Note Pad.
+	- <Smart Copy>(Win-C in yellow) copies your selection and pops it straight in to the appropriate field.
+		- Selecting '0394811234' and pressing Win-C will copy it straight into the <DN> field in <Wingman>.
+	- <Smart Paste>(Win-V) looks at where you're trying to paste and pastes in the most appropriate data.
+		- Clicking on the 'Account Number' field in ICON and pressing Win-V will paste in the CMBS number, or ICON if <Wingman> doesn't have it.
+	- <Auto Fill>(Win-Ctrl-V) looks at what page you have active, and triggers all the <Smart Pastes> it knows for that page.
+		- Pressing Win-Ctrl-V on 'IFMS Create' will fill all the fields that <Wingman> has data for.
+	- <Grid Links>(Win-Numpad) will jump straight to the desired system. A different system assigned to each number on the Numpad.
+		- Pressing Win-Numpad0 will activate ICON and bring it to the front.
+	- <Monitor IPCC> will syncronize <Wingman> and IPCC. This gives you estimates of your daily KPI's, lets you keep track of how long you've been in a call state, and it creates a new call record when a call pops in.
+
 |Smart Copy
 - Uses this Hotkey.
 - Will analyze your highlight text and copy it in to the appropriate field.
