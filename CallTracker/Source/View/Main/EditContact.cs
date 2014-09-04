@@ -346,15 +346,20 @@ namespace CallTracker.View
             cm.Checked = true;
             _Note.DataBindings.Clear();
             var tag = cm.Tag.ToString();
-            _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
+           
             
             switch (tag)
             {
                 case "ICONNote":
+                    _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
                     _Note.DataBindings[0].ReadValue();
                     break;
                 case "PRTemplate":
+                    _Note.DataBindings.Add(new Binding("Rtf", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
                     _Note.DataBindings[0].ReadValue();
+                    break;
+                default:
+                    _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
                     break;
             }
                 

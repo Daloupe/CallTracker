@@ -35,17 +35,6 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.HfcPanel = new System.Windows.Forms.Panel();
-            this._Symptom = new CallTracker.View.LabelledComboBox();
-            this._Outcome = new CallTracker.View.LabelledComboBox();
-            this._Action = new CallTracker.View.LabelledComboBoxLong();
-            this._BookingDate = new CallTracker.View.LabelledDatePicker();
-            this._BookingType = new CallTracker.View.LabelledComboBox();
-            this._BookingTimeSlot = new CallTracker.View.LabelledComboBox();
-            this._Itcase = new CallTracker.View.LabelledTextBox();
-            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._NPR = new CallTracker.View.LabelledTextBox();
-            this._PR = new CallTracker.View.LabelledTextBox();
-            this._ServicePanel = new CallTracker.View.ServicePanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this._CallTypePanel = new System.Windows.Forms.Panel();
@@ -85,13 +74,6 @@
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.callHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this._Icon = new CallTracker.View.LabelledTextBoxLong();
-            this._Cmbs = new CallTracker.View.LabelledTextBoxLong();
-            this._Username = new CallTracker.View.LabelledTextBoxLong();
-            this._Dn = new CallTracker.View.LabelledTextBoxLong();
-            this._Name = new CallTracker.View.LabelledTextBoxLong();
-            this._Mobile = new CallTracker.View.LabelledTextBoxLong();
-            this._Address = new CallTracker.View.LabelledTextBoxLong();
             this._DialContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -109,7 +91,6 @@
             this._NBF = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this._notePanel = new System.Windows.Forms.Panel();
-            this._Note = new System.Windows.Forms.RichTextBox();
             this._NoteContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.noteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.generateICONNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -119,14 +100,6 @@
             this._NavigatorPanel = new System.Windows.Forms.Panel();
             this._IDOk = new System.Windows.Forms.CheckBox();
             this._TickCrossImageList = new System.Windows.Forms.ImageList(this.components);
-            this.bindingNavigator1 = new CallTracker.View.BindingNavigatorIgnoreFocus();
-            this._PrevCallButton = new System.Windows.Forms.ToolStripButton();
-            this._CurrentPosition = new System.Windows.Forms.ToolStripTextBox();
-            this._NextCallButton = new System.Windows.Forms.ToolStripButton();
-            this._CallMenuButton = new System.Windows.Forms.ToolStripButton();
-            this._DateSelector = new System.Windows.Forms.ToolStripComboBox();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this._ImportantImageList = new System.Windows.Forms.ImageList(this.components);
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -147,6 +120,33 @@
             this._ICONContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
+            this._Icon = new CallTracker.View.LabelledTextBoxLong();
+            this.customerContactsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._Cmbs = new CallTracker.View.LabelledTextBoxLong();
+            this._Username = new CallTracker.View.LabelledTextBoxLong();
+            this._Dn = new CallTracker.View.LabelledTextBoxLong();
+            this._Name = new CallTracker.View.LabelledTextBoxLong();
+            this._Mobile = new CallTracker.View.LabelledTextBoxLong();
+            this._Address = new CallTracker.View.LabelledTextBoxLong();
+            this._Note = new CallTracker.View.dbRTBox();
+            this.bindingNavigator1 = new CallTracker.View.BindingNavigatorIgnoreFocus();
+            this._PrevCallButton = new System.Windows.Forms.ToolStripButton();
+            this._CurrentPosition = new System.Windows.Forms.ToolStripTextBox();
+            this._NextCallButton = new System.Windows.Forms.ToolStripButton();
+            this._CallMenuButton = new System.Windows.Forms.ToolStripButton();
+            this._DateSelector = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this._Symptom = new CallTracker.View.LabelledComboBox();
+            this._Outcome = new CallTracker.View.LabelledComboBox();
+            this._Action = new CallTracker.View.LabelledComboBoxLong();
+            this._BookingDate = new CallTracker.View.LabelledDatePicker();
+            this._BookingType = new CallTracker.View.LabelledComboBox();
+            this._BookingTimeSlot = new CallTracker.View.LabelledComboBox();
+            this._Itcase = new CallTracker.View.LabelledTextBox();
+            this._NPR = new CallTracker.View.LabelledTextBox();
+            this._PR = new CallTracker.View.LabelledTextBox();
+            this._ServicePanel = new CallTracker.View.ServicePanel();
             servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
             ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).BeginInit();
             this.FaultPanel.SuspendLayout();
@@ -157,7 +157,6 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.HfcPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this._ServiceContextMenu.SuspendLayout();
@@ -172,13 +171,14 @@
             this._notePanel.SuspendLayout();
             this._NoteContextMenuStrip.SuspendLayout();
             this._NavigatorPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
-            this.bindingNavigator1.SuspendLayout();
             this.MainPanel.SuspendLayout();
             this._UsernameContextMenu.SuspendLayout();
             this._NameContextMenu.SuspendLayout();
             this._CMBSContextMenu.SuspendLayout();
             this._ICONContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
+            this.bindingNavigator1.SuspendLayout();
             this.SuspendLayout();
             // 
             // servicesDataSet
@@ -270,335 +270,6 @@
             this.HfcPanel.Name = "HfcPanel";
             this.HfcPanel.Size = new System.Drawing.Size(180, 191);
             this.HfcPanel.TabIndex = 22;
-            // 
-            // _Symptom
-            // 
-            this._Symptom.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Symptom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._Symptom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._Symptom.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._Symptom.ControlHeight = 29;
-            this._Symptom.DataSource = null;
-            this._Symptom.DefaultText = "";
-            this._Symptom.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Symptom.HasContextMenu = false;
-            this._Symptom.InitialIndex = 0;
-            this._Symptom.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Symptom.LabelAutoSize = true;
-            this._Symptom.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
-            this._Symptom.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
-            this._Symptom.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._Symptom.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Symptom.LabelOffset = new System.Drawing.Point(2, -3);
-            this._Symptom.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Symptom.LabelSize = new System.Drawing.Size(59, 22);
-            this._Symptom.LabelText = "SYMPTOM";
-            this._Symptom.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._Symptom.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Symptom.LabelToolTip = "";
-            this._Symptom.Location = new System.Drawing.Point(4, 137);
-            this._Symptom.Margin = new System.Windows.Forms.Padding(0);
-            this._Symptom.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._Symptom.MenuButtonImage = null;
-            this._Symptom.Name = "_Symptom";
-            this._Symptom.PropertyName = "Fault.Symptom";
-            this._Symptom.Size = new System.Drawing.Size(59, 29);
-            this._Symptom.TabIndex = 63;
-            this._Symptom.SelectedIndexChanged += new System.EventHandler(this._Symptom_SelectedIndexChanged);
-            // 
-            // _Outcome
-            // 
-            this._Outcome.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Outcome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._Outcome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._Outcome.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._Outcome.ControlHeight = 29;
-            this._Outcome.DataSource = null;
-            this._Outcome.DefaultText = "";
-            this._Outcome.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Outcome.HasContextMenu = false;
-            this._Outcome.InitialIndex = 0;
-            this._Outcome.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Outcome.LabelAutoSize = true;
-            this._Outcome.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
-            this._Outcome.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
-            this._Outcome.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._Outcome.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Outcome.LabelOffset = new System.Drawing.Point(2, -3);
-            this._Outcome.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Outcome.LabelSize = new System.Drawing.Size(59, 22);
-            this._Outcome.LabelText = "OUTCOME";
-            this._Outcome.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._Outcome.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Outcome.LabelToolTip = "";
-            this._Outcome.Location = new System.Drawing.Point(64, 137);
-            this._Outcome.Margin = new System.Windows.Forms.Padding(0);
-            this._Outcome.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._Outcome.MenuButtonImage = null;
-            this._Outcome.Name = "_Outcome";
-            this._Outcome.PropertyName = "Fault.Outcome";
-            this._Outcome.Size = new System.Drawing.Size(111, 29);
-            this._Outcome.TabIndex = 62;
-            this._Outcome.SelectedIndexChanged += new System.EventHandler(this._Outcome_SelectedIndexChanged);
-            // 
-            // _Action
-            // 
-            this._Action.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Action.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._Action.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._Action.ControlHeight = 20;
-            this._Action.DataSource = null;
-            this._Action.DefaultText = "";
-            this._Action.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Action.HasContextMenu = false;
-            this._Action.InitialIndex = 0;
-            this._Action.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Action.LabelAutoSize = false;
-            this._Action.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
-            this._Action.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._Action.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._Action.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Action.LabelOffset = new System.Drawing.Point(0, 0);
-            this._Action.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Action.LabelSize = new System.Drawing.Size(60, 20);
-            this._Action.LabelText = "action";
-            this._Action.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._Action.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Action.LabelToolTip = "";
-            this._Action.Location = new System.Drawing.Point(4, 167);
-            this._Action.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
-            this._Action.MenuButtonImage = null;
-            this._Action.Name = "_Action";
-            this._Action.OverlapLabel = false;
-            this._Action.PropertyName = "Fault.Action";
-            this._Action.Size = new System.Drawing.Size(171, 20);
-            this._Action.TabIndex = 1;
-            // 
-            // _BookingDate
-            // 
-            this._BookingDate.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._BookingDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 0, 0, 0, 0);
-            this._BookingDate.DateText = "09/08";
-            this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
-            this._BookingDate.HasContextMenu = false;
-            this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._BookingDate.LabelAutoSize = true;
-            this._BookingDate.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
-            this._BookingDate.LabelFont = new System.Drawing.Font("Gautami", 7F);
-            this._BookingDate.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._BookingDate.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._BookingDate.LabelOffset = new System.Drawing.Point(2, -3);
-            this._BookingDate.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._BookingDate.LabelSize = new System.Drawing.Size(53, 22);
-            this._BookingDate.LabelText = "BOOKING";
-            this._BookingDate.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._BookingDate.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._BookingDate.LabelToolTip = "";
-            this._BookingDate.Location = new System.Drawing.Point(63, 78);
-            this._BookingDate.Margin = new System.Windows.Forms.Padding(0);
-            this._BookingDate.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._BookingDate.MenuButtonImage = null;
-            this._BookingDate.Name = "_BookingDate";
-            this._BookingDate.PropertyName = "Booking.Date";
-            this._BookingDate.Size = new System.Drawing.Size(61, 29);
-            this._BookingDate.TabIndex = 61;
-            // 
-            // _BookingType
-            // 
-            this._BookingType.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._BookingType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._BookingType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._BookingType.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._BookingType.ControlHeight = 29;
-            this._BookingType.DataSource = null;
-            this._BookingType.DefaultText = "";
-            this._BookingType.Font = new System.Drawing.Font("Verdana", 7F);
-            this._BookingType.HasContextMenu = false;
-            this._BookingType.InitialIndex = 0;
-            this._BookingType.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._BookingType.LabelAutoSize = true;
-            this._BookingType.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
-            this._BookingType.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
-            this._BookingType.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._BookingType.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._BookingType.LabelOffset = new System.Drawing.Point(2, -3);
-            this._BookingType.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._BookingType.LabelSize = new System.Drawing.Size(34, 22);
-            this._BookingType.LabelText = "TYPE";
-            this._BookingType.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._BookingType.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._BookingType.LabelToolTip = "";
-            this._BookingType.Location = new System.Drawing.Point(4, 78);
-            this._BookingType.Margin = new System.Windows.Forms.Padding(0);
-            this._BookingType.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._BookingType.MenuButtonImage = null;
-            this._BookingType.Name = "_BookingType";
-            this._BookingType.PropertyName = "Booking.Type";
-            this._BookingType.Size = new System.Drawing.Size(58, 29);
-            this._BookingType.TabIndex = 60;
-            // 
-            // _BookingTimeSlot
-            // 
-            this._BookingTimeSlot.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._BookingTimeSlot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._BookingTimeSlot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._BookingTimeSlot.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._BookingTimeSlot.ControlHeight = 29;
-            this._BookingTimeSlot.DataSource = null;
-            this._BookingTimeSlot.DefaultText = "";
-            this._BookingTimeSlot.Font = new System.Drawing.Font("Verdana", 7F);
-            this._BookingTimeSlot.HasContextMenu = false;
-            this._BookingTimeSlot.InitialIndex = 0;
-            this._BookingTimeSlot.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._BookingTimeSlot.LabelAutoSize = true;
-            this._BookingTimeSlot.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
-            this._BookingTimeSlot.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
-            this._BookingTimeSlot.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._BookingTimeSlot.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._BookingTimeSlot.LabelOffset = new System.Drawing.Point(2, -3);
-            this._BookingTimeSlot.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._BookingTimeSlot.LabelSize = new System.Drawing.Size(58, 22);
-            this._BookingTimeSlot.LabelText = "TIMESLOT";
-            this._BookingTimeSlot.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._BookingTimeSlot.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._BookingTimeSlot.LabelToolTip = "";
-            this._BookingTimeSlot.Location = new System.Drawing.Point(125, 78);
-            this._BookingTimeSlot.Margin = new System.Windows.Forms.Padding(0);
-            this._BookingTimeSlot.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._BookingTimeSlot.MenuButtonImage = null;
-            this._BookingTimeSlot.Name = "_BookingTimeSlot";
-            this._BookingTimeSlot.PropertyName = "Booking.TimeSlot";
-            this._BookingTimeSlot.Size = new System.Drawing.Size(50, 29);
-            this._BookingTimeSlot.TabIndex = 59;
-            // 
-            // _Itcase
-            // 
-            this._Itcase.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Itcase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._Itcase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._Itcase.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._Itcase.ControlHeight = 28;
-            this._Itcase.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.ITCase", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Itcase.DefaultText = "";
-            this._Itcase.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Itcase.HasContextMenu = false;
-            this._Itcase.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Itcase.LabelAutoSize = false;
-            this._Itcase.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
-            this._Itcase.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._Itcase.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._Itcase.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Itcase.LabelOffset = new System.Drawing.Point(2, -3);
-            this._Itcase.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Itcase.LabelSize = new System.Drawing.Size(46, 16);
-            this._Itcase.LabelText = "IT CASE";
-            this._Itcase.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._Itcase.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Itcase.LabelToolTip = "";
-            this._Itcase.Location = new System.Drawing.Point(4, 48);
-            this._Itcase.Margin = new System.Windows.Forms.Padding(0);
-            this._Itcase.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._Itcase.MenuButtonImage = null;
-            this._Itcase.Name = "_Itcase";
-            this._Itcase.PropertyName = "PR";
-            this._Itcase.Size = new System.Drawing.Size(171, 28);
-            this._Itcase.TabIndex = 57;
-            this._Itcase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._Itcase.TextField = "";
-            this._Itcase.TextFieldBackColour = System.Drawing.SystemColors.Window;
-            // 
-            // customerContactsBindingSource
-            // 
-            this.customerContactsBindingSource.AllowNew = true;
-            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
-            // 
-            // _NPR
-            // 
-            this._NPR.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._NPR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._NPR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._NPR.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._NPR.ControlHeight = 28;
-            this._NPR.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.NPR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._NPR.DefaultText = "";
-            this._NPR.Font = new System.Drawing.Font("Verdana", 7F);
-            this._NPR.HasContextMenu = false;
-            this._NPR.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._NPR.LabelAutoSize = true;
-            this._NPR.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
-            this._NPR.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
-            this._NPR.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._NPR.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._NPR.LabelOffset = new System.Drawing.Point(2, -3);
-            this._NPR.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._NPR.LabelSize = new System.Drawing.Size(74, 22);
-            this._NPR.LabelText = "NETWORK PR";
-            this._NPR.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._NPR.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._NPR.LabelToolTip = "";
-            this._NPR.Location = new System.Drawing.Point(90, 108);
-            this._NPR.Margin = new System.Windows.Forms.Padding(0);
-            this._NPR.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._NPR.MenuButtonImage = null;
-            this._NPR.Name = "_NPR";
-            this._NPR.PropertyName = "NPR";
-            this._NPR.Size = new System.Drawing.Size(85, 28);
-            this._NPR.TabIndex = 52;
-            this._NPR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._NPR.TextField = "";
-            this._NPR.TextFieldBackColour = System.Drawing.SystemColors.Window;
-            // 
-            // _PR
-            // 
-            this._PR.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._PR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._PR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._PR.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._PR.ControlHeight = 28;
-            this._PR.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._PR.DefaultText = "";
-            this._PR.Font = new System.Drawing.Font("Verdana", 7F);
-            this._PR.HasContextMenu = false;
-            this._PR.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._PR.LabelAutoSize = true;
-            this._PR.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
-            this._PR.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this._PR.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._PR.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._PR.LabelOffset = new System.Drawing.Point(2, -3);
-            this._PR.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._PR.LabelSize = new System.Drawing.Size(81, 22);
-            this._PR.LabelText = "CUSTOMER PR";
-            this._PR.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._PR.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._PR.LabelToolTip = "Shift-Ctrl-Z";
-            this._PR.Location = new System.Drawing.Point(4, 108);
-            this._PR.Margin = new System.Windows.Forms.Padding(0);
-            this._PR.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._PR.MenuButtonImage = null;
-            this._PR.Name = "_PR";
-            this._PR.PropertyName = "PR";
-            this._PR.Size = new System.Drawing.Size(85, 28);
-            this._PR.TabIndex = 51;
-            this._PR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._PR.TextField = "";
-            this._PR.TextFieldBackColour = System.Drawing.SystemColors.Window;
-            // 
-            // _ServicePanel
-            // 
-            this._ServicePanel.BackColor = System.Drawing.Color.Ivory;
-            this._ServicePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this._ServicePanel.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ServicePanel.Location = new System.Drawing.Point(0, 0);
-            this._ServicePanel.Margin = new System.Windows.Forms.Padding(0);
-            this._ServicePanel.Name = "_ServicePanel";
-            this._ServicePanel.Padding = new System.Windows.Forms.Padding(3);
-            this._ServicePanel.Size = new System.Drawing.Size(180, 211);
-            this._ServicePanel.TabIndex = 1;
             // 
             // flowLayoutPanel2
             // 
@@ -969,259 +640,6 @@
             this.flowLayoutPanel1.TabIndex = 0;
             this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
-            // _Icon
-            // 
-            this._Icon.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Icon.BackColor = System.Drawing.Color.DarkSlateGray;
-            this._Icon.BorderColour = System.Drawing.Color.DarkSlateGray;
-            this._Icon.ControlHeight = 20;
-            this._Icon.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Icon.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "ICON", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Icon.DefaultText = "";
-            this._Icon.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Icon.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._Icon.HasContextMenu = false;
-            this._Icon.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Icon.LabelAutoSize = false;
-            this._Icon.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
-            this._Icon.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._Icon.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
-            this._Icon.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Icon.LabelOffset = new System.Drawing.Point(0, 0);
-            this._Icon.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Icon.LabelSize = new System.Drawing.Size(50, 20);
-            this._Icon.LabelText = "icon";
-            this._Icon.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._Icon.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Icon.LabelToolTip = "Shift-Ctrl-1";
-            this._Icon.Location = new System.Drawing.Point(3, 3);
-            this._Icon.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Icon.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._Icon.MenuButtonImage = null;
-            this._Icon.Name = "_Icon";
-            this._Icon.PropertyName = null;
-            this._Icon.Size = new System.Drawing.Size(187, 20);
-            this._Icon.TabIndex = 13;
-            this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._Icon.TextField = "";
-            // 
-            // _Cmbs
-            // 
-            this._Cmbs.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Cmbs.BackColor = System.Drawing.Color.DarkSlateGray;
-            this._Cmbs.BorderColour = System.Drawing.Color.DarkSlateGray;
-            this._Cmbs.ControlHeight = 20;
-            this._Cmbs.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Cmbs.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "CMBS", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Cmbs.DefaultText = "";
-            this._Cmbs.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Cmbs.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._Cmbs.HasContextMenu = false;
-            this._Cmbs.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Cmbs.LabelAutoSize = false;
-            this._Cmbs.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
-            this._Cmbs.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._Cmbs.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
-            this._Cmbs.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Cmbs.LabelOffset = new System.Drawing.Point(0, 0);
-            this._Cmbs.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Cmbs.LabelSize = new System.Drawing.Size(43, 20);
-            this._Cmbs.LabelText = "cmbs";
-            this._Cmbs.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._Cmbs.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Cmbs.LabelToolTip = "Shift-Ctrl-2";
-            this._Cmbs.Location = new System.Drawing.Point(193, 3);
-            this._Cmbs.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Cmbs.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._Cmbs.MenuButtonImage = null;
-            this._Cmbs.Name = "_Cmbs";
-            this._Cmbs.PropertyName = null;
-            this._Cmbs.Size = new System.Drawing.Size(135, 20);
-            this._Cmbs.TabIndex = 14;
-            this._Cmbs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._Cmbs.TextField = "";
-            // 
-            // _Username
-            // 
-            this._Username.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Username.BackColor = System.Drawing.Color.DarkSlateGray;
-            this._Username.BorderColour = System.Drawing.Color.DarkSlateGray;
-            this._Username.ControlHeight = 20;
-            this._Username.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Username.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Username", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Username.DefaultText = "";
-            this._Username.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Username.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._Username.HasContextMenu = false;
-            this._Username.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Username.LabelAutoSize = false;
-            this._Username.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
-            this._Username.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._Username.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
-            this._Username.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Username.LabelOffset = new System.Drawing.Point(0, 0);
-            this._Username.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Username.LabelSize = new System.Drawing.Size(50, 20);
-            this._Username.LabelText = "username";
-            this._Username.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._Username.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Username.LabelToolTip = "Shift-Ctrl-Q";
-            this._Username.Location = new System.Drawing.Point(3, 26);
-            this._Username.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Username.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._Username.MenuButtonImage = null;
-            this._Username.Name = "_Username";
-            this._Username.PropertyName = null;
-            this._Username.Size = new System.Drawing.Size(187, 20);
-            this._Username.TabIndex = 15;
-            this._Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this._Username.TextField = "";
-            // 
-            // _Dn
-            // 
-            this._Dn.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Dn.BackColor = System.Drawing.Color.DarkSlateGray;
-            this._Dn.BorderColour = System.Drawing.Color.DarkSlateGray;
-            this._Dn.ControlHeight = 20;
-            this._Dn.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Dn.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "DN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Dn.DefaultText = "";
-            this._Dn.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Dn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._Dn.HasContextMenu = false;
-            this._Dn.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Dn.LabelAutoSize = false;
-            this._Dn.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
-            this._Dn.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._Dn.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
-            this._Dn.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Dn.LabelOffset = new System.Drawing.Point(0, 0);
-            this._Dn.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Dn.LabelSize = new System.Drawing.Size(43, 20);
-            this._Dn.LabelText = "dn";
-            this._Dn.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._Dn.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Dn.LabelToolTip = "Shift-Ctrl-W";
-            this._Dn.Location = new System.Drawing.Point(193, 26);
-            this._Dn.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Dn.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._Dn.MenuButtonImage = null;
-            this._Dn.Name = "_Dn";
-            this._Dn.PropertyName = "DN";
-            this._Dn.Size = new System.Drawing.Size(135, 20);
-            this._Dn.TabIndex = 16;
-            this._Dn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._Dn.TextField = "";
-            // 
-            // _Name
-            // 
-            this._Name.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Name.BackColor = System.Drawing.Color.DarkSlateGray;
-            this._Name.BorderColour = System.Drawing.Color.DarkSlateGray;
-            this._Name.ControlHeight = 20;
-            this._Name.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Name.DefaultText = "";
-            this._Name.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Name.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._Name.HasContextMenu = false;
-            this._Name.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Name.LabelAutoSize = false;
-            this._Name.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
-            this._Name.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._Name.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
-            this._Name.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Name.LabelOffset = new System.Drawing.Point(0, 0);
-            this._Name.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Name.LabelSize = new System.Drawing.Size(50, 20);
-            this._Name.LabelText = "name";
-            this._Name.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._Name.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Name.LabelToolTip = "Shift-Ctrl-A";
-            this._Name.Location = new System.Drawing.Point(3, 49);
-            this._Name.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Name.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._Name.MenuButtonImage = null;
-            this._Name.Name = "_Name";
-            this._Name.PropertyName = null;
-            this._Name.Size = new System.Drawing.Size(187, 20);
-            this._Name.TabIndex = 17;
-            this._Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this._Name.TextField = "";
-            // 
-            // _Mobile
-            // 
-            this._Mobile.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Mobile.BackColor = System.Drawing.Color.DarkSlateGray;
-            this._Mobile.BorderColour = System.Drawing.Color.DarkSlateGray;
-            this._Mobile.ControlHeight = 20;
-            this._Mobile.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Mobile.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Mobile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Mobile.DefaultText = "";
-            this._Mobile.Dock = System.Windows.Forms.DockStyle.Right;
-            this._Mobile.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Mobile.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._Mobile.HasContextMenu = false;
-            this._Mobile.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Mobile.LabelAutoSize = false;
-            this._Mobile.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
-            this._Mobile.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._Mobile.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
-            this._Mobile.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Mobile.LabelOffset = new System.Drawing.Point(0, 0);
-            this._Mobile.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Mobile.LabelSize = new System.Drawing.Size(43, 20);
-            this._Mobile.LabelText = "mobile";
-            this._Mobile.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._Mobile.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Mobile.LabelToolTip = "Shift-Ctrl-S";
-            this._Mobile.Location = new System.Drawing.Point(193, 49);
-            this._Mobile.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Mobile.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._Mobile.MenuButtonImage = null;
-            this._Mobile.Name = "_Mobile";
-            this._Mobile.PropertyName = null;
-            this._Mobile.Size = new System.Drawing.Size(135, 20);
-            this._Mobile.TabIndex = 18;
-            this._Mobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._Mobile.TextField = "";
-            // 
-            // _Address
-            // 
-            this._Address.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Address.BackColor = System.Drawing.Color.DarkSlateGray;
-            this._Address.BorderColour = System.Drawing.Color.DarkSlateGray;
-            this._Address.ControlHeight = 20;
-            this._Address.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Address.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Address.Address", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Address.DefaultText = "";
-            this._Address.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Address.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this._Address.HasContextMenu = false;
-            this._Address.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Address.LabelAutoSize = false;
-            this._Address.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
-            this._Address.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._Address.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
-            this._Address.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Address.LabelOffset = new System.Drawing.Point(0, 0);
-            this._Address.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Address.LabelSize = new System.Drawing.Size(50, 20);
-            this._Address.LabelText = "address";
-            this._Address.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._Address.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Address.LabelToolTip = "";
-            this._Address.Location = new System.Drawing.Point(3, 72);
-            this._Address.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
-            this._Address.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._Address.MenuButtonImage = null;
-            this._Address.Name = "_Address";
-            this._Address.PropertyName = null;
-            this._Address.Size = new System.Drawing.Size(325, 20);
-            this._Address.TabIndex = 19;
-            this._Address.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this._Address.TextField = "";
-            // 
             // _DialContextMenu
             // 
             this._DialContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
@@ -1502,20 +920,6 @@
             this._notePanel.TabIndex = 4;
             this._notePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             // 
-            // _Note
-            // 
-            this._Note.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this._Note.ContextMenuStrip = this._NoteContextMenuStrip;
-            this._Note.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Note", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Note.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._Note.Location = new System.Drawing.Point(1, 0);
-            this._Note.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
-            this._Note.Name = "_Note";
-            this._Note.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this._Note.Size = new System.Drawing.Size(330, 91);
-            this._Note.TabIndex = 1;
-            this._Note.Text = "";
-            // 
             // _NoteContextMenuStrip
             // 
             this._NoteContextMenuStrip.Font = new System.Drawing.Font("Gautami", 8.25F);
@@ -1619,117 +1023,6 @@
             this._TickCrossImageList.TransparentColor = System.Drawing.Color.Transparent;
             this._TickCrossImageList.Images.SetKeyName(0, "action_Cancel_16xLG.png");
             this._TickCrossImageList.Images.SetKeyName(1, "112_Tick_Green_32x32_72.png");
-            // 
-            // bindingNavigator1
-            // 
-            this.bindingNavigator1.AddNewItem = null;
-            this.bindingNavigator1.AutoSize = false;
-            this.bindingNavigator1.BackColor = System.Drawing.Color.LightGray;
-            this.bindingNavigator1.BindingSource = this.customerContactsBindingSource;
-            this.bindingNavigator1.ContextMenuStrip = this._CallHistoryContextMenu;
-            this.bindingNavigator1.CountItem = null;
-            this.bindingNavigator1.DeleteItem = null;
-            this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.None;
-            this.bindingNavigator1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.bindingNavigator1.GripMargin = new System.Windows.Forms.Padding(0);
-            this.bindingNavigator1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._PrevCallButton,
-            this._CurrentPosition,
-            this._NextCallButton,
-            this._CallMenuButton,
-            this._DateSelector,
-            this.toolStripSeparator4,
-            this.toolStripSeparator8});
-            this.bindingNavigator1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
-            this.bindingNavigator1.MoveFirstItem = null;
-            this.bindingNavigator1.MoveLastItem = null;
-            this.bindingNavigator1.MoveNextItem = this._NextCallButton;
-            this.bindingNavigator1.MovePreviousItem = this._PrevCallButton;
-            this.bindingNavigator1.Name = "bindingNavigator1";
-            this.bindingNavigator1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.bindingNavigator1.PositionItem = this._CurrentPosition;
-            this.bindingNavigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.bindingNavigator1.Size = new System.Drawing.Size(331, 29);
-            this.bindingNavigator1.Stretch = true;
-            this.bindingNavigator1.TabIndex = 0;
-            this.bindingNavigator1.Text = "bindingNavigatorIgnoreFocus1";
-            this.bindingNavigator1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
-            // 
-            // _PrevCallButton
-            // 
-            this._PrevCallButton.AutoSize = false;
-            this._PrevCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._PrevCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_PrevCallButton.Image")));
-            this._PrevCallButton.Margin = new System.Windows.Forms.Padding(1, 1, 0, 2);
-            this._PrevCallButton.Name = "_PrevCallButton";
-            this._PrevCallButton.RightToLeftAutoMirrorImage = true;
-            this._PrevCallButton.Size = new System.Drawing.Size(20, 18);
-            this._PrevCallButton.Text = "Move previous";
-            // 
-            // _CurrentPosition
-            // 
-            this._CurrentPosition.AccessibleName = "Position";
-            this._CurrentPosition.AutoSize = false;
-            this._CurrentPosition.BackColor = System.Drawing.Color.GhostWhite;
-            this._CurrentPosition.Font = new System.Drawing.Font("Verdana", 7F);
-            this._CurrentPosition.Margin = new System.Windows.Forms.Padding(0);
-            this._CurrentPosition.Name = "_CurrentPosition";
-            this._CurrentPosition.Size = new System.Drawing.Size(46, 19);
-            this._CurrentPosition.Text = "0";
-            this._CurrentPosition.ToolTipText = "Selected Call";
-            // 
-            // _NextCallButton
-            // 
-            this._NextCallButton.AutoSize = false;
-            this._NextCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this._NextCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_NextCallButton.Image")));
-            this._NextCallButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._NextCallButton.Name = "_NextCallButton";
-            this._NextCallButton.RightToLeftAutoMirrorImage = true;
-            this._NextCallButton.Size = new System.Drawing.Size(20, 18);
-            this._NextCallButton.Text = "Move next";
-            // 
-            // _CallMenuButton
-            // 
-            this._CallMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this._CallMenuButton.AutoSize = false;
-            this._CallMenuButton.AutoToolTip = false;
-            this._CallMenuButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._CallMenuButton.Image = global::CallTracker.Properties.Resources.ContextMenu_Closed_Dark;
-            this._CallMenuButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this._CallMenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this._CallMenuButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this._CallMenuButton.Margin = new System.Windows.Forms.Padding(0);
-            this._CallMenuButton.Name = "_CallMenuButton";
-            this._CallMenuButton.Size = new System.Drawing.Size(14, 28);
-            this._CallMenuButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this._CallMenuButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this._CallMenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
-            // 
-            // _DateSelector
-            // 
-            this._DateSelector.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this._DateSelector.AutoSize = false;
-            this._DateSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this._DateSelector.Font = new System.Drawing.Font("Verdana", 7F);
-            this._DateSelector.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this._DateSelector.Name = "_DateSelector";
-            this._DateSelector.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._DateSelector.Size = new System.Drawing.Size(60, 20);
-            this._DateSelector.ToolTipText = "Selected Date";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 28);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 28);
             // 
             // _ImportantImageList
             // 
@@ -1904,6 +1197,714 @@
             this.toolStripMenuItem23.Text = "ICON";
             this.toolStripMenuItem23.Click += new System.EventHandler(this._SearchICON_click);
             // 
+            // _Icon
+            // 
+            this._Icon.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Icon.BackColor = System.Drawing.Color.DarkSlateGray;
+            this._Icon.BorderColour = System.Drawing.Color.DarkSlateGray;
+            this._Icon.ControlHeight = 20;
+            this._Icon.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Icon.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "ICON", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Icon.DefaultText = "";
+            this._Icon.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Icon.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Icon.HasContextMenu = false;
+            this._Icon.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Icon.LabelAutoSize = false;
+            this._Icon.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Icon.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Icon.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._Icon.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Icon.LabelOffset = new System.Drawing.Point(0, 0);
+            this._Icon.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Icon.LabelSize = new System.Drawing.Size(50, 20);
+            this._Icon.LabelText = "icon";
+            this._Icon.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Icon.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Icon.LabelToolTip = "Shift-Ctrl-1";
+            this._Icon.Location = new System.Drawing.Point(3, 3);
+            this._Icon.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Icon.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Icon.MenuButtonImage = null;
+            this._Icon.Name = "_Icon";
+            this._Icon.PropertyName = null;
+            this._Icon.Size = new System.Drawing.Size(187, 20);
+            this._Icon.TabIndex = 13;
+            this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._Icon.TextField = "";
+            // 
+            // customerContactsBindingSource
+            // 
+            this.customerContactsBindingSource.AllowNew = true;
+            this.customerContactsBindingSource.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
+            // _Cmbs
+            // 
+            this._Cmbs.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Cmbs.BackColor = System.Drawing.Color.DarkSlateGray;
+            this._Cmbs.BorderColour = System.Drawing.Color.DarkSlateGray;
+            this._Cmbs.ControlHeight = 20;
+            this._Cmbs.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Cmbs.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "CMBS", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Cmbs.DefaultText = "";
+            this._Cmbs.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Cmbs.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Cmbs.HasContextMenu = false;
+            this._Cmbs.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Cmbs.LabelAutoSize = false;
+            this._Cmbs.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Cmbs.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Cmbs.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._Cmbs.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Cmbs.LabelOffset = new System.Drawing.Point(0, 0);
+            this._Cmbs.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Cmbs.LabelSize = new System.Drawing.Size(43, 20);
+            this._Cmbs.LabelText = "cmbs";
+            this._Cmbs.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Cmbs.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Cmbs.LabelToolTip = "Shift-Ctrl-2";
+            this._Cmbs.Location = new System.Drawing.Point(193, 3);
+            this._Cmbs.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Cmbs.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Cmbs.MenuButtonImage = null;
+            this._Cmbs.Name = "_Cmbs";
+            this._Cmbs.PropertyName = null;
+            this._Cmbs.Size = new System.Drawing.Size(135, 20);
+            this._Cmbs.TabIndex = 14;
+            this._Cmbs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._Cmbs.TextField = "";
+            // 
+            // _Username
+            // 
+            this._Username.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Username.BackColor = System.Drawing.Color.DarkSlateGray;
+            this._Username.BorderColour = System.Drawing.Color.DarkSlateGray;
+            this._Username.ControlHeight = 20;
+            this._Username.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Username.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Username", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Username.DefaultText = "";
+            this._Username.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Username.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Username.HasContextMenu = false;
+            this._Username.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Username.LabelAutoSize = false;
+            this._Username.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Username.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Username.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._Username.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Username.LabelOffset = new System.Drawing.Point(0, 0);
+            this._Username.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Username.LabelSize = new System.Drawing.Size(50, 20);
+            this._Username.LabelText = "username";
+            this._Username.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Username.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Username.LabelToolTip = "Shift-Ctrl-Q";
+            this._Username.Location = new System.Drawing.Point(3, 26);
+            this._Username.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Username.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Username.MenuButtonImage = null;
+            this._Username.Name = "_Username";
+            this._Username.PropertyName = null;
+            this._Username.Size = new System.Drawing.Size(187, 20);
+            this._Username.TabIndex = 15;
+            this._Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this._Username.TextField = "";
+            // 
+            // _Dn
+            // 
+            this._Dn.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Dn.BackColor = System.Drawing.Color.DarkSlateGray;
+            this._Dn.BorderColour = System.Drawing.Color.DarkSlateGray;
+            this._Dn.ControlHeight = 20;
+            this._Dn.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Dn.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "DN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Dn.DefaultText = "";
+            this._Dn.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Dn.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Dn.HasContextMenu = false;
+            this._Dn.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Dn.LabelAutoSize = false;
+            this._Dn.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Dn.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Dn.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._Dn.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Dn.LabelOffset = new System.Drawing.Point(0, 0);
+            this._Dn.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Dn.LabelSize = new System.Drawing.Size(43, 20);
+            this._Dn.LabelText = "dn";
+            this._Dn.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Dn.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Dn.LabelToolTip = "Shift-Ctrl-W";
+            this._Dn.Location = new System.Drawing.Point(193, 26);
+            this._Dn.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Dn.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Dn.MenuButtonImage = null;
+            this._Dn.Name = "_Dn";
+            this._Dn.PropertyName = "DN";
+            this._Dn.Size = new System.Drawing.Size(135, 20);
+            this._Dn.TabIndex = 16;
+            this._Dn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._Dn.TextField = "";
+            // 
+            // _Name
+            // 
+            this._Name.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Name.BackColor = System.Drawing.Color.DarkSlateGray;
+            this._Name.BorderColour = System.Drawing.Color.DarkSlateGray;
+            this._Name.ControlHeight = 20;
+            this._Name.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Name.DefaultText = "";
+            this._Name.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Name.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Name.HasContextMenu = false;
+            this._Name.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Name.LabelAutoSize = false;
+            this._Name.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Name.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Name.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._Name.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Name.LabelOffset = new System.Drawing.Point(0, 0);
+            this._Name.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Name.LabelSize = new System.Drawing.Size(50, 20);
+            this._Name.LabelText = "name";
+            this._Name.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Name.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Name.LabelToolTip = "Shift-Ctrl-A";
+            this._Name.Location = new System.Drawing.Point(3, 49);
+            this._Name.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Name.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Name.MenuButtonImage = null;
+            this._Name.Name = "_Name";
+            this._Name.PropertyName = null;
+            this._Name.Size = new System.Drawing.Size(187, 20);
+            this._Name.TabIndex = 17;
+            this._Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this._Name.TextField = "";
+            // 
+            // _Mobile
+            // 
+            this._Mobile.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Mobile.BackColor = System.Drawing.Color.DarkSlateGray;
+            this._Mobile.BorderColour = System.Drawing.Color.DarkSlateGray;
+            this._Mobile.ControlHeight = 20;
+            this._Mobile.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Mobile.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Mobile", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Mobile.DefaultText = "";
+            this._Mobile.Dock = System.Windows.Forms.DockStyle.Right;
+            this._Mobile.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Mobile.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Mobile.HasContextMenu = false;
+            this._Mobile.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Mobile.LabelAutoSize = false;
+            this._Mobile.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Mobile.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Mobile.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._Mobile.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Mobile.LabelOffset = new System.Drawing.Point(0, 0);
+            this._Mobile.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Mobile.LabelSize = new System.Drawing.Size(43, 20);
+            this._Mobile.LabelText = "mobile";
+            this._Mobile.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Mobile.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Mobile.LabelToolTip = "Shift-Ctrl-S";
+            this._Mobile.Location = new System.Drawing.Point(193, 49);
+            this._Mobile.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Mobile.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Mobile.MenuButtonImage = null;
+            this._Mobile.Name = "_Mobile";
+            this._Mobile.PropertyName = null;
+            this._Mobile.Size = new System.Drawing.Size(135, 20);
+            this._Mobile.TabIndex = 18;
+            this._Mobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._Mobile.TextField = "";
+            // 
+            // _Address
+            // 
+            this._Address.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Address.BackColor = System.Drawing.Color.DarkSlateGray;
+            this._Address.BorderColour = System.Drawing.Color.DarkSlateGray;
+            this._Address.ControlHeight = 20;
+            this._Address.ControlMargin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Address.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Address.Address", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Address.DefaultText = "";
+            this._Address.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Address.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this._Address.HasContextMenu = false;
+            this._Address.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Address.LabelAutoSize = false;
+            this._Address.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Address.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Address.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._Address.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Address.LabelOffset = new System.Drawing.Point(0, 0);
+            this._Address.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Address.LabelSize = new System.Drawing.Size(50, 20);
+            this._Address.LabelText = "address";
+            this._Address.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Address.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Address.LabelToolTip = "";
+            this._Address.Location = new System.Drawing.Point(3, 72);
+            this._Address.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
+            this._Address.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Address.MenuButtonImage = null;
+            this._Address.Name = "_Address";
+            this._Address.PropertyName = null;
+            this._Address.Size = new System.Drawing.Size(325, 20);
+            this._Address.TabIndex = 19;
+            this._Address.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this._Address.TextField = "";
+            // 
+            // _Note
+            // 
+            this._Note.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this._Note.ContextMenuStrip = this._NoteContextMenuStrip;
+            this._Note.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Note", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Note.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._Note.Font = new System.Drawing.Font("Verdana", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this._Note.Location = new System.Drawing.Point(1, 0);
+            this._Note.Margin = new System.Windows.Forms.Padding(0, 0, 20, 0);
+            this._Note.Name = "_Note";
+            this._Note.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this._Note.Size = new System.Drawing.Size(330, 91);
+            this._Note.TabIndex = 1;
+            this._Note.Text = "";
+            // 
+            // bindingNavigator1
+            // 
+            this.bindingNavigator1.AddNewItem = null;
+            this.bindingNavigator1.AutoSize = false;
+            this.bindingNavigator1.BackColor = System.Drawing.Color.LightGray;
+            this.bindingNavigator1.BindingSource = this.customerContactsBindingSource;
+            this.bindingNavigator1.ContextMenuStrip = this._CallHistoryContextMenu;
+            this.bindingNavigator1.CountItem = null;
+            this.bindingNavigator1.DeleteItem = null;
+            this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.None;
+            this.bindingNavigator1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.bindingNavigator1.GripMargin = new System.Windows.Forms.Padding(0);
+            this.bindingNavigator1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._PrevCallButton,
+            this._CurrentPosition,
+            this._NextCallButton,
+            this._CallMenuButton,
+            this._DateSelector,
+            this.toolStripSeparator4,
+            this.toolStripSeparator8});
+            this.bindingNavigator1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
+            this.bindingNavigator1.MoveFirstItem = null;
+            this.bindingNavigator1.MoveLastItem = null;
+            this.bindingNavigator1.MoveNextItem = this._NextCallButton;
+            this.bindingNavigator1.MovePreviousItem = this._PrevCallButton;
+            this.bindingNavigator1.Name = "bindingNavigator1";
+            this.bindingNavigator1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.bindingNavigator1.PositionItem = this._CurrentPosition;
+            this.bindingNavigator1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.bindingNavigator1.Size = new System.Drawing.Size(331, 29);
+            this.bindingNavigator1.Stretch = true;
+            this.bindingNavigator1.TabIndex = 0;
+            this.bindingNavigator1.Text = "bindingNavigatorIgnoreFocus1";
+            this.bindingNavigator1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
+            // 
+            // _PrevCallButton
+            // 
+            this._PrevCallButton.AutoSize = false;
+            this._PrevCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._PrevCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_PrevCallButton.Image")));
+            this._PrevCallButton.Margin = new System.Windows.Forms.Padding(1, 1, 0, 2);
+            this._PrevCallButton.Name = "_PrevCallButton";
+            this._PrevCallButton.RightToLeftAutoMirrorImage = true;
+            this._PrevCallButton.Size = new System.Drawing.Size(20, 18);
+            this._PrevCallButton.Text = "Move previous";
+            // 
+            // _CurrentPosition
+            // 
+            this._CurrentPosition.AccessibleName = "Position";
+            this._CurrentPosition.AutoSize = false;
+            this._CurrentPosition.BackColor = System.Drawing.Color.GhostWhite;
+            this._CurrentPosition.Font = new System.Drawing.Font("Verdana", 7F);
+            this._CurrentPosition.Margin = new System.Windows.Forms.Padding(0);
+            this._CurrentPosition.Name = "_CurrentPosition";
+            this._CurrentPosition.Size = new System.Drawing.Size(46, 19);
+            this._CurrentPosition.Text = "0";
+            this._CurrentPosition.ToolTipText = "Selected Call";
+            // 
+            // _NextCallButton
+            // 
+            this._NextCallButton.AutoSize = false;
+            this._NextCallButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this._NextCallButton.Image = ((System.Drawing.Image)(resources.GetObject("_NextCallButton.Image")));
+            this._NextCallButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._NextCallButton.Name = "_NextCallButton";
+            this._NextCallButton.RightToLeftAutoMirrorImage = true;
+            this._NextCallButton.Size = new System.Drawing.Size(20, 18);
+            this._NextCallButton.Text = "Move next";
+            // 
+            // _CallMenuButton
+            // 
+            this._CallMenuButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this._CallMenuButton.AutoSize = false;
+            this._CallMenuButton.AutoToolTip = false;
+            this._CallMenuButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._CallMenuButton.Image = global::CallTracker.Properties.Resources.ContextMenu_Closed_Dark;
+            this._CallMenuButton.ImageAlign = System.Drawing.ContentAlignment.TopRight;
+            this._CallMenuButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this._CallMenuButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this._CallMenuButton.Margin = new System.Windows.Forms.Padding(0);
+            this._CallMenuButton.Name = "_CallMenuButton";
+            this._CallMenuButton.Size = new System.Drawing.Size(14, 28);
+            this._CallMenuButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._CallMenuButton.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this._CallMenuButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this._MenuButton_MouseClick);
+            // 
+            // _DateSelector
+            // 
+            this._DateSelector.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this._DateSelector.AutoSize = false;
+            this._DateSelector.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this._DateSelector.Font = new System.Drawing.Font("Verdana", 7F);
+            this._DateSelector.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this._DateSelector.Name = "_DateSelector";
+            this._DateSelector.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._DateSelector.Size = new System.Drawing.Size(60, 20);
+            this._DateSelector.ToolTipText = "Selected Date";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 28);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 28);
+            // 
+            // _Symptom
+            // 
+            this._Symptom.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Symptom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Symptom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._Symptom.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._Symptom.ControlHeight = 29;
+            this._Symptom.DataSource = null;
+            this._Symptom.DefaultText = "";
+            this._Symptom.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Symptom.HasContextMenu = false;
+            this._Symptom.InitialIndex = 0;
+            this._Symptom.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Symptom.LabelAutoSize = true;
+            this._Symptom.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._Symptom.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
+            this._Symptom.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Symptom.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Symptom.LabelOffset = new System.Drawing.Point(2, -3);
+            this._Symptom.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Symptom.LabelSize = new System.Drawing.Size(59, 22);
+            this._Symptom.LabelText = "SYMPTOM";
+            this._Symptom.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._Symptom.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Symptom.LabelToolTip = "";
+            this._Symptom.Location = new System.Drawing.Point(4, 137);
+            this._Symptom.Margin = new System.Windows.Forms.Padding(0);
+            this._Symptom.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Symptom.MenuButtonImage = null;
+            this._Symptom.Name = "_Symptom";
+            this._Symptom.PropertyName = "Fault.Symptom";
+            this._Symptom.Size = new System.Drawing.Size(59, 29);
+            this._Symptom.TabIndex = 63;
+            this._Symptom.SelectedIndexChanged += new System.EventHandler(this._Symptom_SelectedIndexChanged);
+            // 
+            // _Outcome
+            // 
+            this._Outcome.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Outcome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Outcome.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._Outcome.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._Outcome.ControlHeight = 29;
+            this._Outcome.DataSource = null;
+            this._Outcome.DefaultText = "";
+            this._Outcome.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Outcome.HasContextMenu = false;
+            this._Outcome.InitialIndex = 0;
+            this._Outcome.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Outcome.LabelAutoSize = true;
+            this._Outcome.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._Outcome.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
+            this._Outcome.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Outcome.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Outcome.LabelOffset = new System.Drawing.Point(2, -3);
+            this._Outcome.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Outcome.LabelSize = new System.Drawing.Size(59, 22);
+            this._Outcome.LabelText = "OUTCOME";
+            this._Outcome.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._Outcome.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Outcome.LabelToolTip = "";
+            this._Outcome.Location = new System.Drawing.Point(64, 137);
+            this._Outcome.Margin = new System.Windows.Forms.Padding(0);
+            this._Outcome.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Outcome.MenuButtonImage = null;
+            this._Outcome.Name = "_Outcome";
+            this._Outcome.PropertyName = "Fault.Outcome";
+            this._Outcome.Size = new System.Drawing.Size(111, 29);
+            this._Outcome.TabIndex = 62;
+            this._Outcome.SelectedIndexChanged += new System.EventHandler(this._Outcome_SelectedIndexChanged);
+            // 
+            // _Action
+            // 
+            this._Action.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Action.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Action.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._Action.ControlHeight = 20;
+            this._Action.DataSource = null;
+            this._Action.DefaultText = "";
+            this._Action.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Action.HasContextMenu = false;
+            this._Action.InitialIndex = 0;
+            this._Action.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Action.LabelAutoSize = false;
+            this._Action.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._Action.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Action.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Action.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Action.LabelOffset = new System.Drawing.Point(0, 0);
+            this._Action.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Action.LabelSize = new System.Drawing.Size(60, 20);
+            this._Action.LabelText = "action";
+            this._Action.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Action.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Action.LabelToolTip = "";
+            this._Action.Location = new System.Drawing.Point(4, 167);
+            this._Action.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
+            this._Action.MenuButtonImage = null;
+            this._Action.Name = "_Action";
+            this._Action.OverlapLabel = false;
+            this._Action.PropertyName = "Fault.Action";
+            this._Action.Size = new System.Drawing.Size(171, 20);
+            this._Action.TabIndex = 1;
+            // 
+            // _BookingDate
+            // 
+            this._BookingDate.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._BookingDate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._BookingDate.ControlHeight = 29;
+            this._BookingDate.DateField = new System.DateTime(2014, 9, 8, 0, 0, 0, 0);
+            this._BookingDate.DateText = "08/09";
+            this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
+            this._BookingDate.HasContextMenu = false;
+            this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._BookingDate.LabelAutoSize = true;
+            this._BookingDate.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._BookingDate.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this._BookingDate.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._BookingDate.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._BookingDate.LabelOffset = new System.Drawing.Point(2, -3);
+            this._BookingDate.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._BookingDate.LabelSize = new System.Drawing.Size(53, 22);
+            this._BookingDate.LabelText = "BOOKING";
+            this._BookingDate.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._BookingDate.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._BookingDate.LabelToolTip = "";
+            this._BookingDate.Location = new System.Drawing.Point(63, 78);
+            this._BookingDate.Margin = new System.Windows.Forms.Padding(0);
+            this._BookingDate.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._BookingDate.MenuButtonImage = null;
+            this._BookingDate.Name = "_BookingDate";
+            this._BookingDate.PropertyName = "Booking.Date";
+            this._BookingDate.Size = new System.Drawing.Size(61, 29);
+            this._BookingDate.TabIndex = 61;
+            // 
+            // _BookingType
+            // 
+            this._BookingType.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._BookingType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._BookingType.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._BookingType.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._BookingType.ControlHeight = 29;
+            this._BookingType.DataSource = null;
+            this._BookingType.DefaultText = "";
+            this._BookingType.Font = new System.Drawing.Font("Verdana", 7F);
+            this._BookingType.HasContextMenu = false;
+            this._BookingType.InitialIndex = 0;
+            this._BookingType.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._BookingType.LabelAutoSize = true;
+            this._BookingType.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._BookingType.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
+            this._BookingType.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._BookingType.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._BookingType.LabelOffset = new System.Drawing.Point(2, -3);
+            this._BookingType.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._BookingType.LabelSize = new System.Drawing.Size(34, 22);
+            this._BookingType.LabelText = "TYPE";
+            this._BookingType.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._BookingType.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._BookingType.LabelToolTip = "";
+            this._BookingType.Location = new System.Drawing.Point(4, 78);
+            this._BookingType.Margin = new System.Windows.Forms.Padding(0);
+            this._BookingType.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._BookingType.MenuButtonImage = null;
+            this._BookingType.Name = "_BookingType";
+            this._BookingType.PropertyName = "Booking.Type";
+            this._BookingType.Size = new System.Drawing.Size(58, 29);
+            this._BookingType.TabIndex = 60;
+            // 
+            // _BookingTimeSlot
+            // 
+            this._BookingTimeSlot.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._BookingTimeSlot.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._BookingTimeSlot.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._BookingTimeSlot.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._BookingTimeSlot.ControlHeight = 29;
+            this._BookingTimeSlot.DataSource = null;
+            this._BookingTimeSlot.DefaultText = "";
+            this._BookingTimeSlot.Font = new System.Drawing.Font("Verdana", 7F);
+            this._BookingTimeSlot.HasContextMenu = false;
+            this._BookingTimeSlot.InitialIndex = 0;
+            this._BookingTimeSlot.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._BookingTimeSlot.LabelAutoSize = true;
+            this._BookingTimeSlot.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._BookingTimeSlot.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
+            this._BookingTimeSlot.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._BookingTimeSlot.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._BookingTimeSlot.LabelOffset = new System.Drawing.Point(2, -3);
+            this._BookingTimeSlot.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._BookingTimeSlot.LabelSize = new System.Drawing.Size(58, 22);
+            this._BookingTimeSlot.LabelText = "TIMESLOT";
+            this._BookingTimeSlot.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._BookingTimeSlot.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._BookingTimeSlot.LabelToolTip = "";
+            this._BookingTimeSlot.Location = new System.Drawing.Point(125, 78);
+            this._BookingTimeSlot.Margin = new System.Windows.Forms.Padding(0);
+            this._BookingTimeSlot.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._BookingTimeSlot.MenuButtonImage = null;
+            this._BookingTimeSlot.Name = "_BookingTimeSlot";
+            this._BookingTimeSlot.PropertyName = "Booking.TimeSlot";
+            this._BookingTimeSlot.Size = new System.Drawing.Size(50, 29);
+            this._BookingTimeSlot.TabIndex = 59;
+            // 
+            // _Itcase
+            // 
+            this._Itcase.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Itcase.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Itcase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._Itcase.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._Itcase.ControlHeight = 28;
+            this._Itcase.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.ITCase", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Itcase.DefaultText = "";
+            this._Itcase.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Itcase.HasContextMenu = false;
+            this._Itcase.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Itcase.LabelAutoSize = false;
+            this._Itcase.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._Itcase.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._Itcase.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Itcase.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Itcase.LabelOffset = new System.Drawing.Point(2, -3);
+            this._Itcase.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Itcase.LabelSize = new System.Drawing.Size(46, 16);
+            this._Itcase.LabelText = "IT CASE";
+            this._Itcase.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._Itcase.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Itcase.LabelToolTip = "";
+            this._Itcase.Location = new System.Drawing.Point(4, 48);
+            this._Itcase.Margin = new System.Windows.Forms.Padding(0);
+            this._Itcase.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Itcase.MenuButtonImage = null;
+            this._Itcase.Name = "_Itcase";
+            this._Itcase.PropertyName = "PR";
+            this._Itcase.Size = new System.Drawing.Size(171, 28);
+            this._Itcase.TabIndex = 57;
+            this._Itcase.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._Itcase.TextField = "";
+            this._Itcase.TextFieldBackColour = System.Drawing.SystemColors.Window;
+            // 
+            // _NPR
+            // 
+            this._NPR.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._NPR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._NPR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._NPR.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._NPR.ControlHeight = 28;
+            this._NPR.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.NPR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._NPR.DefaultText = "";
+            this._NPR.Font = new System.Drawing.Font("Verdana", 7F);
+            this._NPR.HasContextMenu = false;
+            this._NPR.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._NPR.LabelAutoSize = true;
+            this._NPR.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._NPR.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
+            this._NPR.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._NPR.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._NPR.LabelOffset = new System.Drawing.Point(2, -3);
+            this._NPR.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._NPR.LabelSize = new System.Drawing.Size(74, 22);
+            this._NPR.LabelText = "NETWORK PR";
+            this._NPR.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._NPR.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._NPR.LabelToolTip = "";
+            this._NPR.Location = new System.Drawing.Point(90, 108);
+            this._NPR.Margin = new System.Windows.Forms.Padding(0);
+            this._NPR.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._NPR.MenuButtonImage = null;
+            this._NPR.Name = "_NPR";
+            this._NPR.PropertyName = "NPR";
+            this._NPR.Size = new System.Drawing.Size(85, 28);
+            this._NPR.TabIndex = 52;
+            this._NPR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._NPR.TextField = "";
+            this._NPR.TextFieldBackColour = System.Drawing.SystemColors.Window;
+            // 
+            // _PR
+            // 
+            this._PR.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._PR.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._PR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._PR.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._PR.ControlHeight = 28;
+            this._PR.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.customerContactsBindingSource, "Fault.PR", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._PR.DefaultText = "";
+            this._PR.Font = new System.Drawing.Font("Verdana", 7F);
+            this._PR.HasContextMenu = false;
+            this._PR.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._PR.LabelAutoSize = true;
+            this._PR.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._PR.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this._PR.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._PR.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._PR.LabelOffset = new System.Drawing.Point(2, -3);
+            this._PR.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._PR.LabelSize = new System.Drawing.Size(81, 22);
+            this._PR.LabelText = "CUSTOMER PR";
+            this._PR.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._PR.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._PR.LabelToolTip = "Shift-Ctrl-Z";
+            this._PR.Location = new System.Drawing.Point(4, 108);
+            this._PR.Margin = new System.Windows.Forms.Padding(0);
+            this._PR.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._PR.MenuButtonImage = null;
+            this._PR.Name = "_PR";
+            this._PR.PropertyName = "PR";
+            this._PR.Size = new System.Drawing.Size(85, 28);
+            this._PR.TabIndex = 51;
+            this._PR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._PR.TextField = "";
+            this._PR.TextFieldBackColour = System.Drawing.SystemColors.Window;
+            // 
+            // _ServicePanel
+            // 
+            this._ServicePanel.BackColor = System.Drawing.Color.Ivory;
+            this._ServicePanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this._ServicePanel.Font = new System.Drawing.Font("Verdana", 7F);
+            this._ServicePanel.Location = new System.Drawing.Point(0, 0);
+            this._ServicePanel.Margin = new System.Windows.Forms.Padding(0);
+            this._ServicePanel.Name = "_ServicePanel";
+            this._ServicePanel.Padding = new System.Windows.Forms.Padding(3);
+            this._ServicePanel.Size = new System.Drawing.Size(180, 211);
+            this._ServicePanel.TabIndex = 1;
+            // 
             // EditContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1927,7 +1928,6 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.ResumeLayout(false);
             this.HfcPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this._ServiceContextMenu.ResumeLayout(false);
@@ -1943,14 +1943,15 @@
             this._notePanel.ResumeLayout(false);
             this._NoteContextMenuStrip.ResumeLayout(false);
             this._NavigatorPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
-            this.bindingNavigator1.ResumeLayout(false);
-            this.bindingNavigator1.PerformLayout();
             this.MainPanel.ResumeLayout(false);
             this._UsernameContextMenu.ResumeLayout(false);
             this._NameContextMenu.ResumeLayout(false);
             this._CMBSContextMenu.ResumeLayout(false);
             this._ICONContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
+            this.bindingNavigator1.ResumeLayout(false);
+            this.bindingNavigator1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1966,7 +1967,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
         private System.Windows.Forms.FlowLayoutPanel MainPanel;
         public System.Windows.Forms.BindingSource customerContactsBindingSource;
-        private System.Windows.Forms.RichTextBox _Note;
+        private dbRTBox _Note;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ContextMenuStrip _DialContextMenu;
