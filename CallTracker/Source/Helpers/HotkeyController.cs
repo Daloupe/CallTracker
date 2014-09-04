@@ -148,7 +148,7 @@ namespace CallTracker.Helpers
         {
             if (parent.SelectedContact == null)
             {
-                EventLogger.LogNewEvent("GridLinks Search Error: Not Contact Selected", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("GridLinks Search Error: Not Contact Selected", EventLogLevel.Brief);
                 return;
             }
 
@@ -181,7 +181,7 @@ namespace CallTracker.Helpers
 
                     if (String.IsNullOrEmpty(url))
                     {
-                        EventLogger.LogNewEvent("No relevant data found", EventLogLevel.Brief);
+                        EventLogger.LogAndSaveNewEvent("No relevant data found", EventLogLevel.Brief);
                         url = systemItem.Url;
                     }
 
@@ -220,7 +220,7 @@ namespace CallTracker.Helpers
         {
             if (parent.SelectedContact == null)
             {
-                EventLogger.LogNewEvent("DataPaste Error: Not Contact Selected", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("DataPaste Error: Not Contact Selected", EventLogLevel.Brief);
                 return;
             }
 
@@ -229,7 +229,7 @@ namespace CallTracker.Helpers
 
             if (String.IsNullOrEmpty(dataToPaste))
             {
-                EventLogger.LogNewEvent("DataPaste Error: No Data to paste.", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("DataPaste Error: No Data to paste.", EventLogLevel.Brief);
                 return;
             }
 
@@ -249,7 +249,7 @@ namespace CallTracker.Helpers
         {
             if (parent.SelectedContact == null)
             {
-                EventLogger.LogNewEvent("SmartPaste Error: Selected Contact is Null", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("SmartPaste Error: Selected Contact is Null", EventLogLevel.Brief);
                 return;
             }
 
@@ -293,7 +293,7 @@ namespace CallTracker.Helpers
                     EventLogger.LogNewEvent("Match Found");
                 }
                 else
-                    EventLogger.LogNewEvent("No Matches Found");
+                    EventLogger.LogAndSaveNewEvent("No Matches Found");
 
                 browser.Dispose();
             }
@@ -313,13 +313,13 @@ namespace CallTracker.Helpers
             //Console.WriteLine(browser.ActiveElement.GetAttributeValue("type"));
             if (activeElement == null)
             {
-                EventLogger.LogNewEvent("Unable to bind: activeElement is Null");
+                EventLogger.LogAndSaveNewEvent("Unable to bind: activeElement is Null");
                 return;
             }
 
             if (String.IsNullOrEmpty(activeElement.IdOrName))
             {
-                EventLogger.LogNewEvent("Unable to bind: activeElement.IdOrName is NullOrEmpty");
+                EventLogger.LogAndSaveNewEvent("Unable to bind: activeElement.IdOrName is NullOrEmpty");
                 return;
             }
 
@@ -356,7 +356,7 @@ namespace CallTracker.Helpers
         {
             if (parent.SelectedContact == null)
             {
-                EventLogger.LogNewEvent("GridLinks Search Error: Not Contact Selected", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("GridLinks Search Error: Not Contact Selected", EventLogLevel.Brief);
                 return;
             }
 
@@ -383,7 +383,7 @@ namespace CallTracker.Helpers
                     bind.Paste(bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, affectedService));
             }
             else
-                EventLogger.LogNewEvent("No Matches Found");
+                EventLogger.LogAndSaveNewEvent("No Matches Found");
 
             if (browser.Url.Contains("CreatePR"))
             {
@@ -621,11 +621,11 @@ namespace CallTracker.Helpers
         {
             var title = WindowHelper.GetActiveWindowTitle();
             if (FindIEByTitle(title)) return true;
-            EventLogger.LogNewEvent(String.Format("Unable to find page by title: {0}", title));
+            EventLogger.LogAndSaveNewEvent(String.Format("Unable to find page by title: {0}", title));
 
             var hwnd = WindowHelper.GetActiveWindowHWND();
             if (FindIEByHWND(hwnd)) return true;
-            EventLogger.LogNewEvent(String.Format("Unable to find page by HWND: {0}", hwnd.ToString()));
+            EventLogger.LogAndSaveNewEvent(String.Format("Unable to find page by HWND: {0}", hwnd.ToString()));
 
             return false;
         }
@@ -656,7 +656,7 @@ namespace CallTracker.Helpers
             EventLogger.LogNewEvent("Finding IE by Title", EventLogLevel.Brief);
             if (!Browser.Exists<IE>(Find.ByTitle(currentTitle)))
             {
-                EventLogger.LogNewEvent("Unable to Find IE by Title", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("Unable to Find IE by Title", EventLogLevel.Brief);
                 return false;
             }
 
@@ -678,7 +678,7 @@ namespace CallTracker.Helpers
             EventLogger.LogNewEvent("Finding IE by URL", EventLogLevel.Brief);
             if (!Browser.Exists<IE>(Find.ByUrl(urlRegex)))
             {
-                EventLogger.LogNewEvent("Unable to Find IE by URL", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("Unable to Find IE by URL", EventLogLevel.Brief);
                 return false;
             }
 
@@ -743,7 +743,7 @@ namespace CallTracker.Helpers
             {
                 if (browser.Title == activeWindowTitle && Properties.Settings.Default.AutoSearchIgnoreActiveWindow)
                 {
-                    EventLogger.LogNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
+                    EventLogger.LogAndSaveNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
                     return false;
                 }
                 browser.GoToNoWait(search);
@@ -757,7 +757,7 @@ namespace CallTracker.Helpers
             {
                 if (browser.Title == activeWindowTitle && Properties.Settings.Default.AutoSearchIgnoreActiveWindow)
                 {
-                    EventLogger.LogNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
+                    EventLogger.LogAndSaveNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
                     return false;
                 }
                 browser.GoToNoWait(search);

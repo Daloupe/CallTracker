@@ -231,33 +231,33 @@ namespace CallTracker.View
             new TipSlide("Overview",
                 new List<TipModel>
                 {
-                    new TipModel("- <Wingman> works by always trying to hand you the best tool for the job, reducing system friction and the need for Note Pad."), 
-                    new TipModel("- <Smart Copy>(|2<Win-C>|1) copies your selection and pops it straight in to the appropriate field. ", "- Selecting \"0394811234\" and pressing |2<Win-C>|1 will copy it straight into the <DN> field in <Wingman>."),
-                    new TipModel("- <Smart Paste>(|2<Win-V>|1) looks at where you're trying to paste and pastes in the most appropriate data. ", "- Clicking on the \"Account Number\" field in ICON and pressing |2<Win-V>|1 will paste in the <CMBS> number, or ICON if <Wingman> doesn't have it."),
-                    new TipModel("- <Auto Fill>(|2<Win-Ctrl-V>|1) looks at what page you have active, and triggers all the <Smart Pastes> it knows for that page. ", "- Pressing |2<Win-Ctrl-V>|1 in \"IFMS Create\" will fill all the fields that <Wingman> has data for."),
-                    new TipModel("- <Grid Links>(|2<Win-Numpad>|1) will jump straight to the desired system. A different system assigned to each number on the Numpad. ", "- Pressing |2<Win-Numpad2>|1 will activate IFMS and bring it to the front."),
+                    new TipModel("- <Wingman> works by always trying to hand you the best tool for the job, reducing system friction and the need for Notepad."), 
+                    new TipModel("- <Smart Copy>(|2<Win+C>|1) copies your selection and pops it straight in to the appropriate field. ", "- Selecting \"0394811234\" and pressing |2<Win+C>|1 will copy it straight into the <DN> field in <Wingman>."),
+                    new TipModel("- <Smart Paste>(|2<Win+V>|1) looks at where you're trying to paste and pastes in the most appropriate data. ", "- Clicking on the \"Account Number\" field in ICON and pressing |2<Win+V>|1 will paste in the <CMBS> number, or ICON if <Wingman> doesn't have it."),
+                    new TipModel("- <Auto Fill>(|2<Win+Ctrl+V>|1) looks at what page you have active, and triggers all the <Smart Pastes> it knows for that page. ", "- Pressing |2<Win+Ctrl+V>|1 in \"IFMS Create\" will fill all the fields that <Wingman> has data for."),
+                    new TipModel("- <Grid Links>(|2<Win+Numpad>|1) will jump straight to the desired system. A different system assigned to each number on the Numpad. ", "- Pressing |2<Win+Numpad2>|1 will activate IFMS and bring it to the front."),
                     new TipModel("- <Monitor IPCC> will tell <Wingman> when your phone state changes. This gives you realtime estimates of your KPIs, lets you keep track of how long you've been in a call state, and resets <Wingmans> fields when a call pops in.")
                 }),
             new TipSlide("Smart Copy - Win+C",
                 new List<TipModel>
                 {
-                    new TipModel("- <Smart Copy> copies your selected text in to the appropriate field."),
+                    new TipModel("- <Smart Copy>(|2<Win+C>|1) copies your selected text in to the appropriate field."),
                     new TipModel("- It will recognize data in multiple formats. ", "- <CMBS> will be detected as either \"31-123456-7\", \"31123456 7\", \"3112345607\", or \"1123456076\"."),
-                    new TipModel("- <Smart Copy> won't change what is currently in the copy buffer. ", "- If i |2<Ctrl-C>|1 \"Some text\", then |2<Win-C>|1 \"61394811234\", pressing |2<Ctrl-V>|1 will still paste \"Some text\"."),
+                    new TipModel("- <Smart Copy> won't change what is currently in the copy buffer. ", "- If i |2Ctrl+C|1 \"Some text\", then |2<Win+C>|1 \"61394811234\", pressing |2Ctrl+V|1 will still paste \"Some text\"."),
                     new TipModel("- When copying information like <DN> and <CMBS>, <Smart Copy> will also infer the NBN <SIP> server and <State>.")
                 }),
             new TipSlide("Smart Paste - Win+V",
                 new List<TipModel>
                 {
-                    new TipModel("- <Smart Paste> pastes the most appropriate data depending on where you want to paste."),
-                    new TipModel("- It picks the most relevant data based on what is available, and which product you've selected. ", "- Pressing (|2|Win-V|1) in ICON's \"Service Number\" field will paste <Username> only if <Wingman> doesn't have <DN>. Vice Versa if the product is <ONC> or <NVF>."),
+                    new TipModel("- <Smart Paste>(|2<Win+V>|1) pastes the most appropriate data depending on where you want to paste."),
+                    new TipModel("- It picks the most relevant data based on what is available, and which product you've selected. ", "- Pressing |2<Win+V>|1 in ICON's \"Service Number\" field will paste <Username> only if <Wingman> doesn't have <DN>. Vice Versa if the product is <ONC> or <NVF>."),
                     new TipModel("- It will paste data in the appropriate format. ", "- <CMBS> will paste as \"31123456 7\" into <IFMS>, and \"3112345607\" into <ICON>."),
                     new TipModel("- Doesn't yet work in Chrome, or IE pages that use a Chrome Frame like Nexus and the PR Templates, but it will work in MAD!")
                 }),
             new TipSlide("Auto Fill - Win+Ctrl+V",
                 new List<TipModel>
                 {
-                    new TipModel("- <Auto Fill> performs all known Smart Pastes on a page."),
+                    new TipModel("- <Auto Fill>(|2<Win+Ctrl+V>|1) performs all known Smart Pastes on a page."),
                     new TipModel("- Useful for systems with lots of required fields eg IFMS.")
                 }),
             new TipSlide("Call History",
@@ -272,9 +272,9 @@ namespace CallTracker.View
             new TipSlide("GridLinks - Win+NumPad",
                 new List<TipModel>
                 {
-                    new TipModel("- <GridLinks> jumps straight to the desired system so you don't need to track it down from the taskbar."),
+                    new TipModel("- <GridLinks>(|2<Win+Numpad>|1) jumps straight to the desired system so you don't need to track it down from the taskbar."),
                     new TipModel("- Each number on the NumPad is assigned a different system."),
-                    new TipModel("- Also holding Ctrl will initiate a <GridLinks Search> which will also attempt to search the selected system."),
+                    new TipModel("- |2<Win+Ctrl+Numpad>|1 will initiate a <GridLinks Search> which will also attempt to search the selected system."),
                     new TipModel("- System assignment can be changed from <Wingman> > <Settings> > <Grid Links>.")
                 }),
             new TipSlide("IPCC Monitor",
@@ -315,7 +315,7 @@ namespace CallTracker.View
             new TipSlide("Auto Login - Win+`",
                 new List<TipModel>
                 {
-                    new TipModel("- <Auto Login> will detect which system you're trying to log into, and pop your details in."),
+                    new TipModel("- <Auto Login>(|2<Win+`>|1) will detect which system you're trying to log into, and pop your details in."),
                     new TipModel("- You can update your logins from <Wingman> > <Settings> > <Logins>.")
                 }),
             new TipSlide("Data Paste - Ctrl+Shift+",

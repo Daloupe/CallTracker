@@ -16,3 +16,4 @@ AutoFills.
 IFMS Smart Paste onchange event working.
 Bug Report.
 OPOM Smart Copy.
+Which error the log gives when trying to bind to softact.
