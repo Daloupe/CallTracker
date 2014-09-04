@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ProtoBuf;
 using PropertyChanged;
 
@@ -20,7 +21,7 @@ namespace CallTracker.Model
         [ProtoMember(3)]
         internal FilterableBindingList<CustomerContact> Contacts { get; set; }
         [ProtoMember(4)]
-        private EventsModel<DailyStats> Events { get; set; }
+        public EventsModel<DailyStats> Events { get; set; }
 
         public DailyModel()
         {
@@ -41,14 +42,39 @@ namespace CallTracker.Model
             
         }
 
-        internal void ComputeStatistics()
+        internal DailyStats ComputeStatistics()
         {
+            //if (Events.Statistics.IsDirty == false)
+            //    return Events.Statistics;
+
             var callStats = new List<CallStats>();
-            //foreach (var contact in Contacts)
-            //{
-            //    callStats.Add(contact.Events.ComputeStatistics());
-            //}
+
+            foreach (var contact in Contacts)
+            {
+                var callStat = contact.ComputeStatistics();
+                callStats.Add(callStat);
+                //Events.Statistics.Calls += 1;
+            }
+
             Events.ComputeStatistics(callStats);
+            Events.Statistics.Calls = Contacts.Count;
+
+            var stats = (DailyStats)Events.Statistics.Clone();
+
+            var lastLogInIndex = Events.CallEvents.IndexOf(Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogIn)));
+            var lastLogOutIndex = Events.CallEvents.IndexOf(Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogOut)));
+            if (lastLogInIndex > lastLogOutIndex)
+            {
+                stats.Login = Events.Statistics.Login.Add(DateTime.Now.Subtract(Events.CallEvents[lastLogInIndex].Timestamp));
+            }
+            if (Events.LastCallEvent.EventType.Is(CallEventTypes.Ready))
+            {
+                stats.Ready = stats.Ready.Add(DateTime.Now.Subtract(Events.LastCallEvent.Timestamp));
+            }
+
+            //Events.Statistics.IsDirty = false;
+
+            return stats;
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,16 +82,37 @@ namespace CallTracker.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         internal void AddCallEvent(CallEventTypes newEvent)
         {
+            if (Events.LastCallEvent != null)
+            {
+                var lastEventTime = DateTime.Now.Subtract(Events.LastCallEvent.Timestamp);
+                switch (Events.LastCallEvent.EventType)
+                {
+                    case CallEventTypes.Ready:
+                        Events.Statistics.Ready = Events.Statistics.Ready.Add(lastEventTime);
+                        break;
+                }
+            }
+
+            if (newEvent.Is(CallEventTypes.LogOut))
+            {
+                var lastOrDefault = Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogIn));
+                if (lastOrDefault != null)
+                    Events.Statistics.Login = Events.Statistics.Login.Add(DateTime.Now.Subtract(lastOrDefault.Timestamp));
+            }
+
             Events.AddCallEvent(newEvent);
             
             EventLogger.LogNewEvent("Daily Data: " + Date.ShortDate + " > " +
                                  Enum.GetName(typeof (CallEventTypes), Events.LastCallEvent.EventType) + " at " +
-                                 Events.LastCallEvent.Timestamp.ToString("dd/MM/yy hh:mm:ss"), EventLogLevel.Status);
+                                 Events.LastCallEvent.Timestamp.ToString("dd/MM/yy hh:mm:ss"));
+
+            IsDirty = true;
         }
 
         internal void AddAppEvent(AppEventTypes newEvent)
         {
             Events.AddAppEvent(newEvent);
+            IsDirty = true;
         }
     }
 

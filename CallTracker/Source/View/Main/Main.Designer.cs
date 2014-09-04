@@ -137,6 +137,7 @@
             this.afterHoursPaymentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.viewStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -482,6 +483,7 @@
             this.fileToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.callHistoryToolStripMenuItem,
+            this.viewStatsToolStripMenuItem,
             this.toolStripSeparator2,
             this.viewToolStripMenuItem,
             this.quitToolStripMenuItem});
@@ -1059,6 +1061,14 @@
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
             // 
+            // viewStatsToolStripMenuItem
+            // 
+            this.viewStatsToolStripMenuItem.CheckOnClick = true;
+            this.viewStatsToolStripMenuItem.Name = "viewStatsToolStripMenuItem";
+            this.viewStatsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewStatsToolStripMenuItem.Text = "View Stats";
+            this.viewStatsToolStripMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1203,5 +1213,6 @@
         private System.Windows.Forms.ToolStripMenuItem newPageIfRequiredToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem didYouKnowToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem viewStatsToolStripMenuItem;
     }
 }

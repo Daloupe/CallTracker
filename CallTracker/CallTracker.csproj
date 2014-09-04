@@ -134,6 +134,12 @@
     <None Include="Source\View\Controls\NullableComboBox.cs">
       <SubType>Component</SubType>
     </None>
+    <Compile Include="Source\View\Panels\Contact\StatsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Contact\StatsView.Designer.cs">
+      <DependentUpon>StatsView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Popups\DidYouKnow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,10 @@
     <Compile Include="Source\View\Popups\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Source\View\Panels\Contact\StatsView.resx">
+      <DependentUpon>StatsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Popups\DidYouKnow.resx">
       <DependentUpon>DidYouKnow.cs</DependentUpon>
     </EmbeddedResource>
@@ -330,10 +340,10 @@
     <Compile Include="Source\View\Panels\Resources\Ratecodes.Designer.cs">
       <DependentUpon>Ratecodes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Panels\Settings\CallHistoryPanel.cs">
+    <Compile Include="Source\View\Panels\Contact\CallHistoryPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Panels\Settings\CallHistoryPanel.Designer.cs">
+    <Compile Include="Source\View\Panels\Contact\CallHistoryPanel.Designer.cs">
       <DependentUpon>CallHistoryPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Panels\PanelBase.cs">
@@ -342,10 +352,10 @@
     <Compile Include="Source\View\Panels\PanelBase.Designer.cs">
       <DependentUpon>PanelBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Panels\Settings\CallHistory.cs">
+    <Compile Include="Source\View\Panels\Contact\CallHistory.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Source\View\Panels\Settings\CallHistory.Designer.cs">
+    <Compile Include="Source\View\Panels\Contact\CallHistory.Designer.cs">
       <DependentUpon>CallHistory.cs</DependentUpon>
     </Compile>
     <Compile Include="Source\View\Panels\ViewControlBase.cs">
@@ -429,14 +439,14 @@
     <EmbeddedResource Include="Source\View\Panels\Resources\Ratecodes.resx">
       <DependentUpon>Ratecodes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Settings\CallHistoryPanel.resx">
+    <EmbeddedResource Include="Source\View\Panels\Contact\CallHistoryPanel.resx">
       <DependentUpon>CallHistoryPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\PanelBase.resx">
       <DependentUpon>PanelBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Panels\Settings\CallHistory.resx">
+    <EmbeddedResource Include="Source\View\Panels\Contact\CallHistory.resx">
       <DependentUpon>CallHistory.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>

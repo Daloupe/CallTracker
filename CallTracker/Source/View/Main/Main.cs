@@ -67,6 +67,7 @@ namespace CallTracker.View
         internal DatabaseView databaseView;
         internal Ratecodes Ratecodes;
         internal AboutScreen AboutScreen;
+        internal StatsView StatsView;
 
         internal static ICONNoteGenerator NoteGen;
         public HotkeyController HotKeys;
@@ -156,6 +157,8 @@ namespace CallTracker.View
             //Splash.StepProgress("Edit Ratecodes");
             Ratecodes = new Ratecodes();
 
+            StatsView = new StatsView();
+
             _splash.UpdateProgress("Adding Controls", 40);
             UpdateProgressBar("Added Controls");
             _ViewPanel.Controls.Add(editContact);
@@ -173,6 +176,8 @@ namespace CallTracker.View
             _ViewPanel.Controls.Add(databaseView);
             //Splash.StepProgress();
             _ViewPanel.Controls.Add(Ratecodes);
+
+            _ViewPanel.Controls.Add(StatsView);
 
             _splash.UpdateProgress("Initializing Views", 50);
             editContact.OnParentLoad();
@@ -193,6 +198,7 @@ namespace CallTracker.View
             databaseView.Init(this, databaseEditorToolStripMenuItem);
             _splash.StepProgress("Edit Ratecodes");
             Ratecodes.Init(this, ratecodesMenuItem);
+            StatsView.Init(this, viewStatsToolStripMenuItem);
 
             //Splash.StepProgress();
             UpdateProgressBar("Bring to front");

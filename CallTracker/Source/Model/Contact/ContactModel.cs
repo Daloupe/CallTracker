@@ -149,12 +149,17 @@ namespace CallTracker.Model
                     break;
             }
 
-            //EventLogger.LogAndSaveNewEvent(Id + " " + DN + " > " + Enum.GetName(typeof(CallEventTypes), Events.LastCallEvent.EventType) + " at " + Events.LastCallEvent.Timestamp.ToString("dd/MM/yy hh:mm:ss"), EventLogLevel.Status);
+            EventLogger.LogNewEvent(Id + " " + DN + " > " + Enum.GetName(typeof(CallEventTypes), Events.LastCallEvent.EventType) + " at " + Events.LastCallEvent.Timestamp.ToString("dd/MM/yy hh:mm:ss"));
         }
 
         internal void AddAppEvent(AppEventTypes newEvent)
         {
             Events.AddAppEvent(newEvent);
+        }
+
+        internal CallStats ComputeStatistics()
+        {
+            return Events.ComputeStatistics();
         }
 
 
