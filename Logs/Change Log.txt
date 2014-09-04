@@ -44,10 +44,14 @@
 - BindSmartPaste doenst delete on esc, just ok.
 - 1123456076 from doesn't work.
 
-0.7.3.0
+0.7.3.2
 (Minor Features)
 | Added Example windows to tips, hyperlinked example text.
 | Tip position saves with settings.
+(Bugs/Changes)
+| Tips 
+	| Removed SubHeading.
+	| Example section fold away.
 
 0.7.1.0
 (Major Features)

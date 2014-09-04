@@ -40,16 +40,12 @@ namespace CallTracker.View
             this.tipsPanel = new System.Windows.Forms.Panel();
             this.tipsTextPanel = new System.Windows.Forms.Panel();
             this.richTextBox1 = new RichTextBoxLinks.RichTextBoxEx();
-            this.tipsHeadingPanel = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tips = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.prevTip = new System.Windows.Forms.Button();
             this.nextTip = new System.Windows.Forms.Button();
             this.showTipsOnStartup = new System.Windows.Forms.CheckBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.headingPanel = new System.Windows.Forms.Panel();
             this.heading = new System.Windows.Forms.Label();
-            this.subHeading = new System.Windows.Forms.Label();
             this.menuStrip1 = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
@@ -59,9 +55,8 @@ namespace CallTracker.View
             this.exampleHeadingPanel.SuspendLayout();
             this.tipsPanel.SuspendLayout();
             this.tipsTextPanel.SuspendLayout();
-            this.tipsHeadingPanel.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.headingPanel.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,7 +66,7 @@ namespace CallTracker.View
             this.panel1.Controls.Add(this.examplePanel);
             this.panel1.Controls.Add(this.tipsPanel);
             this.panel1.Controls.Add(this.panel4);
-            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Controls.Add(this.headingPanel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 16);
             this.panel1.Margin = new System.Windows.Forms.Padding(0, 4, 0, 4);
@@ -85,7 +80,7 @@ namespace CallTracker.View
             this.examplePanel.Controls.Add(this.exampleTextPanel);
             this.examplePanel.Controls.Add(this.exampleHeadingPanel);
             this.examplePanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.examplePanel.Location = new System.Drawing.Point(3, 146);
+            this.examplePanel.Location = new System.Drawing.Point(3, 147);
             this.examplePanel.Name = "examplePanel";
             this.examplePanel.Size = new System.Drawing.Size(408, 47);
             this.examplePanel.TabIndex = 7;
@@ -161,11 +156,11 @@ namespace CallTracker.View
             // tipsPanel
             // 
             this.tipsPanel.Controls.Add(this.tipsTextPanel);
-            this.tipsPanel.Controls.Add(this.tipsHeadingPanel);
             this.tipsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tipsPanel.Location = new System.Drawing.Point(3, 46);
+            this.tipsPanel.Location = new System.Drawing.Point(3, 33);
             this.tipsPanel.Name = "tipsPanel";
-            this.tipsPanel.Size = new System.Drawing.Size(408, 100);
+            this.tipsPanel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
+            this.tipsPanel.Size = new System.Drawing.Size(408, 114);
             this.tipsPanel.TabIndex = 6;
             // 
             // tipsTextPanel
@@ -174,11 +169,11 @@ namespace CallTracker.View
             this.tipsTextPanel.Controls.Add(this.richTextBox1);
             this.tipsTextPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tipsTextPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.tipsTextPanel.Location = new System.Drawing.Point(0, 15);
+            this.tipsTextPanel.Location = new System.Drawing.Point(0, 2);
             this.tipsTextPanel.Margin = new System.Windows.Forms.Padding(0);
             this.tipsTextPanel.Name = "tipsTextPanel";
             this.tipsTextPanel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.tipsTextPanel.Size = new System.Drawing.Size(408, 85);
+            this.tipsTextPanel.Size = new System.Drawing.Size(408, 112);
             this.tipsTextPanel.TabIndex = 5;
             // 
             // richTextBox1
@@ -194,51 +189,10 @@ namespace CallTracker.View
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
             this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.richTextBox1.Size = new System.Drawing.Size(408, 83);
+            this.richTextBox1.Size = new System.Drawing.Size(408, 110);
             this.richTextBox1.TabIndex = 4;
             this.richTextBox1.Text = "";
             this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.richTextBox1_LinkClicked);
-            // 
-            // tipsHeadingPanel
-            // 
-            this.tipsHeadingPanel.BackColor = System.Drawing.Color.Transparent;
-            this.tipsHeadingPanel.Controls.Add(this.label1);
-            this.tipsHeadingPanel.Controls.Add(this.tips);
-            this.tipsHeadingPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tipsHeadingPanel.Location = new System.Drawing.Point(0, 0);
-            this.tipsHeadingPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tipsHeadingPanel.Name = "tipsHeadingPanel";
-            this.tipsHeadingPanel.Padding = new System.Windows.Forms.Padding(0, 2, 0, 0);
-            this.tipsHeadingPanel.Size = new System.Drawing.Size(408, 15);
-            this.tipsHeadingPanel.TabIndex = 5;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(119)))));
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label1.Font = new System.Drawing.Font("Verdana", 7F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(0, 2);
-            this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(408, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Tips:";
-            // 
-            // tips
-            // 
-            this.tips.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(119)))));
-            this.tips.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tips.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.tips.Font = new System.Drawing.Font("Verdana", 7F, System.Drawing.FontStyle.Bold);
-            this.tips.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.tips.Location = new System.Drawing.Point(0, 2);
-            this.tips.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.tips.Name = "tips";
-            this.tips.Size = new System.Drawing.Size(408, 13);
-            this.tips.TabIndex = 2;
-            this.tips.Text = "Tips:";
             // 
             // panel4
             // 
@@ -301,19 +255,18 @@ namespace CallTracker.View
             this.showTipsOnStartup.Text = "Show On Startup";
             this.showTipsOnStartup.UseVisualStyleBackColor = true;
             // 
-            // panel2
+            // headingPanel
             // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(103)))), ((int)(((byte)(129)))));
-            this.panel2.Controls.Add(this.heading);
-            this.panel2.Controls.Add(this.subHeading);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.panel2.Location = new System.Drawing.Point(3, 2);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0, 0, 2, 2);
-            this.panel2.Name = "panel2";
-            this.panel2.Padding = new System.Windows.Forms.Padding(0, 0, 2, 2);
-            this.panel2.Size = new System.Drawing.Size(408, 44);
-            this.panel2.TabIndex = 4;
+            this.headingPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(103)))), ((int)(((byte)(129)))));
+            this.headingPanel.Controls.Add(this.heading);
+            this.headingPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.headingPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this.headingPanel.Location = new System.Drawing.Point(3, 2);
+            this.headingPanel.Margin = new System.Windows.Forms.Padding(0, 0, 2, 2);
+            this.headingPanel.Name = "headingPanel";
+            this.headingPanel.Padding = new System.Windows.Forms.Padding(0, 0, 2, 2);
+            this.headingPanel.Size = new System.Drawing.Size(408, 31);
+            this.headingPanel.TabIndex = 4;
             // 
             // heading
             // 
@@ -328,20 +281,6 @@ namespace CallTracker.View
             this.heading.Size = new System.Drawing.Size(229, 29);
             this.heading.TabIndex = 0;
             this.heading.Text = "Smart Copy - Win+C";
-            // 
-            // subHeading
-            // 
-            this.subHeading.BackColor = System.Drawing.Color.Transparent;
-            this.subHeading.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.subHeading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.subHeading.Font = new System.Drawing.Font("Gautami", 8F);
-            this.subHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(228)))), ((int)(((byte)(162)))));
-            this.subHeading.Location = new System.Drawing.Point(0, 25);
-            this.subHeading.Margin = new System.Windows.Forms.Padding(0);
-            this.subHeading.Name = "subHeading";
-            this.subHeading.Size = new System.Drawing.Size(406, 17);
-            this.subHeading.TabIndex = 1;
-            this.subHeading.Text = "Analyzes the selected text and copies it in to the appropriate field.";
             // 
             // menuStrip1
             // 
@@ -417,10 +356,9 @@ namespace CallTracker.View
             this.exampleHeadingPanel.ResumeLayout(false);
             this.tipsPanel.ResumeLayout(false);
             this.tipsTextPanel.ResumeLayout(false);
-            this.tipsHeadingPanel.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.headingPanel.ResumeLayout(false);
+            this.headingPanel.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -431,9 +369,8 @@ namespace CallTracker.View
 
         private System.Windows.Forms.CheckBox showTipsOnStartup;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label subHeading;
         private System.Windows.Forms.Label heading;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel headingPanel;
         private System.Windows.Forms.Panel tipsTextPanel;
         private RichTextBoxEx richTextBox1;
         private System.Windows.Forms.Panel panel4;
@@ -441,7 +378,6 @@ namespace CallTracker.View
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem1;
         private System.Windows.Forms.Button prevTip;
         private System.Windows.Forms.Button nextTip;
-        private System.Windows.Forms.Panel tipsHeadingPanel;
         private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
         private System.Windows.Forms.Panel examplePanel;
         private System.Windows.Forms.Panel exampleHeadingPanel;
@@ -450,7 +386,5 @@ namespace CallTracker.View
         private System.Windows.Forms.Panel exampleTextPanel;
         private System.Windows.Forms.RichTextBox exampleRichTextBox;
         private System.Windows.Forms.Panel tipsPanel;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label tips;
     }
 }
