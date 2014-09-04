@@ -36,7 +36,7 @@
 - Confirmed Bras, NTDSN, AddressId, GSID, and ESN Regexes.
 - IPCC menu not drawing back color.
 
-0.7.6.13
+0.7.6.14
 (Minor Features)
 | Created Report Bug popup which sends email with log and bug text.
 | Added OPOM smart copy "0393364915	MARY TANTI	VoIP Second Line Service	Residential	14/08/2014		New		803374653	80337465300177	29/07/2014	ret_caitly_mcin		803374653		100060831702".
@@ -55,6 +55,7 @@
 	| Added Color Parsing.
 	| Examples can be clicked without window having focus.
 	| currentExample is reset when changing slides.
+	| Changing Tips scrolls back to the top.
 
 0.7.4.6
 (Minor Features)
