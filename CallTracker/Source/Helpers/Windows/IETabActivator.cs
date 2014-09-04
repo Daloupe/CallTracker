@@ -4,8 +4,6 @@ using System.Runtime.InteropServices;
 using Accessibility;
 
 using WatiN.Core;
-
-using CallTracker.View;
 using CallTracker.Model;
 
 namespace CallTracker.Helpers

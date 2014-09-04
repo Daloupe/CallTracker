@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Text.RegularExpressions;
-
 using Utilities.RegularExpressions;
 using ProtoBuf;
-using PropertyChanged;
 
 namespace CallTracker.Model
 {

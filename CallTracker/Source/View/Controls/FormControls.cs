@@ -3,10 +3,8 @@ using System.Drawing;
 using System.ComponentModel;
 using System;
 using System.Collections;
-using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using CallTracker.Helpers;
-using Castle.Core.Smtp;
 
 namespace CallTracker.View
 {

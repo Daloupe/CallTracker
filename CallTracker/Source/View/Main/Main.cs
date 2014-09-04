@@ -15,8 +15,6 @@ using TestStack.White.Configuration;
 using TestStack.White.Factory;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
-using System.Windows.Automation;
-using WatiN.Core;
 using Control = System.Windows.Forms.Control;
 using Form = System.Windows.Forms.Form;
 
@@ -375,7 +373,7 @@ namespace CallTracker.View
 
         public static T ShowPopupForm<T>() where T : Form, new()
         {
-            var findForm = Application.OpenForms.OfType<T>();
+            var findForm = Application.OpenForms.OfType<T>().ToList();
             if (!findForm.Any())
             {
                 var form = new T();

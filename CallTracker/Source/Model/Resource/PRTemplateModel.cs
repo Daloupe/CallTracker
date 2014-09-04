@@ -1,6 +1,4 @@
 ﻿using System;
-
-using ProtoBuf;
 using PropertyChanged;
 
 using CallTracker.Helpers;

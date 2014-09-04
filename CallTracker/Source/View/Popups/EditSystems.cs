@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 using CallTracker.DataSets;
-using CallTracker.Model;
-
 using PropertyChanged;
 
 namespace CallTracker.View

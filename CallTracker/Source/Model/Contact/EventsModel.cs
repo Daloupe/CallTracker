@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Forms.VisualStyles;
 using CallTracker.Helpers;
-using Utilities.RegularExpressions;
 using ProtoBuf;
-using PropertyChanged;
-
-using CallTracker.Helpers.Types;
-using WatiN.Core;
 
 namespace CallTracker.Model
 {

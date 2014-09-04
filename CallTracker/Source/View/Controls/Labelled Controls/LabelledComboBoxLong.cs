@@ -7,10 +7,6 @@ using System.Windows.Forms;
 
 using PropertyChanged;
 
-using CallTracker.Model;
-
-using CallTracker.Helpers;
-
 namespace CallTracker.View
 {
     [ImplementPropertyChanged]

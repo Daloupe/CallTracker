@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using WatiN.Core;
 using PropertyChanged;
 using ProtoBuf;
-
-using CallTracker.View;
-using CallTracker.Helpers;
 
 namespace CallTracker.Model
 {

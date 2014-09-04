@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
-using CallTracker.Helpers;
 using CallTracker.Model;
 
 namespace CallTracker.View

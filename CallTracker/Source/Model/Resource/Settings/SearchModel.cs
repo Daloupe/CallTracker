@@ -1,15 +1,5 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
-using System.Windows.Forms.VisualStyles;
-using Castle.Core.Internal;
-using PropertyChanged;
-using ProtoBuf;
-using Utilities.RegularExpressions;
-
-using CallTracker.View;
 using CallTracker.Helpers;
 
 namespace CallTracker.Model

@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Linq;
-using System.Diagnostics;
-
 using CallTracker.Model;
-
-
-using TestStack.White.Factory;
 using TestStack.White.UIItems.Finders;
-using TestStack.White.UIItems.WindowItems;
 using System.Windows.Automation;
 
 namespace CallTracker.Helpers

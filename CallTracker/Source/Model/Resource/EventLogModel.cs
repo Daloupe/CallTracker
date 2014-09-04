@@ -1,17 +1,10 @@
 ﻿using System.IO;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
-
-using Utilities.RegularExpressions;
 using ProtoBuf;
 using PropertyChanged;
-
-using CallTracker.Helpers;
-using CallTracker.View;
 
 namespace CallTracker.Model
 {
