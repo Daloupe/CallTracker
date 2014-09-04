@@ -40,7 +40,7 @@
 - Added Help buttons to screens which link to their "Did You Know?" slide.
 
 
-0.7.3.8
+0.7.3.9
 (Minor Features)
 | Added Example windows to tips, hyperlinked example text.
 | Tip position saves with settings.
@@ -54,6 +54,7 @@
 | Reduced Event Count.
 | Added GSID data and temp Regex.
 | Added IDok, Modem Status, and RFIssues to ICON Note Generator.
+| Note reverts to black.
 
 0.7.1.0
 (Major Features)

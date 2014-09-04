@@ -363,7 +363,8 @@ namespace CallTracker.View
                     _Note.DataBindings[0].ReadValue();
                     break;
                 default:
-                    _Note.DataBindings.Add(new Binding("Text", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
+                    _Note.DataBindings.Add(new Binding("Rtf", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
+                    _Note.ForeColor = Color.Black;
                     break;
             }
                 
