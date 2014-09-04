@@ -32,16 +32,15 @@
 (Major Features)
 / MAD Smart Paste working.
 (Bugs/Changes)
-- Confirmed Bras, NTDSN, AddressId, and ESN Regexes.
+- Confirmed Bras, NTDSN, AddressId, GSID, and ESN Regexes.
 - IPCC menu not drawing back color.
 
 0.7.6.2
 (Minor Features)
 - Added Help buttons to screens which link to their "Did You Know?" slide.
 
-- Added GSID data.
 
-0.7.3.5
+0.7.3.7
 (Minor Features)
 | Added Example windows to tips, hyperlinked example text.
 | Tip position saves with settings.
@@ -52,6 +51,8 @@
 | Pressing ESC on BindSmartPasteForm Saves, rather than deleting.
 | 1123456076 from doesn't work.
 | Added Text formatting to PRtemplates.
+| Reduced Event Count.
+| Added GSID data and temp Regex.
 
 0.7.1.0
 (Major Features)

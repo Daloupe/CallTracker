@@ -62,6 +62,7 @@ namespace RegexAssembly
                 new MyRegex("AddressId",@"\b(\d{6})"),
                 new MyRegex("ESN",      @"\b(\d{6})", RegexOptions.IgnoreCase),
                 new MyRegex("NTDSN",    @"\b(\d{12})", RegexOptions.IgnoreCase),
+                new MyRegex("GSID",    @"\b(\d{16})", RegexOptions.IgnoreCase),
                 new MyRegex("IP",       @"\b(\d{3}\.){3}(\d{3})", RegexOptions.IgnoreCase),
             };
 

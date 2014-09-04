@@ -123,12 +123,12 @@ namespace CallTracker.View
         private void _ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //_ComboBox.Select(0, 0);
-            this.ParentForm.Validate();
+            ParentForm.Validate();
         }
 
         private void _ComboBox_DataSourceChanged(object sender, EventArgs e)
         {
-            //this.ParentForm.Validate();
+            ParentForm.Validate();
         }
 
         private void _ComboBox_DropDownClosed(object sender, EventArgs e)

@@ -7,7 +7,7 @@ using PropertyChanged;
 
 namespace CallTracker.Model
 {
-    [ImplementPropertyChanged]
+    //[ImplementPropertyChanged]
     [ProtoContract]//(SkipConstructor = true)]
     public class NameModel
     {

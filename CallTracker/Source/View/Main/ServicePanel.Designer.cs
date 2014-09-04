@@ -43,7 +43,7 @@
             this._CSA = new CallTracker.View.LabelledTextBoxLong();
             this._CVC = new CallTracker.View.LabelledTextBoxLong();
             this._NNI = new CallTracker.View.LabelledTextBoxLong();
-            this._PRI = new CallTracker.View.LabelledTextBoxLong();
+            this._GSID = new CallTracker.View.LabelledTextBoxLong();
             this._INC = new CallTracker.View.LabelledTextBoxLong();
             this._APT = new CallTracker.View.LabelledTextBoxLong();
             this._NTDSN = new CallTracker.View.LabelledTextBoxLong();
@@ -292,7 +292,7 @@
             this._NBNPanel.Controls.Add(this._CSA);
             this._NBNPanel.Controls.Add(this._CVC);
             this._NBNPanel.Controls.Add(this._NNI);
-            this._NBNPanel.Controls.Add(this._PRI);
+            this._NBNPanel.Controls.Add(this._GSID);
             this._NBNPanel.Controls.Add(this._INC);
             this._NBNPanel.Controls.Add(this._APT);
             this._NBNPanel.Controls.Add(this._NTDSN);
@@ -512,40 +512,40 @@
             this._NNI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._NNI.TextField = "";
             // 
-            // _PRI
+            // _GSID
             // 
-            this._PRI.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._PRI.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._PRI.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._PRI.ControlHeight = 20;
-            this._PRI.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._PRI.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.PRI", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._PRI.DefaultText = "";
-            this._PRI.Font = new System.Drawing.Font("Verdana", 7F);
-            this._PRI.HasContextMenu = false;
-            this._PRI.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._PRI.LabelAutoSize = false;
-            this._PRI.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._PRI.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._PRI.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._PRI.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._PRI.LabelOffset = new System.Drawing.Point(0, 0);
-            this._PRI.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._PRI.LabelSize = new System.Drawing.Size(40, 20);
-            this._PRI.LabelText = "pri";
-            this._PRI.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._PRI.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._PRI.LabelToolTip = "";
-            this._PRI.Location = new System.Drawing.Point(4, 106);
-            this._PRI.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._PRI.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._PRI.MenuButtonImage = null;
-            this._PRI.Name = "_PRI";
-            this._PRI.PropertyName = null;
-            this._PRI.Size = new System.Drawing.Size(171, 20);
-            this._PRI.TabIndex = 73;
-            this._PRI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._PRI.TextField = "";
+            this._GSID.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._GSID.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._GSID.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._GSID.ControlHeight = 20;
+            this._GSID.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._GSID.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.GSID", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._GSID.DefaultText = "";
+            this._GSID.Font = new System.Drawing.Font("Verdana", 7F);
+            this._GSID.HasContextMenu = false;
+            this._GSID.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._GSID.LabelAutoSize = false;
+            this._GSID.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._GSID.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._GSID.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._GSID.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._GSID.LabelOffset = new System.Drawing.Point(0, 0);
+            this._GSID.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._GSID.LabelSize = new System.Drawing.Size(40, 20);
+            this._GSID.LabelText = "gsid";
+            this._GSID.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._GSID.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._GSID.LabelToolTip = "";
+            this._GSID.Location = new System.Drawing.Point(4, 106);
+            this._GSID.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._GSID.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._GSID.MenuButtonImage = null;
+            this._GSID.Name = "_GSID";
+            this._GSID.PropertyName = null;
+            this._GSID.Size = new System.Drawing.Size(171, 20);
+            this._GSID.TabIndex = 73;
+            this._GSID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._GSID.TextField = "";
             // 
             // _INC
             // 
@@ -1706,7 +1706,7 @@
         internal LabelledTextBoxLong _CSA;
         internal LabelledTextBoxLong _CVC;
         internal LabelledTextBoxLong _NNI;
-        internal LabelledTextBoxLong _PRI;
+        internal LabelledTextBoxLong _GSID;
         internal LabelledTextBoxLong _INC;
         internal LabelledTextBoxLong _APT;
         internal LabelledTextBoxLong _Node;

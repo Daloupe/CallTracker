@@ -61,6 +61,7 @@
             this._DataField.Size = new System.Drawing.Size(132, 20);
             this._DataField.TabIndex = 27;
             this._DataField.TextChanged += new System.EventHandler(this._DataField_TextChanged);
+            this._DataField.KeyUp += new System.Windows.Forms.KeyEventHandler(this._DataField_KeyUp);
             this._DataField.Leave += new System.EventHandler(this._DataField_Leave);
             this._DataField.MouseDown += new System.Windows.Forms.MouseEventHandler(this._DataField_MouseDown);
             // 
@@ -70,7 +71,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlHeight = 20;
             this.Controls.Add(this._DataField);
-            this.DoubleBuffered = true;
             this.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this.LabelOffset = new System.Drawing.Point(0, 0);
             this.LabelSize = new System.Drawing.Size(34, 23);

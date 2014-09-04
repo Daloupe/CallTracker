@@ -209,7 +209,7 @@ namespace CallTracker.View
             //    UpdateActions();
 
             // Update Note
-            if (_Note.DataBindings.Count > 0 && _updateNote)
+            if (_Note.DataBindings.Count > 0 && _updateNote && !_isChangingService)
                 _Note.DataBindings[0].ReadValue();
         }
 
@@ -269,14 +269,18 @@ namespace CallTracker.View
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Service //////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        internal bool _isChangingService;
         private ServiceTypes _currentService;
         private ServiceTypes CurrentService
         {
             get { return _currentService; }
             set
             {
+                //_isChangingService = true;
                 _currentService = value;
                 _ServicePanel.ChangeService(_currentService);
+                //_isChangingService = false;
+                _Note.DataBindings[0].ReadValue();
             }
         }
 
@@ -581,6 +585,8 @@ namespace CallTracker.View
         {
             if (!_currentService.Is(ServiceTypes.NONE))
                 _ServicePanel.UpdateSeverity();
+
+            _Note.DataBindings[0].ReadValue();
         }
 
 

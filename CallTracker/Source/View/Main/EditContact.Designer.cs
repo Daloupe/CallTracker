@@ -1459,7 +1459,6 @@
             // 
             this._Note.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this._Note.ContextMenuStrip = this._NoteContextMenuStrip;
-            this._Note.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.customerContactsBindingSource, "Note", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Note.Dock = System.Windows.Forms.DockStyle.Fill;
             this._Note.Font = new System.Drawing.Font("Verdana", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
             this._Note.Location = new System.Drawing.Point(1, 0);
@@ -1691,8 +1690,8 @@
             this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DateField = new System.DateTime(2014, 9, 8, 0, 0, 0, 0);
-            this._BookingDate.DateText = "08/09";
+            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 0, 0, 0, 0);
+            this._BookingDate.DateText = "09/08";
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingDate.HasContextMenu = false;
             this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -1967,7 +1966,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
         private System.Windows.Forms.FlowLayoutPanel MainPanel;
         public System.Windows.Forms.BindingSource customerContactsBindingSource;
-        private dbRTBox _Note;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ContextMenuStrip _DialContextMenu;
@@ -2074,5 +2072,6 @@
         private System.Windows.Forms.ContextMenuStrip _ICONContextMenu;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem22;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem23;
+        internal dbRTBox _Note;
     }
 }

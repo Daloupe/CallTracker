@@ -445,6 +445,7 @@ namespace CallTracker.Helpers
                 else if (contact.FindMobileMatch(text)) { }
                 //else if (contact.Service.FindNTDSNMatch(text)) { }
                 //else if (contact.Service.FindAddressIdMatch(text)) { }
+                //else if (contact.Service.FindGSIDMatch(text)) { }
                 else if (contact.Service.FindIPMatch(text)) { }
                 else if (contact.Fault.FindITCaseMatch(text)) { }         
                 else

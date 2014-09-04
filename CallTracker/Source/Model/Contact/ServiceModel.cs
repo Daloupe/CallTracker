@@ -22,6 +22,7 @@ namespace CallTracker.Model
         public static AddressIdPattern AddressIdPattern = new AddressIdPattern();
         public static ESNPattern ESNPattern = new ESNPattern();
         public static NTDSNPattern NTDSNPattern = new NTDSNPattern();
+        public static GSIDPattern GSIDPattern = new GSIDPattern();
 
         public ServiceModel()
         {
@@ -80,6 +81,8 @@ namespace CallTracker.Model
         public string Sip { get; set; }
         [ProtoMember(27)]
         public string NTDSN { get; set; }
+        [ProtoMember(28)]
+        public string GSID { get; set; }
 
         // LAT
         [ProtoMember(30)]
@@ -227,6 +230,18 @@ namespace CallTracker.Model
             {
                 ESN = text;
                 Main.FadingToolTip.ShowandFade("ESN: " + ESN);
+                return true;
+            };
+            return false;
+        }
+
+        public bool FindGSIDMatch(string text)
+        {
+            var match = GSIDPattern.Match(text);
+            if (match.Success)
+            {
+                GSID = text;
+                Main.FadingToolTip.ShowandFade("GSID: " + GSID);
                 return true;
             };
             return false;

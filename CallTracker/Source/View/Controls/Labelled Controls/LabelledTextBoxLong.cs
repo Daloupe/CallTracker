@@ -65,8 +65,7 @@ namespace CallTracker.View
         }
 
         private void _DataField_TextChanged(object sender, EventArgs e)
-        {
-            ParentForm.Validate();
+        { 
             if (!String.IsNullOrEmpty(_DataField.Text))
                 BackColor = LabelActiveColor;
             else
@@ -84,27 +83,27 @@ namespace CallTracker.View
             //}
         }
 
-        public void FillPolygonPointFillMode(PaintEventArgs e)
-        {
+        //public void FillPolygonPointFillMode(PaintEventArgs e)
+        //{
 
-            // Create solid brush.
-            SolidBrush blueBrush = new SolidBrush(Color.White);
+        //    // Create solid brush.
+        //    SolidBrush blueBrush = new SolidBrush(Color.White);
 
-            // Create points that define polygon.
+        //    // Create points that define polygon.
 
-            Point point1 = new Point(this.Height / 2 + 3, this.Width / 2 - 2);
-            Point point2 = new Point(this.Height / 2, this.Width / 2 + 2);
-            Point point3 = new Point(this.Height / 2 - 3, this.Width / 2 - 2);
-            Point point4 = new Point(this.Height / 2 + 3, this.Width / 2 - 2);
+        //    Point point1 = new Point(this.Height / 2 + 3, this.Width / 2 - 2);
+        //    Point point2 = new Point(this.Height / 2, this.Width / 2 + 2);
+        //    Point point3 = new Point(this.Height / 2 - 3, this.Width / 2 - 2);
+        //    Point point4 = new Point(this.Height / 2 + 3, this.Width / 2 - 2);
        
-            Point[] curvePoints = { point1, point2, point3, point4};
+        //    Point[] curvePoints = { point1, point2, point3, point4};
 
-            // Define fill mode.
-            FillMode newFillMode = FillMode.Winding;
+        //    // Define fill mode.
+        //    FillMode newFillMode = FillMode.Winding;
 
-            // Draw polygon to screen.
-            e.Graphics.FillPolygon(blueBrush, curvePoints, newFillMode);
-        }
+        //    // Draw polygon to screen.
+        //    e.Graphics.FillPolygon(blueBrush, curvePoints, newFillMode);
+        //}
 
         private void _MenuButton_Paint(object sender, PaintEventArgs e)
         {
@@ -127,11 +126,16 @@ namespace CallTracker.View
 
         private void _DataField_MouseDown(object sender, MouseEventArgs e)
         {
-            base.OnMouseDown(e);
+            //base.OnMouseDown(e);
             if (_focus) return;
 
             _DataField.SelectAll();
             _focus = true;
+        }
+
+        private void _DataField_KeyUp(object sender, KeyEventArgs e)
+        {
+            ParentForm.Validate();
         }
     }
 

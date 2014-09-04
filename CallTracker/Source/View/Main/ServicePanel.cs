@@ -117,7 +117,7 @@ namespace CallTracker.View
             _DTVNode.AttachMenu(_NodeContextMenu);
             _CSA.AttachMenu(_CVCContextMenu);
             _AVC.AttachMenu(_AVCContextMenu);
-            _PRI.AttachMenu(_PRIContextMenu);
+            _GSID.AttachMenu(_PRIContextMenu);
 
             
             _Equipment.AttachMenu(_EquipmentMenu);//, EditContacts.BindingContext);
@@ -177,6 +177,7 @@ namespace CallTracker.View
         //public AddListItem myDelegate;
         public void ChangeService(ServiceTypes service)
         {
+            EditContacts._isChangingService = true;
             if (currentFlowPanel.ServiceType.IsNot(service))
             {
                 currentFlowPanel.HidePanel();
@@ -201,6 +202,8 @@ namespace CallTracker.View
 
             if (EditContacts.MainForm.SelectedContact != null)
                 EditContacts.MainForm.SelectedContact.Fault.AffectedServiceType = currentFlowPanel.ServiceType;
+
+            EditContacts._isChangingService = false;
         }
 
         public void UpdateSymptoms()
@@ -220,9 +223,13 @@ namespace CallTracker.View
                          select a.IFMSCode).Distinct().ToList();
 
             EditContacts._Symptom.BindComboBox(query, bindingSource1);
+            
+            if (!query.Contains(EditContacts.MainForm.SelectedContact.Fault.Symptom))
+                EditContacts.MainForm.SelectedContact.Fault.Symptom = query[0];
 
-            //if (!query.Contains(EditContacts.MainForm.SelectedContact.Fault.Symptom))
-            //    EditContacts.MainForm.SelectedContact.Fault.Symptom = query[0];
+            //if (String.IsNullOrEmpty(EditContacts.MainForm.SelectedContact.Fault.Symptom))
+            //    EditContacts._Symptom._ComboBox.SelectedIndex = 0;
+            //EditContacts._Note.DataBindings[0].ReadValue();
         }
 
         public void UpdateEquipment()
