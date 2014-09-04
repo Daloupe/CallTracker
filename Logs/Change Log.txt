@@ -36,6 +36,22 @@
 - Confirmed Bras, NTDSN, AddressId, GSID, and ESN Regexes.
 - IPCC menu not drawing back color.
 
+0.7.6.3
+(Minor Features)
+- Created Report Bug popup which sends email with log and bug text.
+- OPOM smart copy "0393364915	MARY TANTI	VoIP Second Line Service	Residential	14/08/2014		New		803374653	80337465300177	29/07/2014	ret_caitly_mcin		803374653		100060831702".
+(Bugs/Changes)
+- Created Overview Tips panel.
+- IPCC Dial Pad
+	- Window Name: "CTI Dial Pad" AID:"DialPadForm" 
+	- Number Field Name:"Number to Dial:" AID:"dialedNumberComboBox"
+- "onchange" Event fired after smartpaste (into IFMS).
+| Smart Function enumerate query straight to list to avoid repeating the LINQ operation.
+- Updated Outcome acronyms to match new Outcomes.
+| Added EventLogs to ICONAutoFill.
+| Added EventLogs to IFMSAutoFill.
+- Confirm verbose events are saved...
+
 0.7.4.6
 (Minor Features)
 | SplitPanel now receives mousewheel messages properly, without needing to attach lots of events.
@@ -46,6 +62,8 @@
 | Updated Tips.
 | Fading Tooltip doesnt activate or take mouse clicks.
 | SIP wasn't updating with DN grab. Manually updating object with nested change events.
+| Sped up Smart Paste ~40x by using browser.ActiveElement.SetProperty("value", data) rather then refinding through DOM.
+
 
 0.7.3.13
 (Minor Features)

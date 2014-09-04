@@ -85,6 +85,7 @@ namespace CallTracker.View
 
             customerContactsBindingSource.DataSource = ((DailyModel)MainForm._DailyDataBindingSource.Current).Contacts;
             
+            // Needs to be init after bindingsource datasource is set so fields binding properly.
             _ServicePanel.Init();
 
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);

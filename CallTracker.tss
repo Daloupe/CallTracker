@@ -2,15 +2,72 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Popups\DidYouKnow.cs</string>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Popups\DidYouKnow.cs</string>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Popups\DidYouKnow.Designer.cs</string>
+      <string>c:\users\cb 2\documents\programming\csharp\projects\calltracker\calltracker\source\view\popups\didyouknow.cs</string>
+      <string>c:\users\cb 2\documents\programming\csharp\projects\calltracker\calltracker\source\view\popups\didyouknow.cs</string>
+      <string>c:\users\cb 2\documents\programming\csharp\projects\calltracker\calltracker\source\view\popups\didyouknow.designer.cs</string>
     </ArrayOfString>
     <ArrayOfString>
       <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\DidYouKnowSlides.txt</string>
     </ArrayOfString>
     <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Contact\FaultModel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
       <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\Logs\Change Log.txt</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\EditContact.cs</string>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\EditContact.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Helpers\Windows\WindowHelper.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\ServicePanel.cs</string>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\ServicePanel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\Main.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Contact\DailyModel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Contact\ContactModel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Controls\Labelled Controls\LabelledComboBoxLong.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Popups\FadingTooltip.cs</string>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Popups\FadingTooltip.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Helpers\HotkeyController.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Contact\ServiceModel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Data\Data Names.txt</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Helpers\PRGenerators.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Controls\FormControls.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Panels\Contact\StatsView.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Controls\Labelled Controls\LabelledTextBoxLong.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\ThingsToCheck.txt</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Properties\Settings.settings</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

@@ -64,8 +64,24 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private static void OnTest(HotkeyPressedEventArgs e)
         {
+
+            if (!GetActiveBrowser())
+                return;
+            browser.SelectList(Find.ById("location")).Select("Dulles_Mobile");
+
+            //var url = browser.Url;
+            //var title = browser.Title;
+            //var element = browser.ActiveElement.IdOrName;
+
+            foreach (var option in browser.ActiveElement.FindNativeElement().Options.GetElements())
+            {
+                Console.WriteLine(option.GetAttributeValue("value"));
+                Console.WriteLine(option.GetAttributeValue("innerHTML"));
+                Console.WriteLine(option.ToString());
+            }
+
            //Console.WriteLine(WindowHelper.GetActiveWindowTitle());
-           ICONAutoFill.Go(parent);
+            ICONAutoFill.Go(parent);
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,11 +128,10 @@ namespace CallTracker.Helpers
                 }
                 else if (NavigateOrNewIE(systemItem.Url, systemItem.Title))
                 {
-                    if (Browser.Exists<IE>(Find.ByTitle(systemItem.Title)))
-                    {
-                        WindowHelper.ShowWindow(browser.hWnd, WindowHelper.SW_RESTORE);
-                        AutoLogin();
-                    }
+                    if (!Browser.Exists<IE>(Find.ByTitle(systemItem.Title))) return;
+                    
+                    WindowHelper.ShowWindow(browser.hWnd, WindowHelper.SW_RESTORE);
+                    AutoLogin();
                 }
             }
             finally
@@ -209,16 +224,19 @@ namespace CallTracker.Helpers
             EventLogger.LogNewEvent(String.Format("Pasting: {0}", e.Name), EventLogLevel.Brief);
             var dataToPaste = FindProperty.FollowPropertyPath(parent.SelectedContact, e.Name);
 
-            if (!String.IsNullOrEmpty(dataToPaste))
+            if (String.IsNullOrEmpty(dataToPaste))
             {
-                Clipboard.SetText(dataToPaste);
-                SendKeys.SendWait("+^");
-                SendKeys.Flush();
-                SendKeys.SendWait("^v");
-                Application.DoEvents();
-                SendKeys.Flush();
-                parent.AddAppEvent(AppEventTypes.DataPaste);
+                EventLogger.LogNewEvent("DataPaste Error: No Data to paste.", EventLogLevel.Brief);
+                return;
             }
+
+            Clipboard.SetText(dataToPaste);
+            SendKeys.SendWait("+^");
+            SendKeys.Flush();
+            SendKeys.SendWait("^v");
+            Application.DoEvents();
+            SendKeys.Flush();
+            parent.AddAppEvent(AppEventTypes.DataPaste);
         }
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -258,7 +276,12 @@ namespace CallTracker.Helpers
 
                 if (query != null)
                 {
-                    query.Paste(browser, element, FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data, parent.SelectedContact.Fault.AffectedServiceType.ToString()));
+                    var s = FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data,
+                        parent.SelectedContact.Fault.AffectedServiceType.ToString());
+
+                    browser.ActiveElement.SetAttributeValue("value",s);
+                    //query.Paste(browser, element, s);
+
                     parent.AddAppEvent(AppEventTypes.SmartPaste);
                     EventLogger.LogNewEvent("Match Found");
                 }
@@ -286,19 +309,19 @@ namespace CallTracker.Helpers
                 return;
             }
 
-            var urlOrTitleMatches =  from
+            var urlOrTitleMatches =  (from
                                         bind in parent.UserDataStore.PasteBinds
                                      where
                                         url.Contains(bind.Url) ||
                                         title.Contains(bind.Title)
                                      select
-                                        bind;
+                                        bind).ToList();
 
             var elementMatch = urlOrTitleMatches.FirstOrDefault(bind => bind.Element == element);
 
             if (elementMatch == null)
             {
-                var system = urlOrTitleMatches.Any() ? urlOrTitleMatches.FirstOrDefault().System : String.Empty;
+                var system = urlOrTitleMatches.Any() ? urlOrTitleMatches.First().System : String.Empty;
                 elementMatch = new PasteBind(system, url, title, browser.ActiveElement);
                 parent.UserDataStore.PasteBinds.Add(elementMatch);
                 EventLogger.LogNewEvent("New Bind Created");
@@ -328,13 +351,13 @@ namespace CallTracker.Helpers
             var url = browser.Url;
             var title = browser.Title;
 
-            var query = from
+            var query = (from
                             bind in parent.UserDataStore.PasteBinds
                         where
                             url.Contains(bind.Url) ||
                             title.Contains(bind.Title)
                         select
-                            bind;
+                            bind).ToList();
 
             if (query.Any())
             {
@@ -374,10 +397,10 @@ namespace CallTracker.Helpers
             if (!GetActiveBrowser())
                 return;
 
-            string title = browser.Title;
-            string url = browser.Url;
+            var title = browser.Title;
+            var url = browser.Url;
 
-            LoginsModel query = (from
+            var query = (from
                                      login in parent.UserDataStore.Logins
                                  where
                                      title.Contains(login.Title) ||
@@ -385,6 +408,7 @@ namespace CallTracker.Helpers
                                  select
                                      login)
                                  .FirstOrDefault();
+
             OnAction("Actioning matches");
             if (query == null)
                 return;
