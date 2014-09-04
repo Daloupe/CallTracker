@@ -44,17 +44,19 @@
             this.textBox1 = new CallTracker.View.BorderedTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this._Data = new CallTracker.View.BorderedTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox2 = new CallTracker.View.BorderedTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this._ElementType = new System.Windows.Forms.ComboBox();
             this._FindByName = new System.Windows.Forms.CheckBox();
+            this._FireOnChange = new System.Windows.Forms.CheckBox();
+            this._FireOnChangeNoWait = new System.Windows.Forms.CheckBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this._FormElement = new CallTracker.View.BorderedTextBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this._Data = new CallTracker.View.BorderedTextBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -184,6 +186,8 @@
             this.flowLayoutPanel1.Controls.Add(this.label5);
             this.flowLayoutPanel1.Controls.Add(this._ElementType);
             this.flowLayoutPanel1.Controls.Add(this._FindByName);
+            this.flowLayoutPanel1.Controls.Add(this._FireOnChange);
+            this.flowLayoutPanel1.Controls.Add(this._FireOnChangeNoWait);
             this.flowLayoutPanel1.Controls.Add(this.panel3);
             this.flowLayoutPanel1.Controls.Add(this.label7);
             this.flowLayoutPanel1.Controls.Add(this._FormElement);
@@ -257,6 +261,19 @@
             this.label4.Text = "Data:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // _Data
+            // 
+            this._Data.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this._Data.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this._Data.BorderColor = System.Drawing.Color.Gray;
+            this._Data.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Data.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Data", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Data.Location = new System.Drawing.Point(6, 93);
+            this._Data.Multiline = true;
+            this._Data.Name = "_Data";
+            this._Data.Size = new System.Drawing.Size(189, 75);
+            this._Data.TabIndex = 28;
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Black;
@@ -319,10 +336,34 @@
             this._FindByName.Text = "Find By Name";
             this._FindByName.UseVisualStyleBackColor = true;
             // 
+            // _FireOnChange
+            // 
+            this._FireOnChange.AutoSize = true;
+            this._FireOnChange.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FireOnChange", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._FireOnChange.Location = new System.Drawing.Point(6, 274);
+            this._FireOnChange.Name = "_FireOnChange";
+            this._FireOnChange.Size = new System.Drawing.Size(107, 16);
+            this._FireOnChange.TabIndex = 29;
+            this._FireOnChange.Text = "Fire OnChange";
+            this._FireOnChange.UseVisualStyleBackColor = true;
+            this._FireOnChange.CheckedChanged += new System.EventHandler(this._FireOnChange_CheckedChanged);
+            // 
+            // _FireOnChangeNoWait
+            // 
+            this._FireOnChangeNoWait.AutoSize = true;
+            this._FireOnChangeNoWait.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FireOnChangeNoWait", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._FireOnChangeNoWait.Location = new System.Drawing.Point(6, 296);
+            this._FireOnChangeNoWait.Name = "_FireOnChangeNoWait";
+            this._FireOnChangeNoWait.Size = new System.Drawing.Size(154, 16);
+            this._FireOnChangeNoWait.TabIndex = 30;
+            this._FireOnChangeNoWait.Text = "Fire OnChange No Wait";
+            this._FireOnChangeNoWait.UseVisualStyleBackColor = true;
+            this._FireOnChangeNoWait.CheckedChanged += new System.EventHandler(this._FireOnChangeNoWait_CheckedChanged);
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(6, 277);
+            this.panel3.Location = new System.Drawing.Point(6, 321);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 1);
@@ -330,7 +371,7 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(6, 281);
+            this.label7.Location = new System.Drawing.Point(6, 325);
             this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(189, 10);
@@ -343,7 +384,7 @@
             this._FormElement.BorderColor = System.Drawing.Color.Gray;
             this._FormElement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._FormElement.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "FormElement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._FormElement.Location = new System.Drawing.Point(6, 294);
+            this._FormElement.Location = new System.Drawing.Point(6, 338);
             this._FormElement.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._FormElement.Name = "_FormElement";
             this._FormElement.Size = new System.Drawing.Size(189, 19);
@@ -353,25 +394,12 @@
             // 
             this.checkBox3.AutoSize = true;
             this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindInForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox3.Location = new System.Drawing.Point(6, 316);
+            this.checkBox3.Location = new System.Drawing.Point(6, 360);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(118, 16);
             this.checkBox3.TabIndex = 18;
             this.checkBox3.Text = "Find Within Form";
             this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // _Data
-            // 
-            this._Data.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this._Data.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this._Data.BorderColor = System.Drawing.Color.Gray;
-            this._Data.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Data.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "Data", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Data.Location = new System.Drawing.Point(6, 93);
-            this._Data.Multiline = true;
-            this._Data.Name = "_Data";
-            this._Data.Size = new System.Drawing.Size(189, 75);
-            this._Data.TabIndex = 28;
             // 
             // EditSmartPasteBinds
             // 
@@ -426,5 +454,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox _ElementType;
         private BorderedTextBox _Data;
+        private System.Windows.Forms.CheckBox _FireOnChange;
+        private System.Windows.Forms.CheckBox _FireOnChangeNoWait;
     }
 }

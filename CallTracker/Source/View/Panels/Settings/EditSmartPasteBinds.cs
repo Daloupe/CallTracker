@@ -86,5 +86,17 @@ namespace CallTracker.View
         {
             pasteBindBindingSource.ResetBindings(true);
         }
+
+        private void _FireOnChangeNoWait_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_FireOnChangeNoWait.Checked)
+                _FireOnChange.Checked = false;
+        }
+
+        private void _FireOnChange_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_FireOnChange.Checked)
+                _FireOnChangeNoWait.Checked = false;
+        }
     }
 }

@@ -46,26 +46,27 @@ namespace CallTracker.Model
             AltData = String.Empty;
         }
 
-        public PasteBind(string _system, string _url, string _title, Element _activeElement)
+        public PasteBind(string system, string url, string title, Element activeElement)
             : base()
         {
-            System = _system ?? String.Empty;
-            Url = _url ?? String.Empty;
-            Title = _title ?? String.Empty;
-
-            Element = _activeElement.IdOrName;
-            Name = Element;
             Data = String.Empty;
             AltData = String.Empty;
 
-            FindByName = String.IsNullOrEmpty(_activeElement.Id);
-            SetTypeAndMethod(_activeElement);
-            FindForm(_activeElement);          
+            System = system ?? String.Empty;
+            Url = url ?? String.Empty;
+            Title = title ?? String.Empty;
+
+            Element = activeElement.IdOrName;
+            Name = Element;
+
+            FindByName = String.IsNullOrEmpty(activeElement.Id);
+            SetTypeAndMethod(activeElement);
+            FindForm(activeElement);
         }
 
-        public virtual void SetTypeAndMethod(Element _activeElement)
+        private void SetTypeAndMethod(Element activeElement)
         {
-            switch (_activeElement.GetAttributeValue("type"))
+            switch (activeElement.GetAttributeValue("type"))
             {
                 case "text":
                     ElementType = ElementTypes.Textfield;
@@ -83,23 +84,42 @@ namespace CallTracker.Model
             }    
         }
 
-        private void FindForm(Element _activeElement)
+        private void FindForm(Element activeElement)
         {
-            if (_activeElement.Ancestor<Form>().Exists)
-            {
-                Form form = _activeElement.Ancestor<Form>();
-                FormElement = form.IdOrName;
+            if (!activeElement.Ancestor<Form>().Exists) return;
 
-                if (!String.IsNullOrEmpty(FormElement))
-                {
-                    FindInForm = true;
-                    if (String.IsNullOrEmpty(form.Name))
-                        IEFormConstraint = ConstraintByName;
-                    else
-                        IEFormConstraint = ConstraintById;
-                }
-            }
+            var form = activeElement.Ancestor<Form>();
+            FormElement = form.IdOrName;
+
+            if (String.IsNullOrEmpty(FormElement)) return;
+
+            FindInForm = true;
+            IEFormConstraint = String.IsNullOrEmpty(form.Name) ? ConstraintByName : ConstraintById;
         }
+
+        //public void Paste(string value)
+        //{
+        //    Console.WriteLine("Overridden");
+        //    PasteMethod.Invoke(this, new object[] {value});
+        //}
+
+        //public void PasteData<T>(string value) where T : Element
+        //{
+        //    Console.WriteLine("Overridden");
+        //    var browserElement = IEContext(HotkeyController.browser).ElementOfType<T>(IEConstraint(Element));
+        //    //if (!browserElement.Exists)
+        //    //{
+        //    //    EventLogger.LogNewEvent("Smart Paste Error: BrowserElement Doesn't Exist.");
+        //    //    return;
+        //    //}
+
+        //    //browserElement.FindNativeElement().SetFocus();
+        //    IEMethod(browserElement, value);
+        //    if (FireOnChange)
+        //        browserElement.FireEvent("onchange");
+        //    else if (FireOnChangeNoWait)
+        //        browserElement.FireEventNoWait("onchange");
+        //}
     }
     
     //public static class IFMSAutofill

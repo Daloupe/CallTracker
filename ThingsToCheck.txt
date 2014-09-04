@@ -11,3 +11,6 @@ Autosearch.
 GridLinks Search.
 Tips.
 Daily stats compared with Rox.
+ActiveWindow Title for MAD Search screen.
+AutoFills.
+IFMS Smart Paste onchange event working.

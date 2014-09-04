@@ -21,7 +21,8 @@ namespace CallTracker.Helpers
         public static IE browser;
         private static HotKeyManager HotKeyManager;
         public static event ActionEventHandler OnAction;
-        
+        private static readonly Stopwatch StopwatchTester = new Stopwatch();
+
         public HotkeyController(Main _parent)
         {
             parent = _parent;
@@ -49,6 +50,7 @@ namespace CallTracker.Helpers
             Settings.AttachToBrowserTimeOut = 3;
             Settings.WaitForCompleteTimeOut = 3;
             Settings.WaitUntilExistsTimeOut = 3;
+            Settings.HighLightElement = false;
         }
 
         public void Dispose()
@@ -246,7 +248,7 @@ namespace CallTracker.Helpers
         {
             if (parent.SelectedContact == null)
             {
-                EventLogger.LogNewEvent("SmartPaste Error: Not Contact Selected", EventLogLevel.Brief);
+                EventLogger.LogNewEvent("SmartPaste Error: Selected Contact is Null", EventLogLevel.Brief);
                 return;
             }
 
@@ -262,12 +264,13 @@ namespace CallTracker.Helpers
 
                 var url = browser.Url;
                 var title = browser.Title;
-                var element = browser.ActiveElement.IdOrName;
+                var activeElement = browser.ActiveElement;
 
+                
                 var query = (from
                                 bind in parent.UserDataStore.PasteBinds
                              where
-                                bind.Element == element &&
+                                bind.Element == activeElement.IdOrName &&
                                 (url.Contains(bind.Url) ||
                                 title.Contains(bind.Title))
                              select
@@ -279,12 +282,17 @@ namespace CallTracker.Helpers
                     var s = FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data,
                         parent.SelectedContact.Fault.AffectedServiceType.ToString());
 
-                    browser.ActiveElement.SetAttributeValue("value",s);
-                    //query.Paste(browser, element, s);
+                    activeElement.SetAttributeValue("value", s); //query.Paste(browser, element, s);
+                    if (query.FireOnChange)
+                        activeElement.FireEvent("onchange");
+                    else if (query.FireOnChangeNoWait)
+                        activeElement.FireEventNoWait("onchange");
 
                     parent.AddAppEvent(AppEventTypes.SmartPaste);
                     EventLogger.LogNewEvent("Match Found");
                 }
+                else
+                    EventLogger.LogNewEvent("No Matches Found");
 
                 browser.Dispose();
             }
@@ -293,19 +301,24 @@ namespace CallTracker.Helpers
         private static void OnBindSmartPaste(HotkeyPressedEventArgs e)
         {
             EventLogger.LogNewEvent("Searching for matching binds", EventLogLevel.Brief);
+            parent.AddAppEvent(AppEventTypes.BindSmartPaste);
             if (!GetActiveBrowser())
                 return;
 
             var url = browser.Url;
             var title = browser.Title;
-            var element = browser.ActiveElement.IdOrName;
+            var activeElement = browser.ActiveElement;
 
             //Console.WriteLine(browser.ActiveElement.GetAttributeValue("type"));
-
-            if(String.IsNullOrEmpty(element))
+            if (activeElement == null)
             {
-                WindowHelper.SetForegroundWindow(parent.Handle);
-                EventLogger.LogNewEvent("Unable to bind: Unable to find element name or id");
+                EventLogger.LogNewEvent("Unable to bind: activeElement is Null");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(activeElement.IdOrName))
+            {
+                EventLogger.LogNewEvent("Unable to bind: activeElement.IdOrName is NullOrEmpty");
                 return;
             }
 
@@ -317,18 +330,20 @@ namespace CallTracker.Helpers
                                      select
                                         bind).ToList();
 
-            var elementMatch = urlOrTitleMatches.FirstOrDefault(bind => bind.Element == element);
+            var elementMatch = urlOrTitleMatches.FirstOrDefault(bind => bind.Element == activeElement.IdOrName);
 
             if (elementMatch == null)
             {
                 var system = urlOrTitleMatches.Any() ? urlOrTitleMatches.First().System : String.Empty;
-                elementMatch = new PasteBind(system, url, title, browser.ActiveElement);
+                elementMatch = new PasteBind(system, url, title, activeElement);
                 parent.UserDataStore.PasteBinds.Add(elementMatch);
                 EventLogger.LogNewEvent("New Bind Created");
             }
 
             parent.editSmartPasteBinds.SelectQuery(elementMatch);
-            Main.ShowPopupForm<BindSmartPasteForm>().SelectQuery(elementMatch);
+            Main.BindSmartPasteForm.SelectQuery(elementMatch);
+            Main.BindSmartPasteForm.Show();
+            //Main.ShowPopupForm<BindSmartPasteForm>().SelectQuery(elementMatch);
 
             browser.Dispose();
         }
@@ -364,13 +379,17 @@ namespace CallTracker.Helpers
                 EventLogger.LogNewEvent(String.Format("{0} found.", query.Count()));
                 var affectedService = parent.SelectedContact.Fault.AffectedServiceType.ToString();
                 foreach (var bind in query)
-                    bind.Paste(browser, bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, affectedService));
+                    bind.Paste(bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, affectedService));
             }
+            else
+                EventLogger.LogNewEvent("No Matches Found");
+
             if (browser.Url.Contains("CreatePR"))
             {
                 EventLogger.LogNewEvent("Attempting IFMS AutoFills", EventLogLevel.Status);
                 IFMSAutoFill.Go(parent);
             }
+
             if (browser.Url.Contains("NewActivity"))
             {
                 EventLogger.LogNewEvent("Attempting ICON AutoFills", EventLogLevel.Status);
@@ -413,8 +432,8 @@ namespace CallTracker.Helpers
             if (query == null)
                 return;
 
-            query.Paste(browser, query.UsernameElement, query.Username);
-            query.Paste(browser, query.PasswordElement, query.Password);
+            query.Paste(query.UsernameElement, query.Username);
+            query.Paste(query.PasswordElement, query.Password);
             query.Submit(browser);
             //PreviousIEMatch = browser.Title;
             parent.AddAppEvent(AppEventTypes.AutoLogin);
@@ -424,7 +443,6 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        //private static readonly Stopwatch StopwatchTester = new Stopwatch();
         private static readonly Stopwatch Stopwatch = new Stopwatch();
         private static void OnSmartCopy(HotkeyPressedEventArgs e)
         {
@@ -540,7 +558,7 @@ namespace CallTracker.Helpers
             if (query != null)
             {
                 EventLogger.LogNewEvent("Element Match Found");
-                query.Paste(browser, searchElement, searchValue);        
+                query.Paste(searchElement, searchValue);        
             };
 
             // Click Submit /////////////////////////////////////////////////////////////
@@ -557,7 +575,7 @@ namespace CallTracker.Helpers
                 if (query != null)
                 {
                     EventLogger.LogNewEvent("Button Match Found");
-                    query.Paste(browser, submitElement, "");
+                    query.Paste(submitElement, "");
                 }
             }
             parent.AddAppEvent(AppEventTypes.SystemSearch);

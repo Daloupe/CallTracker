@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-
+using CallTracker.Helpers;
 using WatiN.Core;
 using WatiN.Core.Constraints;
 using ProtoBuf;
@@ -21,6 +21,7 @@ namespace CallTracker.Model
     [ProtoInclude(16, typeof(PasteBind))]
     public class IEInteractBase
     {
+        protected MethodInfo PasteMethod;
         public IEInteractBase()
         {
             ContextForm = b => b.Form(IEFormConstraint(FormElement));
@@ -38,6 +39,8 @@ namespace CallTracker.Model
 
             FindInForm = false;
             FindByName = false;
+            FireOnChange = false;
+            FireOnChangeNoWait = false;
             //FindAsTextField = false;
             //TypeText = false;
             //ClickButton = false;
@@ -50,6 +53,8 @@ namespace CallTracker.Model
         public string Url { get; set; }
         [ProtoMember(3)]
         public string Title { get; set; }
+
+        protected string formElement;
         [ProtoMember(4)]
         public string FormElement
         {
@@ -61,8 +66,8 @@ namespace CallTracker.Model
                     FindInForm = false;
             }
         }
-        public string formElement { get; set; }
 
+        protected bool findInForm;
         [ProtoMember(5)]
         public bool FindInForm
         {
@@ -70,14 +75,11 @@ namespace CallTracker.Model
             set
             {
                 findInForm = value;
-                if (findInForm)
-                    IEContext = ContextForm;
-                else
-                    IEContext = ContextBrowser;
+                IEContext = findInForm ? ContextForm : ContextBrowser;
             }
         }
-        protected bool findInForm { get; set; }
-        
+
+        protected bool findByName;
         [ProtoMember(7)]
         public bool FindByName
         {
@@ -85,14 +87,17 @@ namespace CallTracker.Model
             set
             {
                 findByName = value;
-                if (findByName)
-                    IEConstraint = ConstraintByName;
-                else
-                    IEConstraint = ConstraintById;
+                IEConstraint = findByName ? ConstraintByName : ConstraintById;
             }
         }
-        protected bool findByName { get; set; }
 
+        [ProtoMember(8)]
+        public bool FireOnChange { get; set; }
+
+        [ProtoMember(9)]
+        public bool FireOnChangeNoWait { get; set; }
+
+        protected ElementTypes elementType;
         [ProtoMember(11)]
         public ElementTypes ElementType 
         { 
@@ -102,8 +107,7 @@ namespace CallTracker.Model
             } 
             set
             {
-                elementType = value;
-                switch (elementType)
+                switch (value)
                 {
                     case ElementTypes.Textfield:
                         IEType = typeof(TextField);
@@ -126,25 +130,34 @@ namespace CallTracker.Model
                         IEMethod = MethodSetAttributeValue;
                         break;
                 }   
+
+                if(elementType != value)
+                    PasteMethod = GetType().GetMethod("PasteData").MakeGenericMethod(IEType);
+
+                elementType = value;
             }
         }
-        protected ElementTypes elementType { get; set; }
 
-        public virtual void Paste(Browser browser, string element, string value)
+        public virtual void Paste(string element, string value)
         {
-            var paste = GetType().GetMethod("PasteData").MakeGenericMethod(IEType);
-            paste.Invoke(this, new object[] { browser, element, value });
+            PasteMethod.Invoke(this, new object[] { element, value });
         }
 
-        public virtual void PasteData<T>(Browser browser, string element, string value) where T : Element
+        public virtual void PasteData<T>(string element, string value) where T : Element
         {
-            Element elem = IEContext(browser).ElementOfType<T>(IEConstraint(element));
-            if (!elem.Exists) return;
+            var browserElement = IEContext(HotkeyController.browser).ElementOfType<T>(IEConstraint(element));
+            if (!browserElement.Exists)
+            {
+                EventLogger.LogNewEvent("Smart Paste Error: BrowserElement Doesn't Exist.");
+                return;
+            }
             
-            elem.FindNativeElement().SetFocus();
-            IEMethod(elem, value);
-            //Main.FadingToolTip.ShowandFade("Pasting " + element + ": " + value);
-            browser.WaitForComplete(5);
+            browserElement.FindNativeElement().SetFocus();
+            IEMethod(browserElement, value);
+            if (FireOnChange)
+                browserElement.FireEvent("onchange");
+            else if (FireOnChangeNoWait)
+                browserElement.FireEventNoWait("onchange");
         }
 
         protected Func<Browser, IElementContainer> IEContext;

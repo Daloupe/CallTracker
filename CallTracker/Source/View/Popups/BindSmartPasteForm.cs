@@ -9,15 +9,15 @@ namespace CallTracker.View
 {
     public partial class BindSmartPasteForm : Form
     {
-        private Main _parent;
+        private Main _mainForm;
         //private BindingSource source1;
         //private BindingSource source2;
         private readonly AutoCompleteStringCollection _systemAutoCompleteSource;
 
-        public BindSmartPasteForm()
+        public BindSmartPasteForm(Main mainForm)
         {
             InitializeComponent();
-            _parent = Application.OpenForms.OfType<Main>().First();
+            _mainForm = mainForm;//Application.OpenForms.OfType<Main>().First();
             //source1 = new BindingSource();
             //source2 = new BindingSource();
             _systemAutoCompleteSource = new AutoCompleteStringCollection();
@@ -53,24 +53,27 @@ namespace CallTracker.View
 
         private void _Cancel_Click(object sender, EventArgs e)
         {
-            _parent.RemovePasteBind((PasteBind)pasteBindBindingSource.DataSource);
-            Close();
+            _mainForm.RemovePasteBind((PasteBind)pasteBindBindingSource.DataSource);
+            pasteBindBindingSource.SuspendBinding();
+            Hide();
         }
 
         private void _Ok_Click(object sender, EventArgs e)
         {
-            Close();
+            pasteBindBindingSource.SuspendBinding();
+            Hide();
         }
 
         public void SelectQuery(PasteBind query)
         {
             pasteBindBindingSource.DataSource = query;
+            pasteBindBindingSource.ResumeBinding();
             UpdateAutoComplete();
         }
 
         private void UpdateAutoComplete()
         {
-            var distinctById = _parent.UserDataStore.PasteBinds
+            var distinctById = _mainForm.UserDataStore.PasteBinds
                                                     .GroupBy(a => a.System)
                                                     .Select(b => b.First())
                                                     .Select(c => c.System)
@@ -79,14 +82,26 @@ namespace CallTracker.View
             _systemAutoCompleteSource.AddRange(distinctById);
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            _parent = null;
-        }
+        //protected override void OnFormClosing(FormClosingEventArgs e)
+        //{
+        //    _mainForm = null;
+        //}
 
         private void _Help_Click(object sender, EventArgs e)
         {
             Process.Start(@"Data\Data Names.txt");
+        }
+
+        private void _FireOnChangeNoWait_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_FireOnChangeNoWait.Checked)
+                _FireOnChange.Checked = false;
+        }
+
+        private void _FireOnChange_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_FireOnChange.Checked)
+                _FireOnChangeNoWait.Checked = false;
         }
 
     }

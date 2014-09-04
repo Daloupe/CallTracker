@@ -139,6 +139,27 @@ namespace CallTracker.Model
                 case AppEventTypes.Gridlink:
                     Statistics.GridLinks += 1;
                     break;
+                case AppEventTypes.AutoFill:
+                    Statistics.AutoFills += 1;
+                    break;
+                case AppEventTypes.AutoSearch:
+                    Statistics.AutoSearches += 1;
+                    break;
+                case AppEventTypes.DataPaste:
+                    Statistics.DataPastes += 1;
+                    break;
+                case AppEventTypes.GridlinkSearch:
+                    Statistics.GridLinkSearches += 1;
+                    break;
+                case AppEventTypes.SmartCopy:
+                    Statistics.SmartCopies += 1;
+                    break;
+                case AppEventTypes.SmartPaste:
+                    Statistics.SmartPastes += 1;
+                    break;
+                case AppEventTypes.BindSmartPaste:
+                    Statistics.SmartPasteBinds += 1;
+                    break;
             }
             AppEvents.Add(new EventModel<AppEventTypes>(newEvent));
             //EventLogger.LogNewEvent(typeof(T).ToString() + " > " + Enum.GetName(typeof(AppEventTypes), newEvent));
@@ -204,6 +225,8 @@ namespace CallTracker.Model
         public int GridLinks { get; set; }
         [ProtoMember(17)]
         public int GridLinkSearches { get; set; }
+        [ProtoMember(18)]
+        public int SmartPasteBinds { get; set; }
 
         protected StatsModel()
         {
@@ -222,6 +245,7 @@ namespace CallTracker.Model
             DataPastes = 0;
             AutoSearches = 0;
             GridLinkSearches = 0;
+            SmartPasteBinds = 0;
         }
 
         public void Add(StatsModel statsModel)
@@ -303,6 +327,7 @@ namespace CallTracker.Model
         RecordCreated,
         SmartCopy,
         SmartPaste,
+        BindSmartPaste,
         Gridlink,
         GridlinkSearch,
         AutoLogin,

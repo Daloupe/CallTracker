@@ -78,7 +78,7 @@ namespace CallTracker.View
 
         public static FadingTooltip FadingToolTip;
 
-        
+        public static BindSmartPasteForm BindSmartPasteForm;
 
         private readonly SplashScreen _splash;
         public Main(SplashScreen splash)
@@ -236,12 +236,13 @@ namespace CallTracker.View
             UpdateProgressBar(0, "Finished Loading", EventLogLevel.ClearStatus);
             ChangeCallStateMenuItem(logOutToolStripMenuItem);
 
-            FadingToolTip = new FadingTooltip();
-            AboutScreen = new AboutScreen();
-
             DidYouKnow = new DidYouKnow();
             if (Properties.Settings.Default.ShowTipsOnStartup)
-                DidYouKnow.Show();  
+                DidYouKnow.Show();
+
+            FadingToolTip = new FadingTooltip();
+            AboutScreen = new AboutScreen();
+            BindSmartPasteForm = new BindSmartPasteForm(this);
         }
 
         void _DateSelector_PositionChanged(object sender, EventArgs e)
