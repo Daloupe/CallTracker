@@ -97,6 +97,10 @@ namespace CallTracker.View
                 MainForm.editContact.DeleteCalls();
                 e.Cancel = true;
             }
+            else if (bindingSource1.Position == e.Row.Index)
+            {
+                bindingSource1.Position -= 1;
+            }
         }
 
         //private void _DateSelect_SelectedIndexChanged(object sender, EventArgs e)

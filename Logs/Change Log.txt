@@ -12,10 +12,11 @@
 
 
 
-0.9.4.5
+0.9.5.5
 (Major Features)
 / IPCC Data Pull working.
 (Minor Feature)
+- IPCC Dial Filling in Customer Data fields.
 - White Timeout exceptions caught and EventLogged.
 - Added SMS template generators.
 - Add AutoComplete to BindSmartPasteForm data field.
@@ -25,8 +26,12 @@
 - New IE pages can now be loaded as tabs.
 / Ensured PR and ICON templates are only being generated when they need to be.
 - Converted Call States into Menu Item subclass.
+- Confirmed Bras, NTDSN, AddressId, GSID, and ESN Regexes.
+- IPCC menu not drawing back color.
+- ICON Tier4 linked to Action rather than Outcome.
+- Removing bookmarks and systems not working.
 
-0.8.2.18
+0.8.2.19
 (Major Features)
 | MAD Smart Paste working.
 	| Tried caching Edit to speed it up. May not work as Edit changes.
@@ -34,6 +39,7 @@
 | Added WaitWhileBrowserBusy method to HotkeyController to try accomodate for ICON drop down changes.
 (Bugs/Changes)
 | Changed Smart Copy Timer threshold to 3400 ticks. (still copied after 47000 ticks?)
+	| Changed again to 50ms(500000ticks).
 | Fixed IPCC monitor not displaying.
 | Reorder Username smart copy to allow for NBN grab.
 | FireChange also calls WaitWhileBrowserBusy.
@@ -42,8 +48,8 @@
 | Switched GirdLinks show arg to SW_SHOWNORMAL instead of SW_RESTORE.
 | Replaced OnAction events with EventLogger.LogNewEvent().
 | Updated IP Regex to allow 1.192.3.34;
-| Changed CMBS Regex to properly copy 1808173010 as 31808173 1 instead of 31808173 0.
 | Changed IP Regex to be more specific.
+| Changed CMBS Regex to properly copy 1808173010 as 31808173 1 instead of 31808173 0.
 | CHanged Bug report item directory to @".\Log.txt".
 | Fixed AutoSearch not searchign any but DN.
 | Added Smartpaste logic for CTI Dial Pad.
@@ -51,16 +57,13 @@
 | Severity now setting. But not throuhg binds.
 / May have fixed softact binding error.
 / Handling Time and LogIn Time weren't +=. Should be fixed!
-- Confirmed Bras, NTDSN, AddressId, GSID, and ESN Regexes.
-- IPCC menu not drawing back color.
-- ICON Tier4 linked to Action rather than Outcome.
+| Fixed Issue with Deleting Rows in CallHistory.
 
 0.7.7.1
 (Minor Features)
 | .dlls are embedded in the .exe.
 (Bugs/Changes)
 | Selecting product from resource menu wasn't giving focus back properly.
-- Removing bookmakrs not working.
 
 0.7.6.16
 (Minor Features)

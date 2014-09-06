@@ -37,7 +37,7 @@ namespace CallTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.7.7.1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.8.2.18")]
         public string Version {
             get {
                 return ((string)(this["Version"]));
@@ -121,7 +121,7 @@ namespace CallTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2014-08-29")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2014-09-07")]
         public global::System.DateTime WorkingDate {
             get {
                 return ((global::System.DateTime)(this["WorkingDate"]));

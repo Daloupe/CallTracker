@@ -57,8 +57,8 @@ Fault.Outcome
 Booking.Type
 	.Date
 	.Timeslot
-Service.Node - (33)(EB)_(123)
-	.Equipment
+Service.Equipment
+	.Node - (33)(EB)_(123)
 	.AVC	 - (AVC)(123456789)
 	.CVC	 - (CVC)(123456789)
 	.CSA	 - (CSA)(123456789)

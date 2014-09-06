@@ -46,9 +46,9 @@
 |Notes
 	|Pasted notes need to send text, rather than RTF.
 |Automation Tester
-	|Able to pull Data form Data grid!!!
+	|Able to pull Data from Data grid!!!
 -AffectService isn't being kept on contact change.
--Deleting some calls in call history doesn't reload editcontacts properly.
+|Deleting some calls in call history doesn't reload editcontacts properly.
 -Combobox flashing when mouse over.
 |SmartPaste into CTI Dial Pad DN/Mobile.
 /Wingman crashing when IPCC Quit.

@@ -485,7 +485,7 @@ namespace CallTracker.Helpers
             SendKeys.Flush();
             Stopwatch.Reset();
             Stopwatch.Start();
-            while (!Clipboard.ContainsText() && Stopwatch.ElapsedMilliseconds <= 20)
+            while (!Clipboard.ContainsText() && Stopwatch.ElapsedMilliseconds <= 50)
                 SendKeys.Flush();
             Stopwatch.Stop();
 
@@ -493,6 +493,7 @@ namespace CallTracker.Helpers
             var textlen = text.Length;
             if (textlen == 0)
             {
+                EventLogger.LogNewEvent("Smart Copy Error: Nothing Selected in " + Stopwatch.ElapsedTicks + " ticks", EventLogLevel.Brief);
                 Main.FadingToolTip.ShowandFade("Nothing selected");
                 return;
             }
@@ -580,7 +581,7 @@ namespace CallTracker.Helpers
                 }
             }
 
-            EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1}ticks", text, Stopwatch.ElapsedTicks));
+            EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1} ticks", text, Stopwatch.ElapsedTicks));
             if (!String.IsNullOrEmpty(oldClip))
                 Clipboard.SetText(oldClip);
 

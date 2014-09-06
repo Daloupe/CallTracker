@@ -1,0 +1,28 @@
+﻿- OPOM Smart Copy; Is 50ms enough for all cases?
+- CMBS Smart Copy 1808173010.
+- NBN SmartCopy beating Username.
+
+- AutoSearch Username etc.
+
+- CallHistory Delete
+
+- IPCC Status displaying "Not Monitoring IPCC" where relevant..
+- IPCC CallDataGrab.
+
+- Smart Paste on CTI Dial Pad.
+- MAD Smart Paste; w/ cached edit item.
+- ICON Smart Paste Bind Regex; ICON|{1}.
+- GetICONNote and GetPRTemplate Pastes.
+- Severity Pastes.
+- SoftAct Smart Paste Bind.
+
+- Bug Report.
+
+- GridLinks using SW_SHOWNORMAL instead of SW_RESTORE.
+- GridLinks Search.
+
+- FireChange WaitWhileBrowserBusy;
+	- IFMS AutoFill.
+	- ICON AutoFill.
+
+- Daily Stats Handling and Login time.

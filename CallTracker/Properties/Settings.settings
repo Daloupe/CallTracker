@@ -6,7 +6,7 @@
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="Version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0.7.7.1</Value>
+      <Value Profile="(Default)">0.8.2.18</Value>
     </Setting>
     <Setting Name="AutoNewCall" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -27,7 +27,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="WorkingDate" Type="System.DateTime" Scope="User">
-      <Value Profile="(Default)">2014-08-29</Value>
+      <Value Profile="(Default)">2014-09-07</Value>
     </Setting>
     <Setting Name="PullIPCCCallData" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>

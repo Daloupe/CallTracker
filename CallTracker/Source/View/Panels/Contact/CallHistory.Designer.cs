@@ -33,16 +33,16 @@
             this._Done = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new CallTracker.View.CustomDataGrid();
+            this.Important = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.contactDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.getOutcomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.callHistoryPanel1 = new CallTracker.View.CallHistoryPanel();
             this.label6 = new System.Windows.Forms.Label();
             this._Cancel = new System.Windows.Forms.Button();
             this._ClearHistory = new System.Windows.Forms.Button();
             this._DateSelect = new CallTracker.View.LabelledComboBoxLong();
-            this.Important = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.contactDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.getOutcomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -82,7 +82,7 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.callHistoryPanel1);
             this.splitContainer1.Size = new System.Drawing.Size(580, 213);
-            this.splitContainer1.SplitterDistance = 360;
+            this.splitContainer1.SplitterDistance = 364;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 11;
             // 
@@ -112,93 +112,10 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(360, 213);
+            this.dataGridView1.Size = new System.Drawing.Size(364, 213);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dataGridView1_UserDeletingRow);
             this.dataGridView1.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintBorder);
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
-            // 
-            // callHistoryPanel1
-            // 
-            this.callHistoryPanel1.AutoSize = true;
-            this.callHistoryPanel1.BackColor = System.Drawing.Color.LightGray;
-            this.callHistoryPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.callHistoryPanel1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.callHistoryPanel1.Location = new System.Drawing.Point(0, 0);
-            this.callHistoryPanel1.Name = "callHistoryPanel1";
-            this.callHistoryPanel1.Size = new System.Drawing.Size(218, 213);
-            this.callHistoryPanel1.TabIndex = 0;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.Gainsboro;
-            this.label6.Location = new System.Drawing.Point(233, 219);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(128, 18);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "//Call History";
-            // 
-            // _Cancel
-            // 
-            this._Cancel.BackColor = System.Drawing.Color.LightGray;
-            this._Cancel.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
-            this._Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._Cancel.Location = new System.Drawing.Point(522, 218);
-            this._Cancel.Name = "_Cancel";
-            this._Cancel.Size = new System.Drawing.Size(60, 20);
-            this._Cancel.TabIndex = 15;
-            this._Cancel.Text = "Done";
-            this._Cancel.UseVisualStyleBackColor = false;
-            this._Cancel.Click += new System.EventHandler(this.Cancel_Click);
-            // 
-            // _ClearHistory
-            // 
-            this._ClearHistory.BackColor = System.Drawing.Color.LightGray;
-            this._ClearHistory.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
-            this._ClearHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._ClearHistory.Location = new System.Drawing.Point(366, 218);
-            this._ClearHistory.Name = "_ClearHistory";
-            this._ClearHistory.Size = new System.Drawing.Size(82, 20);
-            this._ClearHistory.TabIndex = 16;
-            this._ClearHistory.Text = "Delete Calls";
-            this._ClearHistory.UseVisualStyleBackColor = false;
-            this._ClearHistory.Click += new System.EventHandler(this._ClearHistory_Click);
-            // 
-            // _DateSelect
-            // 
-            this._DateSelect.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._DateSelect.BackColor = System.Drawing.Color.LightGray;
-            this._DateSelect.BorderColour = System.Drawing.Color.WhiteSmoke;
-            this._DateSelect.ControlHeight = 20;
-            this._DateSelect.DataSource = null;
-            this._DateSelect.DefaultText = "";
-            this._DateSelect.Font = new System.Drawing.Font("Verdana", 7F);
-            this._DateSelect.LabelActiveColor = System.Drawing.Color.Empty;
-            this._DateSelect.LabelAutoSize = true;
-            this._DateSelect.LabelBorderColor = System.Drawing.Color.Empty;
-            this._DateSelect.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._DateSelect.LabelInactiveColor = System.Drawing.Color.Empty;
-            this._DateSelect.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._DateSelect.LabelOffset = new System.Drawing.Point(0, 0);
-            this._DateSelect.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._DateSelect.LabelSize = new System.Drawing.Size(55, 23);
-            this._DateSelect.LabelText = "date filter";
-            this._DateSelect.LabelTextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this._DateSelect.LabelTextColor = System.Drawing.SystemColors.ControlText;
-            this._DateSelect.LabelToolTip = "";
-            this._DateSelect.Location = new System.Drawing.Point(2, 218);
-            this._DateSelect.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
-            this._DateSelect.MenuButtonImage = null;
-            this._DateSelect.Name = "_DateSelect";
-            this._DateSelect.OverlapLabel = false;
-            this._DateSelect.PropertyName = "LongDate";
-            this._DateSelect.Size = new System.Drawing.Size(130, 20);
-            this._DateSelect.TabIndex = 17;
             // 
             // Important
             // 
@@ -247,6 +164,90 @@
             this.getOutcomeDataGridViewTextBoxColumn.Name = "getOutcomeDataGridViewTextBoxColumn";
             this.getOutcomeDataGridViewTextBoxColumn.ReadOnly = true;
             this.getOutcomeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(CallTracker.Model.CustomerContact);
+            // 
+            // callHistoryPanel1
+            // 
+            this.callHistoryPanel1.AutoSize = true;
+            this.callHistoryPanel1.BackColor = System.Drawing.Color.LightGray;
+            this.callHistoryPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.callHistoryPanel1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.callHistoryPanel1.Location = new System.Drawing.Point(0, 0);
+            this.callHistoryPanel1.Name = "callHistoryPanel1";
+            this.callHistoryPanel1.Size = new System.Drawing.Size(214, 213);
+            this.callHistoryPanel1.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.Gainsboro;
+            this.label6.Location = new System.Drawing.Point(233, 219);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(128, 18);
+            this.label6.TabIndex = 13;
+            this.label6.Text = "//Call History";
+            // 
+            // _Cancel
+            // 
+            this._Cancel.BackColor = System.Drawing.Color.LightGray;
+            this._Cancel.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this._Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Cancel.Location = new System.Drawing.Point(522, 218);
+            this._Cancel.Name = "_Cancel";
+            this._Cancel.Size = new System.Drawing.Size(60, 20);
+            this._Cancel.TabIndex = 15;
+            this._Cancel.Text = "Done";
+            this._Cancel.UseVisualStyleBackColor = false;
+            this._Cancel.Click += new System.EventHandler(this.Cancel_Click);
+            // 
+            // _ClearHistory
+            // 
+            this._ClearHistory.BackColor = System.Drawing.Color.LightGray;
+            this._ClearHistory.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro;
+            this._ClearHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._ClearHistory.Location = new System.Drawing.Point(366, 218);
+            this._ClearHistory.Name = "_ClearHistory";
+            this._ClearHistory.Size = new System.Drawing.Size(82, 20);
+            this._ClearHistory.TabIndex = 16;
+            this._ClearHistory.Text = "Delete Calls";
+            this._ClearHistory.UseVisualStyleBackColor = false;
+            this._ClearHistory.Click += new System.EventHandler(this._ClearHistory_Click);
+            // 
+            // _DateSelect
+            // 
+            this._DateSelect.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._DateSelect.BackColor = System.Drawing.Color.LightGray;
+            this._DateSelect.BorderColour = System.Drawing.Color.WhiteSmoke;
+            this._DateSelect.ControlHeight = 20;
+            this._DateSelect.DataSource = null;
+            this._DateSelect.DefaultText = "";
+            this._DateSelect.Font = new System.Drawing.Font("Verdana", 7F);
+            this._DateSelect.HasContextMenu = false;
+            this._DateSelect.LabelActiveColor = System.Drawing.Color.Empty;
+            this._DateSelect.LabelAutoSize = true;
+            this._DateSelect.LabelBorderColor = System.Drawing.Color.Empty;
+            this._DateSelect.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._DateSelect.LabelInactiveColor = System.Drawing.Color.Empty;
+            this._DateSelect.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._DateSelect.LabelOffset = new System.Drawing.Point(0, 0);
+            this._DateSelect.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._DateSelect.LabelSize = new System.Drawing.Size(55, 23);
+            this._DateSelect.LabelText = "date filter";
+            this._DateSelect.LabelTextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this._DateSelect.LabelTextColor = System.Drawing.SystemColors.ControlText;
+            this._DateSelect.LabelToolTip = "";
+            this._DateSelect.Location = new System.Drawing.Point(2, 218);
+            this._DateSelect.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
+            this._DateSelect.MenuButtonImage = null;
+            this._DateSelect.Name = "_DateSelect";
+            this._DateSelect.OverlapLabel = false;
+            this._DateSelect.PropertyName = "LongDate";
+            this._DateSelect.Size = new System.Drawing.Size(130, 20);
+            this._DateSelect.TabIndex = 17;
             // 
             // CallHistory
             // 
