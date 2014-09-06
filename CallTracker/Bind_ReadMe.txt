@@ -23,8 +23,8 @@ Mobile	 - 0(402758678)
 ICON
 CMBS	 - 3(1)-(123456)-(7)
 Note 
-ICONNote
-PRTemplate
+GetICONNote
+GetPRTemplate
 IDok
 Name
 NameSplit.Title

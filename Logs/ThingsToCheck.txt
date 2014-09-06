@@ -27,12 +27,12 @@
 |Tips.
 	|Font needs to use pfc.
 |Daily stats compared with Rox.
-	-Log in might not be calculated correctly.
-	-Handling time isn't counting all states.
+	/Log in might not be calculated correctly.
+	/Handling time isn't counting all states.
 |ActiveWindow Title for MAD Search screen.
 	|Oracle Forms Runtime
 |AutoFills.
-	-Severity not pasting.
+	|Severity not pasting.
 	|ICON smart paste sort of working. Need to wait for combo boxes to finihs updating. Implemented BrowserWait.
 |IFMS Smart Paste onchange event working.
 	|Check IE Busy status.
@@ -44,13 +44,13 @@
 |Which error the log gives when trying to bind to softact.
 	-Nothing?
 |Notes
-	-Pasted notes need to send text, rather than RTF.
+	|Pasted notes need to send text, rather than RTF.
 |Automation Tester
 	|Able to pull Data form Data grid!!!
 -AffectService isn't being kept on contact change.
 -Deleting some calls in call history doesn't reload editcontacts properly.
 -Combobox flashing when mouse over.
--SmartPaste into CTI Dial Pad DN/Mobile.
+|SmartPaste into CTI Dial Pad DN/Mobile.
 /Wingman crashing when IPCC Quit.
 |IFMS acc smartpaste seems to work when set to With No Wait.
 Regex Issues:

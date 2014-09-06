@@ -117,7 +117,7 @@ namespace CallTracker.Model
             {
                 var lastOrDefault = Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogIn));
                 if (lastOrDefault != null)
-                    Events.Statistics.Login = Events.Statistics.Login.Add(DateTime.Now.Subtract(lastOrDefault.Timestamp));
+                    Events.Statistics.Login += Events.Statistics.Login.Add(DateTime.Now.Subtract(lastOrDefault.Timestamp));
             }
 
             Events.AddCallEvent(newEvent);

@@ -273,7 +273,8 @@ namespace CallTracker.View
                     item.Enabled = true;
                     if (String.IsNullOrEmpty(current) || !query.Contains(current))
                     {
-                        EditContacts._SeverityMenuStrip.Text = current = item.Text;
+                        //EditContacts._SeverityMenuStrip.Text = current = item.Text;
+                        current = item.Text;
                     }
                     if (item.Text == current)
                     {

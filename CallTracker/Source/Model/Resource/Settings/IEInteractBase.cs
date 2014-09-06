@@ -153,6 +153,7 @@ namespace CallTracker.Model
             {
                 browserElement.FireEvent("onchange");
                 HotkeyController.WaitForBrowserBusy();
+                //May need to tab to next item for IFMS.
             }
             else if (FireOnChangeNoWait)
                 browserElement.FireEventNoWait("onchange");

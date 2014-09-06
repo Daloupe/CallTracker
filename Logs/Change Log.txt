@@ -26,7 +26,7 @@
 / Ensured PR and ICON templates are only being generated when they need to be.
 - Converted Call States into Menu Item subclass.
 
-0.8.2.13
+0.8.2.18
 (Major Features)
 | MAD Smart Paste working.
 	| Tried caching Edit to speed it up. May not work as Edit changes.
@@ -46,6 +46,11 @@
 | Changed IP Regex to be more specific.
 | CHanged Bug report item directory to @".\Log.txt".
 | Fixed AutoSearch not searchign any but DN.
+| Added Smartpaste logic for CTI Dial Pad.
+| IPCC Status displays "Not Monitoring IPCC".
+| Severity now setting. But not throuhg binds.
+/ May have fixed softact binding error.
+/ Handling Time and LogIn Time weren't +=. Should be fixed!
 - Confirmed Bras, NTDSN, AddressId, GSID, and ESN Regexes.
 - IPCC menu not drawing back color.
 - ICON Tier4 linked to Action rather than Outcome.

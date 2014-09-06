@@ -115,7 +115,7 @@ namespace CallTracker.Model
             {
                 var lastOrDefault = CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.CallStart));
                 if (lastOrDefault != null)
-                    Statistics.HandlingTime = Statistics.HandlingTime.Add(DateTime.Now.Subtract(lastOrDefault.Timestamp));
+                    Statistics.HandlingTime += Statistics.HandlingTime.Add(DateTime.Now.Subtract(lastOrDefault.Timestamp));
             }
 
             CallEvents.Add(new EventModel<CallEventTypes>(newEvent));

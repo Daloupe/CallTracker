@@ -218,10 +218,17 @@ namespace CallTracker.Model
 
 
 
-
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // PR Templates ////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public string GetPRTemplate
+        {
+            get
+            {
+                var rtfBox = new System.Windows.Forms.RichTextBox {Rtf = PRTemplate};
+                return rtfBox.Text;
+            }
+        }
         public string PRTemplate { get { return PRGenerators.Generate(this, PRTemplateReplacements); } }
         protected List<PRTemplateModel> PRTemplateReplacements = new List<PRTemplateModel>();
         public void UpdatePrTemplateReplacements(List<PRTemplateModel> replacements)
@@ -231,7 +238,6 @@ namespace CallTracker.Model
                                                           .Select(b => b.Last())
                                                           .ToList();
         }
-
         public void ClearPrTemplateReplacements()
         {
             PRTemplateReplacements.Clear();
@@ -247,6 +253,14 @@ namespace CallTracker.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // Getters  ////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public string GetICONNote
+        {
+            get
+            {
+                var rtfBox = new System.Windows.Forms.RichTextBox { Rtf = ICONNote };
+                return rtfBox.Text;
+            }
+        }
         public string ContactDateTime { get { return Contacts.StartDate.Add(Contacts.StartTime).ToString("dd/MM HH:mm"); } }
         public string ContactDate { get { return Contacts.StartDate.ToString(); } }
         public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }

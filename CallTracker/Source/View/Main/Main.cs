@@ -465,7 +465,7 @@ namespace CallTracker.View
                     EventLogger.LogNewEvent("Trying to find IPCC", EventLogLevel.Status);
                     if (InitIpccMonitor() == false)
                     {
-                        //EventLogger.LogNewEvent("Unable to Find IPCC", EventLogLevel.Status);
+                        _IPCCState.Text = "Not Monitoring IPCC";
                         return false;
                     }
                 }
@@ -478,7 +478,7 @@ namespace CallTracker.View
 
         private bool InitIpccMonitor()
         {
-            foreach (Process pList in Process.GetProcesses())
+            foreach (var pList in Process.GetProcesses())
                 if (pList.MainWindowTitle.Contains("IPCC Agent Desktop"))
                 {
                     _ipccProcess = pList;
@@ -521,6 +521,7 @@ namespace CallTracker.View
 
         void IPCCProcess_Exited(object sender, EventArgs e)
         {
+            EventLogger.LogAndSaveNewEvent("IPCC Exited", EventLogLevel.Status);
             _callStateTimeElapsed = TimeSpan.Zero;
             _CallStateTime.BackColor = Color.WhiteSmoke;
             _CallStateTime.ForeColor = Color.DarkSlateGray;
@@ -591,7 +592,9 @@ namespace CallTracker.View
         private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!CheckForIpcc())
+            {
                 monitorIPCCToolStripMenuItem.Checked = false;
+            }
 
             _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
         }

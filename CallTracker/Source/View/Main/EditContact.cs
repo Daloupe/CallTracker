@@ -640,7 +640,8 @@ namespace CallTracker.View
             foreach (ToolStripMenuItem item in _SeverityMenuStrip.Items)
                 item.Checked = false;
 
-            _SeverityMenuStrip.Text = e.ClickedItem.Text;
+            //_SeverityMenuStrip.Text = e.ClickedItem.Text;
+            MainForm.SelectedContact.Fault.Severity = e.ClickedItem.Text;
             ((ToolStripMenuItem)e.ClickedItem).Checked = true;
         }
 

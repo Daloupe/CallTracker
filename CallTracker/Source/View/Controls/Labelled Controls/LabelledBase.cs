@@ -224,8 +224,8 @@ namespace CallTracker.View
             {
                 this._MenuButton.Show();
                 this.ContextMenuStrip.Opacity = 0;
+                this.ContextMenuStrip.BindingContext = ParentForm.BindingContext;
                 this.ContextMenuStrip.Show(this, 9, 9);
-                this.ContextMenuStrip.BindingContext = this.ParentForm.BindingContext;
             }
         }
 

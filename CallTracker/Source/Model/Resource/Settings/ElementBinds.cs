@@ -53,12 +53,18 @@ namespace CallTracker.Model
             Name = Element;
 
             FindByName = String.IsNullOrEmpty(activeElement.Id);
+
             SetTypeAndMethod(activeElement);
             FindForm(activeElement);
         }
 
         private void SetTypeAndMethod(Element activeElement)
         {
+            if (activeElement == null)
+            {
+                EventLogger.LogAndSaveNewEvent("Create PasteBind SetTypeAndMethod Error: activeElement is Null");
+                return;
+            }
             switch (activeElement.GetAttributeValue("type"))
             {
                 case "text":
@@ -79,6 +85,17 @@ namespace CallTracker.Model
 
         private void FindForm(Element activeElement)
         {
+            if (activeElement == null)
+            {
+                EventLogger.LogAndSaveNewEvent("Create PasteBind FindForm Error: activeElement is Null");
+                return;
+            }
+            if (activeElement.Ancestor<Form>() == null)
+            {
+                EventLogger.LogAndSaveNewEvent("Create PasteBind FindForm Error: activeElement.Ancestor<Form>() is Null");
+                return;
+            }
+
             if (!activeElement.Ancestor<Form>().Exists) return;
 
             var form = activeElement.Ancestor<Form>();

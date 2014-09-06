@@ -255,11 +255,28 @@ namespace CallTracker.Helpers
                 return;
             }
 
+            var activeWindowTitle = WindowHelper.GetActiveWindowTitle();
             EventLogger.LogNewEvent(Environment.NewLine + "Searching for SmartPaste Matches for Window: " + WindowHelper.GetActiveWindowTitle(), EventLogLevel.Brief);
-            if (WindowHelper.GetActiveWindowTitle().Contains("Oracle Forms Runtime"))
+            if (activeWindowTitle.Contains("Oracle Forms Runtime"))
             {
                 EventLogger.LogAndSaveNewEvent("Trying to set MAD Active element");
                 MadSmartPaste.SetActiveElement(parent.SelectedContact);
+            }
+            else if (activeWindowTitle == "CTI Dial Pad")
+            {
+                EventLogger.LogAndSaveNewEvent("Trying to paste into CTI Dial Pad");
+                var dataToPaste = FindProperty.FollowPropertyPath(parent.SelectedContact, "DN,Mobile");   
+                if (String.IsNullOrEmpty(dataToPaste))
+                {
+                    EventLogger.LogAndSaveNewEvent("SmartPaste Error: No Data to paste.", EventLogLevel.Brief);
+                    return;
+                }
+                Clipboard.SetText(dataToPaste);
+                SendKeys.SendWait("+^");
+                SendKeys.Flush();
+                SendKeys.SendWait("^v");
+                Application.DoEvents();
+                SendKeys.Flush();
             }
             else
             {
@@ -292,12 +309,12 @@ namespace CallTracker.Helpers
                     else if (query.FireOnChangeNoWait)
                         activeElement.FireEventNoWait("onchange");
 
-                    parent.AddAppEvent(AppEventTypes.SmartPaste);
-                    EventLogger.LogNewEvent("Match Found");
+                    EventLogger.LogNewEvent("Smart Paste: Match Found: " + s);
                 }
                 else
-                    EventLogger.LogAndSaveNewEvent("No Matches Found");
+                    EventLogger.LogAndSaveNewEvent("Smart Paste Error: No Matches Found");
 
+                parent.AddAppEvent(AppEventTypes.SmartPaste);
                 browser.Dispose();
             }
         }
