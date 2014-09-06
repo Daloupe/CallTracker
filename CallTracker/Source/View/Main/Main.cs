@@ -770,14 +770,14 @@ namespace CallTracker.View
             var rowIndex = 1;
             foreach (AutomationElement row in gridLines)
             {
-                foreach (AutomationElement col in row.CachedChildren)
+                for(var col = row.CachedChildren.Count - 1; col >=0; --col)// in row.CachedChildren)
                 {
                     int headerIndex;
                     for (headerIndex = 0; headerIndex < headerLineCount; headerIndex++)
-                        if (_gridData[headerIndex, 0] == col.Cached.Name)
+                        if (_gridData[headerIndex, 0] == row.CachedChildren[col].Cached.Name)
                             break;
-                    
-                    var value = ((ValuePattern)col.GetCachedPattern(ValuePattern.Pattern)).Current.Value;
+
+                    var value = ((ValuePattern)row.CachedChildren[col].GetCachedPattern(ValuePattern.Pattern)).Current.Value;
                     _gridData[headerIndex, rowIndex] = value;
                     
                     if (SelectedContact == null) continue;
