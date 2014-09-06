@@ -2,12 +2,13 @@
 - CMBS Smart Copy 1808173010.
 - NBN SmartCopy beating Username.
 
+- IPCC Status displaying "Not Monitoring IPCC" where relevant.
+- IPCC CallDataGrab.
+
+- AutoSearch isn't triggering SCAMPS if product know as LAT.
 - AutoSearch Username etc.
 
 - CallHistory Delete
-
-- IPCC Status displaying "Not Monitoring IPCC" where relevant..
-- IPCC CallDataGrab.
 
 - Smart Paste on CTI Dial Pad.
 - MAD Smart Paste; w/ cached edit item.

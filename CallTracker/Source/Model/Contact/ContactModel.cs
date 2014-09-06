@@ -357,15 +357,20 @@ namespace CallTracker.Model
                         Service.WasSearched["Nexus"] = HotkeyController.AutoSearch("https://dimps.optusnet.com.au/search/servno?servno=" + DN,
                             "Nexus", "https://nexus.optus.com.au");
                     }
-                    if (!Service.WasSearched["SCAMPS"])
+                    if (Fault.AffectedServiceType.IsNot(ServiceTypes.LAT))
                     {
-                        Service.WasSearched["SCAMPS"] = HotkeyController.AutoSearch("https://scamps.optusnet.com.au/cm.html?q=" + DN, "SCAMPS",
-                            "https://scamps.optusnet.com.au");
-                    }
-                    if (!Service.WasSearched["DIMPS"])
-                    {
-                        Service.WasSearched["DIMPS"] = HotkeyController.AutoSearch("https://dimps.optusnet.com.au/search/servno?servno=" + DN,
-                            "DIMPS", "https://dimps.optusnet.com.au");
+                        if (!Service.WasSearched["SCAMPS"])
+                        {
+                            Service.WasSearched["SCAMPS"] =
+                                HotkeyController.AutoSearch("https://scamps.optusnet.com.au/cm.html?q=" + DN, "SCAMPS",
+                                    "https://scamps.optusnet.com.au");
+                        }
+                        if (!Service.WasSearched["DIMPS"])
+                        {
+                            Service.WasSearched["DIMPS"] =
+                                HotkeyController.AutoSearch("https://dimps.optusnet.com.au/search/servno?servno=" + DN,
+                                    "DIMPS", "https://dimps.optusnet.com.au");
+                        }
                     }
                 }
 

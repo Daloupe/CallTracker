@@ -31,7 +31,7 @@
 - ICON Tier4 linked to Action rather than Outcome.
 - Removing bookmarks and systems not working.
 
-0.8.2.19
+0.8.2.20
 (Major Features)
 | MAD Smart Paste working.
 	| Tried caching Edit to speed it up. May not work as Edit changes.
@@ -59,6 +59,7 @@
 / Handling Time and LogIn Time weren't +=. Should be fixed!
 | Fixed Issue with Deleting Rows in CallHistory.
 | IPCC data grab goes through columns backwards to ensure Svc no. is Autosearched before Caller Id.
+| Autosearch wont search DN in scamps or dimps if product is known as LAT.
 
 0.7.7.1
 (Minor Features)
