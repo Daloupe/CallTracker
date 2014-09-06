@@ -45,7 +45,7 @@
 | FireChange also calls WaitWhileBrowserBusy.
 | Added more Regexes to FindProperty.
 | Fixed GridLinks Code search where it was activating system, but not searching.
-| Switched GirdLinks show arg to SW_SHOWNORMAL instead of SW_RESTORE.
+| Switched GridLinks show arg to SW_SHOWNORMAL instead of SW_RESTORE.
 | Replaced OnAction events with EventLogger.LogNewEvent().
 | Updated IP Regex to allow 1.192.3.34;
 | Changed IP Regex to be more specific.
