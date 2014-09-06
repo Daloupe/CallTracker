@@ -143,14 +143,17 @@ namespace CallTracker.Model
             var browserElement = IEContext(HotkeyController.browser).ElementOfType<T>(IEConstraint(element));
             if (!browserElement.Exists)
             {
-                EventLogger.LogNewEvent("Smart Paste Error: BrowserElement Doesn't Exist.");
+                EventLogger.LogNewEvent("Paste Data Error: " + element + " Doesn't Exist.");
                 return;
             }
             
-            browserElement.FindNativeElement().SetFocus();
+            browserElement.Focus();//.FindNativeElement().SetFocus();
             IEMethod(browserElement, value);
             if (FireOnChange)
+            {
                 browserElement.FireEvent("onchange");
+                HotkeyController.WaitForBrowserBusy();
+            }
             else if (FireOnChangeNoWait)
                 browserElement.FireEventNoWait("onchange");
         }

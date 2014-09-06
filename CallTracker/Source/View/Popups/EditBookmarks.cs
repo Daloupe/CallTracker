@@ -64,12 +64,12 @@ namespace CallTracker.View
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ////listBox1.DataSource = null;
-            //if (bookmarksBindingSource.Count == 1) return;
-            //bookmarksBindingSource.Current;
-            //Main.ServicesStore.servicesDataSet.Bookmarks.Rows.Find()
-            ////listBox1.DataSource = bookmarksBindingSource;
-            ////listBox1.DisplayMember = "Name";
+            //////listBox1.DataSource = null;
+            ////if (bookmarksBindingSource.Count == 1) return;
+            //bookmarksBindingSource.RemoveFilter();            
+            //bookmarksBindingSource.RemoveCurrent();
+            //////listBox1.DataSource = bookmarksBindingSource;
+            //////listBox1.DisplayMember = "Name";
             //MainForm.bookmarksContextualToolStripMenuItem.dirty = true;
         }
 

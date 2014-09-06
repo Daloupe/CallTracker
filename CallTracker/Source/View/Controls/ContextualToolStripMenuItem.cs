@@ -156,7 +156,7 @@ using CallTracker.Helpers;
 
         public override void Go(string _service)
         {
-            if (ds.Bookmarks.Count == 1 && ds.Bookmarks[0].ProblemStylesRow == null) return;
+            //if (ds.Bookmarks.Count == 1 && ds.Bookmarks[0].ProblemStylesRow == null) return;
             var queries = (from a in ds.Bookmarks
                           where a.ProblemStylesRow.Description == _service
                           select a).ToList();

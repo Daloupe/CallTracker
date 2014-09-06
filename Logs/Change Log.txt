@@ -26,10 +26,26 @@
 / Ensured PR and ICON templates are only being generated when they need to be.
 - Converted Call States into Menu Item subclass.
 
-0.8.0.0
+0.8.2.13
 (Major Features)
-/ MAD Smart Paste working.
+| MAD Smart Paste working.
+	| Tried caching Edit to speed it up. May not work as Edit changes.
+| Added IPCC Call Data Grab code.
+| Added WaitWhileBrowserBusy method to HotkeyController to try accomodate for ICON drop down changes.
 (Bugs/Changes)
+| Changed Smart Copy Timer threshold to 3400 ticks. (still copied after 47000 ticks?)
+| Fixed IPCC monitor not displaying.
+| Reorder Username smart copy to allow for NBN grab.
+| FireChange also calls WaitWhileBrowserBusy.
+| Added more Regexes to FindProperty.
+| Fixed GridLinks Code search where it was activating system, but not searching.
+| Switched GirdLinks show arg to SW_SHOWNORMAL instead of SW_RESTORE.
+| Replaced OnAction events with EventLogger.LogNewEvent().
+| Updated IP Regex to allow 1.192.3.34;
+| Changed CMBS Regex to properly copy 1808173010 as 31808173 1 instead of 31808173 0.
+| Changed IP Regex to be more specific.
+| CHanged Bug report item directory to @".\Log.txt".
+| Fixed AutoSearch not searchign any but DN.
 - Confirmed Bras, NTDSN, AddressId, GSID, and ESN Regexes.
 - IPCC menu not drawing back color.
 - ICON Tier4 linked to Action rather than Outcome.

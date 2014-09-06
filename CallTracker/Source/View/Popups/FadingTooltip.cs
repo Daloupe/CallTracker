@@ -80,12 +80,13 @@ namespace CallTracker.View
 
         public void ShowandFade(string text)
         {
+            label1.Text = text;
             if(Visible)
             {
                 _fadeTimer.Stop();
                 _timeCounter = 0;
             }
-            label1.Text = text;
+
             var point = MousePosition;
             if (Cursor.Current == Cursors.Default || Cursor.Current == Cursors.Arrow)
                 point.Offset(11, 0);
@@ -93,8 +94,8 @@ namespace CallTracker.View
                 point.Offset(7, -8);
             else
                 point.Offset(11, 0);
-            //point.Offset(-Width, 0);//-Cursor.Size.Height + Height);
             DesktopLocation = point;
+
             Opacity = .99;
             WindowHelper.ShowWindow(Handle, 8);
             //Show();

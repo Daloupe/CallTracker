@@ -31,7 +31,7 @@ namespace RegexAssembly
                                         @"-?" +                             // Divider
                                         @"(\d{6})" +                        // Account
                                         @"(?:-|0|\s)?"+                     // Divider
-                                        @"\d?(\d)$"),                          // Flip
+                                        @"(\d)(?:\d)?"),                          // Flip
                 new MyRegex("ICON",     @"^((?:1|5|8|9)\d{7})(\d{6})$"),
                 new MyRegex("Name",     @"(?:(Mr|Mrs|miss|dr)\.?)?\s?" +             // Title (Followed by a ".")
                                         @"([a-z]+)" +                       // First Name
@@ -63,7 +63,7 @@ namespace RegexAssembly
                 new MyRegex("ESN",      @"\b(\d{6})", RegexOptions.IgnoreCase),
                 new MyRegex("NTDSN",    @"\b(\d{12})", RegexOptions.IgnoreCase),
                 new MyRegex("GSID",    @"\b(\d{16})", RegexOptions.IgnoreCase),
-                new MyRegex("IP",       @"\b(\d{3}\.){3}(\d{3})", RegexOptions.IgnoreCase),
+                new MyRegex("IP",       @"\b([0-2]?\d?\d\.){3}([0-2]?\d?\d)", RegexOptions.IgnoreCase),
             };
 
             Regex.CompileToAssembly(CreateCompilationInfo(RegexList), ASSEMBLYNAME);

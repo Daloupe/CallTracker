@@ -25,7 +25,7 @@ namespace CallTracker.Helpers
         private readonly IntPtr _hWnd;
         private IAccessible _accessible;
 
-        public static event ActionEventHandler OnAction;
+        //public static event ActionEventHandler OnAction;
 
         [DllImport("oleacc.dll")]
         private static extern int AccessibleObjectFromWindow(IntPtr hwnd, uint id, ref Guid iid,
@@ -46,7 +46,7 @@ namespace CallTracker.Helpers
 
         internal IETabActivator(IE _browser)
         {
-            OnAction("Creating Tab Activator", EventLogLevel.Brief);
+            EventLogger.LogNewEvent("Creating Tab Activator", EventLogLevel.Brief);
 
             _browser.BringToFront();
             _hWnd = _browser.hWnd;
@@ -127,7 +127,7 @@ namespace CallTracker.Helpers
 
         internal void ActivateByTabsUrl(string tabsUrl)
         {
-            OnAction("Activating Tab", EventLogLevel.Brief);
+            EventLogger.LogNewEvent("Activating Tab", EventLogLevel.Brief);
 
             var tabIndexToActivate = GetTabIndexToActivate(tabsUrl);
 

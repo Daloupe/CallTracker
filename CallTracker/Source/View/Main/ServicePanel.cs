@@ -314,18 +314,18 @@ namespace CallTracker.View
             {
                 case "_PRI":
                     HotkeyController.NavigateOrNewIE(
-                    "https://staff.optusnet.com.au/tools/nsi/avc_detail.html?gsid=" +
-                    EditContacts.MainForm.SelectedContact.Service.PRI.Remove(0,3), "NSI");
+                    "https://staff.optusnet.com.au/tools/nsi/", "OptusNet StaffWeb", "https://staff.optusnet.com.au/tools/nsi/avc_detail.html?gsid=" +
+                    EditContacts.MainForm.SelectedContact.Service.PRI.Remove(0, 3));
                     break;
                 case "_AVC":
                     HotkeyController.NavigateOrNewIE(
-                    "https://staff.optusnet.com.au/tools/nsi/avc_detail.html?avcid=" +
-                    EditContacts.MainForm.SelectedContact.Service.AVC, "NSI");
+                    "https://staff.optusnet.com.au/tools/nsi/", "OptusNet StaffWeb", "https://staff.optusnet.com.au/tools/nsi/avc_detail.html?avcid=" +
+                    EditContacts.MainForm.SelectedContact.Service.AVC);
                     break;
                 case "_CVC":
                     HotkeyController.NavigateOrNewIE(
-                    "https://staff.optusnet.com.au/tools/nsi/avc_detail.html?cvcid=" +
-                    EditContacts.MainForm.SelectedContact.Service.CVC, "NSI");
+                    "https://staff.optusnet.com.au/tools/nsi/", "OptusNet StaffWeb", "https://staff.optusnet.com.au/tools/nsi/avc_detail.html?cvcid=" +
+                    EditContacts.MainForm.SelectedContact.Service.CVC);
                     break;
             }
         }

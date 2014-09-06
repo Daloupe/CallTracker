@@ -47,7 +47,7 @@ namespace CallTracker.Model
             {
                 sb.AppendLine(entry.GetLogEntry());
             }
-            File.AppendAllText("Log.txt", sb.ToString());
+            File.AppendAllText("Log.txt ", sb.ToString());
             EventLog.Clear();
         }
 

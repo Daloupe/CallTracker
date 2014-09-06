@@ -48,10 +48,10 @@ namespace CallTracker.Helpers
             var listInForm = form.SelectList(Find.ById("usr_NewActivityDetails_DropDownListProduct"));
             var option = listInForm.Option(tier1.Option);
             option.Select();
-            listInForm.Change();
+            listInForm.FireEvent("onchange");
             EventLogger.LogAndSaveNewEvent(String.Format("Product: {0}, Form Exists: {1}, List Exists: {2}, List In Form Exists: {3}, Option Exists{4}", tier1.Option, form.Exists, list.Exists, listInForm.Exists, option.Exists));
 
-
+            HotkeyController.WaitForBrowserBusy();
 
 
 
@@ -76,10 +76,8 @@ namespace CallTracker.Helpers
             var tier2 = tier2Query.First();
             list = HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListCallDriver"));
             list.Select(tier2.Option);
-            list.Change();
-            
-
-
+            list.FireEvent("onchange");
+            HotkeyController.WaitForBrowserBusy();
 
 
             // Tier 3 //////////////////////////////////////////////////////////////////////////////////////////////////// 
@@ -103,8 +101,8 @@ namespace CallTracker.Helpers
             var tier3 = tier3Query.First();
             list = HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListReason"));
             list.Select(tier3.Option);
-            list.Change();
-
+            list.FireEvent("onchange");
+            HotkeyController.WaitForBrowserBusy();
 
 
 
@@ -124,7 +122,8 @@ namespace CallTracker.Helpers
             var tier4 = tier4Query.First();
             list = HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListOutcome"));
             list.Select(tier4.Option);
-            list.Change();
+            list.FireEvent("onchange");
+            HotkeyController.WaitForBrowserBusy();
 
             EventLogger.SaveLog();
         }

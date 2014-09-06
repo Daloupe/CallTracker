@@ -311,7 +311,7 @@
             this.applicationTitle.Name = "applicationTitle";
             this.applicationTitle.Size = new System.Drawing.Size(138, 20);
             this.applicationTitle.TabIndex = 15;
-            this.applicationTitle.Text = "CMake";
+            this.applicationTitle.Text = "StatisticsForm";
             // 
             // listMdiChildButton
             // 

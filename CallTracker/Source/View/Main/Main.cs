@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Windows.Automation;
 using System.Windows.Forms;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -13,6 +14,7 @@ using CallTracker.Model;
 using CallTracker.Helpers;
 using TestStack.White.Configuration;
 using TestStack.White.Factory;
+using TestStack.White.UIItems;
 using TestStack.White.UIItems.Finders;
 using TestStack.White.UIItems.WindowItems;
 using Control = System.Windows.Forms.Control;
@@ -227,8 +229,8 @@ namespace CallTracker.View
             HotKeys = new HotkeyController(this);
 
             _splash.UpdateProgress("Attaching Events", 90);
-            IETabActivator.OnAction += UpdateProgressBar;
-            HotkeyController.OnAction += UpdateProgressBar;
+            //IETabActivator.OnAction += UpdateProgressBar;
+            //HotkeyController.OnAction += UpdateProgressBar;
 
             _splash.UpdateProgress("Finishing", 99);
             _splash.UpdateProgress("", 100);
@@ -265,11 +267,11 @@ namespace CallTracker.View
             EventLogger.SaveLog();
             if (HotKeys != null)
             {
-                HotkeyController.OnAction -= UpdateProgressBar;
+                //HotkeyController.OnAction -= UpdateProgressBar;
                 HotKeys.Dispose();
             }
 
-            IETabActivator.OnAction -= UpdateProgressBar;      
+            //IETabActivator.OnAction -= UpdateProgressBar;      
 
             if (FadingToolTip != null)
                 FadingToolTip.Dispose();
@@ -445,7 +447,13 @@ namespace CallTracker.View
         private TestStack.White.UIItems.TextBox _ipccCallStatus;
         private TestStack.White.UIItems.Button _ipccDialButton;
         private TestStack.White.UIItems.Button _ipccTransferButton;
-        //private TestStack.White.UIItems.TableItems.Table _ipccCallGrid;
+
+        private AutomationElement _ipccCallDataTable;
+        private string[,] _gridData;
+
+        private UIItemContainer _ipccDialWindow;
+        private TestStack.White.UIItems.ListBoxItems.ComboBox _ipccDialNumberComboBox;
+
         private TimeSpan _callStateTimeElapsed;
 
         private bool CheckForIpcc()
@@ -485,54 +493,99 @@ namespace CallTracker.View
 
             _ipccProcess.Exited += IPCCProcess_Exited;
             _ipccApplication = TestStack.White.Application.Attach(_ipccProcess);
-            _ipccWindow = _ipccApplication.GetWindow(SearchCriteria.ByAutomationId("SoftphoneForm"), InitializeOption.NoCache);
+            _ipccWindow = _ipccApplication.GetWindow(SearchCriteria.ByAutomationId("SoftphoneForm"), InitializeOption.WithCache);
             _ipccCallStatus = _ipccWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("StatusBar.Pane3"));
             _ipccDialButton = _ipccWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId("btnDial"));
             _ipccTransferButton = _ipccWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId("btnTransfer"));
-            //_ipccCallGrid = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid"));
+
+            InitIPCCCallDataGrid();
+
+            _ipccDialWindow = null;
+            _ipccDialNumberComboBox = null;
 
             return true;
         }
 
+        private void InitIPCCCallDataGrid()
+        {
+            _ipccCallDataTable = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid")).AutomationElement;
+            var headerLine = _ipccCallDataTable.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Header));
+
+            _gridData = new string[headerLine.Count, 2];
+            var headerIndex = 0;
+            foreach (AutomationElement header in headerLine)
+            {
+                _gridData[headerIndex++, 0] = header.Current.Name;
+            }
+        }
+
         void IPCCProcess_Exited(object sender, EventArgs e)
-        {        
+        {
+            _callStateTimeElapsed = TimeSpan.Zero;
+            _CallStateTime.BackColor = Color.WhiteSmoke;
+            _CallStateTime.ForeColor = Color.DarkSlateGray;
+            _CallStateTime.Text = TimeSpanToString(_callStateTimeElapsed);
             monitorIPCCToolStripMenuItem.Checked = false;
+            _IPCCState.Text = "Not Monitoring IPCC";
             DisposeIPCC();
         }
 
         void DisposeIPCC()
         {
             _IPCCTimer.Enabled = false;
-            if (_ipccProcess != null)
-            {
-                _ipccProcess.Exited -= IPCCProcess_Exited;
-                _ipccProcess.Dispose();
-                _ipccProcess = null;
-            }
+            if (_ipccProcess == null) return;
+
+            _ipccProcess.Exited -= IPCCProcess_Exited;
+            _ipccProcess.Dispose();
+            _ipccProcess = null;
         }
 
+        //private static Stopwatch watch = new Stopwatch();
+        //watch.Reset();
+        //watch.Start();
+        //watch.Stop();
+        //EventLogger.LogNewEvent("ByAutomationId: " + watch.ElapsedTicks);
+        //EventLogger.SaveLog();
         public void DialOrTransfer(string value)
         {
             if (!CheckForIpcc())
                 return;
             
-            if (_IPCCState.Text == "Talking")
-                _ipccTransferButton.Click();
-            else
-                _ipccDialButton.Click();
-
-            _ipccApplication.WaitWhileBusy();
-            //var dialPadWindow = _ipccWindow.Get<Window>(SearchCriteria.ByAutomationId("DialPadForm"));
-            var dialPadWindow = _ipccApplication.GetWindow(SearchCriteria.ByAutomationId("DialPadForm"), InitializeOption.NoCache);
-            if (dialPadWindow == null)
+            switch (_IPCCState.Text)
             {
-                EventLogger.LogNewEvent("Unable to Find CTI Dial Pad", EventLogLevel.Status);
-                return;
+                case "Talking":
+                    _ipccTransferButton.Click();
+                    break;
+                case "NotReady":
+                    _ipccDialButton.Click();
+                    break;
+                default:
+                    return;
             }
 
-            var dialPadNumber = dialPadWindow.Get<TestStack.White.UIItems.ListBoxItems.ComboBox>(SearchCriteria.ByAutomationId("dialedNumberComboBox"));
-            dialPadNumber.SetValue(value);
+            if (_ipccDialWindow == null)
+            {
+                _ipccDialWindow = _ipccWindow.MdiChild(SearchCriteria.ByAutomationId("DialPadForm"));
+                if (_ipccDialWindow == null)
+                {
+                    EventLogger.LogNewEvent("IPCC Dial Error: CTI Dial Pad Not Found", EventLogLevel.Status);
+                    return;
+                }
+                EventLogger.LogNewEvent("IPCC Dial: CTI Dial Pad Found", EventLogLevel.Status);
+            }
 
+            if (_ipccDialNumberComboBox == null)
+            {
+                _ipccDialNumberComboBox = _ipccDialWindow.Get<TestStack.White.UIItems.ListBoxItems.ComboBox>(SearchCriteria.ByAutomationId("dialedNumberComboBox"));
+                if (_ipccDialNumberComboBox == null)
+                {
+                    EventLogger.LogNewEvent("IPCC Dial Error: Number ComboBox Not Found", EventLogLevel.Status);
+                    return;
+                }
+                EventLogger.LogNewEvent("IPCC Dial: Number ComboBox Found", EventLogLevel.Status);
+            }
+
+            _ipccDialNumberComboBox.EditableText = value;
         }
 
         private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
@@ -543,6 +596,257 @@ namespace CallTracker.View
             _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
         }
 
+        private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem == monitorIPCCToolStripMenuItem) return;
+
+            ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
+            if (!monitorIPCCToolStripMenuItem.Checked && !_IPCCTimer.Enabled)
+                _IPCCTimer.Enabled = true;
+        }
+
+        private void ChangeCallStateMenuItem(string callState)
+        {
+            foreach (var control in _CallStateTime.DropDownItems.OfType<ToolStripMenuItem>().Where(control => control.Tag.ToString() != "Protected"))
+                if (control.Tag.ToString() == callState)
+                {
+                    CurrentItem = control;
+                    CurrentItem.Checked = true;
+                }
+                else
+                    control.Checked = false;
+        }
+
+        private void ChangeCallStateMenuItem(ToolStripMenuItem callState)
+        {
+            foreach (var control in _CallStateTime.DropDownItems.OfType<ToolStripMenuItem>().Where(control => control.Tag.ToString() != "Protected"))
+                control.Checked = false;
+            CurrentItem = callState;
+            CurrentItem.Checked = true;
+        }
+
+        private bool DoesIPCCExist()
+        {
+            if (_ipccProcess == null) return false;
+            return !_ipccProcess.HasExited;
+        }
+
+        private void _IPCCTimer_Tick(object sender, EventArgs e)
+        {
+            // Exit if IPCC doesn't exist and IPCC monitoring is on.
+            if (!DoesIPCCExist() && monitorIPCCToolStripMenuItem.Checked)
+            {
+                _callStateTimeElapsed = TimeSpan.Zero;
+                _CallStateTime.BackColor = Color.WhiteSmoke;
+                _CallStateTime.ForeColor = Color.DarkSlateGray;
+                _CallStateTime.Text = TimeSpanToString(_callStateTimeElapsed);
+                _IPCCTimer.Enabled = false;
+                monitorIPCCToolStripMenuItem.Checked = false;
+                _IPCCState.Text = "Not Monitoring IPCC";
+                return;
+            }
+
+            //if (CurrentItem.Name == "logInToolStripMenuItem")
+            //    ChangeCallStateMenuItem(notReadyToolStripMenuItem);
+
+            // If IPCC monitoring is off, pass in values from IPCC menu for testing.
+            string status;
+            if (monitorIPCCToolStripMenuItem.Checked)
+            {
+                status = _ipccCallStatus.Name;
+                status = status.Remove(0, Math.Min(13, status.Length));
+            }
+            else
+                status = CurrentItem.Tag.ToString();
+
+            if (status != _IPCCState.Text)
+            {
+                EventLogger.LogAndSaveNewEvent("Status Changed: " + status);
+                var dailyData = (DailyModel) _DailyDataBindingSource.Current;
+                if (String.IsNullOrEmpty(_IPCCState.Text))
+                {
+                    if(IsDifferentShift())
+                        dailyData = (DailyModel) _DailyDataBindingSource.Current;
+                    dailyData.AddCallEvent(CallEventTypes.LogIn);
+                }
+
+                switch (status)
+                {
+                    case "Wrapup":
+                        IPCCLevel("red");
+                        if (CurrentContact != null)
+                        {
+                            CurrentContact.AddCallEvent(CallEventTypes.CallEnd);
+                            CurrentContact = null;
+                        }
+                        SelectedContact.AddCallEvent(CallEventTypes.Wrapup);
+                        break;
+                    case "Reserved":
+                        _IPCCTimer.Interval = 500;
+                        dailyData.AddCallEvent(CallEventTypes.Reserved);
+                        if (editContact.autoNewCallToolStripMenuItem.Checked)
+                        {
+                            editContact.bindingNavigatorAddNewItem_Click(_IPCCState, new EventArgs());
+                            SelectedContact.AddCallEvent(CallEventTypes.Reserved);
+                        }
+                        break;
+                    case "Talking":
+                        IPCCLevel("amber");
+
+                        if(Properties.Settings.Default.PullIPCCCallData)
+                            GetIPCCCallData();
+
+                        if (CurrentContact != null)
+                            CurrentContact.AddCallEvent(CallEventTypes.Talking);
+                        else
+                            SelectedContact.AddCallEvent(CallEventTypes.Talking);                   
+                        break;
+                    case "Hold":
+                        IPCCLevel("red");
+                        if (CurrentContact != null)
+                            CurrentContact.AddCallEvent(CallEventTypes.Hold);
+                        else
+                            SelectedContact.AddCallEvent(CallEventTypes.Hold);
+                        break;
+                    case "NotReady":
+                        IPCCLevel("red");
+                        if (SelectedContact != null)
+                            SelectedContact.AddCallEvent(CallEventTypes.NotReady);
+                        break;
+                    case "Ready":
+                        IPCCLevel("green");
+                        dailyData.AddCallEvent(CallEventTypes.Ready);
+                        if (SelectedContact != null)
+                            SelectedContact.AddCallEvent(CallEventTypes.Ready);
+                        break;
+                    case "":
+                        IPCCLevel("white");
+                        dailyData.AddCallEvent(CallEventTypes.LogOut);
+                        if (CurrentContact != null)
+                        {
+                            CurrentContact.AddCallEvent(CallEventTypes.CallEnd);
+                            CurrentContact = null;
+                        }
+                        else
+                            SelectedContact.AddCallEvent(CallEventTypes.LogOut);                      
+                        break;
+                    default:
+                        _IPCCTimer.Interval = 1000;
+                        break;
+                }
+                _callStateTimeElapsed = TimeSpan.Zero;
+                _IPCCState.Text = status;
+                ChangeCallStateMenuItem(status);
+            }
+            else
+            {
+                _callStateTimeElapsed = _callStateTimeElapsed.Add(new TimeSpan(0, 0, 0, 0, _IPCCTimer.Interval)); //new TimeSpan(_callStateTimeElapsed.Ticks + _IPCCTimer.Interval * 10000);
+            }
+
+            _CallStateTime.Text = TimeSpanToString(_callStateTimeElapsed);
+        }
+
+        private void GetIPCCCallData()
+        {
+            //var table = _ipccCallDataTable.AutomationElement;
+            //var headerLine = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Header));
+            var cacheRequest = new CacheRequest { AutomationElementMode = AutomationElementMode.Full, TreeScope = TreeScope.Children };
+            cacheRequest.Add(AutomationElement.NameProperty);
+            cacheRequest.Add(ValuePattern.Pattern);
+            cacheRequest.Push();
+            var gridLines = _ipccCallDataTable.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
+            cacheRequest.Pop();
+
+            //var gridData = new string[headerLine.Count, gridLines.Count + 1];
+            //var headerIndex = 0;
+            //foreach (AutomationElement header in headerLine)
+            //{
+            //    gridData[headerIndex++, 0] = header.Current.Name;
+            //}
+            var headerLineCount = _gridData.GetLength(0) - 1;
+            var rowIndex = 1;
+            foreach (AutomationElement row in gridLines)
+            {
+                foreach (AutomationElement col in row.CachedChildren)
+                {
+                    int headerIndex;
+                    for (headerIndex = 0; headerIndex < headerLineCount; headerIndex++)
+                        if (_gridData[headerIndex, 0] == col.Cached.Name)
+                            break;
+                    
+                    var value = ((ValuePattern)col.GetCachedPattern(ValuePattern.Pattern)).Current.Value;
+                    _gridData[headerIndex, rowIndex] = value;
+                    
+                    if (SelectedContact == null) continue;
+                    switch (_gridData[headerIndex, 0])
+                    {
+                        case "Svc No":
+                            if (!SelectedContact.FindDNMatch(value))
+                                SelectedContact.FindMobileMatch(value);
+                            break;
+                        case "Caller ID":
+                            if (!SelectedContact.FindDNMatch(value))
+                                SelectedContact.FindMobileMatch(value);
+                            break;
+                        case "Acc No":
+                            if(!SelectedContact.FindICONMatch(value))
+                                SelectedContact.FindCMBSMatch(value); 
+                            break;
+                        case "IVR Status":
+                            if (value.Contains("OK"))
+                                SelectedContact.IDok = true;
+                            break;
+                        case "IVR Selection":
+                            if (value.Contains("LAT"))
+                                SelectedContact.Fault.LAT = true;
+                            else if (value.Contains("LIP"))
+                                SelectedContact.Fault.LIP = true;
+                            else if (value.Contains("ONC"))
+                                SelectedContact.Fault.ONC = true;
+                            else if (value.Contains("MTV"))
+                                SelectedContact.Fault.MTV = true;
+                            else if (value.Contains("DTV"))
+                                SelectedContact.Fault.DTV = true;
+                            else if (value.Contains("NBN"))
+                                SelectedContact.Fault.NFV = true;
+                            break;
+                    }
+                }
+                rowIndex++;
+            }
+        }
+
+        private static string TimeSpanToString(TimeSpan time)
+        {
+            return time.Hours > 0 ? String.Format("{0}:{1:00}:{2:00}",time.Hours, time.Minutes, time.Seconds) : String.Format("{0:00}:{1:00}", time.Minutes, time.Seconds);
+        }
+
+        private void IPCCLevel(string level)
+        {
+            switch (level)
+            {
+                case "white":
+                    _IPCCTimer.Interval = 2000;
+                    _CallStateTime.BackColor = Color.WhiteSmoke;
+                    _CallStateTime.ForeColor = Color.DarkSlateGray;
+                    break;
+                case "green":
+                    _IPCCTimer.Interval = 1000;
+                    _CallStateTime.BackColor = Color.OliveDrab;
+                    _CallStateTime.ForeColor = Color.PaleGoldenrod;
+                    break;
+                case "amber":
+                    _IPCCTimer.Interval = 1000;
+                    _CallStateTime.BackColor = Color.Chocolate;
+                    _CallStateTime.ForeColor = Color.PaleGoldenrod;
+                    break;
+                case "red":
+                    _IPCCTimer.Interval = 1000;
+                    _CallStateTime.BackColor = Color.Firebrick;
+                    _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
+                    break;
+            }
+        }
         ToolStripMenuItem _currentItem;
         ToolStripMenuItem CurrentItem
         {
@@ -628,218 +932,6 @@ namespace CallTracker.View
                 }
             }
         }
-        private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            if (e.ClickedItem == monitorIPCCToolStripMenuItem) return;
-
-            ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
-            if (!monitorIPCCToolStripMenuItem.Checked && !_IPCCTimer.Enabled)
-                _IPCCTimer.Enabled = true;
-        }
-
-        private void ChangeCallStateMenuItem(string callState)
-        {
-            foreach (var control in _CallStateTime.DropDownItems.OfType<ToolStripMenuItem>().Where(control => control.Tag.ToString() != "Protected"))
-                if (control.Tag.ToString() == callState)
-                {
-                    CurrentItem = control;
-                    CurrentItem.Checked = true;
-                }
-                else
-                    control.Checked = false;
-        }
-
-        private void ChangeCallStateMenuItem(ToolStripMenuItem callState)
-        {
-            foreach (var control in _CallStateTime.DropDownItems.OfType<ToolStripMenuItem>().Where(control => control.Tag.ToString() != "Protected"))
-                control.Checked = false;
-            CurrentItem = callState;
-            CurrentItem.Checked = true;
-        }
-
-        private bool DoesIPCCExist()
-        {
-            if (_ipccProcess == null) return false;
-            return !_ipccProcess.HasExited;
-        }
-
-        private void _IPCCTimer_Tick(object sender, EventArgs e)
-        {
-            // Exit if IPCC doesn't exist and IPCC monitoring is on.
-            if (!DoesIPCCExist() && monitorIPCCToolStripMenuItem.Checked)
-            {
-                _callStateTimeElapsed = TimeSpan.Zero;
-                _CallStateTime.BackColor = Color.WhiteSmoke;
-                _CallStateTime.ForeColor = Color.DarkSlateGray;
-                _CallStateTime.Text = TimeSpanToString(_callStateTimeElapsed);
-                _IPCCTimer.Enabled = false;
-                monitorIPCCToolStripMenuItem.Checked = false;
-                return;
-            }
-
-            //if (CurrentItem.Name == "logInToolStripMenuItem")
-            //    ChangeCallStateMenuItem(notReadyToolStripMenuItem);
-
-            // If IPCC monitoring is off, pass in values from IPCC menu for testing.
-            string status;
-            if (monitorIPCCToolStripMenuItem.Checked)
-            {
-                status = _ipccCallStatus.Name;
-                status = status.Remove(0, Math.Max(13, status.Length));
-            }
-            else
-                status = CurrentItem.Tag.ToString();
-
-            if (status != _IPCCState.Text)
-            {
-                var dailyData = (DailyModel) _DailyDataBindingSource.Current;
-                if (String.IsNullOrEmpty(_IPCCState.Text))
-                {
-                    if(IsDifferentShift())
-                        dailyData = (DailyModel) _DailyDataBindingSource.Current;
-                    dailyData.AddCallEvent(CallEventTypes.LogIn);
-                }
-
-                switch (status)
-                {
-                    case "Wrapup":
-                        IPCCLevel("red");
-                        if (CurrentContact != null)
-                        {
-                            CurrentContact.AddCallEvent(CallEventTypes.CallEnd);
-                            CurrentContact = null;
-                        }
-                        SelectedContact.AddCallEvent(CallEventTypes.Wrapup);
-                        break;
-                    case "Reserved":
-                        _IPCCTimer.Interval = 500;
-                        dailyData.AddCallEvent(CallEventTypes.Reserved);
-                        if (editContact.autoNewCallToolStripMenuItem.Checked)
-                        {
-                            editContact.bindingNavigatorAddNewItem_Click(_IPCCState, new EventArgs());
-                            SelectedContact.AddCallEvent(CallEventTypes.Reserved);
-                        }
-
-                        //if (Properties.Settings.Default.PullIPCCCallData)
-                        //{
-                        //    EventLogger.LogAndSaveNewEvent("Getting Svc No From IPCC");
-                        //    var serviceNumber =
-                        //        _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
-                        //            SearchCriteria.ByText("Svc No"));
-                        //    SelectedContact.FindDNMatch(serviceNumber.Value.ToString());
-                        //    SelectedContact.FindMobileMatch(serviceNumber.Value.ToString());
-
-                        //    EventLogger.LogAndSaveNewEvent("Getting Caller ID From IPCC");
-                        //    var contactNumber =
-                        //        _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
-                        //            SearchCriteria.ByText("Caller ID"));
-                        //    SelectedContact.FindDNMatch(contactNumber.Value.ToString());
-                        //    SelectedContact.FindMobileMatch(contactNumber.Value.ToString());
-
-                        //    EventLogger.LogAndSaveNewEvent("Getting Acc No From IPCC");
-                        //    var accountNumber =
-                        //        _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
-                        //            SearchCriteria.ByText("Acc No"));
-                        //    SelectedContact.FindCMBSMatch(accountNumber.Value.ToString());
-                        //    SelectedContact.FindICONMatch(accountNumber.Value.ToString());
-
-                        //    EventLogger.LogAndSaveNewEvent("Getting ID ok From IPCC");
-                        //    var idok =
-                        //        _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
-                        //            SearchCriteria.ByText("IVR Status"));
-                        //    if (idok.Value.ToString().Contains("OK"))
-                        //        SelectedContact.IDok = true;
-
-                        //    EventLogger.LogAndSaveNewEvent("Getting IVR Selection From IPCC");
-                        //    var ivrSelection =
-                        //        _ipccWindow.Get<TestStack.White.UIItems.TableItems.TableCell>(
-                        //            SearchCriteria.ByText("IVR Selection"));
-                        //}
-
-                        break;
-                    case "Talking":
-                        IPCCLevel("amber");
-                        if (CurrentContact != null)
-                            CurrentContact.AddCallEvent(CallEventTypes.Talking);
-                        else
-                            SelectedContact.AddCallEvent(CallEventTypes.Talking);                   
-                        break;
-                    case "Hold":
-                        IPCCLevel("red");
-                        if (CurrentContact != null)
-                            CurrentContact.AddCallEvent(CallEventTypes.Hold);
-                        else
-                            SelectedContact.AddCallEvent(CallEventTypes.Hold);
-                        break;
-                    case "NotReady":
-                        IPCCLevel("red");
-                        if (SelectedContact != null)
-                            SelectedContact.AddCallEvent(CallEventTypes.NotReady);
-                        break;
-                    case "Ready":
-                        IPCCLevel("green");
-                        dailyData.AddCallEvent(CallEventTypes.Ready);
-                        if (SelectedContact != null)
-                            SelectedContact.AddCallEvent(CallEventTypes.Ready);
-                        break;
-                    case "":
-                        IPCCLevel("white");
-                        dailyData.AddCallEvent(CallEventTypes.LogOut);
-                        if (CurrentContact != null)
-                        {
-                            CurrentContact.AddCallEvent(CallEventTypes.CallEnd);
-                            CurrentContact = null;
-                        }
-                        SelectedContact.AddCallEvent(CallEventTypes.LogOut);
-                        break;
-                    default:
-                        _IPCCTimer.Interval = 1000;
-                        break;
-                }
-                _callStateTimeElapsed = TimeSpan.Zero;
-                _IPCCState.Text = status;
-                ChangeCallStateMenuItem(status);
-            }
-            else
-            {
-                _callStateTimeElapsed = _callStateTimeElapsed.Add(new TimeSpan(0, 0, 0, 0, _IPCCTimer.Interval)); //new TimeSpan(_callStateTimeElapsed.Ticks + _IPCCTimer.Interval * 10000);
-            }
-
-            _CallStateTime.Text = TimeSpanToString(_callStateTimeElapsed);
-        }
-
-        private static string TimeSpanToString(TimeSpan time)
-        {
-            return time.Hours > 0 ? String.Format("{0}:{1:00}:{2:00}",time.Hours, time.Minutes, time.Seconds) : String.Format("{0:00}:{1:00}", time.Minutes, time.Seconds);
-        }
-
-        private void IPCCLevel(string level)
-        {
-            switch (level)
-            {
-                case "white":
-                    _IPCCTimer.Interval = 2000;
-                    _CallStateTime.BackColor = Color.WhiteSmoke;
-                    _CallStateTime.ForeColor = Color.DarkSlateGray;
-                    break;
-                case "green":
-                    _IPCCTimer.Interval = 1000;
-                    _CallStateTime.BackColor = Color.OliveDrab;
-                    _CallStateTime.ForeColor = Color.PaleGoldenrod;
-                    break;
-                case "amber":
-                    _IPCCTimer.Interval = 1000;
-                    _CallStateTime.BackColor = Color.Chocolate;
-                    _CallStateTime.ForeColor = Color.PaleGoldenrod;
-                    break;
-                case "red":
-                    _IPCCTimer.Interval = 1000;
-                    _CallStateTime.BackColor = Color.Firebrick;
-                    _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
-                    break;
-            }
-        }
-
 
 
 
@@ -1074,6 +1166,11 @@ namespace CallTracker.View
         private void reportBugToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BugReport.Show();
+        }
+
+        private void saveLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EventLogger.SaveLog();
         }
     }
 }

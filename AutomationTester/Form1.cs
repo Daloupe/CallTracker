@@ -276,15 +276,14 @@ namespace AutomationTester
                 var gridLines = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
                 cacheRequest.Pop();
 
-                Console.WriteLine(headerLine.Count + " columns");
-                Console.WriteLine(gridLines.Count + " rows");
-
-                var gridData = new string[headerLine.Count, gridLines.Count];
-
+                var gridData = new string[headerLine.Count, gridLines.Count+1];
                 var headerIndex = 0;
                 foreach (AutomationElement header in headerLine)
                 {
+                    
+                    _log.AppendText("trying to get header");
                     gridData[headerIndex++, 0] = header.Current.Name;
+                    _log.AppendText("\n" + header.Current.Name);
                 }
 
                 var rowIndex = 1;
@@ -292,17 +291,12 @@ namespace AutomationTester
                 {
                     foreach (AutomationElement col in row.CachedChildren)
                     {
-                        // Marry up data with headers (for some reason the orders were different
-                        // when viewing in something like UISpy so this makes sure it's correct
-                        headerIndex = 0;
-                        for (headerIndex = 0; headerIndex < headerLine.Count; headerIndex++)
+                        for (headerIndex = 0; headerIndex < headerLine.Count - 1; headerIndex++)
                         {
                             if (gridData[headerIndex, 0] == col.Cached.Name)
                                 break;
                         }
-
-                        gridData[headerIndex, rowIndex] = (col.GetCachedPattern(ValuePattern.Pattern) as ValuePattern).Current.Value;
-                        _log.AppendText(gridData[headerIndex, rowIndex] + Environment.NewLine);
+                        gridData[headerIndex, rowIndex] = ((ValuePattern)col.GetCachedPattern(ValuePattern.Pattern)).Current.Value;
                     }
                     rowIndex++;
                 }

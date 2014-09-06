@@ -33,7 +33,7 @@ namespace CallTracker.Model
             RFIssues = String.Empty;
             DTVLights = String.Empty;
             Throttled = String.Empty;
-            WasSearched = new Dictionary<string, bool>{ { "IFMS", false }, { "Nexus", false }, { "SCAMPS", false }, { "NSI", false }, { "DIMPS", false }, { "UNMT", false } };
+            WasSearched = new Dictionary<string, bool> { { "IFMS", false }, { "Nexus", false }, { "SCAMPS", false }, { "NSI", false }, { "DIMPS", false }, { "UNMT", false } };
         }
 
         //[ProtoBeforeDeserialization]

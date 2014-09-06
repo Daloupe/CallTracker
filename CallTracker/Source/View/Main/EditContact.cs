@@ -661,32 +661,32 @@ namespace CallTracker.View
        
         private void _SearchSCAMPS_click(object sender, EventArgs e)
         {
-            HotkeyController.NavigateOrNewIE("https://scamps.optusnet.com.au/cm.html?q=" + ((ToolStripMenuItem)sender).Tag.ToString(), "SCAMPS");
+            HotkeyController.NavigateOrNewIE("https://scamps.optusnet.com.au", "SCAMPS", "https://scamps.optusnet.com.au/cm.html?q=" + ((ToolStripMenuItem)sender).Tag.ToString());
         }
 
         private void _SearchDIMPSUsername_click(object sender, EventArgs e)
         {
-            HotkeyController.NavigateOrNewIE("https://dimps.optusnet.com.au/display.html?username=" + ((ToolStripMenuItem)sender).Tag.ToString().ToLower(), "DIMPS");
+            HotkeyController.NavigateOrNewIE("https://dimps.optusnet.com.au/", "DIMPS", "https://dimps.optusnet.com.au/display.html?username=" + ((ToolStripMenuItem)sender).Tag.ToString().ToLower());
         }
 
         private void _SearchDIMPSDn_click(object sender, EventArgs e)
         {
-            HotkeyController.NavigateOrNewIE("https://dimps.optusnet.com.au/search/servno?servno=" + ((ToolStripMenuItem)sender).Tag.ToString(), "DIMPS");
+            HotkeyController.NavigateOrNewIE("https://dimps.optusnet.com.au/", "DIMPS", "https://dimps.optusnet.com.au/search/servno?servno=" + ((ToolStripMenuItem)sender).Tag.ToString());
         }
 
         private void _SearchDIMPSCmbs_click(object sender, EventArgs e)
         {
-            HotkeyController.NavigateOrNewIE("https://dimps.optusnet.com.au/search/account?account_no=" + ((ToolStripMenuItem)sender).Tag.ToString(), "DIMPS");
+            HotkeyController.NavigateOrNewIE("https://dimps.optusnet.com.au/", "DIMPS", "https://dimps.optusnet.com.au/search/account?account_no=" + ((ToolStripMenuItem)sender).Tag.ToString());
         }
 
         private void _SearchNexusService_click(object sender, EventArgs e)
         {
-            HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/index.php?#service/" + ((ToolStripMenuItem)sender).Tag.ToString(), "Nexus");
+            HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/", "Nexus", "http://nexus.optus.com.au/index.php?#service/" + ((ToolStripMenuItem)sender).Tag.ToString());
         }
 
         private void _SearchNexusAccount_click(object sender, EventArgs e)
         {
-            HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/index.php?#account/" + ((ToolStripMenuItem)sender).Tag.ToString(), "Nexus");
+            HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/", "Nexus", "http://nexus.optus.com.au/index.php?#account/" + ((ToolStripMenuItem)sender).Tag.ToString());
         }
         private void _SearchICON_click(object sender, EventArgs e)
         {
@@ -695,12 +695,12 @@ namespace CallTracker.View
 
         private void _SearchUNMT_click(object sender, EventArgs e)
         {
-            HotkeyController.NavigateOrNewIE("https://staff.optusnet.com.au/tools/usernames/users.html?username=" + ((ToolStripMenuItem)sender).Tag.ToString() + "&namespace=optus", "Staff");
+            HotkeyController.NavigateOrNewIE("https://staff.optusnet.com.au/tools/usernames/", "OptusNet StaffWeb", "https://staff.optusnet.com.au/tools/usernames/users.html?username=" + ((ToolStripMenuItem)sender).Tag.ToString() + "&namespace=optus");
         }
 
         private void _SearchIFMS_click(object sender, EventArgs e)
         {
-            HotkeyController.NavigateOrNewIE("http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F012_ProblemDetail.aspx?SD_NO=" + ((ToolStripMenuItem)sender).Tag.ToString(), "IFMS");
+            HotkeyController.NavigateOrNewIE("http://ifmsprod.optus.com.au/", "IFMS", "http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F012_ProblemDetail.aspx?SD_NO=" + ((ToolStripMenuItem)sender).Tag.ToString());
         }
 
         private void _TextFieldContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

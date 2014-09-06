@@ -13,7 +13,7 @@ namespace CallTracker.View
         public SplashScreen()
         {
             InitializeComponent();
-            var fontCount = Program.Fonts.Families.Count();
+            var fontCount = Program.Fonts.Families.Length;
             if (fontCount > 0)
                 Wingman.Font = new Font(Program.Fonts.Families[0], 40, FontStyle.Bold);
             if (fontCount > 1)

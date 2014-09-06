@@ -64,6 +64,7 @@
             this.didYouKnowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.callHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -267,6 +268,7 @@
             this._IPCCState.Margin = new System.Windows.Forms.Padding(0, 3, 0, 1);
             this._IPCCState.Name = "_IPCCState";
             this._IPCCState.Size = new System.Drawing.Size(134, 15);
+            this._IPCCState.Text = "Not Monitoring IPCC";
             this._IPCCState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // _CallStateTime
@@ -378,6 +380,7 @@
             // 
             this.monitorIPCCToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.MonitorIPCC;
             this.monitorIPCCToolStripMenuItem.CheckOnClick = true;
+            this.monitorIPCCToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.monitorIPCCToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.monitorIPCCToolStripMenuItem.Name = "monitorIPCCToolStripMenuItem";
             this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
@@ -445,7 +448,8 @@
             this.viewKeyCommandsMenuItem,
             this.didYouKnowToolStripMenuItem,
             this.toolStripSeparator9,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.saveLogToolStripMenuItem});
             this.helpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 16);
@@ -488,6 +492,13 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // saveLogToolStripMenuItem
+            // 
+            this.saveLogToolStripMenuItem.Name = "saveLogToolStripMenuItem";
+            this.saveLogToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.saveLogToolStripMenuItem.Text = "Save Log";
+            this.saveLogToolStripMenuItem.Click += new System.EventHandler(this.saveLogToolStripMenuItem_Click);
             // 
             // fileToolStripMenuItem
             // 
@@ -1232,5 +1243,6 @@
         private System.Windows.Forms.ToolStripMenuItem viewStatsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportBugToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripMenuItem saveLogToolStripMenuItem;
     }
 }

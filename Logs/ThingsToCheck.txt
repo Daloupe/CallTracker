@@ -1,0 +1,59 @@
+|Finding by Title uses regex:"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?" to strip things windows sees in title, but not WaTiN's Browser.Exists(Find.ByTitle()) function. 
+	| Is the http group neccessary? Yeah some IE pages include the address in the title.
+	- Does browser.Title give the same output as the Find.By function?
+|RAM Fluctuations. 
+	|Seem Solid
+|IPCC Dialling. 
+	| Can't find window with automation ID.
+	| Works when finding mdichild. ALbeit a lil slow.
+	| DialPad is cached on first find, much quicker after that.
+|MAD Paste.
+	| Not working.
+	| Function is entering, but no logs after that. 
+		| Offsets may be incorrect; window title height may change with viual styles. Log values.
+	| Working! Albeit slowly.
+|Average Copy time.
+	| Highest is about 1700 ticks. Set to 3400 anyway, but seen as high as 47000. Set to 20ms.
+|Tool Tips click through.
+|Fault Panel Scrollable.
+|Autosearch.
+	|DN Working.
+	/Autosearch Username in NSI? Not sure of NSI UN search string.
+	|UNMT Title = "OptusNet StaffWeb". url "https://staff.optusnet.com.au/tools/usernames" vs "https://staff.optusnet.com.au/tools/nsi/"
+	|Username not searching?
+	|Nexus not searching?
+|GridLinks Search.
+	|Not initiating search.
+|Tips.
+	|Font needs to use pfc.
+|Daily stats compared with Rox.
+	-Log in might not be calculated correctly.
+	-Handling time isn't counting all states.
+|ActiveWindow Title for MAD Search screen.
+	|Oracle Forms Runtime
+|AutoFills.
+	-Severity not pasting.
+	|ICON smart paste sort of working. Need to wait for combo boxes to finihs updating. Implemented BrowserWait.
+|IFMS Smart Paste onchange event working.
+	|Check IE Busy status.
+|Bug Report.
+	|Exception: Verify file path.(With log sitting in main folder, and Data.
+|OPOM Smart Copy.
+	|Windows title has "Service Instance Search"
+	|Works... But a lil slow.
+|Which error the log gives when trying to bind to softact.
+	-Nothing?
+|Notes
+	-Pasted notes need to send text, rather than RTF.
+|Automation Tester
+	|Able to pull Data form Data grid!!!
+-AffectService isn't being kept on contact change.
+-Deleting some calls in call history doesn't reload editcontacts properly.
+-Combobox flashing when mouse over.
+-SmartPaste into CTI Dial Pad DN/Mobile.
+/Wingman crashing when IPCC Quit.
+|IFMS acc smartpaste seems to work when set to With No Wait.
+Regex Issues:
+	|CMBS: 1808173010 copying as 31808173 0
+	-Name: JEREMY VAN'T SPYKER
+	|NBNCommon: Needs to be checked before username.

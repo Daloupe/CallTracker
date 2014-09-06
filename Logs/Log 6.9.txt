@@ -1,0 +1,2765 @@
+06/09/14 03:06:53: ------------------------------------------------------
+06/09/14 03:06:53: Loading Interface
+06/09/14 03:06:53: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 03:06:53: CallTracker.Model.CallStats > RecordCreated
+06/09/14 03:06:53: Loading Views
+06/09/14 03:06:54: Added Controls
+06/09/14 03:06:55: Bring to front
+06/09/14 03:06:55: Finished Loading
+06/09/14 03:07:06: Monitoring Not Enabled
+06/09/14 03:07:07: Trying to find IPCC
+06/09/14 03:07:12: Monitoring IPCC
+06/09/14 03:07:38: Monitoring IPCC
+06/09/14 03:30:09: ------------------------------------------------------
+06/09/14 03:30:09: Loading Interface
+06/09/14 03:30:09: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 03:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 03:30:09: Loading Views
+06/09/14 03:30:10: Added Controls
+06/09/14 03:30:10: Bring to front
+06/09/14 03:30:10: Finished Loading
+06/09/14 03:30:13: Monitoring Not Enabled
+06/09/14 03:30:13: Trying to find IPCC
+06/09/14 03:30:15: Monitoring IPCC
+06/09/14 03:30:16: status changed: Ready
+06/09/14 03:30:16: Daily Data: 06/09 > LogIn at 06/09/14 03:30:16
+06/09/14 03:30:16: Daily Data: 06/09 > Ready at 06/09/14 03:30:16
+06/09/14 03:30:16: 1  > Ready at 06/09/14 03:30:16
+06/09/14 03:30:26: status changed: Reserved
+06/09/14 03:30:26: Daily Data: 06/09 > Reserved at 06/09/14 03:30:26
+06/09/14 03:30:26: CallTracker.Model.CallStats > RecordCreated
+06/09/14 03:30:26: 1  > CallEnd at 06/09/14 03:30:26
+06/09/14 03:30:26: 2  > Reserved at 06/09/14 03:30:26
+06/09/14 03:30:27: status changed: Talking
+06/09/14 03:30:27: 2  > CallStart at 06/09/14 03:30:27
+06/09/14 03:30:31: Starting Smart Copy
+06/09/14 03:30:31: Finding IE by Title
+06/09/14 03:30:31: Unable to Find IE by Title
+06/09/14 03:30:31: Finding IE by URL
+06/09/14 03:30:31: Unable to Find IE by URL
+06/09/14 03:30:31: Finding IE by Title
+06/09/14 03:30:31: Searching: https://scamps.optusnet.com.au/cm.html?q=0295990525
+06/09/14 03:30:31: CallTracker.Model.CallStats > AutoSearch
+06/09/14 03:30:31: Finding IE by Title
+06/09/14 03:30:31: Searching: https://dimps.optusnet.com.au/search/servno?servno=0295990525
+06/09/14 03:30:31: CallTracker.Model.CallStats > AutoSearch
+06/09/14 03:30:31: 0295990525 copied from the clipboard in 519ticks
+06/09/14 03:30:31: CallTracker.Model.CallStats > SmartCopy
+06/09/14 03:30:37: Switching to: http://www.yahoo.com
+06/09/14 03:30:37: CallTracker.Model.CallStats > Gridlink
+06/09/14 03:30:37: Switched to: http://www.yahoo.com
+06/09/14 03:30:44: Starting Smart Copy
+06/09/14 03:30:44: DRAGAN ILINKOVSKI copied from the clipboard in 1747ticks
+06/09/14 03:30:44: CallTracker.Model.CallStats > SmartCopy
+06/09/14 03:30:45: Starting Smart Copy
+06/09/14 03:30:45: 31-535830-2 copied from the clipboard in 516ticks
+06/09/14 03:30:45: CallTracker.Model.CallStats > SmartCopy
+06/09/14 03:31:09: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 03:31:09: Finding IE by Title
+06/09/14 03:31:09: CallTracker.Model.CallStats > SmartPaste
+06/09/14 03:31:09: Match Found
+06/09/14 03:34:17: status changed: Hold
+06/09/14 03:34:17: 2 0295990525 > Hold at 06/09/14 03:34:17
+06/09/14 03:34:20: status changed: Talking
+06/09/14 03:34:20: 2 0295990525 > Talking at 06/09/14 03:34:20
+06/09/14 03:36:12: status changed: Wrapup
+06/09/14 03:36:12: 2 0295990525 > Wrapup at 06/09/14 03:36:12
+06/09/14 03:36:17: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Activity - New activity and notes - Windows Internet Explorer
+06/09/14 03:36:17: Finding IE by Title
+06/09/14 03:36:17: CallTracker.Model.CallStats > SmartPaste
+06/09/14 03:36:17: Match Found
+06/09/14 03:40:21: status changed: Ready
+06/09/14 03:40:21: Daily Data: 06/09 > Ready at 06/09/14 03:40:21
+06/09/14 03:40:21: 2 0295990525 > CallEnd at 06/09/14 03:40:21
+06/09/14 03:41:14: Starting Smart Copy
+06/09/14 03:41:14: 0295990525 copied from the clipboard in 374ticks
+06/09/14 03:41:14: CallTracker.Model.CallStats > SmartCopy
+06/09/14 03:41:17: Starting Smart Copy
+06/09/14 03:41:17: 31535830 2 copied from the clipboard in 199ticks
+06/09/14 03:41:17: CallTracker.Model.CallStats > SmartCopy
+06/09/14 03:41:20: Starting Smart Copy
+06/09/14 03:41:20: DRAGAN ILINKOVSKI copied from the clipboard in 227ticks
+06/09/14 03:41:20: CallTracker.Model.CallStats > SmartCopy
+06/09/14 03:41:32: ------------------------------------------------------
+06/09/14 03:41:32: Loading Interface
+06/09/14 03:41:33: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 03:41:33: CallTracker.Model.CallStats > RecordCreated
+06/09/14 03:41:33: CallTracker.Model.CallStats > RecordCreated
+06/09/14 03:41:33: Loading Views
+06/09/14 03:41:33: Added Controls
+06/09/14 03:41:34: 4  > CallEnd at 06/09/14 03:41:34
+06/09/14 03:41:34: Bring to front
+06/09/14 03:41:34: Finished Loading
+06/09/14 03:41:41: Monitoring Not Enabled
+06/09/14 03:41:42: Trying to find IPCC
+06/09/14 03:41:44: Monitoring IPCC
+06/09/14 03:41:45: status changed: Ready
+06/09/14 03:41:45: Daily Data: 06/09 > LogIn at 06/09/14 03:41:45
+06/09/14 03:41:45: Daily Data: 06/09 > Ready at 06/09/14 03:41:45
+06/09/14 03:41:45: 2 0295990525 > Ready at 06/09/14 03:41:45
+06/09/14 03:44:33: Searching for matching binds
+06/09/14 03:44:33: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 03:44:33: Finding IE by Title
+06/09/14 03:44:50: Searching for matching binds
+06/09/14 03:44:50: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 03:44:50: Finding IE by Title
+06/09/14 03:45:09: ------------------------------------------------------
+06/09/14 03:45:09: Loading Interface
+06/09/14 03:45:09: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 03:45:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 03:45:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 03:45:09: Loading Views
+06/09/14 03:45:09: Added Controls
+06/09/14 03:45:10: 6  > CallEnd at 06/09/14 03:45:10
+06/09/14 03:45:10: Bring to front
+06/09/14 03:45:10: Finished Loading
+06/09/14 03:45:27: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 03:45:38: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 03:46:03: ------------------------------------------------------
+06/09/14 03:46:03: Loading Interface
+06/09/14 03:46:03: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 03:46:03: CallTracker.Model.CallStats > RecordCreated
+06/09/14 03:46:03: CallTracker.Model.CallStats > RecordCreated
+06/09/14 03:46:03: Loading Views
+06/09/14 03:46:04: Added Controls
+06/09/14 03:46:04: 8  > CallEnd at 06/09/14 03:46:04
+06/09/14 03:46:04: Bring to front
+06/09/14 03:46:04: Finished Loading
+06/09/14 03:46:54: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 03:48:33: Monitoring Not Enabled
+06/09/14 03:48:34: Trying to find IPCC
+06/09/14 03:48:37: Monitoring IPCC
+06/09/14 03:48:38: status changed: Talking
+06/09/14 03:48:38: Daily Data: 06/09 > LogIn at 06/09/14 03:48:38
+06/09/14 03:48:38: 2 0295990525 > Talking at 06/09/14 03:48:38
+06/09/14 03:48:38: CallTracker.Model.CallStats > RecordCreated
+06/09/14 03:48:40: Starting Smart Copy
+06/09/14 03:48:40: Finding IE by Title
+06/09/14 03:48:40: Unable to Find IE by Title
+06/09/14 03:48:40: Finding IE by URL
+06/09/14 03:48:40: Unable to Find IE by URL
+06/09/14 03:48:40: 0430537128 copied from the clipboard in 1046ticks
+06/09/14 03:48:40: CallTracker.Model.CallStats > SmartCopy
+06/09/14 03:48:42: Starting Smart Copy
+06/09/14 03:48:42: Finding IE by Title
+06/09/14 03:48:42: Unable to Find IE by Title
+06/09/14 03:48:42: Finding IE by URL
+06/09/14 03:48:42: Searching: https://scamps.optusnet.com.au/cm.html?q=0296453835
+06/09/14 03:48:42: CallTracker.Model.CallStats > AutoSearch
+06/09/14 03:48:42: Finding IE by Title
+06/09/14 03:48:42: Searching: https://dimps.optusnet.com.au/search/servno?servno=0296453835
+06/09/14 03:48:42: CallTracker.Model.CallStats > AutoSearch
+06/09/14 03:48:42: 0296453835 copied from the clipboard in 423ticks
+06/09/14 03:48:42: CallTracker.Model.CallStats > SmartCopy
+06/09/14 03:48:49: Pasting: DN
+06/09/14 03:48:49: CallTracker.Model.CallStats > DataPaste
+06/09/14 03:48:51: Starting Smart Copy
+06/09/14 03:48:51: FRANCES KEOUGH copied from the clipboard in 543ticks
+06/09/14 03:48:51: CallTracker.Model.CallStats > SmartCopy
+06/09/14 03:48:52: Starting Smart Copy
+06/09/14 03:48:52: 31-517144-3 copied from the clipboard in 1013ticks
+06/09/14 03:48:52: CallTracker.Model.CallStats > SmartCopy
+06/09/14 03:48:54: Switching to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 03:48:54: Finding IE by URL
+06/09/14 03:48:54: Unable to Find IE by URL
+06/09/14 03:48:54: Finding IE by Title
+06/09/14 03:48:54: Creating Tab Activator
+06/09/14 03:48:54: Activating Tab
+06/09/14 03:48:54: Searching for matches
+06/09/14 03:48:54: Finding IE by Title
+06/09/14 03:48:54: Actioning matches
+06/09/14 03:48:54: CallTracker.Model.CallStats > Gridlink
+06/09/14 03:48:54: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 03:48:57: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 03:48:57: Finding IE by Title
+06/09/14 03:48:57: CallTracker.Model.CallStats > SmartPaste
+06/09/14 03:48:57: Match Found
+06/09/14 03:49:03: Starting Smart Copy
+06/09/14 03:49:03: 22CJ164 copied from the clipboard in 4941ticks
+06/09/14 03:49:03: CallTracker.Model.CallStats > SmartCopy
+06/09/14 03:49:05: Pasting: Username
+06/09/14 03:49:05: DataPaste Error: No Data to paste.
+06/09/14 03:49:07: Pasting: DN
+06/09/14 03:49:07: CallTracker.Model.CallStats > DataPaste
+06/09/14 03:49:21: Pasting: DN
+06/09/14 03:49:21: CallTracker.Model.CallStats > DataPaste
+06/09/14 03:49:36: Pasting: DN
+06/09/14 03:49:36: CallTracker.Model.CallStats > DataPaste
+06/09/14 03:49:45: Pasting: DN
+06/09/14 03:49:45: CallTracker.Model.CallStats > DataPaste
+06/09/14 03:51:16: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 03:51:16: Finding IE by URL
+06/09/14 03:51:16: Creating Tab Activator
+06/09/14 03:51:16: Activating Tab
+06/09/14 03:51:16: Searching for matches
+06/09/14 03:51:16: Finding IE by Title
+06/09/14 03:51:16: Actioning matches
+06/09/14 03:51:16: CallTracker.Model.CallStats > Gridlink
+06/09/14 03:51:16: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 03:51:24: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 03:51:24: Finding IE by Title
+06/09/14 03:51:24: CallTracker.Model.CallStats > SmartPaste
+06/09/14 03:51:24: Match Found
+06/09/14 03:52:17: status changed: Hold
+06/09/14 03:52:17: 2 0295990525 > Hold at 06/09/14 03:52:17
+06/09/14 03:53:50: Starting Grid Link Search: https://scamps.optusnet.com.au/
+06/09/14 03:53:50: Searching: https://scamps.optusnet.com.au/
+06/09/14 03:53:50: No relevant data found
+06/09/14 03:53:50: Finding IE by URL
+06/09/14 03:53:50: Creating Tab Activator
+06/09/14 03:53:50: Activating Tab
+06/09/14 03:53:50: Searching for matches
+06/09/14 03:53:50: Finding IE by Title
+06/09/14 03:53:50: Actioning matches
+06/09/14 03:53:50: CallTracker.Model.CallStats > GridlinkSearch
+06/09/14 03:53:50: Switched to: https://scamps.optusnet.com.au/
+06/09/14 03:53:54: Finding IE by URL
+06/09/14 03:53:54: Unable to Find IE by URL
+06/09/14 03:53:54: Finding IE by Title
+06/09/14 03:53:54: Creating Tab Activator
+06/09/14 03:53:54: Activating Tab
+06/09/14 03:54:07: Starting Grid Link Search: https://scamps.optusnet.com.au/
+06/09/14 03:54:07: Searching: https://scamps.optusnet.com.au/
+06/09/14 03:54:07: No relevant data found
+06/09/14 03:54:07: Finding IE by URL
+06/09/14 03:54:07: Creating Tab Activator
+06/09/14 03:54:07: Activating Tab
+06/09/14 03:54:07: Searching for matches
+06/09/14 03:54:07: Finding IE by Title
+06/09/14 03:54:07: Actioning matches
+06/09/14 03:54:07: CallTracker.Model.CallStats > GridlinkSearch
+06/09/14 03:54:07: Switched to: https://scamps.optusnet.com.au/
+06/09/14 03:54:12: Pasting: DN
+06/09/14 03:54:12: CallTracker.Model.CallStats > DataPaste
+06/09/14 03:56:20: status changed: Talking
+06/09/14 03:56:20: 2 0295990525 > Talking at 06/09/14 03:56:20
+06/09/14 03:57:00: status changed: Wrapup
+06/09/14 03:57:00: 2 0295990525 > CallEnd at 06/09/14 03:57:00
+06/09/14 03:57:00: 2 0295990525 > CallEnd at 06/09/14 03:57:00
+06/09/14 03:57:00: 9 0296453835 > Wrapup at 06/09/14 03:57:00
+06/09/14 03:57:45: Pasting: CMBS
+06/09/14 03:57:45: CallTracker.Model.CallStats > DataPaste
+06/09/14 03:57:46: Pasting: DN
+06/09/14 03:57:46: CallTracker.Model.CallStats > DataPaste
+06/09/14 03:57:47: Pasting: Name.Full
+06/09/14 03:57:47: CallTracker.Model.CallStats > DataPaste
+06/09/14 03:57:48: Pasting: Mobile
+06/09/14 03:57:48: CallTracker.Model.CallStats > DataPaste
+06/09/14 04:01:45: status changed: NotReady
+06/09/14 04:01:45: 9 0296453835 > NotReady at 06/09/14 04:01:45
+06/09/14 04:01:48: status changed: Talking
+06/09/14 04:01:48: 9 0296453835 > Talking at 06/09/14 04:01:48
+06/09/14 04:02:18: status changed: Wrapup
+06/09/14 04:02:18: 9 0296453835 > Wrapup at 06/09/14 04:02:18
+06/09/14 04:02:44: status changed: Ready
+06/09/14 04:02:44: Daily Data: 06/09 > Ready at 06/09/14 04:02:44
+06/09/14 04:02:44: 9 0296453835 > CallEnd at 06/09/14 04:02:44
+06/09/14 04:02:50: Monitoring Not Enabled
+06/09/14 04:02:57: ------------------------------------------------------
+06/09/14 04:02:57: Loading Interface
+06/09/14 04:02:57: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 04:02:57: CallTracker.Model.CallStats > RecordCreated
+06/09/14 04:02:57: CallTracker.Model.CallStats > RecordCreated
+06/09/14 04:02:57: CallTracker.Model.CallStats > RecordCreated
+06/09/14 04:02:57: Loading Views
+06/09/14 04:02:57: Added Controls
+06/09/14 04:02:58: 12  > CallEnd at 06/09/14 04:02:58
+06/09/14 04:02:58: 2 0295990525 > CallEnd at 06/09/14 04:02:58
+06/09/14 04:02:58: Bring to front
+06/09/14 04:02:58: Finished Loading
+06/09/14 04:03:54: Searching for matching binds
+06/09/14 04:03:54: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:03:54: Finding IE by Title
+06/09/14 04:04:01: Searching for matching binds
+06/09/14 04:04:01: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:04:01: Finding IE by Title
+06/09/14 04:04:06: Searching for matching binds
+06/09/14 04:04:06: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:04:06: Finding IE by Title
+06/09/14 04:04:09: Searching for matching binds
+06/09/14 04:04:09: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:04:09: Finding IE by Title
+06/09/14 04:04:17: Searching for AutoFill Matches
+06/09/14 04:04:17: Finding IE by Title
+06/09/14 04:04:17: 13 found.
+06/09/14 04:04:29: Searching for matching binds
+06/09/14 04:04:29: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:04:29: Finding IE by Title
+06/09/14 04:04:30: New Bind Created
+06/09/14 04:04:37: Searching for matching binds
+06/09/14 04:04:37: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:04:37: Finding IE by Title
+06/09/14 04:04:39: Searching for matching binds
+06/09/14 04:04:39: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:04:39: Finding IE by Title
+06/09/14 04:04:44: Searching for matching binds
+06/09/14 04:04:44: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:04:44: Finding IE by Title
+06/09/14 04:04:54: Searching for matching binds
+06/09/14 04:04:54: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:04:54: Finding IE by Title
+06/09/14 04:04:56: Searching for matching binds
+06/09/14 04:04:56: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:04:56: Finding IE by Title
+06/09/14 04:05:02: Searching for matching binds
+06/09/14 04:05:02: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:05:02: Finding IE by Title
+06/09/14 04:05:07: Searching for matching binds
+06/09/14 04:05:07: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:05:07: Finding IE by Title
+06/09/14 04:05:07: New Bind Created
+06/09/14 04:05:20: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 04:05:20: Finding IE by Title
+06/09/14 04:05:20: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:05:20: Match Found
+06/09/14 04:05:23: Searching for matching binds
+06/09/14 04:05:23: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:05:23: Finding IE by Title
+06/09/14 04:05:23: Unable to Find IE by Title
+06/09/14 04:05:23: Unable to find page by title: Start menu
+06/09/14 04:05:23: Unable to find page by HWND: 524468
+06/09/14 04:05:24: Searching for matching binds
+06/09/14 04:05:24: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:05:24: Finding IE by Title
+06/09/14 04:05:28: Searching for matching binds
+06/09/14 04:05:28: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:05:28: Finding IE by Title
+06/09/14 04:05:34: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 04:05:34: Finding IE by Title
+06/09/14 04:05:34: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:05:34: Match Found
+06/09/14 04:05:38: Searching for AutoFill Matches
+06/09/14 04:05:38: Finding IE by Title
+06/09/14 04:05:38: 14 found.
+06/09/14 04:05:38: Smart Paste Error: BrowserElement Doesn't Exist.
+06/09/14 04:05:44: Searching for matching binds
+06/09/14 04:05:44: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:05:44: Finding IE by Title
+06/09/14 04:05:51: Searching for matching binds
+06/09/14 04:05:51: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:05:51: Finding IE by Title
+06/09/14 04:05:53: Searching for AutoFill Matches
+06/09/14 04:05:53: Finding IE by Title
+06/09/14 04:05:53: 14 found.
+06/09/14 04:05:53: Smart Paste Error: BrowserElement Doesn't Exist.
+06/09/14 04:05:56: Searching for matching binds
+06/09/14 04:05:56: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:05:56: Finding IE by Title
+06/09/14 04:06:01: Searching for matching binds
+06/09/14 04:06:01: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:06:01: Finding IE by Title
+06/09/14 04:06:07: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 04:06:07: Finding IE by Title
+06/09/14 04:06:07: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:06:07: Match Found
+06/09/14 04:06:12: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 04:06:12: Finding IE by Title
+06/09/14 04:06:12: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:06:12: Match Found
+06/09/14 04:06:42: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 04:06:45: Starting Smart Copy
+06/09/14 04:06:45: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 04:06:45: Finding IE by Title
+06/09/14 04:06:45: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:06:45: Match Found
+06/09/14 04:06:46: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 04:06:46: Finding IE by Title
+06/09/14 04:06:46: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:06:46: Match Found
+06/09/14 04:06:50: Starting Smart Copy
+06/09/14 04:06:50: 31-499062-1 copied from the clipboard in 522ticks
+06/09/14 04:06:50: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:06:52: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 04:06:52: Finding IE by Title
+06/09/14 04:06:52: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:06:52: Match Found
+06/09/14 04:07:00: Searching for AutoFill Matches
+06/09/14 04:07:00: Finding IE by Title
+06/09/14 04:07:00: 14 found.
+06/09/14 04:07:07: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 04:07:07: Finding IE by Title
+06/09/14 04:07:07: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:07:07: Match Found
+06/09/14 04:07:11: Searching for matching binds
+06/09/14 04:07:11: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:07:11: Finding IE by Title
+06/09/14 04:07:16: Searching for matching binds
+06/09/14 04:07:16: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:07:16: Finding IE by Title
+06/09/14 04:07:19: Searching for matching binds
+06/09/14 04:07:19: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:07:19: Finding IE by Title
+06/09/14 04:07:21: Searching for matching binds
+06/09/14 04:07:21: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:07:21: Finding IE by Title
+06/09/14 04:07:29: Searching for matching binds
+06/09/14 04:07:29: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:07:29: Finding IE by Title
+06/09/14 04:07:34: Searching for matching binds
+06/09/14 04:07:34: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:07:34: Finding IE by Title
+06/09/14 04:07:37: Searching for matching binds
+06/09/14 04:07:37: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:07:37: Finding IE by Title
+06/09/14 04:07:47: Searching for AutoFill Matches
+06/09/14 04:07:47: Finding IE by Title
+06/09/14 04:07:47: 14 found.
+06/09/14 04:07:52: Searching for matching binds
+06/09/14 04:07:52: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:07:52: Finding IE by Title
+06/09/14 04:08:00: Searching for AutoFill Matches
+06/09/14 04:08:00: Finding IE by Title
+06/09/14 04:08:00: 14 found.
+06/09/14 04:08:04: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 04:08:04: Finding IE by Title
+06/09/14 04:08:04: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:08:04: Match Found
+06/09/14 04:08:05: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 04:08:05: Finding IE by Title
+06/09/14 04:08:05: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:08:05: Match Found
+06/09/14 04:08:08: Searching for matching binds
+06/09/14 04:08:08: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:08:08: Finding IE by Title
+06/09/14 04:08:19: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 04:08:19: Finding IE by Title
+06/09/14 04:08:19: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:08:19: Match Found
+06/09/14 04:08:22: Searching for matching binds
+06/09/14 04:08:22: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:08:22: Finding IE by Title
+06/09/14 04:08:26: Searching for AutoFill Matches
+06/09/14 04:08:26: Finding IE by Title
+06/09/14 04:08:26: 14 found.
+06/09/14 04:08:27: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 04:08:27: Finding IE by Title
+06/09/14 04:08:27: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:08:27: Match Found
+06/09/14 04:08:39: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 04:08:39: Finding IE by Title
+06/09/14 04:08:39: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:08:39: Match Found
+06/09/14 04:08:41: Searching for matching binds
+06/09/14 04:08:41: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:08:41: Finding IE by Title
+06/09/14 04:09:12: Searching for AutoFill Matches
+06/09/14 04:09:12: Finding IE by Title
+06/09/14 04:09:12: 3 found.
+06/09/14 04:09:15: Searching for AutoFill Matches
+06/09/14 04:09:15: Finding IE by Title
+06/09/14 04:09:15: 3 found.
+06/09/14 04:09:20: Searching for AutoFill Matches
+06/09/14 04:09:20: Finding IE by Title
+06/09/14 04:09:20: 3 found.
+06/09/14 04:09:28: Searching for matching binds
+06/09/14 04:09:28: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:09:28: Finding IE by Title
+06/09/14 04:09:28: New Bind Created
+06/09/14 04:10:02: Searching for AutoFill Matches
+06/09/14 04:10:02: Finding IE by Title
+06/09/14 04:10:02: 3 found.
+06/09/14 04:10:09: Searching for AutoFill Matches
+06/09/14 04:10:09: Finding IE by Title
+06/09/14 04:10:09: 3 found.
+06/09/14 04:10:10: Searching for matching binds
+06/09/14 04:10:10: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:10:10: Finding IE by Title
+06/09/14 04:10:12: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Activity - New activity and notes - Windows Internet Explorer
+06/09/14 04:10:12: Finding IE by Title
+06/09/14 04:10:12: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:10:12: Match Found
+06/09/14 04:10:15: Searching for AutoFill Matches
+06/09/14 04:10:15: Finding IE by Title
+06/09/14 04:10:15: 3 found.
+06/09/14 04:10:26: ------------------------------------------------------
+06/09/14 04:10:26: Loading Interface
+06/09/14 04:10:26: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 04:10:27: CallTracker.Model.CallStats > RecordCreated
+06/09/14 04:10:27: CallTracker.Model.CallStats > RecordCreated
+06/09/14 04:10:27: CallTracker.Model.CallStats > RecordCreated
+06/09/14 04:10:27: Loading Views
+06/09/14 04:10:27: Added Controls
+06/09/14 04:10:27: 15  > CallEnd at 06/09/14 04:10:27
+06/09/14 04:10:28: 2 0295990525 > CallEnd at 06/09/14 04:10:28
+06/09/14 04:10:28: Bring to front
+06/09/14 04:10:28: Finished Loading
+06/09/14 04:10:32: Monitoring Not Enabled
+06/09/14 04:10:33: Trying to find IPCC
+06/09/14 04:10:35: Monitoring IPCC
+06/09/14 04:10:36: status changed: Talking
+06/09/14 04:10:36: Daily Data: 06/09 > LogIn at 06/09/14 04:10:36
+06/09/14 04:10:36: 9 0296453835 > Talking at 06/09/14 04:10:36
+06/09/14 04:10:38: CallTracker.Model.CallStats > RecordCreated
+06/09/14 04:10:41: Starting Smart Copy
+06/09/14 04:10:41: Finding IE by Title
+06/09/14 04:10:41: Unable to Find IE by Title
+06/09/14 04:10:41: Finding IE by URL
+06/09/14 04:10:41: Unable to Find IE by URL
+06/09/14 04:10:41: 0404182306 copied from the clipboard in 243ticks
+06/09/14 04:10:41: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:12:01: Switching to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 04:12:01: Finding IE by URL
+06/09/14 04:12:01: Unable to Find IE by URL
+06/09/14 04:12:01: Finding IE by Title
+06/09/14 04:12:02: Creating Tab Activator
+06/09/14 04:12:02: Activating Tab
+06/09/14 04:12:02: Searching for matches
+06/09/14 04:12:02: Finding IE by Title
+06/09/14 04:12:02: Actioning matches
+06/09/14 04:12:02: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:12:02: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 04:12:03: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:12:03: Finding IE by URL
+06/09/14 04:12:03: Creating Tab Activator
+06/09/14 04:12:03: Activating Tab
+06/09/14 04:12:03: Searching for matches
+06/09/14 04:12:03: Finding IE by Title
+06/09/14 04:12:03: Actioning matches
+06/09/14 04:12:03: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:12:03: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:12:09: Pasting: Mobile
+06/09/14 04:12:09: CallTracker.Model.CallStats > DataPaste
+06/09/14 04:12:49: Starting Smart Copy
+06/09/14 04:12:49: 1808173010 copied from the clipboard in 774ticks
+06/09/14 04:12:49: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:13:05: Starting Smart Copy
+06/09/14 04:13:05: PETER ASHMAN copied from the clipboard in 703ticks
+06/09/14 04:13:05: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:13:30: Starting Smart Copy
+06/09/14 04:13:30: petera78 copied from the clipboard in 1185ticks
+06/09/14 04:13:30: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:13:33: Pasting: Username
+06/09/14 04:13:33: CallTracker.Model.CallStats > DataPaste
+06/09/14 04:13:55: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:13:55: Finding IE by URL
+06/09/14 04:13:55: Creating Tab Activator
+06/09/14 04:13:55: Activating Tab
+06/09/14 04:13:56: Searching for matches
+06/09/14 04:13:56: Finding IE by Title
+06/09/14 04:13:56: Actioning matches
+06/09/14 04:13:56: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:13:56: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:13:59: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 04:13:59: Finding IE by Title
+06/09/14 04:13:59: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:13:59: Match Found
+06/09/14 04:14:01: Searching for matching binds
+06/09/14 04:14:01: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 04:14:01: Finding IE by Title
+06/09/14 04:14:07: Pasting: Username
+06/09/14 04:14:07: CallTracker.Model.CallStats > DataPaste
+06/09/14 04:14:13: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 04:14:13: Finding IE by Title
+06/09/14 04:14:13: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:14:13: Match Found
+06/09/14 04:16:25: status changed: Wrapup
+06/09/14 04:16:25: 9 0296453835 > CallEnd at 06/09/14 04:16:25
+06/09/14 04:16:25: 9 0296453835 > CallEnd at 06/09/14 04:16:25
+06/09/14 04:16:25: 16  > Wrapup at 06/09/14 04:16:25
+06/09/14 04:20:13: Finding IE by Title
+06/09/14 04:20:20: Finding IE by Title
+06/09/14 04:20:44: Finding IE by Title
+06/09/14 04:20:55: status changed: Ready
+06/09/14 04:20:55: Daily Data: 06/09 > Ready at 06/09/14 04:20:55
+06/09/14 04:20:55: 16  > CallEnd at 06/09/14 04:20:55
+06/09/14 04:22:16: Starting Smart Copy
+06/09/14 04:22:16: 0404182306 copied from the clipboard in 445ticks
+06/09/14 04:22:16: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:26:03: Switching to: https://scamps.optusnet.com.au/
+06/09/14 04:26:03: Finding IE by URL
+06/09/14 04:26:04: Creating Tab Activator
+06/09/14 04:26:04: Activating Tab
+06/09/14 04:26:04: Searching for matches
+06/09/14 04:26:04: Finding IE by Title
+06/09/14 04:26:04: Actioning matches
+06/09/14 04:26:04: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:26:04: Switched to: https://scamps.optusnet.com.au/
+06/09/14 04:26:05: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 04:26:05: Finding IE by URL
+06/09/14 04:26:05: Unable to Find IE by URL
+06/09/14 04:26:05: Finding IE by Title
+06/09/14 04:26:05: Creating Tab Activator
+06/09/14 04:26:05: Activating Tab
+06/09/14 04:26:06: Searching for matches
+06/09/14 04:26:06: Finding IE by Title
+06/09/14 04:26:06: Actioning matches
+06/09/14 04:26:06: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:26:06: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 04:26:59: CallTracker.Model.CallStats > RecordCreated
+06/09/14 04:26:59: 16  > CallEnd at 06/09/14 04:26:59
+06/09/14 04:27:02: Starting Smart Copy
+06/09/14 04:27:05: Starting Smart Copy
+06/09/14 04:27:05: hh_cheung	HOWARD CHEUNG	Fibre Broadband	Residential	03/07/2014		Active		802301476	80230147600355	13/02/2014	ret_ben_smith		802301476		100057410894 copied from the clipboard in 1047ticks
+06/09/14 04:27:05: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:27:09: Starting Smart Copy
+06/09/14 04:27:10: hh_cheung	HOWARD CHEUNG	Fibre Broadband	Residential	03/07/2014		Active		802301476	80230147600355	13/02/2014	ret_ben_smith		802301476		100057410894 copied from the clipboard in 1245892ticks
+06/09/14 04:27:10: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:27:12: Starting Smart Copy
+06/09/14 04:27:12: hh_cheung	HOWARD CHEUNG	Fibre Broadband	Residential	03/07/2014		Active		802301476	80230147600355	13/02/2014	ret_ben_smith		802301476		100057410894 copied from the clipboard in 8507ticks
+06/09/14 04:27:12: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:27:14: Starting Smart Copy
+06/09/14 04:27:14: hh_cheung	HOWARD CHEUNG	Fibre Broadband	Residential	03/07/2014		Active		802301476	80230147600355	13/02/2014	ret_ben_smith		802301476		100057410894 copied from the clipboard in 1432ticks
+06/09/14 04:27:14: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:27:20: Starting Smart Copy
+06/09/14 04:27:20: hh_cheung	HOWARD CHEUNG	Fibre Broadband	Residential	03/07/2014		Active		802301476	80230147600355	13/02/2014	ret_ben_smith		802301476		100057410894 copied from the clipboard in 1124ticks
+06/09/14 04:27:20: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:28:48: status changed: Reserved
+06/09/14 04:28:48: Daily Data: 06/09 > Reserved at 06/09/14 04:28:48
+06/09/14 04:28:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 04:28:48: 17  > CallEnd at 06/09/14 04:28:48
+06/09/14 04:28:48: 18  > Reserved at 06/09/14 04:28:48
+06/09/14 04:28:49: status changed: Talking
+06/09/14 04:28:49: 18  > CallStart at 06/09/14 04:28:49
+06/09/14 04:28:54: Starting Smart Copy
+06/09/14 04:28:54: Finding IE by Title
+06/09/14 04:28:54: Unable to Find IE by Title
+06/09/14 04:28:54: Finding IE by URL
+06/09/14 04:28:54: Unable to Find IE by URL
+06/09/14 04:28:54: Finding IE by Title
+06/09/14 04:28:54: Searching: https://scamps.optusnet.com.au/cm.html?q=0299206044
+06/09/14 04:28:54: CallTracker.Model.CallStats > AutoSearch
+06/09/14 04:28:54: Finding IE by Title
+06/09/14 04:28:55: Searching: https://dimps.optusnet.com.au/search/servno?servno=0299206044
+06/09/14 04:28:55: CallTracker.Model.CallStats > AutoSearch
+06/09/14 04:28:55: 0299206044 copied from the clipboard in 835ticks
+06/09/14 04:28:55: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:30:28: status changed: Hold
+06/09/14 04:30:28: 18 0299206044 > Hold at 06/09/14 04:30:28
+06/09/14 04:30:36: Starting Smart Copy
+06/09/14 04:30:36: nasraatiq copied from the clipboard in 352863ticks
+06/09/14 04:30:36: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:30:37: Starting Smart Copy
+06/09/14 04:30:37: 80296078300148 copied from the clipboard in 4913ticks
+06/09/14 04:30:37: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:33:18: status changed: Talking
+06/09/14 04:33:18: 18 0299206044 > Talking at 06/09/14 04:33:18
+06/09/14 04:37:47: Pasting: Username
+06/09/14 04:37:47: CallTracker.Model.CallStats > DataPaste
+06/09/14 04:38:40: Pasting: Username
+06/09/14 04:38:40: CallTracker.Model.CallStats > DataPaste
+06/09/14 04:38:54: Attempting Autologin
+06/09/14 04:38:54: Searching for matches
+06/09/14 04:38:54: Finding IE by Title
+06/09/14 04:38:54: Actioning matches
+06/09/14 04:38:55: Attempting Autologin
+06/09/14 04:38:55: Searching for matches
+06/09/14 04:38:55: Finding IE by Title
+06/09/14 04:38:55: Actioning matches
+06/09/14 04:39:39: Pasting: Username
+06/09/14 04:39:39: CallTracker.Model.CallStats > DataPaste
+06/09/14 04:42:03: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:42:03: Finding IE by URL
+06/09/14 04:42:03: Creating Tab Activator
+06/09/14 04:42:03: Activating Tab
+06/09/14 04:42:03: Searching for matches
+06/09/14 04:42:03: Finding IE by Title
+06/09/14 04:42:03: Actioning matches
+06/09/14 04:42:03: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:42:03: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:42:07: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 04:42:07: Finding IE by Title
+06/09/14 04:42:07: CallTracker.Model.CallStats > SmartPaste
+06/09/14 04:42:07: Match Found
+06/09/14 04:45:24: status changed: Hold
+06/09/14 04:45:24: 18 0299206044 > Hold at 06/09/14 04:45:24
+06/09/14 04:45:50: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:45:50: Finding IE by URL
+06/09/14 04:45:50: Creating Tab Activator
+06/09/14 04:45:50: Activating Tab
+06/09/14 04:45:51: Searching for matches
+06/09/14 04:45:51: Finding IE by Title
+06/09/14 04:45:51: Actioning matches
+06/09/14 04:45:51: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:45:51: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:46:00: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:46:00: Finding IE by URL
+06/09/14 04:46:00: Creating Tab Activator
+06/09/14 04:46:00: Activating Tab
+06/09/14 04:46:00: Searching for matches
+06/09/14 04:46:00: Finding IE by Title
+06/09/14 04:46:00: Actioning matches
+06/09/14 04:46:00: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:46:00: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:46:27: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:46:27: Finding IE by URL
+06/09/14 04:46:27: Creating Tab Activator
+06/09/14 04:46:27: Activating Tab
+06/09/14 04:46:27: Searching for matches
+06/09/14 04:46:27: Finding IE by Title
+06/09/14 04:46:27: Actioning matches
+06/09/14 04:46:27: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:46:27: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:46:41: Pasting: DN
+06/09/14 04:46:41: CallTracker.Model.CallStats > DataPaste
+06/09/14 04:47:47: status changed: Talking
+06/09/14 04:47:47: 18 0299206044 > Talking at 06/09/14 04:47:47
+06/09/14 04:48:30: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:48:30: Finding IE by URL
+06/09/14 04:48:30: Creating Tab Activator
+06/09/14 04:48:30: Activating Tab
+06/09/14 04:48:31: Searching for matches
+06/09/14 04:48:31: Finding IE by Title
+06/09/14 04:48:31: Actioning matches
+06/09/14 04:48:31: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:48:31: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:48:33: Starting Smart Copy
+06/09/14 04:48:33: NASRA ATIQ copied from the clipboard in 2329ticks
+06/09/14 04:48:33: CallTracker.Model.CallStats > SmartCopy
+06/09/14 04:48:35: Pasting: Name.Full
+06/09/14 04:48:35: CallTracker.Model.CallStats > DataPaste
+06/09/14 04:48:40: Pasting: ICON
+06/09/14 04:48:40: CallTracker.Model.CallStats > DataPaste
+06/09/14 04:49:16: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:49:16: Finding IE by URL
+06/09/14 04:49:16: Creating Tab Activator
+06/09/14 04:49:16: Activating Tab
+06/09/14 04:49:16: Searching for matches
+06/09/14 04:49:16: Finding IE by Title
+06/09/14 04:49:16: Actioning matches
+06/09/14 04:49:16: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:49:16: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:51:01: status changed: Wrapup
+06/09/14 04:51:01: 18 0299206044 > Wrapup at 06/09/14 04:51:01
+06/09/14 04:51:02: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:51:02: Finding IE by URL
+06/09/14 04:51:02: Creating Tab Activator
+06/09/14 04:51:02: Activating Tab
+06/09/14 04:51:02: Searching for matches
+06/09/14 04:51:02: Finding IE by Title
+06/09/14 04:51:02: Actioning matches
+06/09/14 04:51:02: CallTracker.Model.CallStats > Gridlink
+06/09/14 04:51:02: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 04:54:48: Starting Grid Link Search: https://scamps.optusnet.com.au/
+06/09/14 04:54:48: Searching: https://scamps.optusnet.com.au/
+06/09/14 04:54:48: No relevant data found
+06/09/14 04:54:48: Finding IE by URL
+06/09/14 04:54:49: Creating Tab Activator
+06/09/14 04:54:49: Activating Tab
+06/09/14 04:54:49: CallTracker.Model.CallStats > GridlinkSearch
+06/09/14 04:54:49: Switched to: https://scamps.optusnet.com.au/
+06/09/14 04:54:52: Starting Grid Link Search: https://dimps.optusnet.com.au/search.html
+06/09/14 04:54:52: Searching: https://dimps.optusnet.com.au/search.html
+06/09/14 04:54:52: No relevant data found
+06/09/14 04:54:52: Finding IE by URL
+06/09/14 04:54:52: Unable to Find IE by URL
+06/09/14 04:54:52: Finding IE by Title
+06/09/14 04:54:52: Creating Tab Activator
+06/09/14 04:54:52: Activating Tab
+06/09/14 04:54:53: Searching for matches
+06/09/14 04:54:53: Finding IE by Title
+06/09/14 04:54:53: Actioning matches
+06/09/14 04:54:53: CallTracker.Model.CallStats > GridlinkSearch
+06/09/14 04:54:53: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 04:54:56: Starting Grid Link Search: https://dimps.optusnet.com.au/search.html
+06/09/14 04:54:56: Searching: https://dimps.optusnet.com.au/search.html
+06/09/14 04:54:56: No relevant data found
+06/09/14 04:54:56: Finding IE by URL
+06/09/14 04:54:56: Unable to Find IE by URL
+06/09/14 04:54:56: Finding IE by Title
+06/09/14 04:54:56: Creating Tab Activator
+06/09/14 04:54:56: Activating Tab
+06/09/14 04:54:56: Searching for matches
+06/09/14 04:54:56: Finding IE by Title
+06/09/14 04:54:56: Actioning matches
+06/09/14 04:54:56: CallTracker.Model.CallStats > GridlinkSearch
+06/09/14 04:54:56: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 04:55:27: status changed: 
+06/09/14 04:55:27: Daily Data: 06/09 > LogOut at 06/09/14 04:55:27
+06/09/14 04:55:27: 18 0299206044 > LogOut at 06/09/14 04:55:27
+06/09/14 05:10:33: Monitoring Not Enabled
+06/09/14 05:11:00: ------------------------------------------------------
+06/09/14 05:11:00: Loading Interface
+06/09/14 05:11:00: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 05:11:00: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:11:00: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:11:00: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:11:00: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:11:00: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:11:00: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:11:00: Loading Views
+06/09/14 05:11:01: Added Controls
+06/09/14 05:11:01: 24  > CallEnd at 06/09/14 05:11:01
+06/09/14 05:11:01: 2 0295990525 > CallEnd at 06/09/14 05:11:01
+06/09/14 05:11:02: Bring to front
+06/09/14 05:11:02: Finished Loading
+06/09/14 05:11:06: Monitoring Not Enabled
+06/09/14 05:11:07: Trying to find IPCC
+06/09/14 05:11:08: Monitoring IPCC
+06/09/14 05:11:13: Status Changed: NotReady
+06/09/14 05:11:13: Daily Data: 06/09 > LogIn at 06/09/14 05:11:13
+06/09/14 05:11:13: 18 0299206044 > LogIn at 06/09/14 05:11:13
+06/09/14 05:11:19: 18 0299206044 > CallEnd at 06/09/14 05:11:19
+06/09/14 05:11:20: 17  > CallEnd at 06/09/14 05:11:20
+06/09/14 05:11:37: Searching for AutoFill Matches
+06/09/14 05:11:37: Finding IE by Title
+06/09/14 05:11:38: 14 found.
+06/09/14 05:11:42: Searching for AutoFill Matches
+06/09/14 05:11:42: Finding IE by Title
+06/09/14 05:11:42: 14 found.
+06/09/14 05:11:42: Smart Paste Error: BrowserElement Doesn't Exist.
+06/09/14 05:11:45: Searching for AutoFill Matches
+06/09/14 05:11:45: Finding IE by Title
+06/09/14 05:11:45: 14 found.
+06/09/14 05:11:45: Smart Paste Error: BrowserElement Doesn't Exist.
+06/09/14 05:11:51: Searching for AutoFill Matches
+06/09/14 05:11:51: Finding IE by Title
+06/09/14 05:11:51: 3 found.
+06/09/14 05:11:55: Finding IE by Title
+06/09/14 05:11:55: Attempting ICON Note AutoFill
+06/09/14 05:12:06: Finding IE by Title
+06/09/14 05:12:06: Attempting ICON Note AutoFill
+06/09/14 05:12:06: Product: OptusNet Cable, Form Exists: True, List Exists: True, List In Form Exists: True, Option ExistsTrue
+06/09/14 05:12:08: Finding IE by Title
+06/09/14 05:12:08: Attempting ICON Note AutoFill
+06/09/14 05:12:09: Product: OptusNet Cable, Form Exists: True, List Exists: True, List In Form Exists: True, Option ExistsTrue
+06/09/14 05:12:41: Status Changed: Ready
+06/09/14 05:12:41: Daily Data: 06/09 > Ready at 06/09/14 05:12:41
+06/09/14 05:12:41: 16  > Ready at 06/09/14 05:12:41
+06/09/14 05:13:37: 16  > CallEnd at 06/09/14 05:13:37
+06/09/14 05:13:37: 17  > CallEnd at 06/09/14 05:13:37
+06/09/14 05:17:47: 18 0299206044 > CallEnd at 06/09/14 05:17:47
+06/09/14 05:18:57: Status Changed: Reserved
+06/09/14 05:18:57: Daily Data: 06/09 > Reserved at 06/09/14 05:18:57
+06/09/14 05:18:57: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:18:57: 17  > CallEnd at 06/09/14 05:18:57
+06/09/14 05:18:58: 25  > Reserved at 06/09/14 05:18:58
+06/09/14 05:18:58: Status Changed: Talking
+06/09/14 05:18:58: 25  > CallStart at 06/09/14 05:18:58
+06/09/14 05:19:16: Starting Smart Copy
+06/09/14 05:19:16: Finding IE by Title
+06/09/14 05:19:16: Unable to Find IE by Title
+06/09/14 05:19:16: Finding IE by URL
+06/09/14 05:19:16: Unable to Find IE by URL
+06/09/14 05:19:16: Finding IE by Title
+06/09/14 05:19:16: Unable to Find IE by Title
+06/09/14 05:19:16: Finding IE by URL
+06/09/14 05:19:16: Searching: https://scamps.optusnet.com.au/cm.html?q=0395607985
+06/09/14 05:19:16: CallTracker.Model.CallStats > AutoSearch
+06/09/14 05:19:16: Finding IE by Title
+06/09/14 05:19:16: Searching: https://dimps.optusnet.com.au/search/servno?servno=0395607985
+06/09/14 05:19:16: CallTracker.Model.CallStats > AutoSearch
+06/09/14 05:19:16: 0395607985 copied from the clipboard in 563ticks
+06/09/14 05:19:16: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:19:20: Starting Smart Copy
+06/09/14 05:19:20: 2231948014 copied from the clipboard in 346ticks
+06/09/14 05:19:20: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:19:22: Switching to: https://login.nbnco.net.au/portal-login?resource_url=http%3A%2F%2Fwww1.nbnco.com.au%2Fonline_customers%2Fpage%2Fhome
+06/09/14 05:19:22: Finding IE by URL
+06/09/14 05:19:23: Unable to Find IE by URL
+06/09/14 05:19:23: Finding IE by Title
+06/09/14 05:19:23: Creating Tab Activator
+06/09/14 05:19:23: Activating Tab
+06/09/14 05:19:23: Searching for matches
+06/09/14 05:19:23: Finding IE by Title
+06/09/14 05:19:23: Actioning matches
+06/09/14 05:19:23: CallTracker.Model.CallStats > Gridlink
+06/09/14 05:19:23: Switched to: https://login.nbnco.net.au/portal-login?resource_url=http%3A%2F%2Fwww1.nbnco.com.au%2Fonline_customers%2Fpage%2Fhome
+06/09/14 05:19:24: Switching to: http://www.yahoo.com
+06/09/14 05:19:24: CallTracker.Model.CallStats > Gridlink
+06/09/14 05:19:24: Switched to: http://www.yahoo.com
+06/09/14 05:20:11: Status Changed: Wrapup
+06/09/14 05:20:11: 25 0395607985 > Wrapup at 06/09/14 05:20:11
+06/09/14 05:20:12: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 05:20:12: Finding IE by URL
+06/09/14 05:20:12: Creating Tab Activator
+06/09/14 05:20:12: Activating Tab
+06/09/14 05:20:12: Searching for matches
+06/09/14 05:20:12: Finding IE by Title
+06/09/14 05:20:12: Actioning matches
+06/09/14 05:20:12: CallTracker.Model.CallStats > Gridlink
+06/09/14 05:20:12: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 05:20:18: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 05:20:18: Finding IE by Title
+06/09/14 05:20:18: CallTracker.Model.CallStats > SmartPaste
+06/09/14 05:20:18: Match Found
+06/09/14 05:20:23: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 05:20:23: Finding IE by Title
+06/09/14 05:20:23: CallTracker.Model.CallStats > SmartPaste
+06/09/14 05:20:23: Match Found
+06/09/14 05:24:00: Monitoring Not Enabled
+06/09/14 05:24:24: ------------------------------------------------------
+06/09/14 05:24:24: Loading Interface
+06/09/14 05:24:25: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 05:24:25: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:24:25: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:24:25: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:24:25: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:24:25: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:24:25: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:24:25: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:24:25: Loading Views
+06/09/14 05:24:25: Added Controls
+06/09/14 05:24:26: 32  > CallEnd at 06/09/14 05:24:26
+06/09/14 05:24:26: 2 0295990525 > CallEnd at 06/09/14 05:24:26
+06/09/14 05:24:26: Bring to front
+06/09/14 05:24:26: Finished Loading
+06/09/14 05:24:28: Monitoring Not Enabled
+06/09/14 05:24:29: Trying to find IPCC
+06/09/14 05:24:30: Monitoring IPCC
+06/09/14 05:24:31: Status Changed: Wrapup
+06/09/14 05:24:31: Daily Data: 06/09 > LogIn at 06/09/14 05:24:31
+06/09/14 05:24:31: 25 0395607985 > Wrapup at 06/09/14 05:24:31
+06/09/14 05:24:45: Searching for AutoFill Matches
+06/09/14 05:24:45: Finding IE by Title
+06/09/14 05:24:45: 14 found.
+06/09/14 05:24:47: Searching for AutoFill Matches
+06/09/14 05:24:47: Finding IE by Title
+06/09/14 05:24:47: 14 found.
+06/09/14 05:24:47: Smart Paste Error: BrowserElement Doesn't Exist.
+06/09/14 05:24:49: Searching for AutoFill Matches
+06/09/14 05:24:49: Finding IE by Title
+06/09/14 05:24:49: 14 found.
+06/09/14 05:24:49: Smart Paste Error: BrowserElement Doesn't Exist.
+06/09/14 05:24:54: Searching for AutoFill Matches
+06/09/14 05:24:54: Finding IE by Title
+06/09/14 05:24:54: 14 found.
+06/09/14 05:24:54: Smart Paste Error: BrowserElement Doesn't Exist.
+06/09/14 05:25:20: Status Changed: Ready
+06/09/14 05:25:20: Daily Data: 06/09 > Ready at 06/09/14 05:25:20
+06/09/14 05:25:20: 25 0395607985 > CallEnd at 06/09/14 05:25:20
+06/09/14 05:25:26: Searching for AutoFill Matches
+06/09/14 05:25:26: Finding IE by Title
+06/09/14 05:25:26: 3 found.
+06/09/14 05:25:33: Finding IE by Title
+06/09/14 05:25:33: Attempting ICON Note AutoFill
+06/09/14 05:25:38: Finding IE by Title
+06/09/14 05:25:38: Attempting ICON Note AutoFill
+06/09/14 05:25:38: Product: OptusNet Cable, Form Exists: True, List Exists: True, List In Form Exists: True, Option ExistsTrue
+06/09/14 05:25:38: ICON AutoFill Error: No Tier 2 Option Found
+06/09/14 05:25:43: 25 0395607985 > CallEnd at 06/09/14 05:25:43
+06/09/14 05:25:44: 18 0299206044 > CallEnd at 06/09/14 05:25:44
+06/09/14 05:25:45: Finding IE by Title
+06/09/14 05:25:45: Attempting ICON Note AutoFill
+06/09/14 05:25:45: Product: OptusNet Cable, Form Exists: True, List Exists: True, List In Form Exists: True, Option ExistsTrue
+06/09/14 05:25:48: Finding IE by Title
+06/09/14 05:25:48: Attempting ICON Note AutoFill
+06/09/14 05:25:48: Product: OptusNet Cable, Form Exists: True, List Exists: True, List In Form Exists: True, Option ExistsTrue
+06/09/14 05:25:53: Finding IE by Title
+06/09/14 05:25:53: Attempting ICON Note AutoFill
+06/09/14 05:25:54: Product: OptusNet Cable, Form Exists: True, List Exists: True, List In Form Exists: True, Option ExistsTrue
+06/09/14 05:27:26: Status Changed: Reserved
+06/09/14 05:27:26: Daily Data: 06/09 > Reserved at 06/09/14 05:27:26
+06/09/14 05:27:26: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:27:26: 17  > CallEnd at 06/09/14 05:27:26
+06/09/14 05:27:26: 33  > Reserved at 06/09/14 05:27:26
+06/09/14 05:27:27: Status Changed: Talking
+06/09/14 05:27:27: 33  > CallStart at 06/09/14 05:27:27
+06/09/14 05:27:30: Starting Smart Copy
+06/09/14 05:27:30: Finding IE by Title
+06/09/14 05:27:30: Unable to Find IE by Title
+06/09/14 05:27:30: Finding IE by URL
+06/09/14 05:27:30: Unable to Find IE by URL
+06/09/14 05:27:30: Finding IE by Title
+06/09/14 05:27:30: Unable to Find IE by Title
+06/09/14 05:27:30: Finding IE by URL
+06/09/14 05:27:30: Searching: https://scamps.optusnet.com.au/cm.html?q=0738120360
+06/09/14 05:27:30: CallTracker.Model.CallStats > AutoSearch
+06/09/14 05:27:30: Finding IE by Title
+06/09/14 05:27:30: Searching: https://dimps.optusnet.com.au/search/servno?servno=0738120360
+06/09/14 05:27:30: CallTracker.Model.CallStats > AutoSearch
+06/09/14 05:27:30: 0738120360 copied from the clipboard in 385ticks
+06/09/14 05:27:30: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:27:32: Starting Smart Copy
+06/09/14 05:27:32: 10946831000125 copied from the clipboard in 335ticks
+06/09/14 05:27:32: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:27:50: Starting Smart Copy
+06/09/14 05:27:50: MARIANNE LENZ copied from the clipboard in 407ticks
+06/09/14 05:27:50: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:27:52: Starting Smart Copy
+06/09/14 05:27:52: 33-959296-1 copied from the clipboard in 436ticks
+06/09/14 05:27:52: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:28:30: Starting Smart Copy
+06/09/14 05:28:31: mlenz copied from the clipboard in 597ticks
+06/09/14 05:28:31: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:30:18: Pasting: Username
+06/09/14 05:30:19: CallTracker.Model.CallStats > DataPaste
+06/09/14 05:30:33: Pasting: Mobile
+06/09/14 05:30:33: CallTracker.Model.CallStats > DataPaste
+06/09/14 05:32:57: Pasting: Name.Full
+06/09/14 05:32:57: CallTracker.Model.CallStats > DataPaste
+06/09/14 05:50:01: Status Changed: Wrapup
+06/09/14 05:50:01: 33 0738120360 > Wrapup at 06/09/14 05:50:01
+06/09/14 05:50:18: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Activity - New activity and notes - Windows Internet Explorer
+06/09/14 05:50:18: Finding IE by Title
+06/09/14 05:50:18: CallTracker.Model.CallStats > SmartPaste
+06/09/14 05:50:18: Match Found
+06/09/14 05:50:37: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:50:37: 33 0738120360 > CallEnd at 06/09/14 05:50:37
+06/09/14 05:50:39: Starting Smart Copy
+06/09/14 05:50:39: Finding IE by Title
+06/09/14 05:50:39: Unable to Find IE by Title
+06/09/14 05:50:39: Finding IE by URL
+06/09/14 05:50:39: Unable to Find IE by URL
+06/09/14 05:50:39: Finding IE by Title
+06/09/14 05:50:39: Searching: https://scamps.optusnet.com.au/cm.html?q=0738120360
+06/09/14 05:50:39: CallTracker.Model.CallStats > AutoSearch
+06/09/14 05:50:39: Finding IE by Title
+06/09/14 05:50:39: Searching: https://dimps.optusnet.com.au/search/servno?servno=0738120360
+06/09/14 05:50:39: CallTracker.Model.CallStats > AutoSearch
+06/09/14 05:50:39: 0738120360 copied from the clipboard in 1008ticks
+06/09/14 05:50:39: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:50:42: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 05:50:42: Finding IE by URL
+06/09/14 05:50:43: Unable to Find IE by URL
+06/09/14 05:50:43: Finding IE by Title
+06/09/14 05:50:43: Creating Tab Activator
+06/09/14 05:50:43: Activating Tab
+06/09/14 05:50:43: Searching for matches
+06/09/14 05:50:43: Finding IE by Title
+06/09/14 05:50:43: Actioning matches
+06/09/14 05:50:43: CallTracker.Model.CallStats > Gridlink
+06/09/14 05:50:43: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 05:53:52: Monitoring Not Enabled
+06/09/14 05:54:04: ------------------------------------------------------
+06/09/14 05:54:04: Loading Interface
+06/09/14 05:54:04: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 05:54:04: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:54:04: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:54:04: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:54:04: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:54:04: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:54:04: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:54:04: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:54:04: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:54:04: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:54:04: Loading Views
+06/09/14 05:54:04: Added Controls
+06/09/14 05:54:05: 43  > CallEnd at 06/09/14 05:54:05
+06/09/14 05:54:05: 2 0295990525 > CallEnd at 06/09/14 05:54:05
+06/09/14 05:54:05: Bring to front
+06/09/14 05:54:05: Finished Loading
+06/09/14 05:54:10: 34 0738120360 > CallEnd at 06/09/14 05:54:10
+06/09/14 05:54:11: 33 0738120360 > CallEnd at 06/09/14 05:54:11
+06/09/14 05:54:17: Monitoring Not Enabled
+06/09/14 05:54:18: Trying to find IPCC
+06/09/14 05:54:20: Monitoring IPCC
+06/09/14 05:54:21: Status Changed: Wrapup
+06/09/14 05:54:21: Daily Data: 06/09 > LogIn at 06/09/14 05:54:21
+06/09/14 05:54:21: 34 0738120360 > Wrapup at 06/09/14 05:54:21
+06/09/14 05:54:26: Status Changed: Reserved
+06/09/14 05:54:26: Daily Data: 06/09 > Reserved at 06/09/14 05:54:26
+06/09/14 05:54:26: CallTracker.Model.CallStats > RecordCreated
+06/09/14 05:54:26: 34 0738120360 > CallEnd at 06/09/14 05:54:26
+06/09/14 05:54:26: 44  > Reserved at 06/09/14 05:54:26
+06/09/14 05:54:27: Status Changed: Talking
+06/09/14 05:54:27: 44  > CallStart at 06/09/14 05:54:27
+06/09/14 05:54:28: Starting Smart Copy
+06/09/14 05:54:29: Finding IE by Title
+06/09/14 05:54:29: Unable to Find IE by Title
+06/09/14 05:54:29: Finding IE by URL
+06/09/14 05:54:29: Unable to Find IE by URL
+06/09/14 05:54:29: 0434450766 copied from the clipboard in 308ticks
+06/09/14 05:54:29: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:54:29: Starting Smart Copy
+06/09/14 05:54:29: Finding IE by Title
+06/09/14 05:54:29: Unable to Find IE by Title
+06/09/14 05:54:29: Finding IE by URL
+06/09/14 05:54:30: Searching: https://scamps.optusnet.com.au/cm.html?q=0395023926
+06/09/14 05:54:30: CallTracker.Model.CallStats > AutoSearch
+06/09/14 05:54:30: Finding IE by Title
+06/09/14 05:54:30: Searching: https://dimps.optusnet.com.au/search/servno?servno=0395023926
+06/09/14 05:54:30: CallTracker.Model.CallStats > AutoSearch
+06/09/14 05:54:30: 0395023926 copied from the clipboard in 855ticks
+06/09/14 05:54:30: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:54:30: Starting Smart Copy
+06/09/14 05:54:30: 11566687000187 copied from the clipboard in 386ticks
+06/09/14 05:54:30: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:54:31: Switching to: http://www.yahoo.com
+06/09/14 05:54:31: CallTracker.Model.CallStats > Gridlink
+06/09/14 05:54:31: Switched to: http://www.yahoo.com
+06/09/14 05:54:37: Starting Smart Copy
+06/09/14 05:54:37: ALEXANDER NUDELMAN copied from the clipboard in 510ticks
+06/09/14 05:54:37: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:54:38: Starting Smart Copy
+06/09/14 05:54:39: 32-883213-2 copied from the clipboard in 510ticks
+06/09/14 05:54:39: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:55:19: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 05:55:19: Finding IE by Title
+06/09/14 05:55:19: CallTracker.Model.CallStats > SmartPaste
+06/09/14 05:55:19: Match Found
+06/09/14 05:55:40: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 05:55:40: Finding IE by Title
+06/09/14 05:55:44: Starting Smart Copy
+06/09/14 05:55:44: 22CJ164 copied from the clipboard in 44386ticks
+06/09/14 05:55:44: CallTracker.Model.CallStats > SmartCopy
+06/09/14 05:55:51: Searching for matching binds
+06/09/14 05:55:51: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 05:55:51: Finding IE by Title
+06/09/14 05:55:56: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 05:55:56: Finding IE by Title
+06/09/14 05:55:56: CallTracker.Model.CallStats > SmartPaste
+06/09/14 05:55:56: Match Found
+06/09/14 05:57:09: Starting Smart Copy
+06/09/14 05:57:09: alexandernudel copied from the clipboard in 533ticks
+06/09/14 05:57:09: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:02:44: Searching for SmartPaste Matches for Window: HFC Self-Install Database - Windows Internet Explorer
+06/09/14 06:02:44: Finding IE by Title
+06/09/14 06:02:45: No Matches Found
+06/09/14 06:02:47: Pasting: CMBS
+06/09/14 06:02:47: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:03:08: Pasting: CMBS
+06/09/14 06:03:08: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:04:05: Status Changed: Wrapup
+06/09/14 06:04:05: 44 0395023926 > Wrapup at 06/09/14 06:04:05
+06/09/14 06:05:35: Status Changed: Ready
+06/09/14 06:05:35: Daily Data: 06/09 > Ready at 06/09/14 06:05:35
+06/09/14 06:05:35: 44 0395023926 > CallEnd at 06/09/14 06:05:35
+06/09/14 06:05:36: Status Changed: Reserved
+06/09/14 06:05:36: Daily Data: 06/09 > Reserved at 06/09/14 06:05:36
+06/09/14 06:05:36: CallTracker.Model.CallStats > RecordCreated
+06/09/14 06:05:36: 44 0395023926 > CallEnd at 06/09/14 06:05:36
+06/09/14 06:05:36: 45  > Reserved at 06/09/14 06:05:36
+06/09/14 06:05:37: Status Changed: Talking
+06/09/14 06:05:37: 45  > CallStart at 06/09/14 06:05:37
+06/09/14 06:05:40: Starting Smart Copy
+06/09/14 06:05:40: Finding IE by Title
+06/09/14 06:05:41: Unable to Find IE by Title
+06/09/14 06:05:41: Finding IE by URL
+06/09/14 06:05:41: Unable to Find IE by URL
+06/09/14 06:05:41: Finding IE by Title
+06/09/14 06:05:41: Searching: https://scamps.optusnet.com.au/cm.html?q=0731424623
+06/09/14 06:05:41: CallTracker.Model.CallStats > AutoSearch
+06/09/14 06:05:41: Finding IE by Title
+06/09/14 06:05:41: Searching: https://dimps.optusnet.com.au/search/servno?servno=0731424623
+06/09/14 06:05:41: CallTracker.Model.CallStats > AutoSearch
+06/09/14 06:05:41: 0731424623 copied from the clipboard in 756ticks
+06/09/14 06:05:41: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:07:42: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 06:07:42: Finding IE by URL
+06/09/14 06:07:43: Creating Tab Activator
+06/09/14 06:07:43: Activating Tab
+06/09/14 06:07:43: Searching for matches
+06/09/14 06:07:43: Finding IE by Title
+06/09/14 06:07:43: Actioning matches
+06/09/14 06:07:43: CallTracker.Model.CallStats > Gridlink
+06/09/14 06:07:43: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 06:07:47: Searching for SmartPaste Matches for Window: 
+06/09/14 06:07:47: Finding IE by Title
+06/09/14 06:07:47: No Matches Found
+06/09/14 06:07:48: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 06:07:48: Finding IE by Title
+06/09/14 06:07:48: CallTracker.Model.CallStats > SmartPaste
+06/09/14 06:07:48: Match Found
+06/09/14 06:09:39: Starting Smart Copy
+06/09/14 06:09:39: ianrowan17 copied from the clipboard in 46175ticks
+06/09/14 06:09:39: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:11:44: Status Changed: Wrapup
+06/09/14 06:11:44: 45 0731424623 > Wrapup at 06/09/14 06:11:44
+06/09/14 06:14:36: Starting Smart Copy
+06/09/14 06:14:36: ianrowan17 copied from the clipboard in 320ticks
+06/09/14 06:14:36: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:15:56: Status Changed: Ready
+06/09/14 06:15:56: Daily Data: 06/09 > Ready at 06/09/14 06:15:56
+06/09/14 06:15:56: 45 0731424623 > CallEnd at 06/09/14 06:15:56
+06/09/14 06:21:24: Status Changed: Reserved
+06/09/14 06:21:24: Daily Data: 06/09 > Reserved at 06/09/14 06:21:24
+06/09/14 06:21:24: CallTracker.Model.CallStats > RecordCreated
+06/09/14 06:21:24: 45 0731424623 > CallEnd at 06/09/14 06:21:24
+06/09/14 06:21:24: 46  > Reserved at 06/09/14 06:21:24
+06/09/14 06:21:24: Status Changed: Talking
+06/09/14 06:21:24: 46  > CallStart at 06/09/14 06:21:24
+06/09/14 06:21:28: Starting Smart Copy
+06/09/14 06:21:28: Finding IE by Title
+06/09/14 06:21:28: Unable to Find IE by Title
+06/09/14 06:21:28: Finding IE by URL
+06/09/14 06:21:28: Unable to Find IE by URL
+06/09/14 06:21:28: Finding IE by Title
+06/09/14 06:21:28: Unable to Find IE by Title
+06/09/14 06:21:28: Finding IE by URL
+06/09/14 06:21:28: Searching: https://scamps.optusnet.com.au/cm.html?q=0289010605
+06/09/14 06:21:28: CallTracker.Model.CallStats > AutoSearch
+06/09/14 06:21:28: Finding IE by Title
+06/09/14 06:21:28: Searching: https://dimps.optusnet.com.au/search/servno?servno=0289010605
+06/09/14 06:21:28: CallTracker.Model.CallStats > AutoSearch
+06/09/14 06:21:28: 0289010605 copied from the clipboard in 418ticks
+06/09/14 06:21:28: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:21:29: Switching to: http://www.yahoo.com
+06/09/14 06:21:29: CallTracker.Model.CallStats > Gridlink
+06/09/14 06:21:29: Switched to: http://www.yahoo.com
+06/09/14 06:21:35: Starting Smart Copy
+06/09/14 06:21:36: EMILIO CARRETO copied from the clipboard in 328ticks
+06/09/14 06:21:36: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:21:37: Starting Smart Copy
+06/09/14 06:21:37: 31-188171-3 copied from the clipboard in 337ticks
+06/09/14 06:21:37: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:21:38: Starting Smart Copy
+06/09/14 06:21:38: 11572113000113 copied from the clipboard in 518ticks
+06/09/14 06:21:38: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:21:46: Starting Smart Copy
+06/09/14 06:21:46: ecarreto copied from the clipboard in 6360ticks
+06/09/14 06:21:46: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:22:37: Pasting: Username
+06/09/14 06:22:37: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:22:43: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 06:22:43: Finding IE by URL
+06/09/14 06:22:43: Creating Tab Activator
+06/09/14 06:22:43: Activating Tab
+06/09/14 06:22:43: Searching for matches
+06/09/14 06:22:43: Finding IE by Title
+06/09/14 06:22:43: Actioning matches
+06/09/14 06:22:43: CallTracker.Model.CallStats > Gridlink
+06/09/14 06:22:43: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 06:22:46: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 06:22:46: Finding IE by Title
+06/09/14 06:22:46: CallTracker.Model.CallStats > SmartPaste
+06/09/14 06:22:46: Match Found
+06/09/14 06:26:35: Pasting: DN
+06/09/14 06:26:35: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:26:36: Pasting: Name.Full
+06/09/14 06:26:36: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:27:00: Pasting: Username
+06/09/14 06:27:00: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:29:35: Starting Smart Copy
+06/09/14 06:29:35: 11572113000113 copied from the clipboard in 238ticks
+06/09/14 06:29:35: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:29:50: 46 0289010605 > CallEnd at 06/09/14 06:29:50
+06/09/14 06:29:52: 45 0731424623 > CallEnd at 06/09/14 06:29:52
+06/09/14 06:29:54: Starting Smart Copy
+06/09/14 06:29:54: 11572113000113 copied from the clipboard in 775ticks
+06/09/14 06:29:54: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:29:57: 46 0289010605 > CallEnd at 06/09/14 06:29:57
+06/09/14 06:29:59: 45 0731424623 > CallEnd at 06/09/14 06:29:59
+06/09/14 06:30:02: 46 0289010605 > CallEnd at 06/09/14 06:30:02
+06/09/14 06:30:03: 45 0731424623 > CallEnd at 06/09/14 06:30:03
+06/09/14 06:30:05: 46 0289010605 > CallEnd at 06/09/14 06:30:05
+06/09/14 06:32:22: Pasting: Fault.PR
+06/09/14 06:32:22: DataPaste Error: No Data to paste.
+06/09/14 06:41:34: Pasting: Mobile
+06/09/14 06:41:34: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:43:47: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 06:43:47: Finding IE by URL
+06/09/14 06:43:47: Creating Tab Activator
+06/09/14 06:43:47: Activating Tab
+06/09/14 06:43:47: Searching for matches
+06/09/14 06:43:47: Finding IE by Title
+06/09/14 06:43:47: Actioning matches
+06/09/14 06:43:47: CallTracker.Model.CallStats > Gridlink
+06/09/14 06:43:47: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 06:46:07: Status Changed: Wrapup
+06/09/14 06:46:07: 45 0731424623 > CallEnd at 06/09/14 06:46:07
+06/09/14 06:46:07: 45 0731424623 > CallEnd at 06/09/14 06:46:07
+06/09/14 06:46:07: 46 0289010605 > Wrapup at 06/09/14 06:46:07
+06/09/14 06:46:13: Status Changed: NotReady
+06/09/14 06:46:13: 46 0289010605 > NotReady at 06/09/14 06:46:13
+06/09/14 06:46:14: Status Changed: 
+06/09/14 06:46:14: Daily Data: 06/09 > LogOut at 06/09/14 06:46:14
+06/09/14 06:46:14: 46 0289010605 > LogOut at 06/09/14 06:46:14
+06/09/14 06:47:47: Status Changed: Ready
+06/09/14 06:47:47: Daily Data: 06/09 > LogIn at 06/09/14 06:47:47
+06/09/14 06:47:47: Daily Data: 06/09 > Ready at 06/09/14 06:47:47
+06/09/14 06:47:47: 46 0289010605 > CallEnd at 06/09/14 06:47:47
+06/09/14 06:47:53: Status Changed: Reserved
+06/09/14 06:47:53: Daily Data: 06/09 > Reserved at 06/09/14 06:47:53
+06/09/14 06:47:53: CallTracker.Model.CallStats > RecordCreated
+06/09/14 06:47:53: 46 0289010605 > CallEnd at 06/09/14 06:47:53
+06/09/14 06:47:53: 47  > Reserved at 06/09/14 06:47:53
+06/09/14 06:47:53: Status Changed: Talking
+06/09/14 06:47:53: 47  > CallStart at 06/09/14 06:47:53
+06/09/14 06:47:56: Starting Smart Copy
+06/09/14 06:47:56: Finding IE by Title
+06/09/14 06:47:56: Unable to Find IE by Title
+06/09/14 06:47:56: Finding IE by URL
+06/09/14 06:47:56: Unable to Find IE by URL
+06/09/14 06:47:56: 0401283021 copied from the clipboard in 350ticks
+06/09/14 06:47:56: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:47:57: Starting Smart Copy
+06/09/14 06:47:57: Finding IE by Title
+06/09/14 06:47:57: Searching: https://scamps.optusnet.com.au/cm.html?q=0296832094
+06/09/14 06:47:57: CallTracker.Model.CallStats > AutoSearch
+06/09/14 06:47:57: Finding IE by Title
+06/09/14 06:47:57: Searching: https://dimps.optusnet.com.au/search/servno?servno=0296832094
+06/09/14 06:47:57: CallTracker.Model.CallStats > AutoSearch
+06/09/14 06:47:57: 0296832094 copied from the clipboard in 385ticks
+06/09/14 06:47:57: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:47:57: Starting Smart Copy
+06/09/14 06:47:57: 10085392000181 copied from the clipboard in 490ticks
+06/09/14 06:47:58: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:47:58: Switching to: http://www.yahoo.com
+06/09/14 06:47:58: CallTracker.Model.CallStats > Gridlink
+06/09/14 06:47:58: Switched to: http://www.yahoo.com
+06/09/14 06:48:04: Pasting: DN
+06/09/14 06:48:04: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:48:07: Starting Smart Copy
+06/09/14 06:48:07: JEREMY VAN'T SPYKER copied from the clipboard in 463ticks
+06/09/14 06:48:07: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:48:09: Starting Smart Copy
+06/09/14 06:48:09: 31-781586-1 copied from the clipboard in 561ticks
+06/09/14 06:48:09: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:48:22: Starting Smart Copy
+06/09/14 06:48:22: javant75 copied from the clipboard in 1081ticks
+06/09/14 06:48:22: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:48:25: Switching to: https://scamps.optusnet.com.au/
+06/09/14 06:48:25: Finding IE by URL
+06/09/14 06:48:25: Creating Tab Activator
+06/09/14 06:48:25: Activating Tab
+06/09/14 06:48:25: CallTracker.Model.CallStats > Gridlink
+06/09/14 06:48:25: Switched to: https://scamps.optusnet.com.au/
+06/09/14 06:48:26: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 06:48:26: Finding IE by URL
+06/09/14 06:48:26: Unable to Find IE by URL
+06/09/14 06:48:26: Finding IE by Title
+06/09/14 06:48:26: Creating Tab Activator
+06/09/14 06:48:26: Activating Tab
+06/09/14 06:48:26: Searching for matches
+06/09/14 06:48:26: Finding IE by Title
+06/09/14 06:48:26: Actioning matches
+06/09/14 06:48:26: CallTracker.Model.CallStats > Gridlink
+06/09/14 06:48:26: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 06:48:29: Pasting: Username
+06/09/14 06:48:29: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:48:32: Pasting: Username
+06/09/14 06:48:32: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:48:53: Pasting: Username
+06/09/14 06:48:53: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:50:32: Starting Smart Copy
+06/09/14 06:50:32: JEREMY VANT SPYKER copied from the clipboard in 698ticks
+06/09/14 06:50:32: CallTracker.Model.CallStats > SmartCopy
+06/09/14 06:51:58: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 06:51:58: Finding IE by URL
+06/09/14 06:51:59: Creating Tab Activator
+06/09/14 06:51:59: Activating Tab
+06/09/14 06:51:59: Searching for matches
+06/09/14 06:51:59: Finding IE by Title
+06/09/14 06:51:59: Actioning matches
+06/09/14 06:51:59: CallTracker.Model.CallStats > Gridlink
+06/09/14 06:51:59: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 06:52:01: Status Changed: Wrapup
+06/09/14 06:52:01: 47 0296832094 > Wrapup at 06/09/14 06:52:01
+06/09/14 06:52:02: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 06:52:02: Finding IE by Title
+06/09/14 06:52:02: CallTracker.Model.CallStats > SmartPaste
+06/09/14 06:52:02: Match Found
+06/09/14 06:52:05: Searching for matching binds
+06/09/14 06:52:05: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 06:52:05: Finding IE by Title
+06/09/14 06:52:38: Searching for matching binds
+06/09/14 06:52:38: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 06:52:38: Finding IE by Title
+06/09/14 06:53:14: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 06:53:14: Finding IE by Title
+06/09/14 06:53:14: CallTracker.Model.CallStats > SmartPaste
+06/09/14 06:53:14: Match Found
+06/09/14 06:53:20: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 06:53:20: Finding IE by Title
+06/09/14 06:53:20: CallTracker.Model.CallStats > SmartPaste
+06/09/14 06:53:20: Match Found
+06/09/14 06:53:29: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 06:53:29: Finding IE by Title
+06/09/14 06:53:29: CallTracker.Model.CallStats > SmartPaste
+06/09/14 06:53:29: Match Found
+06/09/14 06:53:36: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 06:53:36: Finding IE by Title
+06/09/14 06:53:36: CallTracker.Model.CallStats > SmartPaste
+06/09/14 06:53:36: Match Found
+06/09/14 06:55:21: Pasting: Name.Full
+06/09/14 06:55:21: CallTracker.Model.CallStats > DataPaste
+06/09/14 06:56:10: Status Changed: NotReady
+06/09/14 06:56:10: 47 0296832094 > NotReady at 06/09/14 06:56:10
+06/09/14 06:56:11: Status Changed: 
+06/09/14 06:56:11: Daily Data: 06/09 > LogOut at 06/09/14 06:56:11
+06/09/14 06:56:11: 47 0296832094 > LogOut at 06/09/14 06:56:11
+06/09/14 07:17:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:17:48: 47 0296832094 > CallEnd at 06/09/14 07:17:48
+06/09/14 07:17:59: Switching to: https://scamps.optusnet.com.au/
+06/09/14 07:17:59: Finding IE by URL
+06/09/14 07:18:00: Creating Tab Activator
+06/09/14 07:18:00: Activating Tab
+06/09/14 07:18:00: Searching for matches
+06/09/14 07:18:00: Finding IE by Title
+06/09/14 07:18:00: Actioning matches
+06/09/14 07:18:00: CallTracker.Model.CallStats > Gridlink
+06/09/14 07:18:00: Switched to: https://scamps.optusnet.com.au/
+06/09/14 07:18:00: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 07:18:00: Finding IE by URL
+06/09/14 07:18:00: Unable to Find IE by URL
+06/09/14 07:18:00: Finding IE by Title
+06/09/14 07:18:00: Creating Tab Activator
+06/09/14 07:18:00: Activating Tab
+06/09/14 07:18:00: Searching for matches
+06/09/14 07:18:00: Finding IE by Title
+06/09/14 07:18:00: Actioning matches
+06/09/14 07:18:00: CallTracker.Model.CallStats > Gridlink
+06/09/14 07:18:00: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 07:18:05: Searching for SmartPaste Matches for Window: Wingman
+06/09/14 07:18:05: Finding IE by Title
+06/09/14 07:18:05: Unable to Find IE by Title
+06/09/14 07:18:05: Unable to find page by title: Wingman
+06/09/14 07:18:05: Unable to find page by HWND: 1116296
+06/09/14 07:18:06: Starting Smart Copy
+06/09/14 07:18:06: javant75 copied from the clipboard in 553ticks
+06/09/14 07:18:06: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:18:30: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:18:30: 48  > CallEnd at 06/09/14 07:18:30
+06/09/14 07:18:32: Starting Smart Copy
+06/09/14 07:18:32: javant75 copied from the clipboard in 1061ticks
+06/09/14 07:18:32: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:18:38: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:18:38: 49  > CallEnd at 06/09/14 07:18:38
+06/09/14 07:18:40: Starting Smart Copy
+06/09/14 07:18:41: javant75 copied from the clipboard in 959ticks
+06/09/14 07:18:41: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:19:02: Starting Smart Copy
+06/09/14 07:19:02: Finding IE by Title
+06/09/14 07:19:02: Unable to Find IE by Title
+06/09/14 07:19:02: Finding IE by URL
+06/09/14 07:19:02: Unable to Find IE by URL
+06/09/14 07:19:02: Finding IE by Title
+06/09/14 07:19:02: Searching: https://scamps.optusnet.com.au/cm.html?q=0294813386
+06/09/14 07:19:02: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:19:02: Finding IE by Title
+06/09/14 07:19:02: Searching: https://dimps.optusnet.com.au/search/servno?servno=0294813386
+06/09/14 07:19:02: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:19:02: 0294813386 copied from the clipboard in 1268ticks
+06/09/14 07:19:02: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:19:17: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:19:17: 50 0294813386 > CallEnd at 06/09/14 07:19:17
+06/09/14 07:19:17: 51  > CallEnd at 06/09/14 07:19:17
+06/09/14 07:19:17: 50 0294813386 > CallEnd at 06/09/14 07:19:17
+06/09/14 07:19:18: 49  > CallEnd at 06/09/14 07:19:18
+06/09/14 07:19:18: 48  > CallEnd at 06/09/14 07:19:18
+06/09/14 07:19:21: 47 0296832094 > CallEnd at 06/09/14 07:19:21
+06/09/14 07:19:21: 48  > CallEnd at 06/09/14 07:19:21
+06/09/14 07:19:21: 49  > CallEnd at 06/09/14 07:19:21
+06/09/14 07:19:21: 50 0294813386 > CallEnd at 06/09/14 07:19:21
+06/09/14 07:19:24: Starting Smart Copy
+06/09/14 07:19:24: 0296832094 copied from the clipboard in 1234ticks
+06/09/14 07:19:24: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:19:41: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:19:41: 51 0296832094 > CallEnd at 06/09/14 07:19:41
+06/09/14 07:19:42: Starting Smart Copy
+06/09/14 07:19:42: Finding IE by Title
+06/09/14 07:19:42: Unable to Find IE by Title
+06/09/14 07:19:42: Finding IE by URL
+06/09/14 07:19:42: Unable to Find IE by URL
+06/09/14 07:19:42: Finding IE by Title
+06/09/14 07:19:42: Unable to Find IE by Title
+06/09/14 07:19:42: Finding IE by URL
+06/09/14 07:19:43: Searching: https://scamps.optusnet.com.au/cm.html?q=0296832094
+06/09/14 07:19:43: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:19:43: Finding IE by Title
+06/09/14 07:19:43: Searching: https://dimps.optusnet.com.au/search/servno?servno=0296832094
+06/09/14 07:19:43: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:19:43: 0296832094 copied from the clipboard in 895ticks
+06/09/14 07:19:43: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:20:10: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:20:10: 52 0296832094 > CallEnd at 06/09/14 07:20:10
+06/09/14 07:20:16: Starting Smart Copy
+06/09/14 07:20:16: Finding IE by Title
+06/09/14 07:20:16: Unable to Find IE by Title
+06/09/14 07:20:16: Finding IE by URL
+06/09/14 07:20:16: Unable to Find IE by URL
+06/09/14 07:20:16: Finding IE by Title
+06/09/14 07:20:16: Unable to Find IE by Title
+06/09/14 07:20:16: Finding IE by URL
+06/09/14 07:20:16: Searching: https://scamps.optusnet.com.au/cm.html?q=0296832094
+06/09/14 07:20:16: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:20:16: Finding IE by Title
+06/09/14 07:20:16: Searching: https://dimps.optusnet.com.au/search/servno?servno=0296832094
+06/09/14 07:20:16: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:20:16: 0296832094 copied from the clipboard in 392ticks
+06/09/14 07:20:16: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:20:39: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:20:39: 53 0296832094 > CallEnd at 06/09/14 07:20:39
+06/09/14 07:20:41: Starting Smart Copy
+06/09/14 07:20:41: Finding IE by Title
+06/09/14 07:20:41: Unable to Find IE by Title
+06/09/14 07:20:41: Finding IE by URL
+06/09/14 07:20:41: Unable to Find IE by URL
+06/09/14 07:20:41: Finding IE by Title
+06/09/14 07:20:41: Unable to Find IE by Title
+06/09/14 07:20:41: Finding IE by URL
+06/09/14 07:20:41: Searching: https://scamps.optusnet.com.au/cm.html?q=0296832094
+06/09/14 07:20:41: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:20:41: Finding IE by Title
+06/09/14 07:20:41: Searching: https://dimps.optusnet.com.au/search/servno?servno=0296832094
+06/09/14 07:20:41: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:20:41: 0296832094 copied from the clipboard in 363ticks
+06/09/14 07:20:41: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:20:52: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:20:52: 54 0296832094 > CallEnd at 06/09/14 07:20:52
+06/09/14 07:20:53: Starting Smart Copy
+06/09/14 07:20:53: Finding IE by Title
+06/09/14 07:20:54: Unable to Find IE by Title
+06/09/14 07:20:54: Finding IE by URL
+06/09/14 07:20:54: Unable to Find IE by URL
+06/09/14 07:20:54: Finding IE by Title
+06/09/14 07:20:54: Unable to Find IE by Title
+06/09/14 07:20:54: Finding IE by URL
+06/09/14 07:20:54: Searching: https://scamps.optusnet.com.au/cm.html?q=0296832094
+06/09/14 07:20:54: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:20:54: Finding IE by Title
+06/09/14 07:20:54: Searching: https://dimps.optusnet.com.au/search/servno?servno=0296832094
+06/09/14 07:20:54: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:20:54: 0296832094 copied from the clipboard in 330ticks
+06/09/14 07:20:54: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:29:36: Status Changed: NotReady
+06/09/14 07:29:36: Daily Data: 06/09 > LogIn at 06/09/14 07:29:36
+06/09/14 07:29:36: 55 0296832094 > LogIn at 06/09/14 07:29:36
+06/09/14 07:29:44: 55 0296832094 > CallEnd at 06/09/14 07:29:44
+06/09/14 07:29:45: 54 0296832094 > CallEnd at 06/09/14 07:29:45
+06/09/14 07:29:47: 53 0296832094 > CallEnd at 06/09/14 07:29:47
+06/09/14 07:29:49: 48  > CallEnd at 06/09/14 07:29:49
+06/09/14 07:29:50: 55 0296832094 > CallEnd at 06/09/14 07:29:50
+06/09/14 07:30:08: ------------------------------------------------------
+06/09/14 07:30:08: Loading Interface
+06/09/14 07:30:09: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:09: Loading Views
+06/09/14 07:30:09: Added Controls
+06/09/14 07:30:10: 68  > CallEnd at 06/09/14 07:30:10
+06/09/14 07:30:10: 2 0295990525 > CallEnd at 06/09/14 07:30:10
+06/09/14 07:30:10: Bring to front
+06/09/14 07:30:10: Finished Loading
+06/09/14 07:30:15: Monitoring Not Enabled
+06/09/14 07:30:16: Trying to find IPCC
+06/09/14 07:30:17: Monitoring IPCC
+06/09/14 07:30:18: Status Changed: NotReady
+06/09/14 07:30:18: Daily Data: 06/09 > LogIn at 06/09/14 07:30:18
+06/09/14 07:30:18: 47 0296832094 > LogIn at 06/09/14 07:30:18
+06/09/14 07:30:45: Status Changed: Ready
+06/09/14 07:30:45: Daily Data: 06/09 > Ready at 06/09/14 07:30:45
+06/09/14 07:30:45: 47 0296832094 > CallEnd at 06/09/14 07:30:45
+06/09/14 07:30:47: Status Changed: Reserved
+06/09/14 07:30:47: Daily Data: 06/09 > Reserved at 06/09/14 07:30:47
+06/09/14 07:30:47: CallTracker.Model.CallStats > RecordCreated
+06/09/14 07:30:47: 47 0296832094 > CallEnd at 06/09/14 07:30:47
+06/09/14 07:30:47: 69  > Reserved at 06/09/14 07:30:47
+06/09/14 07:30:48: Status Changed: Talking
+06/09/14 07:30:48: 69  > CallStart at 06/09/14 07:30:48
+06/09/14 07:30:50: Starting Smart Copy
+06/09/14 07:30:50: Finding IE by Title
+06/09/14 07:30:51: Unable to Find IE by Title
+06/09/14 07:30:51: Finding IE by URL
+06/09/14 07:30:51: Unable to Find IE by URL
+06/09/14 07:30:51: Finding IE by Title
+06/09/14 07:30:51: Unable to Find IE by Title
+06/09/14 07:30:51: Finding IE by URL
+06/09/14 07:30:51: Searching: https://scamps.optusnet.com.au/cm.html?q=0291812844
+06/09/14 07:30:51: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:30:51: Finding IE by Title
+06/09/14 07:30:51: Searching: https://dimps.optusnet.com.au/search/servno?servno=0291812844
+06/09/14 07:30:51: CallTracker.Model.CallStats > AutoSearch
+06/09/14 07:30:51: 0291812844 copied from the clipboard in 551ticks
+06/09/14 07:30:51: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:30:51: Starting Smart Copy
+06/09/14 07:30:51: 11036830000121 copied from the clipboard in 358ticks
+06/09/14 07:30:51: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:30:52: Switching to: http://www.yahoo.com
+06/09/14 07:30:52: CallTracker.Model.CallStats > Gridlink
+06/09/14 07:30:52: Switched to: http://www.yahoo.com
+06/09/14 07:31:07: Starting Smart Copy
+06/09/14 07:31:07: NICK CHRISTODOULOU copied from the clipboard in 557ticks
+06/09/14 07:31:07: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:31:08: Starting Smart Copy
+06/09/14 07:31:08: 31-998194-1 copied from the clipboard in 713ticks
+06/09/14 07:31:08: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:31:17: Starting Smart Copy
+06/09/14 07:31:17: gtoplumbing copied from the clipboard in 526ticks
+06/09/14 07:31:17: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:31:32: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 07:31:32: Finding IE by URL
+06/09/14 07:31:32: Unable to Find IE by URL
+06/09/14 07:31:32: Finding IE by Title
+06/09/14 07:31:32: Creating Tab Activator
+06/09/14 07:31:32: Activating Tab
+06/09/14 07:31:33: Searching for matches
+06/09/14 07:31:33: Finding IE by Title
+06/09/14 07:31:33: Actioning matches
+06/09/14 07:31:33: CallTracker.Model.CallStats > Gridlink
+06/09/14 07:31:33: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 07:32:27: Switching to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 07:32:27: Finding IE by URL
+06/09/14 07:32:27: Unable to Find IE by URL
+06/09/14 07:32:27: Finding IE by Title
+06/09/14 07:32:27: Creating Tab Activator
+06/09/14 07:32:27: Activating Tab
+06/09/14 07:32:27: Searching for matches
+06/09/14 07:32:27: Finding IE by Title
+06/09/14 07:32:27: Actioning matches
+06/09/14 07:32:27: CallTracker.Model.CallStats > Gridlink
+06/09/14 07:32:27: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 07:32:30: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 07:32:30: Finding IE by Title
+06/09/14 07:32:37: Starting Smart Copy
+06/09/14 07:32:37: 22CJ175 copied from the clipboard in 2095ticks
+06/09/14 07:32:37: CallTracker.Model.CallStats > SmartCopy
+06/09/14 07:40:40: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 07:40:40: Trying to set MAD Active element
+06/09/14 07:40:40: Starting MAD SetActiveElemetn
+06/09/14 07:55:45: Status Changed: Wrapup
+06/09/14 07:55:45: 69 0291812844 > Wrapup at 06/09/14 07:55:45
+06/09/14 07:55:45: Switching to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 07:55:45: Finding IE by URL
+06/09/14 07:55:45: Unable to Find IE by URL
+06/09/14 07:55:45: Finding IE by Title
+06/09/14 07:55:45: Creating Tab Activator
+06/09/14 07:55:45: Activating Tab
+06/09/14 07:55:45: Searching for matches
+06/09/14 07:55:45: Finding IE by Title
+06/09/14 07:55:46: Actioning matches
+06/09/14 07:55:46: CallTracker.Model.CallStats > Gridlink
+06/09/14 07:55:46: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 07:55:46: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 07:55:46: Finding IE by URL
+06/09/14 07:55:46: Creating Tab Activator
+06/09/14 07:55:46: Activating Tab
+06/09/14 07:55:47: Searching for matches
+06/09/14 07:55:47: Finding IE by Title
+06/09/14 07:55:47: Actioning matches
+06/09/14 07:55:47: CallTracker.Model.CallStats > Gridlink
+06/09/14 07:55:47: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 07:55:59: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 07:55:59: Finding IE by Title
+06/09/14 07:55:59: CallTracker.Model.CallStats > SmartPaste
+06/09/14 07:55:59: Match Found
+06/09/14 07:57:19: Status Changed: Ready
+06/09/14 07:57:19: Daily Data: 06/09 > Ready at 06/09/14 07:57:19
+06/09/14 07:57:19: 69 0291812844 > CallEnd at 06/09/14 07:57:19
+06/09/14 08:01:08: Monitoring Not Enabled
+06/09/14 08:01:14: ------------------------------------------------------
+06/09/14 08:01:14: Loading Interface
+06/09/14 08:01:14: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:01:15: Loading Views
+06/09/14 08:01:15: Added Controls
+06/09/14 08:01:15: 83  > CallEnd at 06/09/14 08:01:15
+06/09/14 08:01:16: 2 0295990525 > CallEnd at 06/09/14 08:01:16
+06/09/14 08:01:16: Bring to front
+06/09/14 08:01:16: Finished Loading
+06/09/14 08:01:20: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 08:01:20: Trying to set MAD Active element
+06/09/14 08:01:20: MAD Smart Paste: Starting SetActiveElement
+06/09/14 08:01:21: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 08:01:21: MAD Smart Paste: MDIChild Found: Search
+
+06/09/14 08:01:21: MAD Smart Paste: Edit Bounds: 98,109
+
+06/09/14 08:01:21: MAD Smart Paste: Edit Found
+
+06/09/14 08:01:21: MAD Smart Paste: Edit Bounds: 109,321
+
+06/09/14 08:01:21: MAD Smart Paste: Edit Offset: 11,212
+
+06/09/14 08:01:21: MAD Smart Paste: Edit Name Found: DN
+
+06/09/14 08:01:21: MAD Smart Paste: Trying to set MAD value
+06/09/14 08:01:24: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 08:01:24: Trying to set MAD Active element
+06/09/14 08:01:24: MAD Smart Paste: Starting SetActiveElement
+06/09/14 08:01:25: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 08:01:25: MAD Smart Paste: MDIChild Found: Search
+
+06/09/14 08:01:25: MAD Smart Paste: Edit Bounds: 98,109
+
+06/09/14 08:01:25: MAD Smart Paste: Edit Found
+
+06/09/14 08:01:25: MAD Smart Paste: Edit Bounds: 441,321
+
+06/09/14 08:01:25: MAD Smart Paste: Edit Offset: 343,212
+
+06/09/14 08:01:25: MAD Smart Paste: Edit Name Found: ICON
+
+06/09/14 08:01:25: MAD Smart Paste: Trying to set MAD value
+06/09/14 08:01:27: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 08:01:27: Trying to set MAD Active element
+06/09/14 08:01:27: MAD Smart Paste: Starting SetActiveElement
+06/09/14 08:01:28: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 08:01:28: MAD Smart Paste: MDIChild Found: Search
+
+06/09/14 08:01:28: MAD Smart Paste: Edit Bounds: 98,109
+
+06/09/14 08:01:28: MAD Smart Paste: Edit Found
+
+06/09/14 08:01:28: MAD Smart Paste: Edit Bounds: 441,270
+
+06/09/14 08:01:28: MAD Smart Paste: Edit Offset: 343,161
+
+06/09/14 08:01:28: MAD Smart Paste: Edit Name Found: CMBS
+
+06/09/14 08:01:28: MAD Smart Paste: Trying to set MAD value
+06/09/14 08:01:34: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 08:01:34: Trying to set MAD Active element
+06/09/14 08:01:34: MAD Smart Paste: Starting SetActiveElement
+06/09/14 08:01:34: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 08:01:34: MAD Smart Paste: MDIChild Found: Search
+
+06/09/14 08:01:34: MAD Smart Paste: Edit Bounds: 98,109
+
+06/09/14 08:01:34: MAD Smart Paste: Edit Found
+
+06/09/14 08:01:34: MAD Smart Paste: Edit Bounds: 109,321
+
+06/09/14 08:01:34: MAD Smart Paste: Edit Offset: 11,212
+
+06/09/14 08:01:34: MAD Smart Paste: Edit Name Found: DN
+
+06/09/14 08:01:34: MAD Smart Paste: Trying to set MAD value
+06/09/14 08:01:38: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 08:01:38: Trying to set MAD Active element
+06/09/14 08:01:38: MAD Smart Paste: Starting SetActiveElement
+06/09/14 08:01:39: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 08:01:39: MAD Smart Paste: MDIChild Found: Search
+
+06/09/14 08:01:39: MAD Smart Paste: Edit Bounds: 98,109
+
+06/09/14 08:01:39: MAD Smart Paste: Edit Found
+
+06/09/14 08:01:39: MAD Smart Paste: Edit Bounds: 109,162
+
+06/09/14 08:01:39: MAD Smart Paste: Edit Offset: 11,53
+
+06/09/14 08:01:39: MAD Smart Paste: Edit Name Found: NameSplit.First
+
+06/09/14 08:01:39: MAD Smart Paste: Trying to set MAD value
+06/09/14 08:01:40: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 08:01:40: Trying to set MAD Active element
+06/09/14 08:01:40: MAD Smart Paste: Starting SetActiveElement
+06/09/14 08:01:40: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 08:01:40: MAD Smart Paste: MDIChild Found: Search
+
+06/09/14 08:01:40: MAD Smart Paste: Edit Bounds: 98,109
+
+06/09/14 08:01:40: MAD Smart Paste: Edit Found
+
+06/09/14 08:01:40: MAD Smart Paste: Edit Bounds: 224,162
+
+06/09/14 08:01:40: MAD Smart Paste: Edit Offset: 126,53
+
+06/09/14 08:01:40: MAD Smart Paste: Edit Name Found: NameSplit.Last
+
+06/09/14 08:01:40: MAD Smart Paste: Trying to set MAD value
+06/09/14 08:19:39: Monitoring Not Enabled
+06/09/14 08:19:40: Trying to find IPCC
+06/09/14 08:19:42: Monitoring IPCC
+06/09/14 08:19:43: Status Changed: Talking
+06/09/14 08:19:43: Daily Data: 06/09 > LogIn at 06/09/14 08:19:43
+06/09/14 08:19:43: 69 0291812844 > Talking at 06/09/14 08:19:43
+06/09/14 08:19:44: CallTracker.Model.CallStats > RecordCreated
+06/09/14 08:19:46: Starting Smart Copy
+06/09/14 08:19:46: Finding IE by Title
+06/09/14 08:19:46: Unable to Find IE by Title
+06/09/14 08:19:46: Finding IE by URL
+06/09/14 08:19:46: Unable to Find IE by URL
+06/09/14 08:19:46: 0431907116 copied from the clipboard in 556ticks
+06/09/14 08:19:46: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:19:47: Starting Smart Copy
+06/09/14 08:19:47: Finding IE by Title
+06/09/14 08:19:47: Searching: https://scamps.optusnet.com.au/cm.html?q=0242931052
+06/09/14 08:19:47: CallTracker.Model.CallStats > AutoSearch
+06/09/14 08:19:47: Finding IE by Title
+06/09/14 08:19:47: Searching: https://dimps.optusnet.com.au/search/servno?servno=0242931052
+06/09/14 08:19:47: CallTracker.Model.CallStats > AutoSearch
+06/09/14 08:19:47: 0242931052 copied from the clipboard in 740ticks
+06/09/14 08:19:47: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:19:48: Starting Smart Copy
+06/09/14 08:19:48: 93375891000195 copied from the clipboard in 441ticks
+06/09/14 08:19:48: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:20:12: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:20:12: Finding IE by URL
+06/09/14 08:20:12: Unable to Find IE by URL
+06/09/14 08:20:12: Finding IE by Title
+06/09/14 08:20:12: Creating Tab Activator
+06/09/14 08:20:12: Activating Tab
+06/09/14 08:20:12: Searching for matches
+06/09/14 08:20:12: Finding IE by Title
+06/09/14 08:20:12: Actioning matches
+06/09/14 08:20:12: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:20:12: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:20:41: Starting Smart Copy
+06/09/14 08:20:41: amcclelland5 copied from the clipboard in 482ticks
+06/09/14 08:20:41: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:21:03: Pasting: Username
+06/09/14 08:21:03: CallTracker.Model.CallStats > DataPaste
+06/09/14 08:21:07: Starting Smart Copy
+06/09/14 08:21:10: Starting Smart Copy
+06/09/14 08:21:10: amcclelland5	ANDREW MCCLELLAND	Optus DSL Direct	Residential	19/03/2013	06/01/2014	Ceased		93375891	93375891000195	07/03/2013	SOS_341745		93375891		100049598496 copied from the clipboard in 309844ticks
+06/09/14 08:21:10: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:21:15: Starting Smart Copy
+06/09/14 08:21:15: amcclelland5	ANDREW MCCLELLAND	Fibre Broadband	Residential	23/01/2014		Active		93375891	93375891000195	16/01/2014	ret_robert_t		93375891		100056779167 copied from the clipboard in 1357ticks
+06/09/14 08:21:15: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:21:54: Pasting: DN
+06/09/14 08:21:54: CallTracker.Model.CallStats > DataPaste
+06/09/14 08:22:00: Searching for SmartPaste Matches for Window: Softact -SA-VoIP - Windows Internet Explorer
+06/09/14 08:22:00: Finding IE by Title
+06/09/14 08:22:00: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:22:00: Match Found
+06/09/14 08:22:05: Attempting Autologin
+06/09/14 08:22:05: Searching for matches
+06/09/14 08:22:05: Finding IE by Title
+06/09/14 08:22:05: Actioning matches
+06/09/14 08:22:07: Attempting Autologin
+06/09/14 08:22:07: Searching for matches
+06/09/14 08:22:07: Finding IE by Title
+06/09/14 08:22:07: Actioning matches
+06/09/14 08:22:09: Status Changed: Hold
+06/09/14 08:22:09: 69 0291812844 > Hold at 06/09/14 08:22:09
+06/09/14 08:22:11: Status Changed: Talking
+06/09/14 08:22:11: 69 0291812844 > Talking at 06/09/14 08:22:11
+06/09/14 08:22:55: Searching for SmartPaste Matches for Window: Softact -SA-VoIP - Windows Internet Explorer
+06/09/14 08:22:55: Finding IE by Title
+06/09/14 08:22:56: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:22:56: Match Found
+06/09/14 08:23:31: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 08:23:31: Finding IE by Title
+06/09/14 08:23:33: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 08:23:33: Finding IE by Title
+06/09/14 08:23:33: No Matches Found
+06/09/14 08:23:34: Searching for matching binds
+06/09/14 08:23:34: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 08:23:34: Finding IE by Title
+06/09/14 08:23:34: New Bind Created
+06/09/14 08:23:44: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 08:23:44: Finding IE by Title
+06/09/14 08:23:44: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:23:44: Match Found
+06/09/14 08:23:46: Searching for matching binds
+06/09/14 08:23:46: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 08:23:46: Finding IE by Title
+06/09/14 08:24:01: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 08:24:01: Finding IE by Title
+06/09/14 08:24:01: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:24:01: Match Found
+06/09/14 08:24:05: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 08:24:05: Finding IE by Title
+06/09/14 08:24:05: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:24:05: Match Found
+06/09/14 08:24:08: Searching for matching binds
+06/09/14 08:24:08: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 08:24:08: Finding IE by Title
+06/09/14 08:24:13: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 08:24:13: Finding IE by Title
+06/09/14 08:24:13: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:24:13: Match Found
+06/09/14 08:24:32: Status Changed: Hold
+06/09/14 08:24:32: 69 0291812844 > Hold at 06/09/14 08:24:32
+06/09/14 08:25:11: Attempting Autologin
+06/09/14 08:25:11: Searching for matches
+06/09/14 08:25:11: Finding IE by Title
+06/09/14 08:25:11: Actioning matches
+06/09/14 08:25:25: Status Changed: Talking
+06/09/14 08:25:25: 69 0291812844 > Talking at 06/09/14 08:25:25
+06/09/14 08:26:18: Status Changed: Hold
+06/09/14 08:26:18: 69 0291812844 > Hold at 06/09/14 08:26:18
+06/09/14 08:26:19: Status Changed: Talking
+06/09/14 08:26:19: 69 0291812844 > Talking at 06/09/14 08:26:19
+06/09/14 08:27:33: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:27:33: Finding IE by URL
+06/09/14 08:27:33: Unable to Find IE by URL
+06/09/14 08:27:33: Finding IE by Title
+06/09/14 08:27:33: Creating Tab Activator
+06/09/14 08:27:33: Activating Tab
+06/09/14 08:27:33: Searching for matches
+06/09/14 08:27:33: Finding IE by Title
+06/09/14 08:27:33: Actioning matches
+06/09/14 08:27:33: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:27:33: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:27:56: Pasting: DN
+06/09/14 08:27:56: CallTracker.Model.CallStats > DataPaste
+06/09/14 08:32:28: Pasting: Username
+06/09/14 08:32:28: CallTracker.Model.CallStats > DataPaste
+06/09/14 08:33:21: Status Changed: Hold
+06/09/14 08:33:21: 69 0291812844 > Hold at 06/09/14 08:33:21
+06/09/14 08:33:42: Pasting: ICON
+06/09/14 08:33:42: CallTracker.Model.CallStats > DataPaste
+06/09/14 08:33:43: Pasting: Username
+06/09/14 08:33:43: CallTracker.Model.CallStats > DataPaste
+06/09/14 08:36:43: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:36:43: Finding IE by URL
+06/09/14 08:36:43: Unable to Find IE by URL
+06/09/14 08:36:43: Finding IE by Title
+06/09/14 08:36:43: Creating Tab Activator
+06/09/14 08:36:43: Activating Tab
+06/09/14 08:36:43: Searching for matches
+06/09/14 08:36:43: Finding IE by Title
+06/09/14 08:36:43: Actioning matches
+06/09/14 08:36:43: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:36:43: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:36:52: Status Changed: Talking
+06/09/14 08:36:52: 69 0291812844 > Talking at 06/09/14 08:36:52
+06/09/14 08:38:20: Status Changed: Wrapup
+06/09/14 08:38:20: 69 0291812844 > CallEnd at 06/09/14 08:38:20
+06/09/14 08:38:20: 69 0291812844 > CallEnd at 06/09/14 08:38:20
+06/09/14 08:38:20: 84 0242931052 > Wrapup at 06/09/14 08:38:20
+06/09/14 08:38:55: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 08:38:55: Finding IE by URL
+06/09/14 08:38:55: Creating Tab Activator
+06/09/14 08:38:55: Activating Tab
+06/09/14 08:38:55: Searching for matches
+06/09/14 08:38:55: Finding IE by Title
+06/09/14 08:38:55: Actioning matches
+06/09/14 08:38:55: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:38:55: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 08:39:27: Status Changed: NotReady
+06/09/14 08:39:27: 84 0242931052 > NotReady at 06/09/14 08:39:27
+06/09/14 08:39:33: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:39:33: Finding IE by URL
+06/09/14 08:39:33: Unable to Find IE by URL
+06/09/14 08:39:33: Finding IE by Title
+06/09/14 08:39:33: Creating Tab Activator
+06/09/14 08:39:33: Activating Tab
+06/09/14 08:39:33: Searching for matches
+06/09/14 08:39:33: Finding IE by Title
+06/09/14 08:39:33: Actioning matches
+06/09/14 08:39:33: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:39:33: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:40:22: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 08:40:22: Finding IE by URL
+06/09/14 08:40:22: Creating Tab Activator
+06/09/14 08:40:22: Activating Tab
+06/09/14 08:40:22: Searching for matches
+06/09/14 08:40:22: Finding IE by Title
+06/09/14 08:40:22: Actioning matches
+06/09/14 08:40:22: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:40:22: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 08:40:53: Pasting: Mobile
+06/09/14 08:40:54: CallTracker.Model.CallStats > DataPaste
+06/09/14 08:40:55: Status Changed: Talking
+06/09/14 08:40:55: 84 0242931052 > Talking at 06/09/14 08:40:55
+06/09/14 08:44:15: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:44:15: Finding IE by URL
+06/09/14 08:44:15: Unable to Find IE by URL
+06/09/14 08:44:15: Finding IE by Title
+06/09/14 08:44:15: Creating Tab Activator
+06/09/14 08:44:15: Activating Tab
+06/09/14 08:44:15: Searching for matches
+06/09/14 08:44:15: Finding IE by Title
+06/09/14 08:44:16: Actioning matches
+06/09/14 08:44:16: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:44:16: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:46:30: Status Changed: Wrapup
+06/09/14 08:46:30: 84 0242931052 > Wrapup at 06/09/14 08:46:30
+06/09/14 08:47:15: Switching to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 08:47:15: Finding IE by URL
+06/09/14 08:47:15: Unable to Find IE by URL
+06/09/14 08:47:15: Finding IE by Title
+06/09/14 08:47:15: Creating Tab Activator
+06/09/14 08:47:15: Activating Tab
+06/09/14 08:47:15: Searching for matches
+06/09/14 08:47:15: Finding IE by Title
+06/09/14 08:47:15: Actioning matches
+06/09/14 08:47:15: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:47:15: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 08:47:19: Switching to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 08:47:19: Finding IE by URL
+06/09/14 08:47:19: Unable to Find IE by URL
+06/09/14 08:47:19: Finding IE by Title
+06/09/14 08:47:19: Creating Tab Activator
+06/09/14 08:47:19: Activating Tab
+06/09/14 08:47:19: Searching for matches
+06/09/14 08:47:19: Finding IE by Title
+06/09/14 08:47:19: Actioning matches
+06/09/14 08:47:19: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:47:19: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 08:47:39: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 08:47:39: Finding IE by Title
+06/09/14 08:47:39: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:47:39: Match Found
+06/09/14 08:47:42: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 08:47:42: Finding IE by Title
+06/09/14 08:47:42: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:47:42: Match Found
+06/09/14 08:47:49: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 08:47:49: Finding IE by Title
+06/09/14 08:47:49: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:47:49: Match Found
+06/09/14 08:47:51: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 08:47:51: Finding IE by Title
+06/09/14 08:47:51: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:47:51: Match Found
+06/09/14 08:47:51: Searching for matching binds
+06/09/14 08:47:51: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 08:47:51: Finding IE by Title
+06/09/14 08:47:57: Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+06/09/14 08:47:57: Finding IE by Title
+06/09/14 08:47:57: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:47:57: Match Found
+06/09/14 08:48:08: Starting Smart Copy
+06/09/14 08:48:09: 0431907116 copied from the clipboard in 331ticks
+06/09/14 08:48:09: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:48:23: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:48:23: Finding IE by URL
+06/09/14 08:48:23: Unable to Find IE by URL
+06/09/14 08:48:23: Finding IE by Title
+06/09/14 08:48:23: Creating Tab Activator
+06/09/14 08:48:23: Activating Tab
+06/09/14 08:48:23: Searching for matches
+06/09/14 08:48:23: Finding IE by Title
+06/09/14 08:48:23: Actioning matches
+06/09/14 08:48:23: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:48:23: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:49:14: Starting Smart Copy
+06/09/14 08:49:14: AVC000002201311 copied from the clipboard in 59536ticks
+06/09/14 08:49:14: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:49:15: Starting Smart Copy
+06/09/14 08:49:15: CVC000000219551 copied from the clipboard in 4940ticks
+06/09/14 08:49:15: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:49:23: Starting Smart Copy
+06/09/14 08:49:23: CSA200000000662 copied from the clipboard in 1826ticks
+06/09/14 08:49:23: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:49:24: Starting Smart Copy
+06/09/14 08:49:24: NNI000000221427 copied from the clipboard in 1809ticks
+06/09/14 08:49:24: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:50:28: Switching to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 08:50:28: Finding IE by URL
+06/09/14 08:50:29: Unable to Find IE by URL
+06/09/14 08:50:29: Finding IE by Title
+06/09/14 08:50:29: Creating Tab Activator
+06/09/14 08:50:29: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:50:29: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 08:50:33: Pasting: Mobile
+06/09/14 08:50:33: CallTracker.Model.CallStats > DataPaste
+06/09/14 08:50:36: Starting Smart Copy
+06/09/14 08:50:36: amcclelland5 copied from the clipboard in 3553ticks
+06/09/14 08:50:36: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:53:31: Switching to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:53:31: Finding IE by URL
+06/09/14 08:53:32: Unable to Find IE by URL
+06/09/14 08:53:32: Finding IE by Title
+06/09/14 08:53:32: Creating Tab Activator
+06/09/14 08:53:32: Activating Tab
+06/09/14 08:53:32: Searching for matches
+06/09/14 08:53:32: Finding IE by Title
+06/09/14 08:53:32: Actioning matches
+06/09/14 08:53:32: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:53:32: Switched to: https://dimps.optusnet.com.au/search.html
+06/09/14 08:54:17: Starting Smart Copy
+06/09/14 08:54:17: 12556986 copied from the clipboard in 1923ticks
+06/09/14 08:54:17: CallTracker.Model.CallStats > SmartCopy
+06/09/14 08:54:22: Searching for SmartPaste Matches for Window: IFMS: F007 Dispatch - Windows Internet Explorer
+06/09/14 08:54:22: Finding IE by Title
+06/09/14 08:54:22: CallTracker.Model.CallStats > SmartPaste
+06/09/14 08:54:22: Match Found
+06/09/14 08:54:37: Switching to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 08:54:37: Finding IE by URL
+06/09/14 08:54:37: Unable to Find IE by URL
+06/09/14 08:54:37: Finding IE by Title
+06/09/14 08:54:37: Creating Tab Activator
+06/09/14 08:54:37: Activating Tab
+06/09/14 08:54:37: Searching for matches
+06/09/14 08:54:37: Finding IE by Title
+06/09/14 08:54:37: Actioning matches
+06/09/14 08:54:37: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:54:37: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 08:54:38: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 08:54:38: Finding IE by URL
+06/09/14 08:54:38: Creating Tab Activator
+06/09/14 08:54:38: Activating Tab
+06/09/14 08:54:38: Searching for matches
+06/09/14 08:54:38: Finding IE by Title
+06/09/14 08:54:38: Actioning matches
+06/09/14 08:54:38: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:54:38: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 08:54:47: Pasting: Fault.PR
+06/09/14 08:54:47: CallTracker.Model.CallStats > DataPaste
+06/09/14 08:54:56: Switching to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 08:54:56: Finding IE by URL
+06/09/14 08:54:56: Unable to Find IE by URL
+06/09/14 08:54:56: Finding IE by Title
+06/09/14 08:54:56: Creating Tab Activator
+06/09/14 08:54:56: Activating Tab
+06/09/14 08:54:57: Searching for matches
+06/09/14 08:54:57: Finding IE by Title
+06/09/14 08:54:57: Actioning matches
+06/09/14 08:54:57: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:54:57: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 08:55:32: Pasting: Fault.PR
+06/09/14 08:55:32: CallTracker.Model.CallStats > DataPaste
+06/09/14 08:56:34: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 08:56:34: Finding IE by URL
+06/09/14 08:56:34: Creating Tab Activator
+06/09/14 08:56:34: Activating Tab
+06/09/14 08:56:34: Searching for matches
+06/09/14 08:56:34: Finding IE by Title
+06/09/14 08:56:34: Actioning matches
+06/09/14 08:56:34: CallTracker.Model.CallStats > Gridlink
+06/09/14 08:56:34: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 08:56:45: Status Changed: Ready
+06/09/14 08:56:45: Daily Data: 06/09 > Ready at 06/09/14 08:56:45
+06/09/14 08:56:45: 84 0242931052 > CallEnd at 06/09/14 08:56:45
+06/09/14 09:04:19: Status Changed: Reserved
+06/09/14 09:04:19: Daily Data: 06/09 > Reserved at 06/09/14 09:04:19
+06/09/14 09:04:19: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:04:19: 84 0242931052 > CallEnd at 06/09/14 09:04:19
+06/09/14 09:04:19: 85  > Reserved at 06/09/14 09:04:19
+06/09/14 09:04:20: Status Changed: Talking
+06/09/14 09:04:20: 85  > CallStart at 06/09/14 09:04:20
+06/09/14 09:04:23: Starting Smart Copy
+06/09/14 09:04:23: Finding IE by Title
+06/09/14 09:04:23: Unable to Find IE by Title
+06/09/14 09:04:23: Finding IE by URL
+06/09/14 09:04:23: Unable to Find IE by URL
+06/09/14 09:04:23: 0433390047 copied from the clipboard in 570ticks
+06/09/14 09:04:23: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:05:06: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 09:05:06: Finding IE by URL
+06/09/14 09:05:06: Creating Tab Activator
+06/09/14 09:05:06: Activating Tab
+06/09/14 09:05:06: Searching for matches
+06/09/14 09:05:06: Finding IE by Title
+06/09/14 09:05:06: Actioning matches
+06/09/14 09:05:06: CallTracker.Model.CallStats > Gridlink
+06/09/14 09:05:06: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 09:06:10: Switching to: http://www.yahoo.com
+06/09/14 09:06:10: CallTracker.Model.CallStats > Gridlink
+06/09/14 09:06:10: Switched to: http://www.yahoo.com
+06/09/14 09:06:35: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 09:06:35: Trying to set MAD Active element
+06/09/14 09:06:35: MAD Smart Paste: Starting SetActiveElement
+06/09/14 09:06:36: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 09:06:36: MAD Smart Paste: MDIChild Found: Search
+
+06/09/14 09:06:36: MAD Smart Paste: Edit Bounds: 98,109
+
+06/09/14 09:06:36: MAD Smart Paste: Edit Found
+
+06/09/14 09:06:36: MAD Smart Paste: Edit Bounds: 109,162
+
+06/09/14 09:06:36: MAD Smart Paste: Edit Offset: 11,53
+
+06/09/14 09:06:36: MAD Smart Paste: Edit Name Found: NameSplit.First
+
+06/09/14 09:06:36: MAD Smart Paste: Trying to set MAD value
+06/09/14 09:07:14: Status Changed: Wrapup
+06/09/14 09:07:14: 85  > Wrapup at 06/09/14 09:07:14
+06/09/14 09:07:15: Starting Smart Copy
+06/09/14 09:07:15: 31-458627-2 copied from the clipboard in 421ticks
+06/09/14 09:07:15: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:07:22: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 09:07:22: Finding IE by Title
+06/09/14 09:07:22: CallTracker.Model.CallStats > SmartPaste
+06/09/14 09:07:22: Match Found
+06/09/14 09:09:37: Monitoring Not Enabled
+06/09/14 09:11:01: ------------------------------------------------------
+06/09/14 09:11:01: Loading Interface
+06/09/14 09:11:01: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:11:01: Loading Views
+06/09/14 09:11:01: Added Controls
+06/09/14 09:11:02: 101  > CallEnd at 06/09/14 09:11:02
+06/09/14 09:11:02: 2 0295990525 > CallEnd at 06/09/14 09:11:02
+06/09/14 09:11:02: Bring to front
+06/09/14 09:11:02: Finished Loading
+06/09/14 09:11:12: Trying to find IPCC
+06/09/14 09:11:14: Monitoring IPCC
+06/09/14 09:11:16: IPCC Dial Error: CTI Dial Pad Not Found
+06/09/14 09:11:24: Monitoring IPCC
+06/09/14 09:11:25: IPCC Dial Error: CTI Dial Pad Not Found
+06/09/14 09:11:40: Monitoring IPCC
+06/09/14 09:11:42: IPCC Dial Error: CTI Dial Pad Not Found
+06/09/14 09:11:50: Switching to: http://www.yahoo.com
+06/09/14 09:11:50: CallTracker.Model.CallStats > Gridlink
+06/09/14 09:11:50: Switched to: http://www.yahoo.com
+06/09/14 09:11:52: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 09:11:52: Trying to set MAD Active element
+06/09/14 09:11:52: MAD Smart Paste: Starting SetActiveElement
+06/09/14 09:11:52: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 09:11:52: MAD Smart Paste: MDIChild Found: Search
+06/09/14 09:11:52: MAD Smart Paste: Edit Bounds: 192,135
+06/09/14 09:11:52: MAD Smart Paste: Edit Found with Bound: 203,347
+06/09/14 09:11:52: MAD Smart Paste: Edit Offset: 11,212
+06/09/14 09:11:52: MAD Smart Paste: Edit Name Found: DN
+06/09/14 09:11:52: MAD Smart Paste: Trying to set MAD value
+
+06/09/14 09:11:57: Starting Smart Copy
+06/09/14 09:12:03: Starting Smart Copy
+06/09/14 09:12:03: 0295930062 copied from the clipboard in 612ticks
+06/09/14 09:12:03: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:12:06: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 09:12:06: Trying to set MAD Active element
+06/09/14 09:12:06: MAD Smart Paste: Starting SetActiveElement
+06/09/14 09:12:07: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 09:12:07: MAD Smart Paste: MDIChild Found: Search
+06/09/14 09:12:07: MAD Smart Paste: Edit Bounds: 192,135
+06/09/14 09:12:07: MAD Smart Paste: Edit Found with Bound: 203,347
+06/09/14 09:12:07: MAD Smart Paste: Edit Offset: 11,212
+06/09/14 09:12:07: MAD Smart Paste: Edit Name Found: DN
+06/09/14 09:12:07: MAD Smart Paste: Trying to set MAD value
+
+06/09/14 09:12:08: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 09:12:08: Trying to set MAD Active element
+06/09/14 09:12:08: MAD Smart Paste: Starting SetActiveElement
+06/09/14 09:12:08: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 09:12:08: MAD Smart Paste: MDIChild Found: Search
+06/09/14 09:12:08: MAD Smart Paste: Edit Bounds: 192,135
+06/09/14 09:12:08: MAD Smart Paste: Edit Found with Bound: 535,347
+06/09/14 09:12:08: MAD Smart Paste: Edit Offset: 343,212
+06/09/14 09:12:08: MAD Smart Paste: Edit Name Found: ICON
+06/09/14 09:12:08: MAD Smart Paste: Trying to set MAD value
+
+06/09/14 09:12:10: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 09:12:10: Trying to set MAD Active element
+06/09/14 09:12:10: MAD Smart Paste: Starting SetActiveElement
+06/09/14 09:12:11: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 09:12:11: MAD Smart Paste: MDIChild Found: Search
+06/09/14 09:12:11: MAD Smart Paste: Edit Bounds: 192,135
+06/09/14 09:12:11: MAD Smart Paste: Edit Found with Bound: 203,188
+06/09/14 09:12:11: MAD Smart Paste: Edit Offset: 11,53
+06/09/14 09:12:11: MAD Smart Paste: Edit Name Found: NameSplit.First
+06/09/14 09:12:11: MAD Smart Paste: Trying to set MAD value
+
+06/09/14 09:12:11: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 09:12:11: Trying to set MAD Active element
+06/09/14 09:12:11: MAD Smart Paste: Starting SetActiveElement
+06/09/14 09:12:12: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 09:12:12: MAD Smart Paste: MDIChild Found: Search
+06/09/14 09:12:12: MAD Smart Paste: Edit Bounds: 192,135
+06/09/14 09:12:12: MAD Smart Paste: Edit Found with Bound: 318,188
+06/09/14 09:12:12: MAD Smart Paste: Edit Offset: 126,53
+06/09/14 09:12:12: MAD Smart Paste: Edit Name Found: NameSplit.Last
+06/09/14 09:12:12: MAD Smart Paste: Trying to set MAD value
+
+06/09/14 09:12:14: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 09:12:14: Trying to set MAD Active element
+06/09/14 09:12:14: MAD Smart Paste: Starting SetActiveElement
+06/09/14 09:12:15: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 09:12:15: MAD Smart Paste: MDIChild Found: Search
+06/09/14 09:12:15: MAD Smart Paste: Edit Bounds: 192,135
+06/09/14 09:12:15: MAD Smart Paste: Edit Found with Bound: 203,347
+06/09/14 09:12:15: MAD Smart Paste: Edit Offset: 11,212
+06/09/14 09:12:15: MAD Smart Paste: Edit Name Found: DN
+06/09/14 09:12:15: MAD Smart Paste: Trying to set MAD value
+
+06/09/14 09:21:31: ------------------------------------------------------
+06/09/14 09:21:31: Loading Interface
+06/09/14 09:21:32: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:21:32: Loading Views
+06/09/14 09:21:32: Added Controls
+06/09/14 09:21:33: 117  > CallEnd at 06/09/14 09:21:33
+06/09/14 09:21:33: 2 0295990525 > CallEnd at 06/09/14 09:21:33
+06/09/14 09:21:33: Bring to front
+06/09/14 09:21:33: Finished Loading
+06/09/14 09:21:44: Trying to find IPCC
+06/09/14 09:21:45: Monitoring IPCC
+06/09/14 09:21:46: IPCC Dial: CTI Dial Pad Found
+06/09/14 09:21:46: IPCC Dial: Number ComboBox Found
+06/09/14 09:21:58: Monitoring IPCC
+06/09/14 09:21:58: IPCC Dial: CTI Dial Pad Found
+06/09/14 09:21:59: IPCC Dial: Number ComboBox Found
+06/09/14 09:24:22: ------------------------------------------------------
+06/09/14 09:24:22: Loading Interface
+06/09/14 09:24:22: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:22: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:23: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:24:23: Loading Views
+06/09/14 09:24:23: Added Controls
+06/09/14 09:24:23: 133  > CallEnd at 06/09/14 09:24:23
+06/09/14 09:24:24: 2 0295990525 > CallEnd at 06/09/14 09:24:24
+06/09/14 09:24:24: Bring to front
+06/09/14 09:24:24: Finished Loading
+06/09/14 09:24:28: Monitoring Not Enabled
+06/09/14 09:24:29: Trying to find IPCC
+06/09/14 09:24:31: Monitoring IPCC
+06/09/14 09:24:36: Status Changed: NotReady
+06/09/14 09:24:36: Daily Data: 06/09 > LogIn at 06/09/14 09:24:36
+06/09/14 09:24:36: 85 0295930062 > LogIn at 06/09/14 09:24:36
+06/09/14 09:24:38: Monitoring IPCC
+06/09/14 09:24:38: IPCC Dial: CTI Dial Pad Found
+06/09/14 09:24:39: IPCC Dial: Number ComboBox Found
+06/09/14 09:25:37: Status Changed: 
+06/09/14 09:25:37: Daily Data: 06/09 > LogOut at 06/09/14 09:25:37
+06/09/14 09:25:37: 85 0295930062 > LogOut at 06/09/14 09:25:37
+06/09/14 09:25:47: ------------------------------------------------------
+06/09/14 09:25:47: Loading Interface
+06/09/14 09:25:47: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:25:48: Loading Views
+06/09/14 09:25:48: Added Controls
+06/09/14 09:25:48: 149  > CallEnd at 06/09/14 09:25:48
+06/09/14 09:25:49: 2 0295990525 > CallEnd at 06/09/14 09:25:49
+06/09/14 09:25:49: Bring to front
+06/09/14 09:25:49: Finished Loading
+06/09/14 09:25:54: Trying to find IPCC
+06/09/14 09:25:55: Monitoring IPCC
+06/09/14 09:25:56: IPCC Dial: CTI Dial Pad Found
+06/09/14 09:25:56: IPCC Dial: Number ComboBox Found
+06/09/14 09:26:01: Monitoring IPCC
+06/09/14 09:26:01: IPCC Dial: CTI Dial Pad Found
+06/09/14 09:26:02: IPCC Dial: Number ComboBox Found
+06/09/14 09:26:08: Monitoring IPCC
+06/09/14 09:26:09: IPCC Dial: CTI Dial Pad Found
+06/09/14 09:26:09: IPCC Dial: Number ComboBox Found
+06/09/14 09:26:48: Monitoring Not Enabled
+06/09/14 09:26:49: Monitoring IPCC
+06/09/14 09:26:50: Status Changed: NotReady
+06/09/14 09:26:50: Daily Data: 06/09 > LogIn at 06/09/14 09:26:50
+06/09/14 09:26:50: 85 0295930062 > LogIn at 06/09/14 09:26:50
+06/09/14 09:26:55: Status Changed: Ready
+06/09/14 09:26:55: Daily Data: 06/09 > Ready at 06/09/14 09:26:55
+06/09/14 09:26:55: 85 0295930062 > CallEnd at 06/09/14 09:26:55
+06/09/14 09:28:22: Status Changed: NotReady
+06/09/14 09:28:22: 85 0295930062 > NotReady at 06/09/14 09:28:22
+06/09/14 09:28:25: Status Changed: Ready
+06/09/14 09:28:25: Daily Data: 06/09 > Ready at 06/09/14 09:28:25
+06/09/14 09:28:25: 85 0295930062 > CallEnd at 06/09/14 09:28:25
+06/09/14 09:32:49: Status Changed: Reserved
+06/09/14 09:32:49: Daily Data: 06/09 > Reserved at 06/09/14 09:32:49
+06/09/14 09:32:49: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:32:49: 85 0295930062 > CallEnd at 06/09/14 09:32:49
+06/09/14 09:32:49: 150  > Reserved at 06/09/14 09:32:49
+06/09/14 09:32:50: Status Changed: Talking
+06/09/14 09:32:50: 150  > CallStart at 06/09/14 09:32:50
+06/09/14 09:32:57: Starting Smart Copy
+06/09/14 09:32:57: Finding IE by Title
+06/09/14 09:32:57: Unable to Find IE by Title
+06/09/14 09:32:57: Finding IE by URL
+06/09/14 09:32:57: Unable to Find IE by URL
+06/09/14 09:32:57: 0488016400 copied from the clipboard in 311983ticks
+06/09/14 09:32:57: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:32:58: Starting Smart Copy
+06/09/14 09:32:58: Finding IE by Title
+06/09/14 09:32:58: Unable to Find IE by Title
+06/09/14 09:32:58: Finding IE by URL
+06/09/14 09:32:58: Searching: https://scamps.optusnet.com.au/cm.html?q=0394644402
+06/09/14 09:32:58: CallTracker.Model.CallStats > AutoSearch
+06/09/14 09:32:58: Finding IE by Title
+06/09/14 09:32:58: Searching: https://dimps.optusnet.com.au/search/servno?servno=0394644402
+06/09/14 09:32:58: CallTracker.Model.CallStats > AutoSearch
+06/09/14 09:32:58: 0394644402 copied from the clipboard in 542ticks
+06/09/14 09:32:58: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:32:59: Starting Smart Copy
+06/09/14 09:32:59: 11135001000188 copied from the clipboard in 448ticks
+06/09/14 09:32:59: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:33:05: Starting Smart Copy
+06/09/14 09:33:05: CON ILIOPOULOS copied from the clipboard in 422ticks
+06/09/14 09:33:05: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:33:06: Starting Smart Copy
+06/09/14 09:33:06: 32-821306-2 copied from the clipboard in 466ticks
+06/09/14 09:33:06: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:33:15: Starting Smart Copy
+06/09/14 09:33:15: conandkarol copied from the clipboard in 417ticks
+06/09/14 09:33:15: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:33:35: Searching for SmartPaste Matches for Window: OptusNet StaffWeb - Password & Child Management - Windows Internet Explorer
+06/09/14 09:33:35: Finding IE by Title
+06/09/14 09:33:35: CallTracker.Model.CallStats > SmartPaste
+06/09/14 09:33:35: Match Found
+06/09/14 09:38:49: Switching to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 09:38:49: Finding IE by URL
+06/09/14 09:38:49: Unable to Find IE by URL
+06/09/14 09:38:49: Finding IE by Title
+06/09/14 09:38:49: Creating Tab Activator
+06/09/14 09:38:49: Activating Tab
+06/09/14 09:38:49: Searching for matches
+06/09/14 09:38:49: Finding IE by Title
+06/09/14 09:38:49: Actioning matches
+06/09/14 09:38:49: CallTracker.Model.CallStats > Gridlink
+06/09/14 09:38:49: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+06/09/14 09:38:54: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 09:38:54: Finding IE by URL
+06/09/14 09:38:54: Creating Tab Activator
+06/09/14 09:38:54: Activating Tab
+06/09/14 09:38:54: Searching for matches
+06/09/14 09:38:54: Finding IE by Title
+06/09/14 09:38:54: Actioning matches
+06/09/14 09:38:54: CallTracker.Model.CallStats > Gridlink
+06/09/14 09:38:54: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 09:38:58: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 09:38:58: Finding IE by Title
+06/09/14 09:38:58: CallTracker.Model.CallStats > SmartPaste
+06/09/14 09:38:58: Match Found
+06/09/14 09:39:42: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Activity - New activity and notes - Windows Internet Explorer
+06/09/14 09:39:42: Finding IE by Title
+06/09/14 09:39:42: CallTracker.Model.CallStats > SmartPaste
+06/09/14 09:39:42: Match Found
+06/09/14 09:42:06: Status Changed: Wrapup
+06/09/14 09:42:06: 150 0394644402 > Wrapup at 06/09/14 09:42:06
+06/09/14 09:42:47: Pasting: Mobile
+06/09/14 09:42:47: CallTracker.Model.CallStats > DataPaste
+06/09/14 09:42:47: Pasting: Mobile
+06/09/14 09:42:47: CallTracker.Model.CallStats > DataPaste
+06/09/14 09:42:52: Monitoring Not Enabled
+06/09/14 09:43:06: ------------------------------------------------------
+06/09/14 09:43:06: Loading Interface
+06/09/14 09:43:06: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:43:06: Loading Views
+06/09/14 09:43:06: Added Controls
+06/09/14 09:43:07: 167  > CallEnd at 06/09/14 09:43:07
+06/09/14 09:43:07: 2 0295990525 > CallEnd at 06/09/14 09:43:07
+06/09/14 09:43:07: Bring to front
+06/09/14 09:43:07: Finished Loading
+06/09/14 09:43:11: Monitoring Not Enabled
+06/09/14 09:43:12: Trying to find IPCC
+06/09/14 09:43:14: Monitoring IPCC
+06/09/14 09:43:15: Status Changed: Wrapup
+06/09/14 09:43:15: Daily Data: 06/09 > LogIn at 06/09/14 09:43:15
+06/09/14 09:43:15: 150 0394644402 > Wrapup at 06/09/14 09:43:15
+06/09/14 09:43:17: Monitoring IPCC
+06/09/14 09:43:18: ByAutomationId: 1021035
+06/09/14 09:43:18: ByControlType AndAutomationId: 1191498
+06/09/14 09:43:19: ByControlType AndByText: 954553
+06/09/14 09:43:19: IPCC Dial: CTI Dial Pad Found
+06/09/14 09:43:19: IPCC Dial: Number ComboBox Found
+06/09/14 09:43:45: Monitoring IPCC
+06/09/14 09:43:46: ByAutomationId: 947643
+06/09/14 09:43:46: ByControlType AndAutomationId: 922195
+06/09/14 09:43:46: ByControlType AndByText: 1026992
+06/09/14 09:43:46: IPCC Dial: CTI Dial Pad Found
+06/09/14 09:43:46: IPCC Dial: Number ComboBox Found
+06/09/14 09:44:19: Monitoring IPCC
+06/09/14 09:44:19: ByAutomationId: 1008143
+06/09/14 09:44:19: ByControlType AndAutomationId: 952622
+06/09/14 09:44:20: ByControlType AndByText: 942880
+06/09/14 09:44:20: IPCC Dial: CTI Dial Pad Found
+06/09/14 09:44:20: IPCC Dial: Number ComboBox Found
+06/09/14 09:44:28: Status Changed: Ready
+06/09/14 09:44:28: Daily Data: 06/09 > Ready at 06/09/14 09:44:28
+06/09/14 09:44:28: 150 0394644402 > CallEnd at 06/09/14 09:44:28
+06/09/14 09:47:50: Status Changed: Reserved
+06/09/14 09:47:50: Daily Data: 06/09 > Reserved at 06/09/14 09:47:50
+06/09/14 09:47:50: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:47:50: 150 0394644402 > CallEnd at 06/09/14 09:47:50
+06/09/14 09:47:50: 168  > Reserved at 06/09/14 09:47:50
+06/09/14 09:47:50: Status Changed: Talking
+06/09/14 09:47:50: 168  > CallStart at 06/09/14 09:47:50
+06/09/14 09:48:44: Starting Smart Copy
+06/09/14 09:48:44: fgscuderi copied from the clipboard in 1081ticks
+06/09/14 09:48:44: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:48:52: Starting Smart Copy
+06/09/14 09:48:52: GIUSEPPINA SCUDERI copied from the clipboard in 385ticks
+06/09/14 09:48:52: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:48:53: Starting Smart Copy
+06/09/14 09:48:53: 31-734955-1 copied from the clipboard in 630ticks
+06/09/14 09:48:53: CallTracker.Model.CallStats > SmartCopy
+06/09/14 09:50:14: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 09:50:14: Finding IE by Title
+06/09/14 09:50:14: CallTracker.Model.CallStats > SmartPaste
+06/09/14 09:50:14: Match Found
+06/09/14 09:51:22: Status Changed: Wrapup
+06/09/14 09:51:22: 168  > Wrapup at 06/09/14 09:51:22
+06/09/14 09:55:37: Status Changed: Ready
+06/09/14 09:55:37: Daily Data: 06/09 > Ready at 06/09/14 09:55:37
+06/09/14 09:55:37: 168  > CallEnd at 06/09/14 09:55:37
+06/09/14 09:56:47: Monitoring Not Enabled
+06/09/14 09:56:55: ------------------------------------------------------
+06/09/14 09:56:55: Loading Interface
+06/09/14 09:56:55: CallTracker.Model.DailyStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: CallTracker.Model.CallStats > RecordCreated
+06/09/14 09:56:55: Loading Views
+06/09/14 09:56:56: Added Controls
+06/09/14 09:56:56: 186  > CallEnd at 06/09/14 09:56:56
+06/09/14 09:56:56: 2 0295990525 > CallEnd at 06/09/14 09:56:56
+06/09/14 09:56:56: Bring to front
+06/09/14 09:56:56: Finished Loading
+06/09/14 09:56:58: Monitoring Not Enabled
+06/09/14 09:56:59: Trying to find IPCC
+06/09/14 09:57:01: Monitoring IPCC
+06/09/14 09:57:02: Status Changed: Ready
+06/09/14 09:57:02: Daily Data: 06/09 > LogIn at 06/09/14 09:57:02
+06/09/14 09:57:02: Daily Data: 06/09 > Ready at 06/09/14 09:57:02
+06/09/14 09:57:02: 168  > Ready at 06/09/14 09:57:02
+06/09/14 09:57:05: 168  > CallEnd at 06/09/14 09:57:05
+06/09/14 09:57:07: Status Changed: NotReady
+06/09/14 09:57:07: 150 0394644402 > LogIn at 06/09/14 09:57:07
+06/09/14 09:57:08: Monitoring IPCC
+06/09/14 09:57:09: IPCC Dial: CTI Dial Pad Found
+06/09/14 09:57:09: IPCC Dial: Number ComboBox Found
+06/09/14 09:57:13: Monitoring IPCC
+06/09/14 09:57:19: Monitoring IPCC
+06/09/14 09:57:25: Monitoring IPCC
+06/09/14 09:57:36: Status Changed: 
+06/09/14 09:57:36: Daily Data: 06/09 > LogOut at 06/09/14 09:57:36
+06/09/14 09:57:36: 150 0394644402 > LogOut at 06/09/14 09:57:36
+06/09/14 09:57:40: Monitoring Not Enabled
+06/09/14 09:58:03: Monitoring Not Enabled
+06/09/14 09:58:12: Trying to find IPCC
+06/09/14 09:58:13: Monitoring IPCC
+06/09/14 09:58:15: Status Changed: NotReady
+06/09/14 09:58:15: Daily Data: 06/09 > LogIn at 06/09/14 09:58:15
+06/09/14 09:58:15: 150 0394644402 > NotReady at 06/09/14 09:58:15
+06/09/14 09:58:17: Monitoring IPCC
+06/09/14 09:58:18: IPCC Dial: CTI Dial Pad Found
+06/09/14 09:58:18: IPCC Dial: Number ComboBox Found
+06/09/14 09:58:21: Monitoring IPCC
+06/09/14 09:58:23: Status Changed: Ready
+06/09/14 09:58:23: Daily Data: 06/09 > Ready at 06/09/14 09:58:23
+06/09/14 09:58:23: 150 0394644402 > CallEnd at 06/09/14 09:58:23
+06/09/14 10:01:01: Status Changed: NotReady
+06/09/14 10:01:01: 150 0394644402 > NotReady at 06/09/14 10:01:01
+06/09/14 10:01:02: Status Changed: Ready
+06/09/14 10:01:02: Daily Data: 06/09 > Ready at 06/09/14 10:01:02
+06/09/14 10:01:02: 150 0394644402 > CallEnd at 06/09/14 10:01:02
+06/09/14 10:04:18: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 10:04:18: Finding IE by URL
+06/09/14 10:04:18: Creating Tab Activator
+06/09/14 10:04:18: Activating Tab
+06/09/14 10:04:18: Searching for matches
+06/09/14 10:04:18: Finding IE by Title
+06/09/14 10:04:18: Actioning matches
+06/09/14 10:04:18: CallTracker.Model.CallStats > Gridlink
+06/09/14 10:04:18: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 10:05:41: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:05:41: Finding IE by Title
+06/09/14 10:05:54: Searching for matching binds
+06/09/14 10:05:54: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 10:05:54: Finding IE by Title
+06/09/14 10:05:58: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:05:58: Finding IE by Title
+06/09/14 10:05:58: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:05:58: Match Found
+06/09/14 10:06:03: 150 0394644402 > CallEnd at 06/09/14 10:06:03
+06/09/14 10:06:04: 85 0295930062 > CallEnd at 06/09/14 10:06:04
+06/09/14 10:06:06: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:06:06: Finding IE by Title
+06/09/14 10:06:06: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:06:06: Match Found
+06/09/14 10:06:11: 84 0242931052 > CallEnd at 06/09/14 10:06:11
+06/09/14 10:06:11: 85 0295930062 > CallEnd at 06/09/14 10:06:11
+06/09/14 10:06:13: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:06:13: Finding IE by Title
+06/09/14 10:06:13: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:06:13: Match Found
+06/09/14 10:06:16: 150 0394644402 > CallEnd at 06/09/14 10:06:16
+06/09/14 10:06:16: 85 0295930062 > CallEnd at 06/09/14 10:06:16
+06/09/14 10:06:18: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:06:18: Finding IE by Title
+06/09/14 10:06:18: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:06:18: Match Found
+06/09/14 10:06:23: 84 0242931052 > CallEnd at 06/09/14 10:06:23
+06/09/14 10:06:23: 85 0295930062 > CallEnd at 06/09/14 10:06:23
+06/09/14 10:06:25: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:06:25: Finding IE by Title
+06/09/14 10:06:25: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:06:25: Match Found
+06/09/14 10:06:31: 150 0394644402 > CallEnd at 06/09/14 10:06:31
+06/09/14 10:06:31: 85 0295930062 > CallEnd at 06/09/14 10:06:31
+06/09/14 10:06:34: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:06:34: Finding IE by Title
+06/09/14 10:06:34: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:06:34: Match Found
+06/09/14 10:06:41: 84 0242931052 > CallEnd at 06/09/14 10:06:41
+06/09/14 10:06:42: 85 0295930062 > CallEnd at 06/09/14 10:06:42
+06/09/14 10:06:45: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:06:45: Finding IE by Title
+06/09/14 10:06:45: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:06:45: Match Found
+06/09/14 10:06:59: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:06:59: Finding IE by Title
+06/09/14 10:06:59: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:06:59: Match Found
+06/09/14 10:07:10: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:07:10: Finding IE by Title
+06/09/14 10:07:10: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:07:10: Match Found
+06/09/14 10:07:14: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:07:14: Finding IE by Title
+06/09/14 10:07:14: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:07:14: Match Found
+06/09/14 10:07:15: Searching for matching binds
+06/09/14 10:07:15: CallTracker.Model.CallStats > BindSmartPaste
+06/09/14 10:07:15: Finding IE by Title
+06/09/14 10:07:39: Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+06/09/14 10:07:39: Finding IE by Title
+06/09/14 10:07:39: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:07:39: Match Found
+06/09/14 10:33:40: Status Changed: Reserved
+06/09/14 10:33:40: Daily Data: 06/09 > Reserved at 06/09/14 10:33:40
+06/09/14 10:33:40: CallTracker.Model.CallStats > RecordCreated
+06/09/14 10:33:40: 150 0394644402 > CallEnd at 06/09/14 10:33:40
+06/09/14 10:33:40: 187  > Reserved at 06/09/14 10:33:40
+06/09/14 10:33:41: Status Changed: Talking
+06/09/14 10:33:41: 187  > CallStart at 06/09/14 10:33:41
+06/09/14 10:33:46: Starting Smart Copy
+06/09/14 10:33:47: Starting Smart Copy
+06/09/14 10:33:47: 10205247000148 copied from the clipboard in 792ticks
+06/09/14 10:33:47: CallTracker.Model.CallStats > SmartCopy
+06/09/14 10:33:49: Starting Smart Copy
+06/09/14 10:33:49: Finding IE by Title
+06/09/14 10:33:49: Unable to Find IE by Title
+06/09/14 10:33:49: Finding IE by URL
+06/09/14 10:33:49: Unable to Find IE by URL
+06/09/14 10:33:49: Finding IE by Title
+06/09/14 10:33:49: Unable to Find IE by Title
+06/09/14 10:33:49: Finding IE by URL
+06/09/14 10:33:49: Searching: https://scamps.optusnet.com.au/cm.html?q=0393520377
+06/09/14 10:33:49: CallTracker.Model.CallStats > AutoSearch
+06/09/14 10:33:49: Finding IE by Title
+06/09/14 10:33:50: Searching: https://dimps.optusnet.com.au/search/servno?servno=0393520377
+06/09/14 10:33:50: CallTracker.Model.CallStats > AutoSearch
+06/09/14 10:33:50: 0393520377 copied from the clipboard in 342ticks
+06/09/14 10:33:50: CallTracker.Model.CallStats > SmartCopy
+06/09/14 10:33:51: Switching to: http://www.yahoo.com
+06/09/14 10:33:51: CallTracker.Model.CallStats > Gridlink
+06/09/14 10:33:51: Switched to: http://www.yahoo.com
+06/09/14 10:34:02: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 10:34:02: Trying to set MAD Active element
+06/09/14 10:34:02: MAD Smart Paste: Starting SetActiveElement
+06/09/14 10:34:03: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 10:34:03: MAD Smart Paste: MDIChild Found: Search
+06/09/14 10:34:03: MAD Smart Paste: Edit Bounds: 854,322
+06/09/14 10:34:03: MAD Smart Paste: Edit Found with Bound: 865,534
+06/09/14 10:34:03: MAD Smart Paste: Edit Offset: 11,212
+06/09/14 10:34:03: MAD Smart Paste: Edit Name Found: DN
+06/09/14 10:34:03: MAD Smart Paste: Trying to set MAD value
+
+06/09/14 10:34:06: Searching for SmartPaste Matches for Window: Oracle Forms Runtime
+06/09/14 10:34:06: Trying to set MAD Active element
+06/09/14 10:34:06: MAD Smart Paste: Starting SetActiveElement
+06/09/14 10:34:06: MAD Smart Paste: Window Found: Oracle
+
+06/09/14 10:34:06: MAD Smart Paste: MDIChild Found: Search
+06/09/14 10:34:06: MAD Smart Paste: Edit Bounds: 854,322
+06/09/14 10:34:06: MAD Smart Paste: Edit Found with Bound: 1197,534
+06/09/14 10:34:06: MAD Smart Paste: Edit Offset: 343,212
+06/09/14 10:34:06: MAD Smart Paste: Edit Name Found: ICON
+06/09/14 10:34:06: MAD Smart Paste: Trying to set MAD value
+
+06/09/14 10:34:11: Starting Smart Copy
+06/09/14 10:34:11: TU TRUONG copied from the clipboard in 1027ticks
+06/09/14 10:34:11: CallTracker.Model.CallStats > SmartCopy
+06/09/14 10:34:12: Starting Smart Copy
+06/09/14 10:34:12: 32-767044-1 copied from the clipboard in 1742ticks
+06/09/14 10:34:12: CallTracker.Model.CallStats > SmartCopy
+06/09/14 10:34:20: Starting Smart Copy
+06/09/14 10:34:20: tuthit1942 copied from the clipboard in 1696ticks
+06/09/14 10:34:20: CallTracker.Model.CallStats > SmartCopy
+06/09/14 10:34:21: Switching to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 10:34:21: Finding IE by URL
+06/09/14 10:34:21: Creating Tab Activator
+06/09/14 10:34:21: Activating Tab
+06/09/14 10:34:21: Searching for matches
+06/09/14 10:34:21: Finding IE by Title
+06/09/14 10:34:21: Actioning matches
+06/09/14 10:34:21: CallTracker.Model.CallStats > Gridlink
+06/09/14 10:34:21: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+06/09/14 10:34:25: Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+06/09/14 10:34:25: Finding IE by Title
+06/09/14 10:34:26: CallTracker.Model.CallStats > SmartPaste
+06/09/14 10:34:26: Match Found
+06/09/14 10:35:06: Status Changed: Wrapup
+06/09/14 10:35:06: 187 0393520377 > Wrapup at 06/09/14 10:35:06
+06/09/14 10:35:42: Status Changed: Ready
+06/09/14 10:35:42: Daily Data: 06/09 > Ready at 06/09/14 10:35:42
+06/09/14 10:35:42: 187 0393520377 > CallEnd at 06/09/14 10:35:42
+06/09/14 10:58:06: Status Changed: NotReady

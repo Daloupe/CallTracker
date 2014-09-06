@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CallTracker.Source.Helpers.Type;
@@ -21,6 +22,10 @@ namespace CallTracker.View
         public DidYouKnow()
         {
             InitializeComponent();
+
+            var fontCount = Program.Fonts.Families.Length;
+            if (fontCount > 0)
+                heading.Font = new Font(Program.Fonts.Families[0], 40, FontStyle.Bold);
 
             _rtf = new RtfDocument();
             _rtf.FontTable.Add(new RtfFont("Verdana"));

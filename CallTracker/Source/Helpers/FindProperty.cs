@@ -115,46 +115,50 @@ namespace CallTracker.Helpers
         public class PathRegex
         {
             public string[] Path;
-            private string ReplacePattern;
-            private Regex Pattern;
+            private readonly string _replacePattern;
+            private Regex _pattern;
 
             public PathRegex(string path)
             {
-                string[] split = path.Split('|');
+                var split = path.Split('|');
                 Path = split[0].Trim().Split('.');
                 if (split.Length > 1)
-                    ReplacePattern = split[1].TrimStart(' ');
+                    _replacePattern = split[1].TrimStart(' ');
             }
 
             public bool HasRegex()
             {
-                return !String.IsNullOrEmpty(ReplacePattern);
+                return !String.IsNullOrEmpty(_replacePattern);
             }
 
             public string RegexReplace(string input)
             {
                 if (RegexLookup.ContainsKey(Path.Last()))
-                    Pattern = RegexLookup[Path.Last()];
+                    _pattern = RegexLookup[Path.Last()];
                 else
                     return "Error: No Regex found for data.";
-                return Pattern.Replace(input, ReplacePattern);
+                return _pattern.Replace(input, _replacePattern);
             }
         }
 
-        static Dictionary<string, Regex> RegexLookup = new Dictionary<string, Regex>{
+        private static readonly CommonNBNPattern CommonNBNPattern = new CommonNBNPattern();
+        static readonly Dictionary<string, Regex> RegexLookup = new Dictionary<string, Regex>{
             {"CMBS", new CMBSPattern()},
             {"Name", new NamePattern()},
             {"DN", new DNPattern()},
-            {"Mobile", new MobilePattern()}
+            {"Mobile", new MobilePattern()},
+            {"ICON", new ICONPattern()},
+            {"AVC", CommonNBNPattern},
+            {"CVC", CommonNBNPattern},
+            {"CSA", CommonNBNPattern},
+            {"NNI", CommonNBNPattern}
         };
 
         public static List<string> GetLists(string[] lists, Type datasource)
         {
-            FieldInfo myfield;
-            List<string> aggregateList = new List<string>();
-            foreach (var list in lists)
+            var aggregateList = new List<string>();
+            foreach (var myfield in lists.Select(list => datasource.GetField(list, BindingFlags.Static | BindingFlags.Public)))
             {
-                myfield = datasource.GetField(list, BindingFlags.Static | BindingFlags.Public);
                 aggregateList.AddRange(((List<string>)myfield.GetValue(null)));
             }
             return aggregateList;
