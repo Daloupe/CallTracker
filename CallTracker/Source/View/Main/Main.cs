@@ -100,10 +100,10 @@ namespace CallTracker.View
 
             //versionStripMenuItem.Text = "Version " + Properties.Settings.Default.Version;
 
-            CoreAppXmlConfiguration.Instance.BusyTimeout = 2000;
-            CoreAppXmlConfiguration.Instance.FindWindowTimeout = 2000;
-            CoreAppXmlConfiguration.Instance.PopupTimeout= 2000;
-            CoreAppXmlConfiguration.Instance.TooltipWaitTime = 2000;
+            CoreAppXmlConfiguration.Instance.BusyTimeout = 5000;
+            CoreAppXmlConfiguration.Instance.FindWindowTimeout = 5000;
+            CoreAppXmlConfiguration.Instance.PopupTimeout= 5000;
+            CoreAppXmlConfiguration.Instance.TooltipWaitTime = 5000;
         }
 
         private void SetAppLocation()
@@ -493,10 +493,11 @@ namespace CallTracker.View
 
             _ipccProcess.Exited += IPCCProcess_Exited;
             _ipccApplication = TestStack.White.Application.Attach(_ipccProcess);
-            _ipccWindow = _ipccApplication.GetWindow(SearchCriteria.ByAutomationId("SoftphoneForm"), InitializeOption.WithCache);
-            _ipccCallStatus = _ipccWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("StatusBar.Pane3"));
+            //Must be NoCache.
+            _ipccWindow = _ipccApplication.GetWindow(SearchCriteria.ByAutomationId("SoftphoneForm"), InitializeOption.NoCache);
             _ipccDialButton = _ipccWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId("btnDial"));
             _ipccTransferButton = _ipccWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId("btnTransfer"));
+            _ipccCallStatus = _ipccWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("StatusBar.Pane3"));
 
             InitIPCCCallDataGrid();
 
@@ -601,7 +602,7 @@ namespace CallTracker.View
 
         private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            if (e.ClickedItem == monitorIPCCToolStripMenuItem) return;
+            if (e.ClickedItem == monitorIPCCToolStripMenuItem || e.ClickedItem == pullIPCCCallDataToolStripMenuItem) return;
 
             ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
             if (!monitorIPCCToolStripMenuItem.Checked && !_IPCCTimer.Enabled)
@@ -751,6 +752,8 @@ namespace CallTracker.View
 
         private void GetIPCCCallData()
         {
+            //if (_ipccCallDataTable == null || _gridData == null)
+            //    InitIPCCCallDataGrid();
             //var table = _ipccCallDataTable.AutomationElement;
             //var headerLine = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Header));
             var cacheRequest = new CacheRequest { AutomationElementMode = AutomationElementMode.Full, TreeScope = TreeScope.Children };
@@ -770,7 +773,7 @@ namespace CallTracker.View
             var rowIndex = 1;
             foreach (AutomationElement row in gridLines)
             {
-                for(var col = row.CachedChildren.Count - 1; col >=0; --col)// in row.CachedChildren)
+                for (var col = row.CachedChildren.Count - 1; col >= 0; --col)// in row.CachedChildren)
                 {
                     int headerIndex;
                     for (headerIndex = 0; headerIndex < headerLineCount; headerIndex++)
@@ -779,7 +782,7 @@ namespace CallTracker.View
 
                     var value = ((ValuePattern)row.CachedChildren[col].GetCachedPattern(ValuePattern.Pattern)).Current.Value;
                     _gridData[headerIndex, rowIndex] = value;
-                    
+
                     if (SelectedContact == null) continue;
                     switch (_gridData[headerIndex, 0])
                     {
@@ -792,8 +795,8 @@ namespace CallTracker.View
                                 SelectedContact.FindMobileMatch(value);
                             break;
                         case "Acc No":
-                            if(!SelectedContact.FindICONMatch(value))
-                                SelectedContact.FindCMBSMatch(value); 
+                            if (!SelectedContact.FindICONMatch(value))
+                                SelectedContact.FindCMBSMatch(value);
                             break;
                         case "IVR Status":
                             if (value.Contains("OK"))

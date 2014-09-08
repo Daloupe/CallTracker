@@ -380,7 +380,6 @@
             // 
             this.monitorIPCCToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.MonitorIPCC;
             this.monitorIPCCToolStripMenuItem.CheckOnClick = true;
-            this.monitorIPCCToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.monitorIPCCToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.monitorIPCCToolStripMenuItem.Name = "monitorIPCCToolStripMenuItem";
             this.monitorIPCCToolStripMenuItem.Size = new System.Drawing.Size(177, 22);

@@ -25,7 +25,7 @@ namespace CallTracker.View
 
             var fontCount = Program.Fonts.Families.Length;
             if (fontCount > 0)
-                heading.Font = new Font(Program.Fonts.Families[0], 40, FontStyle.Bold);
+                heading.Font = new Font(Program.Fonts.Families[0], 18, FontStyle.Bold);
 
             _rtf = new RtfDocument();
             _rtf.FontTable.Add(new RtfFont("Verdana"));
@@ -126,6 +126,15 @@ namespace CallTracker.View
                 _currentExample = index;
             }
             WindowHelper.ResumeDrawing(panel1);     
+        }
+
+        private void _CloseExample_Click(object sender, EventArgs e)
+        {
+            WindowHelper.SuspendDrawing(panel1);
+            examplePanel.Hide();
+            tipsPanel.Height = 161;
+            _currentExample = -1;
+            WindowHelper.ResumeDrawing(panel1);   
         }
 
         private void prevTip_Click(object sender, EventArgs e)

@@ -463,6 +463,16 @@ namespace CallTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap TipExampleClose {
+            get {
+                object obj = ResourceManager.GetObject("TipExampleClose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap v {
             get {
                 object obj = ResourceManager.GetObject("v", resourceCulture);

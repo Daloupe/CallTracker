@@ -35,6 +35,7 @@ namespace CallTracker.View
             this.exampleTextPanel = new System.Windows.Forms.Panel();
             this.exampleRichTextBox = new System.Windows.Forms.RichTextBox();
             this.exampleHeadingPanel = new System.Windows.Forms.Panel();
+            this._CloseExample = new System.Windows.Forms.PictureBox();
             this.exampleHeading = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.tipsPanel = new System.Windows.Forms.Panel();
@@ -53,6 +54,7 @@ namespace CallTracker.View
             this.examplePanel.SuspendLayout();
             this.exampleTextPanel.SuspendLayout();
             this.exampleHeadingPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._CloseExample)).BeginInit();
             this.tipsPanel.SuspendLayout();
             this.tipsTextPanel.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -91,11 +93,11 @@ namespace CallTracker.View
             this.exampleTextPanel.Controls.Add(this.exampleRichTextBox);
             this.exampleTextPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.exampleTextPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.exampleTextPanel.Location = new System.Drawing.Point(0, 15);
+            this.exampleTextPanel.Location = new System.Drawing.Point(0, 14);
             this.exampleTextPanel.Margin = new System.Windows.Forms.Padding(0);
             this.exampleTextPanel.Name = "exampleTextPanel";
             this.exampleTextPanel.Padding = new System.Windows.Forms.Padding(0, 0, 0, 2);
-            this.exampleTextPanel.Size = new System.Drawing.Size(408, 32);
+            this.exampleTextPanel.Size = new System.Drawing.Size(408, 33);
             this.exampleTextPanel.TabIndex = 5;
             // 
             // exampleRichTextBox
@@ -111,33 +113,49 @@ namespace CallTracker.View
             this.exampleRichTextBox.Name = "exampleRichTextBox";
             this.exampleRichTextBox.ReadOnly = true;
             this.exampleRichTextBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.exampleRichTextBox.Size = new System.Drawing.Size(408, 30);
+            this.exampleRichTextBox.Size = new System.Drawing.Size(408, 31);
             this.exampleRichTextBox.TabIndex = 4;
             this.exampleRichTextBox.Text = "";
             // 
             // exampleHeadingPanel
             // 
             this.exampleHeadingPanel.BackColor = System.Drawing.Color.Transparent;
+            this.exampleHeadingPanel.Controls.Add(this._CloseExample);
             this.exampleHeadingPanel.Controls.Add(this.exampleHeading);
             this.exampleHeadingPanel.Controls.Add(this.label3);
             this.exampleHeadingPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.exampleHeadingPanel.Location = new System.Drawing.Point(0, 0);
             this.exampleHeadingPanel.Margin = new System.Windows.Forms.Padding(0);
             this.exampleHeadingPanel.Name = "exampleHeadingPanel";
-            this.exampleHeadingPanel.Size = new System.Drawing.Size(408, 15);
+            this.exampleHeadingPanel.Size = new System.Drawing.Size(408, 14);
             this.exampleHeadingPanel.TabIndex = 5;
+            // 
+            // _CloseExample
+            // 
+            this._CloseExample.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(119)))));
+            this._CloseExample.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._CloseExample.Dock = System.Windows.Forms.DockStyle.Right;
+            this._CloseExample.Image = global::CallTracker.Properties.Resources.TipExampleClose;
+            this._CloseExample.Location = new System.Drawing.Point(394, 0);
+            this._CloseExample.Margin = new System.Windows.Forms.Padding(0);
+            this._CloseExample.Name = "_CloseExample";
+            this._CloseExample.Size = new System.Drawing.Size(14, 14);
+            this._CloseExample.TabIndex = 4;
+            this._CloseExample.TabStop = false;
+            this._CloseExample.Click += new System.EventHandler(this._CloseExample_Click);
             // 
             // exampleHeading
             // 
+            this.exampleHeading.AutoSize = true;
             this.exampleHeading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(93)))), ((int)(((byte)(119)))));
-            this.exampleHeading.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.exampleHeading.Dock = System.Windows.Forms.DockStyle.Left;
             this.exampleHeading.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.exampleHeading.Font = new System.Drawing.Font("Verdana", 7F, System.Drawing.FontStyle.Bold);
             this.exampleHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
             this.exampleHeading.Location = new System.Drawing.Point(0, 0);
             this.exampleHeading.Margin = new System.Windows.Forms.Padding(0);
             this.exampleHeading.Name = "exampleHeading";
-            this.exampleHeading.Size = new System.Drawing.Size(408, 15);
+            this.exampleHeading.Size = new System.Drawing.Size(58, 12);
             this.exampleHeading.TabIndex = 3;
             this.exampleHeading.Text = "Example:";
             // 
@@ -151,7 +169,7 @@ namespace CallTracker.View
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(408, 15);
+            this.label3.Size = new System.Drawing.Size(408, 14);
             this.label3.TabIndex = 2;
             this.label3.Text = "Tips:";
             // 
@@ -293,9 +311,9 @@ namespace CallTracker.View
             this.quitToolStripMenuItem1,
             this.toolStripTextBox1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 0);
+            this.menuStrip1.Margin = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 0);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.menuStrip1.Size = new System.Drawing.Size(414, 16);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
@@ -307,10 +325,12 @@ namespace CallTracker.View
             this.quitToolStripMenuItem1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.quitToolStripMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.quitToolStripMenuItem1.Image = global::CallTracker.Properties.Resources.Close;
+            this.quitToolStripMenuItem1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.quitToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.quitToolStripMenuItem1.Margin = new System.Windows.Forms.Padding(0, -1, 0, 0);
             this.quitToolStripMenuItem1.Name = "quitToolStripMenuItem1";
-            this.quitToolStripMenuItem1.Size = new System.Drawing.Size(22, 15);
+            this.quitToolStripMenuItem1.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+            this.quitToolStripMenuItem1.Size = new System.Drawing.Size(18, 15);
             this.quitToolStripMenuItem1.Click += new System.EventHandler(this.ok_Click);
             // 
             // toolStripTextBox1
@@ -356,6 +376,8 @@ namespace CallTracker.View
             this.examplePanel.ResumeLayout(false);
             this.exampleTextPanel.ResumeLayout(false);
             this.exampleHeadingPanel.ResumeLayout(false);
+            this.exampleHeadingPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._CloseExample)).EndInit();
             this.tipsPanel.ResumeLayout(false);
             this.tipsTextPanel.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -388,5 +410,6 @@ namespace CallTracker.View
         private System.Windows.Forms.Panel exampleTextPanel;
         private System.Windows.Forms.RichTextBox exampleRichTextBox;
         private System.Windows.Forms.Panel tipsPanel;
+        private System.Windows.Forms.PictureBox _CloseExample;
     }
 }

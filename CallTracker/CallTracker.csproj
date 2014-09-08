@@ -122,6 +122,8 @@
     <Compile Include="Source\Model\Contact\DailyModel.cs" />
     <Compile Include="Source\Model\Contact\DateFilterItem.cs" />
     <Compile Include="Source\Model\Contact\EventsModel.cs" />
+    <None Include="Resources\bindingnavigatordeleteitem.image1.png" />
+    <None Include="Resources\TipExampleClose.png" />
     <Content Include="ThingsToCheck.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
