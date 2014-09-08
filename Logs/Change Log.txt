@@ -31,7 +31,7 @@
 - ICON Tier4 linked to Action rather than Outcome.
 - Removing bookmarks and systems not working.
 
-0.8.3.19
+0.8.3.21
 (Minor Feature)
 | Added "Advanced Mode" settings item.
 (Bugs/Changes)
@@ -60,7 +60,8 @@
 | Added AutoSearch Logic for checking if system search failed.
 | AutoLogin wasn't working. Removed "http" bit from FindIEByUrl Regex.
 | Moved Logins to their own file.
-
+| LabelledTextBoxLong now correctly only fires events if set to OnPropertyChange.
+| Fixed spurious RecordCreated events form being created.
 
 0.8.2.20
 (Major Features)

@@ -6,7 +6,7 @@ using ProtoBuf;
 
 namespace CallTracker.Model
 {
-    [ProtoContract]
+    [ProtoContract(SkipConstructor = true)]
     public class EventsModel<T> where T : StatsModel, new()
     {      
         [ProtoMember(1)]
@@ -20,14 +20,32 @@ namespace CallTracker.Model
 
         internal EventModel<CallEventTypes> LastCallEvent { get; set; }
 
+        private bool _deserializing;
+
         public EventsModel()
         {
             CallEvents = new List<EventModel<CallEventTypes>>();
             AppEvents = new List<EventModel<AppEventTypes>>();
             Statistics = new T();
-            AddCallEvent(CallEventTypes.RecordCreated);
-            AddAppEvent(AppEventTypes.RecordCreated);
+            //if (!_deserializing)
+            //{
+                AddCallEvent(CallEventTypes.RecordCreated);
+                AddAppEvent(AppEventTypes.RecordCreated);
+            //}
             IsDirty = true;
+        }
+
+        [ProtoBeforeDeserialization]
+        private void PreDes()
+        {
+            //_deserializing = true;
+        }
+
+        [ProtoAfterDeserialization]
+        private void PostDes()
+        {
+            //_deserializing = false;
+            LastCallEvent = CallEvents.Last();
         }
 
         internal T ComputeStatistics()
@@ -90,6 +108,7 @@ namespace CallTracker.Model
 
         internal void AddCallEvent(CallEventTypes newEvent)
         {
+            //if (_deserializing) return;
             if (LastCallEvent != null)
             {
                 var lastEventTime = DateTime.Now.Subtract(LastCallEvent.Timestamp);
@@ -125,6 +144,7 @@ namespace CallTracker.Model
 
         internal void AddAppEvent(AppEventTypes newEvent)
         {
+            //if (_deserializing) return;
             switch (newEvent)
             {
                 case AppEventTypes.AutoLogin:

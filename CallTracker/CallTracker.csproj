@@ -606,7 +606,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Content Include="Data\UserData.bin" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -9,7 +9,7 @@ using CallTracker.Helpers.Types;
 namespace CallTracker.Model
 {
 
-    [ProtoContract]
+    [ProtoContract(SkipConstructor = true)]
     [ImplementPropertyChanged]
     public class DailyModel
     {

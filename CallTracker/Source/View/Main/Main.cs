@@ -32,7 +32,7 @@ namespace CallTracker.View
         public readonly Point ControlOffset = new Point(0, -1);
 
         //internal UserDataStore UserDataStore = new UserDataStore();
-        internal DailyDataRepository DailyDataDataStore;
+        internal DailyDataRepository DailyDataDataStore = new DailyDataRepository();
         internal static ServicesData ServicesStore = new ServicesData();
         internal LoginDataStore LoginsDataStore = new LoginDataStore();
         internal BindsDataStore BindsDataStore = new BindsDataStore();
@@ -48,6 +48,8 @@ namespace CallTracker.View
                 else if (_selectedContact != null)
                     _selectedContact.FinishUp();
                 _selectedContact = value;
+                if (CurrentContact == null)
+                    _selectedContact.AddCallEvent(CallEventTypes.CallStart);
             }
         }
 
@@ -137,7 +139,7 @@ namespace CallTracker.View
             //UserDataStore = UserDataStore.ReadFile();
 
             _splash.UpdateProgress("Loading Contact Data", 20);
-            DailyDataDataStore = DailyDataRepository.ReadData();
+            DailyDataDataStore.ReadData();// = DailyDataRepository.ReadData();
             
             _splash.UpdateProgress("Loading Logins", 25);
             LoginsDataStore.ReadData();
@@ -253,6 +255,8 @@ namespace CallTracker.View
             DidYouKnow = new DidYouKnow();
             if (Settings.Default.ShowTipsOnStartup)
                 DidYouKnow.Show();
+
+            Console.WriteLine(((DailyModel)_DailyDataBindingSource.Current).Events.CallEvents.Select(x => x.EventType.Is(CallEventTypes.RecordCreated)).Count());
         }
 
         void _DateSelector_PositionChanged(object sender, EventArgs e)
@@ -713,6 +717,7 @@ namespace CallTracker.View
                         {
                             CurrentContact.AddCallEvent(CallEventTypes.CallEnd);
                             CurrentContact = null;
+                            SelectedContact.AddCallEvent((CallEventTypes.CallStart));
                         }
                         SelectedContact.AddCallEvent(CallEventTypes.Wrapup);
                         break;

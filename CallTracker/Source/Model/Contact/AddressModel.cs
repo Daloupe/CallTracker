@@ -49,14 +49,14 @@ namespace CallTracker.Model
             get { return address; }
             set 
             {
-                PropertyType = String.Empty;
-                UnitNumber = String.Empty;
-                PropertyNumber = String.Empty;
-                StreetName = String.Empty;
-                StreetType = String.Empty;
-                Suburb = String.Empty;
-                //State = String.Empty;
-                Postcode = String.Empty;
+                //PropertyType = String.Empty;
+                //UnitNumber = String.Empty;
+                //PropertyNumber = String.Empty;
+                //StreetName = String.Empty;
+                //StreetType = String.Empty;
+                //Suburb = String.Empty;
+                ////State = String.Empty;
+                //Postcode = String.Empty;
 
                 //var split1 = Regex.Split(value, @".(\d{4})$");
 
@@ -98,7 +98,8 @@ namespace CallTracker.Model
                 StreetName = addressMatch.Groups["Street"].Value;
                 StreetType = addressMatch.Groups["StreetType"].Value;
                 Suburb = addressMatch.Groups["Suburb"].Value;
-                State = addressMatch.Groups["State"].Value;
+                if (addressMatch.Groups["State"].Value != String.Empty)
+                    State = addressMatch.Groups["State"].Value;
                 Postcode = addressMatch.Groups["Postcode"].Value;
 
                 Console.WriteLine("PropertyType:{0}", PropertyType);
@@ -109,10 +110,6 @@ namespace CallTracker.Model
                 Console.WriteLine("Suburb:{0}", Suburb);
                 Console.WriteLine("State:{0}", State);
                 Console.WriteLine("Postcode:{0}", Postcode);
-                ////Console.WriteLine("6:{0}", addressMatch.Groups[9].Value);
-                ////Console.WriteLine("6:{0}", addressMatch.Groups[10].Value);
-                ////Console.WriteLine("6:{0}", addressMatch.Groups[11].Value);
-                //address = split2[0];
 
                 address = value;
             } 

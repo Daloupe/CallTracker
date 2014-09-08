@@ -2,8 +2,6 @@
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
-using System.Timers;
-using Equin.ApplicationFramework;
 using PropertyChanged;
 using ProtoBuf;
 
@@ -13,7 +11,7 @@ using CallTracker.Helpers;
 
 namespace CallTracker.Model
 {
-    [ProtoContract]//(SkipConstructor = true)]
+    [ProtoContract(SkipConstructor = true)]
     [ImplementPropertyChanged]
     public class CustomerContact : INotifyPropertyChanged
     {
@@ -44,10 +42,26 @@ namespace CallTracker.Model
             Events = new EventsModel<CallStats>();
 
             //PRTemplateList.AddRange(HFCTemplate);
+            PRTemplateReplacements = new List<PRTemplateModel>();
 
             Contacts.StartDate = DateTime.Today;
             Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();
 
+            ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
+            ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
+        }
+
+        [ProtoBeforeDeserialization]
+        private void PreDes()
+        {
+            NameSplit = new NameModel();
+            PRTemplateReplacements = new List<PRTemplateModel>();
+        }
+
+        [ProtoAfterDeserialization]
+        private void PostDes()
+        {
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
@@ -78,7 +92,8 @@ namespace CallTracker.Model
 
         public void FinishUp()
         {
-            AddCallEvent(CallEventTypes.CallEnd);
+            if (Events.LastCallEvent.EventType.IsNot(CallEventTypes.CallEnd))
+                AddCallEvent(CallEventTypes.CallEnd);
             if (OriginalCall)
                 foreach (var key in Service.WasSearched.Keys.ToList())
                     Service.WasSearched[key] = true;
@@ -142,7 +157,7 @@ namespace CallTracker.Model
         [ProtoMember(40)]
         public bool OriginalCall { get; set; }
         [ProtoMember(41, OverwriteList = true)]
-        private EventsModel<CallStats> Events { get; set; }
+        public EventsModel<CallStats> Events { get; set; }
         [ProtoMember(42)]
         public ContactStatistics Contacts { get; set; }
 
@@ -243,7 +258,8 @@ namespace CallTracker.Model
                 return _prTemplateRtf;
             }
         }
-        protected List<PRTemplateModel> PRTemplateReplacements = new List<PRTemplateModel>();
+
+        protected List<PRTemplateModel> PRTemplateReplacements;// = new List<PRTemplateModel>();
         public void UpdatePrTemplateReplacements(List<PRTemplateModel> replacements)
         {
             PRTemplateReplacements.AddRange(replacements);

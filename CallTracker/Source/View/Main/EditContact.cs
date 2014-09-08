@@ -181,13 +181,17 @@ namespace CallTracker.View
             }
             else
             {
+                
                 _isDisabled = false;
 
                 if (MainForm.SelectedContact != null)
                     MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
                 MainForm.SelectedContact = (CustomerContact)customerContactsBindingSource.Current;//((ObjectView<CustomerContact>)customerContactsBindingSource.Current).Object;
                 if (MainForm.SelectedContact != null)
+                {
                     MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
+                    Console.WriteLine(MainForm.SelectedContact.Events.CallEvents.Count(x => x.EventType == CallEventTypes.RecordCreated));
+                }
 
                 flowLayoutPanel1.Enabled = true;
                 ServiceTypePanel.Enabled = true;

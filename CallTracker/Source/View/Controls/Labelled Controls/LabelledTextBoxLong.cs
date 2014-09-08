@@ -54,7 +54,7 @@ namespace CallTracker.View
             
             foreach (PropertyDescriptor prop in TypeDescriptor.GetProperties(this))
             {
-                DefaultValueAttribute attr = (DefaultValueAttribute)prop.Attributes[typeof(DefaultValueAttribute)];
+                var attr = (DefaultValueAttribute)prop.Attributes[typeof(DefaultValueAttribute)];
                 if (attr != null)
                 {
                     prop.SetValue(this, attr.Value);
@@ -134,7 +134,8 @@ namespace CallTracker.View
 
         private void _DataField_KeyUp(object sender, KeyEventArgs e)
         {
-            ParentForm.Validate();
+            if (DataBindings[0].DataSourceUpdateMode == DataSourceUpdateMode.OnPropertyChanged)
+                ParentForm.Validate();
         }
     }
 

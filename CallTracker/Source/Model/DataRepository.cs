@@ -244,7 +244,7 @@ namespace CallTracker.Model
                 dataStore = Serializer.Deserialize<LoginDataStore>(file);
 
             User = dataStore.User;
-            Logins = new BindingList<LoginsModel>(dataStore.Logins.ToList());
+            Logins = dataStore.Logins;//new BindingList<LoginsModel>(dataStore.Logins.ToList());
 
             DecryptData();
         }
@@ -268,7 +268,7 @@ namespace CallTracker.Model
             }
             else
             {
-                string key = StringCipher.Encrypt(Environment.UserName, "2point71828");
+                var key = StringCipher.Encrypt(Environment.UserName, "2point71828");
                 foreach (var login in Logins)
                     login.Password = StringCipher.Decrypt(login.Password, key);
             }
@@ -346,10 +346,10 @@ namespace CallTracker.Model
         [ProtoBeforeDeserialization]
         private void Initializer()
         {
-            DailyData = new FilterableBindingList<DailyModel>();
+            //DailyData = new FilterableBindingList<DailyModel>();
         }
 
-        public static DailyDataRepository ReadData()
+        public void ReadData()
         {
             DailyDataRepository dataStore;
 
@@ -361,12 +361,18 @@ namespace CallTracker.Model
             using (var file = File.OpenRead(FILENAME))
                 dataStore = Serializer.Deserialize<DailyDataRepository>(file);
 
-            if (dataStore == null)
-            {
-                dataStore = new DailyDataRepository();
-                dataStore.DailyData.AddNew();
-            }
-            return dataStore;
+            //if (dataStore == null)
+            //{
+            //    dataStore = new DailyDataRepository();
+            //    dataStore.DailyData.AddNew();
+            //}
+
+            if (dataStore.DailyData == null)
+                DailyData.AddNew();
+            else
+                DailyData = dataStore.DailyData;
+
+            //return dataStore;
             //DailyData = new FilterableBindingList<DailyModel>(dataStore.DailyData.ToList());
         }
 
