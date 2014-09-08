@@ -21,13 +21,13 @@ namespace CallTracker.View
         public override void Init(Main mainForm, ToolStripMenuItem menuItem)
         {
             base.Init(mainForm, menuItem);
-            
-            systemItemBindingSource.DataSource = MainForm.UserDataStore.GridLinks.SystemItems;
-            gridLinksBindingSource.DataSource = MainForm.UserDataStore.GridLinks.GridLinkList;
+
+            systemItemBindingSource.DataSource = MainForm.BindsDataStore.GridLinks.SystemItems;
+            gridLinksBindingSource.DataSource = MainForm.BindsDataStore.GridLinks.GridLinkList;
 
             for (var x = 0; x <10; x++)
             {
-                bs[x] = new BindingSource {DataSource = MainForm.UserDataStore.GridLinks.SystemItems};
+                bs[x] = new BindingSource { DataSource = MainForm.BindsDataStore.GridLinks.SystemItems };
             }
 
             comboBox0.DataSource = bs[0];
@@ -85,7 +85,7 @@ namespace CallTracker.View
 
         private void _SetDefaults_Click(object sender, EventArgs e)
         {
-            MainForm.UserDataStore.GridLinks.Populate();
+            MainForm.BindsDataStore.GridLinks.Populate();
         }
 
     }

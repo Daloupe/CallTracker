@@ -20,6 +20,8 @@ namespace CallTracker.Model
             IESubmitConstraint = SubmitClickConstraint;
             IESubmit = SubmitClick;
 
+            ElementType = ElementTypes.Textfield;
+
             Username = String.Empty;
             Password = String.Empty;
             SubmitElement = String.Empty;

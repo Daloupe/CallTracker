@@ -31,9 +31,11 @@ namespace CallTracker.View
         public static string SelectedMenuProduct = String.Empty;
         public readonly Point ControlOffset = new Point(0, -1);
 
-        internal UserDataStore UserDataStore = new UserDataStore();
+        //internal UserDataStore UserDataStore = new UserDataStore();
         internal DailyDataRepository DailyDataDataStore;
         internal static ServicesData ServicesStore = new ServicesData();
+        internal LoginDataStore LoginsDataStore = new LoginDataStore();
+        internal BindsDataStore BindsDataStore = new BindsDataStore();
 
         private CustomerContact _selectedContact;
         internal CustomerContact SelectedContact
@@ -129,12 +131,18 @@ namespace CallTracker.View
 
             _splash.UpdateProgress("Loading Data", 10);
             ServicesStore.ReadData();
-            _splash.UpdateProgress("Loading Resources", 15);
-            UserDataStore = UserDataStore.ReadFile();
-            _splash.UpdateProgress("Loading User Data", 20);
-            DailyDataDataStore = DailyDataRepository.ReadData();
-            _splash.UpdateProgress("Loading Contact Data", 25);
+            
+            _splash.UpdateProgress("Loading Binds", 15);
+            BindsDataStore.ReadData();
+            //UserDataStore = UserDataStore.ReadFile();
 
+            _splash.UpdateProgress("Loading Contact Data", 20);
+            DailyDataDataStore = DailyDataRepository.ReadData();
+            
+            _splash.UpdateProgress("Loading Logins", 25);
+            LoginsDataStore.ReadData();
+
+            
 
             DateFilterItems = new BindingList<DateFilterItem>(DailyDataDataStore.DailyData.Select(x => x.Date).ToList());
             DateBindingSource.DataSource = DateFilterItems;
@@ -304,9 +312,11 @@ namespace CallTracker.View
 
                 editContact.customerContactsBindingSource.RemoveFilter();
                 DailyDataDataStore.DailyData.RemoveFilter();
-                UserDataStore.SaveFile(UserDataStore);
+                //UserDataStore.SaveFile(UserDataStore);
                 DailyDataDataStore.WriteData();
                 ServicesStore.WriteData();
+                LoginsDataStore.WriteData();
+                BindsDataStore.WriteData();
             //}
 
             if (ServicesStore != null)
@@ -318,9 +328,9 @@ namespace CallTracker.View
 
         public void RemovePasteBind(PasteBind bind)
         {
-            if (UserDataStore.PasteBinds.Contains(bind))
+            if (BindsDataStore.PasteBinds.Contains(bind))
             {
-                UserDataStore.PasteBinds.Remove(bind);
+                BindsDataStore.PasteBinds.Remove(bind);
                 //editSmartPasteBinds.pasteBindBindingSource.ResetBindings(true);
             }
         }
@@ -615,7 +625,7 @@ namespace CallTracker.View
                 monitorIPCCToolStripMenuItem.Checked = false;
                 _CallStateTime.Text = @"00:00";
             }
-
+            _IPCCState.Text = String.Empty;
             _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
         }
 
@@ -683,13 +693,15 @@ namespace CallTracker.View
                 status = CurrentItem.Tag.ToString();
 
             var dailyData = (DailyModel) _DailyDataBindingSource.Current;
+
             if (status != _IPCCState.Text)
             {
                 EventLogger.LogAndSaveNewEvent("Status Changed: " + status);
+
                 if (String.IsNullOrEmpty(_IPCCState.Text))
                 {
-                    if(IsDifferentShift())
-                        dailyData = (DailyModel) _DailyDataBindingSource.Current;
+                    if (IsDifferentShift())
+                        dailyData = (DailyModel)_DailyDataBindingSource.Current;
                     dailyData.AddCallEvent(CallEventTypes.LogIn);
                 }
 

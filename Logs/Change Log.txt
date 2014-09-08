@@ -31,7 +31,7 @@
 - ICON Tier4 linked to Action rather than Outcome.
 - Removing bookmarks and systems not working.
 
-0.8.3.18
+0.8.3.19
 (Minor Feature)
 | Added "Advanced Mode" settings item.
 (Bugs/Changes)
@@ -58,8 +58,8 @@
 | Fixed PRTemplate not updating properly.
 | PRTemplate and ICONNotes are generated no more than once per 25ms.
 | Added AutoSearch Logic for checking if system search failed.
-
-- AutoLogin wasn't working. Perhaps not match title properly.
+| AutoLogin wasn't working. Removed "http" bit from FindIEByUrl Regex.
+| Moved Logins to their own file.
 
 
 0.8.2.20

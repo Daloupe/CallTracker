@@ -116,7 +116,7 @@ namespace CallTracker.Helpers
 
         private static void OnGridLinks(HotkeyPressedEventArgs e)
         {
-            var systemItem = parent.UserDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name.Remove(0,2)));
+            var systemItem = parent.BindsDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name.Remove(0,2)));
             //parent.SetProgressBarStep(4, Environment.NewLine + String.Format("Switching to: {0}", systemItem.Url));
             EventLogger.LogNewEvent(Environment.NewLine + "GridLinks Starting: " + systemItem.Url, EventLogLevel.Brief);
             
@@ -154,7 +154,7 @@ namespace CallTracker.Helpers
                 return;
             }
 
-            var systemItem = parent.UserDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name.Remove(0, 3)));
+            var systemItem = parent.BindsDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name.Remove(0, 3)));
             EventLogger.LogNewEvent(Environment.NewLine + "Starting Grid Link Search: " + systemItem.Url, EventLogLevel.Brief);
             //parent.SetProgressBarStep(4, String.Format("Searching: {0}", systemItem.Url));
             var url = String.Empty;
@@ -290,7 +290,7 @@ namespace CallTracker.Helpers
 
                 
                 var query = (from
-                                bind in parent.UserDataStore.PasteBinds
+                                bind in parent.BindsDataStore.PasteBinds
                              where
                                 bind.Element == activeElement.IdOrName &&
                                 (url.Contains(bind.Url) ||
@@ -346,7 +346,7 @@ namespace CallTracker.Helpers
             }
 
             var urlOrTitleMatches =  (from
-                                        bind in parent.UserDataStore.PasteBinds
+                                        bind in parent.BindsDataStore.PasteBinds
                                      where
                                         url.Contains(bind.Url) ||
                                         title.Contains(bind.Title)
@@ -359,7 +359,7 @@ namespace CallTracker.Helpers
             {
                 var system = urlOrTitleMatches.Any() ? urlOrTitleMatches.First().System : String.Empty;
                 elementMatch = new PasteBind(system, url, title, activeElement);
-                parent.UserDataStore.PasteBinds.Add(elementMatch);
+                parent.BindsDataStore.PasteBinds.Add(elementMatch);
                 EventLogger.LogNewEvent("New Bind Created");
             }
 
@@ -390,7 +390,7 @@ namespace CallTracker.Helpers
             var title = browser.Title;
 
             var query = (from
-                            bind in parent.UserDataStore.PasteBinds
+                            bind in parent.BindsDataStore.PasteBinds
                         where
                             url.Contains(bind.Url) ||
                             title.Contains(bind.Title)
@@ -445,7 +445,7 @@ namespace CallTracker.Helpers
             var url = browser.Url;
 
             var query = (from
-                            login in parent.UserDataStore.Logins
+                            login in parent.LoginsDataStore.Logins
                         where
                             title.Contains(login.Title) ||
                             url.Contains(login.Url)
@@ -604,7 +604,7 @@ namespace CallTracker.Helpers
 
             // Fill Search field ////////////////////////////////////////////////////////
             var query = (from
-                            bind in parent.UserDataStore.PasteBinds
+                            bind in parent.BindsDataStore.PasteBinds
                         where
                             bind.Element == searchElement &&
                             (url.Contains(bind.Url))
@@ -621,7 +621,7 @@ namespace CallTracker.Helpers
             // Click Submit /////////////////////////////////////////////////////////////
             if (!String.IsNullOrEmpty(submitElement))
             {
-                query = (from bind in parent.UserDataStore.PasteBinds
+                query = (from bind in parent.BindsDataStore.PasteBinds
                         where
                             bind.Element == submitElement &&
                             (url.Contains(bind.Url))

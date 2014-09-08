@@ -73,7 +73,7 @@ namespace CallTracker.View
 
         private void UpdateAutoComplete()
         {
-            var distinctById = _mainForm.UserDataStore.PasteBinds
+            var distinctById = _mainForm.BindsDataStore.PasteBinds
                                                     .GroupBy(a => a.System)
                                                     .Select(b => b.First())
                                                     .Select(c => c.System)

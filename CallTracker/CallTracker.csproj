@@ -122,6 +122,9 @@
     <Compile Include="Source\Model\Contact\DailyModel.cs" />
     <Compile Include="Source\Model\Contact\DateFilterItem.cs" />
     <Compile Include="Source\Model\Contact\EventsModel.cs" />
+    <None Include="Data\Binds.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\bindingnavigatordeleteitem.image1.png" />
     <None Include="Resources\TipExampleClose.png" />
     <None Include="Resources\Bug.png" />
@@ -603,9 +606,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Content Include="Data\UserData.bin">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Data\UserData.bin" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

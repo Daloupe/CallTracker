@@ -6,7 +6,7 @@
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="Version" Type="System.String" Scope="User">
-      <Value Profile="(Default)">0.8.2.20</Value>
+      <Value Profile="(Default)">0.8.3.19</Value>
     </Setting>
     <Setting Name="AutoNewCall" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
