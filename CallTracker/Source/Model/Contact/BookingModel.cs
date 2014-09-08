@@ -32,7 +32,7 @@ namespace CallTracker.Model
 
         public BookingModel()
         {
-            Date = DateTime.Today;
+            Date = DateTime.Now;
             Timeslot = "AM";
         }
 

@@ -37,15 +37,15 @@ namespace CallTracker.Model
             Address = new ContactAddress();
             Service = new ServiceModel();
             Fault = new FaultModel();
-            Contacts = new ContactStatistics();
+            //Contacts = new ContactStatistics();
             Booking = new BookingModel();
             Events = new EventsModel<CallStats>();
 
             //PRTemplateList.AddRange(HFCTemplate);
             PRTemplateReplacements = new List<PRTemplateModel>();
 
-            Contacts.StartDate = DateTime.Today;
-            Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();
+            //Contacts.StartDate = DateTime.Today;
+            //Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();
 
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
@@ -82,7 +82,7 @@ namespace CallTracker.Model
             Events = events;
             Address = new ContactAddress();
             Service = new ServiceModel();
-            Contacts = new ContactStatistics();
+            //Contacts = new ContactStatistics();
             Booking = new BookingModel();
 
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
@@ -158,8 +158,8 @@ namespace CallTracker.Model
         public bool OriginalCall { get; set; }
         [ProtoMember(41, OverwriteList = true)]
         public EventsModel<CallStats> Events { get; set; }
-        [ProtoMember(42)]
-        public ContactStatistics Contacts { get; set; }
+        //[ProtoMember(42)]
+        //public ContactStatistics Contacts { get; set; }
 
 
 
@@ -308,9 +308,9 @@ namespace CallTracker.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // Getters  ////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public string ContactDateTime { get { return Contacts.StartDate.Add(Contacts.StartTime).ToString("dd/MM HH:mm"); } }
-        public string ContactDate { get { return Contacts.StartDate.ToString(); } }
-        public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
+        //public string ContactDateTime { get { return Contacts.StartDate.Add(Contacts.StartTime).ToString("dd/MM HH:mm"); } }
+        //public string ContactDate { get { return Contacts.StartDate.ToString(); } }
+        //public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
 
         public string GetAddress
         {

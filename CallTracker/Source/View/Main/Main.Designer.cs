@@ -139,6 +139,7 @@
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ctToolStripSeparator1 = new CTToolStripSeparator();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -474,6 +475,7 @@
             this.toolStripSeparator9,
             this.reportBugToolStripMenuItem,
             this.aboutToolStripMenuItem,
+            this.ctToolStripSeparator1,
             this.saveLogToolStripMenuItem});
             this.helpToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
@@ -524,7 +526,7 @@
             this.saveLogToolStripMenuItem.Advanced = true;
             this.saveLogToolStripMenuItem.Name = "saveLogToolStripMenuItem";
             this.saveLogToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.saveLogToolStripMenuItem.Text = "Save Log";
+            this.saveLogToolStripMenuItem.Text = "View Log";
             this.saveLogToolStripMenuItem.Visible = false;
             this.saveLogToolStripMenuItem.Click += new System.EventHandler(this.saveLogToolStripMenuItem_Click);
             // 
@@ -1186,6 +1188,12 @@
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
             // 
+            // ctToolStripSeparator1
+            // 
+            this.ctToolStripSeparator1.Advanced = true;
+            this.ctToolStripSeparator1.Name = "ctToolStripSeparator1";
+            this.ctToolStripSeparator1.Size = new System.Drawing.Size(187, 6);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1332,5 +1340,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator14;
         private CTToolStripMenuItem pasteBindsViewMenuItem;
         private CTToolStripMenuItem databaseEditorToolStripMenuItem;
+        private CTToolStripSeparator ctToolStripSeparator1;
     }
 }

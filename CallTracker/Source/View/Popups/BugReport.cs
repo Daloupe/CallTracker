@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Outlook=Microsoft.Office.Interop.Outlook;
 
@@ -22,6 +23,8 @@ namespace CallTracker.View
         private void _Ok_Click(object sender, EventArgs e)
         {
             EventLogger.SaveLog();
+            if (!IsOutlookInstalled()) return;
+
             var objApp = new Outlook.Application();
             var mail = (Outlook.MailItem)objApp.CreateItem(Outlook.OlItemType.olMailItem);
 
@@ -36,6 +39,25 @@ namespace CallTracker.View
 
             Hide();
             _Info.Text = String.Empty;
+        }
+
+        public static bool IsOutlookInstalled()
+        {
+            try
+            {
+                var type = Type.GetTypeFromCLSID(new Guid("0006F03A-0000-0000-C000-000000000046")); //Outlook.Application
+                if (type == null) return false;
+                var obj = Activator.CreateInstance(type);
+                Marshal.ReleaseComObject(obj);
+                return true;
+            }
+            catch (COMException)
+            {
+                EventLogger.LogAndSaveNewEvent("Bug Report Error: Outlook Not Detected", EventLogLevel.Status);
+                MessageBox.Show(@"Unable to Send: Outlook Not Detected", @"Bug Report Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return false;
+            }
         }
 
     }

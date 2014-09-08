@@ -8,15 +8,22 @@ using PropertyChanged;
 
 namespace CallTracker.Model
 {
-    [ImplementPropertyChanged]
+    //[ImplementPropertyChanged]
     public static class EventLogger
     {
-        public static List<EventLogModel> EventLog { get; set; }
-        public static ToolStripStatusLabel StatusLabel { get; set; }
-        public static bool ClearMessage;
+        private static List<EventLogModel> EventLog { get; set; }
+        private static ToolStripStatusLabel StatusLabel { get; set; }
+        public static bool ClearMessage = true;
 
-        static EventLogger()
+        //static EventLogger()
+        //{
+        //    EventLog = new List<EventLogModel>();
+        //    ClearMessage = true;
+        //}
+
+        public static void Init(ToolStripStatusLabel statusLabel)
         {
+            StatusLabel = statusLabel;
             EventLog = new List<EventLogModel>();
             ClearMessage = true;
         }

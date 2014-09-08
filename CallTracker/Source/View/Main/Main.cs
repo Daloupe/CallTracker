@@ -48,7 +48,7 @@ namespace CallTracker.View
                 else if (_selectedContact != null)
                     _selectedContact.FinishUp();
                 _selectedContact = value;
-                if (CurrentContact == null)
+                if (CurrentContact == null && _selectedContact != null)
                     _selectedContact.AddCallEvent(CallEventTypes.CallStart);
             }
         }
@@ -100,8 +100,7 @@ namespace CallTracker.View
             _splash.UpdateProgress("Main setup",0);
             _splash.StepProgress("Setting up Logs");
             _StatusLabel.Tag = EventLogLevel.Status;
-            EventLogger.StatusLabel = _StatusLabel;
-
+            EventLogger.Init(_StatusLabel);
             _splash.StepProgress("Setting App Location");
             SetAppLocation();
 
@@ -129,8 +128,8 @@ namespace CallTracker.View
 
         private void Main_Load(object sender, EventArgs e)
         {
-            EventLogger.LogNewEvent("------------------------------------------------------");
-
+            EventLogger.LogAndSaveNewEvent("------------------------------------------------------");
+            EventLogger.LogNewEvent("Startup: Loading Data");
             _splash.UpdateProgress("Loading Data", 10);
             ServicesStore.ReadData();
             
@@ -144,16 +143,17 @@ namespace CallTracker.View
             _splash.UpdateProgress("Loading Logins", 25);
             LoginsDataStore.ReadData();
 
-            
 
+            EventLogger.LogNewEvent("Startup: Setting Date");
             DateFilterItems = new BindingList<DateFilterItem>(DailyDataDataStore.DailyData.Select(x => x.Date).ToList());
             DateBindingSource.DataSource = DateFilterItems;
             _DailyDataBindingSource.DataSource = DailyDataDataStore.DailyData;
             IsDifferentShift();
             DateBindingSource.PositionChanged += _DateSelector_PositionChanged;
 
-            SelectedContact = new CustomerContact();
+            //SelectedContact = new CustomerContact();
 
+            EventLogger.LogNewEvent("Startup: Loading Views");
             _splash.UpdateProgress("Loading Views", 30);
             //Splash.StepProgress("Edit Contacts");
             editContact = new EditContact(this);
@@ -174,6 +174,7 @@ namespace CallTracker.View
 
             StatsView = new StatsView();
 
+            EventLogger.LogNewEvent("Startup: Adding Controls");
             _splash.UpdateProgress("Adding Controls", 40);
             _ViewPanel.Controls.Add(editContact);
             //Splash.StepProgress();
@@ -193,9 +194,9 @@ namespace CallTracker.View
 
             _ViewPanel.Controls.Add(StatsView);
 
+            EventLogger.LogNewEvent("Startup: Initializing Views");
             _splash.UpdateProgress("Initializing Views", 50);
             editContact.OnParentLoad();
-
             _splash.StepProgress("Edit Contacts");
             editContact.Init();
             _splash.StepProgress("Call History");
@@ -256,7 +257,7 @@ namespace CallTracker.View
             if (Settings.Default.ShowTipsOnStartup)
                 DidYouKnow.Show();
 
-            Console.WriteLine(((DailyModel)_DailyDataBindingSource.Current).Events.CallEvents.Select(x => x.EventType.Is(CallEventTypes.RecordCreated)).Count());
+            EventLogger.SaveLog();
         }
 
         void _DateSelector_PositionChanged(object sender, EventArgs e)
@@ -293,41 +294,28 @@ namespace CallTracker.View
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             EventLogger.SaveLog();
-            if (HotKeys != null)
-            {
-                //HotkeyController.OnAction -= UpdateProgressBar;
-                HotKeys.Dispose();
-            }
+            EventLogger.LogNewEvent("Shutdown: Saving Settings");
+            Settings.Default.Save();
 
-            //IETabActivator.OnAction -= UpdateProgressBar;      
+            EventLogger.LogNewEvent("Shutdown: Saving Data");
+            if (SelectedContact != null)
+                SelectedContact.FinishUp();
 
-            if (FadingToolTip != null)
-                FadingToolTip.Dispose();
+            editContact.customerContactsBindingSource.RemoveFilter();
+            DailyDataDataStore.DailyData.RemoveFilter();
+            DailyDataDataStore.WriteData();
+            ServicesStore.WriteData();
+            LoginsDataStore.WriteData();
+            BindsDataStore.WriteData();
 
-            //if (CancelLoad == false)
-            //{
-                DisposeIPCC();
-                MadSmartPaste.Dispose();
+            EventLogger.LogNewEvent("Shutdown: Disposing Objects");
+            DisposeIPCC();
+            MadSmartPaste.Dispose();
+            DateBindingSource.Dispose();
+            HotKeys.Dispose();
+            FadingToolTip.Dispose();
 
-                Settings.Default.Save();
-
-                if (SelectedContact != null)
-                    SelectedContact.FinishUp();
-
-                editContact.customerContactsBindingSource.RemoveFilter();
-                DailyDataDataStore.DailyData.RemoveFilter();
-                //UserDataStore.SaveFile(UserDataStore);
-                DailyDataDataStore.WriteData();
-                ServicesStore.WriteData();
-                LoginsDataStore.WriteData();
-                BindsDataStore.WriteData();
-            //}
-
-            if (ServicesStore != null)
-                ServicesStore.servicesDataSet.Dispose();
-
-            if (DateBindingSource != null)
-                DateBindingSource.Dispose();    
+            EventLogger.SaveLog();
         }
 
         public void RemovePasteBind(PasteBind bind)
@@ -1286,6 +1274,7 @@ namespace CallTracker.View
         private void saveLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EventLogger.SaveLog();
+            Process.Start(@".\Log.txt");
         }
 
         private void _IPCCState_Click(object sender, EventArgs e)
