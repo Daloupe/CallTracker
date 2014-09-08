@@ -31,7 +31,7 @@
 - ICON Tier4 linked to Action rather than Outcome.
 - Removing bookmarks and systems not working.
 
-0.8.3.23
+0.8.3.24
 (Minor Feature)
 | Added "Advanced Mode" settings item.
 (Bugs/Changes)
@@ -63,6 +63,7 @@
 | LabelledTextBoxLong now correctly only fires events if set to OnPropertyChange.
 | Fixed spurious RecordCreated events form being created.
 | Caught Outlook not found exception and created error message.
+| Equipment is copies properly with Smart Copy.
 
 0.8.2.20
 (Major Features)

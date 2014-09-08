@@ -241,11 +241,18 @@ namespace CallTracker.View
         public void SelectedContact_NestedChange(object sender, PropertyChangedEventArgs e)
         {
             // Swap Panels
-            if (e.PropertyName == "AffectedServices")
-                UpdateCurrentPanel();
-
-            if (e.PropertyName == "Sip")
-                _ServicePanel._Sip._ComboBox.GetCurrentObject();
+            switch (e.PropertyName)
+            {
+                case "AffectedServices":
+                    UpdateCurrentPanel();
+                    break;
+                case "Sip":
+                    _ServicePanel._Sip._ComboBox.GetCurrentObject();
+                    break;
+                case "Equipment":
+                    _ServicePanel._Equipment._ComboBox.GetCurrentObject();
+                    break;
+            }
 
             // Update Note
             if (_Note.DataBindings.Count > 0 && _Note.Tag.ToString() != "Note" && _updateNote && !IsChangingService)

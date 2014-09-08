@@ -558,10 +558,14 @@ namespace CallTracker.Helpers
                 } 
                 else if (Char.IsLetter(text, 0))
                 {
-                    if (parent.editContact._ServicePanel._Equipment._ComboBox.Items.Contains(text))
+                    var equip = (from object item in parent.editContact._ServicePanel._Equipment._ComboBox.GetDataSource
+                                 where item.ToString().ToLower().Contains(text.ToLower()) ||
+                                 text.ToLower().Contains(item.ToString().ToLower())
+                                 select item).FirstOrDefault();
+                    if (equip != null)
                     {
-                        contact.Service.Equipment = text;
-                        Main.FadingToolTip.ShowandFade("Equipment: " + text);
+                        contact.Service.Equipment = equip.ToString();
+                        Main.FadingToolTip.ShowandFade("Equipment: " + contact.Service.Equipment);
                     }
                     else if (contact.Service.FindNBNMatch(text)) { }
                     else if (contact.Service.FindBRASMatch(text)) { }

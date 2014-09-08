@@ -372,8 +372,6 @@ namespace CallTracker.Model
         public static ICONPattern ICONPattern = new ICONPattern();
         public static CMBSPattern CMBSPattern = new CMBSPattern();
         public static MobilePattern MobilePattern = new MobilePattern();
-        //public static UsernameUpperPattern UNUpperPattern = new UsernameUpperPattern();
-        //public static UsernameLowerPattern UNLowerPattern = new UsernameLowerPattern();
         public static UsernamePattern UsernamePattern = new UsernamePattern();
 
         public void AddToNote(string text)
@@ -465,8 +463,7 @@ namespace CallTracker.Model
 
         public bool FindICONMatch(string text)
         {
-            var match = ICONPattern.Match(text);
-            if (match.Success)
+            if (ICONPattern.Match(text).Success)
             {
                 ICON = text;
 
@@ -520,61 +517,47 @@ namespace CallTracker.Model
 
         public bool FindUsernameMatch(string text)
         {
-            var match = false;
             if (UsernamePattern.Match(text).Success)
             {
                 Username = text.ToLower();
                 Main.FadingToolTip.ShowandFade("Username: " + Username);
-                match = true;
+
+                if (!Properties.Settings.Default.AutoSearch) return true;
+
+                if (!Service.WasSearched["SCAMPSUsername"])
+                    HotkeyController.AutoSearch(
+                        "https://scamps.optusnet.com.au/cm.html?q=" + Username,
+                        "SCAMPS",
+                        "https://scamps.optusnet.com.au",
+                        false,
+                        "Username");
+
+                //if (!Service.WasSearched["SCAMPSUsername"])
+                //    HotkeyController.AutoSearch(
+                //        "https://www.google.com.au/" + Username,
+                //        "SCAMPS",
+                //        "https://www.google.com.au/",
+                //        false,
+                //        "Username");
+
+                if (!Service.WasSearched["DIMPSUsername"])
+                    HotkeyController.AutoSearch(
+                        "https://dimps.optusnet.com.au/search/account?account_no=" + Username,
+                        "DIMPS",
+                        "https://dimps.optusnet.com.au",
+                        true,
+                        "Username");
+
+                if (!Service.WasSearched["UNMT"])
+                    Service.WasSearched["UNMT"] = HotkeyController.AutoSearch(
+                        "https://staff.optusnet.com.au/tools/usernames/users.html?username=" + Username,
+                        "OptusNet StaffWeb",
+                        "https://staff.optusnet.com.au/tools/usernames", false);
+
+                return true;
             }
-            //if (UNLowerPattern.Match(text).Success)
-            //{
-            //    Username = text;
-            //    Main.FadingToolTip.ShowandFade("Username: " + Username);
-            //    match = true;
-            //}
-            //else if (UNUpperPattern.Match(text).Success)
-            //{
-            //    Username = text.ToLower();
-            //    Main.FadingToolTip.ShowandFade("Username: " + Username);
-            //    match = true;
-            //}
 
-            if (!match) return false;
-
-            if (!Properties.Settings.Default.AutoSearch) return true;
-
-            if (!Service.WasSearched["SCAMPSUsername"])
-                HotkeyController.AutoSearch(
-                    "https://scamps.optusnet.com.au/cm.html?q=" + Username,
-                    "SCAMPS",
-                    "https://scamps.optusnet.com.au",
-                    false,
-                    "Username");
-
-            //if (!Service.WasSearched["SCAMPSUsername"])
-            //    HotkeyController.AutoSearch(
-            //        "https://www.google.com.au/" + Username,
-            //        "SCAMPS",
-            //        "https://www.google.com.au/",
-            //        false,
-            //        "Username");
-            
-            if (!Service.WasSearched["DIMPSUsername"])
-                HotkeyController.AutoSearch(
-                    "https://dimps.optusnet.com.au/search/account?account_no=" + Username, 
-                    "DIMPS",
-                    "https://dimps.optusnet.com.au", 
-                    true, 
-                    "Username");
-
-            if (!Service.WasSearched["UNMT"])
-                Service.WasSearched["UNMT"] = HotkeyController.AutoSearch(
-                    "https://staff.optusnet.com.au/tools/usernames/users.html?username=" + Username,
-                    "OptusNet StaffWeb",
-                    "https://staff.optusnet.com.au/tools/usernames", false);
-            
-            return true;
+            return false;
         }
 
 

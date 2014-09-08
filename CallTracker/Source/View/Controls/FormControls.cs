@@ -399,6 +399,8 @@ namespace CallTracker.View
         /// </summary>
         private IList _dataSource;
 
+        public IList GetDataSource { get { return _dataSource; } }
+
         /// <summary>
         /// The name of the property of the object we bind to
         /// </summary>

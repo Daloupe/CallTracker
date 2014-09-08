@@ -89,31 +89,6 @@ namespace CallTracker.View
         {
         }
 
-
-
-        //public void BindComboBox(List<string> dataSource, BindingSource bindingSource, bool nullable = false)
-        //{
-        //    _ComboBox.NullableMode = nullable;
-        //    if (_ComboBox.NullableMode)
-        //    {
-        //        _ComboBox.Leave -= _ComboBox_Leave<List<string>>;
-        //        _ComboBox.SetDataBinding(dataSource, bindingSource, PropertyName, String.Empty);
-        //        _ComboBox.Leave += _ComboBox_Leave<List<string>>;
-        //    }
-        //    else
-        //    {
-        //        _ComboBox.DataBindings.Clear();
-        //        _ComboBox.Leave -= _ComboBox_Leave<List<string>>;
-        //        _ComboBox.DataSource = dataSource;
-        //        _ComboBox.SelectedIndex = InitialIndex;
-        //        if (dataSource.Count > 0)
-        //        {                
-        //            _ComboBox.Leave += _ComboBox_Leave<List<string>>;
-        //        }
-        //        _ComboBox.DataBindings.Add("SelectedItem", bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
-        //    }
-        //}
-
         public void BindComboBox<T>(List<T> dataSource, BindingSource bindingSource, bool nullable = false)
         {
             _ComboBox.NullableMode = nullable;
@@ -152,32 +127,6 @@ namespace CallTracker.View
             }
         }
 
-        //public void BindComboBox(Array _dataSource, BindingSource _bindingSource)
-        //{
-        //    _ComboBox.DataSource = null;
-        //    _ComboBox.DataBindings.Clear();
-        //    _ComboBox.DataBindings.Add("Text", _bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
-        //    _ComboBox.DataSource = _dataSource;
-        //    //_ComboBox.Leave += _ComboBox_Leave<Array>;
-        //}
-
-        //public void BindComboBox(BindingList<string> dataSource, BindingSource bindingSource)
-        //{
-        //    //Console.WriteLine("yep");
-        //    //_ComboBox.DataSource = null;
-
-        //    _ComboBox.DataBindings.Clear();
-      
-        //    _ComboBox.Leave -= _ComboBox_Leave<BindingList<string>>;
-        //    if (dataSource.Count > 0)
-        //    {
-        //        _ComboBox.DataSource = dataSource;
-        //        _ComboBox.SelectedIndex = InitialIndex;
-        //        _ComboBox.Leave += _ComboBox_Leave<BindingList<string>>;
-        //    }
-        //    _ComboBox.DataBindings.Add("SelectedItem", bindingSource, PropertyName, true, DataSourceUpdateMode.OnPropertyChanged);
-        //}
-
         public void UpdateBindingSource(BindingSource bindingSource)
         {
             if (_ComboBox.NullableMode)
@@ -202,14 +151,6 @@ namespace CallTracker.View
             }
         }
 
-        //public void UpdateComboBox(BindingList<string> dataSource)
-        //{
-        //    if (dataSource.Count > 0)
-        //    {
-        //        _ComboBox.DataSource = dataSource;
-        //        //_ComboBox.SelectedIndex = InitialIndex;
-        //    }
-        //}
         private void _ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             _ComboBox.Select(0, 0);
