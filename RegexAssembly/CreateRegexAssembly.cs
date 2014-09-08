@@ -14,11 +14,12 @@ namespace RegexAssembly
         {
             var RegexList = new List<MyRegex>
             {
-                new MyRegex("Alpha",    @"[a-z\-\s\.]+", RegexOptions.IgnoreCase),
-                new MyRegex("AlphaNum", @"[a-z\d\-\s]+", RegexOptions.IgnoreCase),
-                new MyRegex("Digit",    @"[\d\-\s\.]+"),
-                new MyRegex("UsernameLower", @"^[a-z]+[a-z\d._]*[a-z\d]+(?:@optusnet.com.au)?$"),
-                new MyRegex("UsernameUpper", @"^[A-Z]+[A-Z\d._]*[A-Z\d]+(?:@optusnet.com.au)?$"),
+                //new MyRegex("Alpha",    @"[a-z\-\s\.]+", RegexOptions.IgnoreCase),
+                //new MyRegex("AlphaNum", @"[a-z\d\-\s]+", RegexOptions.IgnoreCase),
+                //new MyRegex("Digit",    @"[\d\-\s\.]+"),
+                new MyRegex("Username", @"^(?(?=[A-Z])[A-Z]+[A-Z\d._]*[A-Z\d]+|[a-z]+[a-z\d._]*[a-z\d]+)(?:@optusnet.com.au)?$"),
+                //new MyRegex("UsernameLower", @"^[a-z]+[a-z\d._]*[a-z\d]+(?:@optusnet.com.au)?$"),
+                //new MyRegex("UsernameUpper", @"^[A-Z]+[A-Z\d._]*[A-Z\d]+(?:@optusnet.com.au)?$"),
                 new MyRegex("BRAS",     @"^[a-z]{3}\d{3}\.[a-z]{2}$"),
                 new MyRegex("CommonNBN",@"^(?<Type>[AVCSNIGPR]{3})" +                // Data Type
                                         @"(?<Id>\d{12})$"                          // Id

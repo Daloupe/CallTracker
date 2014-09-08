@@ -372,8 +372,9 @@ namespace CallTracker.Model
         public static ICONPattern ICONPattern = new ICONPattern();
         public static CMBSPattern CMBSPattern = new CMBSPattern();
         public static MobilePattern MobilePattern = new MobilePattern();
-        public static UsernameUpperPattern UNUpperPattern = new UsernameUpperPattern();
-        public static UsernameLowerPattern UNLowerPattern = new UsernameLowerPattern();
+        //public static UsernameUpperPattern UNUpperPattern = new UsernameUpperPattern();
+        //public static UsernameLowerPattern UNLowerPattern = new UsernameLowerPattern();
+        public static UsernamePattern UsernamePattern = new UsernamePattern();
 
         public void AddToNote(string text)
         {
@@ -520,18 +521,24 @@ namespace CallTracker.Model
         public bool FindUsernameMatch(string text)
         {
             var match = false;
-            if (UNLowerPattern.Match(text).Success)
-            {
-                Username = text;
-                Main.FadingToolTip.ShowandFade("Username: " + Username);
-                match = true;
-            }
-            else if (UNUpperPattern.Match(text).Success)
+            if (UsernamePattern.Match(text).Success)
             {
                 Username = text.ToLower();
                 Main.FadingToolTip.ShowandFade("Username: " + Username);
                 match = true;
-            };
+            }
+            //if (UNLowerPattern.Match(text).Success)
+            //{
+            //    Username = text;
+            //    Main.FadingToolTip.ShowandFade("Username: " + Username);
+            //    match = true;
+            //}
+            //else if (UNUpperPattern.Match(text).Success)
+            //{
+            //    Username = text.ToLower();
+            //    Main.FadingToolTip.ShowandFade("Username: " + Username);
+            //    match = true;
+            //}
 
             if (!match) return false;
 
