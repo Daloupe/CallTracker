@@ -24,6 +24,7 @@ namespace CallTracker.View
         public EditContact(Main mainform)
         {
             InitializeComponent();
+            SetSettings();
             Application.AddMessageFilter(this);
             SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
 
@@ -77,6 +78,11 @@ namespace CallTracker.View
         //    }
         //}
 
+        private void SetSettings()
+        {
+            autoNewCallToolStripMenuItem.Checked = Properties.Settings.Default.AutoNewCall;
+        }
+
         public void OnParentLoad()
         {
             MainForm._DailyDataBindingSource.ListChanged += _DailyDataBindingSource_PositionChanged;
@@ -97,11 +103,10 @@ namespace CallTracker.View
 
             customerContactsBindingSource.MoveLast();
 
-            _DateSelector.ComboBox.DataSource = MainForm.DateBindingSource;
             _DateSelector.ComboBox.DisplayMember = "ShortDate";
             _DateSelector.ComboBox.ValueMember = "LongDate";
+            _DateSelector.ComboBox.DataSource = MainForm.DateBindingSource;
 
-            
 
             if (customerContactsBindingSource.Count != 0) return;
 
@@ -188,10 +193,7 @@ namespace CallTracker.View
                     MainForm.SelectedContact.NestedChange -= SelectedContact_NestedChange;
                 MainForm.SelectedContact = (CustomerContact)customerContactsBindingSource.Current;//((ObjectView<CustomerContact>)customerContactsBindingSource.Current).Object;
                 if (MainForm.SelectedContact != null)
-                {
                     MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
-                    Console.WriteLine(MainForm.SelectedContact.Events.CallEvents.Count(x => x.EventType == CallEventTypes.RecordCreated));
-                }
 
                 flowLayoutPanel1.Enabled = true;
                 ServiceTypePanel.Enabled = true;
@@ -871,6 +873,11 @@ namespace CallTracker.View
         {
             var checkBox = (CheckBox)sender;
             checkBox.ImageIndex = checkBox.Checked ? 1 : 0;
+        }
+
+        private void autoNewCallToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoNewCall = autoNewCallToolStripMenuItem.Checked;
         }
 
 

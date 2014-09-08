@@ -381,8 +381,8 @@
             this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 0, 0, 0, 0);
-            this._BookingDate.DateText = "09/08";
+            this._BookingDate.DateField = new System.DateTime(2014, 9, 8, 0, 0, 0, 0);
+            this._BookingDate.DateText = "08/09";
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingDate.HasContextMenu = false;
             this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -902,7 +902,7 @@
             this.callHistoryToolStripMenuItem});
             this._CallHistoryContextMenu.Name = "_CallHistoryContextMenu";
             this._CallHistoryContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this._CallHistoryContextMenu.Size = new System.Drawing.Size(166, 104);
+            this._CallHistoryContextMenu.Size = new System.Drawing.Size(166, 126);
             // 
             // _ImportantToolStripMenuItem
             // 
@@ -934,6 +934,7 @@
             this.autoNewCallToolStripMenuItem.Name = "autoNewCallToolStripMenuItem";
             this.autoNewCallToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.autoNewCallToolStripMenuItem.Text = "Auto New Call";
+            this.autoNewCallToolStripMenuItem.CheckedChanged += new System.EventHandler(this.autoNewCallToolStripMenuItem_CheckedChanged);
             // 
             // toolStripSeparator6
             // 

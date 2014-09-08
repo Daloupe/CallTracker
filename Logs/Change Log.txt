@@ -30,6 +30,7 @@
 - IPCC menu not drawing back color.
 - ICON Tier4 linked to Action rather than Outcome.
 - Removing bookmarks and systems not working.
+- Allow Scrolling further in service panel.
 
 0.8.3.24
 (Minor Feature)
