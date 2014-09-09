@@ -175,15 +175,15 @@ namespace CallTracker.Model
                 case CallEventTypes.RecordCreated:
                     Events.AddCallEvent(newEvent.Is(CallEventTypes.NotReady) ? CallEventTypes.LogIn : newEvent);
                     break;
-                case CallEventTypes.Reserved:
-                    Events.AddCallEvent(newEvent.Is(CallEventTypes.Talking) ? CallEventTypes.CallStart : newEvent);
-                    break;
+                //case CallEventTypes.Reserved:
+                //    Events.AddCallEvent(newEvent.Is(CallEventTypes.Talking) ? CallEventTypes.CallStart : newEvent);
+                //    break;
                 case CallEventTypes.CallEnd:
-                    if (!newEvent.Has(CallEventTypes.Ready | CallEventTypes.LogOut | CallEventTypes.CallEnd | CallEventTypes.Reserved))
+                    if (!newEvent.Is(CallEventTypes.Ready | CallEventTypes.LogOut | CallEventTypes.CallEnd | CallEventTypes.Reserved))
                         Events.AddCallEvent(newEvent.Is(CallEventTypes.Talking) ? CallEventTypes.CallStart : newEvent);
                     break;
                 default:
-                    Events.AddCallEvent(newEvent.Has(CallEventTypes.Ready | CallEventTypes.LogOut)
+                    Events.AddCallEvent(newEvent.Is(CallEventTypes.Ready | CallEventTypes.LogOut)
                         ? CallEventTypes.CallEnd
                         : newEvent);
                     break;
@@ -309,7 +309,7 @@ namespace CallTracker.Model
         // Getters  ////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         //public string ContactDateTime { get { return Contacts.StartDate.Add(Contacts.StartTime).ToString("dd/MM HH:mm"); } }
-        //public string ContactDate { get { return Contacts.StartDate.ToString(); } }
+        public string ContactDateTime { get { return Events.CallEvents.First().Timestamp.ToString("dd/MM HH:mm"); } }
         //public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
 
         public string GetAddress

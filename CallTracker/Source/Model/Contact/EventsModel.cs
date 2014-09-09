@@ -53,14 +53,14 @@ namespace CallTracker.Model
             //if (Statistics.IsDirty == false)
             //    return Statistics;
 
-            var stats = Statistics;
+            var stats = (T)Statistics.Clone();
 
             var lastLogInIndex = CallEvents.IndexOf(CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.CallStart)));
             var lastLogOutIndex = CallEvents.IndexOf(CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.CallEnd)));
             if (lastLogInIndex > lastLogOutIndex)
             {
-                stats = (T)Statistics.Clone();
-                stats.HandlingTime = Statistics.HandlingTime.Add(DateTime.Now.Subtract(CallEvents[lastLogInIndex].Timestamp));
+                Console.WriteLine("Login Index > Logout Index");
+                stats.HandlingTime += DateTime.Now.Subtract(CallEvents[lastLogInIndex].Timestamp);
             }
 
             return stats;
@@ -115,17 +115,17 @@ namespace CallTracker.Model
                 switch (LastCallEvent.EventType)
                 {
                     case CallEventTypes.Hold:
-                        Statistics.Hold = Statistics.Hold.Add(lastEventTime);
+                        Statistics.Hold += lastEventTime;
                         break;
                     case CallEventTypes.NotReady:
-                        Statistics.NotReady = Statistics.NotReady.Add(lastEventTime);
+                        Statistics.NotReady += lastEventTime;
                         break;
                     case CallEventTypes.CallStart:
                     case CallEventTypes.Talking:
-                        Statistics.TalkTime = Statistics.TalkTime.Add(lastEventTime);
+                        Statistics.TalkTime += lastEventTime;
                         break;
                     case CallEventTypes.Wrapup:
-                        Statistics.Wrapup = Statistics.Wrapup.Add(lastEventTime);
+                        Statistics.Wrapup += lastEventTime;
                         break;
                 }
             }
@@ -134,7 +134,7 @@ namespace CallTracker.Model
             {
                 var lastOrDefault = CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.CallStart));
                 if (lastOrDefault != null)
-                    Statistics.HandlingTime += Statistics.HandlingTime.Add(DateTime.Now.Subtract(lastOrDefault.Timestamp));
+                    Statistics.HandlingTime += DateTime.Now.Subtract(lastOrDefault.Timestamp);
             }
 
             CallEvents.Add(new EventModel<CallEventTypes>(newEvent));
@@ -264,11 +264,11 @@ namespace CallTracker.Model
 
         public void Add(StatsModel statsModel)
         {
-            TalkTime = TalkTime.Add(statsModel.TalkTime);
-            Hold = Hold.Add(statsModel.Hold);
-            NotReady = NotReady.Add(statsModel.NotReady);
-            Wrapup = Wrapup.Add(statsModel.Wrapup);
-            HandlingTime = Hold.Add(statsModel.HandlingTime);
+            TalkTime += statsModel.TalkTime;
+            Hold += statsModel.Hold;
+            NotReady += statsModel.NotReady;
+            Wrapup += statsModel.Wrapup;
+            HandlingTime += statsModel.HandlingTime;
             AutoFills += statsModel.AutoFills;
             AutoLogins += statsModel.AutoLogins;
             AutoSearches += statsModel.AutoSearches;

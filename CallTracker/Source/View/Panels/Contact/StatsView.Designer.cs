@@ -48,6 +48,8 @@
             this._Calls = new CallTracker.View.LabelledTextBoxLong();
             this._TalkTime = new CallTracker.View.LabelledTextBoxLong();
             this._Login = new CallTracker.View.LabelledTextBoxLong();
+            this._Hold = new CallTracker.View.LabelledTextBoxLong();
+            this._HoldA = new CallTracker.View.LabelledTextBoxLong();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this._StatsPanel.SuspendLayout();
             this.SuspendLayout();
@@ -115,6 +117,8 @@
             // _StatsPanel
             // 
             this._StatsPanel.BackColor = System.Drawing.Color.LightGray;
+            this._StatsPanel.Controls.Add(this._HoldA);
+            this._StatsPanel.Controls.Add(this._Hold);
             this._StatsPanel.Controls.Add(this._HandlingTimeA);
             this._StatsPanel.Controls.Add(this._ReadyA);
             this._StatsPanel.Controls.Add(this._NotReadyA);
@@ -157,7 +161,7 @@
             this._HandlingTimeA.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._HandlingTimeA.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._HandlingTimeA.LabelToolTip = "";
-            this._HandlingTimeA.Location = new System.Drawing.Point(145, 168);
+            this._HandlingTimeA.Location = new System.Drawing.Point(145, 186);
             this._HandlingTimeA.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._HandlingTimeA.MenuButtonImage = null;
             this._HandlingTimeA.Name = "_HandlingTimeA";
@@ -190,7 +194,7 @@
             this._ReadyA.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._ReadyA.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._ReadyA.LabelToolTip = "";
-            this._ReadyA.Location = new System.Drawing.Point(145, 93);
+            this._ReadyA.Location = new System.Drawing.Point(145, 90);
             this._ReadyA.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._ReadyA.MenuButtonImage = null;
             this._ReadyA.Name = "_ReadyA";
@@ -223,7 +227,7 @@
             this._NotReadyA.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._NotReadyA.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._NotReadyA.LabelToolTip = "";
-            this._NotReadyA.Location = new System.Drawing.Point(145, 68);
+            this._NotReadyA.Location = new System.Drawing.Point(145, 66);
             this._NotReadyA.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._NotReadyA.MenuButtonImage = null;
             this._NotReadyA.Name = "_NotReadyA";
@@ -256,7 +260,7 @@
             this._WrapUpA.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._WrapUpA.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._WrapUpA.LabelToolTip = "";
-            this._WrapUpA.Location = new System.Drawing.Point(145, 143);
+            this._WrapUpA.Location = new System.Drawing.Point(145, 138);
             this._WrapUpA.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._WrapUpA.MenuButtonImage = null;
             this._WrapUpA.Name = "_WrapUpA";
@@ -289,7 +293,7 @@
             this._TalkTimeA.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._TalkTimeA.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._TalkTimeA.LabelToolTip = "";
-            this._TalkTimeA.Location = new System.Drawing.Point(145, 118);
+            this._TalkTimeA.Location = new System.Drawing.Point(145, 114);
             this._TalkTimeA.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._TalkTimeA.MenuButtonImage = null;
             this._TalkTimeA.Name = "_TalkTimeA";
@@ -382,7 +386,7 @@
             this._HandlingTime.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._HandlingTime.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._HandlingTime.LabelToolTip = "";
-            this._HandlingTime.Location = new System.Drawing.Point(3, 168);
+            this._HandlingTime.Location = new System.Drawing.Point(3, 186);
             this._HandlingTime.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._HandlingTime.MenuButtonImage = null;
             this._HandlingTime.Name = "_HandlingTime";
@@ -415,7 +419,7 @@
             this._Ready.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Ready.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Ready.LabelToolTip = "";
-            this._Ready.Location = new System.Drawing.Point(3, 93);
+            this._Ready.Location = new System.Drawing.Point(3, 90);
             this._Ready.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._Ready.MenuButtonImage = null;
             this._Ready.Name = "_Ready";
@@ -448,7 +452,7 @@
             this._NotReady.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._NotReady.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._NotReady.LabelToolTip = "";
-            this._NotReady.Location = new System.Drawing.Point(3, 68);
+            this._NotReady.Location = new System.Drawing.Point(3, 66);
             this._NotReady.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._NotReady.MenuButtonImage = null;
             this._NotReady.Name = "_NotReady";
@@ -481,7 +485,7 @@
             this._WrapUp.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._WrapUp.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._WrapUp.LabelToolTip = "";
-            this._WrapUp.Location = new System.Drawing.Point(3, 143);
+            this._WrapUp.Location = new System.Drawing.Point(3, 138);
             this._WrapUp.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._WrapUp.MenuButtonImage = null;
             this._WrapUp.Name = "_WrapUp";
@@ -514,7 +518,7 @@
             this._Calls.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Calls.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Calls.LabelToolTip = "";
-            this._Calls.Location = new System.Drawing.Point(3, 43);
+            this._Calls.Location = new System.Drawing.Point(3, 42);
             this._Calls.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._Calls.MenuButtonImage = null;
             this._Calls.Name = "_Calls";
@@ -547,7 +551,7 @@
             this._TalkTime.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._TalkTime.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._TalkTime.LabelToolTip = "";
-            this._TalkTime.Location = new System.Drawing.Point(3, 118);
+            this._TalkTime.Location = new System.Drawing.Point(3, 114);
             this._TalkTime.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
             this._TalkTime.MenuButtonImage = null;
             this._TalkTime.Name = "_TalkTime";
@@ -590,6 +594,72 @@
             this._Login.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this._Login.TextField = "";
             // 
+            // _Hold
+            // 
+            this._Hold.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Hold.BackColor = System.Drawing.Color.DarkSlateGray;
+            this._Hold.BorderColour = System.Drawing.Color.DarkSlateGray;
+            this._Hold.ControlHeight = 20;
+            this._Hold.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Hold.DefaultText = "";
+            this._Hold.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Hold.HasContextMenu = false;
+            this._Hold.LabelActiveColor = System.Drawing.Color.DarkSlateGray;
+            this._Hold.LabelAutoSize = false;
+            this._Hold.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Hold.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Hold.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._Hold.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Hold.LabelOffset = new System.Drawing.Point(0, 0);
+            this._Hold.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Hold.LabelSize = new System.Drawing.Size(70, 20);
+            this._Hold.LabelText = "hold";
+            this._Hold.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Hold.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Hold.LabelToolTip = "";
+            this._Hold.Location = new System.Drawing.Point(3, 162);
+            this._Hold.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Hold.MenuButtonImage = null;
+            this._Hold.Name = "_Hold";
+            this._Hold.PropertyName = null;
+            this._Hold.Size = new System.Drawing.Size(127, 20);
+            this._Hold.TabIndex = 14;
+            this._Hold.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this._Hold.TextField = "";
+            // 
+            // _HoldA
+            // 
+            this._HoldA.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._HoldA.BackColor = System.Drawing.Color.DarkSlateGray;
+            this._HoldA.BorderColour = System.Drawing.Color.DarkSlateGray;
+            this._HoldA.ControlHeight = 20;
+            this._HoldA.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._HoldA.DefaultText = "";
+            this._HoldA.Font = new System.Drawing.Font("Verdana", 7F);
+            this._HoldA.HasContextMenu = false;
+            this._HoldA.LabelActiveColor = System.Drawing.Color.DarkSlateGray;
+            this._HoldA.LabelAutoSize = false;
+            this._HoldA.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._HoldA.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._HoldA.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._HoldA.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._HoldA.LabelOffset = new System.Drawing.Point(0, 0);
+            this._HoldA.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._HoldA.LabelSize = new System.Drawing.Size(70, 20);
+            this._HoldA.LabelText = "hold";
+            this._HoldA.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._HoldA.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._HoldA.LabelToolTip = "";
+            this._HoldA.Location = new System.Drawing.Point(145, 162);
+            this._HoldA.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._HoldA.MenuButtonImage = null;
+            this._HoldA.Name = "_HoldA";
+            this._HoldA.PropertyName = null;
+            this._HoldA.Size = new System.Drawing.Size(127, 20);
+            this._HoldA.TabIndex = 15;
+            this._HoldA.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this._HoldA.TextField = "";
+            // 
             // StatsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -631,5 +701,7 @@
         private LabelledTextBoxLong _TalkTimeA;
         private LabelledHeading labelledHeading2;
         private LabelledHeading labelledHeading1;
+        private LabelledTextBoxLong _HoldA;
+        private LabelledTextBoxLong _Hold;
     }
 }

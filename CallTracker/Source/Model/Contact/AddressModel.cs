@@ -102,14 +102,14 @@ namespace CallTracker.Model
                     State = addressMatch.Groups["State"].Value;
                 Postcode = addressMatch.Groups["Postcode"].Value;
 
-                Console.WriteLine("PropertyType:{0}", PropertyType);
-                Console.WriteLine("UnitNumber:{0}", UnitNumber);
-                Console.WriteLine("PropertyNumber:{0}", PropertyNumber);
-                Console.WriteLine("StreetName:{0}", StreetName);
-                Console.WriteLine("StreetType:{0}", StreetType);
-                Console.WriteLine("Suburb:{0}", Suburb);
-                Console.WriteLine("State:{0}", State);
-                Console.WriteLine("Postcode:{0}", Postcode);
+                //Console.WriteLine("PropertyType:{0}", PropertyType);
+                //Console.WriteLine("UnitNumber:{0}", UnitNumber);
+                //Console.WriteLine("PropertyNumber:{0}", PropertyNumber);
+                //Console.WriteLine("StreetName:{0}", StreetName);
+                //Console.WriteLine("StreetType:{0}", StreetType);
+                //Console.WriteLine("Suburb:{0}", Suburb);
+                //Console.WriteLine("State:{0}", State);
+                //Console.WriteLine("Postcode:{0}", Postcode);
 
                 address = value;
             } 

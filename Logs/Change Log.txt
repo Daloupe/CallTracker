@@ -32,7 +32,7 @@
 - Removing bookmarks and systems not working.
 - Allow Scrolling further in service panel.
 
-0.8.3.26
+0.8.3.27
 (Minor Feature)
 | Added "Advanced Mode" settings item.
 (Bugs/Changes)
@@ -67,6 +67,7 @@
 | Equipment is copies properly with Smart Copy.
 | Updated HotkeyManager to release its hotkeys before it triggers it's method.
 | Added "Paste by SendKeys" options to Binds.
+| Fixed Daily stats.
 
 0.8.2.20
 (Major Features)

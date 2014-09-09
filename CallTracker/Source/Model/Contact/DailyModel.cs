@@ -78,7 +78,10 @@ namespace CallTracker.Model
             var stats = (DailyStats)Events.Statistics.Clone();
 
             foreach (var contact in Contacts)
+            {
                 stats.Add(contact.ComputeStatistics());
+                Console.WriteLine(stats.HandlingTime);  
+            }
             stats.Calls = Contacts.Count;
 
             var lastLogInIndex = Events.CallEvents.IndexOf(Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogIn)));
@@ -108,7 +111,7 @@ namespace CallTracker.Model
                 switch (Events.LastCallEvent.EventType)
                 {
                     case CallEventTypes.Ready:
-                        Events.Statistics.Ready = Events.Statistics.Ready.Add(lastEventTime);
+                        Events.Statistics.Ready += lastEventTime;
                         break;
                 }
             }
@@ -117,7 +120,7 @@ namespace CallTracker.Model
             {
                 var lastOrDefault = Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogIn));
                 if (lastOrDefault != null)
-                    Events.Statistics.Login += Events.Statistics.Login.Add(DateTime.Now.Subtract(lastOrDefault.Timestamp));
+                    Events.Statistics.Login += DateTime.Now.Subtract(lastOrDefault.Timestamp);
             }
 
             Events.AddCallEvent(newEvent);

@@ -38,15 +38,15 @@ namespace CallTracker.Helpers
             HotKeyManager.AddOrReplaceHotkey("AutoLogin", Modifiers.Win, Keys.Oemtilde, OnAutoLogin);
             HotKeyManager.AddOrReplaceHotkey("AutoFill", Modifiers.Win | Modifiers.Control, Keys.V, OnAutoFill);
             HotKeyManager.AddOrReplaceHotkey("AddARO", Modifiers.Win | Modifiers.Shift, Keys.C, OnAddARO);
-            foreach (var DataPasteHotkey in DataPasteHotkeys)
-                HotKeyManager.AddOrReplaceHotkey(DataPasteHotkey.Value, Modifiers.Control | Modifiers.Shift, DataPasteHotkey.Key, OnDataPaste);
-            foreach (var GridLinkHotKey in GridLinkHotkeys)
+            foreach (var dataPasteHotkey in DataPasteHotkeys)
+                HotKeyManager.AddOrReplaceHotkey(dataPasteHotkey.Value, Modifiers.Control | Modifiers.Shift, dataPasteHotkey.Key, OnDataPaste);
+            foreach (var gridLinkHotKey in GridLinkHotkeys)
             {
-                HotKeyManager.AddOrReplaceHotkey("GL" + GridLinkHotKey.Value, Modifiers.Win, GridLinkHotKey.Key, OnGridLinks);
-                HotKeyManager.AddOrReplaceHotkey("GLS" + GridLinkHotKey.Value, Modifiers.Win | Modifiers.Control, GridLinkHotKey.Key, OnGridLinksSearch);
+                HotKeyManager.AddOrReplaceHotkey("GL" + gridLinkHotKey.Value, Modifiers.Win, gridLinkHotKey.Key, OnGridLinks);
+                HotKeyManager.AddOrReplaceHotkey("GLS" + gridLinkHotKey.Value, Modifiers.Win | Modifiers.Control, gridLinkHotKey.Key, OnGridLinksSearch);
             }
 
-            Settings.AutoStartDialogWatcher = true;
+            Settings.AutoStartDialogWatcher = false;
             Settings.AutoMoveMousePointerToTopLeft = false;
             Settings.AutoCloseDialogs = false;
             Settings.AttachToBrowserTimeOut = 3;

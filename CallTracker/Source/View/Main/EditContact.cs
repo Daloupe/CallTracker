@@ -298,13 +298,13 @@ namespace CallTracker.View
 
         public void UpdateActions()
         {
+            if (MainForm.SelectedContact == null) return;
+
             var query = (from a in Main.ServicesStore.servicesDataSet.Actions
                                   where a.OutcomesRow.Description == MainForm.SelectedContact.Fault.Outcome
                                   select a.Description).ToList();
             if(query.Count > 0)
-                _Action.BindComboBox(query, customerContactsBindingSource);
-
-            if (MainForm.SelectedContact == null) return;
+                _Action.BindComboBox(query, customerContactsBindingSource);  
 
             if (!query.Contains(MainForm.SelectedContact.Fault.Action))
                 MainForm.SelectedContact.Fault.Action = "";
@@ -523,7 +523,7 @@ namespace CallTracker.View
         private void _Outcome_SelectedIndexChanged(object sender, EventArgs e)
         {
             //_OutcomeTooltip.SetToolTip(_Outcome._ComboBox, Main.ServicesStore.servicesDataSet.Outcomes.First(x => x.Acronym == _Outcome._ComboBox.Text).Description);
-
+            if (MainForm.SelectedContact == null) return;
             UpdateActions();
             if (MainForm.SelectedContact.Fault.Outcome == "Outage")
             {

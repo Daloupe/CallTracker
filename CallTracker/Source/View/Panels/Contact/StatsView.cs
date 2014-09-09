@@ -41,6 +41,7 @@ namespace CallTracker.View
             var day = (DailyModel) MainForm._DailyDataBindingSource.Current;
             var stats = day.ComputeStatistics();
 
+
             _Login._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.Login.Hours, stats.Login.Minutes, stats.Login.Seconds);
             _Calls._DataField.Text = stats.Calls.ToString();
 
@@ -48,6 +49,7 @@ namespace CallTracker.View
             _WrapUp._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.Wrapup.Hours, stats.Wrapup.Minutes, stats.Wrapup.Seconds);
             _NotReady._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.NotReady.Hours, stats.NotReady.Minutes, stats.NotReady.Seconds);
             _Ready._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.Ready.Hours, stats.Ready.Minutes, stats.Ready.Seconds);
+            _Hold._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.Hold.Hours, stats.Hold.Minutes, stats.Hold.Seconds);
             _HandlingTime._DataField.Text = String.Format("{0}:{1:00}:{2:00}", stats.HandlingTime.Hours, stats.HandlingTime.Minutes, stats.HandlingTime.Seconds);
 
             if (stats.Calls > 0)
@@ -66,6 +68,10 @@ namespace CallTracker.View
 
                 average = new TimeSpan(stats.Ready.Ticks/stats.Calls);
                 _ReadyA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes,
+                    average.Seconds);
+
+                average = new TimeSpan(stats.Hold.Ticks / stats.Calls);
+                _HoldA._DataField.Text = String.Format("{0}:{1:00}:{2:00}", average.Hours, average.Minutes,
                     average.Seconds);
 
                 average = new TimeSpan(stats.HandlingTime.Ticks/stats.Calls);

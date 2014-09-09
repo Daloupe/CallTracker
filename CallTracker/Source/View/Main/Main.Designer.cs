@@ -63,6 +63,7 @@
             this.toolStripSeparator9 = new CTToolStripSeparator();
             this.reportBugToolStripMenuItem = new CTToolStripMenuItem();
             this.aboutToolStripMenuItem = new CTToolStripMenuItem();
+            this.ctToolStripSeparator1 = new CTToolStripSeparator();
             this.saveLogToolStripMenuItem = new CTToolStripMenuItem();
             this.fileToolStripMenuItem = new CTToolStripMenuItem();
             this.callHistoryToolStripMenuItem = new CTToolStripMenuItem();
@@ -139,7 +140,6 @@
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ctToolStripSeparator1 = new CTToolStripSeparator();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -380,7 +380,7 @@
             this.logInToolStripMenuItem.Image = global::CallTracker.Properties.Resources.CallIn;
             this.logInToolStripMenuItem.Name = "logInToolStripMenuItem";
             this.logInToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.logInToolStripMenuItem.Tag = "Log In";
+            this.logInToolStripMenuItem.Tag = "";
             this.logInToolStripMenuItem.Text = "Log In";
             this.logInToolStripMenuItem.Visible = false;
             // 
@@ -520,6 +520,12 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // ctToolStripSeparator1
+            // 
+            this.ctToolStripSeparator1.Advanced = true;
+            this.ctToolStripSeparator1.Name = "ctToolStripSeparator1";
+            this.ctToolStripSeparator1.Size = new System.Drawing.Size(187, 6);
             // 
             // saveLogToolStripMenuItem
             // 
@@ -1187,12 +1193,6 @@
             // _DailyDataBindingSource
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
-            // 
-            // ctToolStripSeparator1
-            // 
-            this.ctToolStripSeparator1.Advanced = true;
-            this.ctToolStripSeparator1.Name = "ctToolStripSeparator1";
-            this.ctToolStripSeparator1.Size = new System.Drawing.Size(187, 6);
             // 
             // Main
             // 
