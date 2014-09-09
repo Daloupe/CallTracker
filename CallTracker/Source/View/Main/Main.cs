@@ -499,7 +499,7 @@ namespace CallTracker.View
             _ipccTransferButton = _ipccWindow.Get<TestStack.White.UIItems.Button>(SearchCriteria.ByAutomationId("btnTransfer"));
             _ipccCallStatus = _ipccWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("StatusBar.Pane3"));
 
-            InitIPCCCallDataGrid();
+            //InitIPCCCallDataGrid();
 
             _ipccDialWindow = null;
             _ipccDialNumberComboBox = null;
@@ -507,18 +507,18 @@ namespace CallTracker.View
             return true;
         }
 
-        private void InitIPCCCallDataGrid()
-        {
-            _ipccCallDataTable = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid")).AutomationElement;
-            var headerLine = _ipccCallDataTable.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Header));
+        //private void InitIPCCCallDataGrid()
+        //{
+        //    _ipccCallDataTable = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid")).AutomationElement;
+        //    var headerLine = _ipccCallDataTable.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Header));
 
-            _gridData = new string[headerLine.Count, 2];
-            var headerIndex = 0;
-            foreach (AutomationElement header in headerLine)
-            {
-                _gridData[headerIndex++, 0] = header.Current.Name;
-            }
-        }
+        //    _gridData = new string[headerLine.Count, 2];
+        //    var headerIndex = 0;
+        //    foreach (AutomationElement header in headerLine)
+        //    {
+        //        _gridData[headerIndex++, 0] = header.Current.Name;
+        //    }
+        //}
 
         void IPCCProcess_Exited(object sender, EventArgs e)
         {
@@ -754,35 +754,33 @@ namespace CallTracker.View
 
         private void GetIPCCCallData()
         {
-            //if (_ipccCallDataTable == null || _gridData == null)
-            //    InitIPCCCallDataGrid();
-            //var table = _ipccCallDataTable.AutomationElement;
-            //var headerLine = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Header));
+            var table = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid")).AutomationElement;
+
+            var headerLine = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Header));
             var cacheRequest = new CacheRequest { AutomationElementMode = AutomationElementMode.Full, TreeScope = TreeScope.Children };
             cacheRequest.Add(AutomationElement.NameProperty);
             cacheRequest.Add(ValuePattern.Pattern);
             cacheRequest.Push();
-            var gridLines = _ipccCallDataTable.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
+            var gridLines = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
             cacheRequest.Pop();
 
-            //var gridData = new string[headerLine.Count, gridLines.Count + 1];
-            //var headerIndex = 0;
-            //foreach (AutomationElement header in headerLine)
-            //{
-            //    gridData[headerIndex++, 0] = header.Current.Name;
-            //}
-            var headerLineCount = _gridData.GetLength(0) - 1;
+            var gridData = new string[headerLine.Count, gridLines.Count + 1];
+            var headerIndex = 0;
+            foreach (AutomationElement header in headerLine)
+            {
+                gridData[headerIndex++, 0] = header.Current.Name;
+            }
+
             var rowIndex = 1;
             foreach (AutomationElement row in gridLines)
             {
-                for (var col = row.CachedChildren.Count - 1; col >= 0; --col)// in row.CachedChildren)
+                foreach (AutomationElement col in row.CachedChildren)
                 {
-                    int headerIndex;
-                    for (headerIndex = 0; headerIndex < headerLineCount; headerIndex++)
-                        if (_gridData[headerIndex, 0] == row.CachedChildren[col].Cached.Name)
+                    for (headerIndex = 0; headerIndex < headerLine.Count - 1; headerIndex++)
+                        if (gridData[headerIndex, 0] == col.Cached.Name)
                             break;
-
-                    var value = ((ValuePattern)row.CachedChildren[col].GetCachedPattern(ValuePattern.Pattern)).Current.Value;
+             
+                    var value = ((ValuePattern)col.GetCachedPattern(ValuePattern.Pattern)).Current.Value;
                     _gridData[headerIndex, rowIndex] = value;
 
                     if (SelectedContact == null) continue;
@@ -822,6 +820,65 @@ namespace CallTracker.View
                 }
                 rowIndex++;
             }
+
+            //var cacheRequest = new CacheRequest { AutomationElementMode = AutomationElementMode.Full, TreeScope = TreeScope.Children };
+            //cacheRequest.Add(AutomationElement.NameProperty);
+            //cacheRequest.Add(ValuePattern.Pattern);
+            //cacheRequest.Push();
+            //var gridLines = _ipccCallDataTable.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
+            //cacheRequest.Pop();
+
+            //var headerLineCount = _gridData.GetLength(0) - 1;
+            //var rowIndex = 1;
+            //foreach (AutomationElement row in gridLines)
+            //{
+            //    for (var col = row.CachedChildren.Count - 1; col >= 0; --col)// in row.CachedChildren)
+            //    {
+            //        int headerIndex;
+            //        for (headerIndex = 0; headerIndex < headerLineCount; headerIndex++)
+            //            if (_gridData[headerIndex, 0] == row.CachedChildren[col].Cached.Name)
+            //                break;
+
+            //        var value = ((ValuePattern)row.CachedChildren[col].GetCachedPattern(ValuePattern.Pattern)).Current.Value;
+            //        _gridData[headerIndex, rowIndex] = value;
+
+            //        if (SelectedContact == null) continue;
+            //        switch (_gridData[headerIndex, 0])
+            //        {
+            //            case "Svc No":
+            //                if (!SelectedContact.FindDNMatch(value))
+            //                    SelectedContact.FindMobileMatch(value);
+            //                break;
+            //            case "Caller ID":
+            //                if (!SelectedContact.FindDNMatch(value))
+            //                    SelectedContact.FindMobileMatch(value);
+            //                break;
+            //            case "Acc No":
+            //                if (!SelectedContact.FindICONMatch(value))
+            //                    SelectedContact.FindCMBSMatch(value);
+            //                break;
+            //            case "IVR Status":
+            //                if (value.Contains("OK"))
+            //                    SelectedContact.IDok = true;
+            //                break;
+            //            case "IVR Selection":
+            //                if (value.Contains("LAT"))
+            //                    SelectedContact.Fault.LAT = true;
+            //                else if (value.Contains("LIP"))
+            //                    SelectedContact.Fault.LIP = true;
+            //                else if (value.Contains("ONC"))
+            //                    SelectedContact.Fault.ONC = true;
+            //                else if (value.Contains("MTV"))
+            //                    SelectedContact.Fault.MTV = true;
+            //                else if (value.Contains("DTV"))
+            //                    SelectedContact.Fault.DTV = true;
+            //                else if (value.Contains("NBN"))
+            //                    SelectedContact.Fault.NFV = true;
+            //                break;
+            //        }
+            //    }
+            //    rowIndex++;
+            //}
         }
 
         private static string TimeSpanToString(TimeSpan time)

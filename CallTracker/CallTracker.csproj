@@ -128,6 +128,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Source\Model\Resource\Settings\SearchModel.cs" />
+    <Compile Include="Source\View\Controls\CTToolStripMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\View\Controls\CustomDataGrid.cs">
       <SubType>Component</SubType>
     </Compile>

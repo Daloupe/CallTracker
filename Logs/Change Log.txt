@@ -31,7 +31,7 @@
 - ICON Tier4 linked to Action rather than Outcome.
 - Removing bookmarks and systems not working.
 
-0.8.3.3
+0.8.3.11
 (Bugs/Changes)
 | Tips Popup:
 	| Added Close button to Example section.
@@ -45,7 +45,8 @@
 		| Improved Address2 to properly capture address.
 | Fixed IsDifferentShift() to accomodate _IPCCState.text is now "Not Monitoring IPCC" isn't of empty.
 | Made CallStateTimer more accurate by DateTime.Now - dailyData.Events.LastCallEvent.Timestamp instead of adding timer interval, which may not be accurate.
-	
+| Changed DataGrab code to copy code from AutomationTester.
+| Changed LabelledBase Context Menu Button Cursor to Hand.
 
 0.8.2.20
 (Major Features)
