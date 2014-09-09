@@ -5,9 +5,11 @@ using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
-using Shortcut;
+using System.Timers;
 
+using Shortcut;
 using WatiN.Core;
+using SHDocVw;
 
 using CallTracker.View;
 using CallTracker.Model;
@@ -132,9 +134,8 @@ namespace CallTracker.Helpers
                 }
                 else if (NavigateOrNewIE(systemItem.Url, systemItem.Title))
                 {
-                    if (!Browser.Exists<IE>(Find.ByTitle(systemItem.Title))) return;
-
                     WindowHelper.ShowWindow(browser.hWnd, WindowHelper.SW_SHOWNORMAL);
+                    //if (!Browser.Exists<IE>(Find.ByTitle(systemItem.Title))) return;
                     AutoLogin();
                 }
             }
@@ -190,7 +191,7 @@ namespace CallTracker.Helpers
                         url = systemItem.Url;
                     }
 
-                    if (!Browser.Exists<IE>(Find.ByUrl(url))) return;
+                    //if (!Browser.Exists<IE>(Find.ByUrl(url))) return;
 
                     WindowHelper.ShowWindow(browser.hWnd, WindowHelper.SW_SHOWNORMAL);
                     AutoLogin();
@@ -644,7 +645,7 @@ namespace CallTracker.Helpers
         public static bool WaitForBrowserBusy()
         {
             var startWait = 5000;
-            var ieBrowser = ((SHDocVw.InternetExplorerClass)(browser.InternetExplorer));
+            var ieBrowser = ((IWebBrowser2)(browser.InternetExplorer));
             while (startWait > 0)
             {
                 if (ieBrowser.Busy)
@@ -692,7 +693,7 @@ namespace CallTracker.Helpers
 
         public static bool FindIEByTitle(string title)
         {      
-            var currentTitle = Regex.Match(title, @"(?:http://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?", RegexOptions.IgnoreCase).Groups[1].Value;
+            var currentTitle = Regex.Match(title, @"(?:http(?:s)?://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?", RegexOptions.IgnoreCase).Groups[1].Value;
             //var currentTitle = new Regex(".*" + title + ".*", RegexOptions.IgnoreCase);//new Regex("(http(s)?://)?.*" + title + ".*", RegexOptions.IgnoreCase); 
             if (!Browser.Exists<IE>(Find.ByTitle(currentTitle)))
             {
@@ -701,14 +702,25 @@ namespace CallTracker.Helpers
             }
             EventLogger.LogNewEvent("Found IE by Title: " + title, EventLogLevel.Brief);
 
-            //if (PreviousIEMatch != currentTitle)
-            //{
-                //if (browser != null)
-                //    browser.Dispose();
             browser = Browser.AttachToNoWait<IE>(Find.ByTitle(currentTitle));
             browser.AutoClose = false;
-                //PreviousIEMatch = currentTitle;
-            //}
+
+            return true;
+        }
+
+        public static bool FindIEByTitle(string title, ref IE toBrowser)
+        {
+            var currentTitle = Regex.Match(title, @"(?:http(?:s)?://[\w\./]+ - )?(\w+)(?:\s-(?: Windows)? Internet Explorer)?", RegexOptions.IgnoreCase).Groups[1].Value;
+            //var currentTitle = new Regex(".*" + title + ".*", RegexOptions.IgnoreCase);//new Regex("(http(s)?://)?.*" + title + ".*", RegexOptions.IgnoreCase); 
+            if (!Browser.Exists<IE>(Find.ByTitle(currentTitle)))
+            {
+                EventLogger.LogAndSaveNewEvent("Unable to Find IE by Title", EventLogLevel.Brief);
+                return false;
+            }
+            EventLogger.LogNewEvent("Found IE by Title: " + title, EventLogLevel.Brief);
+
+            toBrowser = Browser.AttachToNoWait<IE>(Find.ByTitle(currentTitle));
+            toBrowser.AutoClose = false;
 
             return true;
         }
@@ -723,14 +735,28 @@ namespace CallTracker.Helpers
                 return false;
             }
             EventLogger.LogNewEvent("Found IE by URL: " + url, EventLogLevel.Brief);
-            //if (PreviousIEMatch != _url)
-            ////{
-            //    if (browser != null)
-            //        browser.Dispose();
+
             browser = Browser.AttachToNoWait<IE>(Find.ByUrl(urlRegex));
             browser.AutoClose = false;
-                //PreviousIEMatch = _url;
-            //}
+
+            return true;
+        }
+
+        public static bool FindIEByUrl(string url, ref IE toBrowser)
+        {
+            //var urlRegex = new Regex("(http(s)?://)?.*" + url + ".*", RegexOptions.IgnoreCase);
+
+            var urlRegex = new Regex(url + ".*", RegexOptions.IgnoreCase);
+
+            if (!Browser.Exists<IE>(Find.ByUrl(urlRegex)))
+            {
+                EventLogger.LogAndSaveNewEvent("Unable to Find IE by URL", EventLogLevel.Brief);
+                return false;
+            }
+            EventLogger.LogNewEvent("Found IE by URL: " + url, EventLogLevel.Brief);
+
+            toBrowser = Browser.AttachToNoWait<IE>(Find.ByUrl(urlRegex));
+            toBrowser.AutoClose = false;
 
             return true;
         }
@@ -750,76 +776,120 @@ namespace CallTracker.Helpers
         }
 
         public static bool NavigateOrNewIE(string url, string title = "", string searchUrl = "")
-        {      
+        {
+            var outcome = false;
             if (FindIEByUrl(url))
             {
                 new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
                 if (!String.IsNullOrEmpty(searchUrl))
                     browser.GoToNoWait(searchUrl);
-                return true;
+                outcome = true;
             }
-            
-            if (!String.IsNullOrEmpty(title))
+            else if (!String.IsNullOrEmpty(title))
             {
                 if (FindIEByTitle(title))
                 {
                     new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
                     if (!String.IsNullOrEmpty(searchUrl))
                         browser.GoToNoWait(searchUrl);
-                    return true;
+                    outcome = true;
                 }
             }
-            EventLogger.LogNewEvent("Creating new IE window", EventLogLevel.Brief);
-            if (!String.IsNullOrEmpty(searchUrl))
-                if (CreateNewIE(searchUrl))
-                    return true;
-            else
-                if (CreateNewIE(url))
-                    return true;
+
+            if (!outcome)
+            {
+                EventLogger.LogNewEvent("Creating new IE window", EventLogLevel.Brief);
+                if (!String.IsNullOrEmpty(searchUrl))
+                    if (CreateNewIE(searchUrl))
+                        outcome = true;
+                else
+                    if (CreateNewIE(url))
+                        outcome = true;
+            }
 
             if (browser != null)
                 browser.Dispose();
-            return false;
+            return outcome;
         }
 
         /// <summary>
         /// Searches a system.
         /// </summary>
-        public static bool AutoSearch(string search, string title, string url, bool titleFirst = true)
+        public static bool AutoSearch(string search, string title, string url, bool titleFirst = true, string dataType = "")
         {
+            var outcome = false;
             var activeWindowTitle = Regex.Match(WindowHelper.GetActiveWindowTitle(), @"(\w+)(?:\s-(?: Windows)? Internet Explorer)?", RegexOptions.IgnoreCase).Groups[1].Value;
+            //IE toBrowser;
+            switch (title)
+            {
+                case "SCAMPS":
+                    _scampsSearching = dataType;
+                    //toBrowser = _scampsBrowser;
+                    if (_scampsTimer != null)
+                        _scampsTimer.Stop();
+                    else
+                    {
+                        _scampsTimer = new System.Timers.Timer(1000) { SynchronizingObject = parent };
+                        _scampsTimer.Elapsed += scampsTimerElapsed;
+                    }
+                    break;
+                case "DIMPS":
+                    //toBrowser = browser;
+                    break;
+                default:
+                    //toBrowser = browser;
+                    break;
+            }
 
             if (titleFirst)
             {
-                if (AutoSearchByTitle(search, title, activeWindowTitle))
-                    return true;
-                if (AutoSearchByUrl(search, url, activeWindowTitle))
-                    return true; 
+                if (AutoSearchByTitle(search, title, activeWindowTitle))//, ref toBrowser))
+                    outcome = true;
+                else if (AutoSearchByUrl(search, url, activeWindowTitle))//, ref toBrowser))
+                    outcome = true; 
             }
             else
             {
-                if (AutoSearchByUrl(search, url, activeWindowTitle))
-                    return true;
-                if (AutoSearchByTitle(search, title, activeWindowTitle))
-                    return true;
+                if (AutoSearchByUrl(search, url, activeWindowTitle))//, ref toBrowser))
+                    outcome = true;
+                else if (AutoSearchByTitle(search, title, activeWindowTitle))//, ref toBrowser))
+                    outcome = true;
             }
 
-            if (Properties.Settings.Default.AutoSearchOpenNew)
+            if (!outcome && Properties.Settings.Default.AutoSearchOpenNew)
             {
                 CreateNewIE(search);
+                AutoSearchByUrl(search, url, activeWindowTitle);//, ref toBrowser);
                 EventLogger.LogNewEvent("Creating New and Searching: " + search, EventLogLevel.Brief);
-                if (browser != null)
-                    browser.Dispose();
                 parent.AddAppEvent(AppEventTypes.AutoSearch);
-                return true;
+                outcome = true;
             }
 
-            if (browser != null)
-                browser.Dispose();
-            return false;
+            if (outcome)
+            {
+                switch (title)
+                {
+                    case "SCAMPS":
+                        _scampsBrowser = browser;
+                        _scampsSearchStarted = DateTime.Now;
+                        _scampsTimer.Start();
+                        break;
+                    case "DIMPS":
+                        if (browser != null)
+                            browser.Dispose();
+                        break;
+                    default:
+                        if (browser != null)
+                            browser.Dispose();
+                        break;
+                }
+            }
+
+            
+            return outcome;
         }
 
-        private static bool AutoSearchByTitle(string search, string title, string activeWindowTitle)
+        private static bool AutoSearchByTitle(string search, string title, string activeWindowTitle)//, ref IE toBrowser)
         {
             if (!FindIEByTitle(title)) return false;
 
@@ -828,15 +898,13 @@ namespace CallTracker.Helpers
                 EventLogger.LogAndSaveNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
                 return false;
             }
-            browser.GoToNoWait(search);
             EventLogger.LogNewEvent("Searching: " + search, EventLogLevel.Brief);
-            if (browser != null)
-                browser.Dispose();
+
+            browser.GoToNoWait(search);
             parent.AddAppEvent(AppEventTypes.AutoSearch);
             return true;
         }
-
-        private static bool AutoSearchByUrl(string search, string url, string activeWindowTitle)
+        private static bool AutoSearchByUrl(string search, string url, string activeWindowTitle)//, ref IE toBrowser)
         {
             if (!FindIEByUrl(url)) return false;
 
@@ -845,12 +913,75 @@ namespace CallTracker.Helpers
                 EventLogger.LogAndSaveNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
                 return false;
             }
-            browser.GoToNoWait(search);
             EventLogger.LogNewEvent("Searching: " + search, EventLogLevel.Brief);
-            if (browser != null)
-                browser.Dispose();
+
+            browser.GoToNoWait(search);
             parent.AddAppEvent(AppEventTypes.AutoSearch);
             return true;
+        }
+
+        private static System.Timers.Timer _scampsTimer;
+        private static IE _scampsBrowser;
+        private static string _scampsSearching;
+        private static DateTime _scampsSearchStarted;
+
+        private static void scampsTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            Console.WriteLine("searchgin scamps");
+            if ((e.SignalTime - _scampsSearchStarted).TotalSeconds > 5)
+            {
+                if (_scampsBrowser != null)
+                {
+                    _scampsBrowser.Dispose();
+                    _scampsBrowser = null;
+                }
+                _scampsTimer.Dispose();
+                _scampsTimer = null;
+                _scampsSearching = string.Empty;
+                parent.SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
+                parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true;
+            }
+
+            if (_scampsBrowser == null)
+            {
+                FindIEByUrl("https://scamps.optusnet.com.au", ref _scampsBrowser);
+                if (_scampsBrowser == null)
+                    return;
+            }
+            var ieBrowser = ((IWebBrowser2)(_scampsBrowser.InternetExplorer));
+            if (ieBrowser.Busy) return;
+            if (_scampsBrowser.Title.Contains("Message"))
+            {
+                switch (_scampsSearching)
+                {
+                    case "DN":
+                        parent.SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
+                        break;
+                    case "Username":
+                        parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true;
+                        break;
+                }
+            }
+            else
+            {
+                switch (_scampsSearching)
+                {
+                    case "DN":
+                        parent.SelectedContact.Fault.LIP = true;
+                        break;
+                    case "Username":
+                        parent.SelectedContact.Fault.ONC = true;
+                        break;
+                }
+                parent.SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
+                parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true;
+            }
+
+            _scampsBrowser.Dispose();
+            _scampsBrowser = null;
+            _scampsTimer.Dispose();
+            _scampsTimer = null;
+            _scampsSearching = string.Empty;
         }
     }
 

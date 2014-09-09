@@ -21,22 +21,18 @@ namespace CallTracker.Model
             ClearMessage = true;
         }
 
-        public static void LogNewEvent(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
+        public static void LogNewEvent(string eventString, EventLogLevel logLevel = EventLogLevel.Verbose)
         {
-            EventLog.Add(new EventLogModel(_event, _logLevel));
-            if (_logLevel.CompareTo(StatusLabel.Tag) >= 0)
-                StatusLabel.Text = _event;
-            else if(_logLevel == EventLogLevel.ClearStatus && ClearMessage)
+            EventLog.Add(new EventLogModel(eventString, logLevel));
+            if (logLevel.CompareTo(StatusLabel.Tag) >= 0)
+                StatusLabel.Text = eventString;
+            else if(logLevel == EventLogLevel.ClearStatus && ClearMessage)
                 StatusLabel.Text = String.Empty;
         }
 
-        public static void LogAndSaveNewEvent(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose)
+        public static void LogAndSaveNewEvent(string eventString, EventLogLevel logLevel = EventLogLevel.Verbose)
         {
-            EventLog.Add(new EventLogModel(_event, _logLevel));
-            if (_logLevel.CompareTo(StatusLabel.Tag) >= 0)
-                StatusLabel.Text = _event;
-            else if (_logLevel == EventLogLevel.ClearStatus && ClearMessage)
-                StatusLabel.Text = String.Empty;
+            LogNewEvent(eventString, logLevel);
             SaveLog();
         }
 
@@ -68,11 +64,11 @@ namespace CallTracker.Model
         [ProtoMember(3)]
         public EventLogLevel LogLevel { get; set; }
 
-        public EventLogModel(string _event, EventLogLevel _logLevel)
+        public EventLogModel(string _event, EventLogLevel logLevel)
         {
             TimeStamp = DateTime.Now;
             Event = _event;
-            LogLevel = _logLevel;
+            LogLevel = logLevel;
         }
 
         public string GetLogEntry()

@@ -31,7 +31,7 @@
 - ICON Tier4 linked to Action rather than Outcome.
 - Removing bookmarks and systems not working.
 
-0.8.3.17
+0.8.3.18
 (Minor Feature)
 | Added "Advanced Mode" settings item.
 (Bugs/Changes)
@@ -42,6 +42,7 @@
 | Regexes:
 	| Made a few Regexes Explicit Capture.
 	| Added <DN> Group to DN which captures the whole DN.
+	- Moved UsernameUpper and Lower into a single Regex.
 	| CMBS
 		| Added ^$ tags to avoid misreading an ICON number.
 		| Added conditionals to allow 1123456070 and 1123456007 to both read as 31123456 7.
@@ -55,7 +56,11 @@
 | Updated Relevant "Smart paste bind" and "Database View" slide to reflect the need for advanced mode.
 | Removed Quit button from Splash Screen.
 | Fixed PRTemplate not updating properly.
-| PRTemplate and ICONNotes are generated no more than once per 35ms.
+| PRTemplate and ICONNotes are generated no more than once per 25ms.
+| Added AutoSearch Logic for checking if system search failed.
+
+- AutoLogin wasn't working. Perhaps not match title properly.
+
 
 0.8.2.20
 (Major Features)
