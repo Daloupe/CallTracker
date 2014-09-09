@@ -31,8 +31,9 @@
 - ICON Tier4 linked to Action rather than Outcome.
 - Removing bookmarks and systems not working.
 - Allow Scrolling further in service panel.
+- Events now only recompute when dirty.
 
-0.8.3.29
+0.8.3.30
 (Minor Feature)
 | Added "Advanced Mode" settings item.
 (Bugs/Changes)
@@ -69,6 +70,7 @@
 | Added "Paste by SendKeys" options to Binds.
 | Fixed Daily stats.
 | Improved look of Daily Stats.
+| Smoothed Servce Panel Changes.
 
 0.8.2.20
 (Major Features)

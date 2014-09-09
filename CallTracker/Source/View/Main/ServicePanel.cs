@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+
+
 using CallTracker.Model;
 using CallTracker.Helpers;
 
@@ -180,6 +182,7 @@ namespace CallTracker.View
         //public AddListItem myDelegate;
         public void ChangeService(ServiceTypes service)
         {
+            WindowHelper.SuspendDrawing(this);
             EditContacts.IsChangingService = true;
             if (currentFlowPanel.ServiceType.IsNot(service))
             {
@@ -197,16 +200,17 @@ namespace CallTracker.View
             else
                 _Equipment.Hide();
 
-            SuspendLayout();
+            //SuspendLayout();
             UpdateSymptoms();
             UpdateEquipment();
             UpdateSeverity();
-            ResumeLayout();
+            //ResumeLayout();
 
             if (EditContacts.MainForm.SelectedContact != null)
                 EditContacts.MainForm.SelectedContact.Fault.AffectedServiceType = currentFlowPanel.ServiceType;
 
             EditContacts.IsChangingService = false;
+            WindowHelper.ResumeDrawing(this);
         }
 
         public void UpdateSymptoms()
