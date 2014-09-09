@@ -31,7 +31,6 @@ namespace CallTracker.Helpers
             parent = _parent;
 
             HotKeyManager = new HotKeyManager();
-
             HotKeyManager.AddOrReplaceHotkey("wintest", Modifiers.Win, Keys.N, OnTest);
             HotKeyManager.AddOrReplaceHotkey("SmartCopy", Modifiers.Win, Keys.C, OnSmartCopy);
             HotKeyManager.AddOrReplaceHotkey("SmartPaste", Modifiers.Win, Keys.V, OnSmartPaste);
@@ -47,7 +46,7 @@ namespace CallTracker.Helpers
                 HotKeyManager.AddOrReplaceHotkey("GLS" + GridLinkHotKey.Value, Modifiers.Win | Modifiers.Control, GridLinkHotKey.Key, OnGridLinksSearch);
             }
 
-            Settings.AutoStartDialogWatcher = false;
+            Settings.AutoStartDialogWatcher = true;
             Settings.AutoMoveMousePointerToTopLeft = false;
             Settings.AutoCloseDialogs = false;
             Settings.AttachToBrowserTimeOut = 3;
@@ -236,12 +235,27 @@ namespace CallTracker.Helpers
                 return;
             }
 
-            Clipboard.SetText(dataToPaste);
-            SendKeys.SendWait("+^");
-            SendKeys.Flush();
-            SendKeys.SendWait("^v");
-            Application.DoEvents();
-            SendKeys.Flush();
+            //var oldClip = String.Empty;
+            //if (Clipboard.ContainsText())
+            //{
+            //    oldClip = Clipboard.GetText();
+            //    Clipboard.Clear();
+            //}
+
+            //Clipboard.SetText(dataToPaste);
+            //SendKeys.Send("+^");
+            //SendKeys.Send("^(v)");
+            SendKeys.Send(dataToPaste);
+            //Application.DoEvents();
+            //SendKeys.Flush();
+
+            //Stopwatch.Reset();
+            //Stopwatch.Start();
+            //while (Clipboard.GetText() == dataToPaste && Stopwatch.ElapsedMilliseconds <= 100)
+            //    SendKeys.Flush();
+            //Stopwatch.Stop();
+
+            //Clipboard.SetText(oldClip);
             parent.AddAppEvent(AppEventTypes.DataPaste);
         }
 
@@ -255,10 +269,17 @@ namespace CallTracker.Helpers
                 EventLogger.LogAndSaveNewEvent("SmartPaste Error: Selected Contact is Null", EventLogLevel.Brief);
                 return;
             }
-
             var activeWindowTitle = WindowHelper.GetActiveWindowTitle();
-            EventLogger.LogNewEvent(Environment.NewLine + "Searching for SmartPaste Matches for Window: " + WindowHelper.GetActiveWindowTitle(), EventLogLevel.Brief);
-            if (activeWindowTitle.Contains("Oracle Forms Runtime"))
+            EventLogger.LogNewEvent(Environment.NewLine + "Searching for SmartPaste Matches for Window: " + activeWindowTitle, EventLogLevel.Brief);
+
+            var oldClip = String.Empty;
+            if (Clipboard.ContainsText())
+            {
+                oldClip = Clipboard.GetText();
+                Clipboard.Clear();
+            }
+
+            if (activeWindowTitle == "Oracle Forms Runtime")//.Contains("Oracle Forms Runtime"))
             {
                 EventLogger.LogAndSaveNewEvent("Trying to set MAD Active element");
                 MadSmartPaste.SetActiveElement(parent.SelectedContact);
@@ -273,11 +294,7 @@ namespace CallTracker.Helpers
                     return;
                 }
                 Clipboard.SetText(dataToPaste);
-                SendKeys.SendWait("+^");
-                SendKeys.Flush();
-                SendKeys.SendWait("^v");
-                Application.DoEvents();
-                SendKeys.Flush();
+                SendKeys.Send("^(v)");
             }
             else
             {
@@ -304,20 +321,34 @@ namespace CallTracker.Helpers
                     var s = FindProperty.FollowPropertyPath(parent.SelectedContact, query.Data,
                         parent.SelectedContact.Fault.AffectedServiceType.ToString());
 
-                    activeElement.SetAttributeValue("value", s); //query.Paste(browser, element, s);
-                    if (query.FireOnChange)
-                        activeElement.FireEvent("onchange");
-                    else if (query.FireOnChangeNoWait)
-                        activeElement.FireEventNoWait("onchange");
+                    if (query.PasteWithSendKeys)
+                    {
+                        Clipboard.SetText(s);
+                        SendKeys.SendWait("^(v)");
+                        if (query.FireOnChange)
+                            WaitForBrowserBusy();
+                    }
+                    else
+                    {
+                        activeElement.SetAttributeValue("value", s); //query.Paste(browser, element, s);
+                        if (query.FireOnChange)
+                        {
+                            activeElement.FireEvent("onchange");
+                            WaitForBrowserBusy();
+                        }
+                        else if (query.FireOnChangeNoWait)
+                            activeElement.FireEventNoWait("onchange");
+                    }
 
                     EventLogger.LogNewEvent("Smart Paste: Match Found: " + s);
                 }
                 else
                     EventLogger.LogAndSaveNewEvent("Smart Paste Error: No Matches Found");
 
-                parent.AddAppEvent(AppEventTypes.SmartPaste);
-                browser.Dispose();
+                 browser.Dispose();
             }
+            parent.AddAppEvent(AppEventTypes.SmartPaste);
+            Clipboard.SetText(oldClip);
         }
 
         private static void OnBindSmartPaste(HotkeyPressedEventArgs e)
@@ -421,7 +452,6 @@ namespace CallTracker.Helpers
             parent.AddAppEvent(AppEventTypes.AutoFill);
 
             EventLogger.SaveLog();
-            //PreviousIEMatch = browser.Title;
             browser.Dispose();
         }
 
@@ -460,7 +490,7 @@ namespace CallTracker.Helpers
             query.Paste(query.UsernameElement, query.Username);
             query.Paste(query.PasswordElement, query.Password);
             query.Submit(browser);
-            //PreviousIEMatch = browser.Title;
+            
             parent.AddAppEvent(AppEventTypes.AutoLogin);
             browser.Dispose();
         }
@@ -482,11 +512,11 @@ namespace CallTracker.Helpers
                 Clipboard.Clear();
             }
 
-            SendKeys.SendWait("^c");
+            SendKeys.Send("^(c)");
             SendKeys.Flush();
             Stopwatch.Reset();
             Stopwatch.Start();
-            while (!Clipboard.ContainsText() && Stopwatch.ElapsedMilliseconds <= 50)
+            while (!Clipboard.ContainsText() && Stopwatch.ElapsedMilliseconds <= 100)
                 SendKeys.Flush();
             Stopwatch.Stop();
 
@@ -649,7 +679,7 @@ namespace CallTracker.Helpers
         public static bool WaitForBrowserBusy()
         {
             var startWait = 5000;
-            var ieBrowser = ((IWebBrowser2)(browser.InternetExplorer));
+            var ieBrowser = (IWebBrowser2)browser.InternetExplorer;
             while (startWait > 0)
             {
                 if (ieBrowser.Busy)
@@ -658,9 +688,10 @@ namespace CallTracker.Helpers
                     startWait -= 200;
                 }
                 else
-                    return true;
+                    break;
             }
-            return false;
+            var stillBusy = ieBrowser.Busy;
+            return !stillBusy;
         }
         
         public static bool GetActiveBrowser()
@@ -671,7 +702,7 @@ namespace CallTracker.Helpers
 
             var hwnd = WindowHelper.GetActiveWindowHWND();
             if (FindIEByHWND(hwnd)) return true;
-            EventLogger.LogAndSaveNewEvent(String.Format("Unable to find page by HWND: {0}", hwnd.ToString()));
+            EventLogger.LogAndSaveNewEvent(String.Format("Unable to find page by HWND: {0}", hwnd));
 
             return false;
         }
@@ -687,7 +718,7 @@ namespace CallTracker.Helpers
             //{
                 //if (browser != null)
                 //    browser.Dispose();
-                browser = Browser.AttachTo<IE>(Find.By("hwnd", currentHWND));
+                browser = Browser.AttachToNoWait<IE>(Find.By("hwnd", currentHWND));
                 browser.AutoClose = false;
                 //PreviousIEMatch = currentHWND;
             //}
@@ -944,6 +975,7 @@ namespace CallTracker.Helpers
                 _scampsSearching = string.Empty;
                 parent.SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
                 parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true;
+                return;
             }
 
             if (_scampsBrowser == null)

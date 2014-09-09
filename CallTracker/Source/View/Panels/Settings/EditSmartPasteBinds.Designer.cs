@@ -57,6 +57,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this._FormElement = new CallTracker.View.BorderedTextBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this._PasteWithSendKeys = new System.Windows.Forms.CheckBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -188,6 +189,7 @@
             this.flowLayoutPanel1.Controls.Add(this._FindByName);
             this.flowLayoutPanel1.Controls.Add(this._FireOnChange);
             this.flowLayoutPanel1.Controls.Add(this._FireOnChangeNoWait);
+            this.flowLayoutPanel1.Controls.Add(this._PasteWithSendKeys);
             this.flowLayoutPanel1.Controls.Add(this.panel3);
             this.flowLayoutPanel1.Controls.Add(this.label7);
             this.flowLayoutPanel1.Controls.Add(this._FormElement);
@@ -363,7 +365,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(6, 321);
+            this.panel3.Location = new System.Drawing.Point(6, 343);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 1);
@@ -371,7 +373,7 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(6, 325);
+            this.label7.Location = new System.Drawing.Point(6, 347);
             this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(189, 10);
@@ -384,7 +386,7 @@
             this._FormElement.BorderColor = System.Drawing.Color.Gray;
             this._FormElement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._FormElement.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "FormElement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._FormElement.Location = new System.Drawing.Point(6, 338);
+            this._FormElement.Location = new System.Drawing.Point(6, 360);
             this._FormElement.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._FormElement.Name = "_FormElement";
             this._FormElement.Size = new System.Drawing.Size(189, 19);
@@ -394,12 +396,23 @@
             // 
             this.checkBox3.AutoSize = true;
             this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindInForm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBox3.Location = new System.Drawing.Point(6, 360);
+            this.checkBox3.Location = new System.Drawing.Point(212, 6);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(118, 16);
             this.checkBox3.TabIndex = 18;
             this.checkBox3.Text = "Find Within Form";
             this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // _PasteWithSendKeys
+            // 
+            this._PasteWithSendKeys.AutoSize = true;
+            this._PasteWithSendKeys.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "PasteWithSendKeys", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._PasteWithSendKeys.Location = new System.Drawing.Point(6, 318);
+            this._PasteWithSendKeys.Name = "_PasteWithSendKeys";
+            this._PasteWithSendKeys.Size = new System.Drawing.Size(138, 16);
+            this._PasteWithSendKeys.TabIndex = 31;
+            this._PasteWithSendKeys.Text = "Paste with SendKeys";
+            this._PasteWithSendKeys.UseVisualStyleBackColor = true;
             // 
             // EditSmartPasteBinds
             // 
@@ -456,5 +469,6 @@
         private BorderedTextBox _Data;
         private System.Windows.Forms.CheckBox _FireOnChange;
         private System.Windows.Forms.CheckBox _FireOnChangeNoWait;
+        private System.Windows.Forms.CheckBox _PasteWithSendKeys;
     }
 }

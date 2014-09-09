@@ -32,7 +32,7 @@
 - Removing bookmarks and systems not working.
 - Allow Scrolling further in service panel.
 
-0.8.3.24
+0.8.3.26
 (Minor Feature)
 | Added "Advanced Mode" settings item.
 (Bugs/Changes)
@@ -65,6 +65,8 @@
 | Fixed spurious RecordCreated events form being created.
 | Caught Outlook not found exception and created error message.
 | Equipment is copies properly with Smart Copy.
+| Updated HotkeyManager to release its hotkeys before it triggers it's method.
+| Added "Paste by SendKeys" options to Binds.
 
 0.8.2.20
 (Major Features)

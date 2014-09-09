@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Reflection;
+using System.Windows.Forms;
 using CallTracker.Helpers;
 using WatiN.Core;
 using WatiN.Core.Constraints;
 using ProtoBuf;
+using Button = WatiN.Core.Button;
 
 namespace CallTracker.Model
 {
@@ -49,40 +51,40 @@ namespace CallTracker.Model
         [ProtoMember(3)]
         public string Title { get; set; }
 
-        protected string formElement;
+        private string _formElement;
         [ProtoMember(4)]
         public string FormElement
         {
-            get { return formElement; }
+            get { return _formElement; }
             set
             {
-                formElement = value;
-                if (String.IsNullOrEmpty(formElement))
+                _formElement = value;
+                if (String.IsNullOrEmpty(_formElement))
                     FindInForm = false;
             }
         }
 
-        protected bool findInForm;
+        private bool _findInForm;
         [ProtoMember(5)]
         public bool FindInForm
         {
-            get { return findInForm; }
+            get { return _findInForm; }
             set
             {
-                findInForm = value;
-                IEContext = findInForm ? ContextForm : ContextBrowser;
+                _findInForm = value;
+                IEContext = _findInForm ? ContextForm : ContextBrowser;
             }
         }
 
-        protected bool findByName;
+        private bool _findByName;
         [ProtoMember(7)]
         public bool FindByName
         {
-            get { return findByName; }
+            get { return _findByName; }
             set
             {
-                findByName = value;
-                IEConstraint = findByName ? ConstraintByName : ConstraintById;
+                _findByName = value;
+                IEConstraint = _findByName ? ConstraintByName : ConstraintById;
             }
         }
 
@@ -92,13 +94,16 @@ namespace CallTracker.Model
         [ProtoMember(9)]
         public bool FireOnChangeNoWait { get; set; }
 
-        protected ElementTypes elementType;
+        [ProtoMember(10)]
+        public bool PasteWithSendKeys { get; set; }
+
+        private ElementTypes _elementType;
         [ProtoMember(11)]
         public ElementTypes ElementType 
         { 
             get 
             { 
-                return elementType; 
+                return _elementType; 
             } 
             set
             {
@@ -126,10 +131,10 @@ namespace CallTracker.Model
                         break;
                 }   
 
-                if(elementType != value)
+                if(_elementType != value)
                     PasteMethod = GetType().GetMethod("PasteData").MakeGenericMethod(IEType);
 
-                elementType = value;
+                _elementType = value;
             }
         }
 
@@ -148,15 +153,26 @@ namespace CallTracker.Model
             }
             
             browserElement.Focus();//.FindNativeElement().SetFocus();
-            IEMethod(browserElement, value);
-            if (FireOnChange)
+            if (PasteWithSendKeys)
             {
-                browserElement.FireEvent("onchange");
-                HotkeyController.WaitForBrowserBusy();
-                //May need to tab to next item for IFMS.
+                Clipboard.SetText(value);
+                SendKeys.Send("^(v)");
+                SendKeys.Flush();
+                if (FireOnChange)
+                    HotkeyController.WaitForBrowserBusy();
             }
-            else if (FireOnChangeNoWait)
-                browserElement.FireEventNoWait("onchange");
+            else
+            {
+                IEMethod(browserElement, value);
+                if (FireOnChange)
+                {
+                    browserElement.FireEvent("onchange");
+                    HotkeyController.WaitForBrowserBusy();
+                    //May need to tab to next item for IFMS.
+                }
+                else if (FireOnChangeNoWait)
+                    browserElement.FireEventNoWait("onchange");
+            }
         }
 
         protected Func<Browser, IElementContainer> IEContext;

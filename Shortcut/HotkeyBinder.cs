@@ -90,7 +90,31 @@ namespace Shortcut
         /// </summary>
         private void OnHotkeyPressed(object sender, HotkeyPressedEventArgs e)
         {
-            HotkeyCallback callback = _hotkeyCallbacks[e.HotkeyCombination];
+            var callback = _hotkeyCallbacks[e.HotkeyCombination];
+
+
+            if ((e.HotkeyCombination.Modifier & Modifiers.Win) > 0)
+            {
+                //Console.WriteLine("Releasing Win");
+                NativeMethods.keybd_event((byte) NativeMethods.VK_LWIN, 0, NativeMethods.KEYEVENTF_KEYUP, 0);
+            }
+            if ((e.HotkeyCombination.Modifier & Modifiers.Control) > 0)
+            {
+                //Console.WriteLine("Releasing Control");
+                NativeMethods.keybd_event((byte) NativeMethods.VK_LCONTROL, 0, NativeMethods.KEYEVENTF_KEYUP, 0);
+            }
+            if ((e.HotkeyCombination.Modifier & Modifiers.Shift) > 0)
+            {
+                //Console.WriteLine("Releasing Shift");
+                NativeMethods.keybd_event((byte) NativeMethods.VK_LSHIFT, 0, NativeMethods.KEYEVENTF_KEYUP, 0);
+            }
+            if ((e.HotkeyCombination.Modifier & Modifiers.Alt) > 0)
+            {
+                //Console.WriteLine("Releasing Alt");
+                NativeMethods.keybd_event((byte) NativeMethods.VK_LALT, 0, NativeMethods.KEYEVENTF_KEYUP, 0);
+            }
+
+            NativeMethods.keybd_event((byte)e.HotkeyCombination.Key, 0, NativeMethods.KEYEVENTF_KEYUP, 0);
             callback.Invoke(e);
         }
 
