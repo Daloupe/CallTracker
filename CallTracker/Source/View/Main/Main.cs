@@ -242,6 +242,8 @@ namespace CallTracker.View
             BindSmartPasteForm = new BindSmartPasteForm(this);
             BugReport = new BugReport();
 
+            SetSettings();
+
             DidYouKnow = new DidYouKnow();
             if (Properties.Settings.Default.ShowTipsOnStartup)
                 DidYouKnow.Show();
@@ -252,7 +254,22 @@ namespace CallTracker.View
             //_DailyDataBindingSource.Filter = "Date = " + ((DateFilterItem)DateBindingSource.Current).LongDate;
             _DailyDataBindingSource.Position = DateBindingSource.Position;
             //_DailyDataBindingSource.IndexOf(DailyData.FirstOrDefault(x => x.Date == ((DateFilterItem)DateBindingSource.Current).LongDate));
-        } 
+        }
+
+        private void SetSettings()
+        {
+            advancedModeToolStripMenuItem.Checked = Properties.Settings.Default.AdvancedMode;
+
+            showStatusBarToolStripMenuItem.Checked = Properties.Settings.Default.ShowStatusBar;
+            clearMessagesToolStripMenuItem.Checked = Properties.Settings.Default.WarningLevel;
+            
+            autoSearchEnabledToolStripMenuItem.Checked = Properties.Settings.Default.AutoSearch;
+            autoSearchActiveWindowToolStripMenuItem.Checked = Properties.Settings.Default.AutoSearchIgnoreActiveWindow;
+            newPageIfRequiredToolStripMenuItem.Checked = Properties.Settings.Default.AutoSearchOpenNew;       
+            
+            monitorIPCCToolStripMenuItem.Checked = Properties.Settings.Default.MonitorIPCC;
+            pullIPCCCallDataToolStripMenuItem.Checked = Properties.Settings.Default.PullIPCCCallData;
+        }
 
         private void Main_Shown(object sender, EventArgs e)
         {
@@ -281,6 +298,7 @@ namespace CallTracker.View
                 DisposeIPCC();
 
                 Properties.Settings.Default.Save();
+
                 if (SelectedContact != null)
                     SelectedContact.FinishUp();
 
@@ -1201,19 +1219,29 @@ namespace CallTracker.View
             Properties.Settings.Default.AutoSearchIgnoreActiveWindow = autoSearchActiveWindowToolStripMenuItem.Checked;
         }
 
-        private void toolTipAsControlBoxToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.ToolTipAsControlBox = toolTipAsControlBoxToolStripMenuItem.Checked;
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            AboutScreen.Show();
-        }
-
         private void newPageIfRequiredToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.AutoSearchOpenNew = newPageIfRequiredToolStripMenuItem.Checked;
+        }
+
+        private void advancedModeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AdvancedMode = advancedModeToolStripMenuItem.Checked;
+
+            foreach (var control in settingsToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
+            {
+                ((ToolStripItem)control).Visible = Properties.Settings.Default.AdvancedMode;
+            }
+
+            foreach (var control in helpToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
+            {
+                ((ToolStripItem)control).Visible = Properties.Settings.Default.AdvancedMode;
+            }
+
+            foreach (var control in _CallStateTime.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
+            {
+                ((ToolStripItem)control).Visible = Properties.Settings.Default.AdvancedMode;
+            }
         }
 
         private void didYouKnowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1228,6 +1256,11 @@ namespace CallTracker.View
 
         }
 
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutScreen.Show();
+        }
+
         private void reportBugToolStripMenuItem_Click(object sender, EventArgs e)
         {
             BugReport.Show();
@@ -1236,6 +1269,11 @@ namespace CallTracker.View
         private void saveLogToolStripMenuItem_Click(object sender, EventArgs e)
         {
             EventLogger.SaveLog();
+        }
+
+        private void _IPCCState_Click(object sender, EventArgs e)
+        {
+            _CallStateTime.ShowDropDown();
         }
     }
 }

@@ -31,7 +31,9 @@
 - ICON Tier4 linked to Action rather than Outcome.
 - Removing bookmarks and systems not working.
 
-0.8.3.11
+0.8.3.13
+(Minor Feature)
+| Added "Advanced Mode" settings item.
 (Bugs/Changes)
 | Tips Popup:
 	| Added Close button to Example section.
@@ -47,6 +49,9 @@
 | Made CallStateTimer more accurate by DateTime.Now - dailyData.Events.LastCallEvent.Timestamp instead of adding timer interval, which may not be accurate.
 | Changed DataGrab code to copy code from AutomationTester.
 | Changed LabelledBase Context Menu Button Cursor to Hand.
+| Clicking on _IPCCState will open _CallStateTime dropdown.
+| Added bug icon to "Report Bug".
+| Updated Relevant "Smart paste bind" and "Database View" slide to reflect the need for advanced mode.
 
 0.8.2.20
 (Major Features)

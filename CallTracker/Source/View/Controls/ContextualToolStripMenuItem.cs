@@ -38,7 +38,7 @@ using CallTracker.Helpers;
 
     [DefaultProperty("Items")]
     [ToolStripItemDesignerAvailability(ToolStripItemDesignerAvailability.All)]
-    public class ContextualToolStripMenuItem : ToolStripMenuItem
+    public class ContextualToolStripMenuItem : CTToolStripMenuItem
     {
         public bool dirty = false;
         public ToolStripItem[] staticDropDownItems;

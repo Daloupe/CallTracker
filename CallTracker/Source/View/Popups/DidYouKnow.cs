@@ -281,7 +281,7 @@ namespace CallTracker.View
                     new TipModel("- Calls can be sorted by <Outcome>, <Time>, <Name>, or <Flagged>."),
                     new TipModel("- Calls are archived after 7 days - only <Symptom>, <Outcome>, <Action>, <Affected Service Type>, <Note>, and <Daily Stats> are kept."),
                     new TipModel("- Calls are deleted after 31 days."),
-                    new TipModel("- Can be access from <Wingman> > <Call History>.")
+                    new TipModel("- Can be access from <Wingman> > <View Call History>.")
                 }),
             new TipSlide("GridLinks - Win+NumPad",
                 new List<TipModel>
@@ -289,7 +289,7 @@ namespace CallTracker.View
                     new TipModel("- <GridLinks>(|2<Win+Numpad>|1) jumps straight to the desired system so you don't need to track it down from the taskbar."),
                     new TipModel("- Each number on the NumPad is assigned a different system."),
                     new TipModel("- |2<Win+Ctrl+Numpad>|1 will initiate a <GridLinks Search> which will also attempt to search the selected system."),
-                    new TipModel("- System assignment can be changed from <Wingman> > <Settings> > <Grid Links>.")
+                    new TipModel("- System assignment can be changed from <Wingman> > <Settings> > <Edit Grid Links>.")
                 }),
             new TipSlide("IPCC Monitor",
                 new List<TipModel>
@@ -330,7 +330,7 @@ namespace CallTracker.View
                 new List<TipModel>
                 {
                     new TipModel("- <Auto Login>(|2<Win+`>|1) will detect which system you're trying to log into, and pop your details in."),
-                    new TipModel("- You can update your logins from <Wingman> > <Settings> > <Logins>.")
+                    new TipModel("- You can update your logins from <Wingman> > <Settings> > <Edit Logins>.")
                 }),
             new TipSlide("Data Paste - Ctrl+Shift+",
                 new List<TipModel>
@@ -351,14 +351,16 @@ namespace CallTracker.View
                     new TipModel("- Allows you to setup which data is bound to which field."),
                     new TipModel("- Click on the desired field, then hit the Hotkey. Most of the fields will prefill, just type in which data you want it to paste. The help button in the Smart Paste Bind form will tell you what you can type into the data field."),
                     new TipModel("- If the Bind Smart Paste form doens't pop up, it means that page can't be bound to."),
-                    new TipModel("- You can view all binds from <Wingman> > <Settings> > <Advanced> > <Smart Paste Binds>.")
+                    new TipModel("- Advanced Mode <Wingman> > <Settings> > <Advanced Mode> must be enabled."),
+                    new TipModel("- You can view all binds from <Wingman> > <Settings> > <Advanced> > <Edit Smart Paste Binds>.")
                 }),
             new TipSlide("Database Editor",
                 new List<TipModel>
                 {
                     new TipModel("- All data that Wingman uses can be changed eg If a department changes their External contact number, you can update it here."),
                     new TipModel("- If you change something and things stop working, just copy the Data\\Resources.bin from a colleague."),
-                    new TipModel("- <Database Editor> can be accessed from <Wingman> > <Settings> > <Advanced> > <Database Editor>.")
+                    new TipModel("- Advanced Mode <Wingman> > <Settings> > <Advanced Mode> must be enabled."),
+                    new TipModel("- <Database Editor> can be accessed from <Wingman> > <Settings> > <Advanced> > <Edit Database>.")
                 })
         };
     }
