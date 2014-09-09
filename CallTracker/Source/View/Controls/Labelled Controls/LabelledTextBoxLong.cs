@@ -67,6 +67,14 @@ namespace CallTracker.View
         }
 
         [Category("!Textfield")]
+        [DefaultValue(true)]
+        public bool UseActiveLabel
+        {
+            get;
+            set;
+        }
+
+        [Category("!Textfield")]
         [DefaultValue(typeof(Padding), "3,3,3,3")]
         public Padding ControlMargin
         {
@@ -99,7 +107,8 @@ namespace CallTracker.View
         }
 
         private void _DataField_TextChanged(object sender, EventArgs e)
-        { 
+        {
+            if (!UseActiveLabel) return;
             if (!String.IsNullOrEmpty(_DataField.Text))
                 BackColor = LabelActiveColor;
             else

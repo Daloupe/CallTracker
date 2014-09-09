@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;
 using System.Windows.Forms;
-using CallTracker.Model;
-
-
 using CallTracker.Helpers;
+using CallTracker.Model;
 
 namespace CallTracker.View
 {
@@ -14,68 +14,9 @@ namespace CallTracker.View
         private readonly StatSection _phoneTotals;
         private readonly StatSection _averages;
         private readonly StatSection _callTotals;
-        //private readonly List<LabelledTextBoxLong> _phoneTotalsList;
-        //private readonly List<LabelledTextBoxLong> _averagesList;
-        //private readonly List<LabelledTextBoxLong> _callTotalsList;
-        //private List<LabelledTextBoxLong> currentList;
-
-        //private LabelledHeading _activeHeading;
-        //private LabelledHeading ActiveHeading
-        //{
-        //    get { return _activeHeading; }
-        //    set
-        //    {
-        //        if (_activeHeading != null)
-        //        {
-        //            _activeHeading.BackColor = Color.FromArgb(83, 173, 179);
-        //            _activeHeading.LabelBorderColor = Color.LightSeaGreen;
-        //            _activeHeading.LabelActiveColor = Color.FromArgb(83, 173, 179);
-        //        }
-
-        //        _activeHeading = value;
-
-        //        _activeHeading.BackColor = Color.DarkSlateGray;
-        //        _activeHeading.LabelBorderColor = Color.DarkSlateGray;
-        //        _activeHeading.LabelActiveColor = Color.DarkSlateGray;
-        //    }
-        //}
-
-        //private List<LabelledTextBoxLong> _activeList;
-        //private List<LabelledTextBoxLong> ActiveList
-        //{
-        //    get { return _activeList; }
-        //    set
-        //    {
-        //        if (_activeList != null)
-        //        {
-        //            foreach (var control in _activeList)
-        //            {
-        //                control.TFBackColor = Color.FromArgb(236, 240, 242);
-        //                control.TFTextColor = Color.LightGray;
-        //                control.BorderColour = Color.White;
-        //                control.BackColor = Color.FromArgb(83, 173, 179);
-        //                control.LabelBorderColor = Color.LightSeaGreen;
-        //                control.LabelActiveColor = Color.FromArgb(83, 173, 179);
-        //            }
-        //        }
-
-        //        _activeList = value;
-                
-        //        foreach (var control in _activeList)
-        //        {
-        //            control.TFBackColor = Color.White;
-        //            control.TFTextColor = Color.Black;
-        //            control.BorderColour = Color.DarkSlateGray;
-        //            control.BackColor = Color.DarkSlateGray;
-        //            control.LabelBorderColor = Color.DarkSlateGray;
-        //            control.LabelActiveColor = Color.DarkSlateGray;
-        //        }
-        //    }
-        //}
 
         private StatSection _activeSection;
-
-        private StatSection activeSection
+        public StatSection activeSection
         {
             get { return _activeSection; }
             set
@@ -91,99 +32,70 @@ namespace CallTracker.View
         {
             InitializeComponent();
 
-            _phoneTotals = new StatSection(new List<LabelledTextBoxLong> {_PLogin, _PReady, _PNotReady, _PCalls}, _PHeading);
+            _phoneTotals = new StatSection(this, _PHeading, new List<LabelledTextBoxLong> {_PLogin, _PReady, _PNotReady, _PCph, _PCalls});
 
-            _averages = new StatSection(new List<LabelledTextBoxLong> {_AReady, _APNotReady, _APHandlingTime,_ACNotReady, _ACHandlingTime, _ACTalkTime, _ACWrapUp, _ACHold},_AHeading);
+            _averages = new StatSection(this, _AHeading, new List<LabelledTextBoxLong> {_AReady, _APNotReady, _APHandlingTime,_ACNotReady, _ACHandlingTime, _ACTalkTime, _ACWrapUp, _ACHold});
 
-            _callTotals = new StatSection(new List<LabelledTextBoxLong> { _CNotReady, _CHandlingTime, _CTalkTime, _CWrapUp, _CHold}, _CHeading);
+            _callTotals = new StatSection(this, _CHeading, new List<LabelledTextBoxLong> { _CNotReady, _CHandlingTime, _CTalkTime, _CWrapUp, _CHold});
 
             activeSection = _averages;
-
-            //_phoneTotalsList = new List<LabelledTextBoxLong>
-            //{
-            //    _PLogin, _PReady, _PNotReady, _PCalls
-            //};
-            //_phoneTotalsList.ForEach(x => x.Tag = _phoneTotalsList);
-            //_PHeading.Tag = _phoneTotalsList;
-
-            //_averagesList = new List<LabelledTextBoxLong>
-            //{
-            //    _AReady, _APNotReady, _APHandlingTime,
-            //    _ACNotReady, _ACHandlingTime, _ACTalkTime, _ACWrapUp, _ACHold
-            //};
-            //_averagesList.ForEach(x => x.Tag = _averagesList);
-            //_AHeading.Tag = _averagesList;
-
-            //_callTotalsList = new List<LabelledTextBoxLong>
-            //{
-            //    _CNotReady, _CHandlingTime, _CTalkTime, _CWrapUp, _CHold
-            //};
-            //_callTotalsList.ForEach(x => x.Tag = _callTotalsList);
-            //_CHeading.Tag = _callTotalsList;
-
-            //ActiveHeading = _AHeading;
-            //ActiveList = _averagesList;
             //currentList = new List<LabelledTextBoxLong>
             //{
             //    _CurrNotReady, _CurrHandlingTime, _CurrTalkTime, _CurrWrapUp, _CurrHold, _CurrCall
             //};
         }
 
-        //public bool PreFilterMessage(ref Message m)
-        //{
-        //    if (m.Msg == WindowHelper.WM_LBUTTONDOWN)
-        //    {
-        //        var pos = new Point(m.LParam.ToInt32() & 0xffff, m.LParam.ToInt32() >> 16);
-        //        var hWnd = WindowHelper.WindowFromPoint(pos);
-        //        if (hWnd != IntPtr.Zero && hWnd != m.HWnd && FromHandle(hWnd) != null)
-        //        {
-        //            WindowHelper.SendMessage(hWnd, m.Msg, m.WParam, m.LParam);
-        //            return true;
-        //        }
-        //    }
-        //    return false;
-        //}
+
+        private void _PHeading_Click(object sender, EventArgs e)
+        {
+            var section = (StatSection)((BorderedLabel)sender).Parent.Tag;
+            activeSection = section;
+        }
+
+        private void _Control_MouseEnter(object sender, EventArgs e)
+        {
+            var section = (StatSection)((BorderedLabel)sender).Parent.Tag;
+            section.Highlight();
+        }
+
+        private void _Control_MouseLeave(object sender, EventArgs e)
+        {
+            var section = (StatSection)((BorderedLabel)sender).Parent.Tag;
+            section.Unhighlight();
+        }
 
         public override void Init(Main mainForm, ToolStripMenuItem menuItem)
         {
             base.Init(mainForm, menuItem);
-            //_DateSelect._ComboBox.DataSource = MainForm.DateBindingSource;
-            //_DateSelect._ComboBox.DisplayMember = "ShortDate";
-            //_DateSelect._ComboBox.ValueMember = "LongDate";
-            
-
-            //dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
         }
 
         protected override void PaintBorder(object sender, PaintEventArgs e)
         {
             base.PaintBorder(sender, e);
         }
-
-        private void propertyLock_CheckedChanged(object sender, EventArgs e)
-        {
-            //flowLayoutPanel1.Enabled = !propertyLock.Checked;
-        }
-
-        //private int _position;
         public override void ShowSetting()
         {
-            var average = TimeSpan.Zero;
-            var day = (DailyModel) MainForm._DailyDataBindingSource.Current;
+            UpdateStats((DailyModel)MainForm._DailyDataBindingSource.Current);
+            base.ShowSetting();      
+        }
+
+        public void UpdateStats(DailyModel day)
+        {
             var phoneStats = day.ComputeStatistics();
             var callStats = day.CallTotals;
 
+            WindowHelper.SuspendDrawing(this);
 
             _PLogin._DataField.Text = FormatTimeSpanHMMSS(phoneStats.Login);
-            _PCalls._DataField.Text = phoneStats.Calls.ToString();
-            _PNotReady._DataField.Text = FormatTimeSpanHMMSS(phoneStats.NotReady);
             _PReady._DataField.Text = FormatTimeSpanHMMSS(phoneStats.Ready);
+            _PNotReady._DataField.Text = FormatTimeSpanHMMSS(phoneStats.NotReady);
+            _PCalls._DataField.Text = phoneStats.Calls.ToString(CultureInfo.InvariantCulture);
 
             _CTalkTime._DataField.Text = FormatTimeSpanHMMSS(callStats.TalkTime);
             _CWrapUp._DataField.Text = FormatTimeSpanHMMSS(callStats.Wrapup);
             _CHold._DataField.Text = FormatTimeSpanHMMSS(callStats.Hold);
             _CHandlingTime._DataField.Text = FormatTimeSpanHMMSS(callStats.HandlingTime);
-            _CNotReady._DataField.Text = FormatTimeSpanHMMSS(callStats.NotReady); 
+            _CNotReady._DataField.Text = FormatTimeSpanHMMSS(callStats.NotReady);
 
             if (MainForm.SelectedContact != null)
             {
@@ -193,48 +105,56 @@ namespace CallTracker.View
                 _CurrTalkTime._DataField.Text = FormatTimeSpanHMMSS(current.TalkTime);
                 _CurrHandlingTime._DataField.Text = FormatTimeSpanHMMSS(current.HandlingTime);
                 _CurrWrapUp._DataField.Text = FormatTimeSpanHMMSS(current.Wrapup);
-                _CurrCall._DataField.Text = (MainForm.editContact.customerContactsBindingSource.Position + 1).ToString();
+                _CurrCall._DataField.Text = (MainForm.editContact.customerContactsBindingSource.Position + 1).ToString(CultureInfo.InvariantCulture);
             }
 
             if (phoneStats.Calls > 0)
             {
-                _ACTalkTime._DataField.Text = FormatTimeSpanHMMSS(new TimeSpan(
-                    callStats.TalkTime.Ticks / phoneStats.Calls));
+                var aht = new TimeSpan((callStats.HandlingTime + phoneStats.NotReady).Ticks/phoneStats.Calls);
+                var cph = Math.Round((3600/aht.TotalSeconds), 2).ToString(CultureInfo.InvariantCulture);
+                _PCph._DataField.Text = cph;
 
-                _ACWrapUp._DataField.Text = FormatTimeSpanHMMSS(new TimeSpan(
-                    callStats.Wrapup.Ticks / phoneStats.Calls));
+                _APHandlingTime._DataField.Text = FormatTimeSpanHMMSS(aht);
 
-                _ACNotReady._DataField.Text = FormatTimeSpanHMMSS(new TimeSpan(
-                    callStats.NotReady.Ticks / phoneStats.Calls));
-
-                _ACHold._DataField.Text = FormatTimeSpanHMMSS(new TimeSpan(
-                    callStats.Hold.Ticks / phoneStats.Calls));
-
-                _ACHandlingTime._DataField.Text = FormatTimeSpanHMMSS(new TimeSpan(
-                    callStats.HandlingTime.Ticks / phoneStats.Calls));
-
-
-                _AReady._DataField.Text = FormatTimeSpanHMMSS(new TimeSpan(
-                    phoneStats.Ready.Ticks / phoneStats.Calls));
-
-                _APHandlingTime._DataField.Text = FormatTimeSpanHMMSS(new TimeSpan(
-                    (callStats.HandlingTime + phoneStats.NotReady).Ticks / phoneStats.Calls));
-
-                _APNotReady._DataField.Text = FormatTimeSpanHMMSS(new TimeSpan(
-                    (callStats.NotReady + phoneStats.NotReady).Ticks / phoneStats.Calls));
+                _ACTalkTime._DataField.Text =
+                    FormatTimeSpanHMMSS(new TimeSpan(callStats.TalkTime.Ticks/phoneStats.Calls));
+                _ACWrapUp._DataField.Text =
+                    FormatTimeSpanHMMSS(new TimeSpan(callStats.Wrapup.Ticks/phoneStats.Calls));
+                _ACNotReady._DataField.Text =
+                    FormatTimeSpanHMMSS(new TimeSpan(callStats.NotReady.Ticks/phoneStats.Calls));
+                _ACHold._DataField.Text =
+                    FormatTimeSpanHMMSS(new TimeSpan(callStats.Hold.Ticks/phoneStats.Calls));
+                _ACHandlingTime._DataField.Text =
+                    FormatTimeSpanHMMSS(new TimeSpan(callStats.HandlingTime.Ticks/phoneStats.Calls));
+                _AReady._DataField.Text =
+                    FormatTimeSpanHMMSS(new TimeSpan(phoneStats.Ready.Ticks/phoneStats.Calls));
+                _APNotReady._DataField.Text =
+                    FormatTimeSpanHMMSS(new TimeSpan((callStats.NotReady + phoneStats.NotReady).Ticks/phoneStats.Calls));
             }
 
-            base.ShowSetting();      
+            WindowHelper.ResumeDrawing(this);
+        }
+
+        private static string TimeSpanToHour(TimeSpan time)
+        {
+            return Math.Round((time.TotalMinutes / 60), 2).ToString(CultureInfo.InvariantCulture);
         }
 
         private static string FormatTimeSpanHMMSS(TimeSpan time)
         {
-            if (time.Hours > 0)
-                return String.Format("{0}:{1:00}:{2:00}", time.Hours, time.Minutes, time.Seconds);
-            if (time.Minutes > 9)
-                return String.Format("{0:00}:{1:00}", time.Minutes, time.Seconds);
-            
-            return String.Format("{0:0}:{1:00}", time.Minutes, time.Seconds);
+            if (time.TotalMinutes > 20)
+                return Math.Round((time.TotalMinutes / 60),2).ToString(CultureInfo.InvariantCulture);
+
+            return Math.Round(time.TotalSeconds, 0).ToString(CultureInfo.InvariantCulture);
+
+            //String.Format("{0}:{1:00}:{2:00}", time.Hours, time.Minutes, time.Seconds);
+            //String.Format("{0:00}:{1:00}", time.Minutes, time.Seconds);
+            //return String.Format("{0:0}:{1:00}", time.Minutes, time.Seconds);
+        }
+
+        private static string FormatTimeSpanSeconds(TimeSpan time)
+        {
+            return String.Format("{0:00}:{1:00}", time.Minutes, time.Seconds);
         }
 
         public override void HideSetting()
@@ -252,111 +172,100 @@ namespace CallTracker.View
             base._Done_Click(sender, e);
         }
 
-        private void _PHeading_Click(object sender, EventArgs e)
-        {
-            var section = (StatSection)((BorderedLabel)sender).Parent.Tag;
-            activeSection = section;
-            //ActiveHeading = _PHeading;
-            //ActiveList = _phoneTotalsList;
-        }
-
-        //private void _AHeading_Click(object sender, EventArgs e)
-        //{
-        ////    ActiveHeading = _AHeading;
-        ////    ActiveList = _averagesList;
-        //}
-
-        //private void _CHeading_Click(object sender, EventArgs e)
-        //{
-        //    //ActiveHeading = _CHeading;
-        //    //ActiveList = _callTotalsList;
-        //}
-
-        //private void _Heading_MouseEnter(object sender, EventArgs e)
-        //{
-        //    var heading = (LabelledHeading)((BorderedLabel)sender).Parent;
-        //    if (heading != ActiveHeading)
-        //        heading.BackColor = Color.FromArgb(67, 130, 134);
-        //}
-
-        //private void _Heading_MouseLeave(object sender, EventArgs e)
-        //{
-        //    var heading = (LabelledHeading)((BorderedLabel)sender).Parent;
-        //    heading.BackColor = heading == ActiveHeading ? Color.DarkSlateGray : Color.FromArgb(83, 173, 179);
-        //}
-
-        //private static void Highlight(IEnumerable<LabelledTextBoxLong> list)
-        //{
-        //    foreach (var control in list)
-        //    {
-        //        control.BackColor = Color.FromArgb(67, 130, 134);
-        //    }
-        //}
-
-        //private static void UnHighlight(IEnumerable<LabelledTextBoxLong> list, Color color)
-        //{
-        //    foreach (var control in list)
-        //    {
-        //        control.BackColor = color;
-        //    }
-        //}
-
-        private void _Control_MouseEnter(object sender, EventArgs e)
-        {
-            var section = (StatSection)((BorderedLabel)sender).Parent.Tag;
-            section.Highlight();
-            //if(list != ActiveList)
-            //    Highlight(list);
-        }
-
-        private void _Control_MouseLeave(object sender, EventArgs e)
-        {
-            var section = (StatSection)((BorderedLabel)sender).Parent.Tag;
-            section.Unhighlight();
-            //var list = ((BorderedLabel)sender).Parent.Tag as List<LabelledTextBoxLong>;
-            //UnHighlight(list, list == ActiveList ? Color.DarkSlateGray : Color.FromArgb(83, 173, 179));
-        }
-
         public class StatSection
         {
-            public List<LabelledTextBoxLong> Controls;
-            public LabelledHeading Heading;
-            public bool Active;
+            private List<LabelledTextBoxLong> Controls;
+            private LabelledHeading Heading;
+            //private LabelledHeading ClickMap;
+            private bool Active;
+            private bool _highlighted;
 
-            public StatSection(List<LabelledTextBoxLong> controls, LabelledHeading heading)
+            private readonly StatsView _parentView;
+
+            public StatSection(StatsView parentView, LabelledHeading heading, List<LabelledTextBoxLong> controls)
             {
                 Controls = controls;
-                Controls.ForEach(x => x.Tag = this);
+                foreach (var control in Controls)
+                {
+                    control.LabelClick += Section_Click;
+                    control.LabelMouseEnter += _Control_MouseEnter;
+                    control.LabelMouseLeave += _Control_MouseLeave;
+                }
+
                 Heading = heading;
-                Heading.Tag = this;
+                Heading.LabelClick += Section_Click;
+                Heading.LabelMouseEnter += _Control_MouseEnter;
+                Heading.LabelMouseLeave += _Control_MouseLeave;
+
+                //ClickMap = clickMap;
+                //ClickMap.LabelClick += Section_Click;
+                //ClickMap.MouseEnter += _Control_MouseEnter;
+
                 Active = false;
+                _highlighted = false;
+
+                _parentView = parentView;
+            }
+
+            private void Section_Click(object sender, EventArgs e)
+            {
+                _parentView.activeSection = this;
+            }
+
+            private void _Control_MouseEnter(object sender, EventArgs e)
+            {
+                Highlight();
+            }
+
+            private void _Control_MouseLeave(object sender, EventArgs e)
+            {
+                Unhighlight();
             }
 
             public void Highlight()
             {
-                if (Active) return;
+                if (Active || _highlighted) return;
                 Heading.BackColor = Color.FromArgb(67, 130, 134);
+                //Heading.LabelMouseEnter -= _Control_MouseEnter;
+                //Heading.LabelMouseLeave += _Control_MouseLeave;
+
                 foreach (var control in Controls)
                 {
                     control.BackColor = Color.FromArgb(67, 130, 134);
+                    //control.LabelMouseEnter -= _Control_MouseEnter;
+                    //control.LabelMouseLeave += _Control_MouseLeave;
                 }
+
+                //ClickMap.LabelMouseEnter -= _Control_MouseEnter;
+                //ClickMap.LabelMouseLeave += _Control_MouseLeave;
+                _highlighted = true;
             }
 
             public void Unhighlight()
             {
                 var color = Active ? Color.DarkSlateGray : Color.FromArgb(83, 173, 179);
                 Heading.BackColor = color;
+                //Heading.LabelMouseEnter += _Control_MouseEnter;
+                //Heading.LabelMouseLeave -= _Control_MouseLeave;
+
                 foreach (var control in Controls)
                 {
                     control.BackColor = color;
+                    //control.LabelMouseEnter += _Control_MouseEnter;
+                    //control.LabelMouseLeave -= _Control_MouseLeave;
                 }
+
+                //ClickMap.LabelMouseEnter += _Control_MouseEnter;
+                //ClickMap.LabelMouseLeave -= _Control_MouseLeave;
+                _highlighted = false;
             }
 
             public void Select()
             {
+                if (Active) return;
+
                 Heading.BackColor = Color.DarkSlateGray;
-                //Heading.LabelBorderColor = Color.DarkSlateGray;
-                //Heading.LabelActiveColor = Color.DarkSlateGray;
+                //Heading.LabelClick -= Section_Click;
 
                 foreach (var control in Controls)
                 {
@@ -365,17 +274,17 @@ namespace CallTracker.View
                     control.BorderColour = Color.DarkSlateGray;
                     control.BackColor = Color.DarkSlateGray;
                     control.LabelBorderColor = Color.DarkSlateGray;
-                    control.LabelActiveColor = Color.DarkSlateGray;
+                    //control.LabelClick -= Section_Click;
                 }
 
+                //ClickMap.LabelClick -= Section_Click;
                 Active = true;
             }
 
             public void Deselect()
             {
                 Heading.BackColor = Color.FromArgb(83, 173, 179);
-                //Heading.LabelBorderColor = Color.LightSeaGreen;
-                //Heading.LabelActiveColor = Color.FromArgb(83, 173, 179);
+                //Heading.LabelClick += Section_Click;
 
                 foreach (var control in Controls)
                 {
@@ -383,10 +292,11 @@ namespace CallTracker.View
                     control.TFTextColor = Color.LightSlateGray;
                     control.BorderColour = Color.White;
                     control.BackColor = Color.FromArgb(83, 173, 179);
-                    control.LabelBorderColor = Color.FromArgb(236, 240, 242);//.LightSeaGreen;
-                    control.LabelActiveColor = Color.FromArgb(83, 173, 179);
+                    control.LabelBorderColor = Color.FromArgb(236, 240, 242);
+                    //control.LabelClick += Section_Click;
                 }
 
+                //ClickMap.LabelClick += Section_Click;
                 Active = false;
             }
         }

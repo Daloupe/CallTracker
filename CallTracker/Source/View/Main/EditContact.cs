@@ -763,7 +763,10 @@ namespace CallTracker.View
         {
             MainForm.settingMenuItem_Click(MainForm.callHistoryToolStripMenuItem, e);
         }
-
+        private void showStatsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainForm.settingMenuItem_Click(MainForm.viewStatsToolStripMenuItem, e);
+        }
         private DateTime _lasttime;
         private bool _opened;
         protected virtual void _MenuButton_MouseClick(object sender, MouseEventArgs e)
@@ -875,6 +878,8 @@ namespace CallTracker.View
         {
             Properties.Settings.Default.AutoNewCall = autoNewCallToolStripMenuItem.Checked;
         }
+
+
 
 
     }

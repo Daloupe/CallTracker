@@ -70,6 +70,9 @@
             // _TextfieldToolTip
             // 
             this._TextfieldToolTip.AutomaticDelay = 50;
+            this._TextfieldToolTip.AutoPopDelay = 5000;
+            this._TextfieldToolTip.InitialDelay = 50;
+            this._TextfieldToolTip.ReshowDelay = 10;
             // 
             // LabelledTextBoxLong
             // 

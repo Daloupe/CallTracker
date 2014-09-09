@@ -2,7 +2,32 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\DataRepository.cs</string>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\Main.cs</string>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\Main.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Contact\ContactModel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Contact\EventsModel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Contact\DailyModel.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Panels\Contact\StatsView.cs</string>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Panels\Contact\StatsView.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Controls\Labelled Controls\LabelledHeading.cs</string>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Controls\Labelled Controls\LabelledHeading.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Controls\Labelled Controls\LabelledBase.cs</string>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Controls\Labelled Controls\LabelledBase.cs</string>
+    </ArrayOfString>
+    <ArrayOfString>
+      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Controls\Labelled Controls\LabelledTextBoxLong.cs</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

@@ -41,9 +41,11 @@
             this._Label.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this._Label.Font = new System.Drawing.Font("Gautami", 7F);
             this._Label.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Label.LabelBorderColor = System.Drawing.Color.Gray;
+            this._Label.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Label.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Label.Location = new System.Drawing.Point(2, -3);
             this._Label.Margin = new System.Windows.Forms.Padding(0);
-            this._Label.MaximumSize = new System.Drawing.Size(300, 70);
             this._Label.MinimumSize = new System.Drawing.Size(9, 6);
             this._Label.Name = "_Label";
             this._Label.Size = new System.Drawing.Size(30, 22);

@@ -86,15 +86,23 @@ namespace CallTracker.Model
             var stats = (DailyStats)Events.Statistics.Clone();
             stats.Calls = Contacts.Count;
 
-            var lastLogInIndex = Events.CallEvents.IndexOf(Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogIn)));
-            var lastLogOutIndex = Events.CallEvents.IndexOf(Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogOut)));
-            if (lastLogInIndex > lastLogOutIndex)
+            var lastEventTime = DateTime.Now.Subtract(Events.LastCallEvent.Timestamp);
+            switch (Events.LastCallEvent.EventType)
             {
-                stats.Login = Events.Statistics.Login.Add(DateTime.Now.Subtract(Events.CallEvents[lastLogInIndex].Timestamp));
-            }
-            if (Events.LastCallEvent.EventType.Is(CallEventTypes.Ready))
-            {
-                stats.Ready = stats.Ready.Add(DateTime.Now.Subtract(Events.LastCallEvent.Timestamp));
+                case CallEventTypes.Ready:
+                    stats.Ready += lastEventTime;
+                    stats.Login += lastEventTime;
+                    break;
+                case CallEventTypes.NotReady:
+                    stats.NotReady += lastEventTime;
+                    stats.Login += lastEventTime;
+                    break;
+                case CallEventTypes.CallStart:
+                    stats.Login += lastEventTime;
+                    break;
+                case CallEventTypes.LogIn:
+                    stats.Login += lastEventTime;
+                    break;
             }
 
             //Events.Statistics.IsDirty = false;
@@ -107,28 +115,72 @@ namespace CallTracker.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         internal void AddCallEvent(CallEventTypes newEvent)
         {
-            if (Events.LastCallEvent != null)
+            var lastEventTime = DateTime.Now.Subtract(Events.LastCallEvent.Timestamp);
+            switch (Events.LastCallEvent.EventType)
             {
-                var lastEventTime = DateTime.Now.Subtract(Events.LastCallEvent.Timestamp);
-                switch (Events.LastCallEvent.EventType)
-                {
-                    case CallEventTypes.Ready:
-                        Events.Statistics.Ready += lastEventTime;
-                        break;
-                }
+                case CallEventTypes.Ready:
+                    Events.Statistics.Ready += lastEventTime;
+                    Events.Statistics.Login += lastEventTime;
+                    break;
+                case CallEventTypes.NotReady:
+                    Events.Statistics.Login += lastEventTime;
+                    break;
+                case CallEventTypes.CallStart:
+                    Events.Statistics.Login += lastEventTime;
+                    break;
+                case CallEventTypes.LogIn:
+                    Events.Statistics.Login += lastEventTime;
+                    break;
             }
 
-            if (newEvent.Is(CallEventTypes.LogOut))
-            {
-                var lastOrDefault = Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogIn));
-                if (lastOrDefault != null)
-                    Events.Statistics.Login += DateTime.Now.Subtract(lastOrDefault.Timestamp);
-            }
+            //if (newEvent.Is(CallEventTypes.LogOut) && Events.LastCallEvent.EventType.IsNot(CallEventTypes.LogOut))
+            //{
+            //    var lastOrDefault = Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogIn));
+            //    if (lastOrDefault != null)
+            //        Events.Statistics.Login += DateTime.Now.Subtract(lastOrDefault.Timestamp);
+            //}
 
             Events.AddCallEvent(newEvent);
             
             EventLogger.LogNewEvent("Daily Data: " + Date.ShortDate + " > " +
                                  Enum.GetName(typeof (CallEventTypes), Events.LastCallEvent.EventType) + " at " +
+                                 Events.LastCallEvent.Timestamp.ToString("dd/MM/yy hh:mm:ss"));
+
+            IsDirty = true;
+        }
+
+        internal void ImportCallEvent(EventModel<CallEventTypes> callEvent)
+        {
+
+            var lastEventTime = callEvent.Timestamp.Subtract(Events.LastCallEvent.Timestamp);
+            switch (Events.LastCallEvent.EventType)
+            {
+                case CallEventTypes.Ready:
+                    Events.Statistics.Ready += lastEventTime;
+                    Events.Statistics.Login += lastEventTime;
+                    break;
+                case CallEventTypes.NotReady:
+                    Events.Statistics.Login += lastEventTime;
+                    break;
+                case CallEventTypes.CallStart:
+                    Events.Statistics.Login += lastEventTime;
+                    break;
+                case CallEventTypes.LogIn:
+                    Events.Statistics.Login += lastEventTime;
+                    break;
+            }
+
+            //if (callEvent.EventType.Is(CallEventTypes.LogOut))
+            //{
+            //    var lastOrDefault = Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogIn));
+            //    if (lastOrDefault != null)
+            //        Events.Statistics.Login += callEvent.Timestamp.Subtract(lastOrDefault.Timestamp);
+            //}
+
+            Events.ImportCallEvent(callEvent);
+
+            EventLogger.LogNewEvent("Daily Data: " + Date.ShortDate + " > Importing Event > " +
+                                 Enum.GetName(typeof(CallEventTypes), Events.LastCallEvent.EventType) + " at " +
                                  Events.LastCallEvent.Timestamp.ToString("dd/MM/yy hh:mm:ss"));
 
             IsDirty = true;

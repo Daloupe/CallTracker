@@ -48,8 +48,8 @@ namespace CallTracker.View
                 else if (_selectedContact != null)
                     _selectedContact.FinishUp();
                 _selectedContact = value;
-                if (CurrentContact == null && _selectedContact != null)
-                    _selectedContact.AddCallEvent(CallEventTypes.CallStart);
+                //if (CurrentContact == null && _selectedContact != null && (_IPCCState.Text != String.Empty || _IPCCState.Text != Resources.IPCC_Unmonitored_String))
+                //    _selectedContact.AddCallEvent(CallEventTypes.CallStart);
             }
         }
 
@@ -293,6 +293,12 @@ namespace CallTracker.View
         //public bool CancelLoad = true;
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (_IPCCTimer.Enabled)
+            {
+                _IPCCTimer.Enabled = false;
+                FinalizeEvents((DailyModel)_DailyDataBindingSource.Current);
+            }
+
             EventLogger.SaveLog();
             EventLogger.LogNewEvent("Shutdown: Saving Settings");
             Settings.Default.Save();
@@ -617,7 +623,9 @@ namespace CallTracker.View
                 monitorIPCCToolStripMenuItem.Checked = false;
                 _CallStateTime.Text = @"00:00";
             }
-            _IPCCState.Text = String.Empty;
+            else
+                _IPCCState.Text = String.Empty;
+            
             _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
         }
 
@@ -700,9 +708,9 @@ namespace CallTracker.View
                     if (IsDifferentShift())
                         dailyData = (DailyModel)_DailyDataBindingSource.Current;
                     dailyData.AddCallEvent(CallEventTypes.LogIn);
-                    if (SelectedContact != null)
-                        if (SelectedContact.Events.LastCallEvent.EventType.Is(CallEventTypes.CallEnd))
-                            SelectedContact.AddCallEvent((CallEventTypes.CallStart));
+                    //if (SelectedContact != null)
+                    //    if (SelectedContact.Events.LastCallEvent.EventType.Is(CallEventTypes.CallEnd))
+                    //        SelectedContact.AddCallEvent((CallEventTypes.CallStart));
                 }
 
                 switch (status)
@@ -721,7 +729,7 @@ namespace CallTracker.View
                         break;
                     case "Reserved":
                         _IPCCTimer.Interval = 125;
-                        dailyData.AddCallEvent(CallEventTypes.Reserved);
+                        dailyData.AddCallEvent(CallEventTypes.CallStart);
                         if (editContact.autoNewCallToolStripMenuItem.Checked)
                         {
                             editContact.bindingNavigatorAddNewItem_Click(_IPCCState, new EventArgs());
@@ -750,9 +758,16 @@ namespace CallTracker.View
                     case "NotReady":
                         IPCCLevel("red");
                         if (String.IsNullOrEmpty(_IPCCState.Text) || SelectedContact == null)
+                        {
                             dailyData.AddCallEvent(CallEventTypes.NotReady);
+                            if (SelectedContact != null)
+                                SelectedContact.AddCallEvent(CallEventTypes.LogIn);
+                        }
                         else
+                        {
+                            dailyData.AddCallEvent(CallEventTypes.CallStart);
                             SelectedContact.AddCallEvent(CallEventTypes.NotReady);
+                        }
                         break;
                     case "Ready":
                         IPCCLevel("green");
@@ -762,32 +777,7 @@ namespace CallTracker.View
                         break;
                     case "":
                         IPCCLevel("white");
-
-                        if (CurrentContact != null)
-                        {
-                            if (CurrentContact.Events.LastCallEvent.EventType.Is(CallEventTypes.NotReady))
-                            {
-                                dailyData.Events.LastCallEvent = CurrentContact.Events.LastCallEvent.Copy();
-                                dailyData.Events.CallEvents.Add(dailyData.Events.LastCallEvent);
-                                CurrentContact.Events.LastCallEvent.EventType = CallEventTypes.CallEnd;
-                                CurrentContact.Events.AddHandlingTime(CurrentContact.Events.LastCallEvent.Timestamp);
-                            }
-                            else
-                                CurrentContact.AddCallEvent(CallEventTypes.CallEnd);              
-                            CurrentContact = null;
-                        }
-                        else if (SelectedContact != null)
-                            if (SelectedContact.Events.LastCallEvent.EventType.Is(CallEventTypes.NotReady))
-                            {
-                                dailyData.Events.LastCallEvent = SelectedContact.Events.LastCallEvent.Copy();
-                                dailyData.Events.CallEvents.Add(dailyData.Events.LastCallEvent);
-                                SelectedContact.Events.LastCallEvent.EventType = CallEventTypes.CallEnd;
-                                SelectedContact.Events.AddHandlingTime(SelectedContact.Events.LastCallEvent.Timestamp);
-                            }
-                            else
-                                SelectedContact.AddCallEvent(CallEventTypes.CallEnd);    
-                  
-                        dailyData.AddCallEvent(CallEventTypes.LogOut);
+                        FinalizeEvents(dailyData);
                         break;
                     default:
                         _IPCCTimer.Interval = 500;
@@ -801,10 +791,41 @@ namespace CallTracker.View
             //{
             //    _callStateTimeElapsed = _callStateTimeElapsed.Add(new TimeSpan(0, 0, 0, 0, _IPCCTimer.Interval)); //new TimeSpan(_callStateTimeElapsed.Ticks + _IPCCTimer.Interval * 10000);
             //}
+            
+            if (StatsView.Visible)
+            {
+                if (!((DateTime.Now - _statsViewUpdate).TotalSeconds > 1)) return;
+                StatsView.UpdateStats(dailyData);
+                _statsViewUpdate = DateTime.Now;
+            }
+            else
+                _CallStateTime.Text = SelectedContact != null ? TimeSpanToString(DateTime.Now - SelectedContact.Events.LastCallEvent.Timestamp) : TimeSpanToString(DateTime.Now - dailyData.Events.LastCallEvent.Timestamp);
+        }
+        private DateTime _statsViewUpdate = DateTime.Now;
 
-            _CallStateTime.Text = SelectedContact != null 
-                ? TimeSpanToString(DateTime.Now - SelectedContact.Events.LastCallEvent.Timestamp) 
-                : TimeSpanToString(DateTime.Now - dailyData.Events.LastCallEvent.Timestamp);
+        private void FinalizeEvents(DailyModel dailyData)
+        {
+            if (CurrentContact != null)
+            {
+                if (CurrentContact.Events.LastCallEvent.EventType.Is(CallEventTypes.NotReady))
+                {
+                    dailyData.ImportCallEvent(SelectedContact.Events.LastCallEvent.Copy());
+                    SelectedContact.ChangeLastEventType(CallEventTypes.CallEnd);
+                }
+                CurrentContact.AddCallEvent(CallEventTypes.LogOut);
+                CurrentContact = null;
+            }
+            else if (SelectedContact != null)
+            {
+                if (SelectedContact.Events.LastCallEvent.EventType.Is(CallEventTypes.NotReady))
+                {
+                    dailyData.ImportCallEvent(SelectedContact.Events.LastCallEvent.Copy());
+                    SelectedContact.ChangeLastEventType(CallEventTypes.CallEnd);
+                }
+                SelectedContact.AddCallEvent(CallEventTypes.LogOut);
+            }
+
+            dailyData.AddCallEvent(CallEventTypes.LogOut);
         }
 
         private void GetIPCCCallData()

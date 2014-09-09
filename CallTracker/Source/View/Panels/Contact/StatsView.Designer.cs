@@ -31,8 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.nextTip = new System.Windows.Forms.Button();
             this._StatsPanel = new System.Windows.Forms.Panel();
-            this._CurrCall = new CallTracker.View.LabelledTextBoxLong();
+            this._PCph = new CallTracker.View.LabelledTextBoxLong();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this._CurrCall = new CallTracker.View.LabelledTextBoxLong();
             this._CurrNotReady = new CallTracker.View.LabelledTextBoxLong();
             this.labelledHeading4 = new CallTracker.View.LabelledHeading();
             this._CurrHold = new CallTracker.View.LabelledTextBoxLong();
@@ -78,7 +79,7 @@
             this.nextTip.Margin = new System.Windows.Forms.Padding(0);
             this.nextTip.Name = "nextTip";
             this.nextTip.Size = new System.Drawing.Size(56, 22);
-            this.nextTip.TabIndex = 19;
+            this.nextTip.TabIndex = 36;
             this.nextTip.Text = "Done";
             this.nextTip.UseVisualStyleBackColor = false;
             this.nextTip.Click += new System.EventHandler(this.Cancel_Click);
@@ -86,6 +87,7 @@
             // _StatsPanel
             // 
             this._StatsPanel.BackColor = System.Drawing.Color.LightGray;
+            this._StatsPanel.Controls.Add(this._PCph);
             this._StatsPanel.Controls.Add(this._CurrCall);
             this._StatsPanel.Controls.Add(this._CurrNotReady);
             this._StatsPanel.Controls.Add(this.labelledHeading4);
@@ -117,6 +119,54 @@
             this._StatsPanel.Name = "_StatsPanel";
             this._StatsPanel.Size = new System.Drawing.Size(580, 213);
             this._StatsPanel.TabIndex = 18;
+            // 
+            // _PCph
+            // 
+            this._PCph.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._PCph.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._PCph.BorderColour = System.Drawing.Color.White;
+            this._PCph.ControlHeight = 20;
+            this._PCph.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._PCph.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._PCph.DefaultText = "";
+            this._PCph.Font = new System.Drawing.Font("Verdana", 7F);
+            this._PCph.HasContextMenu = false;
+            this._PCph.LabelActiveColor = System.Drawing.Color.Empty;
+            this._PCph.LabelAutoSize = false;
+            this._PCph.LabelBorderColor = System.Drawing.Color.LightSeaGreen;
+            this._PCph.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._PCph.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._PCph.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._PCph.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._PCph.LabelInactiveColor = System.Drawing.Color.Empty;
+            this._PCph.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._PCph.LabelOffset = new System.Drawing.Point(0, 0);
+            this._PCph.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._PCph.LabelSize = new System.Drawing.Size(70, 20);
+            this._PCph.LabelText = "cph";
+            this._PCph.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._PCph.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._PCph.LabelToolTip = "";
+            this._PCph.LabelVisible = true;
+            this._PCph.Location = new System.Drawing.Point(3, 93);
+            this._PCph.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._PCph.MenuButtonImage = null;
+            this._PCph.Name = "_PCph";
+            this._PCph.PropertyName = null;
+            this._PCph.Size = new System.Drawing.Size(127, 20);
+            this._PCph.TabIndex = 3;
+            this._PCph.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this._PCph.TextField = "";
+            this._PCph.TextfieldToolTip = "Calls Per Hour: 3600/((AHT+NR)/Calls)";
+            this._PCph.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
+            this._PCph.TFCursor = System.Windows.Forms.Cursors.Arrow;
+            this._PCph.TFReadOnly = true;
+            this._PCph.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this._PCph.UseActiveLabel = false;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.DataSource = typeof(CallTracker.Model.DailyModel);
             // 
             // _CurrCall
             // 
@@ -151,18 +201,15 @@
             this._CurrCall.Name = "_CurrCall";
             this._CurrCall.PropertyName = null;
             this._CurrCall.Size = new System.Drawing.Size(127, 20);
-            this._CurrCall.TabIndex = 26;
+            this._CurrCall.TabIndex = 32;
             this._CurrCall.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._CurrCall.TextField = "";
             this._CurrCall.TextfieldToolTip = "Current Call";
             this._CurrCall.TFBackColor = System.Drawing.SystemColors.Window;
-            this._CurrCall.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._CurrCall.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CurrCall.TFReadOnly = true;
             this._CurrCall.TFTextColor = System.Drawing.SystemColors.ControlDarkDark;
-            // 
-            // bindingSource1
-            // 
-            this.bindingSource1.DataSource = typeof(CallTracker.Model.DailyModel);
+            this._CurrCall.UseActiveLabel = false;
             // 
             // _CurrNotReady
             // 
@@ -197,14 +244,15 @@
             this._CurrNotReady.Name = "_CurrNotReady";
             this._CurrNotReady.PropertyName = null;
             this._CurrNotReady.Size = new System.Drawing.Size(127, 20);
-            this._CurrNotReady.TabIndex = 25;
+            this._CurrNotReady.TabIndex = 27;
             this._CurrNotReady.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._CurrNotReady.TextField = "";
             this._CurrNotReady.TextfieldToolTip = "Current Not Ready";
             this._CurrNotReady.TFBackColor = System.Drawing.SystemColors.Window;
-            this._CurrNotReady.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._CurrNotReady.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CurrNotReady.TFReadOnly = true;
             this._CurrNotReady.TFTextColor = System.Drawing.SystemColors.GrayText;
+            this._CurrNotReady.UseActiveLabel = false;
             // 
             // labelledHeading4
             // 
@@ -238,7 +286,7 @@
             this.labelledHeading4.Name = "labelledHeading4";
             this.labelledHeading4.PropertyName = null;
             this.labelledHeading4.Size = new System.Drawing.Size(127, 20);
-            this.labelledHeading4.TabIndex = 24;
+            this.labelledHeading4.TabIndex = 104;
             // 
             // _CurrHold
             // 
@@ -273,14 +321,15 @@
             this._CurrHold.Name = "_CurrHold";
             this._CurrHold.PropertyName = null;
             this._CurrHold.Size = new System.Drawing.Size(127, 20);
-            this._CurrHold.TabIndex = 23;
+            this._CurrHold.TabIndex = 31;
             this._CurrHold.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._CurrHold.TextField = "";
             this._CurrHold.TextfieldToolTip = "Current Hold";
             this._CurrHold.TFBackColor = System.Drawing.SystemColors.Window;
-            this._CurrHold.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._CurrHold.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CurrHold.TFReadOnly = true;
             this._CurrHold.TFTextColor = System.Drawing.SystemColors.GrayText;
+            this._CurrHold.UseActiveLabel = false;
             // 
             // _CurrHandlingTime
             // 
@@ -315,14 +364,15 @@
             this._CurrHandlingTime.Name = "_CurrHandlingTime";
             this._CurrHandlingTime.PropertyName = null;
             this._CurrHandlingTime.Size = new System.Drawing.Size(127, 20);
-            this._CurrHandlingTime.TabIndex = 22;
+            this._CurrHandlingTime.TabIndex = 28;
             this._CurrHandlingTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._CurrHandlingTime.TextField = "";
             this._CurrHandlingTime.TextfieldToolTip = "Call Talk + Wrap Up + Hold + Not Ready";
             this._CurrHandlingTime.TFBackColor = System.Drawing.SystemColors.Window;
-            this._CurrHandlingTime.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._CurrHandlingTime.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CurrHandlingTime.TFReadOnly = true;
             this._CurrHandlingTime.TFTextColor = System.Drawing.SystemColors.GrayText;
+            this._CurrHandlingTime.UseActiveLabel = false;
             // 
             // _CurrWrapUp
             // 
@@ -357,14 +407,15 @@
             this._CurrWrapUp.Name = "_CurrWrapUp";
             this._CurrWrapUp.PropertyName = null;
             this._CurrWrapUp.Size = new System.Drawing.Size(127, 20);
-            this._CurrWrapUp.TabIndex = 21;
+            this._CurrWrapUp.TabIndex = 30;
             this._CurrWrapUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._CurrWrapUp.TextField = "";
             this._CurrWrapUp.TextfieldToolTip = "Current Wrap Up";
             this._CurrWrapUp.TFBackColor = System.Drawing.SystemColors.Window;
-            this._CurrWrapUp.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._CurrWrapUp.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CurrWrapUp.TFReadOnly = true;
             this._CurrWrapUp.TFTextColor = System.Drawing.SystemColors.GrayText;
+            this._CurrWrapUp.UseActiveLabel = false;
             // 
             // _CurrTalkTime
             // 
@@ -399,14 +450,15 @@
             this._CurrTalkTime.Name = "_CurrTalkTime";
             this._CurrTalkTime.PropertyName = null;
             this._CurrTalkTime.Size = new System.Drawing.Size(127, 20);
-            this._CurrTalkTime.TabIndex = 20;
+            this._CurrTalkTime.TabIndex = 29;
             this._CurrTalkTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._CurrTalkTime.TextField = "";
             this._CurrTalkTime.TextfieldToolTip = "Current Talk Time";
             this._CurrTalkTime.TFBackColor = System.Drawing.SystemColors.Window;
-            this._CurrTalkTime.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._CurrTalkTime.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CurrTalkTime.TFReadOnly = true;
             this._CurrTalkTime.TFTextColor = System.Drawing.SystemColors.GrayText;
+            this._CurrTalkTime.UseActiveLabel = false;
             // 
             // _APHandlingTime
             // 
@@ -414,6 +466,7 @@
             this._APHandlingTime.BackColor = System.Drawing.Color.DarkSlateGray;
             this._APHandlingTime.BorderColour = System.Drawing.Color.DarkSlateGray;
             this._APHandlingTime.ControlHeight = 20;
+            this._APHandlingTime.Cursor = System.Windows.Forms.Cursors.Hand;
             this._APHandlingTime.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._APHandlingTime.DefaultText = "";
             this._APHandlingTime.Font = new System.Drawing.Font("Verdana", 7F);
@@ -441,17 +494,15 @@
             this._APHandlingTime.Name = "_APHandlingTime";
             this._APHandlingTime.PropertyName = null;
             this._APHandlingTime.Size = new System.Drawing.Size(57, 20);
-            this._APHandlingTime.TabIndex = 19;
+            this._APHandlingTime.TabIndex = 10;
             this._APHandlingTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._APHandlingTime.TextField = "";
             this._APHandlingTime.TextfieldToolTip = "(Call Handling Time + Phone Not Ready)/Calls";
             this._APHandlingTime.TFBackColor = System.Drawing.SystemColors.Window;
-            this._APHandlingTime.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._APHandlingTime.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._APHandlingTime.TFReadOnly = true;
             this._APHandlingTime.TFTextColor = System.Drawing.SystemColors.WindowText;
-            this._APHandlingTime.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._APHandlingTime.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._APHandlingTime.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._APHandlingTime.UseActiveLabel = false;
             // 
             // _APNotReady
             // 
@@ -459,6 +510,7 @@
             this._APNotReady.BackColor = System.Drawing.Color.DarkSlateGray;
             this._APNotReady.BorderColour = System.Drawing.Color.DarkSlateGray;
             this._APNotReady.ControlHeight = 20;
+            this._APNotReady.Cursor = System.Windows.Forms.Cursors.Hand;
             this._APNotReady.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._APNotReady.DefaultText = "";
             this._APNotReady.Font = new System.Drawing.Font("Verdana", 7F);
@@ -486,17 +538,15 @@
             this._APNotReady.Name = "_APNotReady";
             this._APNotReady.PropertyName = null;
             this._APNotReady.Size = new System.Drawing.Size(57, 20);
-            this._APNotReady.TabIndex = 18;
+            this._APNotReady.TabIndex = 9;
             this._APNotReady.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._APNotReady.TextField = "";
             this._APNotReady.TextfieldToolTip = "(Call Not Ready + Phone Not Ready) / Calls";
             this._APNotReady.TFBackColor = System.Drawing.SystemColors.Window;
-            this._APNotReady.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._APNotReady.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._APNotReady.TFReadOnly = true;
             this._APNotReady.TFTextColor = System.Drawing.SystemColors.WindowText;
-            this._APNotReady.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._APNotReady.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._APNotReady.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._APNotReady.UseActiveLabel = false;
             // 
             // _CNotReady
             // 
@@ -504,18 +554,19 @@
             this._CNotReady.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
             this._CNotReady.BorderColour = System.Drawing.Color.White;
             this._CNotReady.ControlHeight = 20;
+            this._CNotReady.Cursor = System.Windows.Forms.Cursors.Hand;
             this._CNotReady.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._CNotReady.DefaultText = "";
             this._CNotReady.Font = new System.Drawing.Font("Verdana", 7F);
             this._CNotReady.HasContextMenu = false;
-            this._CNotReady.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._CNotReady.LabelActiveColor = System.Drawing.Color.Empty;
             this._CNotReady.LabelAutoSize = false;
             this._CNotReady.LabelBorderColor = System.Drawing.Color.LightSeaGreen;
             this._CNotReady.LabelBorderOffset = new System.Drawing.Rectangle(-2, 0, 0, 0);
             this._CNotReady.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this._CNotReady.LabelDock = System.Windows.Forms.DockStyle.Right;
             this._CNotReady.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._CNotReady.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._CNotReady.LabelInactiveColor = System.Drawing.Color.Empty;
             this._CNotReady.LabelMargin = new System.Windows.Forms.Padding(0);
             this._CNotReady.LabelOffset = new System.Drawing.Point(57, 0);
             this._CNotReady.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -531,17 +582,15 @@
             this._CNotReady.Name = "_CNotReady";
             this._CNotReady.PropertyName = null;
             this._CNotReady.Size = new System.Drawing.Size(127, 20);
-            this._CNotReady.TabIndex = 17;
+            this._CNotReady.TabIndex = 21;
             this._CNotReady.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._CNotReady.TextField = "";
             this._CNotReady.TextfieldToolTip = "Total Call Not Ready";
             this._CNotReady.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
-            this._CNotReady.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._CNotReady.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CNotReady.TFReadOnly = true;
             this._CNotReady.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this._CNotReady.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._CNotReady.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._CNotReady.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._CNotReady.UseActiveLabel = false;
             // 
             // _CHeading
             // 
@@ -576,10 +625,7 @@
             this._CHeading.Name = "_CHeading";
             this._CHeading.PropertyName = null;
             this._CHeading.Size = new System.Drawing.Size(183, 20);
-            this._CHeading.TabIndex = 16;
-            this._CHeading.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._CHeading.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._CHeading.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._CHeading.TabIndex = 103;
             // 
             // _ACHold
             // 
@@ -587,18 +633,19 @@
             this._ACHold.BackColor = System.Drawing.Color.DarkSlateGray;
             this._ACHold.BorderColour = System.Drawing.Color.DarkSlateGray;
             this._ACHold.ControlHeight = 20;
+            this._ACHold.Cursor = System.Windows.Forms.Cursors.Hand;
             this._ACHold.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ACHold.DefaultText = "";
             this._ACHold.Font = new System.Drawing.Font("Verdana", 7F);
             this._ACHold.HasContextMenu = false;
-            this._ACHold.LabelActiveColor = System.Drawing.Color.DarkSlateGray;
+            this._ACHold.LabelActiveColor = System.Drawing.Color.Empty;
             this._ACHold.LabelAutoSize = false;
             this._ACHold.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
             this._ACHold.LabelBorderOffset = new System.Drawing.Rectangle(-1, 0, 1, 0);
             this._ACHold.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this._ACHold.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._ACHold.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._ACHold.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._ACHold.LabelInactiveColor = System.Drawing.Color.Empty;
             this._ACHold.LabelMargin = new System.Windows.Forms.Padding(0);
             this._ACHold.LabelOffset = new System.Drawing.Point(0, 0);
             this._ACHold.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -614,17 +661,15 @@
             this._ACHold.Name = "_ACHold";
             this._ACHold.PropertyName = null;
             this._ACHold.Size = new System.Drawing.Size(127, 20);
-            this._ACHold.TabIndex = 15;
+            this._ACHold.TabIndex = 19;
             this._ACHold.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._ACHold.TextField = "";
             this._ACHold.TextfieldToolTip = "Call Hold/Calls";
             this._ACHold.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this._ACHold.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._ACHold.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._ACHold.TFReadOnly = true;
             this._ACHold.TFTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(15)))));
-            this._ACHold.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._ACHold.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._ACHold.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._ACHold.UseActiveLabel = false;
             // 
             // _CHold
             // 
@@ -632,18 +677,19 @@
             this._CHold.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
             this._CHold.BorderColour = System.Drawing.Color.White;
             this._CHold.ControlHeight = 20;
+            this._CHold.Cursor = System.Windows.Forms.Cursors.Hand;
             this._CHold.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._CHold.DefaultText = "";
             this._CHold.Font = new System.Drawing.Font("Verdana", 7F);
             this._CHold.HasContextMenu = false;
-            this._CHold.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._CHold.LabelActiveColor = System.Drawing.Color.Empty;
             this._CHold.LabelAutoSize = false;
             this._CHold.LabelBorderColor = System.Drawing.Color.LightSeaGreen;
             this._CHold.LabelBorderOffset = new System.Drawing.Rectangle(-2, 0, 0, 0);
             this._CHold.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this._CHold.LabelDock = System.Windows.Forms.DockStyle.Right;
             this._CHold.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._CHold.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._CHold.LabelInactiveColor = System.Drawing.Color.Empty;
             this._CHold.LabelMargin = new System.Windows.Forms.Padding(0);
             this._CHold.LabelOffset = new System.Drawing.Point(57, 0);
             this._CHold.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -659,17 +705,15 @@
             this._CHold.Name = "_CHold";
             this._CHold.PropertyName = null;
             this._CHold.Size = new System.Drawing.Size(127, 20);
-            this._CHold.TabIndex = 14;
+            this._CHold.TabIndex = 25;
             this._CHold.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._CHold.TextField = "";
             this._CHold.TextfieldToolTip = "Total Hold";
             this._CHold.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
-            this._CHold.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._CHold.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CHold.TFReadOnly = true;
             this._CHold.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this._CHold.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._CHold.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._CHold.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._CHold.UseActiveLabel = false;
             // 
             // _ACHandlingTime
             // 
@@ -677,18 +721,19 @@
             this._ACHandlingTime.BackColor = System.Drawing.Color.DarkSlateGray;
             this._ACHandlingTime.BorderColour = System.Drawing.Color.DarkSlateGray;
             this._ACHandlingTime.ControlHeight = 20;
+            this._ACHandlingTime.Cursor = System.Windows.Forms.Cursors.Hand;
             this._ACHandlingTime.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ACHandlingTime.DefaultText = "";
             this._ACHandlingTime.Font = new System.Drawing.Font("Verdana", 7F);
             this._ACHandlingTime.HasContextMenu = false;
-            this._ACHandlingTime.LabelActiveColor = System.Drawing.Color.DarkSlateGray;
+            this._ACHandlingTime.LabelActiveColor = System.Drawing.Color.Empty;
             this._ACHandlingTime.LabelAutoSize = false;
             this._ACHandlingTime.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
             this._ACHandlingTime.LabelBorderOffset = new System.Drawing.Rectangle(-1, 0, 1, 0);
             this._ACHandlingTime.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this._ACHandlingTime.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._ACHandlingTime.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._ACHandlingTime.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._ACHandlingTime.LabelInactiveColor = System.Drawing.Color.Empty;
             this._ACHandlingTime.LabelMargin = new System.Windows.Forms.Padding(0);
             this._ACHandlingTime.LabelOffset = new System.Drawing.Point(0, 0);
             this._ACHandlingTime.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -704,17 +749,15 @@
             this._ACHandlingTime.Name = "_ACHandlingTime";
             this._ACHandlingTime.PropertyName = null;
             this._ACHandlingTime.Size = new System.Drawing.Size(127, 20);
-            this._ACHandlingTime.TabIndex = 13;
+            this._ACHandlingTime.TabIndex = 16;
             this._ACHandlingTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._ACHandlingTime.TextField = "";
             this._ACHandlingTime.TextfieldToolTip = "Call Handling Time/Calls";
             this._ACHandlingTime.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this._ACHandlingTime.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._ACHandlingTime.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._ACHandlingTime.TFReadOnly = true;
             this._ACHandlingTime.TFTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(15)))));
-            this._ACHandlingTime.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._ACHandlingTime.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._ACHandlingTime.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._ACHandlingTime.UseActiveLabel = false;
             // 
             // _AReady
             // 
@@ -722,6 +765,7 @@
             this._AReady.BackColor = System.Drawing.Color.DarkSlateGray;
             this._AReady.BorderColour = System.Drawing.Color.DarkSlateGray;
             this._AReady.ControlHeight = 20;
+            this._AReady.Cursor = System.Windows.Forms.Cursors.Hand;
             this._AReady.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._AReady.DefaultText = "";
             this._AReady.Font = new System.Drawing.Font("Verdana", 7F);
@@ -749,17 +793,15 @@
             this._AReady.Name = "_AReady";
             this._AReady.PropertyName = null;
             this._AReady.Size = new System.Drawing.Size(127, 20);
-            this._AReady.TabIndex = 12;
+            this._AReady.TabIndex = 8;
             this._AReady.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._AReady.TextField = "";
             this._AReady.TextfieldToolTip = "Phone Ready/Calls";
             this._AReady.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this._AReady.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._AReady.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._AReady.TFReadOnly = true;
             this._AReady.TFTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(15)))));
-            this._AReady.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._AReady.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._AReady.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._AReady.UseActiveLabel = false;
             // 
             // _ACNotReady
             // 
@@ -767,18 +809,19 @@
             this._ACNotReady.BackColor = System.Drawing.Color.DarkSlateGray;
             this._ACNotReady.BorderColour = System.Drawing.Color.DarkSlateGray;
             this._ACNotReady.ControlHeight = 20;
+            this._ACNotReady.Cursor = System.Windows.Forms.Cursors.Hand;
             this._ACNotReady.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ACNotReady.DefaultText = "";
             this._ACNotReady.Font = new System.Drawing.Font("Verdana", 7F);
             this._ACNotReady.HasContextMenu = false;
-            this._ACNotReady.LabelActiveColor = System.Drawing.Color.DarkSlateGray;
+            this._ACNotReady.LabelActiveColor = System.Drawing.Color.Empty;
             this._ACNotReady.LabelAutoSize = false;
             this._ACNotReady.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
             this._ACNotReady.LabelBorderOffset = new System.Drawing.Rectangle(-1, 0, 1, 0);
             this._ACNotReady.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this._ACNotReady.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._ACNotReady.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._ACNotReady.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._ACNotReady.LabelInactiveColor = System.Drawing.Color.Empty;
             this._ACNotReady.LabelMargin = new System.Windows.Forms.Padding(0);
             this._ACNotReady.LabelOffset = new System.Drawing.Point(0, 0);
             this._ACNotReady.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -794,17 +837,15 @@
             this._ACNotReady.Name = "_ACNotReady";
             this._ACNotReady.PropertyName = null;
             this._ACNotReady.Size = new System.Drawing.Size(127, 20);
-            this._ACNotReady.TabIndex = 11;
+            this._ACNotReady.TabIndex = 15;
             this._ACNotReady.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._ACNotReady.TextField = "";
             this._ACNotReady.TextfieldToolTip = "Call Not Ready/ Calls";
             this._ACNotReady.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this._ACNotReady.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._ACNotReady.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._ACNotReady.TFReadOnly = true;
             this._ACNotReady.TFTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(15)))));
-            this._ACNotReady.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._ACNotReady.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._ACNotReady.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._ACNotReady.UseActiveLabel = false;
             // 
             // _ACWrapUp
             // 
@@ -812,18 +853,19 @@
             this._ACWrapUp.BackColor = System.Drawing.Color.DarkSlateGray;
             this._ACWrapUp.BorderColour = System.Drawing.Color.DarkSlateGray;
             this._ACWrapUp.ControlHeight = 20;
+            this._ACWrapUp.Cursor = System.Windows.Forms.Cursors.Hand;
             this._ACWrapUp.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ACWrapUp.DefaultText = "";
             this._ACWrapUp.Font = new System.Drawing.Font("Verdana", 7F);
             this._ACWrapUp.HasContextMenu = false;
-            this._ACWrapUp.LabelActiveColor = System.Drawing.Color.DarkSlateGray;
+            this._ACWrapUp.LabelActiveColor = System.Drawing.Color.Empty;
             this._ACWrapUp.LabelAutoSize = false;
             this._ACWrapUp.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
             this._ACWrapUp.LabelBorderOffset = new System.Drawing.Rectangle(-1, 0, 1, 0);
             this._ACWrapUp.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this._ACWrapUp.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._ACWrapUp.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._ACWrapUp.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._ACWrapUp.LabelInactiveColor = System.Drawing.Color.Empty;
             this._ACWrapUp.LabelMargin = new System.Windows.Forms.Padding(0);
             this._ACWrapUp.LabelOffset = new System.Drawing.Point(0, 0);
             this._ACWrapUp.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -839,17 +881,15 @@
             this._ACWrapUp.Name = "_ACWrapUp";
             this._ACWrapUp.PropertyName = null;
             this._ACWrapUp.Size = new System.Drawing.Size(127, 20);
-            this._ACWrapUp.TabIndex = 10;
+            this._ACWrapUp.TabIndex = 18;
             this._ACWrapUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._ACWrapUp.TextField = "";
             this._ACWrapUp.TextfieldToolTip = "Call Wrap Up/Calls";
             this._ACWrapUp.TFBackColor = System.Drawing.Color.White;
-            this._ACWrapUp.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._ACWrapUp.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._ACWrapUp.TFReadOnly = true;
             this._ACWrapUp.TFTextColor = System.Drawing.SystemColors.ControlText;
-            this._ACWrapUp.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._ACWrapUp.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._ACWrapUp.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._ACWrapUp.UseActiveLabel = false;
             // 
             // _ACTalkTime
             // 
@@ -857,18 +897,19 @@
             this._ACTalkTime.BackColor = System.Drawing.Color.DarkSlateGray;
             this._ACTalkTime.BorderColour = System.Drawing.Color.DarkSlateGray;
             this._ACTalkTime.ControlHeight = 20;
+            this._ACTalkTime.Cursor = System.Windows.Forms.Cursors.Hand;
             this._ACTalkTime.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._ACTalkTime.DefaultText = "";
             this._ACTalkTime.Font = new System.Drawing.Font("Verdana", 7F);
             this._ACTalkTime.HasContextMenu = false;
-            this._ACTalkTime.LabelActiveColor = System.Drawing.Color.DarkSlateGray;
+            this._ACTalkTime.LabelActiveColor = System.Drawing.Color.Empty;
             this._ACTalkTime.LabelAutoSize = false;
             this._ACTalkTime.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
             this._ACTalkTime.LabelBorderOffset = new System.Drawing.Rectangle(-1, 0, 1, 0);
             this._ACTalkTime.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this._ACTalkTime.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._ACTalkTime.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._ACTalkTime.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
+            this._ACTalkTime.LabelInactiveColor = System.Drawing.Color.Empty;
             this._ACTalkTime.LabelMargin = new System.Windows.Forms.Padding(0);
             this._ACTalkTime.LabelOffset = new System.Drawing.Point(0, 0);
             this._ACTalkTime.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -884,17 +925,15 @@
             this._ACTalkTime.Name = "_ACTalkTime";
             this._ACTalkTime.PropertyName = null;
             this._ACTalkTime.Size = new System.Drawing.Size(127, 20);
-            this._ACTalkTime.TabIndex = 9;
+            this._ACTalkTime.TabIndex = 17;
             this._ACTalkTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._ACTalkTime.TextField = "";
             this._ACTalkTime.TextfieldToolTip = "Call Talk Time/Calls";
             this._ACTalkTime.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(247)))));
-            this._ACTalkTime.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._ACTalkTime.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._ACTalkTime.TFReadOnly = true;
             this._ACTalkTime.TFTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(15)))));
-            this._ACTalkTime.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._ACTalkTime.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._ACTalkTime.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._ACTalkTime.UseActiveLabel = false;
             // 
             // _AHeading
             // 
@@ -929,10 +968,7 @@
             this._AHeading.Name = "_AHeading";
             this._AHeading.PropertyName = null;
             this._AHeading.Size = new System.Drawing.Size(183, 20);
-            this._AHeading.TabIndex = 8;
-            this._AHeading.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._AHeading.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._AHeading.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._AHeading.TabIndex = 102;
             // 
             // _PHeading
             // 
@@ -967,10 +1003,7 @@
             this._PHeading.Name = "_PHeading";
             this._PHeading.PropertyName = null;
             this._PHeading.Size = new System.Drawing.Size(187, 15);
-            this._PHeading.TabIndex = 7;
-            this._PHeading.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._PHeading.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._PHeading.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._PHeading.TabIndex = 101;
             // 
             // _CHandlingTime
             // 
@@ -978,18 +1011,19 @@
             this._CHandlingTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
             this._CHandlingTime.BorderColour = System.Drawing.Color.White;
             this._CHandlingTime.ControlHeight = 20;
+            this._CHandlingTime.Cursor = System.Windows.Forms.Cursors.Hand;
             this._CHandlingTime.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._CHandlingTime.DefaultText = "";
             this._CHandlingTime.Font = new System.Drawing.Font("Verdana", 7F);
             this._CHandlingTime.HasContextMenu = false;
-            this._CHandlingTime.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._CHandlingTime.LabelActiveColor = System.Drawing.Color.Empty;
             this._CHandlingTime.LabelAutoSize = false;
             this._CHandlingTime.LabelBorderColor = System.Drawing.Color.LightSeaGreen;
             this._CHandlingTime.LabelBorderOffset = new System.Drawing.Rectangle(-2, 0, 0, 0);
             this._CHandlingTime.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this._CHandlingTime.LabelDock = System.Windows.Forms.DockStyle.Right;
             this._CHandlingTime.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._CHandlingTime.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._CHandlingTime.LabelInactiveColor = System.Drawing.Color.Empty;
             this._CHandlingTime.LabelMargin = new System.Windows.Forms.Padding(0);
             this._CHandlingTime.LabelOffset = new System.Drawing.Point(57, 0);
             this._CHandlingTime.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -1005,17 +1039,15 @@
             this._CHandlingTime.Name = "_CHandlingTime";
             this._CHandlingTime.PropertyName = null;
             this._CHandlingTime.Size = new System.Drawing.Size(127, 20);
-            this._CHandlingTime.TabIndex = 6;
+            this._CHandlingTime.TabIndex = 22;
             this._CHandlingTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._CHandlingTime.TextField = "";
             this._CHandlingTime.TextfieldToolTip = "Total Call Handling Time";
             this._CHandlingTime.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
-            this._CHandlingTime.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._CHandlingTime.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CHandlingTime.TFReadOnly = true;
             this._CHandlingTime.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this._CHandlingTime.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._CHandlingTime.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._CHandlingTime.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._CHandlingTime.UseActiveLabel = false;
             // 
             // _PReady
             // 
@@ -1023,18 +1055,19 @@
             this._PReady.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
             this._PReady.BorderColour = System.Drawing.Color.White;
             this._PReady.ControlHeight = 20;
+            this._PReady.Cursor = System.Windows.Forms.Cursors.Hand;
             this._PReady.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._PReady.DefaultText = "";
             this._PReady.Font = new System.Drawing.Font("Verdana", 7F);
             this._PReady.HasContextMenu = false;
-            this._PReady.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._PReady.LabelActiveColor = System.Drawing.Color.Empty;
             this._PReady.LabelAutoSize = false;
             this._PReady.LabelBorderColor = System.Drawing.Color.LightSeaGreen;
             this._PReady.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
             this._PReady.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._PReady.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._PReady.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._PReady.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._PReady.LabelInactiveColor = System.Drawing.Color.Empty;
             this._PReady.LabelMargin = new System.Windows.Forms.Padding(0);
             this._PReady.LabelOffset = new System.Drawing.Point(0, 0);
             this._PReady.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -1050,17 +1083,15 @@
             this._PReady.Name = "_PReady";
             this._PReady.PropertyName = null;
             this._PReady.Size = new System.Drawing.Size(127, 20);
-            this._PReady.TabIndex = 5;
+            this._PReady.TabIndex = 1;
             this._PReady.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._PReady.TextField = "";
             this._PReady.TextfieldToolTip = "Total Ready";
             this._PReady.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
-            this._PReady.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._PReady.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._PReady.TFReadOnly = true;
             this._PReady.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this._PReady.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._PReady.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._PReady.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._PReady.UseActiveLabel = false;
             // 
             // _PNotReady
             // 
@@ -1068,18 +1099,19 @@
             this._PNotReady.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
             this._PNotReady.BorderColour = System.Drawing.Color.White;
             this._PNotReady.ControlHeight = 20;
+            this._PNotReady.Cursor = System.Windows.Forms.Cursors.Hand;
             this._PNotReady.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._PNotReady.DefaultText = "";
             this._PNotReady.Font = new System.Drawing.Font("Verdana", 7F);
             this._PNotReady.HasContextMenu = false;
-            this._PNotReady.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._PNotReady.LabelActiveColor = System.Drawing.Color.Empty;
             this._PNotReady.LabelAutoSize = false;
             this._PNotReady.LabelBorderColor = System.Drawing.Color.LightSeaGreen;
             this._PNotReady.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
             this._PNotReady.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._PNotReady.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._PNotReady.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._PNotReady.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._PNotReady.LabelInactiveColor = System.Drawing.Color.Empty;
             this._PNotReady.LabelMargin = new System.Windows.Forms.Padding(0);
             this._PNotReady.LabelOffset = new System.Drawing.Point(0, 0);
             this._PNotReady.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -1095,17 +1127,15 @@
             this._PNotReady.Name = "_PNotReady";
             this._PNotReady.PropertyName = null;
             this._PNotReady.Size = new System.Drawing.Size(127, 20);
-            this._PNotReady.TabIndex = 4;
+            this._PNotReady.TabIndex = 2;
             this._PNotReady.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._PNotReady.TextField = "";
             this._PNotReady.TextfieldToolTip = "Total Phone Not Ready = First Ready - Login + Logout - Last Not Ready.";
             this._PNotReady.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
-            this._PNotReady.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._PNotReady.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._PNotReady.TFReadOnly = true;
             this._PNotReady.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this._PNotReady.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._PNotReady.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._PNotReady.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._PNotReady.UseActiveLabel = false;
             // 
             // _CWrapUp
             // 
@@ -1113,18 +1143,19 @@
             this._CWrapUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
             this._CWrapUp.BorderColour = System.Drawing.Color.White;
             this._CWrapUp.ControlHeight = 20;
+            this._CWrapUp.Cursor = System.Windows.Forms.Cursors.Hand;
             this._CWrapUp.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._CWrapUp.DefaultText = "";
             this._CWrapUp.Font = new System.Drawing.Font("Verdana", 7F);
             this._CWrapUp.HasContextMenu = false;
-            this._CWrapUp.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._CWrapUp.LabelActiveColor = System.Drawing.Color.Empty;
             this._CWrapUp.LabelAutoSize = false;
             this._CWrapUp.LabelBorderColor = System.Drawing.Color.LightSeaGreen;
             this._CWrapUp.LabelBorderOffset = new System.Drawing.Rectangle(-2, 0, 0, 0);
             this._CWrapUp.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this._CWrapUp.LabelDock = System.Windows.Forms.DockStyle.Right;
             this._CWrapUp.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._CWrapUp.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._CWrapUp.LabelInactiveColor = System.Drawing.Color.Empty;
             this._CWrapUp.LabelMargin = new System.Windows.Forms.Padding(0);
             this._CWrapUp.LabelOffset = new System.Drawing.Point(57, 0);
             this._CWrapUp.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -1140,17 +1171,15 @@
             this._CWrapUp.Name = "_CWrapUp";
             this._CWrapUp.PropertyName = null;
             this._CWrapUp.Size = new System.Drawing.Size(127, 20);
-            this._CWrapUp.TabIndex = 3;
+            this._CWrapUp.TabIndex = 24;
             this._CWrapUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._CWrapUp.TextField = "";
             this._CWrapUp.TextfieldToolTip = "Total Wrap Up";
             this._CWrapUp.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
-            this._CWrapUp.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._CWrapUp.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CWrapUp.TFReadOnly = true;
             this._CWrapUp.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this._CWrapUp.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._CWrapUp.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._CWrapUp.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._CWrapUp.UseActiveLabel = false;
             // 
             // _PCalls
             // 
@@ -1158,18 +1187,19 @@
             this._PCalls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
             this._PCalls.BorderColour = System.Drawing.Color.White;
             this._PCalls.ControlHeight = 20;
+            this._PCalls.Cursor = System.Windows.Forms.Cursors.Hand;
             this._PCalls.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._PCalls.DefaultText = "";
             this._PCalls.Font = new System.Drawing.Font("Verdana", 7F);
             this._PCalls.HasContextMenu = false;
-            this._PCalls.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._PCalls.LabelActiveColor = System.Drawing.Color.Empty;
             this._PCalls.LabelAutoSize = false;
             this._PCalls.LabelBorderColor = System.Drawing.Color.LightSeaGreen;
             this._PCalls.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
             this._PCalls.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._PCalls.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._PCalls.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._PCalls.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._PCalls.LabelInactiveColor = System.Drawing.Color.Empty;
             this._PCalls.LabelMargin = new System.Windows.Forms.Padding(0);
             this._PCalls.LabelOffset = new System.Drawing.Point(0, 0);
             this._PCalls.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -1185,17 +1215,15 @@
             this._PCalls.Name = "_PCalls";
             this._PCalls.PropertyName = null;
             this._PCalls.Size = new System.Drawing.Size(127, 20);
-            this._PCalls.TabIndex = 2;
+            this._PCalls.TabIndex = 7;
             this._PCalls.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._PCalls.TextField = "";
             this._PCalls.TextfieldToolTip = "Number of Calls";
             this._PCalls.TFBackColor = System.Drawing.SystemColors.Window;
-            this._PCalls.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._PCalls.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._PCalls.TFReadOnly = true;
             this._PCalls.TFTextColor = System.Drawing.SystemColors.ControlDarkDark;
-            this._PCalls.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._PCalls.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._PCalls.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._PCalls.UseActiveLabel = false;
             // 
             // _CTalkTime
             // 
@@ -1203,18 +1231,19 @@
             this._CTalkTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
             this._CTalkTime.BorderColour = System.Drawing.Color.White;
             this._CTalkTime.ControlHeight = 20;
+            this._CTalkTime.Cursor = System.Windows.Forms.Cursors.Hand;
             this._CTalkTime.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._CTalkTime.DefaultText = "";
             this._CTalkTime.Font = new System.Drawing.Font("Verdana", 7F);
             this._CTalkTime.HasContextMenu = false;
-            this._CTalkTime.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._CTalkTime.LabelActiveColor = System.Drawing.Color.Empty;
             this._CTalkTime.LabelAutoSize = false;
             this._CTalkTime.LabelBorderColor = System.Drawing.Color.LightSeaGreen;
             this._CTalkTime.LabelBorderOffset = new System.Drawing.Rectangle(-2, 0, 0, 0);
             this._CTalkTime.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
             this._CTalkTime.LabelDock = System.Windows.Forms.DockStyle.Right;
             this._CTalkTime.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._CTalkTime.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._CTalkTime.LabelInactiveColor = System.Drawing.Color.Empty;
             this._CTalkTime.LabelMargin = new System.Windows.Forms.Padding(0);
             this._CTalkTime.LabelOffset = new System.Drawing.Point(57, 0);
             this._CTalkTime.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -1230,17 +1259,15 @@
             this._CTalkTime.Name = "_CTalkTime";
             this._CTalkTime.PropertyName = null;
             this._CTalkTime.Size = new System.Drawing.Size(127, 20);
-            this._CTalkTime.TabIndex = 1;
+            this._CTalkTime.TabIndex = 23;
             this._CTalkTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this._CTalkTime.TextField = "";
             this._CTalkTime.TextfieldToolTip = "Total Talk Time";
             this._CTalkTime.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
-            this._CTalkTime.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._CTalkTime.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CTalkTime.TFReadOnly = true;
             this._CTalkTime.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this._CTalkTime.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._CTalkTime.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._CTalkTime.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._CTalkTime.UseActiveLabel = false;
             // 
             // _PLogin
             // 
@@ -1248,18 +1275,19 @@
             this._PLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
             this._PLogin.BorderColour = System.Drawing.Color.White;
             this._PLogin.ControlHeight = 20;
+            this._PLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this._PLogin.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Events", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._PLogin.DefaultText = "";
             this._PLogin.Font = new System.Drawing.Font("Verdana", 7F);
             this._PLogin.HasContextMenu = false;
-            this._PLogin.LabelActiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._PLogin.LabelActiveColor = System.Drawing.Color.Empty;
             this._PLogin.LabelAutoSize = false;
             this._PLogin.LabelBorderColor = System.Drawing.Color.LightSeaGreen;
             this._PLogin.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
             this._PLogin.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._PLogin.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._PLogin.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._PLogin.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(173)))), ((int)(((byte)(179)))));
+            this._PLogin.LabelInactiveColor = System.Drawing.Color.Empty;
             this._PLogin.LabelMargin = new System.Windows.Forms.Padding(0);
             this._PLogin.LabelOffset = new System.Drawing.Point(0, 0);
             this._PLogin.LabelPadding = new System.Windows.Forms.Padding(0);
@@ -1280,12 +1308,10 @@
             this._PLogin.TextField = "";
             this._PLogin.TextfieldToolTip = "Total Login";
             this._PLogin.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
-            this._PLogin.TFCursor = System.Windows.Forms.Cursors.Default;
+            this._PLogin.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._PLogin.TFReadOnly = true;
             this._PLogin.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this._PLogin.LabelClick += new System.EventHandler(this._PHeading_Click);
-            this._PLogin.LabelMouseEnter += new System.EventHandler(this._Control_MouseEnter);
-            this._PLogin.LabelMouseLeave += new System.EventHandler(this._Control_MouseLeave);
+            this._PLogin.UseActiveLabel = false;
             // 
             // _DateSelect
             // 
@@ -1315,14 +1341,14 @@
             this._DateSelect.LabelTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
             this._DateSelect.LabelToolTip = "";
             this._DateSelect.LabelVisible = true;
-            this._DateSelect.Location = new System.Drawing.Point(5, 219);
+            this._DateSelect.Location = new System.Drawing.Point(4, 219);
             this._DateSelect.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
             this._DateSelect.MenuButtonImage = null;
             this._DateSelect.Name = "_DateSelect";
             this._DateSelect.OverlapLabel = false;
             this._DateSelect.PropertyName = "LongDate";
             this._DateSelect.Size = new System.Drawing.Size(127, 20);
-            this._DateSelect.TabIndex = 17;
+            this._DateSelect.TabIndex = 35;
             // 
             // label6
             // 
@@ -1330,10 +1356,10 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Optus Voice BETA Bold", 20F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(417, 213);
+            this.label6.Location = new System.Drawing.Point(415, 213);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(112, 33);
-            this.label6.TabIndex = 13;
+            this.label6.TabIndex = 100;
             this.label6.Text = "//Stats";
             // 
             // StatsView
@@ -1345,6 +1371,7 @@
             this.Controls.Add(this._StatsPanel);
             this.Controls.Add(this._DateSelect);
             this.Controls.Add(this.label6);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "StatsView";
             this.Padding = new System.Windows.Forms.Padding(2, 3, 2, 2);
@@ -1390,5 +1417,6 @@
         private LabelledTextBoxLong _CurrTalkTime;
         private System.Windows.Forms.Button nextTip;
         private LabelledTextBoxLong _CurrCall;
+        private LabelledTextBoxLong _PCph;
     }
 }

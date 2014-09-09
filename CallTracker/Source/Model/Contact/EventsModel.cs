@@ -55,14 +55,6 @@ namespace CallTracker.Model
 
             var stats = (T)Statistics.Clone();
 
-            //var lastLogInIndex = CallEvents.IndexOf(CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.CallStart)));
-            //var lastLogOutIndex = CallEvents.IndexOf(CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.CallEnd)));
-            //if (lastLogInIndex > lastLogOutIndex)
-            //{
-            //    Console.WriteLine("Login Index > Logout Index");
-            //    stats.HandlingTime += DateTime.Now.Subtract(CallEvents[lastLogInIndex].Timestamp);
-            //}
-
             if (LastCallEvent != null)
             {
                 var lastEventTime = DateTime.Now.Subtract(LastCallEvent.Timestamp);
@@ -70,25 +62,29 @@ namespace CallTracker.Model
                 {
                     case CallEventTypes.Hold:
                         stats.Hold += lastEventTime;
+                        stats.HandlingTime += lastEventTime;
                         break;
                     case CallEventTypes.NotReady:
                         stats.NotReady += lastEventTime;
+                        stats.HandlingTime += lastEventTime;
                         break;
                     case CallEventTypes.CallStart:
                     case CallEventTypes.Talking:
                         stats.TalkTime += lastEventTime;
+                        stats.HandlingTime += lastEventTime;
                         break;
                     case CallEventTypes.Wrapup:
                         stats.Wrapup += lastEventTime;
+                        stats.HandlingTime += lastEventTime;
                         break;
                 }
 
-                if (LastCallEvent.EventType.IsNot(CallEventTypes.CallEnd))
-                {
-                    var lastOrDefault = CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.CallStart));
-                    if (lastOrDefault != null)
-                        stats.HandlingTime += DateTime.Now.Subtract(lastOrDefault.Timestamp);
-                }
+                //if (LastCallEvent.EventType.IsNot(CallEventTypes.CallEnd))
+                //{
+                //    var lastOrDefault = CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.CallStart));
+                //    if (lastOrDefault != null)
+                //        stats.HandlingTime += DateTime.Now.Subtract(lastOrDefault.Timestamp);
+                //}
 
             }
 
@@ -107,23 +103,22 @@ namespace CallTracker.Model
                 {
                     case CallEventTypes.Hold:
                         Statistics.Hold += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
                         break;
                     case CallEventTypes.NotReady:
                         Statistics.NotReady += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
                         break;
                     case CallEventTypes.CallStart:
                     case CallEventTypes.Talking:
                         Statistics.TalkTime += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
                         break;
                     case CallEventTypes.Wrapup:
                         Statistics.Wrapup += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
                         break;
                 }
-            }
-
-            if (newEvent.Is(CallEventTypes.CallEnd))
-            {
-                AddHandlingTime(DateTime.Now);
             }
 
             LastCallEvent = new EventModel<CallEventTypes>(newEvent);
@@ -131,12 +126,72 @@ namespace CallTracker.Model
             
             IsDirty = true;
         }
-
-        public void AddHandlingTime(DateTime toTime)
+        public void ImportCallEvent(EventModel<CallEventTypes> callEvent)
         {
-            var lastOrDefault = CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.CallStart));
-            if (lastOrDefault != null)
-                Statistics.HandlingTime += toTime.Subtract(lastOrDefault.Timestamp);
+            //if (_deserializing) return;
+            if (LastCallEvent != null)
+            {
+                var lastEventTime = callEvent.Timestamp.Subtract(LastCallEvent.Timestamp);
+                switch (LastCallEvent.EventType)
+                {
+                    case CallEventTypes.Hold:
+                        Statistics.Hold += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
+                        break;
+                    case CallEventTypes.NotReady:
+                        Statistics.NotReady += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
+                        break;
+                    case CallEventTypes.CallStart:
+                    case CallEventTypes.Talking:
+                        Statistics.TalkTime += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
+                        break;
+                    case CallEventTypes.Wrapup:
+                        Statistics.Wrapup += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
+                        break;
+                }
+            }
+
+            LastCallEvent = callEvent;
+            CallEvents.Add(callEvent);
+
+            IsDirty = true;
+        }
+
+        public void AddCallEventAtTime(CallEventTypes newEvent, DateTime time)
+        {
+            //if (_deserializing) return;
+            if (LastCallEvent != null)
+            {
+                var lastEventTime = time.Subtract(LastCallEvent.Timestamp);
+                switch (LastCallEvent.EventType)
+                {
+                    case CallEventTypes.Hold:
+                        Statistics.Hold += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
+                        break;
+                    case CallEventTypes.NotReady:
+                        Statistics.NotReady += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
+                        break;
+                    case CallEventTypes.CallStart:
+                    case CallEventTypes.Talking:
+                        Statistics.TalkTime += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
+                        break;
+                    case CallEventTypes.Wrapup:
+                        Statistics.Wrapup += lastEventTime;
+                        Statistics.HandlingTime += lastEventTime;
+                        break;
+                }
+            }
+
+            LastCallEvent = new EventModel<CallEventTypes>(newEvent, time);
+            CallEvents.Add(LastCallEvent);
+
+            IsDirty = true;
         }
 
         internal void AddAppEvent(AppEventTypes newEvent)
@@ -197,6 +252,12 @@ namespace CallTracker.Model
         public EventModel(T eventType)
         {
             Timestamp = DateTime.Now;
+            EventType = eventType;
+        }
+
+        public EventModel(T eventType, DateTime time)
+        {
+            Timestamp = time;
             EventType = eventType;
         }
 

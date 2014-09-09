@@ -147,6 +147,7 @@
             this._NPR = new CallTracker.View.LabelledTextBox();
             this._PR = new CallTracker.View.LabelledTextBox();
             this._ServicePanel = new CallTracker.View.ServicePanel();
+            this.showStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
             ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).BeginInit();
             this.FaultPanel.SuspendLayout();
@@ -570,10 +571,11 @@
             this.newCallToolStripMenuItem,
             this.autoNewCallToolStripMenuItem,
             this.toolStripSeparator6,
-            this.callHistoryToolStripMenuItem});
+            this.callHistoryToolStripMenuItem,
+            this.showStatsToolStripMenuItem});
             this._CallHistoryContextMenu.Name = "_CallHistoryContextMenu";
             this._CallHistoryContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this._CallHistoryContextMenu.Size = new System.Drawing.Size(166, 104);
+            this._CallHistoryContextMenu.Size = new System.Drawing.Size(166, 148);
             // 
             // _ImportantToolStripMenuItem
             // 
@@ -1212,6 +1214,8 @@
             this._Icon.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Icon.LabelAutoSize = false;
             this._Icon.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Icon.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Icon.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Icon.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._Icon.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this._Icon.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
@@ -1223,6 +1227,7 @@
             this._Icon.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Icon.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Icon.LabelToolTip = "Shift-Ctrl-1";
+            this._Icon.LabelVisible = true;
             this._Icon.Location = new System.Drawing.Point(3, 3);
             this._Icon.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this._Icon.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1233,6 +1238,11 @@
             this._Icon.TabIndex = 13;
             this._Icon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Icon.TextField = "";
+            this._Icon.TextfieldToolTip = "";
+            this._Icon.TFBackColor = System.Drawing.SystemColors.Window;
+            this._Icon.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._Icon.TFReadOnly = false;
+            this._Icon.TFTextColor = System.Drawing.SystemColors.WindowText;
             // 
             // customerContactsBindingSource
             // 
@@ -1254,6 +1264,8 @@
             this._Cmbs.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Cmbs.LabelAutoSize = false;
             this._Cmbs.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Cmbs.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Cmbs.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Cmbs.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._Cmbs.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this._Cmbs.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
@@ -1265,6 +1277,7 @@
             this._Cmbs.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Cmbs.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Cmbs.LabelToolTip = "Shift-Ctrl-2";
+            this._Cmbs.LabelVisible = true;
             this._Cmbs.Location = new System.Drawing.Point(193, 3);
             this._Cmbs.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this._Cmbs.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1275,6 +1288,11 @@
             this._Cmbs.TabIndex = 14;
             this._Cmbs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Cmbs.TextField = "";
+            this._Cmbs.TextfieldToolTip = "";
+            this._Cmbs.TFBackColor = System.Drawing.SystemColors.Window;
+            this._Cmbs.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._Cmbs.TFReadOnly = false;
+            this._Cmbs.TFTextColor = System.Drawing.SystemColors.WindowText;
             // 
             // _Username
             // 
@@ -1291,6 +1309,8 @@
             this._Username.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Username.LabelAutoSize = false;
             this._Username.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Username.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Username.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Username.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._Username.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this._Username.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
@@ -1302,6 +1322,7 @@
             this._Username.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Username.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Username.LabelToolTip = "Shift-Ctrl-Q";
+            this._Username.LabelVisible = true;
             this._Username.Location = new System.Drawing.Point(3, 26);
             this._Username.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this._Username.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1312,6 +1333,11 @@
             this._Username.TabIndex = 15;
             this._Username.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this._Username.TextField = "";
+            this._Username.TextfieldToolTip = "";
+            this._Username.TFBackColor = System.Drawing.SystemColors.Window;
+            this._Username.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._Username.TFReadOnly = false;
+            this._Username.TFTextColor = System.Drawing.SystemColors.WindowText;
             // 
             // _Dn
             // 
@@ -1328,6 +1354,8 @@
             this._Dn.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Dn.LabelAutoSize = false;
             this._Dn.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Dn.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Dn.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Dn.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._Dn.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this._Dn.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
@@ -1339,6 +1367,7 @@
             this._Dn.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Dn.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Dn.LabelToolTip = "Shift-Ctrl-W";
+            this._Dn.LabelVisible = true;
             this._Dn.Location = new System.Drawing.Point(193, 26);
             this._Dn.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this._Dn.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1349,6 +1378,11 @@
             this._Dn.TabIndex = 16;
             this._Dn.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Dn.TextField = "";
+            this._Dn.TextfieldToolTip = "";
+            this._Dn.TFBackColor = System.Drawing.SystemColors.Window;
+            this._Dn.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._Dn.TFReadOnly = false;
+            this._Dn.TFTextColor = System.Drawing.SystemColors.WindowText;
             // 
             // _Name
             // 
@@ -1365,6 +1399,8 @@
             this._Name.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Name.LabelAutoSize = false;
             this._Name.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Name.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Name.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Name.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._Name.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this._Name.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
@@ -1376,6 +1412,7 @@
             this._Name.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Name.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Name.LabelToolTip = "Shift-Ctrl-A";
+            this._Name.LabelVisible = true;
             this._Name.Location = new System.Drawing.Point(3, 49);
             this._Name.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this._Name.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1386,6 +1423,11 @@
             this._Name.TabIndex = 17;
             this._Name.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this._Name.TextField = "";
+            this._Name.TextfieldToolTip = "";
+            this._Name.TFBackColor = System.Drawing.SystemColors.Window;
+            this._Name.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._Name.TFReadOnly = false;
+            this._Name.TFTextColor = System.Drawing.SystemColors.WindowText;
             // 
             // _Mobile
             // 
@@ -1403,6 +1445,8 @@
             this._Mobile.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Mobile.LabelAutoSize = false;
             this._Mobile.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Mobile.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Mobile.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Mobile.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._Mobile.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this._Mobile.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
@@ -1414,6 +1458,7 @@
             this._Mobile.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Mobile.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Mobile.LabelToolTip = "Shift-Ctrl-S";
+            this._Mobile.LabelVisible = true;
             this._Mobile.Location = new System.Drawing.Point(193, 49);
             this._Mobile.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this._Mobile.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1424,6 +1469,11 @@
             this._Mobile.TabIndex = 18;
             this._Mobile.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this._Mobile.TextField = "";
+            this._Mobile.TextfieldToolTip = "";
+            this._Mobile.TFBackColor = System.Drawing.SystemColors.Window;
+            this._Mobile.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._Mobile.TFReadOnly = false;
+            this._Mobile.TFTextColor = System.Drawing.SystemColors.WindowText;
             // 
             // _Address
             // 
@@ -1440,6 +1490,8 @@
             this._Address.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Address.LabelAutoSize = false;
             this._Address.LabelBorderColor = System.Drawing.Color.DarkSlateGray;
+            this._Address.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Address.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Address.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._Address.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this._Address.LabelInactiveColor = System.Drawing.Color.DarkSlateGray;
@@ -1451,6 +1503,7 @@
             this._Address.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Address.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Address.LabelToolTip = "";
+            this._Address.LabelVisible = true;
             this._Address.Location = new System.Drawing.Point(3, 72);
             this._Address.Margin = new System.Windows.Forms.Padding(3, 0, 0, 3);
             this._Address.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1461,6 +1514,11 @@
             this._Address.TabIndex = 19;
             this._Address.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this._Address.TextField = "";
+            this._Address.TextfieldToolTip = "";
+            this._Address.TFBackColor = System.Drawing.SystemColors.Window;
+            this._Address.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._Address.TFReadOnly = false;
+            this._Address.TFTextColor = System.Drawing.SystemColors.WindowText;
             // 
             // _Note
             // 
@@ -1603,6 +1661,8 @@
             this._Symptom.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Symptom.LabelAutoSize = true;
             this._Symptom.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._Symptom.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Symptom.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Symptom.LabelDock = System.Windows.Forms.DockStyle.None;
             this._Symptom.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
             this._Symptom.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
@@ -1614,6 +1674,7 @@
             this._Symptom.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._Symptom.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Symptom.LabelToolTip = "";
+            this._Symptom.LabelVisible = true;
             this._Symptom.Location = new System.Drawing.Point(4, 137);
             this._Symptom.Margin = new System.Windows.Forms.Padding(0);
             this._Symptom.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1639,6 +1700,8 @@
             this._Outcome.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Outcome.LabelAutoSize = true;
             this._Outcome.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._Outcome.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Outcome.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Outcome.LabelDock = System.Windows.Forms.DockStyle.None;
             this._Outcome.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
             this._Outcome.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
@@ -1650,6 +1713,7 @@
             this._Outcome.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._Outcome.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Outcome.LabelToolTip = "";
+            this._Outcome.LabelVisible = true;
             this._Outcome.Location = new System.Drawing.Point(64, 137);
             this._Outcome.Margin = new System.Windows.Forms.Padding(0);
             this._Outcome.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1674,6 +1738,8 @@
             this._Action.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Action.LabelAutoSize = false;
             this._Action.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._Action.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Action.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Action.LabelDock = System.Windows.Forms.DockStyle.Left;
             this._Action.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this._Action.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
@@ -1685,6 +1751,7 @@
             this._Action.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Action.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Action.LabelToolTip = "";
+            this._Action.LabelVisible = true;
             this._Action.Location = new System.Drawing.Point(4, 167);
             this._Action.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
             this._Action.MenuButtonImage = null;
@@ -1708,6 +1775,8 @@
             this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._BookingDate.LabelAutoSize = true;
             this._BookingDate.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._BookingDate.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._BookingDate.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._BookingDate.LabelDock = System.Windows.Forms.DockStyle.None;
             this._BookingDate.LabelFont = new System.Drawing.Font("Gautami", 7F);
             this._BookingDate.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
@@ -1719,6 +1788,7 @@
             this._BookingDate.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._BookingDate.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._BookingDate.LabelToolTip = "";
+            this._BookingDate.LabelVisible = true;
             this._BookingDate.Location = new System.Drawing.Point(63, 78);
             this._BookingDate.Margin = new System.Windows.Forms.Padding(0);
             this._BookingDate.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1743,6 +1813,8 @@
             this._BookingType.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._BookingType.LabelAutoSize = true;
             this._BookingType.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._BookingType.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._BookingType.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._BookingType.LabelDock = System.Windows.Forms.DockStyle.None;
             this._BookingType.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
             this._BookingType.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
@@ -1754,6 +1826,7 @@
             this._BookingType.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._BookingType.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._BookingType.LabelToolTip = "";
+            this._BookingType.LabelVisible = true;
             this._BookingType.Location = new System.Drawing.Point(4, 78);
             this._BookingType.Margin = new System.Windows.Forms.Padding(0);
             this._BookingType.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1778,6 +1851,8 @@
             this._BookingTimeSlot.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._BookingTimeSlot.LabelAutoSize = true;
             this._BookingTimeSlot.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._BookingTimeSlot.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._BookingTimeSlot.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._BookingTimeSlot.LabelDock = System.Windows.Forms.DockStyle.None;
             this._BookingTimeSlot.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
             this._BookingTimeSlot.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
@@ -1789,6 +1864,7 @@
             this._BookingTimeSlot.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._BookingTimeSlot.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._BookingTimeSlot.LabelToolTip = "";
+            this._BookingTimeSlot.LabelVisible = true;
             this._BookingTimeSlot.Location = new System.Drawing.Point(125, 78);
             this._BookingTimeSlot.Margin = new System.Windows.Forms.Padding(0);
             this._BookingTimeSlot.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1812,6 +1888,8 @@
             this._Itcase.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._Itcase.LabelAutoSize = false;
             this._Itcase.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._Itcase.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Itcase.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._Itcase.LabelDock = System.Windows.Forms.DockStyle.None;
             this._Itcase.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._Itcase.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
@@ -1823,6 +1901,7 @@
             this._Itcase.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._Itcase.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Itcase.LabelToolTip = "";
+            this._Itcase.LabelVisible = true;
             this._Itcase.Location = new System.Drawing.Point(4, 48);
             this._Itcase.Margin = new System.Windows.Forms.Padding(0);
             this._Itcase.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1849,6 +1928,8 @@
             this._NPR.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._NPR.LabelAutoSize = true;
             this._NPR.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._NPR.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._NPR.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._NPR.LabelDock = System.Windows.Forms.DockStyle.None;
             this._NPR.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline);
             this._NPR.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
@@ -1860,6 +1941,7 @@
             this._NPR.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._NPR.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._NPR.LabelToolTip = "";
+            this._NPR.LabelVisible = true;
             this._NPR.Location = new System.Drawing.Point(90, 108);
             this._NPR.Margin = new System.Windows.Forms.Padding(0);
             this._NPR.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1886,6 +1968,8 @@
             this._PR.LabelActiveColor = System.Drawing.Color.Firebrick;
             this._PR.LabelAutoSize = true;
             this._PR.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._PR.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._PR.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
             this._PR.LabelDock = System.Windows.Forms.DockStyle.None;
             this._PR.LabelFont = new System.Drawing.Font("Gautami", 7F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this._PR.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
@@ -1897,6 +1981,7 @@
             this._PR.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._PR.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._PR.LabelToolTip = "Shift-Ctrl-Z";
+            this._PR.LabelVisible = true;
             this._PR.Location = new System.Drawing.Point(4, 108);
             this._PR.Margin = new System.Windows.Forms.Padding(0);
             this._PR.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
@@ -1920,6 +2005,13 @@
             this._ServicePanel.Padding = new System.Windows.Forms.Padding(3);
             this._ServicePanel.Size = new System.Drawing.Size(180, 211);
             this._ServicePanel.TabIndex = 1;
+            // 
+            // showStatsToolStripMenuItem
+            // 
+            this.showStatsToolStripMenuItem.Name = "showStatsToolStripMenuItem";
+            this.showStatsToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.showStatsToolStripMenuItem.Text = "Show Stats";
+            this.showStatsToolStripMenuItem.Click += new System.EventHandler(this.showStatsToolStripMenuItem_Click);
             // 
             // EditContact
             // 
@@ -2090,5 +2182,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem22;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem23;
         internal dbRTBox _Note;
+        private System.Windows.Forms.ToolStripMenuItem showStatsToolStripMenuItem;
     }
 }

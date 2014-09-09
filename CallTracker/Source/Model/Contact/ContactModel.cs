@@ -170,26 +170,31 @@ namespace CallTracker.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         internal void AddCallEvent(CallEventTypes newEvent)
         {
-            switch (Events.LastCallEvent.EventType)
-            {
-                case CallEventTypes.RecordCreated:
-                    Events.AddCallEvent(newEvent.Is(CallEventTypes.NotReady) ? CallEventTypes.LogIn : newEvent);
-                    break;
-                //case CallEventTypes.Reserved:
-                //    Events.AddCallEvent(newEvent.Is(CallEventTypes.Talking) ? CallEventTypes.CallStart : newEvent);
-                //    break;
-                case CallEventTypes.CallEnd:
-                    if (!newEvent.Is(CallEventTypes.Ready | CallEventTypes.LogOut | CallEventTypes.CallEnd | CallEventTypes.Reserved))
-                        Events.AddCallEvent(newEvent.Is(CallEventTypes.Talking) ? CallEventTypes.CallStart : newEvent);
-                    break;
-                default:
-                    Events.AddCallEvent(newEvent.Is(CallEventTypes.Ready | CallEventTypes.LogOut)
-                        ? CallEventTypes.CallEnd
-                        : newEvent);
-                    break;
-            }
-
+            //switch (Events.LastCallEvent.EventType)
+            //{
+            //    //case CallEventTypes.RecordCreated:
+            //    //    Events.AddCallEvent(newEvent.Is(CallEventTypes.NotReady) ? CallEventTypes.LogIn : newEvent);
+            //    //    break;
+            //    //case CallEventTypes.NotReady:
+            //    //    Events.AddCallEvent(newEvent.Is(CallEventTypes.Talking) ? CallEventTypes.CallStart : newEvent);
+            //    //    break;
+            //    case (CallEventTypes.CallEnd | CallEventTypes.LogOut):
+            //        //if (!newEvent.Is(CallEventTypes.Ready | CallEventTypes.LogOut | CallEventTypes.CallEnd | CallEventTypes.Reserved))
+            //            Events.AddCallEvent(newEvent.Is(CallEventTypes.Talking) ? CallEventTypes.CallStart : newEvent);
+            //        break;
+            //    default:
+            //        Events.AddCallEvent(newEvent.Is(CallEventTypes.Ready | CallEventTypes.LogOut)
+            //            ? CallEventTypes.CallEnd
+            //            : newEvent);
+            //        break;
+            //}
+            Events.AddCallEvent(newEvent);
             EventLogger.LogNewEvent(Id + " " + DN + " > " + Enum.GetName(typeof(CallEventTypes), Events.LastCallEvent.EventType) + " at " + Events.LastCallEvent.Timestamp.ToString("dd/MM/yy hh:mm:ss"));
+        }
+
+        internal void ChangeLastEventType(CallEventTypes newEventType)
+        {
+            Events.LastCallEvent.EventType = newEventType;
         }
 
         internal void AddAppEvent(AppEventTypes newEvent)
