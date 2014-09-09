@@ -13,7 +13,7 @@ namespace CallTracker.Helpers
     public class MADElementOffset
     {
         public string Name {get; set;}
-        public Point Offset { get; set; }
+        public Vector Offset { get; set; }
         public int X {get; set;}
         public int Y {get; set;}
 
@@ -22,7 +22,7 @@ namespace CallTracker.Helpers
             Name = name;
             X = x;
             Y = y;
-            Offset = new Point(X, Y);
+            Offset = new Vector(X, Y);
         }
     }
 
@@ -34,7 +34,7 @@ namespace CallTracker.Helpers
         private const string WindowTitle = "Oracle";
         private static TestStack.White.UIItems.UIItemContainer _madSearchWindow;
         private const string ControlText = "Search";
-        //private static TestStack.White.UIItems.IUIItem _madEdit;
+        private static TestStack.White.UIItems.IUIItem _madEdit;
 
         private static List<MADElementOffset> ElementOffsets = new List<MADElementOffset>
         {
@@ -50,6 +50,13 @@ namespace CallTracker.Helpers
             new MADElementOffset("Address.Suburb", 11, 161),
             new MADElementOffset("Address.Postcode", 171, 162),
         };
+
+        public static void Dispose()
+        {
+            _madEdit = null;
+            _madSearchWindow = null;
+            _madWindow = null;
+        }
 
         private static bool GetMADWindow()
         {
@@ -76,18 +83,18 @@ namespace CallTracker.Helpers
             return true;
         }
 
-        //private static bool GetMADEdit()
-        //{
-        //    _madEdit = _madSearchWindow.Get(SearchCriteria.ByControlType(ControlType.Edit));
-        //    if (_madEdit == null)
-        //    {
-        //        EventLogger.LogAndSaveNewEvent("MAD Smart Paste Error: Edit Not Found" + Environment.NewLine);
-        //        return false;
-        //    }
-        //    EventLogger.LogNewEvent("MAD Smart Paste: Edit Found");
+        private static bool GetMADEdit()
+        {
+            _madEdit = _madSearchWindow.Get(SearchCriteria.ByControlType(ControlType.Edit));
+            if (_madEdit == null)
+            {
+                EventLogger.LogAndSaveNewEvent("MAD Smart Paste Error: Edit Not Found" + Environment.NewLine);
+                return false;
+            }
+            EventLogger.LogNewEvent("MAD Smart Paste: Edit Found");
 
-        //    return true;
-        //}
+            return true;
+        }
 
         public static void SetActiveElement(CustomerContact contact)
         {
@@ -111,11 +118,11 @@ namespace CallTracker.Helpers
                     return;
             }
 
-            //if (_madEdit == null)
-            //{
-            //    if (!GetMADEdit())
-            //        return;
-            //}
+            if (_madEdit == null)
+            {
+                if (!GetMADEdit())
+                    return;
+            }
 
             //var window = TestStack.White.Desktop.Instance.Windows().Find(obj => obj.Title.Contains(windowTitle));
             //if (window == null)
@@ -134,27 +141,27 @@ namespace CallTracker.Helpers
             //EventLogger.LogNewEvent("MAD Smart Paste: MDIChild Found: " + controlText);
             //EventLogger.LogNewEvent("MAD Smart Paste: Edit Bounds: " + mdiChild.Bounds.Location.X + "," + mdiChild.Bounds.Location.Y);
 
-            var edit = _madSearchWindow.Get(SearchCriteria.ByControlType(ControlType.Edit));
-            if (edit == null)
-            {
-                EventLogger.LogAndSaveNewEvent("MAD Smart Paste Error: Edit Not Found" + Environment.NewLine);
-                return;
-            }
-            EventLogger.LogNewEvent("MAD Smart Paste: Edit Found with Bound: " + edit.Bounds.Location.X + "," + edit.Bounds.Location.Y);
+            //var edit = _madSearchWindow.Get(SearchCriteria.ByControlType(ControlType.Edit));
+            //if (edit == null)
+            //{
+            //    EventLogger.LogAndSaveNewEvent("MAD Smart Paste Error: Edit Not Found" + Environment.NewLine);
+            //    return;
+            //}
+            //EventLogger.LogNewEvent("MAD Smart Paste: Edit Found with Bound: " + edit.Bounds.Location.X + "," + edit.Bounds.Location.Y);
 
-            var offset = new Point(edit.Bounds.Location.X - _madSearchWindow.Bounds.Location.X, edit.Bounds.Location.Y - _madSearchWindow.Bounds.Location.Y);
+            var offset = _madEdit.Bounds.Location - _madSearchWindow.Bounds.Location;//new Point(_madEdit.Bounds.Location.X - _madSearchWindow.Bounds.Location.X, _madEdit.Bounds.Location.Y - _madSearchWindow.Bounds.Location.Y);
             EventLogger.LogNewEvent("MAD Smart Paste: Edit Offset: " + offset.X + "," + offset.Y);
             
             var editMatch = ElementOffsets.FirstOrDefault(x => x.Offset == offset);
             if (editMatch == null)
             {
-                EventLogger.LogNewEvent("MAD Smart Paste Error: Edit Name Not Found" + Environment.NewLine);
+                EventLogger.LogAndSaveNewEvent("MAD Smart Paste Error: Edit Name Not Found" + Environment.NewLine);
                 return;
             }
             EventLogger.LogNewEvent("MAD Smart Paste: Edit Name Found: " + editMatch.Name);
 
             EventLogger.LogNewEvent("MAD Smart Paste: Trying to set MAD value" + Environment.NewLine);
-            edit.SetValue(FindProperty.FollowPropertyPath(contact, editMatch.Name));
+            _madEdit.SetValue(FindProperty.FollowPropertyPath(contact, editMatch.Name));
 
             EventLogger.SaveLog();
         }

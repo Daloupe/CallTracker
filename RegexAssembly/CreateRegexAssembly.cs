@@ -27,9 +27,9 @@ namespace RegexAssembly
                                         @"(?<Number>4\d{8})$"
                                         , RegexOptions.ExplicitCapture),                      // Number
                 new MyRegex("DN",       @"^(0|61)" +                        // Prefix
-                                        @"(?<State>[2378])" +               // State
+                                        @"(?<DN>(?<State>[2378])" +               // State
                                         @"(?<Area>\d)" +                    // Area
-                                        @"(?<Number>\d{7})$"                // Number
+                                        @"(?<Number>\d{7})$)"                // Number
                                         , RegexOptions.ExplicitCapture),                 
                 new MyRegex("Node",     @"^(?<State>\d{2})" +
                                         @"(?<CMTS>[a-z]{2})" +

@@ -47,7 +47,6 @@
             this._ServiceMenuNFV = new System.Windows.Forms.ToolStripMenuItem();
             this._ServiceMenuNBF = new System.Windows.Forms.ToolStripMenuItem();
             this._PRContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.viewPRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.stapleToParentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearAndCloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +66,6 @@
             this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this._CallHistoryContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this._ImportantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.newCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoNewCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,10 +75,6 @@
             this._DialContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dialToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
-            this.nexusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
             this.ServiceTypePanel = new System.Windows.Forms.FlowLayoutPanel();
             this._LAT = new System.Windows.Forms.CheckBox();
             this._LIP = new System.Windows.Forms.CheckBox();
@@ -96,28 +90,34 @@
             this.generateICONNoteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pRTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._NavigatorPanel = new System.Windows.Forms.Panel();
-            this._IDOk = new System.Windows.Forms.CheckBox();
             this._TickCrossImageList = new System.Windows.Forms.ImageList(this.components);
             this._ImportantImageList = new System.Windows.Forms.ImageList(this.components);
             this.MainPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this._OutcomeTooltip = new System.Windows.Forms.ToolTip(this.components);
             this._UsernameContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this._NameContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this._IDokToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this._CMBSContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this._ICONContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._IDOk = new System.Windows.Forms.CheckBox();
+            this._ImportantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewPRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem10 = new System.Windows.Forms.ToolStripMenuItem();
+            this.nexusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem12 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripMenuItem();
             this.searchDIMPSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this._NameContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this._IDokToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem17 = new System.Windows.Forms.ToolStripMenuItem();
-            this._CMBSContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem15 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem18 = new System.Windows.Forms.ToolStripMenuItem();
-            this._ICONContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
             this._Icon = new CallTracker.View.LabelledTextBoxLong();
@@ -380,14 +380,6 @@
             this._PRContextMenu.Opened += new System.EventHandler(this._PRContextMenu_Opened);
             this._PRContextMenu.MouseClick += new System.Windows.Forms.MouseEventHandler(this._PRContextMenu_Clicked);
             // 
-            // viewPRToolStripMenuItem
-            // 
-            this.viewPRToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Search;
-            this.viewPRToolStripMenuItem.Name = "viewPRToolStripMenuItem";
-            this.viewPRToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.viewPRToolStripMenuItem.Text = "IFMS";
-            this.viewPRToolStripMenuItem.Click += new System.EventHandler(this._SearchIFMS_click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -575,16 +567,6 @@
             this._CallHistoryContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this._CallHistoryContextMenu.Size = new System.Drawing.Size(166, 104);
             // 
-            // _ImportantToolStripMenuItem
-            // 
-            this._ImportantToolStripMenuItem.CheckOnClick = true;
-            this._ImportantToolStripMenuItem.Image = global::CallTracker.Properties.Resources.flag_off;
-            this._ImportantToolStripMenuItem.Name = "_ImportantToolStripMenuItem";
-            this._ImportantToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this._ImportantToolStripMenuItem.Text = "Flag Call";
-            this._ImportantToolStripMenuItem.CheckedChanged += new System.EventHandler(this._Important_CheckedChanged);
-            this._ImportantToolStripMenuItem.Click += new System.EventHandler(this._ImportantToolStripMenuItem_Click);
-            // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
@@ -666,39 +648,6 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(112, 6);
-            // 
-            // searchToolStripMenuItem
-            // 
-            this.searchToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Find_5650;
-            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
-            this.searchToolStripMenuItem.Text = "SCAMPS";
-            this.searchToolStripMenuItem.Click += new System.EventHandler(this._SearchSCAMPS_click);
-            // 
-            // toolStripMenuItem10
-            // 
-            this.toolStripMenuItem10.Image = global::CallTracker.Properties.Resources.Search;
-            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(115, 22);
-            this.toolStripMenuItem10.Text = "DIMPS";
-            this.toolStripMenuItem10.Click += new System.EventHandler(this._SearchDIMPSDn_click);
-            // 
-            // nexusToolStripMenuItem
-            // 
-            this.nexusToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Search;
-            this.nexusToolStripMenuItem.Name = "nexusToolStripMenuItem";
-            this.nexusToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
-            this.nexusToolStripMenuItem.Text = "Nexus";
-            this.nexusToolStripMenuItem.Click += new System.EventHandler(this._SearchNexusService_click);
-            // 
-            // toolStripMenuItem12
-            // 
-            this.toolStripMenuItem12.Enabled = false;
-            this.toolStripMenuItem12.Image = global::CallTracker.Properties.Resources.Search;
-            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(115, 22);
-            this.toolStripMenuItem12.Text = "ICON";
-            this.toolStripMenuItem12.Click += new System.EventHandler(this._SearchICON_click);
             // 
             // ServiceTypePanel
             // 
@@ -951,7 +900,7 @@
             this.generateICONNoteToolStripMenuItem.Name = "generateICONNoteToolStripMenuItem";
             this.generateICONNoteToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
             this.generateICONNoteToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
-            this.generateICONNoteToolStripMenuItem.Tag = "ICONNote";
+            this.generateICONNoteToolStripMenuItem.Tag = "ICONNoteRtf";
             this.generateICONNoteToolStripMenuItem.Text = "Generate ICON Note";
             this.generateICONNoteToolStripMenuItem.Click += new System.EventHandler(this.SwitchNote);
             // 
@@ -960,7 +909,7 @@
             this.pRTemplateToolStripMenuItem.Font = new System.Drawing.Font("Gautami", 8.25F);
             this.pRTemplateToolStripMenuItem.Name = "pRTemplateToolStripMenuItem";
             this.pRTemplateToolStripMenuItem.Size = new System.Drawing.Size(187, 28);
-            this.pRTemplateToolStripMenuItem.Tag = "PRTemplate";
+            this.pRTemplateToolStripMenuItem.Tag = "PRTemplateRtf";
             this.pRTemplateToolStripMenuItem.Text = "Generate PR Template";
             this.pRTemplateToolStripMenuItem.Click += new System.EventHandler(this.SwitchNote);
             // 
@@ -968,18 +917,6 @@
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(184, 6);
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Font = new System.Drawing.Font("Gautami", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.copyToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Copy_6524;
-            this.copyToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
-            this.copyToolStripMenuItem.Text = "Copy All";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // _NavigatorPanel
             // 
@@ -991,30 +928,6 @@
             this._NavigatorPanel.Size = new System.Drawing.Size(331, 29);
             this._NavigatorPanel.TabIndex = 30;
             this._NavigatorPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
-            // 
-            // _IDOk
-            // 
-            this._IDOk.Appearance = System.Windows.Forms.Appearance.Button;
-            this._IDOk.BackColor = System.Drawing.Color.LightGray;
-            this._IDOk.ContextMenuStrip = this._CallHistoryContextMenu;
-            this._IDOk.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "IDok", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._IDOk.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
-            this._IDOk.FlatAppearance.BorderSize = 0;
-            this._IDOk.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGray;
-            this._IDOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this._IDOk.Font = new System.Drawing.Font("Verdana", 7F);
-            this._IDOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._IDOk.ImageIndex = 0;
-            this._IDOk.ImageList = this._TickCrossImageList;
-            this._IDOk.Location = new System.Drawing.Point(140, 4);
-            this._IDOk.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this._IDOk.Name = "_IDOk";
-            this._IDOk.Size = new System.Drawing.Size(66, 20);
-            this._IDOk.TabIndex = 1;
-            this._IDOk.Text = "ID Ok";
-            this._IDOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this._IDOk.UseVisualStyleBackColor = false;
-            this._IDOk.CheckedChanged += new System.EventHandler(this._IDOk_CheckedChanged);
             // 
             // _TickCrossImageList
             // 
@@ -1064,6 +977,141 @@
             this._UsernameContextMenu.Size = new System.Drawing.Size(116, 92);
             this._UsernameContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._TextFieldContextMenu_ItemClicked);
             // 
+            // _NameContextMenu
+            // 
+            this._NameContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._NameContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this._IDokToolStripMenuItem,
+            this.toolStripSeparator7,
+            this.toolStripMenuItem17});
+            this._NameContextMenu.Name = "_DialContextMenu";
+            this._NameContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this._NameContextMenu.Size = new System.Drawing.Size(102, 54);
+            this._NameContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this._NameContextMenu_Opening);
+            // 
+            // _IDokToolStripMenuItem
+            // 
+            this._IDokToolStripMenuItem.CheckOnClick = true;
+            this._IDokToolStripMenuItem.Name = "_IDokToolStripMenuItem";
+            this._IDokToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
+            this._IDokToolStripMenuItem.Text = "ID ok";
+            this._IDokToolStripMenuItem.CheckedChanged += new System.EventHandler(this._IDok_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(98, 6);
+            // 
+            // _CMBSContextMenu
+            // 
+            this._CMBSContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._CMBSContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem15,
+            this.toolStripMenuItem16,
+            this.toolStripMenuItem18});
+            this._CMBSContextMenu.Name = "_DialContextMenu";
+            this._CMBSContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this._CMBSContextMenu.Size = new System.Drawing.Size(107, 70);
+            this._CMBSContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._TextFieldContextMenu_ItemClicked);
+            // 
+            // _ICONContextMenu
+            // 
+            this._ICONContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._ICONContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem22,
+            this.toolStripMenuItem23});
+            this._ICONContextMenu.Name = "_DialContextMenu";
+            this._ICONContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
+            this._ICONContextMenu.Size = new System.Drawing.Size(105, 48);
+            this._ICONContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._TextFieldContextMenu_ItemClicked);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Font = new System.Drawing.Font("Gautami", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.copyToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Copy_6524;
+            this.copyToolStripMenuItem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Padding = new System.Windows.Forms.Padding(0);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(187, 26);
+            this.copyToolStripMenuItem.Text = "Copy All";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // _IDOk
+            // 
+            this._IDOk.Appearance = System.Windows.Forms.Appearance.Button;
+            this._IDOk.BackColor = System.Drawing.Color.LightGray;
+            this._IDOk.ContextMenuStrip = this._CallHistoryContextMenu;
+            this._IDOk.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "IDok", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._IDOk.FlatAppearance.BorderColor = System.Drawing.Color.LightGray;
+            this._IDOk.FlatAppearance.BorderSize = 0;
+            this._IDOk.FlatAppearance.CheckedBackColor = System.Drawing.Color.LightGray;
+            this._IDOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._IDOk.Font = new System.Drawing.Font("Verdana", 7F);
+            this._IDOk.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._IDOk.ImageIndex = 0;
+            this._IDOk.ImageList = this._TickCrossImageList;
+            this._IDOk.Location = new System.Drawing.Point(140, 4);
+            this._IDOk.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this._IDOk.Name = "_IDOk";
+            this._IDOk.Size = new System.Drawing.Size(66, 20);
+            this._IDOk.TabIndex = 1;
+            this._IDOk.Text = "ID Ok";
+            this._IDOk.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._IDOk.UseVisualStyleBackColor = false;
+            this._IDOk.CheckedChanged += new System.EventHandler(this._IDOk_CheckedChanged);
+            // 
+            // _ImportantToolStripMenuItem
+            // 
+            this._ImportantToolStripMenuItem.CheckOnClick = true;
+            this._ImportantToolStripMenuItem.Image = global::CallTracker.Properties.Resources.flag_off;
+            this._ImportantToolStripMenuItem.Name = "_ImportantToolStripMenuItem";
+            this._ImportantToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this._ImportantToolStripMenuItem.Text = "Flag Call";
+            this._ImportantToolStripMenuItem.CheckedChanged += new System.EventHandler(this._Important_CheckedChanged);
+            this._ImportantToolStripMenuItem.Click += new System.EventHandler(this._ImportantToolStripMenuItem_Click);
+            // 
+            // viewPRToolStripMenuItem
+            // 
+            this.viewPRToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Search;
+            this.viewPRToolStripMenuItem.Name = "viewPRToolStripMenuItem";
+            this.viewPRToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.viewPRToolStripMenuItem.Text = "IFMS";
+            this.viewPRToolStripMenuItem.Click += new System.EventHandler(this._SearchIFMS_click);
+            // 
+            // searchToolStripMenuItem
+            // 
+            this.searchToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Find_5650;
+            this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.searchToolStripMenuItem.Text = "SCAMPS";
+            this.searchToolStripMenuItem.Click += new System.EventHandler(this._SearchSCAMPS_click);
+            // 
+            // toolStripMenuItem10
+            // 
+            this.toolStripMenuItem10.Image = global::CallTracker.Properties.Resources.Search;
+            this.toolStripMenuItem10.Name = "toolStripMenuItem10";
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(115, 22);
+            this.toolStripMenuItem10.Text = "DIMPS";
+            this.toolStripMenuItem10.Click += new System.EventHandler(this._SearchDIMPSDn_click);
+            // 
+            // nexusToolStripMenuItem
+            // 
+            this.nexusToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Search;
+            this.nexusToolStripMenuItem.Name = "nexusToolStripMenuItem";
+            this.nexusToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.nexusToolStripMenuItem.Text = "Nexus";
+            this.nexusToolStripMenuItem.Click += new System.EventHandler(this._SearchNexusService_click);
+            // 
+            // toolStripMenuItem12
+            // 
+            this.toolStripMenuItem12.Enabled = false;
+            this.toolStripMenuItem12.Image = global::CallTracker.Properties.Resources.Search;
+            this.toolStripMenuItem12.Name = "toolStripMenuItem12";
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(115, 22);
+            this.toolStripMenuItem12.Text = "ICON";
+            this.toolStripMenuItem12.Click += new System.EventHandler(this._SearchICON_click);
+            // 
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Image = global::CallTracker.Properties.Resources.Search;
@@ -1097,31 +1145,6 @@
             this.searchToolStripMenuItem1.Text = "ICON";
             this.searchToolStripMenuItem1.Click += new System.EventHandler(this._SearchICON_click);
             // 
-            // _NameContextMenu
-            // 
-            this._NameContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
-            this._NameContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this._IDokToolStripMenuItem,
-            this.toolStripSeparator7,
-            this.toolStripMenuItem17});
-            this._NameContextMenu.Name = "_DialContextMenu";
-            this._NameContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this._NameContextMenu.Size = new System.Drawing.Size(102, 54);
-            this._NameContextMenu.Opening += new System.ComponentModel.CancelEventHandler(this._NameContextMenu_Opening);
-            // 
-            // _IDokToolStripMenuItem
-            // 
-            this._IDokToolStripMenuItem.CheckOnClick = true;
-            this._IDokToolStripMenuItem.Name = "_IDokToolStripMenuItem";
-            this._IDokToolStripMenuItem.Size = new System.Drawing.Size(101, 22);
-            this._IDokToolStripMenuItem.Text = "ID ok";
-            this._IDokToolStripMenuItem.CheckedChanged += new System.EventHandler(this._IDok_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(98, 6);
-            // 
             // toolStripMenuItem17
             // 
             this.toolStripMenuItem17.Enabled = false;
@@ -1130,18 +1153,6 @@
             this.toolStripMenuItem17.Size = new System.Drawing.Size(101, 22);
             this.toolStripMenuItem17.Text = "ICON";
             this.toolStripMenuItem17.Click += new System.EventHandler(this._SearchICON_click);
-            // 
-            // _CMBSContextMenu
-            // 
-            this._CMBSContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
-            this._CMBSContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem15,
-            this.toolStripMenuItem16,
-            this.toolStripMenuItem18});
-            this._CMBSContextMenu.Name = "_DialContextMenu";
-            this._CMBSContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this._CMBSContextMenu.Size = new System.Drawing.Size(107, 70);
-            this._CMBSContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._TextFieldContextMenu_ItemClicked);
             // 
             // toolStripMenuItem15
             // 
@@ -1167,17 +1178,6 @@
             this.toolStripMenuItem18.Size = new System.Drawing.Size(106, 22);
             this.toolStripMenuItem18.Text = "ICON";
             this.toolStripMenuItem18.Click += new System.EventHandler(this._SearchICON_click);
-            // 
-            // _ICONContextMenu
-            // 
-            this._ICONContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ICONContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem22,
-            this.toolStripMenuItem23});
-            this._ICONContextMenu.Name = "_DialContextMenu";
-            this._ICONContextMenu.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this._ICONContextMenu.Size = new System.Drawing.Size(105, 48);
-            this._ICONContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._TextFieldContextMenu_ItemClicked);
             // 
             // toolStripMenuItem22
             // 

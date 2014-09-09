@@ -19,14 +19,14 @@ Product Context '^'
 //Data Types
 Note: Data with specified Groups only capture the group specified. eg DN doesn't capture the 0 or 61 prefix in the Regex.
 
-DN		 - 0(<State>2)(<Area>9)(<Number>4811234)
+DN		 - 0(<DN>(<State>2)(<Area>9)(<Number>4811234))
 Username - (foo.bar)@optusnet.com.au
 Mobile	 - 0(<Number>402758678)
 ICON
 CMBS	 - 3(<State>1)-(<Account>123456)-(<Flip>7)
 Note 
-GetICONNote
-GetPRTemplate
+ICONNote
+PRTemplate
 IDok
 Name
 NameSplit.Title

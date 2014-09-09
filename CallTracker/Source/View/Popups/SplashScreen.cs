@@ -33,7 +33,7 @@ namespace CallTracker.View
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             _mainForm.quitToolStripMenuItem_Click(sender, e);
-            _mainForm.CancelLoad = true;
+            //_mainForm.CancelLoad = true;
         }
 
         public void UpdateProgress(string _update, int _value)
@@ -53,36 +53,31 @@ namespace CallTracker.View
             Application.DoEvents();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-            e.Graphics.DrawRectangle(new Pen(Color.FromArgb(2, 188, 201)),
-             0,
-             0,
-             ((Control)sender).Width - 1,
-             ((Control)sender).Height - 1);
-            base.OnPaint(e);
-        }
+        //private void panel1_Paint(object sender, PaintEventArgs e)
+        //{
+        //    e.Graphics.DrawRectangle(new Pen(Color.FromArgb(2, 188, 201)),
+        //     0,
+        //     0,
+        //     ((Control)sender).Width - 1,
+        //     ((Control)sender).Height - 1);
+        //    base.OnPaint(e);
+        //}
 
-        public void pictureBox3_Click(object sender, EventArgs e)
-        {
-            _mainForm.Opacity = 100;
-            this.Close();      
-        }
+        //public void pictureBox3_Click(object sender, EventArgs e)
+        //{
+        //    _mainForm.Opacity = 100;
+        //    Close();      
+        //}
 
         private void SplashScreen_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Dispose();
+            Dispose();
         }
 
-        public void ShowLogins()
-        {
-            timer1.Enabled = true;
+        //public void ShowLogins()
+        //{
+        //    timer1.Enabled = true;
 
-        }
-
-        private void _SetupLoginsPanel_VisibleChanged(object sender, EventArgs e)
-        {
-            
-        }
+        //}
     }
 }

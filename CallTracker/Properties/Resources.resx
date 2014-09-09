@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="TinyArrow2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TinyArrow2.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -586,54 +586,11 @@
   <data name="blue_gradient_586" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\blue_gradient_586.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Bug" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        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
-        AIQhAf/Z
-</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Bug1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Bug.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Bug2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bug.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IPCC_Unmonitored_String" xml:space="preserve">
+    <value>Not Monitoring IPCC</value>
+    <comment>Displayed String when IPCC is not monitored.</comment>
   </data>
 </root>

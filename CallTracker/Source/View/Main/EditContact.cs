@@ -388,11 +388,11 @@ namespace CallTracker.View
             _Note.Tag = tag;
             switch (tag)
             {
-                case "ICONNote":
+                case "ICONNoteRtf":
                     _Note.DataBindings.Add(new Binding("Rtf", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
                     _Note.DataBindings[0].ReadValue();
                     break;
-                case "PRTemplate":
+                case "PRTemplateRtf":
                     _Note.DataBindings.Add(new Binding("Rtf", customerContactsBindingSource, tag, true, DataSourceUpdateMode.OnPropertyChanged));
                     _Note.DataBindings[0].ReadValue();
                     break;

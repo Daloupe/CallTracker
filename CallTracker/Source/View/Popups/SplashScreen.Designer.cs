@@ -33,11 +33,11 @@
             this._LoadingBar = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this._LoadingText = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this._CancelLoading = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this._Version = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._CancelLoading)).BeginInit();
             this.SuspendLayout();
             // 
             // Wingman
@@ -85,16 +85,19 @@
             this._LoadingText.Size = new System.Drawing.Size(250, 28);
             this._LoadingText.TabIndex = 3;
             // 
-            // pictureBox1
+            // _CancelLoading
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::CallTracker.Properties.Resources.Close;
-            this.pictureBox1.Location = new System.Drawing.Point(289, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(10, 11);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this._CancelLoading.BackColor = System.Drawing.Color.Transparent;
+            this._CancelLoading.Cursor = System.Windows.Forms.Cursors.Hand;
+            this._CancelLoading.Enabled = false;
+            this._CancelLoading.Image = global::CallTracker.Properties.Resources.Close;
+            this._CancelLoading.Location = new System.Drawing.Point(289, 2);
+            this._CancelLoading.Name = "_CancelLoading";
+            this._CancelLoading.Size = new System.Drawing.Size(10, 11);
+            this._CancelLoading.TabIndex = 5;
+            this._CancelLoading.TabStop = false;
+            this._CancelLoading.Visible = false;
+            this._CancelLoading.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // _Version
             // 
@@ -134,7 +137,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this._LoadingBar);
             this.Controls.Add(this._LoadingText);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this._CancelLoading);
             this.Controls.Add(this.Wingman);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -149,7 +152,7 @@
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SplashScreen_FormClosed);
             this.Load += new System.EventHandler(this.SplashScreen_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._CancelLoading)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,7 +163,7 @@
         private System.Windows.Forms.Label Wingman;
         private System.Windows.Forms.ProgressBar _LoadingBar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox _CancelLoading;
         internal System.Windows.Forms.Label _LoadingText;
         internal System.Windows.Forms.Timer timer1;
         internal System.Windows.Forms.Label _Version;

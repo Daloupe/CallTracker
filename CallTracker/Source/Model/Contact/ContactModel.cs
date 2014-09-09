@@ -2,7 +2,8 @@
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Timers;
+using Equin.ApplicationFramework;
 using PropertyChanged;
 using ProtoBuf;
 
@@ -221,15 +222,27 @@ namespace CallTracker.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // PR Templates ////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public string GetPRTemplate
+        public string PRTemplate
+        {
+            get { return StripRtf(PRTemplateRtf); }
+        }
+
+        private static DateTime _lastPRGenerate;
+        private string _prTemplateRtf;
+        public string PRTemplateRtf
         {
             get
             {
-                var rtfBox = new System.Windows.Forms.RichTextBox {Rtf = PRTemplate};
-                return rtfBox.Text;
+                var now = DateTime.Now;
+                if ((now - _lastPRGenerate).TotalMilliseconds > 25)
+                {
+                    _prTemplateRtf = PRGenerators.Generate(this, PRTemplateReplacements);
+                    _lastPRGenerate = now;
+                }
+
+                return _prTemplateRtf;
             }
         }
-        public string PRTemplate { get { return PRGenerators.Generate(this, PRTemplateReplacements); } }
         protected List<PRTemplateModel> PRTemplateReplacements = new List<PRTemplateModel>();
         public void UpdatePrTemplateReplacements(List<PRTemplateModel> replacements)
         {
@@ -242,10 +255,36 @@ namespace CallTracker.Model
         {
             PRTemplateReplacements.Clear();
         }
-        
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        // ICON Note////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        public string ICONNote
+        {
+            get { return StripRtf(ICONNoteRtf); }
+        }
 
+        private static DateTime _lastICONGenerate;
+        private string _iconNoteRtf;
+        public string ICONNoteRtf
+        {
+            get
+            {
+                var now = DateTime.Now;
+                if ((now - _lastICONGenerate).TotalMilliseconds > 25)
+                {
+                    _iconNoteRtf = Main.NoteGen.GenerateNoteManually(this);
+                    _lastICONGenerate = now;
+                }
 
+                return _iconNoteRtf;
+            }
+        }
 
+        private static string StripRtf(string s)
+        {
+            var rtfBox = new System.Windows.Forms.RichTextBox { Rtf = s };
+            return rtfBox.Text;
+        }
 
 
 
@@ -253,18 +292,10 @@ namespace CallTracker.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         // Getters  ////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public string GetICONNote
-        {
-            get
-            {
-                var rtfBox = new System.Windows.Forms.RichTextBox { Rtf = ICONNote };
-                return rtfBox.Text;
-            }
-        }
         public string ContactDateTime { get { return Contacts.StartDate.Add(Contacts.StartTime).ToString("dd/MM HH:mm"); } }
         public string ContactDate { get { return Contacts.StartDate.ToString(); } }
         public string ContactTime { get { return String.Format("{0:00}:{1:00}", Contacts.StartTime.TotalHours, Contacts.StartTime.Minutes); } }
-        public string ICONNote { get { return Main.NoteGen.GenerateNoteManually(this); } set { ; } }
+
         public string GetAddress
         {
             get { return Address.Address; }
@@ -341,7 +372,7 @@ namespace CallTracker.Model
             var match = DNPattern.Match(text);
             if (match.Success)
             {
-                DN = match.Result("0$1$2$3");
+                DN = match.Result("0$1");
                 Main.FadingToolTip.ShowandFade("DN: " + DN);
 
                 var query = (from a in Main.ServicesStore.servicesDataSet.States
@@ -384,7 +415,7 @@ namespace CallTracker.Model
             var match = MobilePattern.Match(text);
             if (match.Success)
             {
-                Mobile = match.Result("0$1$2");
+                Mobile = match.Result("0$1");
                 Main.FadingToolTip.ShowandFade("Mobile: " + Mobile);
 
                 if (Properties.Settings.Default.AutoSearch)

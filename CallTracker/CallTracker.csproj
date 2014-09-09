@@ -123,7 +123,6 @@
     <Compile Include="Source\Model\Contact\DateFilterItem.cs" />
     <Compile Include="Source\Model\Contact\EventsModel.cs" />
     <None Include="Resources\bindingnavigatordeleteitem.image1.png" />
-    <None Include="Resources\Bug.jpg" />
     <None Include="Resources\TipExampleClose.png" />
     <None Include="Resources\Bug.png" />
     <Content Include="ThingsToCheck.txt">

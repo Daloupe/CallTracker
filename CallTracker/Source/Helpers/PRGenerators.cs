@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+//using System.Threading;
+using System.Timers;
 
 using CallTracker.Model;
 
@@ -33,9 +35,9 @@ namespace CallTracker.Helpers
             sb.Append(@"{\rtf1\ansi{\colortbl;\red75\green70\blue85;}");
             foreach (var line in newTemplate)
             {
-                sb.Append(@"\cf1");
+                sb.Append(@"\cf1 ");
                 sb.Append(line.Question);
-                sb.Append(@"\cf0");
+                sb.Append(@"\cf0 ");
                 sb.Append(line.GetAnswer());
                 sb.Append(@"\line");
             };
@@ -78,7 +80,7 @@ namespace CallTracker.Helpers
                 var sb = new StringBuilder();
                 sb.Append(FindProperty.FollowPropertyPath(x, "Booking.Type"));
                 sb.Append(": ");
-                var bookingDate = new DateTime();
+                DateTime bookingDate;// = new DateTime();
                 DateTime.TryParse(FindProperty.FollowPropertyPath(x, "Booking.Date"), out bookingDate);
                 sb.Append(bookingDate.ToString("yyyy-MM-dd"));
                 sb.AppendLine(" " + FindProperty.FollowPropertyPath(x, "Booking.Timeslot"));

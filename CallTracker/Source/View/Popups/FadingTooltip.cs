@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using CallTracker.Helpers;
+
 namespace CallTracker.View
 {
     public partial class FadingTooltip : Form
@@ -56,7 +57,7 @@ namespace CallTracker.View
         {
             get
             {
-                CreateParams createParams = base.CreateParams;
+                var createParams = base.CreateParams;
                 createParams.ExStyle |= 0x00000020; // WS_EX_TRANSPARENT
 
                 return createParams;
@@ -108,7 +109,7 @@ namespace CallTracker.View
 
             if (_timeCounter < FadeOutDelay) return;
             
-            if(Opacity != 0)
+            if(Opacity > 0)
                 Opacity -= _opacityStep;
 
             if (_timeCounter % _distanceStep == 0)

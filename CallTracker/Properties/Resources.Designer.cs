@@ -113,26 +113,6 @@ namespace CallTracker.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Bug {
-            get {
-                object obj = ResourceManager.GetObject("Bug", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Bug1 {
-            get {
-                object obj = ResourceManager.GetObject("Bug1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Bug2 {
             get {
                 object obj = ResourceManager.GetObject("Bug2", resourceCulture);
@@ -307,6 +287,15 @@ namespace CallTracker.Properties {
             get {
                 object obj = ResourceManager.GetObject("helpToolStripButton_Image", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not Monitoring IPCC.
+        /// </summary>
+        internal static string IPCC_Unmonitored_String {
+            get {
+                return ResourceManager.GetString("IPCC_Unmonitored_String", resourceCulture);
             }
         }
         
