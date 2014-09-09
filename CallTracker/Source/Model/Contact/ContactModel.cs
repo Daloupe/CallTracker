@@ -345,7 +345,7 @@ namespace CallTracker.Model
                 Main.FadingToolTip.ShowandFade("DN: " + DN);
 
                 var query = (from a in Main.ServicesStore.servicesDataSet.States
-                             where a.Areacode == match.Groups[1].Value
+                             where a.Areacode == match.Groups["State"].Value
                              select a).First();
                 Address.State = query.NameShort;
                 Service.Sip = query.Sip;
@@ -431,7 +431,7 @@ namespace CallTracker.Model
             {
                 CMBS = match.Result("3$1$2 $3");
                 var query = (from a in Main.ServicesStore.servicesDataSet.States
-                             where a.CMBScode == match.Groups[1].Value
+                             where a.CMBScode == match.Groups["State"].Value
                              select a).First();
                 Address.State = query.NameShort;
                 Service.Sip = query.Sip;

@@ -58,58 +58,63 @@ namespace CallTracker.Model
                 //State = String.Empty;
                 Postcode = String.Empty;
 
-                var split1 = Regex.Split(value, @".(\d{4})$");
+                //var split1 = Regex.Split(value, @".(\d{4})$");
 
-                if (split1.Length > 1)
-                { 
-                    Postcode = split1[1];
-                    var query = (from a in Main.ServicesStore.servicesDataSet.States
-                                where a.Postcode == Postcode.Substring(0,1) ||
-                                      a.Postcode == Postcode.Substring(0,2)
-                                select a).OrderBy(x => x.Postcode.Length).LastOrDefault();
-                    if(query != null)
-                        State = query.NameShort;
-                }
+                //if (split1.Length > 1)
+                //{ 
+                //    Postcode = split1[1];
+                //    var query = (from a in Main.ServicesStore.servicesDataSet.States
+                //                where a.Postcode == Postcode.Substring(0,1) ||
+                //                      a.Postcode == Postcode.Substring(0,2)
+                //                select a).OrderBy(x => x.Postcode.Length).LastOrDefault();
+                //    if(query != null)
+                //        State = query.NameShort;
+                //}
 
-                var split2 = Regex.Split(split1[0], @"(Victoria|Tasmania|Queensland|New South Wales|(?:South|Western) Australia|(?:Northern|Australian Capital) Territory|VIC|NSW|SA|WA|NT|TAS|ACT|QLD)", RegexOptions.IgnoreCase);
+                //var split2 = Regex.Split(split1[0], @"(Victoria|Tasmania|Queensland|New South Wales|(?:South|Western) Australia|(?:Northern|Australian Capital) Territory|VIC|NSW|SA|WA|NT|TAS|ACT|QLD)", RegexOptions.IgnoreCase);
 
-                if (split2.Length > 1)
-                {
-                    var query = (from a in Main.ServicesStore.servicesDataSet.States
-                                 where a.NameShort.ToLower() == split2[1].ToLower() ||
-                                       a.NameLong.ToLower() == split2[1].ToLower()
-                                 select a).First();
-                    if(query != null)
-                        State = query.NameShort;
-                }
+                //if (split2.Length > 1)
+                //{
+                //    var query = (from a in Main.ServicesStore.servicesDataSet.States
+                //                 where a.NameShort.ToLower() == split2[1].ToLower() ||
+                //                       a.NameLong.ToLower() == split2[1].ToLower()
+                //                 select a).First();
+                //    if(query != null)
+                //        State = query.NameShort;
+                //}
 
-                var AddressMatch = new AddressPattern().Match(split2[0]);
+                //var addressMatch = new AddressPattern().Match(split2[0]);
 
-                //Console.WriteLine();
-                //Match AddressMatch = Pattern.Match(value);
-                //if (AddressMatch.Success == false)
-                //    return;
-                PropertyType = AddressMatch.Groups[1].Value;
-                UnitNumber = AddressMatch.Groups[2].Value;
-                PropertyNumber = AddressMatch.Groups[3].Value;
-                StreetName = AddressMatch.Groups[4].Value;
-                StreetType = AddressMatch.Groups[5].Value;
-                Suburb = AddressMatch.Groups[6].Value;
-                //State = AddressMatch.Groups[7].Value;
-                //Postcode = AddressMatch.Groups[8].Value;
+                ////Console.WriteLine();
+                ////Match AddressMatch = Pattern.Match(value);
+                ////if (AddressMatch.Success == false)
+                ////    return;
 
-                //Console.WriteLine("1:{0}", PropertyType);
-                //Console.WriteLine("2:{0}", UnitNumber);
-                //Console.WriteLine("3:{0}", PropertyNumber);
-                //Console.WriteLine("4:{0}", StreetName);
-                //Console.WriteLine("4:{0}", StreetType);
-                //Console.WriteLine("4:{0}", Suburb);
-                //Console.WriteLine("5:{0}", State);
-                //Console.WriteLine("6:{0}", Postcode);
-                //Console.WriteLine("6:{0}", AddressMatch.Groups[9].Value);
-                //Console.WriteLine("6:{0}", AddressMatch.Groups[10].Value);
-                //Console.WriteLine("6:{0}", AddressMatch.Groups[11].Value);
-                address = split2[0];
+                var addressMatch = new Address2Pattern().Match(value);
+
+                PropertyType = addressMatch.Groups["PropertyType"].Value;
+                UnitNumber = addressMatch.Groups["Unit"].Value;
+                PropertyNumber = addressMatch.Groups["Number"].Value;
+                StreetName = addressMatch.Groups["Street"].Value;
+                StreetType = addressMatch.Groups["StreetType"].Value;
+                Suburb = addressMatch.Groups["Suburb"].Value;
+                State = addressMatch.Groups["State"].Value;
+                Postcode = addressMatch.Groups["Postcode"].Value;
+
+                Console.WriteLine("PropertyType:{0}", PropertyType);
+                Console.WriteLine("UnitNumber:{0}", UnitNumber);
+                Console.WriteLine("PropertyNumber:{0}", PropertyNumber);
+                Console.WriteLine("StreetName:{0}", StreetName);
+                Console.WriteLine("StreetType:{0}", StreetType);
+                Console.WriteLine("Suburb:{0}", Suburb);
+                Console.WriteLine("State:{0}", State);
+                Console.WriteLine("Postcode:{0}", Postcode);
+                ////Console.WriteLine("6:{0}", addressMatch.Groups[9].Value);
+                ////Console.WriteLine("6:{0}", addressMatch.Groups[10].Value);
+                ////Console.WriteLine("6:{0}", addressMatch.Groups[11].Value);
+                //address = split2[0];
+
+                address = value;
             } 
         }
         //public List<String> States = new List<string>{

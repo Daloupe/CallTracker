@@ -37,6 +37,15 @@
 	| Added Close button to Example section.
 	| Offset Tips clsoe button.
 	| Corrected Font size to 18pt.
+| Regexes:
+	| Made a few Regexes Explicit Capture.
+	| CMBS
+		| Added ^$ tags to avoid misreading an ICON number.
+		| Added conditionals to allow 1123456070 and 1123456007 to both read as 31123456 7.
+		| Improved Address2 to properly capture address.
+| Fixed IsDifferentShift() to accomodate _IPCCState.text is now "Not Monitoring IPCC" isn't of empty.
+| Made CallStateTimer more accurate by DateTime.Now - dailyData.Events.LastCallEvent.Timestamp instead of adding timer interval, which may not be accurate.
+	
 
 0.8.2.20
 (Major Features)

@@ -454,7 +454,7 @@ namespace CallTracker.View
         private UIItemContainer _ipccDialWindow;
         private TestStack.White.UIItems.ListBoxItems.ComboBox _ipccDialNumberComboBox;
 
-        private TimeSpan _callStateTimeElapsed;
+        //private TimeSpan _callStateTimeElapsed;
 
         private bool CheckForIpcc()
         {
@@ -523,10 +523,10 @@ namespace CallTracker.View
         void IPCCProcess_Exited(object sender, EventArgs e)
         {
             EventLogger.LogAndSaveNewEvent("IPCC Exited", EventLogLevel.Status);
-            _callStateTimeElapsed = TimeSpan.Zero;
+            //_callStateTimeElapsed = TimeSpan.Zero;
             _CallStateTime.BackColor = Color.WhiteSmoke;
             _CallStateTime.ForeColor = Color.DarkSlateGray;
-            _CallStateTime.Text = TimeSpanToString(_callStateTimeElapsed);
+            _CallStateTime.Text = "00:00";//TimeSpanToString(_callStateTimeElapsed);
             monitorIPCCToolStripMenuItem.Checked = false;
             _IPCCState.Text = "Not Monitoring IPCC";
             DisposeIPCC();
@@ -595,6 +595,7 @@ namespace CallTracker.View
             if (!CheckForIpcc())
             {
                 monitorIPCCToolStripMenuItem.Checked = false;
+                _CallStateTime.Text = "00:00";
             }
 
             _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
@@ -640,10 +641,10 @@ namespace CallTracker.View
             // Exit if IPCC doesn't exist and IPCC monitoring is on.
             if (!DoesIPCCExist() && monitorIPCCToolStripMenuItem.Checked)
             {
-                _callStateTimeElapsed = TimeSpan.Zero;
+                //_callStateTimeElapsed = TimeSpan.Zero;
                 _CallStateTime.BackColor = Color.WhiteSmoke;
                 _CallStateTime.ForeColor = Color.DarkSlateGray;
-                _CallStateTime.Text = TimeSpanToString(_callStateTimeElapsed);
+                _CallStateTime.Text = "00:00";//TimeSpanToString(_callStateTimeElapsed);
                 _IPCCTimer.Enabled = false;
                 monitorIPCCToolStripMenuItem.Checked = false;
                 _IPCCState.Text = "Not Monitoring IPCC";
@@ -663,10 +664,10 @@ namespace CallTracker.View
             else
                 status = CurrentItem.Tag.ToString();
 
+            var dailyData = (DailyModel) _DailyDataBindingSource.Current;
             if (status != _IPCCState.Text)
             {
                 EventLogger.LogAndSaveNewEvent("Status Changed: " + status);
-                var dailyData = (DailyModel) _DailyDataBindingSource.Current;
                 if (String.IsNullOrEmpty(_IPCCState.Text))
                 {
                     if(IsDifferentShift())
@@ -738,16 +739,17 @@ namespace CallTracker.View
                         _IPCCTimer.Interval = 1000;
                         break;
                 }
-                _callStateTimeElapsed = TimeSpan.Zero;
+                //_callStateTimeElapsed = TimeSpan.Zero;
                 _IPCCState.Text = status;
                 ChangeCallStateMenuItem(status);
             }
-            else
-            {
-                _callStateTimeElapsed = _callStateTimeElapsed.Add(new TimeSpan(0, 0, 0, 0, _IPCCTimer.Interval)); //new TimeSpan(_callStateTimeElapsed.Ticks + _IPCCTimer.Interval * 10000);
-            }
+            //else
+            //{
+            //    _callStateTimeElapsed = _callStateTimeElapsed.Add(new TimeSpan(0, 0, 0, 0, _IPCCTimer.Interval)); //new TimeSpan(_callStateTimeElapsed.Ticks + _IPCCTimer.Interval * 10000);
+            //}
 
-            _CallStateTime.Text = TimeSpanToString(_callStateTimeElapsed);
+            _CallStateTime.Text = TimeSpanToString(DateTime.Now - dailyData.Events.LastCallEvent.Timestamp);//.ToString("MM:ss");//TimeSpanToString(_callStateTimeElapsed);
+            
         }
 
         private void GetIPCCCallData()
@@ -1043,7 +1045,7 @@ namespace CallTracker.View
         {
             // If Date is right, or Agent isn't logged out, then don't do anything.
             if (_DailyDataBindingSource.Count > 0)
-                if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today || !String.IsNullOrEmpty(_IPCCState.Text))
+                if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today || _IPCCState.Text != "Not Monitoring IPCC")
                 {return false;}
 
             
