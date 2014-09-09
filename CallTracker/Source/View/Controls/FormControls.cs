@@ -82,6 +82,65 @@ namespace CallTracker.View
         }   
     }
 
+    public sealed class BorderedLabel : Label
+    {
+        private Color _borderColor = Color.Gray;
+        private Rectangle _labelBorderOffset = new Rectangle(0,0,0,0);
+        private ButtonBorderStyle _buttonBorderStyle = ButtonBorderStyle.None;
+        private const int WM_PAINT = 0x000F;
+
+        public BorderedLabel()
+        {
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            BorderStyle = BorderStyle.None;
+            DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+        }
+
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+
+            if (m.Msg != WM_PAINT) return;
+            
+            var g = Graphics.FromHwnd(Handle);
+            var bounds = new Rectangle(_labelBorderOffset.Right, _labelBorderOffset.Top, Width + _labelBorderOffset.Width - _labelBorderOffset.Right, Height + _labelBorderOffset.Height - _labelBorderOffset.Top);
+            ControlPaint.DrawBorder(g, bounds, _borderColor, _buttonBorderStyle);
+        }
+
+        [Category("Appearance")]
+        public Color LabelBorderColor
+        {
+            get { return _borderColor; }
+            set
+            {
+                _borderColor = value;
+                Invalidate(); // causes control to be redrawn
+            }
+        }
+
+        [Category("Appearance")]
+        public ButtonBorderStyle LabelBorderStyle
+        {
+            get { return _buttonBorderStyle; }
+            set
+            {
+                _buttonBorderStyle = value;
+                Invalidate(); // causes control to be redrawn
+            }
+        }
+
+        [Category("Appearance")]
+        public Rectangle LabelBorderOffset
+        {
+            get { return _labelBorderOffset; }
+            set
+            {
+                _labelBorderOffset = value;
+                Invalidate(); // causes control to be redrawn
+            }
+        }
+    }
+
     public class BorderedTextField : RichTextBox
     {
         private Color _borderColor = Color.Gray;

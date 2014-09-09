@@ -720,7 +720,7 @@ namespace CallTracker.View
                             SelectedContact.AddCallEvent(CallEventTypes.Wrapup);
                         break;
                     case "Reserved":
-                        _IPCCTimer.Interval = 500;
+                        _IPCCTimer.Interval = 125;
                         dailyData.AddCallEvent(CallEventTypes.Reserved);
                         if (editContact.autoNewCallToolStripMenuItem.Checked)
                         {
@@ -749,10 +749,10 @@ namespace CallTracker.View
                         break;
                     case "NotReady":
                         IPCCLevel("red");
-                        if (SelectedContact != null)
-                            SelectedContact.AddCallEvent(CallEventTypes.NotReady);
-                        else
+                        if (String.IsNullOrEmpty(_IPCCState.Text) || SelectedContact == null)
                             dailyData.AddCallEvent(CallEventTypes.NotReady);
+                        else
+                            SelectedContact.AddCallEvent(CallEventTypes.NotReady);
                         break;
                     case "Ready":
                         IPCCLevel("green");
@@ -762,17 +762,35 @@ namespace CallTracker.View
                         break;
                     case "":
                         IPCCLevel("white");
-                        dailyData.AddCallEvent(CallEventTypes.LogOut);
+
                         if (CurrentContact != null)
                         {
-                            CurrentContact.AddCallEvent(CallEventTypes.CallEnd);
+                            if (CurrentContact.Events.LastCallEvent.EventType.Is(CallEventTypes.NotReady))
+                            {
+                                dailyData.Events.LastCallEvent = CurrentContact.Events.LastCallEvent.Copy();
+                                dailyData.Events.CallEvents.Add(dailyData.Events.LastCallEvent);
+                                CurrentContact.Events.LastCallEvent.EventType = CallEventTypes.CallEnd;
+                                CurrentContact.Events.AddHandlingTime(CurrentContact.Events.LastCallEvent.Timestamp);
+                            }
+                            else
+                                CurrentContact.AddCallEvent(CallEventTypes.CallEnd);              
                             CurrentContact = null;
                         }
                         else if (SelectedContact != null)
-                            SelectedContact.AddCallEvent(CallEventTypes.CallEnd);                      
+                            if (SelectedContact.Events.LastCallEvent.EventType.Is(CallEventTypes.NotReady))
+                            {
+                                dailyData.Events.LastCallEvent = SelectedContact.Events.LastCallEvent.Copy();
+                                dailyData.Events.CallEvents.Add(dailyData.Events.LastCallEvent);
+                                SelectedContact.Events.LastCallEvent.EventType = CallEventTypes.CallEnd;
+                                SelectedContact.Events.AddHandlingTime(SelectedContact.Events.LastCallEvent.Timestamp);
+                            }
+                            else
+                                SelectedContact.AddCallEvent(CallEventTypes.CallEnd);    
+                  
+                        dailyData.AddCallEvent(CallEventTypes.LogOut);
                         break;
                     default:
-                        _IPCCTimer.Interval = 1000;
+                        _IPCCTimer.Interval = 500;
                         break;
                 }
                 ////_callStateTimeElapsed = TimeSpan.Zero;
@@ -927,23 +945,23 @@ namespace CallTracker.View
         {
             switch (level)
             {
-                case "white":
-                    _IPCCTimer.Interval = 2000;
+                case "white": // logged off.
+                    _IPCCTimer.Interval = 500;
                     _CallStateTime.BackColor = Color.WhiteSmoke;
                     _CallStateTime.ForeColor = Color.DarkSlateGray;
                     break;
-                case "green":
-                    _IPCCTimer.Interval = 1000;
+                case "green": // ready
+                    _IPCCTimer.Interval = 250;
                     _CallStateTime.BackColor = Color.OliveDrab;
                     _CallStateTime.ForeColor = Color.PaleGoldenrod;
                     break;
-                case "amber":
-                    _IPCCTimer.Interval = 1000;
+                case "amber": // Talking
+                    _IPCCTimer.Interval = 500;
                     _CallStateTime.BackColor = Color.Chocolate;
                     _CallStateTime.ForeColor = Color.PaleGoldenrod;
                     break;
-                case "red":
-                    _IPCCTimer.Interval = 1000;
+                case "red": // Not Ready, Hold, Wrap Up
+                    _IPCCTimer.Interval = 250;
                     _CallStateTime.BackColor = Color.Firebrick;
                     _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
                     break;
@@ -981,7 +999,7 @@ namespace CallTracker.View
                         holdToolStripMenuItem.Enabled = false;
                         reservedToolStripMenuItem.Enabled = true;
                         wrapUpToolStripMenuItem.Enabled = false;
-                        talkingToolStripMenuItem.Enabled = true;
+                        talkingToolStripMenuItem.Enabled = false;
                         notReadyToolStripMenuItem.Enabled = true;
                         logInToolStripMenuItem.Enabled = false;
                         logOutToolStripMenuItem.Enabled = true;

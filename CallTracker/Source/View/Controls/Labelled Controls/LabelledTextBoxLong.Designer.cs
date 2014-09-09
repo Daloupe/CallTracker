@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this._DataField = new CallTracker.View.BorderedTextBox();
+            this._TextfieldToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,12 +67,17 @@
             this._DataField.Leave += new System.EventHandler(this._DataField_Leave);
             this._DataField.MouseDown += new System.Windows.Forms.MouseEventHandler(this._DataField_MouseDown);
             // 
+            // _TextfieldToolTip
+            // 
+            this._TextfieldToolTip.AutomaticDelay = 50;
+            // 
             // LabelledTextBoxLong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlHeight = 20;
             this.Controls.Add(this._DataField);
+            this.LabelDock = System.Windows.Forms.DockStyle.Left;
             this.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
             this.LabelOffset = new System.Drawing.Point(0, 0);
             this.LabelSize = new System.Drawing.Size(34, 23);
@@ -91,5 +98,6 @@
         #endregion
 
         public BorderedTextBox _DataField;
+        private System.Windows.Forms.ToolTip _TextfieldToolTip;
     }
 }

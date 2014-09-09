@@ -65,6 +65,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ControlHeight = 20;
             this.Controls.Add(this._ComboBox);
+            this.LabelDock = System.Windows.Forms.DockStyle.Left;
             this.LabelOffset = new System.Drawing.Point(0, 0);
             this.Name = "LabelledComboBoxLong";
             this.Size = new System.Drawing.Size(180, 20);

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this._Label = new System.Windows.Forms.Label();
+            this._Label = new CallTracker.View.BorderedLabel();
             this._ToolTip = new System.Windows.Forms.ToolTip(this.components);
             this._MenuButton = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this._MenuButton)).BeginInit();
@@ -98,7 +98,7 @@
         #endregion
 
         protected System.Windows.Forms.PictureBox _MenuButton;
-        public System.Windows.Forms.Label _Label;
+        public BorderedLabel _Label;
         private System.Windows.Forms.ToolTip _ToolTip;
 
 

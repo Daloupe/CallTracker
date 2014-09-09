@@ -48,25 +48,21 @@ namespace CallTracker.View
 
         public bool PreFilterMessage(ref Message m)
         {
-            if (m.Msg == 0x20a)
+            if (m.Msg == WindowHelper.WM_MOUSEWHEEL)
             {
                 // WM_MOUSEWHEEL, find the control at screen position m.LParam
                 var pos = new Point(m.LParam.ToInt32() & 0xffff, m.LParam.ToInt32() >> 16);
-                var hWnd = WindowFromPoint(pos);
+                var hWnd = WindowHelper.WindowFromPoint(pos);
                 if (hWnd != IntPtr.Zero && hWnd != m.HWnd && FromHandle(hWnd) != null)
                 {
-                    SendMessage(hWnd, m.Msg, m.WParam, m.LParam);
+                    WindowHelper.SendMessage(hWnd, m.Msg, m.WParam, m.LParam);
                     return true;
                 }
             }
             return false;
         }
 
-        // P/Invoke declarations
-        [DllImport("user32.dll")]
-        private static extern IntPtr WindowFromPoint(Point pt);
-        [DllImport("user32.dll")]
-        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
+        
 
         //protected override CreateParams CreateParams
         //{

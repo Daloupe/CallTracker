@@ -17,47 +17,26 @@ namespace CallTracker.View
         }
 
         [Category("!Label")]
+        public string LabelToolTip
+        {
+            get { return _ToolTip.GetToolTip(_Label); }
+            set { _ToolTip.SetToolTip(_Label, value); }
+
+        }
+
+        [Category("!Label")]
         public Font LabelFont
         {
             get { return _Label.Font; }
             set { _Label.Font = value; }
         }
-
+        
         [Category("!Label")]
-        public Point LabelOffset
+        public ContentAlignment LabelTextAlign
         {
-            get { return _Label.Location; }
-            set { _Label.Location = value; }
+            get { return _Label.TextAlign; }
+            set { _Label.TextAlign = value; }
         }
-
-        [Category("!Label")]
-        public Size LabelSize
-        {
-            get { return _Label.Size; }
-            set { _Label.Size = value; }
-        }
-
-        [Category("!Label")]
-        public Padding LabelPadding
-        {
-            get { return _Label.Padding; }
-            set { _Label.Padding = value; }
-        }
-
-        [Category("!Label")]
-        public Padding LabelMargin
-        {
-            get { return _Label.Margin; }
-            set { _Label.Margin = value; }
-        }
-
-        [Category("!Label")]
-        public bool LabelAutoSize
-        {
-            get { return _Label.AutoSize; }
-            set { _Label.AutoSize = value; }
-        }
-
 
         [Category("!Label")]
         public Color LabelTextColor
@@ -74,6 +53,13 @@ namespace CallTracker.View
         }
 
         [Category("!Label")]
+        public bool LabelVisible
+        {
+            get { return _Label.Visible; }
+            set { _Label.Visible = value; }
+        }
+
+        [Category("!Label")]
         public Color LabelActiveColor
         {
             get;
@@ -81,33 +67,90 @@ namespace CallTracker.View
         }
 
         [Category("!Label")]
-        public ContentAlignment LabelTextAlign
+        public event EventHandler LabelClick
         {
-            get { return _Label.TextAlign; }
-            set { _Label.TextAlign = value; }
-        }
-
-        [Category("!Main")]
-        public int ControlHeight
-        {
-            get { return this.Height; }
-            set { this.Height = value; }
+            add { _Label.Click += value; }
+            remove { _Label.Click -= value; }
         }
 
         [Category("!Label")]
+        public event EventHandler LabelMouseEnter
+        {
+            add { _Label.MouseEnter += value; }
+            remove { _Label.MouseEnter -= value; }
+        }
+
+        [Category("!Label")]
+        public event EventHandler LabelMouseLeave
+        {
+            add { _Label.MouseLeave += value; }
+            remove { _Label.MouseLeave -= value; }
+        }
+
+        [Category("!Label Position")]
+        public Point LabelOffset
+        {
+            get { return _Label.Location; }
+            set { _Label.Location = value; }
+        }
+
+        [Category("!Label Position")]
+        public Size LabelSize
+        {
+            get { return _Label.Size; }
+            set { _Label.Size = value; }
+        }
+
+        [Category("!Label Position")]
+        public Padding LabelPadding
+        {
+            get { return _Label.Padding; }
+            set { _Label.Padding = value; }
+        }
+
+        [Category("!Label Position")]
+        public Padding LabelMargin
+        {
+            get { return _Label.Margin; }
+            set { _Label.Margin = value; }
+        }
+
+        [Category("!Label Position")]
+        public bool LabelAutoSize
+        {
+            get { return _Label.AutoSize; }
+            set { _Label.AutoSize = value; }
+        }
+
+        [Category("!Label Position")]
+        public DockStyle LabelDock
+        {
+            get { return _Label.Dock; }
+            set { _Label.Dock = value; }
+
+        }
+
+        [Category("!Label Border")]
         public Color LabelBorderColor
         {
-            get; 
-            set;
+            get { return _Label.LabelBorderColor; }
+            set { _Label.LabelBorderColor = value; }
 
         }
 
-        [Category("!Label")]
-        public string LabelToolTip
+        [Category("!Label Border")]
+        public ButtonBorderStyle LabelBorderStyle
         {
-            get { return _ToolTip.GetToolTip(_Label); }
-            set { _ToolTip.SetToolTip(_Label, value); }
+            get { return _Label.LabelBorderStyle; }
+            set { _Label.LabelBorderStyle = value; }
 
+        }
+
+        [Category("!Label Border")]
+        public Rectangle LabelBorderOffset
+        {
+            get { return _Label.LabelBorderOffset; }
+            set { _Label.LabelBorderOffset = value; }
         }
 
         [Category("!MenuButton")]
@@ -124,6 +167,13 @@ namespace CallTracker.View
             set { _MenuButton.Image = value; }
         }
 
+        [Category("!Main")]
+        public int ControlHeight
+        {
+            get { return Height; }
+            set { Height = value; }
+        }
+
         public bool HasContextMenu { get; set; }
 
         public LabelledBase()
@@ -131,9 +181,9 @@ namespace CallTracker.View
             InitializeComponent();
             SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
             UpdateStyles();
-            this.DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
+            DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             lasttime = DateTime.UtcNow;
-            this.ContextMenuStripChanged += LabelledTextBox_ContextMenuStripChanged;
+            ContextMenuStripChanged += LabelledTextBox_ContextMenuStripChanged;
         }
 
         public virtual void AttachMenu(ContextMenuStrip menu)
@@ -157,24 +207,24 @@ namespace CallTracker.View
         protected bool opened;
         protected virtual void _MenuButton_MouseClick(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
                 return;
-            if (this.ContextMenuStrip.Visible == false)
+            if (ContextMenuStrip.Visible == false)
             {
-                this.ContextMenuStrip.Opening += ContextMenuStrip_Opening;
-                this.ContextMenuStrip.Show(this._MenuButton, 9, 9);
+                ContextMenuStrip.Opening += ContextMenuStrip_Opening;
+                ContextMenuStrip.Show(_MenuButton, 9, 9);
                 opened = true;
             }
             else
             {
-                this.ContextMenuStrip.Hide();
+                ContextMenuStrip.Hide();
                 opened = false;       
             }
         }
 
         public virtual void ContextMenuStrip_Closing(object sender, ToolStripDropDownClosingEventArgs e)
         {
-            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            var menu = (ContextMenuStrip)sender;
             menu.Closing -= ContextMenuStrip_Closing;
 
             if (DateTime.UtcNow.Subtract(lasttime).Milliseconds > 9 && opened == false )
@@ -188,16 +238,16 @@ namespace CallTracker.View
 
         protected virtual void ContextMenuStrip_Opening(object sender, CancelEventArgs e)
         { 
-            ContextMenuStrip menu = (ContextMenuStrip)sender;
+            var menu = (ContextMenuStrip)sender;
             menu.Opening -= ContextMenuStrip_Opening;
 
-            if (DateTime.UtcNow.Subtract(lasttime).Milliseconds < 9 && opened == true)
+            if (DateTime.UtcNow.Subtract(lasttime).Milliseconds < 9 && opened)
             {
                 e.Cancel = true;
                 return;
             }
             lasttime = DateTime.UtcNow;
-            this._MenuButton.BackgroundImage = Properties.Resources.TinyArrow;
+            _MenuButton.BackgroundImage = Properties.Resources.TinyArrow;
             menu.Closing += ContextMenuStrip_Closing;
         }
 
@@ -220,13 +270,12 @@ namespace CallTracker.View
 
         private void LabelledBase_Load(object sender, EventArgs e)
         {
-            if (ContextMenuStrip != null)
-            {
-                this._MenuButton.Show();
-                this.ContextMenuStrip.Opacity = 0;
-                this.ContextMenuStrip.BindingContext = ParentForm.BindingContext;
-                this.ContextMenuStrip.Show(this, 9, 9);
-            }
+            if (ContextMenuStrip == null) return;
+
+            _MenuButton.Show();
+            ContextMenuStrip.Opacity = 0;
+            ContextMenuStrip.BindingContext = ParentForm.BindingContext;
+            ContextMenuStrip.Show(this, 9, 9);
         }
 
         private void _Label_Click(object sender, EventArgs e)

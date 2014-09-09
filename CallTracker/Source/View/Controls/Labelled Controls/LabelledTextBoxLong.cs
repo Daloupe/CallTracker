@@ -10,36 +10,71 @@ namespace CallTracker.View
     [DefaultBindingProperty("TextField")]
     public partial class LabelledTextBoxLong : LabelledBase
     {
-        [Category("A1")]
+        [Category("!Textfield")]
         public HorizontalAlignment TextAlign
         {
             get { return _DataField.TextAlign; }
             set { _DataField.TextAlign = value; }
         }
 
-        [Category("A1")]
+        [Category("!Textfield")]
         public string DefaultText
         {
             get { return _DataField.Text; }
             set { _DataField.Text = value; }
         }
 
-        [Category("A1")]
+        [Category("!Textfield")]
+        public string TextfieldToolTip
+        {
+            get { return _TextfieldToolTip.GetToolTip(_DataField); }
+            set { _TextfieldToolTip.SetToolTip(_DataField, value); }
+        }
+
+        [Category("!Textfield")]
         public Color BorderColour
         {
             get { return _DataField.BorderColor; }
             set { _DataField.BorderColor = value; }
         }
 
-        [Category("A1")]
+        [Category("!Textfield")]
+        public bool TFReadOnly
+        {
+            get { return _DataField.ReadOnly; }
+            set { _DataField.ReadOnly = value; }
+        }
+
+        [Category("!Textfield")]
+        public Cursor TFCursor
+        {
+            get { return _DataField.Cursor; }
+            set { _DataField.Cursor = value; }
+        }
+
+        [Category("!Textfield")]
+        public Color TFTextColor
+        {
+            get { return _DataField.ForeColor; }
+            set { _DataField.ForeColor = value; }
+        }
+
+        [Category("!Textfield")]
+        public Color TFBackColor
+        {
+            get { return _DataField.BackColor; }
+            set { _DataField.BackColor = value; }
+        }
+
+        [Category("!Textfield")]
         [DefaultValue(typeof(Padding), "3,3,3,3")]
         public Padding ControlMargin
         {
-            get { return this.Margin; }
-            set { this.Margin = value; }
+            get { return Margin; }
+            set { Margin = value; }
         }
 
-        [Category("A1")]
+        [Category("!Textfield")]
         [Bindable(true)]
         [Browsable(true)]
         public string TextField

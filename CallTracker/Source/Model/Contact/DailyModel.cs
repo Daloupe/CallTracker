@@ -24,6 +24,8 @@ namespace CallTracker.Model
         [ProtoMember(5)]
         internal bool IsArchived;
 
+        public CallStats CallTotals;
+
         public DailyModel()
         {
             Date = new DateFilterItem(DateTime.Today);
@@ -74,14 +76,14 @@ namespace CallTracker.Model
 
             //Events.ComputeStatistics(callStats);
             //Events.Statistics.Calls = Contacts.Count;
-
-            var stats = (DailyStats)Events.Statistics.Clone();
+            CallTotals = new CallStats();
 
             foreach (var contact in Contacts)
             {
-                stats.Add(contact.ComputeStatistics());
-                Console.WriteLine(stats.HandlingTime);  
+                CallTotals.Add(contact.ComputeStatistics()); 
             }
+
+            var stats = (DailyStats)Events.Statistics.Clone();
             stats.Calls = Contacts.Count;
 
             var lastLogInIndex = Events.CallEvents.IndexOf(Events.CallEvents.LastOrDefault(x => x.EventType.Is(CallEventTypes.LogIn)));

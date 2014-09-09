@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Text;
 using System.Runtime.InteropServices;
 using System.Diagnostics;
@@ -8,6 +9,15 @@ namespace CallTracker.Helpers
 {
     public static class WindowHelper
     {
+        // P/Invoke declarations
+        [DllImport("user32.dll")]
+        public static extern IntPtr WindowFromPoint(Point pt);
+        [DllImport("user32.dll")]
+        public static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
+
+        public const int WM_LBUTTONDOWN = 0x201;
+        public const int WM_MOUSEWHEEL = 0x20a;
+
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
         
