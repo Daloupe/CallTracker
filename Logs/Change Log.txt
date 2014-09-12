@@ -32,7 +32,7 @@
 - Allow Scrolling further in service panel.
 - Events now only recompute when dirty.
 
-0.8.4.14
+0.8.4.15
 (Bugs/Changes)
 | Font on stats view and splash screen
 | Colour of stats view default numbers.
@@ -49,6 +49,7 @@ X Darkened Tips main panel background to make "Example" more readable.
 | Added some Troubleshooting options to the _TSPanel.
 | Fixed abilty to delete Bookmarks and Systems.
 | Added basic DIMPS autosearch logic.
+| Updated Log.txt path for Bug Report.
 
 0.8.3.30
 (Minor Feature)

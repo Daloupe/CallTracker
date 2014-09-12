@@ -31,7 +31,7 @@ namespace CallTracker.View
             mail.To = "jesse.poulton@optus.com.au";
             mail.Subject = "Wingman Bug Report";
             mail.HTMLBody = _Info.Text;
-            mail.Attachments.Add(@".\Log.txt", Outlook.OlAttachmentType.olEmbeddeditem, 1, "Log.txt");
+            mail.Attachments.Add(Application.StartupPath + @"\Log.txt", Outlook.OlAttachmentType.olByValue, Type.Missing, Type.Missing);
             mail.Display();
             
             objApp = null;
