@@ -35,16 +35,16 @@ namespace CallTracker.View
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
-            this._Name = new CallTracker.View.BorderedTextBox();
             this.bookmarksBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
-            this._Url = new CallTracker.View.BorderedTextBox();
             this._Done = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.editBookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripTextBox();
+            this._Name = new CallTracker.View.BorderedTextBox();
+            this._Url = new CallTracker.View.BorderedTextBox();
             servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
             ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -93,20 +93,6 @@ namespace CallTracker.View
             this.label4.TabIndex = 8;
             this.label4.Text = "Name:";
             // 
-            // _Name
-            // 
-            this._Name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this._Name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this._Name.BorderColor = System.Drawing.Color.Gray;
-            this._Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bookmarksBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Name.Location = new System.Drawing.Point(64, 165);
-            this._Name.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this._Name.Name = "_Name";
-            this._Name.Size = new System.Drawing.Size(161, 19);
-            this._Name.TabIndex = 9;
-            this._Name.KeyUp += new System.Windows.Forms.KeyEventHandler(this._Name_KeyUp);
-            // 
             // bookmarksBindingSource
             // 
             this.bookmarksBindingSource.DataMember = "Bookmarks";
@@ -121,18 +107,6 @@ namespace CallTracker.View
             this.label6.Size = new System.Drawing.Size(55, 19);
             this.label6.TabIndex = 12;
             this.label6.Text = "URL:";
-            // 
-            // _Url
-            // 
-            this._Url.BorderColor = System.Drawing.Color.Gray;
-            this._Url.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Url.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bookmarksBindingSource, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Url.Location = new System.Drawing.Point(64, 186);
-            this._Url.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this._Url.Name = "_Url";
-            this._Url.Size = new System.Drawing.Size(161, 19);
-            this._Url.TabIndex = 13;
-            this._Url.KeyUp += new System.Windows.Forms.KeyEventHandler(this._Name_KeyUp);
             // 
             // _Done
             // 
@@ -212,6 +186,34 @@ namespace CallTracker.View
             this.editBookmarksToolStripMenuItem.Size = new System.Drawing.Size(113, 18);
             this.editBookmarksToolStripMenuItem.Text = "Edit Bookmarks";
             // 
+            // _Name
+            // 
+            this._Name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this._Name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this._Name.BorderColor = System.Drawing.Color.Gray;
+            this._Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bookmarksBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Name.Enabled = false;
+            this._Name.Location = new System.Drawing.Point(64, 165);
+            this._Name.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this._Name.Name = "_Name";
+            this._Name.Size = new System.Drawing.Size(161, 19);
+            this._Name.TabIndex = 9;
+            this._Name.KeyUp += new System.Windows.Forms.KeyEventHandler(this._Name_KeyUp);
+            // 
+            // _Url
+            // 
+            this._Url.BorderColor = System.Drawing.Color.Gray;
+            this._Url.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Url.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bookmarksBindingSource, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Url.Enabled = false;
+            this._Url.Location = new System.Drawing.Point(64, 186);
+            this._Url.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this._Url.Name = "_Url";
+            this._Url.Size = new System.Drawing.Size(161, 19);
+            this._Url.TabIndex = 13;
+            this._Url.KeyUp += new System.Windows.Forms.KeyEventHandler(this._Name_KeyUp);
+            // 
             // EditBookmarks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -233,6 +235,7 @@ namespace CallTracker.View
             this.Text = "Bind Smart Paste";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.EditBookmarks_Load);
+            this.VisibleChanged += new System.EventHandler(this.EditBookmarks_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();

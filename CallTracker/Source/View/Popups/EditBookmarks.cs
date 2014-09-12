@@ -20,8 +20,10 @@ namespace CallTracker.View
             Int16 query = (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
                            where a.Description == MainForm.toolStripServiceSelector.Text
                            select a).First().Id;
-            bookmarksBindingSource.Filter = "ProblemStyleId in (" + query + ")";
+            
             bookmarksBindingSource.DataSource = Main.ServicesStore.servicesDataSet;
+            bookmarksBindingSource.DataMember = "Bookmarks";
+            bookmarksBindingSource.Filter = "ProblemStyleId in (" + query + ")";
 
             listBox1.DataSource = bookmarksBindingSource;
             listBox1.DisplayMember = "Name";
@@ -39,6 +41,9 @@ namespace CallTracker.View
 
         private void button2_Click(object sender, EventArgs e)
         {
+            _Name.Enabled = true;
+            _Url.Enabled = true;
+
             listBox1.DataSource = null;
             var newRow = Main.ServicesStore.servicesDataSet.Bookmarks.NewBookmarksRow();
             newRow.Name = "New Bookmark";
@@ -64,13 +69,18 @@ namespace CallTracker.View
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //////listBox1.DataSource = null;
-            ////if (bookmarksBindingSource.Count == 1) return;
-            //bookmarksBindingSource.RemoveFilter();            
-            //bookmarksBindingSource.RemoveCurrent();
-            //////listBox1.DataSource = bookmarksBindingSource;
-            //////listBox1.DisplayMember = "Name";
-            //MainForm.bookmarksContextualToolStripMenuItem.dirty = true;
+            bookmarksBindingSource.RemoveCurrent();
+            MainForm.bookmarksContextualToolStripMenuItem.dirty = true;
+            if (bookmarksBindingSource.Count > 0) return;
+            _Name.Enabled = false;
+            _Url.Enabled = false;
+        }
+
+        private void EditBookmarks_VisibleChanged(object sender, EventArgs e)
+        {
+            if (bookmarksBindingSource.Count <= 0) return;
+            _Name.Enabled = true;
+            _Url.Enabled = true;
         }
 
     }

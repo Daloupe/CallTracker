@@ -227,9 +227,10 @@ namespace RichTextBoxLinks
 		{
 			var cf = new CHARFORMAT2_STRUCT();
             cf.cbSize = (UInt32)Marshal.SizeOf(cf);
-            cf.dwMask = mask;
-			cf.dwEffects = effect;
-		    cf.crBackColor = ColorTranslator.ToWin32(Color.FromArgb(53, 143, 169));
+            cf.dwMask |= mask;
+            cf.dwEffects |= effect;
+            cf.dwEffects -= CFE_AUTOCOLOR;
+            cf.crBackColor = ColorTranslator.ToWin32(Color.FromArgb(43, 123, 149));
             cf.crTextColor = ColorTranslator.ToWin32(LinkColor);
             
 			var wpar = new IntPtr(SCF_SELECTION);
@@ -246,7 +247,7 @@ namespace RichTextBoxLinks
 			var cf = new CHARFORMAT2_STRUCT();
             cf.cbSize = (UInt32)Marshal.SizeOf(cf);
 			cf.szFaceName = new char[32];
-            cf.crBackColor = ColorTranslator.ToWin32(Color.FromArgb(53, 143, 169));
+            cf.crBackColor = ColorTranslator.ToWin32(Color.FromArgb(43, 123, 149));
             cf.crTextColor = ColorTranslator.ToWin32(LinkColor);
 
 			var wpar = new IntPtr(SCF_SELECTION);

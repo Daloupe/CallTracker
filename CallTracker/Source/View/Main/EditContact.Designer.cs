@@ -48,6 +48,7 @@
             this._ServicePanel = new CallTracker.View.ServicePanel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this._TSPanel = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
@@ -152,7 +153,6 @@
             this._ICONContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem22 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem23 = new System.Windows.Forms.ToolStripMenuItem();
-            this.label1 = new System.Windows.Forms.Label();
             servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
             ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).BeginInit();
             this.FaultPanel.SuspendLayout();
@@ -401,8 +401,8 @@
             this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 0, 0, 0, 0);
-            this._BookingDate.DateText = "09/08";
+            this._BookingDate.DateField = new System.DateTime(2014, 9, 8, 0, 0, 0, 0);
+            this._BookingDate.DateText = "08/09";
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingDate.HasContextMenu = false;
             this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -669,6 +669,15 @@
             this._TSPanel.Name = "_TSPanel";
             this._TSPanel.Size = new System.Drawing.Size(200, 210);
             this._TSPanel.TabIndex = 207;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Gautami", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(151, 20);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Troubleshooting:";
             // 
             // checkBox4
             // 
@@ -1039,6 +1048,7 @@
             this.autoNewCallToolStripMenuItem.Name = "autoNewCallToolStripMenuItem";
             this.autoNewCallToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.autoNewCallToolStripMenuItem.Text = "Auto New Call";
+            this.autoNewCallToolStripMenuItem.Visible = false;
             this.autoNewCallToolStripMenuItem.CheckedChanged += new System.EventHandler(this.autoNewCallToolStripMenuItem_CheckedChanged);
             // 
             // toolStripSeparator6
@@ -2087,15 +2097,6 @@
             this.toolStripMenuItem23.Size = new System.Drawing.Size(104, 22);
             this.toolStripMenuItem23.Text = "ICON";
             this.toolStripMenuItem23.Click += new System.EventHandler(this._SearchICON_click);
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Gautami", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(151, 20);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Troubleshooting:";
             // 
             // EditContact
             // 

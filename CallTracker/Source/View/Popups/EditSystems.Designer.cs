@@ -100,6 +100,7 @@ namespace CallTracker.View
             this._Name.BorderColor = System.Drawing.Color.Gray;
             this._Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._Name.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.systemLinksBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Name.Enabled = false;
             this._Name.Location = new System.Drawing.Point(64, 165);
             this._Name.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this._Name.Name = "_Name";
@@ -127,6 +128,7 @@ namespace CallTracker.View
             this._Url.BorderColor = System.Drawing.Color.Gray;
             this._Url.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._Url.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.systemLinksBindingSource, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Url.Enabled = false;
             this._Url.Location = new System.Drawing.Point(64, 186);
             this._Url.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this._Url.Name = "_Url";
@@ -233,6 +235,7 @@ namespace CallTracker.View
             this.Text = "Bind Smart Paste";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.EditBookmarks_Load);
+            this.VisibleChanged += new System.EventHandler(this.EditSystems_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();

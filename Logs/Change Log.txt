@@ -33,7 +33,7 @@
 - Allow Scrolling further in service panel.
 - Events now only recompute when dirty.
 
-0.8.4.12
+0.8.4.13
 (Bugs/Changes)
 | Font on stats view and splash screen
 | Colour of stats view default numbers.
@@ -48,6 +48,7 @@ X Darkened Tips main panel background to make "Example" more readable.
 | Updated Tab Indexes.
 | Fixed PRTemplates not re-generating when Outcome was changed.
 | Added some Troubleshooting options to the _TSPanel.
+| Fixed abilty to delete Bookmarks and Systems.
 
 0.8.3.30
 (Minor Feature)

@@ -51,8 +51,8 @@ using CallTracker.Helpers;
                 updateObject = value;
                 if (updateObject != null)
                 {
-                    staticDropDownItems = new ToolStripItem[this.DropDownItems.Count];
-                    this.DropDownItems.CopyTo(staticDropDownItems, 0);
+                    staticDropDownItems = new ToolStripItem[DropDownItems.Count];
+                    DropDownItems.CopyTo(staticDropDownItems, 0);
                     updateObject.Parent = this;
                 }
             }
@@ -60,7 +60,7 @@ using CallTracker.Helpers;
 
         public virtual void UpdateMenu(string _service) 
         {
-            if (dirty == true && UpdateObject != null)
+            if (dirty && UpdateObject != null)
             {
                 DropDownItems.Clear();
                 DropDownItems.AddRange(staticDropDownItems);
@@ -85,7 +85,7 @@ using CallTracker.Helpers;
         {
             ds = _ds;
         }
-        public virtual void Go(string _service)
+        public virtual void Go(string service)
         {
 
         }
@@ -108,10 +108,10 @@ using CallTracker.Helpers;
             Parent.dirty = true;
         }
 
-        public override void Go(string _service)
+        public override void Go(string service)
         {
             var queries = from a in ds.Departments
-                          where a.ServicesRow.ProblemStylesRow.Description == _service
+                          where a.ServicesRow.ProblemStylesRow.Description == service
                           select new
                           {
                               a.InternalContact,
@@ -122,16 +122,16 @@ using CallTracker.Helpers;
 
             foreach (var query in queries)
             {
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
                 sb.Append("Internal: ");
                 sb.AppendLine(query.InternalContact.ToString());
                 sb.Append("External: ");
                 sb.AppendLine(query.ExternalContact.ToString());
                 sb.AppendLine(query.ContactHours);
 
-                string menu = StringHelpers.JoinCamelCase(query.NameShort) + "ToolStripMenuItem";
+                var menu = StringHelpers.JoinCamelCase(query.NameShort) + "ToolStripMenuItem";
 
-                foreach (ToolStripMenuItem item in Parent.DropDownItems.OfType<ToolStripMenuItem>())
+                foreach (var item in Parent.DropDownItems.OfType<ToolStripMenuItem>())
                     if (item.Name == menu)
                     {
                         item.ToolTipText = sb.ToString();
@@ -154,18 +154,16 @@ using CallTracker.Helpers;
             Parent.dirty = true;
         }
 
-        public override void Go(string _service)
+        public override void Go(string service)
         {
-            //if (ds.Bookmarks.Count == 1 && ds.Bookmarks[0].ProblemStylesRow == null) return;
             var queries = (from a in ds.Bookmarks
-                          where a.ProblemStylesRow.Description == _service
+                          where a.ProblemStylesRow != null &&
+                               a.ProblemStylesRow.Description == service
                           select a).ToList();
 
             foreach (var query in queries)
             {
-                var newItem = new ToolStripMenuItem();
-                newItem.Text = query.Name;
-                newItem.Tag = query.Url;
+                var newItem = new ToolStripMenuItem {Text = query.Name, Tag = query.Url};
                 newItem.Click += newItem_Click;
                 Parent.DropDownItems.Insert(0,newItem);
             }
@@ -186,17 +184,16 @@ using CallTracker.Helpers;
             Parent.dirty = true;
         }
 
-        public override void Go(string _service)
+        public override void Go(string service)
         {
             var queries = from a in ds.SystemLinks
-                          where a.ProblemStylesRow.Description == _service
+                          where a.ProblemStylesRow != null && 
+                                a.ProblemStylesRow.Description == service
                           select a;
 
             foreach (var query in queries)
             {
-                ToolStripMenuItem newItem = new ToolStripMenuItem();
-                newItem.Text = query.Name;
-                newItem.Tag = query.Url;
+                var newItem = new ToolStripMenuItem {Text = query.Name, Tag = query.Url};
                 newItem.Click += newItem_Click;
                 Parent.DropDownItems.Insert(0, newItem);
             }
@@ -210,6 +207,6 @@ using CallTracker.Helpers;
         public Timer MyTimer;
         public ToolStripTimerItem()
         {
-            MyTimer = new Timer(this.Container);
+            MyTimer = new Timer(Container);
         }
     }

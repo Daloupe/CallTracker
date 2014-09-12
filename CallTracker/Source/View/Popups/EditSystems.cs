@@ -29,7 +29,7 @@ namespace CallTracker.View
 
         private void _Ok_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -39,6 +39,9 @@ namespace CallTracker.View
 
         private void button2_Click(object sender, EventArgs e)
         {
+            _Name.Enabled = true;
+            _Url.Enabled = true;
+
             listBox1.DataSource = null;
             ServicesDataSet.SystemLinksRow newRow = Main.ServicesStore.servicesDataSet.SystemLinks.NewSystemLinksRow();
             newRow.Name = "New System";
@@ -64,11 +67,18 @@ namespace CallTracker.View
 
         private void button3_Click(object sender, EventArgs e)
         {
-            listBox1.DataSource = null;
             systemLinksBindingSource.RemoveCurrent();
-            listBox1.DataSource = systemLinksBindingSource;
-            listBox1.DisplayMember = "Name";
             MainForm.systemsContextualToolStripMenuItem.dirty = true;
+            if (systemLinksBindingSource.Count > 0) return;
+            _Name.Enabled = false;
+            _Url.Enabled = false;
+        }
+
+        private void EditSystems_VisibleChanged(object sender, EventArgs e)
+        {
+            if (systemLinksBindingSource.Count <= 0) return;
+            _Name.Enabled = true;
+            _Url.Enabled = true;
         }
 
     }
