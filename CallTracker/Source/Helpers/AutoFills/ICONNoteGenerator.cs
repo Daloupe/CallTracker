@@ -45,7 +45,11 @@ namespace CallTracker.Helpers
     class NoteItemBool : NoteItem
     {
         private string _value;
-        public override string Value { get { return _value; } set { if (value == "True" || value == "Yes") _value = value; } }
+        public override string Value { get { return _value; } set
+        {
+            if (value == "True" || value == "Yes") _value = value;
+            else _value = String.Empty;
+        } }
 
         public NoteItemBool(string name, string note)
             : base(name, note) { }

@@ -34,7 +34,7 @@ namespace CallTracker.View
 
             var fontCount = Program.Fonts.Families.Length;
             if (fontCount > 0)
-                _Title.Font = new Font(Program.Fonts.Families[0], 40, FontStyle.Bold);
+                _Title.Font = new Font(Program.Fonts.Families[0], 20, FontStyle.Bold);
 
             _phoneTotals = new StatSection(this, _PHeading, new List<LabelledTextBoxLong> {_PLogin, _PReady, _PNotReady, _PCph, _PCalls});
 

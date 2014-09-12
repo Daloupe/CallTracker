@@ -17,7 +17,7 @@ namespace RichTextBoxLinks
 			public UInt32   dwEffects; 
 			public Int32    yHeight; 
 			public Int32    yOffset; 
-			public Int32	crTextColor; 
+			public int	    crTextColor; 
 			public byte     bCharSet; 
 			public byte     bPitchAndFamily; 
 			[MarshalAs(UnmanagedType.ByValArray, SizeConst=32)]

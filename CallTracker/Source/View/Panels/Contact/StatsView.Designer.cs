@@ -1321,6 +1321,7 @@
             this._DateSelect.ControlHeight = 20;
             this._DateSelect.DataSource = null;
             this._DateSelect.DefaultText = "";
+            this._DateSelect.Enabled = false;
             this._DateSelect.Font = new System.Drawing.Font("Verdana", 7F);
             this._DateSelect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
             this._DateSelect.HasContextMenu = false;
