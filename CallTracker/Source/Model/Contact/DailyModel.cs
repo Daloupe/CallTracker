@@ -41,11 +41,12 @@ namespace CallTracker.Model
         //    ContactsBindingSource.Position = Position;
         //}
 
-        //[ProtoBeforeDeserialization]
-        //private void Initializer()
-        //{
-        //    Contacts = new FilterableBindingList<CustomerContact>();
-        //}
+        [ProtoBeforeDeserialization]
+        private void PreDes()
+        {
+            // Edit contacts won't bind properly if not initialized when no contacts have been stored.
+            Contacts = new FilterableBindingList<CustomerContact>();
+        }
 
         internal void ArchiveContacts()
         {

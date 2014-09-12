@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
@@ -32,6 +33,7 @@ namespace CallTracker.Helpers
 
             HotKeyManager = new HotKeyManager();
             HotKeyManager.AddOrReplaceHotkey("wintest", Modifiers.Win, Keys.N, OnTest);
+            HotKeyManager.AddOrReplaceHotkey("wintest2", Modifiers.Win, Keys.G, OnTest2);
             HotKeyManager.AddOrReplaceHotkey("SmartCopy", Modifiers.Win, Keys.C, OnSmartCopy);
             HotKeyManager.AddOrReplaceHotkey("SmartPaste", Modifiers.Win, Keys.V, OnSmartPaste);
             HotKeyManager.AddOrReplaceHotkey("BindSmartPaste", Modifiers.Win | Modifiers.Shift, Keys.V, OnBindSmartPaste);
@@ -86,6 +88,13 @@ namespace CallTracker.Helpers
 
            //Console.WriteLine(WindowHelper.GetActiveWindowTitle());
             ICONAutoFill.Go(parent);
+        }
+        private static void OnTest2(HotkeyPressedEventArgs e)
+        {
+
+            if (!GetActiveBrowser())
+                return;
+            IFMSAutoFill.Go(parent);
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -323,6 +332,7 @@ namespace CallTracker.Helpers
 
                     if (query.PasteWithSendKeys)
                     {
+                        activeElement.SetAttributeValue("value", "");
                         Clipboard.SetText(s);
                         SendKeys.SendWait("^(v)");
                         if (query.FireOnChange)
@@ -676,6 +686,24 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Browser Methods //////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Waits for async post back to complete.
+        /// </summary>
+        /// <param name="ie">The ie instance to use.</param>
+        public static void WaitForAsyncPostBackToComplete()
+        {
+            var startWait = 5000;
+            var isInPostback = true;
+            while (startWait > 0)
+            {
+                isInPostback = Convert.ToBoolean(browser.Eval("Sys.WebForms.PageRequestManager.getInstance().get_isInAsyncPostBack();"));
+                if (!isInPostback) break;
+                Thread.Sleep(200); //sleep for 200ms and query again 
+                startWait -= 200;
+            }
+            EventLogger.LogAndSaveNewEvent(String.Format("WaitForAsyncPostBackToComplete isInPostback: {0}", isInPostback));
+        }
+        
         public static bool WaitForBrowserBusy()
         {
             var startWait = 5000;
@@ -684,7 +712,7 @@ namespace CallTracker.Helpers
             {
                 if (ieBrowser.Busy)
                 {
-                    System.Threading.Thread.Sleep(200);
+                    Thread.Sleep(200);
                     startWait -= 200;
                 }
                 else

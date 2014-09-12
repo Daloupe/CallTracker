@@ -52,7 +52,7 @@ namespace CallTracker.Helpers
 
 
             // LAT ////////////////////////////////////////////////////////////////////////////////////////////////
-            if (affectedServices.Has(ServiceTypes.LAT) || affectedServices.Has(ServiceTypes.LIP))
+            if (affectedServices.Has(ServiceTypes.LAT | ServiceTypes.LIP))
             {
                 firstFault = true;
 
@@ -171,14 +171,16 @@ namespace CallTracker.Helpers
                 EventLogger.LogNewEvent(String.Format("IFMS AutoFill Error: Dropdown '{0}' is Null", dropdown));
                 return;
             }
-
+            _affectedServicesSelectList.Focus();
             var option = _affectedServicesSelectList.Option(dropdown);
             if (!option.Exists)
             {
                 EventLogger.LogNewEvent(String.Format("IFMS AutoFill Error: SelectList Option '{0}' Doesn't Exist", dropdown));
                 return;
             }
-            option.Select();          
+            option.Select();     
+
+            HotkeyController.WaitForAsyncPostBackToComplete();
 
             var textfield = HotkeyController.browser.TextField(Find.ById(ifmsDropdownElement.Field));
             if (!textfield.Exists)

@@ -121,7 +121,7 @@ namespace RichTextBoxLinks
 		{
 			// Otherwise, non-standard links get lost when user starts typing
 			// next to a non-standard link
-			this.DetectUrls = false;
+			DetectUrls = false;
 		}
 
 		[DefaultValue(false)]
@@ -131,13 +131,24 @@ namespace RichTextBoxLinks
 			set { base.DetectUrls = value; }
 		}
 
+	    private Color linkColor = Color.BlueViolet;
+
+	    [Category("Appearance")]
+	    public Color LinkColor
+	    {
+	        get { return linkColor; }
+	        set { linkColor = value;
+	            Invalidate();
+	        }
+	    }
+
 		/// <summary>
 		/// Insert a given text as a link into the RichTextBox at the current insert position.
 		/// </summary>
 		/// <param name="text">Text to be inserted</param>
 		public void InsertLink(string text)
 		{
-			InsertLink(text, this.SelectionStart);
+			InsertLink(text, SelectionStart);
 		}
 
 		/// <summary>
@@ -147,14 +158,14 @@ namespace RichTextBoxLinks
 		/// <param name="position">Insert position</param>
 		public void InsertLink(string text, int position)
 		{
-			if (position < 0 || position > this.Text.Length)
+			if (position < 0 || position > Text.Length)
 				throw new ArgumentOutOfRangeException("position");
 
-			this.SelectionStart = position;
-			this.SelectedText = text;
-			this.Select(position, text.Length);
-			this.SetSelectionLink(true);
-			this.Select(position + text.Length, 0);
+			SelectionStart = position;
+			SelectedText = text;
+			Select(position, text.Length);
+			SetSelectionLink(true);
+			Select(position + text.Length, 0);
 		}
 		
 		/// <summary>
@@ -168,7 +179,7 @@ namespace RichTextBoxLinks
 		/// <param name="hyperlink">Invisible hyperlink string to be inserted</param>
 		public void InsertLink(string text, string hyperlink)
 		{
-			InsertLink(text, hyperlink, this.SelectionStart);
+			InsertLink(text, hyperlink, SelectionStart);
 		}
 
 		/// <summary>
@@ -182,14 +193,16 @@ namespace RichTextBoxLinks
 		/// <param name="position">Insert position</param>
 		public void InsertLink(string text, string hyperlink, int position)
 		{
-			if (position < 0 || position > this.Text.Length)
+			if (position < 0 || position > Text.Length)
 				throw new ArgumentOutOfRangeException("position");
 
-			this.SelectionStart = position;
-			this.SelectedRtf = @"{\rtf1\ansi "+text+@"\v #"+hyperlink+@"\v0}";
-			this.Select(position, text.Length + hyperlink.Length + 1);
-			this.SetSelectionLink(true);
-			this.Select(position + text.Length + hyperlink.Length + 1, 0);
+			SelectionStart = position;
+			SelectedRtf = @"{\rtf1\ansi "+text+@"\v #"+hyperlink+@"\v0}";
+			Select(position, text.Length + hyperlink.Length + 1);
+			SetSelectionLink(true);
+            Select(position, text.Length + hyperlink.Length + 1);
+            SelectionColor = LinkColor;
+			Select(position + text.Length + hyperlink.Length + 1, 0);
 		}
 
 		/// <summary>
@@ -198,7 +211,7 @@ namespace RichTextBoxLinks
 		/// <param name="link">true: set link style, false: clear link style</param>
 		public void SetSelectionLink(bool link)
 		{
-			SetSelectionStyle(CFM_LINK, link ? CFE_LINK : 0);
+            SetSelectionStyle(CFM_LINK | CFM_BACKCOLOR | CFM_COLOR, link ? CFE_LINK : 0);
 		}
 		/// <summary>
 		/// Get the link style for the current selection
@@ -206,37 +219,41 @@ namespace RichTextBoxLinks
 		/// <returns>0: link style not set, 1: link style set, -1: mixed</returns>
 		public int GetSelectionLink()
 		{
-			return GetSelectionStyle(CFM_LINK, CFE_LINK);
+            return GetSelectionStyle(CFM_LINK | CFM_BACKCOLOR | CFM_COLOR, CFE_LINK);
 		}
 
 
 		private void SetSelectionStyle(UInt32 mask, UInt32 effect)
 		{
-			CHARFORMAT2_STRUCT cf = new CHARFORMAT2_STRUCT();
-			cf.cbSize = (UInt32)Marshal.SizeOf(cf);
-			cf.dwMask = mask;
+			var cf = new CHARFORMAT2_STRUCT();
+            cf.cbSize = (UInt32)Marshal.SizeOf(cf);
+            cf.dwMask = mask;
 			cf.dwEffects = effect;
-
-			IntPtr wpar = new IntPtr(SCF_SELECTION);
-			IntPtr lpar = Marshal.AllocCoTaskMem( Marshal.SizeOf( cf ) ); 
+		    cf.crBackColor = ColorTranslator.ToWin32(Color.FromArgb(53, 143, 169));
+            cf.crTextColor = ColorTranslator.ToWin32(LinkColor);
+            
+			var wpar = new IntPtr(SCF_SELECTION);
+			var lpar = Marshal.AllocCoTaskMem( Marshal.SizeOf( cf ) ); 
 			Marshal.StructureToPtr(cf, lpar, false);
 
-			IntPtr res = SendMessage(Handle, EM_SETCHARFORMAT, wpar, lpar);
+			var res = SendMessage(Handle, EM_SETCHARFORMAT, wpar, lpar);
 
 			Marshal.FreeCoTaskMem(lpar);
 		}
 
 		private int GetSelectionStyle(UInt32 mask, UInt32 effect)
 		{
-			CHARFORMAT2_STRUCT cf = new CHARFORMAT2_STRUCT();
-			cf.cbSize = (UInt32)Marshal.SizeOf(cf);
+			var cf = new CHARFORMAT2_STRUCT();
+            cf.cbSize = (UInt32)Marshal.SizeOf(cf);
 			cf.szFaceName = new char[32];
+            cf.crBackColor = ColorTranslator.ToWin32(Color.FromArgb(53, 143, 169));
+            cf.crTextColor = ColorTranslator.ToWin32(LinkColor);
 
-			IntPtr wpar = new IntPtr(SCF_SELECTION);
-			IntPtr lpar = 	Marshal.AllocCoTaskMem( Marshal.SizeOf( cf ) ); 
+			var wpar = new IntPtr(SCF_SELECTION);
+			var lpar = 	Marshal.AllocCoTaskMem( Marshal.SizeOf( cf ) ); 
 			Marshal.StructureToPtr(cf, lpar, false);
 
-			IntPtr res = SendMessage(Handle, EM_GETCHARFORMAT, wpar, lpar);
+			var res = SendMessage(Handle, EM_GETCHARFORMAT, wpar, lpar);
 
 			cf = (CHARFORMAT2_STRUCT)Marshal.PtrToStructure(lpar, typeof(CHARFORMAT2_STRUCT));
 

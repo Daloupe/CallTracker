@@ -175,6 +175,7 @@ namespace CallTracker.View
             // 
             // tipsPanel
             // 
+            this.tipsPanel.BackColor = System.Drawing.Color.Transparent;
             this.tipsPanel.Controls.Add(this.tipsTextPanel);
             this.tipsPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.tipsPanel.Location = new System.Drawing.Point(3, 33);
@@ -185,7 +186,7 @@ namespace CallTracker.View
             // 
             // tipsTextPanel
             // 
-            this.tipsTextPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(143)))), ((int)(((byte)(169)))));
+            this.tipsTextPanel.BackColor = System.Drawing.Color.Transparent;
             this.tipsTextPanel.Controls.Add(this.richTextBox1);
             this.tipsTextPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tipsTextPanel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
@@ -204,6 +205,7 @@ namespace CallTracker.View
             this.richTextBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.richTextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(228)))), ((int)(((byte)(162)))));
+            this.richTextBox1.LinkColor = System.Drawing.Color.DarkGoldenrod;
             this.richTextBox1.Location = new System.Drawing.Point(0, 0);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";

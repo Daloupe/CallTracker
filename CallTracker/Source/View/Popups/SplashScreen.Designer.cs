@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.Wingman = new System.Windows.Forms.Label();
             this._LoadingBar = new System.Windows.Forms.ProgressBar();
-            this.label1 = new System.Windows.Forms.Label();
+            this.WingmanBG = new System.Windows.Forms.Label();
             this._LoadingText = new System.Windows.Forms.Label();
             this._CancelLoading = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -63,17 +63,17 @@
             this._LoadingBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this._LoadingBar.TabIndex = 1;
             // 
-            // label1
+            // WingmanBG
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Optus Voice BETA Bold", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(173)))));
-            this.label1.Location = new System.Drawing.Point(19, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 64);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Wingman";
+            this.WingmanBG.AutoSize = true;
+            this.WingmanBG.BackColor = System.Drawing.Color.Transparent;
+            this.WingmanBG.Font = new System.Drawing.Font("Optus Voice BETA Bold", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WingmanBG.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(173)))));
+            this.WingmanBG.Location = new System.Drawing.Point(19, 66);
+            this.WingmanBG.Name = "WingmanBG";
+            this.WingmanBG.Size = new System.Drawing.Size(256, 64);
+            this.WingmanBG.TabIndex = 2;
+            this.WingmanBG.Text = "Wingman";
             // 
             // _LoadingText
             // 
@@ -139,7 +139,7 @@
             this.Controls.Add(this._LoadingText);
             this.Controls.Add(this._CancelLoading);
             this.Controls.Add(this.Wingman);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.WingmanBG);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -162,7 +162,7 @@
 
         private System.Windows.Forms.Label Wingman;
         private System.Windows.Forms.ProgressBar _LoadingBar;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label WingmanBG;
         private System.Windows.Forms.PictureBox _CancelLoading;
         internal System.Windows.Forms.Label _LoadingText;
         internal System.Windows.Forms.Timer timer1;

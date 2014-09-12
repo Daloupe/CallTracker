@@ -66,7 +66,21 @@ namespace CallTracker.Helpers
                 output += username;
                 return output;
             }),
-            new PRTemplateString("Testing/Outcome: "),
+            new PRTemplateFunc("Testing/Outcome: ", (x) =>
+            {
+                var sb = new StringBuilder();
+                if (Convert.ToBoolean(FindProperty.FollowPropertyPath(x, "Fault.Powercycled")))
+                    sb.AppendLine("Powercycled; ");
+                if (Convert.ToBoolean(FindProperty.FollowPropertyPath(x, "Fault.FactoryReset")))
+                    sb.AppendLine("Factory Reset; ");
+                if (Convert.ToBoolean(FindProperty.FollowPropertyPath(x, "Fault.CheckedCables")))
+                    sb.AppendLine("Checked Cables; ");
+                if (Convert.ToBoolean(FindProperty.FollowPropertyPath(x, "Fault.CheckedNodeForOfflines")))
+                    sb.AppendLine("Checked Node in SCAMPS for offlines; ");
+                if (Convert.ToBoolean(FindProperty.FollowPropertyPath(x, "Fault.ChangedWiFiChannel")))
+                    sb.AppendLine("Changed WiFi Channel; ");
+                return sb.ToString();
+            }),
             new PRTemplateString("Issue/Root Cause: "),
             new PRTemplateFindProperty("AVC ID: ", "Service.AVC", NBNOnly),
             new PRTemplateFindProperty("CVC ID: ", "Service.CVC", NBNOnly),
@@ -90,7 +104,23 @@ namespace CallTracker.Helpers
 
         public static List<PRTemplateModel> AROAnswers = new List<PRTemplateModel>
         {
-            new PRTemplateString("Testing/Outcome: ", "ARO on node, customers address affected."),
+            //new PRTemplateString("Testing/Outcome: ", "ARO on node, customers address affected."),
+            new PRTemplateFunc("Testing/Outcome: ", (x) =>
+            {
+                var sb = new StringBuilder();
+                if (Convert.ToBoolean(FindProperty.FollowPropertyPath(x, "Fault.Powercycled")))
+                    sb.AppendLine("Powercycled; ");
+                if (Convert.ToBoolean(FindProperty.FollowPropertyPath(x, "Fault.FactoryReset")))
+                    sb.AppendLine("Factory Reset; ");
+                if (Convert.ToBoolean(FindProperty.FollowPropertyPath(x, "Fault.CheckedCables")))
+                    sb.AppendLine("Checked Cables; ");
+                if (Convert.ToBoolean(FindProperty.FollowPropertyPath(x, "Fault.CheckedNodeForOfflines")))
+                    sb.AppendLine("Checked Node in SCAMPS for offlines; ");
+                if (Convert.ToBoolean(FindProperty.FollowPropertyPath(x, "Fault.ChangedWiFiChannel")))
+                    sb.AppendLine("Changed WiFi Channel; ");
+                sb.AppendLine("ARO on node, customers address affected.");
+                return sb.ToString();
+            }),
             new PRTemplateString("Issue/Root Cause: ", "Outage"),
             new PRTemplateString("Next Action: ", "SMS")
         };

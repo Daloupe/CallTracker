@@ -63,6 +63,7 @@
             this.listExeWindowsButton = new System.Windows.Forms.Button();
             this.listWindowControlsButton = new System.Windows.Forms.Button();
             this.getWindowControlButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -311,7 +312,7 @@
             this.applicationTitle.Name = "applicationTitle";
             this.applicationTitle.Size = new System.Drawing.Size(138, 20);
             this.applicationTitle.TabIndex = 15;
-            this.applicationTitle.Text = "StatisticsForm";
+            this.applicationTitle.Text = "IPCC";
             // 
             // listMdiChildButton
             // 
@@ -410,11 +411,22 @@
             this.getWindowControlButton.UseVisualStyleBackColor = true;
             this.getWindowControlButton.Click += new System.EventHandler(this.getWindowControlButton_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(310, 180);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(81, 34);
+            this.button1.TabIndex = 24;
+            this.button1.Text = "List Window Controls 2";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.listWindowControlsButton2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(512, 301);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.getWindowControlButton);
             this.Controls.Add(this.listWindowControlsButton);
             this.Controls.Add(this.listExeWindowsButton);
@@ -481,6 +493,7 @@
         private System.Windows.Forms.Button listExeWindowsButton;
         private System.Windows.Forms.Button listWindowControlsButton;
         private System.Windows.Forms.Button getWindowControlButton;
+        private System.Windows.Forms.Button button1;
     }
 }
 

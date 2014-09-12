@@ -280,6 +280,7 @@ namespace CallTracker.View
             
             monitorIPCCToolStripMenuItem.Checked = Settings.Default.MonitorIPCC;
             pullIPCCCallDataToolStripMenuItem.Checked = Settings.Default.PullIPCCCallData;
+            autoNewCallToolStripMenuItem.Checked = Settings.Default.AutoNewCall;
         }
 
         private void Main_Shown(object sender, EventArgs e)
@@ -599,7 +600,7 @@ namespace CallTracker.View
                     EventLogger.LogNewEvent("IPCC Dial Error: CTI Dial Pad Not Found", EventLogLevel.Status);
                     return;
                 }
-                EventLogger.LogNewEvent("IPCC Dial: CTI Dial Pad Found", EventLogLevel.Status);
+                EventLogger.LogNewEvent("IPCC Dial: CTI Dial Pad Found", EventLogLevel.Brief);
             }
 
             if (_ipccDialNumberComboBox == null)
@@ -610,23 +611,10 @@ namespace CallTracker.View
                     EventLogger.LogNewEvent("IPCC Dial Error: Number ComboBox Not Found", EventLogLevel.Status);
                     return;
                 }
-                EventLogger.LogNewEvent("IPCC Dial: Number ComboBox Found", EventLogLevel.Status);
+                EventLogger.LogNewEvent("IPCC Dial: Number ComboBox Found", EventLogLevel.Brief);
             }
 
             _ipccDialNumberComboBox.EditableText = value;
-        }
-
-        private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!CheckForIpcc())
-            {
-                monitorIPCCToolStripMenuItem.Checked = false;
-                _CallStateTime.Text = @"00:00";
-            }
-            else
-                _IPCCState.Text = String.Empty;
-            
-            _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
         }
 
         private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -841,23 +829,25 @@ namespace CallTracker.View
             cacheRequest.Pop();
 
             var gridData = new string[headerLine.Count, gridLines.Count + 1];
+
             var headerIndex = 0;
             foreach (AutomationElement header in headerLine)
             {
                 gridData[headerIndex++, 0] = header.Current.Name;
             }
 
-            var rowIndex = 1;
-            foreach (AutomationElement row in gridLines)
+            //var rowIndex = 1;
+            //foreach (AutomationElement row in gridLines)
+            //{
+            foreach (AutomationElement col in gridLines[1].CachedChildren)
             {
-                foreach (AutomationElement col in row.CachedChildren)
+                for (headerIndex = 0; headerIndex < headerLine.Count - 1; headerIndex++)
+                    if (gridData[headerIndex, 0] == col.Cached.Name)
+                        break;
+                try
                 {
-                    for (headerIndex = 0; headerIndex < headerLine.Count - 1; headerIndex++)
-                        if (gridData[headerIndex, 0] == col.Cached.Name)
-                            break;
-             
-                    var value = ((ValuePattern)col.GetCachedPattern(ValuePattern.Pattern)).Current.Value;
-                    gridData[headerIndex, rowIndex] = value;
+                    var value = ((ValuePattern) col.GetCachedPattern(ValuePattern.Pattern)).Current.Value;
+                    gridData[headerIndex, 1] = value;
 
                     if (SelectedContact == null) continue;
                     switch (gridData[headerIndex, 0])
@@ -894,9 +884,14 @@ namespace CallTracker.View
                             break;
                     }
                 }
-                rowIndex++;
+                catch (InvalidOperationException e)
+                {
+                    EventLogger.LogNewEvent("Exception caught");
+                }
+                //}
+                //rowIndex++;
             }
-
+            EventLogger.SaveLog();
             //var cacheRequest = new CacheRequest { AutomationElementMode = AutomationElementMode.Full, TreeScope = TreeScope.Children };
             //cacheRequest.Add(AutomationElement.NameProperty);
             //cacheRequest.Add(ValuePattern.Pattern);
@@ -981,10 +976,10 @@ namespace CallTracker.View
                     _CallStateTime.BackColor = Color.Chocolate;
                     _CallStateTime.ForeColor = Color.PaleGoldenrod;
                     break;
-                case "red": // Not Ready, Hold, Wrap Up
+                case "red": // Not Ready, Hold, Wrap Up, 178,34,34
                     _IPCCTimer.Interval = 250;
-                    _CallStateTime.BackColor = Color.Firebrick;
-                    _CallStateTime.ForeColor = Color.LightGoldenrodYellow;
+                    _CallStateTime.BackColor = Color.FromArgb(178, 34, 34);
+                    _CallStateTime.ForeColor = Color.FromArgb(178, 34, 34);//.LightGoldenrodYellow;
                     break;
             }
         }
@@ -1259,7 +1254,27 @@ namespace CallTracker.View
 
         private void pullIPCCCallDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings.Default.PullIPCCCallData = pullIPCCCallDataToolStripMenuItem.Checked;
+            Settings.Default.PullIPCCCallData = pullIPCCCallDataToolStripMenuItem.Checked; //((ToolStripMenuItem)sender).Checked;
+        }
+
+        private void autoNewCallToolStripMenuItem1_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.AutoNewCall = autoNewCallToolStripMenuItem.Checked;
+        }
+
+        private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!CheckForIpcc())
+            {
+                monitorIPCCToolStripMenuItem.Checked = false;
+                _CallStateTime.Text = @"00:00";
+            }
+            else
+                _IPCCState.Text = String.Empty;
+
+            _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
+            //_IPCCTimer.Enabled = ((ToolStripMenuItem)sender).Checked;
+            //Settings.Default.MonitorIPCC = ((ToolStripMenuItem)sender).Checked;
         }
 
         private void clearMessagesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1334,6 +1349,7 @@ namespace CallTracker.View
         {
             _CallStateTime.ShowDropDown();
         }
+
     }
 }
 

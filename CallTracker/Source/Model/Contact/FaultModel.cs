@@ -15,7 +15,7 @@ namespace CallTracker.Model
 {
     [ImplementPropertyChanged]
     [ProtoContract]//(SkipConstructor = true)]
-    public class FaultModel
+    public partial class FaultModel
     {
         public FaultModel()
         {

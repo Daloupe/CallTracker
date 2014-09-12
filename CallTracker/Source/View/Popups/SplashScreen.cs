@@ -15,7 +15,11 @@ namespace CallTracker.View
             InitializeComponent();
             var fontCount = Program.Fonts.Families.Length;
             if (fontCount > 0)
-                Wingman.Font = new Font(Program.Fonts.Families[0], 40, FontStyle.Bold);
+            {
+                var optusFont = new Font(Program.Fonts.Families[0], 40, FontStyle.Bold);
+                Wingman.Font = optusFont;
+                WingmanBG.Font = optusFont;
+            }
             if (fontCount > 1)
                 _LoadingText.Font = new Font(Program.Fonts.Families[1], 12, FontStyle.Regular);
      

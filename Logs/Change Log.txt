@@ -33,6 +33,22 @@
 - Allow Scrolling further in service panel.
 - Events now only recompute when dirty.
 
+0.8.4.12
+(Bugs/Changes)
+| Font on stats view and splash screen
+| Colour of stats view default numbers.
+X Darkened Tips main panel background to make "Example" more readable.
+| Changed Tips Link backcolor to try make more readable.
+| Binding Not working when contacts saved without any actual contacts. Initialized Contacts before deserialization.
+| Modified ICONAutoFill to use new method WaitForAsyncPostBackToComplete() and also set focus on each drop down.
+| Added a list.Options.Count Timer to wait while list is empty.
+| Replaced WaitForBrowserBusy with WaitForAsyncPostBackToComplete() calls in Paste method.
+| Added Win-G hotkey do do an IFMSAutoFill test.
+| Updated AutomationTester table finder with a try/catch block. Also a second version which just tries to get values from selected columns, without looping through them all.
+| Updated Tab Indexes.
+| Fixed PRTemplates not re-generating when Outcome was changed.
+| Added some Troubleshooting options to the _TSPanel.
+
 0.8.3.30
 (Minor Feature)
 | Added "Advanced Mode" settings item.
@@ -71,6 +87,7 @@
 | Fixed Daily stats.
 | Improved look of Daily Stats.
 | Smoothed Servce Panel Changes.
+
 
 0.8.2.20
 (Major Features)

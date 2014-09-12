@@ -168,6 +168,12 @@ namespace AutomationTester
             ListControls(applicationTitle.Text, (ControlType)controlTypeCombo.SelectedItem);
         }
 
+        private void listWindowControlsButton2_Click(object sender, EventArgs e)
+        {
+            _log.AppendText("Getting " + applicationName.Text + " Controls with type" + controlTypeCombo.Text + Environment.NewLine);
+            ListControls2(applicationTitle.Text, (ControlType)controlTypeCombo.SelectedItem);
+        }
+
         private void listWindowControls(HotkeyPressedEventArgs e)
         {
             _log.AppendText("Getting " + applicationName.Text + " Controls with type " + controlTypeCombo.Text + Environment.NewLine);
@@ -296,10 +302,94 @@ namespace AutomationTester
                             if (gridData[headerIndex, 0] == col.Cached.Name)
                                 break;
                         }
-                        gridData[headerIndex, rowIndex] = ((ValuePattern)col.GetCachedPattern(ValuePattern.Pattern)).Current.Value;
+                        try
+                        {
+                            var value = (col.GetCachedPattern(ValuePattern.Pattern) as ValuePattern);
+                            if (value == null)
+                                continue;
+                            gridData[headerIndex, rowIndex] = value.Current.Value;;
+                        }
+                        catch (InvalidOperationException e)
+                        {
+                            _log.AppendText("Exception caught");
+                        }
                     }
                     rowIndex++;
                 }
+            }
+        }
+
+        public void ListControls2(string windowTitle, ControlType controlType)
+        {
+            var window = TestStack.White.Desktop.Instance.Windows().Find(obj => obj.Title.Contains(windowTitle));
+            if (window == null)
+            {
+                _log.AppendText("Window Not Found: " + windowTitle + Environment.NewLine);
+                return;
+            }
+
+            var controls = window.GetMultiple(SearchCriteria.ByControlType(controlType));
+            if (!controls.Any()) return;
+            _log.AppendText("<" + window.Title + ">\n");
+            foreach (var control in controls)
+            {
+                _log.AppendText("\t(" + controlType.ProgrammaticName + ")" + control.Name +
+                                "\n\t\tLocation = " + control.Bounds.Left + "," + control.Bounds.Top +
+                                "\n\t\tIsFocussed = " + control.IsFocussed + "\n");
+
+                if (!controlType.Equals(ControlType.Table)) continue;
+
+                var table = ((TestStack.White.UIItems.TableItems.Table)control).AutomationElement;
+
+                // Now it's using UI Automation
+                var headerLine = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Header));
+                var cacheRequest = new CacheRequest { AutomationElementMode = AutomationElementMode.Full, TreeScope = TreeScope.Children };
+                cacheRequest.Add(AutomationElement.NameProperty);
+                cacheRequest.Add(ValuePattern.Pattern);
+                cacheRequest.Push();
+                var gridLines = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
+                cacheRequest.Pop();
+
+                var gridData = new string[headerLine.Count, gridLines.Count + 1];
+                var headerIndex = 0;
+                foreach (AutomationElement header in headerLine)
+                {
+
+                    _log.AppendText("trying to get header");
+                    gridData[headerIndex++, 0] = header.Current.Name;
+                    _log.AppendText("\n" + header.Current.Name);
+                }
+
+                //var rowIndex = 1;
+
+                _log.AppendText(((ValuePattern)gridLines[0].CachedChildren[4].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
+                _log.AppendText(((ValuePattern)gridLines[0].CachedChildren[5].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
+                _log.AppendText(((ValuePattern)gridLines[0].CachedChildren[6].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
+                _log.AppendText(((ValuePattern)gridLines[0].CachedChildren[7].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
+                _log.AppendText(((ValuePattern)gridLines[0].CachedChildren[9].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
+                //foreach (AutomationElement row in gridLines)
+                //{
+                //    foreach (AutomationElement col in row.CachedChildren)
+                //    {
+                //        for (headerIndex = 0; headerIndex < headerLine.Count - 1; headerIndex++)
+                //        {
+                //            if (gridData[headerIndex, 0] == col.Cached.Name)
+                //                break;
+                //        }
+                //        try
+                //        {
+                //            var value = (col.GetCachedPattern(ValuePattern.Pattern) as ValuePattern);
+                //            if (value == null)
+                //                continue;
+                //            gridData[headerIndex, rowIndex] = value.Current.Value; ;
+                //        }
+                //        catch (InvalidOperationException e)
+                //        {
+                //            _log.AppendText("Exception caught");
+                //        }
+                //    }
+                //    rowIndex++;
+                //}
             }
         }
 
@@ -474,6 +564,8 @@ namespace AutomationTester
             _windowsBindingSource.RaiseListChangedEvents = true;
             _windowsBindingSource.ResetBindings(false);
         }
+
+
 
 
 

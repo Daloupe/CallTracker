@@ -155,11 +155,14 @@ namespace CallTracker.Model
             browserElement.Focus();//.FindNativeElement().SetFocus();
             if (PasteWithSendKeys)
             {
-                Clipboard.SetText(value);
-                SendKeys.Send("^(v)");
-                SendKeys.Flush();
+                browserElement.SetAttributeValue("value", "");
+                //Clipboard.SetText(value);
+                //SendKeys.Send("^(v)");
+                //SendKeys.Flush();
+                SendKeys.Send(value);
                 if (FireOnChange)
-                    HotkeyController.WaitForBrowserBusy();
+                    HotkeyController.WaitForAsyncPostBackToComplete();
+                    //HotkeyController.WaitForBrowserBusy();
             }
             else
             {
@@ -167,7 +170,8 @@ namespace CallTracker.Model
                 if (FireOnChange)
                 {
                     browserElement.FireEvent("onchange");
-                    HotkeyController.WaitForBrowserBusy();
+                    HotkeyController.WaitForAsyncPostBackToComplete();
+                    //HotkeyController.WaitForBrowserBusy();
                     //May need to tab to next item for IFMS.
                 }
                 else if (FireOnChangeNoWait)

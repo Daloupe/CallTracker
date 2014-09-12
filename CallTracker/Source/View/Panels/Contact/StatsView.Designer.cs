@@ -61,7 +61,7 @@
             this._CTalkTime = new CallTracker.View.LabelledTextBoxLong();
             this._PLogin = new CallTracker.View.LabelledTextBoxLong();
             this._DateSelect = new CallTracker.View.LabelledComboBoxLong();
-            this.label6 = new System.Windows.Forms.Label();
+            this._Title = new System.Windows.Forms.Label();
             this._StatsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -161,7 +161,7 @@
             this._PCph.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
             this._PCph.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._PCph.TFReadOnly = true;
-            this._PCph.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this._PCph.TFTextColor = System.Drawing.Color.LightSlateGray;
             this._PCph.UseActiveLabel = false;
             // 
             // bindingSource1
@@ -589,7 +589,7 @@
             this._CNotReady.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
             this._CNotReady.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CNotReady.TFReadOnly = true;
-            this._CNotReady.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this._CNotReady.TFTextColor = System.Drawing.Color.LightSlateGray;
             this._CNotReady.UseActiveLabel = false;
             // 
             // _CHeading
@@ -712,7 +712,7 @@
             this._CHold.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
             this._CHold.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CHold.TFReadOnly = true;
-            this._CHold.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this._CHold.TFTextColor = System.Drawing.Color.LightSlateGray;
             this._CHold.UseActiveLabel = false;
             // 
             // _ACHandlingTime
@@ -1046,7 +1046,7 @@
             this._CHandlingTime.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
             this._CHandlingTime.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CHandlingTime.TFReadOnly = true;
-            this._CHandlingTime.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this._CHandlingTime.TFTextColor = System.Drawing.Color.LightSlateGray;
             this._CHandlingTime.UseActiveLabel = false;
             // 
             // _PReady
@@ -1090,7 +1090,7 @@
             this._PReady.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
             this._PReady.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._PReady.TFReadOnly = true;
-            this._PReady.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this._PReady.TFTextColor = System.Drawing.Color.LightSlateGray;
             this._PReady.UseActiveLabel = false;
             // 
             // _PNotReady
@@ -1134,7 +1134,7 @@
             this._PNotReady.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
             this._PNotReady.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._PNotReady.TFReadOnly = true;
-            this._PNotReady.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this._PNotReady.TFTextColor = System.Drawing.Color.LightSlateGray;
             this._PNotReady.UseActiveLabel = false;
             // 
             // _CWrapUp
@@ -1178,7 +1178,7 @@
             this._CWrapUp.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
             this._CWrapUp.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CWrapUp.TFReadOnly = true;
-            this._CWrapUp.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this._CWrapUp.TFTextColor = System.Drawing.Color.LightSlateGray;
             this._CWrapUp.UseActiveLabel = false;
             // 
             // _PCalls
@@ -1222,7 +1222,7 @@
             this._PCalls.TFBackColor = System.Drawing.SystemColors.Window;
             this._PCalls.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._PCalls.TFReadOnly = true;
-            this._PCalls.TFTextColor = System.Drawing.SystemColors.ControlDarkDark;
+            this._PCalls.TFTextColor = System.Drawing.Color.LightSlateGray;
             this._PCalls.UseActiveLabel = false;
             // 
             // _CTalkTime
@@ -1266,7 +1266,7 @@
             this._CTalkTime.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
             this._CTalkTime.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._CTalkTime.TFReadOnly = true;
-            this._CTalkTime.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this._CTalkTime.TFTextColor = System.Drawing.Color.LightSlateGray;
             this._CTalkTime.UseActiveLabel = false;
             // 
             // _PLogin
@@ -1310,7 +1310,7 @@
             this._PLogin.TFBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(242)))));
             this._PLogin.TFCursor = System.Windows.Forms.Cursors.Arrow;
             this._PLogin.TFReadOnly = true;
-            this._PLogin.TFTextColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this._PLogin.TFTextColor = System.Drawing.Color.LightSlateGray;
             this._PLogin.UseActiveLabel = false;
             // 
             // _DateSelect
@@ -1350,17 +1350,17 @@
             this._DateSelect.Size = new System.Drawing.Size(127, 20);
             this._DateSelect.TabIndex = 35;
             // 
-            // label6
+            // _Title
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Optus Voice BETA Bold", 20F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
-            this.label6.Location = new System.Drawing.Point(415, 213);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(112, 33);
-            this.label6.TabIndex = 100;
-            this.label6.Text = "//Stats";
+            this._Title.AutoSize = true;
+            this._Title.BackColor = System.Drawing.Color.Transparent;
+            this._Title.Font = new System.Drawing.Font("Optus Voice BETA Bold", 20F, System.Drawing.FontStyle.Bold);
+            this._Title.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(198)))), ((int)(((byte)(0)))));
+            this._Title.Location = new System.Drawing.Point(415, 213);
+            this._Title.Name = "_Title";
+            this._Title.Size = new System.Drawing.Size(112, 33);
+            this._Title.TabIndex = 100;
+            this._Title.Text = "//Stats";
             // 
             // StatsView
             // 
@@ -1370,7 +1370,7 @@
             this.Controls.Add(this.nextTip);
             this.Controls.Add(this._StatsPanel);
             this.Controls.Add(this._DateSelect);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this._Title);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "StatsView";
@@ -1385,7 +1385,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label _Title;
         internal LabelledComboBoxLong _DateSelect;
         internal System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.Panel _StatsPanel;

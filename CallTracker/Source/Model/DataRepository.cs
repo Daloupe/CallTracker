@@ -346,7 +346,7 @@ namespace CallTracker.Model
         [ProtoBeforeDeserialization]
         private void Initializer()
         {
-            //DailyData = new FilterableBindingList<DailyModel>();
+            DailyData = new FilterableBindingList<DailyModel>();
         }
 
         public void ReadData()

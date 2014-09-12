@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using CallTracker.Source.Helpers.Type;
@@ -98,6 +99,7 @@ namespace CallTracker.View
                 else
                     linkPos += 1;
             }
+
             _rtf.Contents.Clear();
             WindowHelper.ResumeDrawing(panel1);
         }

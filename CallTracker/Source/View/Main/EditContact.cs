@@ -33,7 +33,7 @@ namespace CallTracker.View
 
             
             // Fault Panel Mouse Wheel Focus////////////////////////////////////////////////////////////////////
-            splitContainer2.MouseWheel += splitContainer2_MouseWheel;
+            _ServiceSplitContainer.MouseWheel += splitContainer2_MouseWheel;
 
             //_ServicePanel.MouseHover += splitContainer2_MouseEnter;
             //foreach (Control control in _ServicePanel.Controls)
@@ -106,7 +106,7 @@ namespace CallTracker.View
 
             if (customerContactsBindingSource.Count != 0) return;
 
-            flowLayoutPanel1.Enabled = false;
+            _MainPanel.Enabled = false;
             ServiceTypePanel.Enabled = false;
             FaultPanel.Enabled = false;
             _Note.Enabled = false;
@@ -191,7 +191,7 @@ namespace CallTracker.View
                 if (MainForm.SelectedContact != null)
                     MainForm.SelectedContact.NestedChange += SelectedContact_NestedChange;
 
-                flowLayoutPanel1.Enabled = true;
+                _MainPanel.Enabled = true;
                 ServiceTypePanel.Enabled = true;
                 FaultPanel.Enabled = true;
                 _Note.Enabled = true;
@@ -223,7 +223,7 @@ namespace CallTracker.View
                 MainForm.SelectedContact = null;
             }
 
-            flowLayoutPanel1.Enabled = false;
+            _MainPanel.Enabled = false;
             ServiceTypePanel.Enabled = false;
             FaultPanel.Enabled = false;
             _Note.Enabled = false;
@@ -436,13 +436,13 @@ namespace CallTracker.View
         private const int SPLITTER_1_MAX = 180;
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
         {
-            if (splitContainer1.SplitterDistance > SPLITTER_1_MAX)
-                splitContainer1.SplitterDistance = SPLITTER_1_MAX;
+            if (_FaultSplitContainer.SplitterDistance > SPLITTER_1_MAX)
+                _FaultSplitContainer.SplitterDistance = SPLITTER_1_MAX;
         }
 
         private void splitContainer1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int dist = splitContainer1.SplitterDistance;
+            int dist = _FaultSplitContainer.SplitterDistance;
 
             if (dist == SPLITTER_1_MAX)
                 dist = SPLITTER_1_MIN;
@@ -453,7 +453,7 @@ namespace CallTracker.View
             else
                 dist = SPLITTER_1_MAX;
 
-            splitContainer1.SplitterDistance = dist;
+            _FaultSplitContainer.SplitterDistance = dist;
         }
 
         private static readonly List<int> SplitterRows = new List<int> { 0, 25, 55, 84, 114, 144, 164};// 153, 122, 99, 67, 35, 0};
@@ -461,15 +461,15 @@ namespace CallTracker.View
         private const int SPLITTER_2_MAX = 164;
         private void splitContainer2_SplitterMoved(object sender, SplitterEventArgs e)
         {
-            if (splitContainer2.SplitterDistance > SPLITTER_2_MAX)
-                splitContainer2.SplitterDistance = SPLITTER_2_MAX;
-            else if (splitContainer2.SplitterDistance < SPLITTER_2_MIN)
-                splitContainer2.SplitterDistance = SPLITTER_2_MIN;
+            if (_ServiceSplitContainer.SplitterDistance > SPLITTER_2_MAX)
+                _ServiceSplitContainer.SplitterDistance = SPLITTER_2_MAX;
+            else if (_ServiceSplitContainer.SplitterDistance < SPLITTER_2_MIN)
+                _ServiceSplitContainer.SplitterDistance = SPLITTER_2_MIN;
         }
 
         private void splitContainer2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int dist = splitContainer2.SplitterDistance;
+            int dist = _ServiceSplitContainer.SplitterDistance;
 
             if (dist == SPLITTER_2_MAX)
                 dist = SPLITTER_2_MIN;
@@ -480,25 +480,25 @@ namespace CallTracker.View
             else
                 dist = SPLITTER_2_MAX;
 
-            splitContainer2.SplitterDistance = dist;
+            _ServiceSplitContainer.SplitterDistance = dist;
         }
 
         void splitContainer2_MouseWheel(object sender, MouseEventArgs e)
         {
            
-            int dist = splitContainer2.SplitterDistance;
+            int dist = _ServiceSplitContainer.SplitterDistance;
 
             if (e.Delta > 0)
             {
                 int newNeg = SplitterRows.Where(item => dist < item).OrderBy(item => Math.Abs(item - dist)).FirstOrDefault();
                 if (newNeg > dist)
-                    splitContainer2.SplitterDistance = newNeg;
+                    _ServiceSplitContainer.SplitterDistance = newNeg;
             }
             else
             {
                 int newNeg = SplitterRows.Where(item => dist > item).OrderBy(item => Math.Abs(item - dist)).FirstOrDefault();
                 if (newNeg < dist)
-                    splitContainer2.SplitterDistance = newNeg;
+                    _ServiceSplitContainer.SplitterDistance = newNeg;
             }
         }
 
@@ -521,17 +521,17 @@ namespace CallTracker.View
             //_OutcomeTooltip.SetToolTip(_Outcome._ComboBox, Main.ServicesStore.servicesDataSet.Outcomes.First(x => x.Acronym == _Outcome._ComboBox.Text).Description);
             if (MainForm.SelectedContact == null) return;
             UpdateActions();
+
             if (MainForm.SelectedContact.Fault.Outcome == "Outage")
             {
                 _updateNote = false;
 
                 MainForm.SelectedContact.Booking.Type = BookingType.NRQ.ToString();
-
                 MainForm.SelectedContact.UpdatePrTemplateReplacements(PRGenerators.AROAnswers);
 
-                if (((ToolStripMenuItem)_NoteContextMenuStrip.Items["pRTemplateToolStripMenuItem"]).Checked)
-                    _Note.DataBindings[0].ReadValue();
-
+                if (((ToolStripMenuItem) _NoteContextMenuStrip.Items["pRTemplateToolStripMenuItem"]).Checked)
+                    MainForm.SelectedContact.ForceGeneratePRTemplateRtf();
+                //_Note.DataBindings[0].ReadValue();
                 _updateNote = true;
             }
             else
@@ -539,9 +539,10 @@ namespace CallTracker.View
                 MainForm.SelectedContact.ClearPrTemplateReplacements();
 
                 if (((ToolStripMenuItem)_NoteContextMenuStrip.Items["pRTemplateToolStripMenuItem"]).Checked)
-                    _Note.DataBindings[0].ReadValue();
+                    MainForm.SelectedContact.ForceGeneratePRTemplateRtf();
+                    //_Note.DataBindings[0].ReadValue();
             }
-            
+            //ValidateChildren(ValidationConstraints.Visible);//.ValidateChildren();//.ReadValue();
         }
 
 

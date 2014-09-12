@@ -56,6 +56,7 @@ namespace CallTracker.Model
         private void PreDes()
         {
             NameSplit = new NameModel();
+            Address = new ContactAddress();
             PRTemplateReplacements = new List<PRTemplateModel>();
         }
 
@@ -262,6 +263,12 @@ namespace CallTracker.Model
 
                 return _prTemplateRtf;
             }
+            set { _prTemplateRtf = value; }
+        }
+
+        public void ForceGeneratePRTemplateRtf()
+        {
+            PRTemplateRtf = PRGenerators.Generate(this, PRTemplateReplacements);
         }
 
         protected List<PRTemplateModel> PRTemplateReplacements;// = new List<PRTemplateModel>();

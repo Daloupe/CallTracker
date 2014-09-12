@@ -32,6 +32,10 @@ namespace CallTracker.View
         {
             InitializeComponent();
 
+            var fontCount = Program.Fonts.Families.Length;
+            if (fontCount > 0)
+                _Title.Font = new Font(Program.Fonts.Families[0], 40, FontStyle.Bold);
+
             _phoneTotals = new StatSection(this, _PHeading, new List<LabelledTextBoxLong> {_PLogin, _PReady, _PNotReady, _PCph, _PCalls});
 
             _averages = new StatSection(this, _AHeading, new List<LabelledTextBoxLong> {_AReady, _APNotReady, _APHandlingTime,_ACNotReady, _ACHandlingTime, _ACTalkTime, _ACWrapUp, _ACHold});
@@ -174,34 +178,34 @@ namespace CallTracker.View
 
         public class StatSection
         {
-            private List<LabelledTextBoxLong> Controls;
-            private LabelledHeading Heading;
+            private readonly List<LabelledTextBoxLong> _controls;
+            private readonly LabelledHeading _heading;
             //private LabelledHeading ClickMap;
-            private bool Active;
+            private bool _active;
             private bool _highlighted;
 
             private readonly StatsView _parentView;
 
             public StatSection(StatsView parentView, LabelledHeading heading, List<LabelledTextBoxLong> controls)
             {
-                Controls = controls;
-                foreach (var control in Controls)
+                _controls = controls;
+                foreach (var control in _controls)
                 {
                     control.LabelClick += Section_Click;
                     control.LabelMouseEnter += _Control_MouseEnter;
                     control.LabelMouseLeave += _Control_MouseLeave;
                 }
 
-                Heading = heading;
-                Heading.LabelClick += Section_Click;
-                Heading.LabelMouseEnter += _Control_MouseEnter;
-                Heading.LabelMouseLeave += _Control_MouseLeave;
+                _heading = heading;
+                _heading.LabelClick += Section_Click;
+                _heading.LabelMouseEnter += _Control_MouseEnter;
+                _heading.LabelMouseLeave += _Control_MouseLeave;
 
                 //ClickMap = clickMap;
                 //ClickMap.LabelClick += Section_Click;
                 //ClickMap.MouseEnter += _Control_MouseEnter;
 
-                Active = false;
+                _active = false;
                 _highlighted = false;
 
                 _parentView = parentView;
@@ -224,12 +228,12 @@ namespace CallTracker.View
 
             public void Highlight()
             {
-                if (Active || _highlighted) return;
-                Heading.BackColor = Color.FromArgb(67, 130, 134);
+                if (_active || _highlighted) return;
+                _heading.BackColor = Color.FromArgb(67, 130, 134);
                 //Heading.LabelMouseEnter -= _Control_MouseEnter;
                 //Heading.LabelMouseLeave += _Control_MouseLeave;
 
-                foreach (var control in Controls)
+                foreach (var control in _controls)
                 {
                     control.BackColor = Color.FromArgb(67, 130, 134);
                     //control.LabelMouseEnter -= _Control_MouseEnter;
@@ -243,12 +247,12 @@ namespace CallTracker.View
 
             public void Unhighlight()
             {
-                var color = Active ? Color.DarkSlateGray : Color.FromArgb(83, 173, 179);
-                Heading.BackColor = color;
+                var color = _active ? Color.DarkSlateGray : Color.FromArgb(83, 173, 179);
+                _heading.BackColor = color;
                 //Heading.LabelMouseEnter += _Control_MouseEnter;
                 //Heading.LabelMouseLeave -= _Control_MouseLeave;
 
-                foreach (var control in Controls)
+                foreach (var control in _controls)
                 {
                     control.BackColor = color;
                     //control.LabelMouseEnter += _Control_MouseEnter;
@@ -262,12 +266,12 @@ namespace CallTracker.View
 
             public void Select()
             {
-                if (Active) return;
+                if (_active) return;
 
-                Heading.BackColor = Color.DarkSlateGray;
+                _heading.BackColor = Color.DarkSlateGray;
                 //Heading.LabelClick -= Section_Click;
 
-                foreach (var control in Controls)
+                foreach (var control in _controls)
                 {
                     control.TFBackColor = Color.White;
                     control.TFTextColor = Color.Black;
@@ -278,15 +282,15 @@ namespace CallTracker.View
                 }
 
                 //ClickMap.LabelClick -= Section_Click;
-                Active = true;
+                _active = true;
             }
 
             public void Deselect()
             {
-                Heading.BackColor = Color.FromArgb(83, 173, 179);
+                _heading.BackColor = Color.FromArgb(83, 173, 179);
                 //Heading.LabelClick += Section_Click;
 
-                foreach (var control in Controls)
+                foreach (var control in _controls)
                 {
                     control.TFBackColor = Color.FromArgb(236, 240, 242);
                     control.TFTextColor = Color.LightSlateGray;
@@ -297,7 +301,7 @@ namespace CallTracker.View
                 }
 
                 //ClickMap.LabelClick += Section_Click;
-                Active = false;
+                _active = false;
             }
         }
     }

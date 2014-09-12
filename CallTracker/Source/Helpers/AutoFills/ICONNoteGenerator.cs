@@ -148,6 +148,11 @@ namespace CallTracker.Helpers
             NoteItems.Add(new NoteItemBool("IDok", "- ID ok."));
             NoteItems.Add(new NoteItemAcronym("Fault.Symptom", "- Customer is experiencing {0}.", ds.Symptoms.ToDictionary(x => x.IFMSCode, x => x.Description)));
             NoteItems.Add(new NoteItemHeading(@"\cf1 Action\cf0 ", "{0}:"));
+            NoteItems.Add(new NoteItemBool("Fault.Powercycled", "- Powercycled."));
+            NoteItems.Add(new NoteItemBool("Fault.FactoryReset", "- Factory Reset."));
+            NoteItems.Add(new NoteItemBool("Fault.CheckedCables", "- Checked Cables."));
+            NoteItems.Add(new NoteItemBool("Fault.CheckedNodeForOfflines", "- Checked Node in SCAMPS for offlines."));
+            NoteItems.Add(new NoteItemBool("Fault.ChangedWiFiChannel", "- Changed WiFi Channel."));
             NoteItems.Add(new NoteItemString("Service.ModemStatus", "- Modem is {0}."));
             NoteItems.Add(new NoteItemBool("Service.RFIssues", "- Systems show RF Issues."));
             NoteItems.Add(new NoteItemString("Service.DownloadSpeed", "- Speed test shows download speed of {0}mbps."));
