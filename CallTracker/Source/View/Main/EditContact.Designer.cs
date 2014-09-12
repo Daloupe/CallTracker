@@ -222,7 +222,7 @@
             this._FaultSplitContainer.Panel2.Padding = new System.Windows.Forms.Padding(1);
             this._FaultSplitContainer.Panel2MinSize = 0;
             this._FaultSplitContainer.Size = new System.Drawing.Size(275, 216);
-            this._FaultSplitContainer.SplitterDistance = 179;
+            this._FaultSplitContainer.SplitterDistance = 180;
             this._FaultSplitContainer.SplitterWidth = 6;
             this._FaultSplitContainer.TabIndex = 300;
             this._FaultSplitContainer.TabStop = false;
@@ -252,7 +252,7 @@
             this._ServiceSplitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this._ServiceSplitContainer.Panel2MinSize = 0;
             this._ServiceSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this._ServiceSplitContainer.Size = new System.Drawing.Size(179, 214);
+            this._ServiceSplitContainer.Size = new System.Drawing.Size(180, 214);
             this._ServiceSplitContainer.SplitterDistance = 84;
             this._ServiceSplitContainer.TabIndex = 301;
             this._ServiceSplitContainer.TabStop = false;
@@ -276,7 +276,7 @@
             this.HfcPanel.Location = new System.Drawing.Point(0, -107);
             this.HfcPanel.Margin = new System.Windows.Forms.Padding(0);
             this.HfcPanel.Name = "HfcPanel";
-            this.HfcPanel.Size = new System.Drawing.Size(179, 191);
+            this.HfcPanel.Size = new System.Drawing.Size(180, 191);
             this.HfcPanel.TabIndex = 206;
             // 
             // _Symptom
@@ -401,8 +401,8 @@
             this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DateField = new System.DateTime(2014, 9, 8, 0, 0, 0, 0);
-            this._BookingDate.DateText = "08/09";
+            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 0, 0, 0, 0);
+            this._BookingDate.DateText = "09/08";
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingDate.HasContextMenu = false;
             this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -641,7 +641,7 @@
             this._ServicePanel.Margin = new System.Windows.Forms.Padding(0);
             this._ServicePanel.Name = "_ServicePanel";
             this._ServicePanel.Padding = new System.Windows.Forms.Padding(3);
-            this._ServicePanel.Size = new System.Drawing.Size(179, 211);
+            this._ServicePanel.Size = new System.Drawing.Size(180, 211);
             this._ServicePanel.TabIndex = 18;
             // 
             // flowLayoutPanel2

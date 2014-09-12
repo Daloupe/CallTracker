@@ -146,26 +146,28 @@ namespace CallTracker.Helpers
                 new AltNote("Booking.Type", "CM", "- Case Management callback has been organized for {0}")
             };
 
-            NoteItems = new List<NoteItem>();
-            NoteItems.Add(new NoteItemHeading(@"\cf1 Situation\cf0 ", "{0}:"));
-            NoteItems.Add(new NoteItemString("Name", "- Spoke with {0}."));
-            NoteItems.Add(new NoteItemBool("IDok", "- ID ok."));
-            NoteItems.Add(new NoteItemAcronym("Fault.Symptom", "- Customer is experiencing {0}.", ds.Symptoms.ToDictionary(x => x.IFMSCode, x => x.Description)));
-            NoteItems.Add(new NoteItemHeading(@"\cf1 Action\cf0 ", "{0}:"));
-            NoteItems.Add(new NoteItemBool("Fault.Powercycled", "- Powercycled."));
-            NoteItems.Add(new NoteItemBool("Fault.FactoryReset", "- Factory Reset."));
-            NoteItems.Add(new NoteItemBool("Fault.CheckedCables", "- Checked Cables."));
-            NoteItems.Add(new NoteItemBool("Fault.CheckedNodeForOfflines", "- Checked Node in SCAMPS for offlines."));
-            NoteItems.Add(new NoteItemBool("Fault.ChangedWiFiChannel", "- Changed WiFi Channel."));
-            NoteItems.Add(new NoteItemString("Service.ModemStatus", "- Modem is {0}."));
-            NoteItems.Add(new NoteItemBool("Service.RFIssues", "- Systems show RF Issues."));
-            NoteItems.Add(new NoteItemString("Service.DownloadSpeed", "- Speed test shows download speed of {0}mbps."));
-            NoteItems.Add(new NoteItemString("Service.Throttled", "- Service is currently throttled."));
-            NoteItems.Add(new NoteItemString("Service.DTVMsg", "- Customer is seeing error message: {0}."));
-            NoteItems.Add(new NoteItemString("Fault.NPR", "- Area Outage PR#{0} is currently open."));
-            NoteItems.Add(new NoteItemHeading(@"\cf1 Outcome\cf0 ", "{0}:"));
-            NoteItems.Add(new NoteItemString("Fault.PR", "- PR#{0} has been raised."));
-            NoteItems.Add(new AltNoteItemString("Booking.GetDate", PRAltNotes));
+            NoteItems = new List<NoteItem>
+            {
+                new NoteItemHeading(@"\cf1 Situation\cf0 ", "{0}:"),
+                new NoteItemString("Name", "- Spoke with {0}."),
+                new NoteItemBool("IDok", "- ID ok."),
+                new NoteItemAcronym("Fault.Symptom", "- Customer is experiencing {0}.", ds.Symptoms.ToDictionary(x => x.IFMSCode, x => x.Description)),
+                new NoteItemHeading(@"\cf1 Action\cf0 ", "{0}:"),
+                new NoteItemBool("Fault.Powercycled", "- Powercycled."),
+                new NoteItemBool("Fault.FactoryReset", "- Factory Reset."),
+                new NoteItemBool("Fault.CheckedCables", "- Checked Cables."),
+                new NoteItemBool("Fault.CheckedNodeForOfflines", "- Checked Node in SCAMPS for offlines."),
+                new NoteItemBool("Fault.ChangedWiFiChannel", "- Changed WiFi Channel."),
+                new NoteItemString("Service.ModemStatus", "- Modem is {0}."),
+                new NoteItemBool("Service.RFIssues", "- Systems show RF Issues."),
+                new NoteItemString("Service.DownloadSpeed", "- Speed test shows download speed of {0}mbps."),
+                new NoteItemString("Service.Throttled", "- Service is currently throttled."),
+                new NoteItemString("Service.DTVMsg", "- Customer is seeing error message: {0}."),
+                new NoteItemString("Fault.NPR", "- Area Outage PR#{0} is currently open."),
+                new NoteItemHeading(@"\cf1 Outcome\cf0 ", "{0}:"),
+                new NoteItemString("Fault.PR", "- PR#{0} has been raised."),
+                new AltNoteItemString("Booking.GetDate", PRAltNotes)
+            };
         }
 
         //public void OnContactChange(object sender, EventArgs args)
