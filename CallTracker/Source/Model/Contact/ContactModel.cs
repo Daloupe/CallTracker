@@ -420,14 +420,6 @@ namespace CallTracker.Model
                                 false,
                                 "DN");
 
-                        //if (!Service.WasSearched["SCAMPSDN"])
-                        //    HotkeyController.AutoSearch(
-                        //        "https://www.google.com.au/" + DN,
-                        //        "SCAMPS",
-                        //        "https://www.google.com.au",
-                        //        false,
-                        //        "DN");
-
                         if (!Service.WasSearched["DIMPSDN"])
                             HotkeyController.AutoSearch(
                                 "https://dimps.optusnet.com.au/search/servno?servno=" + DN, 
@@ -543,14 +535,6 @@ namespace CallTracker.Model
                         "https://scamps.optusnet.com.au",
                         false,
                         "Username");
-
-                //if (!Service.WasSearched["SCAMPSUsername"])
-                //    HotkeyController.AutoSearch(
-                //        "https://www.google.com.au/" + Username,
-                //        "SCAMPS",
-                //        "https://www.google.com.au/",
-                //        false,
-                //        "Username");
 
                 if (!Service.WasSearched["DIMPSUsername"])
                     HotkeyController.AutoSearch(

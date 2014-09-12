@@ -54,6 +54,7 @@
             this.toolStripSeparator5 = new CTToolStripSeparator();
             this.monitorIPCCToolStripMenuItem = new CTToolStripMenuItem();
             this.pullIPCCCallDataToolStripMenuItem = new CTToolStripMenuItem();
+            this.autoNewCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuPanel = new System.Windows.Forms.Panel();
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new CTToolStripMenuItem();
@@ -140,7 +141,6 @@
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.autoNewCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -295,8 +295,8 @@
             this.logOutToolStripMenuItem,
             this.toolStripSeparator5,
             this.monitorIPCCToolStripMenuItem,
-            this.pullIPCCCallDataToolStripMenuItem,
-            this.autoNewCallToolStripMenuItem});
+            this.autoNewCallToolStripMenuItem,
+            this.pullIPCCCallDataToolStripMenuItem});
             this._CallStateTime.Font = new System.Drawing.Font("Verdana", 7F);
             this._CallStateTime.ForeColor = System.Drawing.Color.DarkSlateGray;
             this._CallStateTime.Margin = new System.Windows.Forms.Padding(1, 2, 1, 1);
@@ -424,6 +424,14 @@
             this.pullIPCCCallDataToolStripMenuItem.Tag = "Protected";
             this.pullIPCCCallDataToolStripMenuItem.Text = "Pull IPCC Call Data";
             this.pullIPCCCallDataToolStripMenuItem.CheckedChanged += new System.EventHandler(this.pullIPCCCallDataToolStripMenuItem_Click);
+            // 
+            // autoNewCallToolStripMenuItem
+            // 
+            this.autoNewCallToolStripMenuItem.Name = "autoNewCallToolStripMenuItem";
+            this.autoNewCallToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.autoNewCallToolStripMenuItem.Tag = "Protected";
+            this.autoNewCallToolStripMenuItem.Text = "Auto New Call";
+            this.autoNewCallToolStripMenuItem.CheckedChanged += new System.EventHandler(this.autoNewCallToolStripMenuItem1_CheckedChanged);
             // 
             // MenuPanel
             // 
@@ -1195,14 +1203,6 @@
             // _DailyDataBindingSource
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
-            // 
-            // autoNewCallToolStripMenuItem
-            // 
-            this.autoNewCallToolStripMenuItem.Name = "autoNewCallToolStripMenuItem";
-            this.autoNewCallToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.autoNewCallToolStripMenuItem.Tag = "Protected";
-            this.autoNewCallToolStripMenuItem.Text = "Auto New Call";
-            this.autoNewCallToolStripMenuItem.CheckedChanged += new System.EventHandler(this.autoNewCallToolStripMenuItem1_CheckedChanged);
             // 
             // Main
             // 

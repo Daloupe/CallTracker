@@ -887,7 +887,6 @@ namespace CallTracker.Helpers
             {
                 case "SCAMPS":
                     _scampsSearching = dataType;
-                    //toBrowser = _scampsBrowser;
                     if (_scampsTimer != null)
                         _scampsTimer.Stop();
                     else
@@ -897,7 +896,14 @@ namespace CallTracker.Helpers
                     }
                     break;
                 case "DIMPS":
-                    //toBrowser = browser;
+                    _dimpsSearching = dataType;
+                    if (_dimpsTimer != null)
+                        _dimpsTimer.Stop();
+                    else
+                    {
+                        _dimpsTimer = new System.Timers.Timer(1000) { SynchronizingObject = parent };
+                        _dimpsTimer.Elapsed += dimpsTimerElapsed;
+                    }
                     break;
                 default:
                     //toBrowser = browser;
@@ -938,8 +944,9 @@ namespace CallTracker.Helpers
                         _scampsTimer.Start();
                         break;
                     case "DIMPS":
-                        if (browser != null)
-                            browser.Dispose();
+                        _dimpsBrowser = browser;
+                        _dimpsSearchStarted = DateTime.Now;
+                        _dimpsTimer.Start();
                         break;
                     default:
                         if (browser != null)
@@ -990,7 +997,6 @@ namespace CallTracker.Helpers
 
         private static void scampsTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            Console.WriteLine("searchgin scamps");
             if ((e.SignalTime - _scampsSearchStarted).TotalSeconds > 5)
             {
                 if (_scampsBrowser != null)
@@ -1019,9 +1025,13 @@ namespace CallTracker.Helpers
                 switch (_scampsSearching)
                 {
                     case "DN":
+                        if (parent.SelectedContact.Service.WasSearched["DIMPSDN"])
+                            parent.SelectedContact.Fault.NFV = true;
                         parent.SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
                         break;
                     case "Username":
+                        if (parent.SelectedContact.Service.WasSearched["DIMPSUsername"])
+                            parent.SelectedContact.Fault.NBF = true;
                         parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true;
                         break;
                 }
@@ -1046,6 +1056,72 @@ namespace CallTracker.Helpers
             _scampsTimer.Dispose();
             _scampsTimer = null;
             _scampsSearching = string.Empty;
+        }
+
+        private static System.Timers.Timer _dimpsTimer;
+        private static IE _dimpsBrowser;
+        private static string _dimpsSearching;
+        private static DateTime _dimpsSearchStarted;
+
+        private static void dimpsTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            if ((e.SignalTime - _dimpsSearchStarted).TotalSeconds > 5)
+            {
+                if (_dimpsBrowser != null)
+                {
+                    _dimpsBrowser.Dispose();
+                    _dimpsBrowser = null;
+                }
+                _dimpsTimer.Dispose();
+                _dimpsTimer = null;
+                _dimpsSearching = string.Empty;
+                parent.SelectedContact.Service.WasSearched["DIMPSDN"] = true;
+                parent.SelectedContact.Service.WasSearched["DIMPSUsername"] = true;
+                return;
+            }
+
+            if (_dimpsBrowser == null)
+            {
+                FindIEByUrl("https://dimps.optusnet.com.au", ref _dimpsBrowser);
+                if (_dimpsBrowser == null)
+                    return;
+            }
+            var ieBrowser = ((IWebBrowser2)(_dimpsBrowser.InternetExplorer));
+            if (ieBrowser.Busy) return;
+            if (_dimpsBrowser.Title.Contains("Message"))
+            {
+                switch (_dimpsSearching)
+                {
+                    case "DN":
+                        parent.SelectedContact.Service.WasSearched["DIMPSDN"] = true;
+                        break;
+                    case "Username":
+                        parent.SelectedContact.Service.WasSearched["DIMPSUsername"] = true;
+                        break;
+                }
+            }
+            else
+            {
+                switch (_dimpsSearching)
+                {
+                    case "DN":
+                        if (parent.SelectedContact.Service.WasSearched["SCAMPSDN"] && parent.SelectedContact.Fault.AffectedServiceType.IsNot(ServiceTypes.LIP))
+                            parent.SelectedContact.Fault.NFV = true;
+                        break;
+                    case "Username":
+                        if (parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] && parent.SelectedContact.Fault.AffectedServiceType.IsNot(ServiceTypes.ONC))
+                            parent.SelectedContact.Fault.NBF = true;
+                        break;
+                }
+                parent.SelectedContact.Service.WasSearched["DIMPSDN"] = true;
+                parent.SelectedContact.Service.WasSearched["DIMPSUsername"] = true;
+            }
+
+            _dimpsBrowser.Dispose();
+            _dimpsBrowser = null;
+            _dimpsTimer.Dispose();
+            _dimpsTimer = null;
+            _dimpsSearching = string.Empty;
         }
     }
 

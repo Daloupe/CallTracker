@@ -29,11 +29,10 @@
 - Confirmed Bras, NTDSN, AddressId, GSID, and ESN Regexes.
 - IPCC menu not drawing back color.
 - ICON Tier4 linked to Action rather than Outcome.
-- Removing bookmarks and systems not working.
 - Allow Scrolling further in service panel.
 - Events now only recompute when dirty.
 
-0.8.4.13
+0.8.4.14
 (Bugs/Changes)
 | Font on stats view and splash screen
 | Colour of stats view default numbers.
@@ -49,6 +48,7 @@ X Darkened Tips main panel background to make "Example" more readable.
 | Fixed PRTemplates not re-generating when Outcome was changed.
 | Added some Troubleshooting options to the _TSPanel.
 | Fixed abilty to delete Bookmarks and Systems.
+| Added basic DIMPS autosearch logic.
 
 0.8.3.30
 (Minor Feature)
