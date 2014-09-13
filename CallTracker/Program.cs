@@ -33,6 +33,10 @@ namespace CallTracker
                     if (File.Exists("Data\\Fonts\\trade-gothic-lt-1361519976.ttf"))
                         Fonts.AddFontFile("Data\\Fonts\\trade-gothic-lt-1361519976.ttf");
 
+                    using (var file = new StreamReader(@".\Change Log.txt"))
+                    {
+                        Properties.Settings.Default.Version = file.ReadLine();
+                    }
                     var splash = new SplashScreen();
                     //Splash._Version.Text = "Version " + Properties.Settings.Default.Version;
                     splash.Show();

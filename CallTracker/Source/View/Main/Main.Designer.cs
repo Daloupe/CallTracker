@@ -144,6 +144,7 @@
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.changeLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -467,6 +468,7 @@
             this.didYouKnowToolStripMenuItem,
             this.toolStripSeparator9,
             this.reportBugToolStripMenuItem,
+            this.changeLogToolStripMenuItem,
             this.aboutToolStripMenuItem,
             this.ctToolStripSeparator1,
             this.saveLogToolStripMenuItem});
@@ -1239,6 +1241,13 @@
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
             // 
+            // changeLogToolStripMenuItem
+            // 
+            this.changeLogToolStripMenuItem.Name = "changeLogToolStripMenuItem";
+            this.changeLogToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.changeLogToolStripMenuItem.Text = "Change Log";
+            this.changeLogToolStripMenuItem.Click += new System.EventHandler(this.changeLogToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1390,5 +1399,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem autoNewCallToolStripMenuItem;
         private CTToolStripMenuItem pullIPCCCallDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem changeLogToolStripMenuItem;
     }
 }

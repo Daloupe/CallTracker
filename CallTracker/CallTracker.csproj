@@ -128,6 +128,9 @@
     <None Include="Resources\bindingnavigatordeleteitem.image1.png" />
     <None Include="Resources\TipExampleClose.png" />
     <None Include="Resources\Bug.png" />
+    <Content Include="Change Log.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="ThingsToCheck.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

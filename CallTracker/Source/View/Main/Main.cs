@@ -727,10 +727,41 @@ namespace CallTracker.View
             Process.Start(@".\Log.txt");
         }
 
+
+        private void changeLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start(@".\Change Log.txt");
+        }
+
         private void _IPCCState_Click(object sender, EventArgs e)
         {
             _CallStateTime.ShowDropDown();
         }
+
+        //private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        //{
+
+        //}
+
+        //private void enableIPCCMonitorOnStartupToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void autoNewCallToolStripMenuItem1_CheckedChanged(object sender, EventArgs e)
+        //{
+
+        //}
+
+        //private void pullIPCCCallDataToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+
+        //}
 
     }
 }
