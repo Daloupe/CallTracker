@@ -361,12 +361,55 @@ namespace AutomationTester
                 }
 
                 //var rowIndex = 1;
+                _log.AppendText(Environment.NewLine + gridLines[0].CachedChildren.Count);
 
-                _log.AppendText(((ValuePattern)gridLines[0].CachedChildren[4].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
-                _log.AppendText(((ValuePattern)gridLines[0].CachedChildren[5].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
-                _log.AppendText(((ValuePattern)gridLines[0].CachedChildren[6].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
-                _log.AppendText(((ValuePattern)gridLines[0].CachedChildren[7].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
-                _log.AppendText(((ValuePattern)gridLines[0].CachedChildren[9].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
+                try
+                {
+                    object cachedPattern;
+                    gridLines[0].CachedChildren[4].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+                    _log.AppendText("\n cachedPattern is null: " + (cachedPattern == null));
+                    if(cachedPattern != null)
+                        _log.AppendText("\n " + ((ValuePattern)cachedPattern).Current.Value);
+
+                    cachedPattern = null;
+                    gridLines[0].CachedChildren[5].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+                    _log.AppendText("\n cachedPattern is null: " + (cachedPattern == null));
+                    if(cachedPattern != null)
+                        _log.AppendText("\n " + ((ValuePattern)cachedPattern).Current.Value);
+                    
+                    cachedPattern = null;
+                    gridLines[0].CachedChildren[6].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+                    _log.AppendText("\n cachedPattern is null: " + (cachedPattern == null));
+                    if(cachedPattern != null)
+                        _log.AppendText("\n " + ((ValuePattern)cachedPattern).Current.Value);
+                    
+                    cachedPattern = null;
+                    gridLines[0].CachedChildren[7].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+                    _log.AppendText("\n cachedPattern is null: " + (cachedPattern == null));
+                    if(cachedPattern != null)
+                        _log.AppendText("\n " + ((ValuePattern)cachedPattern).Current.Value);
+
+                    //cachedPattern = null;
+                    gridLines[0].CachedChildren[8].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+                    _log.AppendText("\n cachedPattern is null: " + (cachedPattern == null));
+                    if (cachedPattern != null)
+                        _log.AppendText("\n " + ((ValuePattern)cachedPattern).Current.Value);
+
+                    cachedPattern = null;
+                    gridLines[0].CachedChildren[9].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+                    _log.AppendText("\n cachedPattern is null: " + (cachedPattern == null));
+                    if(cachedPattern != null)
+                        _log.AppendText("\n " + ((ValuePattern)cachedPattern).Current.Value);
+                    //_log.AppendText(((ValuePattern)gridLines[0].CachedChildren[5].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
+                    //_log.AppendText(((ValuePattern)gridLines[0].CachedChildren[6].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
+                    //_log.AppendText(((ValuePattern)gridLines[0].CachedChildren[7].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
+                    //_log.AppendText(((ValuePattern)gridLines[0].CachedChildren[9].GetCachedPattern(ValuePattern.Pattern)).Current.Value);
+                }
+                catch (Exception e)
+                {
+                   _log.AppendText("\n Exception Caught: " + e.Message);
+                }
+                
                 //foreach (AutomationElement row in gridLines)
                 //{
                 //    foreach (AutomationElement col in row.CachedChildren)

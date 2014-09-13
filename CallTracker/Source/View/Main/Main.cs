@@ -475,7 +475,7 @@ namespace CallTracker.View
         private TestStack.White.UIItems.Button _ipccDialButton;
         private TestStack.White.UIItems.Button _ipccTransferButton;
 
-        //private AutomationElement _ipccCallDataTable;
+        private AutomationElement _ipccCallDataTable;
         //private string[,] _gridData;
 
         private UIItemContainer _ipccDialWindow;
@@ -527,6 +527,7 @@ namespace CallTracker.View
             _ipccCallStatus = _ipccWindow.Get<TestStack.White.UIItems.TextBox>(SearchCriteria.ByAutomationId("StatusBar.Pane3"));
 
             //InitIPCCCallDataGrid();
+            _ipccCallDataTable = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid")).AutomationElement;
 
             _ipccDialWindow = null;
             _ipccDialNumberComboBox = null;
@@ -729,7 +730,7 @@ namespace CallTracker.View
                         IPCCLevel("amber");
 
                         if(Settings.Default.PullIPCCCallData)
-                            GetIPCCCallData();
+                            PullIPCCCallData();
 
                         if (CurrentContact != null)
                             CurrentContact.AddCallEvent(CallEventTypes.Talking);
@@ -816,141 +817,226 @@ namespace CallTracker.View
             dailyData.AddCallEvent(CallEventTypes.LogOut);
         }
 
-        private void GetIPCCCallData()
+        private void PullIPCCCallData()
         {
-            var table = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid")).AutomationElement;
+            if (SelectedContact == null) return;
 
-            var headerLine = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Header));
             var cacheRequest = new CacheRequest { AutomationElementMode = AutomationElementMode.Full, TreeScope = TreeScope.Children };
             cacheRequest.Add(AutomationElement.NameProperty);
             cacheRequest.Add(ValuePattern.Pattern);
             cacheRequest.Push();
-            var gridLines = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
+            var gridLines = _ipccCallDataTable.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
             cacheRequest.Pop();
 
-            var gridData = new string[headerLine.Count, gridLines.Count + 1];
-
-            var headerIndex = 0;
-            foreach (AutomationElement header in headerLine)
+            object cachedPattern;
+            string value;
+            gridLines[0].CachedChildren[7].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+            if (cachedPattern != null)
             {
-                gridData[headerIndex++, 0] = header.Current.Name;
+                value = ((ValuePattern) cachedPattern).Current.Value;
+                if (value.Contains("LAT"))
+                {
+                    SelectedContact.Fault.LAT = true;
+                    SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
+                    SelectedContact.Service.WasSearched["DIMPSDN"] = true;
+                }
+                else if (value.Contains("LIP"))
+                {
+                    SelectedContact.Fault.LIP = true;
+                }
+                else if (value.Contains("ONC"))
+                {
+                    SelectedContact.Fault.ONC = true;
+                }
+                else if (value.Contains("DTV"))
+                {
+                    SelectedContact.Fault.DTV = true;
+                }
+                else if (value.Contains("MTV"))
+                {
+                    SelectedContact.Fault.MTV = true;
+                }
+                else if (value.Contains("NBN"))
+                {
+                    //SelectedContact.Fault.LAT = true;
+                }
+
+                if (value.Length > 8)
+                {
+                    var substring = value.Substring(value.Length - 8, 8);
+                    if (substring.IsDigits())
+                        SelectedContact.Fault.PR = substring;
+                }
             }
 
-            //var rowIndex = 1;
-            //foreach (AutomationElement row in gridLines)
-            //{
-            foreach (AutomationElement col in gridLines[1].CachedChildren)
+            gridLines[0].CachedChildren[4].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+            if (cachedPattern != null)
             {
-                for (headerIndex = 0; headerIndex < headerLine.Count - 1; headerIndex++)
-                    if (gridData[headerIndex, 0] == col.Cached.Name)
-                        break;
-                try
-                {
-                    var value = ((ValuePattern) col.GetCachedPattern(ValuePattern.Pattern)).Current.Value;
-                    gridData[headerIndex, 1] = value;
-
-                    if (SelectedContact == null) continue;
-                    switch (gridData[headerIndex, 0])
-                    {
-                        case "Svc No":
-                            if (!SelectedContact.FindDNMatch(value))
-                                SelectedContact.FindMobileMatch(value);
-                            break;
-                        case "Caller ID":
-                            if (!SelectedContact.FindDNMatch(value))
-                                SelectedContact.FindMobileMatch(value);
-                            break;
-                        case "Acc No":
-                            if (!SelectedContact.FindICONMatch(value))
-                                SelectedContact.FindCMBSMatch(value);
-                            break;
-                        case "IVR Status":
-                            if (value.Contains("OK"))
-                                SelectedContact.IDok = true;
-                            break;
-                        case "IVR Selection":
-                            if (value.Contains("LAT"))
-                                SelectedContact.Fault.LAT = true;
-                            else if (value.Contains("LIP"))
-                                SelectedContact.Fault.LIP = true;
-                            else if (value.Contains("ONC"))
-                                SelectedContact.Fault.ONC = true;
-                            else if (value.Contains("MTV"))
-                                SelectedContact.Fault.MTV = true;
-                            else if (value.Contains("DTV"))
-                                SelectedContact.Fault.DTV = true;
-                            else if (value.Contains("NBN"))
-                                SelectedContact.Fault.NFV = true;
-                            break;
-                    }
-                }
-                catch (InvalidOperationException e)
-                {
-                    EventLogger.LogNewEvent("Exception caught");
-                }
-                //}
-                //rowIndex++;
+                value = ((ValuePattern) cachedPattern).Current.Value;
+                if (!SelectedContact.FindDNMatch(value))
+                    SelectedContact.FindMobileMatch(value);
             }
-            EventLogger.SaveLog();
-            //var cacheRequest = new CacheRequest { AutomationElementMode = AutomationElementMode.Full, TreeScope = TreeScope.Children };
-            //cacheRequest.Add(AutomationElement.NameProperty);
-            //cacheRequest.Add(ValuePattern.Pattern);
-            //cacheRequest.Push();
-            //var gridLines = _ipccCallDataTable.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
-            //cacheRequest.Pop();
 
-            //var headerLineCount = _gridData.GetLength(0) - 1;
-            //var rowIndex = 1;
-            //foreach (AutomationElement row in gridLines)
-            //{
-            //    for (var col = row.CachedChildren.Count - 1; col >= 0; --col)// in row.CachedChildren)
-            //    {
-            //        int headerIndex;
-            //        for (headerIndex = 0; headerIndex < headerLineCount; headerIndex++)
-            //            if (_gridData[headerIndex, 0] == row.CachedChildren[col].Cached.Name)
-            //                break;
+            gridLines[0].CachedChildren[5].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+            if (cachedPattern != null)
+            {
+                value = ((ValuePattern)cachedPattern).Current.Value;
+                if (!SelectedContact.FindDNMatch(value))
+                    SelectedContact.FindMobileMatch(value);
+            }
 
-            //        var value = ((ValuePattern)row.CachedChildren[col].GetCachedPattern(ValuePattern.Pattern)).Current.Value;
-            //        _gridData[headerIndex, rowIndex] = value;
+            gridLines[0].CachedChildren[6].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+            if (cachedPattern != null)
+            {
+                value = ((ValuePattern)cachedPattern).Current.Value;
+                if (!SelectedContact.FindICONMatch(value))
+                    SelectedContact.FindCMBSMatch(value);
+            }
 
-            //        if (SelectedContact == null) continue;
-            //        switch (_gridData[headerIndex, 0])
-            //        {
-            //            case "Svc No":
-            //                if (!SelectedContact.FindDNMatch(value))
-            //                    SelectedContact.FindMobileMatch(value);
-            //                break;
-            //            case "Caller ID":
-            //                if (!SelectedContact.FindDNMatch(value))
-            //                    SelectedContact.FindMobileMatch(value);
-            //                break;
-            //            case "Acc No":
-            //                if (!SelectedContact.FindICONMatch(value))
-            //                    SelectedContact.FindCMBSMatch(value);
-            //                break;
-            //            case "IVR Status":
-            //                if (value.Contains("OK"))
-            //                    SelectedContact.IDok = true;
-            //                break;
-            //            case "IVR Selection":
-            //                if (value.Contains("LAT"))
-            //                    SelectedContact.Fault.LAT = true;
-            //                else if (value.Contains("LIP"))
-            //                    SelectedContact.Fault.LIP = true;
-            //                else if (value.Contains("ONC"))
-            //                    SelectedContact.Fault.ONC = true;
-            //                else if (value.Contains("MTV"))
-            //                    SelectedContact.Fault.MTV = true;
-            //                else if (value.Contains("DTV"))
-            //                    SelectedContact.Fault.DTV = true;
-            //                else if (value.Contains("NBN"))
-            //                    SelectedContact.Fault.NFV = true;
-            //                break;
-            //        }
-            //    }
-            //    rowIndex++;
-            //}
+            gridLines[0].CachedChildren[9].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+            if (cachedPattern != null)
+            {
+                value = ((ValuePattern)cachedPattern).Current.Value;
+                if (value.Contains("OK"))
+                    SelectedContact.IDok = true;
+            }
         }
+
+        //private void GetIPCCCallData()
+        //{
+        //    var table = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid")).AutomationElement;
+
+        //    var headerLine = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Header));
+        //    var cacheRequest = new CacheRequest { AutomationElementMode = AutomationElementMode.Full, TreeScope = TreeScope.Children };
+        //    cacheRequest.Add(AutomationElement.NameProperty);
+        //    cacheRequest.Add(ValuePattern.Pattern);
+        //    cacheRequest.Push();
+        //    var gridLines = table.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
+        //    cacheRequest.Pop();
+
+        //    var gridData = new string[headerLine.Count, gridLines.Count + 1];
+
+        //    var headerIndex = 0;
+        //    foreach (AutomationElement header in headerLine)
+        //    {
+        //        gridData[headerIndex++, 0] = header.Current.Name;
+        //    }
+
+        //    //var rowIndex = 1;
+        //    //foreach (AutomationElement row in gridLines)
+        //    //{
+        //    foreach (AutomationElement col in gridLines[1].CachedChildren)
+        //    {
+        //        for (headerIndex = 0; headerIndex < headerLine.Count - 1; headerIndex++)
+        //            if (gridData[headerIndex, 0] == col.Cached.Name)
+        //                break;
+        //        try
+        //        {
+        //            var value = ((ValuePattern) col.GetCachedPattern(ValuePattern.Pattern)).Current.Value;
+        //            gridData[headerIndex, 1] = value;
+
+        //            if (SelectedContact == null) continue;
+        //            switch (gridData[headerIndex, 0])
+        //            {
+        //                case "Svc No":
+        //                    if (!SelectedContact.FindDNMatch(value))
+        //                        SelectedContact.FindMobileMatch(value);
+        //                    break;
+        //                case "Caller ID":
+        //                    if (!SelectedContact.FindDNMatch(value))
+        //                        SelectedContact.FindMobileMatch(value);
+        //                    break;
+        //                case "Acc No":
+        //                    if (!SelectedContact.FindICONMatch(value))
+        //                        SelectedContact.FindCMBSMatch(value);
+        //                    break;
+        //                case "IVR Status":
+        //                    if (value.Contains("OK"))
+        //                        SelectedContact.IDok = true;
+        //                    break;
+        //                case "IVR Selection":
+        //                    if (value.Contains("LAT"))
+        //                        SelectedContact.Fault.LAT = true;
+        //                    else if (value.Contains("LIP"))
+        //                        SelectedContact.Fault.LIP = true;
+        //                    else if (value.Contains("ONC"))
+        //                        SelectedContact.Fault.ONC = true;
+        //                    else if (value.Contains("MTV"))
+        //                        SelectedContact.Fault.MTV = true;
+        //                    else if (value.Contains("DTV"))
+        //                        SelectedContact.Fault.DTV = true;
+        //                    else if (value.Contains("NBN"))
+        //                        SelectedContact.Fault.NFV = true;
+        //                    break;
+        //            }
+        //        }
+        //        catch (InvalidOperationException e)
+        //        {
+        //            EventLogger.LogNewEvent("Exception caught");
+        //        }
+        //        //}
+        //        //rowIndex++;
+        //    }
+        //    EventLogger.SaveLog();
+        //    //var cacheRequest = new CacheRequest { AutomationElementMode = AutomationElementMode.Full, TreeScope = TreeScope.Children };
+        //    //cacheRequest.Add(AutomationElement.NameProperty);
+        //    //cacheRequest.Add(ValuePattern.Pattern);
+        //    //cacheRequest.Push();
+        //    //var gridLines = _ipccCallDataTable.FindAll(TreeScope.Children, new PropertyCondition(AutomationElement.ControlTypeProperty, ControlType.Custom));
+        //    //cacheRequest.Pop();
+
+        //    //var headerLineCount = _gridData.GetLength(0) - 1;
+        //    //var rowIndex = 1;
+        //    //foreach (AutomationElement row in gridLines)
+        //    //{
+        //    //    for (var col = row.CachedChildren.Count - 1; col >= 0; --col)// in row.CachedChildren)
+        //    //    {
+        //    //        int headerIndex;
+        //    //        for (headerIndex = 0; headerIndex < headerLineCount; headerIndex++)
+        //    //            if (_gridData[headerIndex, 0] == row.CachedChildren[col].Cached.Name)
+        //    //                break;
+
+        //    //        var value = ((ValuePattern)row.CachedChildren[col].GetCachedPattern(ValuePattern.Pattern)).Current.Value;
+        //    //        _gridData[headerIndex, rowIndex] = value;
+
+        //    //        if (SelectedContact == null) continue;
+        //    //        switch (_gridData[headerIndex, 0])
+        //    //        {
+        //    //            case "Svc No":
+        //    //                if (!SelectedContact.FindDNMatch(value))
+        //    //                    SelectedContact.FindMobileMatch(value);
+        //    //                break;
+        //    //            case "Caller ID":
+        //    //                if (!SelectedContact.FindDNMatch(value))
+        //    //                    SelectedContact.FindMobileMatch(value);
+        //    //                break;
+        //    //            case "Acc No":
+        //    //                if (!SelectedContact.FindICONMatch(value))
+        //    //                    SelectedContact.FindCMBSMatch(value);
+        //    //                break;
+        //    //            case "IVR Status":
+        //    //                if (value.Contains("OK"))
+        //    //                    SelectedContact.IDok = true;
+        //    //                break;
+        //    //            case "IVR Selection":
+        //    //                if (value.Contains("LAT"))
+        //    //                    SelectedContact.Fault.LAT = true;
+        //    //                else if (value.Contains("LIP"))
+        //    //                    SelectedContact.Fault.LIP = true;
+        //    //                else if (value.Contains("ONC"))
+        //    //                    SelectedContact.Fault.ONC = true;
+        //    //                else if (value.Contains("MTV"))
+        //    //                    SelectedContact.Fault.MTV = true;
+        //    //                else if (value.Contains("DTV"))
+        //    //                    SelectedContact.Fault.DTV = true;
+        //    //                else if (value.Contains("NBN"))
+        //    //                    SelectedContact.Fault.NFV = true;
+        //    //                break;
+        //    //        }
+        //    //    }
+        //    //    rowIndex++;
+        //    //}
+        //}
 
         private static string TimeSpanToString(TimeSpan time)
         {

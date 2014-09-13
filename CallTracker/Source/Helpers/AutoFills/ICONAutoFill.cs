@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using System.Windows.Forms;
 using WatiN.Core;
 
 using CallTracker.View;
@@ -13,7 +15,6 @@ namespace CallTracker.Helpers
         public static void Go(Main mainForm)
         {
             EventLogger.LogNewEvent("Attempting ICON Note AutoFill", EventLogLevel.Brief);
-            var listCountTimeout = 5000;
             var data = mainForm.SelectedContact;
             //var AffectedServices = data.Fault.AffectedServices;
             //var Outcome = data.Fault.Outcome;
@@ -33,6 +34,7 @@ namespace CallTracker.Helpers
 
 
             // Tier 1 //////////////////////////////////////////////////////////////////////////////////////////////////// 
+            EventLogger.LogAndSaveNewEvent("Attempting Tier 1");
             var tier1Query = (from a in Main.ServicesStore.servicesDataSet.IFMSTier1
                              where a.ServiceId == data.Fault.Service.Id
                              select a).ToList();
@@ -42,26 +44,11 @@ namespace CallTracker.Helpers
                 return;
             }
             var tier1 = tier1Query.First();
-            //HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListProduct")).Select(tier1.Option);
-            //var form = HotkeyController.browser.Form(Find.ById("Form1"));
-            var list = HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListProduct"));
-            //var listInForm = form.SelectList(Find.ById("usr_NewActivityDetails_DropDownListProduct"));
-            list.Focus();
-            var option = list.Option(tier1.Option);
-            option.Select();
-            list.FireEvent("onchange");
 
-            EventLogger.LogAndSaveNewEvent(String.Format("Product: {0}, List Exists: {1}, Option Exists{2}", tier1.Option,  list.Exists, option.Exists), EventLogLevel.Status);
-            //EventLogger.LogAndSaveNewEvent(String.Format("Product: {0}, Form Exists: {1}, List Exists: {2}, List In Form Exists: {3}, Option Exists{4}", tier1.Option, form.Exists, list.Exists, listInForm.Exists, option.Exists), EventLogLevel.Status);
-            
-            HotkeyController.browser.WaitForComplete();
-            HotkeyController.WaitForAsyncPostBackToComplete();
-            //HotkeyController.WaitForBrowserBusy();
-
-
-
+            HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListProduct")).Option(tier1.Option).Select();
 
             // Tier 2 //////////////////////////////////////////////////////////////////////////////////////////////////// 
+            EventLogger.LogAndSaveNewEvent("Attempting Tier 2");
             if (outcome == null)
             {
                 EventLogger.LogAndSaveNewEvent("ICON AutoFill Error: Outcome Is Null", EventLogLevel.Status);
@@ -79,30 +66,11 @@ namespace CallTracker.Helpers
                 return;
             }
             var tier2 = tier2Query.First();
-            list = HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListCallDriver"));
-            list.Focus();
-            listCountTimeout = 5000;
-            while (list.Options.Count <= 1 && listCountTimeout > 0)
-            {
-                Thread.Sleep(200);
-                listCountTimeout -= 200;
-            }
-            if (list.Options.Count <= 1)
-            {
-                EventLogger.LogAndSaveNewEvent("ICON AutoFill Error: Tier 2 list is empty", EventLogLevel.Status);
-                return;
-            }
-
-            option = list.Option(tier2.Option);
-            option.Select();
-            list.FireEvent("onchange");
-            EventLogger.LogAndSaveNewEvent(String.Format("Product: {0}, List Exists: {1}, Option Exists: {2}, listCountTimeout: {3}", tier2.Option, list.Exists, option.Exists, listCountTimeout), EventLogLevel.Status);
-            HotkeyController.browser.WaitForComplete();
-            HotkeyController.WaitForAsyncPostBackToComplete();
-            //HotkeyController.WaitForBrowserBusy();
+            HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListCallDriver")).Option(tier2.Option).Select();
 
 
             // Tier 3 //////////////////////////////////////////////////////////////////////////////////////////////////// 
+            EventLogger.LogAndSaveNewEvent("Attempting Tier 3");
             if (symptom == null)
             {
                 EventLogger.LogAndSaveNewEvent("ICON AutoFill Error: Symptom Is Null", EventLogLevel.Status);
@@ -121,32 +89,10 @@ namespace CallTracker.Helpers
                 return;
             }
             var tier3 = tier3Query.First();
-            list = HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListReason"));
-            list.Focus();
-            listCountTimeout = 5000;
-            while (list.Options.Count <= 1 && listCountTimeout > 0)
-            {
-                Thread.Sleep(200);
-                listCountTimeout -= 200;
-            }
-            if (list.Options.Count <= 1)
-            {
-                EventLogger.LogAndSaveNewEvent("ICON AutoFill Error: Tier 3 list is empty", EventLogLevel.Status);
-                return;
-            }
-
-            option = list.Option(tier3.Option);
-            option.Select();
-            list.FireEvent("onchange");
-            EventLogger.LogAndSaveNewEvent(String.Format("Product: {0}, List Exists: {1}, Option Exists: {2}, listCountTimeout: {3}", tier3.Option, list.Exists, option.Exists, listCountTimeout), EventLogLevel.Status);
-            HotkeyController.browser.WaitForComplete();
-            HotkeyController.WaitForAsyncPostBackToComplete();
-            //HotkeyController.WaitForBrowserBusy();
-
-
-
+            HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListReason")).Option(tier3.Option).Select();
 
             // Tier 4 //////////////////////////////////////////////////////////////////////////////////////////////////// 
+            EventLogger.LogAndSaveNewEvent("Attempting Tier 4");
             var tier4Query = (from a in Main.ServicesStore.servicesDataSet.IFMSTier4
                          from b in a.GetIFMSTier3IFMSTier4MatchRows()
                          from c in a.GetIFMSTier4OutcomeMatchRows()
@@ -159,27 +105,7 @@ namespace CallTracker.Helpers
                 return;
             }
             var tier4 = tier4Query.First();
-            list = HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListOutcome"));
-            list.Focus();
-            listCountTimeout = 5000;
-            while (list.Options.Count <= 1 && listCountTimeout > 0)
-            {
-                Thread.Sleep(200);
-                listCountTimeout -= 200;
-            }
-            if (list.Options.Count <= 1)
-            {
-                EventLogger.LogAndSaveNewEvent("ICON AutoFill Error: Tier 4 list is empty", EventLogLevel.Status);
-                return;
-            }
-
-            option = list.Option(tier4.Option);
-            option.Select();
-            list.FireEvent("onchange");
-            EventLogger.LogAndSaveNewEvent(String.Format("Product: {0}, List Exists: {1}, Option Exists: {2}, listCountTimeout: {3}", tier4.Option, list.Exists, option.Exists, listCountTimeout), EventLogLevel.Status);
-            HotkeyController.browser.WaitForComplete();
-            HotkeyController.WaitForAsyncPostBackToComplete();
-            //HotkeyController.WaitForBrowserBusy();
+            HotkeyController.browser.SelectList(Find.ById("usr_NewActivityDetails_DropDownListOutcome")).Option(tier4.Option).Select();
 
             EventLogger.SaveLog();
         }

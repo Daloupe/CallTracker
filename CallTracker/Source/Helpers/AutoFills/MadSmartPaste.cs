@@ -36,9 +36,9 @@ namespace CallTracker.Helpers
         private const string ControlText = "Search";
         private static TestStack.White.UIItems.IUIItem _madEdit;
 
-        private static List<MADElementOffset> ElementOffsets = new List<MADElementOffset>
+        private static readonly List<MADElementOffset> ElementOffsets = new List<MADElementOffset>
         {
-            new MADElementOffset("DN|0$1$2$3", 11, 212),
+            new MADElementOffset("DN|0$2$3$4", 11, 212),
             new MADElementOffset("ICON", 343, 212),
             new MADElementOffset("CMBS|$2", 343, 161),
             new MADElementOffset("Username", 343, 108),

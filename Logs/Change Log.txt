@@ -11,10 +11,7 @@
 //- Selecting "Clear and Close" brings up a PopUp with a single dropdown to select from before actioning the pr.
 
 
-
-0.9.5.5
-(Major Features)
-/ IPCC Data Pull working.
+0.9.x.x
 (Minor Feature)
 - IPCC Dial Filling in Customer Data fields.
 - White Timeout exceptions caught and EventLogged.
@@ -31,6 +28,16 @@
 - ICON Tier4 linked to Action rather than Outcome.
 - Allow Scrolling further in service panel.
 - Events now only recompute when dirty.
+
+0.9.0.5
+(Major Features)
+| IPCC Data Pull working.
+(Bugs/Changes)
+| ICON AutoFill working.
+| IFMS AutoFill working.
+| IPCCTimer showing as red when in NR or Wrapup.
+| MAD DN Smart Paste Regex updated to 0$2$3$4.
+| MAD Smart Paste is quick.
 
 0.8.4.15
 (Bugs/Changes)
@@ -590,7 +597,7 @@ Yellow: 255,198,0
 
 Bugs:
  - Side panel needs to ghost when dragging.
- - Ensure the rate code datagrid is gettnig focus when the page opens up.
+ | Ensure the rate code datagrid is gettnig focus when the page opens up.
  - Name Regex not properly capturing "." after title.
  | Will Regex replace support $1$20$3 where 0 is intended as the number?
 	| $1${2}0$3
@@ -623,11 +630,11 @@ Short Term:
 	- Extracts CM callback info(For ICON Outcome entry).
 	- Extracts Testing Done info(For ICON Action entry.
 	- Extracts Outcome info(For ICON Outcome entry).
-- Add an Icon to Call Tracker.
+| Add an Icon to Call Tracker.
 
 Long Term:
 - Chrome support.
-- MAD support. 
+| MAD support. 
 	- Create Tester: Popup with Texbox Name, Input, and Application Name fields, pressing OK triggers test.
 - ARO GUI.
 - Glance GUI.
@@ -635,9 +642,9 @@ Long Term:
 - Auto Minimize?
 
 Potential:
-- Realtime KPI's. Smartcopy roster and use call/login information to provide realtime stats.
-- Map user interaction with Event Tracking.
-- Call statistics. Pull Call history from multiple users and compile call type information.
+/ Realtime KPI's. Smartcopy roster and use call/login information to provide realtime stats.
+| Map user interaction with Event Tracking.
+| Call statistics. Pull Call history from multiple users and compile call type information.
 
 Considerations
 - ITCase Regex is only set to recognize from 2014-2016.

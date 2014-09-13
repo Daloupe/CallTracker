@@ -443,20 +443,31 @@ namespace CallTracker.Helpers
                 EventLogger.LogNewEvent(String.Format("{0} found.", query.Count()));
                 var affectedService = parent.SelectedContact.Fault.AffectedServiceType.ToString();
                 foreach (var bind in query)
-                    bind.Paste(bind.Element, FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, affectedService));
+                {
+                    try
+                    {
+                        var value = FindProperty.FollowPropertyPath(parent.SelectedContact, bind.Data, affectedService);
+                        bind.Paste(bind.Element, value);
+                    }
+                    catch (Exception ex)
+                    {
+                        EventLogger.LogAndSaveNewEvent("Exception: " + ex, EventLogLevel.Status);   
+                    }
+                    
+                }
             }
             else
-                EventLogger.LogNewEvent("No Matches Found");
+                EventLogger.LogAndSaveNewEvent("No Matches Found");
 
-            EventLogger.LogNewEvent("Browser URL: " + url);
+            EventLogger.LogNewEvent("Browser URL: " + url, EventLogLevel.Status);
             if (title.Contains("F001 Create"))
             {
-                EventLogger.LogNewEvent("Attempting IFMS AutoFills", EventLogLevel.Status);
+                EventLogger.LogAndSaveNewEvent("Attempting IFMS AutoFills", EventLogLevel.Status);
                 IFMSAutoFill.Go(parent);
             }
-            else if (title.Contains("New Activity and notes"))
+            else if (url.Contains("NewActivity.aspx"))
             {
-                EventLogger.LogNewEvent("Attempting ICON AutoFills", EventLogLevel.Status);
+                EventLogger.LogAndSaveNewEvent("Attempting ICON AutoFills", EventLogLevel.Status);
                 ICONAutoFill.Go(parent);
             }
             parent.AddAppEvent(AppEventTypes.AutoFill);
@@ -692,33 +703,48 @@ namespace CallTracker.Helpers
         /// <param name="ie">The ie instance to use.</param>
         public static void WaitForAsyncPostBackToComplete()
         {
+            EventLogger.LogAndSaveNewEvent("WaitForAsyncPostBackToComplete Called", EventLogLevel.Status);
             var startWait = 5000;
             var isInPostback = true;
             while (startWait > 0)
             {
+                EventLogger.LogAndSaveNewEvent("Checking if in Postback", EventLogLevel.Status);
                 isInPostback = Convert.ToBoolean(browser.Eval("Sys.WebForms.PageRequestManager.getInstance().get_isInAsyncPostBack();"));
+                EventLogger.LogAndSaveNewEvent("is in Postback: " + isInPostback, EventLogLevel.Status);
                 if (!isInPostback) break;
+                EventLogger.LogAndSaveNewEvent("Is in PostBack", EventLogLevel.Status);
                 Thread.Sleep(200); //sleep for 200ms and query again 
+                Application.DoEvents();
                 startWait -= 200;
+                EventLogger.LogAndSaveNewEvent("Startwait: "+ startWait, EventLogLevel.Status);
             }
-            EventLogger.LogAndSaveNewEvent(String.Format("WaitForAsyncPostBackToComplete isInPostback: {0}", isInPostback));
+            EventLogger.LogAndSaveNewEvent(String.Format("WaitForAsyncPostBackToComplete isInPostback: {0}", isInPostback), EventLogLevel.Status);
         }
         
         public static bool WaitForBrowserBusy()
         {
-            var startWait = 5000;
+            EventLogger.LogAndSaveNewEvent("WaitForBrowserBusy Called", EventLogLevel.Status);
+            //var startWait = 5000;
+            //var now = DateTime.Now;
+            StopwatchTester.Reset();
+            StopwatchTester.Start();
             var ieBrowser = (IWebBrowser2)browser.InternetExplorer;
-            while (startWait > 0)
+            while (ieBrowser.Busy && StopwatchTester.ElapsedMilliseconds < 5000)
             {
-                if (ieBrowser.Busy)
-                {
-                    Thread.Sleep(200);
-                    startWait -= 200;
-                }
-                else
-                    break;
+                EventLogger.LogNewEvent("Checking if browser is busy", EventLogLevel.Status);
+                //if (!ieBrowser.Busy) break;
+                //{
+                //    //Thread.Sleep(200);
+                //    //Application.DoEvents();
+                //    //startWait -= 200;
+                //    //EventLogger.LogAndSaveNewEvent("Startwait: " + startWait, EventLogLevel.Status);
+                //}
+                //else
+                //    break;
             }
+            StopwatchTester.Stop();
             var stillBusy = ieBrowser.Busy;
+            EventLogger.LogAndSaveNewEvent("Browser busy: " + stillBusy + " in: " + StopwatchTester.ElapsedMilliseconds, EventLogLevel.Status);
             return !stillBusy;
         }
         
@@ -1088,7 +1114,7 @@ namespace CallTracker.Helpers
             }
             var ieBrowser = ((IWebBrowser2)(_dimpsBrowser.InternetExplorer));
             if (ieBrowser.Busy) return;
-            if (_dimpsBrowser.Title.Contains("Message"))
+            if (_dimpsBrowser.Url == "https://dimps.optusnet.com.au/search.html")
             {
                 switch (_dimpsSearching)
                 {

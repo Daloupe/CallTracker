@@ -220,7 +220,7 @@
     <Compile Include="Source\Data\Equipment.cs" />
     <Compile Include="Source\Data\Symptoms.cs" />
     <Compile Include="Source\Helpers\AutoFills\ICONAutoFill.cs" />
-    <Compile Include="Source\Helpers\MadSmartPaste.cs" />
+    <Compile Include="Source\Helpers\AutoFills\MadSmartPaste.cs" />
     <Compile Include="Source\Helpers\Type\EnumExtensions.cs" />
     <Compile Include="Source\Helpers\FindProperty.cs" />
     <Compile Include="Source\Helpers\AutoFills\ICONNoteGenerator.cs" />

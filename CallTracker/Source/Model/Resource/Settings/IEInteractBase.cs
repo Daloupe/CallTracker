@@ -140,6 +140,8 @@ namespace CallTracker.Model
 
         public virtual void Paste(string element, string value)
         {
+            if (PasteMethod == null)
+                PasteMethod = GetType().GetMethod("PasteData").MakeGenericMethod(IEType);
             PasteMethod.Invoke(this, new object[] { element, value });
         }
 
@@ -151,7 +153,8 @@ namespace CallTracker.Model
                 EventLogger.LogNewEvent("Paste Data Error: " + element + " Doesn't Exist.");
                 return;
             }
-            
+            EventLogger.LogNewEvent("Paste Data : " + element);
+
             browserElement.Focus();//.FindNativeElement().SetFocus();
             if (PasteWithSendKeys)
             {

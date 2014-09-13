@@ -538,7 +538,7 @@ namespace CallTracker.Model
 
                 if (!Service.WasSearched["DIMPSUsername"])
                     HotkeyController.AutoSearch(
-                        "https://dimps.optusnet.com.au/search/account?account_no=" + Username,
+                        "https://dimps.optusnet.com.au/display.html?username=" + Username,
                         "DIMPS",
                         "https://dimps.optusnet.com.au",
                         true,
