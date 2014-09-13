@@ -1,1 +1,4 @@
 ﻿- Hitting 'Done' in Callhistory not updating Affeceted Service.
+- DailyStats are only applied to Current Date, not selected Date.
+	- Stats View Displays Selected Date.
+	- Logging in shoudl switch date to today.

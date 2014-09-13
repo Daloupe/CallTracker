@@ -35,7 +35,7 @@
 (Minor Feature)
 - ICON Tier4 linked to Action rather than Outcome.
 
-0.9.0.11
+0.9.0.13
 (Major Features)
 | IPCC Data Pull working.
 (Bugs/Changes)
@@ -51,7 +51,8 @@
 	| Moved "Auto New Call" and "Pull Call Data" options to this menu.
 | "New Call" option marked as Advanced.
 / Call History Done isn't retriggering Affected Services properly. Can't replicate.
-- Changing Date while still logged in shoudl still apply event to original date.
+| Moved IPCC methods to another partial declaration of Main.
+| Changing Date while still logged in shoudl still apply event to original date.
 
 
 0.8.4.15
