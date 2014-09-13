@@ -34,7 +34,7 @@
 - Are timestamps terminating properly on quit?
 - Call History Done isn't retriggering Affected Services properly.
 
-0.9.0.6
+0.9.0.8
 (Major Features)
 | IPCC Data Pull working.
 (Bugs/Changes)
@@ -45,6 +45,9 @@
 | MAD DN Smart Paste Regex updated to 0$2$3$4.
 | MAD Smart Paste is quick.
 | Avoided excessive reflection by FindProperty on PRGenerate.
+| Added "IPCC Monitor" Settings item.
+	| Added "Enable IPCC Monitor on Startup" option 
+	| Moved "Auto New Call" and "Pull Call Data" options to this menu.
 
 0.8.4.15
 (Bugs/Changes)
