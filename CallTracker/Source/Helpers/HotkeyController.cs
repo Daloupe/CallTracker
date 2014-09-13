@@ -70,28 +70,12 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private static void OnTest(HotkeyPressedEventArgs e)
         {
-
             if (!GetActiveBrowser())
                 return;
-            //browser.SelectList(Find.ById("location")).Select("Dulles_Mobile");
-
-            ////var url = browser.Url;
-            ////var title = browser.Title;
-            ////var element = browser.ActiveElement.IdOrName;
-
-            //foreach (var option in browser.ActiveElement.FindNativeElement().Options.GetElements())
-            //{
-            //    Console.WriteLine(option.GetAttributeValue("value"));
-            //    Console.WriteLine(option.GetAttributeValue("innerHTML"));
-            //    Console.WriteLine(option.ToString());
-            //}
-
-           //Console.WriteLine(WindowHelper.GetActiveWindowTitle());
             ICONAutoFill.Go(parent);
         }
         private static void OnTest2(HotkeyPressedEventArgs e)
         {
-
             if (!GetActiveBrowser())
                 return;
             IFMSAutoFill.Go(parent);

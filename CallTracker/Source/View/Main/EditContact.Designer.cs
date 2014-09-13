@@ -401,8 +401,8 @@
             this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 0, 0, 0, 0);
-            this._BookingDate.DateText = "09/08";
+            this._BookingDate.DateField = new System.DateTime(2014, 9, 8, 0, 0, 0, 0);
+            this._BookingDate.DateText = "08/09";
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingDate.HasContextMenu = false;
             this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -684,7 +684,7 @@
             this.checkBox4.CheckAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.checkBox4.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.ChangedWiFiChannel", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox4.Font = new System.Drawing.Font("Gautami", 8.25F);
-            this.checkBox4.Location = new System.Drawing.Point(3, 92);
+            this.checkBox4.Location = new System.Drawing.Point(3, 94);
             this.checkBox4.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(165, 18);
@@ -697,7 +697,7 @@
             this.checkBox1.CheckAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.checkBox1.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.CheckedCables", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox1.Font = new System.Drawing.Font("Gautami", 8.25F);
-            this.checkBox1.Location = new System.Drawing.Point(3, 55);
+            this.checkBox1.Location = new System.Drawing.Point(3, 57);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(165, 18);
@@ -710,7 +710,7 @@
             this.checkBox3.CheckAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.checkBox3.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.CheckedNodeForOfflines", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox3.Font = new System.Drawing.Font("Gautami", 8.25F);
-            this.checkBox3.Location = new System.Drawing.Point(3, 74);
+            this.checkBox3.Location = new System.Drawing.Point(3, 76);
             this.checkBox3.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(165, 18);
@@ -723,7 +723,7 @@
             this.checkBox2.CheckAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.checkBox2.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.FactoryReset", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkBox2.Font = new System.Drawing.Font("Gautami", 8.25F);
-            this.checkBox2.Location = new System.Drawing.Point(3, 36);
+            this.checkBox2.Location = new System.Drawing.Point(3, 38);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(0);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(165, 18);
@@ -736,7 +736,7 @@
             this._Powercycled.CheckAlign = System.Drawing.ContentAlignment.BottomLeft;
             this._Powercycled.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.customerContactsBindingSource, "Fault.Powercycled", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this._Powercycled.Font = new System.Drawing.Font("Gautami", 8.25F);
-            this._Powercycled.Location = new System.Drawing.Point(3, 18);
+            this._Powercycled.Location = new System.Drawing.Point(3, 20);
             this._Powercycled.Margin = new System.Windows.Forms.Padding(0);
             this._Powercycled.Name = "_Powercycled";
             this._Powercycled.Size = new System.Drawing.Size(165, 18);

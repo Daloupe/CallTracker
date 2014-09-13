@@ -10,7 +10,7 @@ namespace CallTracker.Model
     {
         public abstract bool RequiresObject { get; }
         public string Question{ get; set; }
-        protected object TargetObject;
+        protected CustomerContact TargetObject;
         public ServiceTypes ServiceRestrictions { get; set; }
 
         public PRTemplateModel(string _question, ServiceTypes _serviceRestrictions)
@@ -20,7 +20,7 @@ namespace CallTracker.Model
         }
 
         public virtual string GetAnswer() { return String.Empty; }
-        public virtual void SetObject(object _value) { TargetObject = _value; }
+        public virtual void SetObject(CustomerContact _value) { TargetObject = _value; }
     }
 
     public class PRTemplateString: PRTemplateModel
@@ -28,7 +28,7 @@ namespace CallTracker.Model
         public string Answer { get; set; }
 
         public const bool Constant = false;
-        public override bool RequiresObject { get { return PRTemplateString.Constant; } }
+        public override bool RequiresObject { get { return Constant; } }
 
         public PRTemplateString(string _question, ServiceTypes _serviceRestrictions = ServiceTypes.NONE) : base(_question, _serviceRestrictions)
         {
@@ -51,7 +51,7 @@ namespace CallTracker.Model
         public string PropertyPath { get; set; }
 
         public const bool Constant = true;
-        public override bool RequiresObject { get { return PRTemplateFindProperty.Constant; } }
+        public override bool RequiresObject { get { return Constant; } }
 
         public PRTemplateFindProperty(string _question, ServiceTypes _serviceRestrictions = ServiceTypes.NONE): base(_question, _serviceRestrictions) {}
 
@@ -69,15 +69,15 @@ namespace CallTracker.Model
 
     public class PRTemplateFunc : PRTemplateModel
     {
-        public Func<object, string> AnswerFunc { get; set; }
+        public Func<CustomerContact, string> AnswerFunc { get; set; }
 
         public const bool Constant = true;
-        public override bool RequiresObject{ get { return PRTemplateFunc.Constant; }}
+        public override bool RequiresObject{ get { return Constant; }}
 
 
         public PRTemplateFunc(string _question, ServiceTypes _serviceRestrictions = ServiceTypes.NONE) : base(_question, _serviceRestrictions) {}
 
-        public PRTemplateFunc(string _question, Func<object, string> _answer, ServiceTypes _serviceRestrictions = ServiceTypes.NONE) : base(_question, _serviceRestrictions) 
+        public PRTemplateFunc(string _question, Func<CustomerContact, string> _answer, ServiceTypes _serviceRestrictions = ServiceTypes.NONE) : base(_question, _serviceRestrictions) 
         {
             AnswerFunc = _answer;
         }

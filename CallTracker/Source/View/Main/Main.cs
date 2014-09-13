@@ -844,7 +844,7 @@ namespace CallTracker.View
                 {
                     SelectedContact.Fault.LIP = true;
                 }
-                else if (value.Contains("ONC"))
+                else if (value.Contains("CAB"))
                 {
                     SelectedContact.Fault.ONC = true;
                 }
