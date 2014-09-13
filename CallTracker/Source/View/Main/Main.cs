@@ -155,9 +155,9 @@ namespace CallTracker.View
             EventLogger.LogNewEvent("Startup: Setting Date");
             DateFilterItems = new BindingList<DateFilterItem>(DailyDataDataStore.DailyData.Select(x => x.Date).ToList());
             DateBindingSource.DataSource = DateFilterItems;
+            DateBindingSource.PositionChanged += _DateSelector_PositionChanged;
             _DailyDataBindingSource.DataSource = DailyDataDataStore.DailyData;
             IsDifferentShift();
-            DateBindingSource.PositionChanged += _DateSelector_PositionChanged;
 
             //SelectedContact = new CustomerContact();
 
@@ -568,8 +568,11 @@ namespace CallTracker.View
         {
             // If Date is right, or Agent isn't logged out, then don't do anything.
             if (_DailyDataBindingSource.Count > 0)
-                if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today || _IPCCState.Text != Resources.IPCC_Unmonitored_String)
+                if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today)// || _IPCCState.Text != Resources.IPCC_Unmonitored_String)
                 {return false;}
+
+
+
 
             
             // If today doesnt exist, create it, otherwise change the day.
@@ -579,20 +582,22 @@ namespace CallTracker.View
                 DateFilterItems.AddNew();
 
                 DateBindingSource.Position = DateFilterItems.Count - 1;
-                _DailyDataBindingSource.Position = DailyDataDataStore.DailyData.Count - 1;
+                //_DailyDataBindingSource.Position = DailyDataDataStore.DailyData.Count - 1;
 
-                Settings.Default.WorkingDate = DateTime.Today;
                 File.Delete("Log.txt");
             }
             else if (((DailyModel)_DailyDataBindingSource.Current).Date.LongDate != DateTime.Today)
             {
                 DateBindingSource.Position = DateFilterItems.IndexOf(DateFilterItems.FirstOrDefault(x => x.LongDate == DateTime.Today));
-                _DailyDataBindingSource.Position = DateBindingSource.Position;
+                //_DailyDataBindingSource.Position = DateBindingSource.Position;
 
-                Settings.Default.WorkingDate = DateTime.Today;
                 File.Delete("Log.txt");
             }
 
+
+
+
+            // Archive and Delete
             var daysToDelete = new List<DailyModel>();
             foreach (var day in DailyDataDataStore.DailyData)
             {

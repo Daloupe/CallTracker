@@ -481,7 +481,7 @@ namespace CallTracker.View
                     break;
                 case "red": // Not Ready, Hold, Wrap Up, 178,34,34
                     _IPCCTimer.Interval = 250;
-                    _CallStateTime.BackColor = Color.FromArgb(178, 34, 34);
+                    //_CallStateTime.BackColor = Color.FromArgb(178, 34, 34);
                     _CallStateTime.ForeColor = Color.FromArgb(178, 34, 34);//.LightGoldenrodYellow;
                     break;
             }

@@ -121,18 +121,6 @@ namespace CallTracker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2014-09-07")]
-        public global::System.DateTime WorkingDate {
-            get {
-                return ((global::System.DateTime)(this["WorkingDate"]));
-            }
-            set {
-                this["WorkingDate"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool PullIPCCCallData {
             get {
