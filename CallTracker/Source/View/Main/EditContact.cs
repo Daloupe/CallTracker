@@ -129,16 +129,9 @@ namespace CallTracker.View
             else
             {
                 customerContactsBindingSource.PositionChanged -= contactsListBindingSource_PositionChanged;
-                //customerContactsBindingSource.RaiseListChangedEvents = false;
-                //_ServicePanel.ChangingDays();
                 customerContactsBindingSource.DataSource = ((DailyModel)MainForm._DailyDataBindingSource.Current).Contacts;
-                //customerContactsBindingSource.RaiseListChangedEvents = true;
                 customerContactsBindingSource.PositionChanged += contactsListBindingSource_PositionChanged;
-                //_ServicePanel.ChangedDays();
-                //if (customerContactsBindingSource.Count < 2)
-                //    customerContactsBindingSource.ResetBindings(false);
-                //else
-                    customerContactsBindingSource.MoveLast();
+                customerContactsBindingSource.MoveLast();
             }   
             WindowHelper.ResumeDrawing(this);
             _isChangingDays = false;
