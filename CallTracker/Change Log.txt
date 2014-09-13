@@ -1,4 +1,8 @@
-﻿0.9.0.14
+﻿0.9.1.0
+(Minor Features)
+| Added rough code for DIMPS scrape and NSI search.
+
+0.9.0.14
 (Major Features)
 | IPCC Data Pull working.
 (Bugs/Changes)

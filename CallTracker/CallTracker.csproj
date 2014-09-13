@@ -116,6 +116,7 @@
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Source\Helpers\AutoFills\PRGenerators.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\AutoSearch.cs" />
     <Compile Include="Source\Helpers\Type\DataGridExtentions.cs" />
     <Compile Include="Source\Helpers\Type\FilterableBindingList.cs" />
     <Compile Include="Source\Helpers\Type\RtfExtensions.cs" />
@@ -508,7 +509,7 @@
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
     </None>
     <Compile Include="Source\Helpers\Windows\WindowHelper.cs" />
-    <Compile Include="Source\Helpers\HotkeyController.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\HotkeyController.cs" />
     <Compile Include="Source\Helpers\SimpleEncrypt.cs" />
     <Compile Include="Source\Model\Contact\AddressModel.cs" />
     <Compile Include="Source\Model\Contact\BookingModel.cs" />

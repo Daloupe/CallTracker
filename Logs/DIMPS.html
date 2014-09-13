@@ -1,0 +1,1072 @@
+ 
+ 
+<!DOCTYPE html>
+ 
+<!--[if IE 8 ]><html class="ie8" lang="en"><![endif]-->
+<!--[if !(IE 8)]><!--><html lang="en"><!--<![endif]-->
+ 
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+ 
+ 
+    <title>DIMPS john.odonnell32</title>
+ 
+ 
+<!-- Please don't screen scrape me! Just ask servers@optusnet.com.au for API details. -->
+ 
+    <meta name="author" content="Singtel Optus" />
+    <meta name="description" content="Dimps - DSL & Internet Monitoring and Performance System - [c]atalyst version." />
+    <link rel="shortcut icon" type="image/png" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+ 
+ 
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery-ui-1.10.4.custom.min.css">
+ 
+ 
+    <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css">
+ 
+    <script type="text/javascript" src="/static/js/jquery-1.10.2.min.js"></script>
+ 
+    <script type="text/javascript" src="/static/js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript" src="/static/js/underscore-min.js"></script>
+ 
+    <script type="text/javascript" src="/static/js/backbone-min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+ 
+    <script type="text/javascript" src="/static/js/jquery.tablesorter.min.js"></script>
+ 
+    <!-- json2 is required for IE8 -->
+    <script type="text/javascript">top.ie8 = false;</script>
+    <!--[if lt IE 9]><script type="text/javascript">top.ie8 = true;</script><script src="/static/js/json2.js"></script><![endif]-->
+ 
+ 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="/static/js/html5shiv.js"></script>
+      <script type="text/javascript" src="/static/js/respond.min.js"></script>
+    <![endif]-->
+ 
+ <!--[if lt IE 9]>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $('[placeholder]').focus(function() {
+            var input = $(this);
+            if (input.val() == input.attr('placeholder')) {
+                input.val('');
+                input.removeClass('placeholder');
+            }
+        }).blur(function() {
+            var input = $(this);
+            if (input.val() == '' || input.val() == input.attr('placeholder')) {
+                input.addClass('placeholder');
+                input.val(input.attr('placeholder'));
+            }
+        }).blur().parents('form').submit(function() {
+            $(this).find('[placeholder]').each(function() {
+                var input = $(this);
+                if (input.val() == input.attr('placeholder')) {
+                    input.val('');
+                }
+            })
+        }); }); </script>
+  <![endif]-->
+ 
+  <script type="text/javascript">
+  // Initially the usage data area displays a message such as:
+  // "Retrieving data...". But if the update takes too long, it probably
+  // means there was a problem with the query. We then call this
+  // function to change the text to prompt the user to click "Refresh".
+  // If the data has refreshed automatically by the time this function
+  // gets called, then the element 'usage_data_prompt' will no longer
+  // exist and the function simply returns false.
+  // Note: This function is called by "onload" after a timeout.
+  function change_usage_prompt () {
+    try {
+        document.getElementById('usage_data_prompt').innerHTML = "<br><br>Click \"Refresh\" to display <br><br>";
+    }
+    catch (e) {
+        return false;
+    }
+  }
+  </script>
+ 
+ 
+    <script type="text/javascript" src="/static/js/main.js"></script>
+ 
+<!--[if IE 8 ]>
+<script>
+    if (document.compatMode != 'CSS1Compat') {
+        alert('It appears that your browser is in Quirks mode and the page content might not display correctly.\n\nTo switch to Standards mode, press F12 and select Browser Mode: "IE8" and Document Mode: "IE8 Standards".');
+    }
+</script>
+<![endif]-->
+ 
+</head>
+ 
+<body>
+<div class="dim"></div>
+<div id="content">
+<form>
+    <input type="hidden" id="init_secondary"        name="init_secondary"       value="0" />
+    <input type="hidden" id="init_mode"             name="init_mode"            value="cable" />
+    <input type="hidden" id="init_is_online"        name="init_is_online"       value="1" />
+    <input type="hidden" id="init_is_opom"          name="init_is_opom"         value="0" />
+    <input type="hidden" id="init_user_type"        name="init_user_type"       value="" />
+    <input type="hidden" id="init_username"         name="init_username"        value="john.odonnell32" />
+    <input type="hidden" id="init_can_ull"          name="init_can_ull"         value="0" />
+    <input type="hidden" id="init_mac1"             name="init_mac1"            value="841b5e667e38" />
+    <input type="hidden" id="init_ip1"              name="init_ip1"             value="10.107.221.101" />
+    <input type="hidden" id="init_ipaddr"           name="init_ipaddr"          value="110.20.135.180" />
+    <input type="hidden" id="init_cmts1"            name="init_cmts1"           value="rivrw9" />
+    <input type="hidden" id="init_pc_ip"            name="init_pc_ip"           value="110.20.135.180" />
+    <input type="hidden" id="init_remote_user"      name="init_remote_user"     value="jesse.poulton" />
+    <input type="hidden" id="init_can_admin"        name="init_can_admin"       value="0" />
+    <input type="hidden" id="init_can_unthrottle"   name="init_can_unthrottle"  value="0" />
+    <input type="hidden" id="init_hsd_cs"           name="init_hsd_cs"          value="1" />
+    <input type="hidden" id="init_mlt"              name="init_mlt"             value="0" />
+    <input type="hidden" id="init_staffhost"        name="init_staffhost"       value="staff.optusnet.com.au" />
+</form>
+ 
+<h4 id="pageTitle" class="left">
+    <div id="logo"></div>
+    <span data-mode="dsl"   class="label label-default">DSL</span>
+    <span data-mode="cable" class="label label-primary">Cable</span>
+    <span data-mode="dial"  class="label label-default">Dial</span>
+    <span data-mode="fbb"   class="label label-default">NBN</span>
+    &nbsp;&nbsp;
+    <input id="nav_sirz" type="button" class="btn btn-default btn-xs" onclick="window.open('https://sirz.optusnet.com.au/buglist.cgi?query_format=advanced;bug_status=NEW;bug_status=ASSIGNED;bug_status=REOPENED;component=DIMPS%20-%20WDIMPS%20-%20Wholesale%20Gateway%20Portal;product=Internet%20Services%20Engineering;list_id=20674');" value="Open SIRz"></input>
+    <input id="nav_ull" type="button" value="ULL Network" class="btn btn-default btn-xs" />
+    &nbsp;&nbsp;
+    &nbsp;&nbsp;
+ 
+</h4>
+ 
+<span id="errorLabelTemplate" class="label label-danger right WSError" style="display: none">
+    <span class="glyphicon glyphicon-warning-sign"></span>
+    error
+</span>
+ 
+<form id="all_search_form" class = "nav-search navbar-form navbar-right" role="form">
+<div id="header_search" class="input-group right">
+ 
+    <input id="all_search_term" type="text" placeholder="Enter a search term" class="form-control" />
+    <select id="all_search_type" name="q-type" title="Select what you are searching for" class="form-control" style="width: 200px; height: 20px;">
+        <option value="username"    data-name="customer_username"   >Username</option>
+        <option value="macaddr"     data-name="macaddr"             >MAC ID</option>
+        <option value="avcid"       data-name="avcid"               >AVC ID</option>
+        <option value="account"     data-name="account_no"          >Account #</option>
+        <option value="ipaddr"      data-name="ipaddr"              >IP Address</option>
+        <option value="servno"      data-name="servno"              >Service #</option>
+        <option value="addrid"      data-name="addrid"              >Address ID</option>
+    </select>
+    <input id="nav_search" type="submit" value="Find" class="btn btn-xs submit-button" />
+</div>
+</form>
+ 
+ 
+<br style="clear: both">
+ 
+<div id="errorDisplayContainer" class="panel panel-warning" data-method="">
+    <div class="panel-heading">
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        error
+    </div>
+    <pre style="font-size: 8pt;"></pre>
+</div>
+ 
+<table cellspacing="0" cellpadding="0" width="100%">
+<tr>
+    <td width="45%" height="100%" valign="top">
+ 
+        <div class="panel panel-primary" id="customerPanel">
+            <div class="panel-heading">
+                Customer Info
+                <img id="customerWaitImg" src="static/images/wait.gif" class="right">
+                <span id="customerError" data-method="customer" class="label label-danger right WSError" style="display: none">
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                    error
+                </span>
+            </div>
+ 
+            <table id="customer_info" class="table table-striped dataTable">
+            <tbody>
+                <tr>
+                    <th>Username</th>
+                    <td colspan="3" id="username">john.odonnell32</td>
+                </tr>
+                <tr>
+                    <th>Plan Code / Name</th>
+                    <td id="planname"></td>
+                    <!-- # removed in sirz 57400 # th>Plan Type</th>
+                    <td id="plantype"></td -->
+                </tr>
+                <tr>
+                    <th>Account #</th>
+                    <td id="accountno" colspan="3"></td>
+                </tr>
+                <tr>
+                    <th>Customer Name</th>
+                    <td id="custname" colspan="3"></td>
+                </tr>
+                <tr>
+                    <th>Service Address</th>
+                    <td id="servaddr" colspan="3"></td>
+                </tr>
+                <tr>
+                    <th>Account Status</th>
+                    <td id="acctstatus" colspan="3"></td>
+                </tr>
+ 
+ 
+            </tbody>
+            </table>
+ 
+        </div>
+ 
+    </td>
+    <td width="55%" height="100%" valign="top">
+ 
+        <div class="panel panel-primary" id="servicePanel">
+            <div class="panel-heading">
+                Service Info
+                <img id="serviceWaitImg" src="static/images/wait.gif" class="right">
+                <span id="serviceError" data-method="service" class="label label-danger right WSError" style="display: none">
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                    error
+                </span>
+                <img id="unthrottleWaitImg" src="static/images/wait.gif" class="right" style="display: none">
+                <span id="unthrottleError" data-method="unthrottle" class="label label-danger right WSError" style="display: none">
+                    <span class="glyphicon glyphicon-warning-sign"></span>
+                    error
+                </span>
+ 
+                <span id="serviceRefreshLabel" class="label label-refresh right" style="display: none">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                    Refresh
+                </span>
+ 
+            </div>
+ 
+            <table id="service_info" class="table table-striped dataTable">
+            <tbody>
+                <tr>
+                    <th>Last Provision / Change Date</th>
+                    <td id="lastprovchange" colspan="4" class="data"></td>
+                </tr>
+ 
+    
+                <tr>
+                    <th>Mac ID / Manufacturer</th>
+                    <td id="macidvendor" colspan="4" class="data"></td>
+                </tr>
+    
+     
+                <tr>
+                    <th>Allocated IP</th>
+                    <td id="ipaddr" colspan="2" class="data"></td>
+                    <td align="right">
+                        <input id="ip_allocation_button" type="button" value="Static IP Allocation" class="btn btn-default btn-xs">
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>Current Session</th>
+                    <td id="currentsession" colspan="4" class="data"></td>
+                </tr>
+                <tr>
+                    <th>Online</th>
+                    <td id="isonline" class="data"></td>
+                    <td></td>
+                    <th>ServiceNet Status</th>
+                    <td id="servicenet" colspan="2" class="data"></td>
+                </tr>
+    
+                <tr>
+                    <th>Throttling Status</th>
+                    <td id="throttlingstatus" class="data"></td>
+                    <td id="throttlingtime" class="data"></td>
+                    <td align="right">
+                        <input id="unthrottle_button" type="button" value="Unthrottle" class="btn btn-default btn-xs" style="display: none">
+                    </td>
+                    <td></td>
+                </tr>
+    
+ 
+ 
+ 
+            </tbody>
+            </table>
+ 
+        </div>
+ 
+        </td>
+    </tr>
+ 
+    <tr>
+        <td valign="top" height="100%" id="mail_other_services">
+ 
+            <div class="panel panel-primary" id="mailPanel">
+                <div class="panel-heading">
+                    Mail / Other Services
+                    <img id="mailWaitImg" src="static/images/wait.gif" class="right">
+                    <span id="mailError" data-method="mail" class="label label-danger right WSError" style="display: none">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        error
+                    </span>
+                    <!-- img id="toggle_spam_filterWaitImg" src="static/images/wait.gif" class="right" style="display: none">
+                    <span id="toggle_spam_filterError" data-method="toggle_spam_filter" class="label label-danger right WSError" style="display: none">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        error
+                    </span -->
+                    <img id="toggle_port_25WaitImg" src="static/images/wait.gif" class="right" style="display: none">
+                    <span id="toggle_port_25Error" data-method="toggle_port_25" class="label label-danger right WSError" style="display: none">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        error
+                    </span>
+                </div>
+ 
+                <table id='main_info' class="table table-striped dataTable">
+                <tbody>
+                    <tr>
+                        <th>Mail Quota</th>
+                        <td id="mailquota" class="data"></td>
+                        <th>UWeb Quota</th>
+                        <td id="uwebquota" class="data"></td>
+                    </tr>
+                    <tr>
+                        <th>Last Provision / Change Date</th>
+                        <td colspan="3" id="lastoiechange" class="data"></td>
+                    </tr>
+ 
+                    <tr>
+                        <th>Email Send Block</th>
+                        <td id="emailsendblock" class="data"></td>
+                        <th id="spamstatusheader" class="data">Spam Status</th>
+                        <!-- td id="emailsendblockbtn">
+                            <input id="spam_stats_btn" value="Spam Stats" class="btn btn-default btn-xs" onclick="window.open('https://staff.optusnet.com.au/tools/spam/?ip=')" type="button">
+                        </td -->
+                        <td id="spamstatus" class="data"></td>
+                    </tr>
+ 
+                    <tr>
+                        <th>Mail Watcher Status</th>
+                        <td id="mailwatcher" colspan="3" class="data"></td>
+                    </tr>
+ 
+                    <tr>
+                        <th>Secondary Usernames</th>
+                        <td id="secondaries" colspan="3" class="data"></td>
+                    </tr>
+ 
+                    <tr>
+                        <th>Spam Filtering</th>
+                        <td id="spamfilter" class="data"></td>
+                        <th></th>
+                        <td>
+                            <!-- input id="toggle_spam_filter_btn" value="Spam Filter" class="btn btn-default btn-xs" type="button" -->
+                        </td>
+                    </tr>
+ 
+                    <tr>
+                        <th>Port 25 Block</th>
+                        <td id="port25block" class="data"></td>
+                        <th></th>
+                        <td>
+                            <input id="toggle_port_25_btn" value="Port 25" class="btn btn-default btn-xs" type="button">
+                        </td>
+                    </tr>
+ 
+                    <tr>
+                        <th>Mail Status</th>
+                        <td id="mbox_state" colspan="3" class="data"></td>
+                    </tr>
+                </tbody>
+                </table>
+ 
+            </div>
+ 
+<script lang="javascript"><!--
+/*
+function append_parent(par) {
+    append_generic("Parent Username", par);
+}
+ 
+function append_siblings(par) {
+    append_generic("Siblings", par);
+}
+ 
+ 
+function append_generic(title, par) {
+    var htm =
+          '<tr id="parent_tr" ="">'
+        + '  <td class=""><b>' + title + ':</th>'
+        + '  <td colspan="3" class="_value">' + par + '</td>'
+        + '</tr>';
+    var t = document.getElementById("parent_table");
+    if (window.ActiveXObject) {
+        // innerHTML for certain elements in MSIE is read-only. We have to rewrite HTML some
+        // parents up...
+        var td_top = document.getElementById('mail_other_services');
+        td_top.innerHTML =
+            '<table cellspacing="1" class="c41" bgcolor="white" id="parent_table">\n' +
+                td_top.firstChild.innerHTML + htm +
+            '</table>\n';
+    } else {
+        t.innerHTML += htm;
+    }
+}
+*/
+--></script>
+ 
+        </td>
+        <td valign="top" height="100%">
+ 
+            <div class="panel panel-primary" id="toolsPanel">
+                <div class="panel-heading">
+                    Tools
+                    <span id="device_verifyError" data-method="device_verify" class="label label-danger right WSError" style="display: none">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        error
+                    </span>
+                    <img id="check_passwordWaitImg" src="static/images/wait.gif" class="right" style="display: none">
+                    <span id="check_passwordError" data-method="check_password" class="label label-danger right WSError" style="display: none">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        error
+                    </span>
+                    <img id="reset_connectionWaitImg" src="static/images/wait.gif" class="right" style="display: none">
+                    <span id="reset_connectionError" data-method="reset_connection" class="label label-danger right WSError" style="display: none">
+                        <span class="glyphicon glyphicon-warning-sign"></span>
+                        error
+                    </span>
+                </div>
+ 
+                <table id="tools_info" class="table table-striped" id="tools">
+                <tbody>
+ 
+ 
+                <tr>
+                    <td width="102px"></td>
+                    <td colspan="3">
+                       <b>Type in plain text password to check</b>
+                        &nbsp;
+                        <input id="password" type="password" name="password" class="form-control">
+                        &nbsp;
+                        <input id="check_password_btn" type="button" value="Check Password" class="btn btn-default btn-xs">
+                        &nbsp;
+                        <input id="reset_password_btn" type="button" value="Reset Password" class="btn btn-default btn-xs">
+                    </td>
+                </tr>
+ 
+                <tr>
+                    <td id="check_password_result" colspan="4" nowrap>
+                        &nbsp;
+                        <b>mail</b> <span id="password_mail"></span> &nbsp;&nbsp;
+ 
+                        <b>uweb</b> <span id="password_uweb"></span> &nbsp;&nbsp;
+ 
+ 
+                        <b>cable</b> <span id="password_service"></span>
+ 
+                    </td>
+                    <!-- td -->
+ 
+ 
+                    <!-- /td -->
+                </tr>
+ 
+ 
+<!-- No ping at the moment -->
+<!--
+                <tr>
+                    <td>
+                        <b>Ping min/average/max</b>
+                        <input class="btn btn-default btn-xs" type="button" value="Refresh" style="width: 7em" onclick="refresh_ping()" id="refresh_ping" disabled="1">
+                    </td>
+                    <td id="ping">
+                        <div style="color: gray; font-style: italic">Click refresh</div>
+                    </td>
+                    <td colspan="2"></td>
+                </tr>
+-->
+ 
+ 
+ 
+ 
+                <tr>
+                    <td colspan="4">
+                        <input type="button" value="Provisioning" class="btn btn-default btn-xs" tabindex="2"
+                            onclick="window.open('http://staff.optusnet.com.au/tools/cableprovinfo/?query=john.odonnell32&namespace=optus', '_blank')">
+                        &nbsp;
+                        <input type="button" value="Manage Usernames" class="btn btn-default btn-xs" tabindex="3"
+                            onclick="window.open('http://staff.optusnet.com.au/tools/usernames/index.html?username=john.odonnell32&namespace=optus', '_blank')">
+                        &nbsp;
+ 
+                        <input id="reset_connection_btn" type="button" value="Reset Connection" class="btn btn-default btn-xs" tabindex="5">
+                        &nbsp;
+ 
+ 
+ 
+ 
+ 
+                        <input type="button" value="Modem Swapper" class="btn btn-default btn-xs" tabindex="5"
+                            onclick="window.open('cm_swapper.html?mac=841b5e667e38&username=john.odonnell32', '_blank', 'location=0, height=600, width=800, resizable=yes, scrollbars=yes, status=yes')">
+ 
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+ 
+                        <input type="button" value="Reset Modem"   Object { subscriber="96258612", html_description="'yes' Bus Fusion 500GB $110.00", bill_cycle="4", more...}
+                            class="btn btn-default btn-xs" tabindex="6" onclick="window.open('https://scamps.optusnet.com.au/reset/index.html?mac=841b5e667e38&cmts=rivrw9')">
+                        &nbsp;
+ 
+ 
+ 
+                        <input type="button" value="Ping & Traceroute" class="btn btn-default btn-xs" tabindex="7" onclick="window.open('https://scamps.optusnet.com.au/tools.cgi?host=10.107.221.101&cmts=rivrw9')">
+                        &nbsp;
+ 
+ 
+ 
+                        <input type="button" value="View Equipment" class="btn btn-default btn-xs" tabindex="8" onclick="window.open('https://scamps.optusnet.com.au/dhcp.html?mac=841b5e667e38&ip=10.107.221.101&cmts=rivrw9')">
+                        &nbsp;
+ 
+ 
+                        <input type="button" value="More Tools..." class="btn btn-default btn-xs" tabindex="10"
+                            onclick="window.open('/links?type=cable&ip=10.107.221.101&pc_ip=110.20.135.180&mac=841b5e667e38&username=john.odonnell32', '_blank', 'location=0, height=600, width=800, resizable=yes, scrollbars=yes, status=yes')">
+                    </td>
+                </tr>
+ 
+ 
+ 
+ 
+ 
+ 
+                <tr><td colspan="4"></td></tr>
+                <tr><td colspan="4"></td></tr>
+                <tr><td colspan="4"></td></tr>
+ 
+ 
+                <tr><td colspan="4"></td></tr>
+              </tbody>
+              </table>
+ 
+          </div>
+ 
+        </td>
+    </tr>
+</table>
+ 
+ 
+ 
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div style="float: left">Usage History &nbsp;&nbsp;&nbsp;</div>
+        <label>
+            <input type="radio" id="usageHistoryModeTable" name="usage_history_mode" class="updateUsage" checked />
+            Table &nbsp;
+        </label>
+        <label>
+            <input type="radio" id="usageHistoryModeGraph" name="usage_history_mode" class="updateUsage" />
+            Graph
+        </label>
+ 
+        <img id="usageWaitImg" src="static/images/wait.gif" class="right" />
+ 
+        <span id="usageError" data-method="usage" class="label label-danger right WSError" style="display: none">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            error
+        </span>
+        <span id="modem_current_speedError" data-method="modem_current_speed" class="label label-danger right WSError" style="display: none">
+            <span class="glyphicon glyphicon-warning-sign"></span>
+            error
+        </span>
+    </div>
+ 
+        <table width="100%">
+            <tr>
+                <td id="usage_history_contents" width="45%">
+                    <iframe id="usageFrame" height="100%" width="100%"></iframe>
+                </td>
+                <td valign="top"> <!--  Begin td for usage data values -->
+                    <form class="form-horizontal">
+                    <table id="usageLeftContainer" class="table-striped" width="100%">
+                    <tbody>
+ 
+                        <tr>
+                            <td colspan="5">
+ 
+                                <table id="usageTable" class="table dataTable table-striped" style="display: none">
+                                <tbody>
+                                    <tr>
+                                        <th>On-peak Limit</th>
+                                        <td id="limit_onpeak"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Off-peak Limit</th>
+                                        <td id="limit_offpeak"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Data Limit</th>
+                                        <td id="data_limit"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Credit</th>
+                                        <td id="credits"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total on-peak</th>
+                                        <td id="tot_updown_onpeak_pct"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total off-peak</th>
+                                        <td id="tot_updown_offpeak_pct"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Downloaded</th>
+                                        <td id="tot_down_pct"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Downloaded on-peak</th>
+                                        <td id="tot_down_onpeak_pct"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Downloaded off-peak</th>
+                                        <td id="tot_down_offpeak_pct"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Total Data Usage</th>
+                                        <td id="tot_data_pct"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Downloaded</th>
+                                        <td id="tot_down"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Uploaded</th>
+                                        <td id="tot_up"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Downloaded on-peak</th>
+                                        <td id="tot_down_onpeak"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Downloaded off-peak</th>
+                                        <td id="tot_down_offpeak"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Uploaded on-peak</th>
+                                        <td id="tot_up_onpeak"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Uploaded off-peak</th>
+                                        <td id="tot_up_offpeak"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Download / Upload split</th>
+                                        <td id="down_up_split"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2">
+                                            <input id="show_all_button" type="button" value="Show All" class="btn btn-default btn-xs">
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" id="graphmodemonth" name="graphmode" checked>
+                                        For a month
+                                    </label>
+                                </div>
+                                <select id="billingdates" name="billingdate" disabled="1" class="form-control">
+                                    <option>Current Billing period</option>
+                                </select>
+                            </td>
+                            <td>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" id="graphmodeday" name="graphmode">
+                                        For a day
+                                    </label>
+                                </div>
+ 
+                                <div class="input-group date" id="datepicker1">
+                                    <input id="dob" type="text" class="form-control" data-format="YYYY-MM-DD" value="2014-09-10" />
+                                    <!--span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                    </span-->
+                                </div>
+ 
+                            </td>
+                            <td>&nbsp;</td>
+                            <td>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" id="graphmodedaterange" name="graphmode">
+                                        For a date range
+                                    </label>
+                                </div>
+ 
+                                <div class="input-group date" id="datepicker2">
+                                    <span class="input-group-addon">from</span>
+                                    <input id="rangefrom" type="text" class="form-control" data-format="YYYY-MM-DD" value="2014-09-10" />
+                                    <!--span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                    <span> - </span-->
+                                </div>
+                            </td>
+                            <td>
+                                <div class="radio">
+                                    <label>&nbsp;</label>
+                                </div>
+                                <div class="input-group date" id="datepicker3">
+                                    <span class="input-group-addon">to</span>
+                                    <input id="rangeto" type="text" class="form-control" data-format="YYYY-MM-DD" value="2014-09-10" />
+                                    <!--span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                    </span-->
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="down_onpeak" type="checkbox" checked="checked">
+                                        Download - On Peak
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="down_offpeak" type="checkbox" checked="checked">
+                                        Download - Off Peak
+                                    </label>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="up_onpeak" type="checkbox" checked="checked">
+                                        Upload - On Peak
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="up_offpeak" type="checkbox" checked="checked">
+                                        Upload - Off Peak
+                                    </label>
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div id="usage_refresh_button">
+                                    <input id="refresh_usage_history" type="button" class="btn btn-default btn-xs updateUsage" value="Refresh">
+                                </div>
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+ 
+        
+                        <tr>
+                            <td colspan="5">
+ 
+                                <table class="table dataTable table-striped">
+                                    <tr>
+                                        <th>Max Upload Speed</th>
+                                        <td id="max_upload_speed"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Max Download Speed</th>
+                                        <td id="max_download_speed"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <input id="refresh_speed_btn" tabindex="5" type="button" value="Refresh Speed" class="btn btn-default btn-xs">
+                                            &nbsp;
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+        
+                    </tbody>
+                    </table>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    <div class="panel panel-primary" id="connectionDataPanel">
+        <div class="panel-heading">
+            Connection Data
+            <img id="cable_connection_dataWaitImg" src="static/images/wait.gif" class="right" style="display: none">
+            <img id="dsl_modem_line_profileWaitImg" src="static/images/wait.gif" class="right" style="display: none">
+ 
+            <span id="cable_connection_dataError" data-method="cable_connection_data" class="label label-danger right WSError" style="display: none">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+                error
+            </span>
+ 
+            <span id="dsl_modem_line_profileError" data-method="dsl_modem_line_profile" class="label label-danger right WSError" style="display: none">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+                error
+            </span>
+ 
+            <span id="cable_connection_dataRefreshLabel" class="label label-refresh right" style="display: none">
+                <span class="glyphicon glyphicon-refresh"></span>
+                Refresh
+            </span>
+ 
+        </div>
+ 
+    
+        <div id="cableConnectionData_notOnline" style="display: none"> &nbsp;&nbsp;This user is not online.</div>
+ 
+        <div id="cableConnectionData">
+            <div style="width: 45%" class="left">
+                <table class="table dataTable table-striped" width="100%">
+                    <tbody>
+                        <tr>
+                            <th>Upstream Tx power</th>
+                            <td id="upstream_tx_power" class="data"></td>
+                        </tr>
+                        <tr>
+                            <th>Upstream Rx power</th>
+                            <td id="upstream_rx_power" class="data"></td>
+                        </tr>
+                        <tr>
+                            <th>Downstr. SNR</th>
+                            <td id="downstream_snr" class="data"></td>
+                        </tr>
+                        <tr>
+                            <th>Flap Miss/Hit</th>
+                            <td id="flap_miss_hit" class="data"></td>
+                        </tr>
+                        <tr>
+                            <th>Power Flaps</th>
+                            <td id="power_flaps" class="data"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="left" style="padding-top: 15px">
+                <form>
+                <div class="left">Show CM/STB report for the past &nbsp;&nbsp;</div>
+                <select id="cm_timespan" name="timespan" class="form-control left">
+                
+                    <option value="1">1</option>
+                
+                    <option value="2">2</option>
+                
+                    <option value="3">3</option>
+                
+                    <option value="4">4</option>
+                
+                    <option value="5">5</option>
+                
+                    <option value="6">6</option>
+                
+                    <option value="7"  selected="selected">7</option>
+                
+                    <option value="8">8</option>
+                
+                    <option value="9">9</option>
+                
+                    <option value="10">10</option>
+                
+                    <option value="11">11</option>
+                
+                    <option value="12">12</option>
+                
+                    <option value="13">13</option>
+                
+                    <option value="14">14</option>
+                
+                    <option value="15">15</option>
+                
+                    <option value="16">16</option>
+                
+                    <option value="17">17</option>
+                
+                    <option value="18">18</option>
+                
+                    <option value="19">19</option>
+                
+                    <option value="20">20</option>
+                
+                    <option value="21">21</option>
+                
+                    <option value="22">22</option>
+                
+                    <option value="23">23</option>
+                
+                    <option value="24">24</option>
+                
+                </select>
+                &nbsp;&nbsp;
+                <label>
+                    <input id="cm_hours" type="radio" name="cm_duration" value="hours"/>
+                    hours
+                </label>
+                <label>
+                    <input id="cm_days" type="radio" name="cm_duration" value="days" Checked>
+                    days
+                </label>
+                <br>
+                <input id="cm_stb_report_button" type="button" class="btn btn-default btn-xs" value="Open Report" name="cm_stb_report_button"><br>
+                </form>
+            </div>
+            <br clear="both">
+        </div>
+    
+ 
+    
+    </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Scamps Information
+            <img id="scampsinfoWaitImg" src="static/images/wait.gif" class="right" style="display: none">
+            <span id="scampsinfoError" data-method="scampsinfo" class="label label-danger right WSError" style="display: none">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+                error
+            </span>
+        </div>
+ 
+        <div id="scampsInfoNoDataReason" style="display: none"></div>
+ 
+        <div id="scampsInfo" style="display: none">
+            <form name="scamps_info_form">
+            <input type="hidden" name="time" value="hour">
+ 
+                <select id="scampsInfoTime" name="scampsInfoTime" class="form-control left">
+                
+                    <option value="1">1</option>
+                
+                    <option value="2">2</option>
+                
+                    <option value="3">3</option>
+                
+                    <option value="4">4</option>
+                
+                    <option value="5">5</option>
+                
+                    <option value="6">6</option>
+                
+                    <option value="7">7</option>
+                
+                    <option value="8">8</option>
+                
+                    <option value="9">9</option>
+                
+                    <option value="10">10</option>
+                
+                    <option value="11">11</option>
+                
+                    <option value="12" selected="selected">12</option>
+                
+                    <option value="13">13</option>
+                
+                    <option value="14">14</option>
+                
+                    <option value="15">15</option>
+                
+                    <option value="16">16</option>
+                
+                    <option value="17">17</option>
+                
+                    <option value="18">18</option>
+                
+                    <option value="19">19</option>
+                
+                    <option value="20">20</option>
+                
+                    <option value="21">21</option>
+                
+                    <option value="22">22</option>
+                
+                    <option value="23">23</option>
+                
+                    <option value="24">24</option>
+                
+                </select>
+ 
+                &nbsp;&nbsp;
+                <label>
+                    <input type="radio" name="scampsInfoUnit" value="hour" checked>
+                    hours
+                </label>
+ 
+                <label>
+                    <input type="radio" name="scampsInfoUnit" value="day">
+                    days
+                </label>
+ 
+                <input id="scampsInfoGo" type="button" value="Go" class="btn btn-default btn-xs">
+            </form>
+ 
+            <table id="scampsInfoData" class="table table-striped" width="100%">
+                <thead>
+                    <tr></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+ 
+ 
+ 
+ 
+<!-- div class='push'></div -->
+<br>
+ 
+</div>
+ 
+ 
+<div class="footer center">
+    System time: Wednesday 2014-09-10 16:34:13<br>
+    &copy; Optus, 2000-2014. Developed by Optus Internet Engineering.
+</div>
+ 
+ 
+<!-- Please don't screen scrape me! Just ask servers@optusnet.com.au for API details. -->
+ 
+</body>
+</html>
+ 
+ 
+

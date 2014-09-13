@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+ 
+<!-- please dont screen scrape me! Just ask servers@optusnet.com.au for API details -->
+ 
+<head>
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta charset="utf-8">
+    <title>SCaMPS - CM Poll Results</title>
+    <meta name="author" content="Singtel Optus" />
+    <meta name="description" content="SCaMPS - Set top Box Cable Modem Monitoring and Performance System - [c]atalyst version." />
+    <link rel="shortcut icon" type="image/png" href="static/images/favicon.png"/>
+ 
+    <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="static/style.css" type="text/css" media="screen"/>
+ 
+ 
+    <!-- Favicons
+    ================================================== -->
+    <link rel="shortcut icon" type="image/png" href="static/images/favicon.png"/>
+ 
+ 
+    <!-- Javascript / JQuery
+    ================================================== -->
+<!--[if lt IE 9]>
+    <script src="static/js/html5shiv.js"></script>
+<![endif]-->
+    <script src="static/js/jquery-1.10.2.min.js"></script>
+ 
+ 
+    <script type="text/javascript">
+        var popupWindow = null;
+        function centeredPopup(url,winName,w,h,scroll){
+            LeftPosition = (screen.width) ? (screen.width-w)/2 : 0;
+            TopPosition = (screen.height) ? (screen.height-h)/2 : 0;
+            settings ='height='+h+',width='+w+',top='+TopPosition+',left='+LeftPosition+',scrollbars='+scroll+',resizable, toolbar'
+            popupWindow = window.open(url,winName,settings);
+        }
+ 
+        $(document).ready(function() {
+            // Select text value on focus
+            //$('input[type=text]').click(function() {
+            //    $(this).select();
+            //});
+ 
+            var active_color = '#444'; // Colour of user provided text
+            var inactive_color = '#ACA39A'; // Colour of default text
+ 
+            // Set help text, and auto-clear default values on text box on click
+            $("input.default-value").css("color", inactive_color);
+            var default_values = new Array();
+ 
+            $("input.default-value").focus(function() {
+                if (!default_values[this.id]) { default_values[this.id] = this.value; }
+                if (this.value == default_values[this.id]) { this.value = ''; this.style.color = active_color; }
+ 
+                $(this).blur(function() {
+                    if (this.value == '') { this.style.color = inactive_color; this.value = default_values[this.id]; }
+                });
+            });
+        });
+ 
+    </script>
+ 
+ 
+</head>
+ 
+<body>
+ 
+    <div class="menu_panel">
+        <table>
+            <tr>
+                <td style="width:15%;">&nbsp;<a href="/"><img title="Set top Box Cable Modem Monitoring and Performance System (v3.0)" src="static/images/logo_scamps.png" height="36" width="156"/></a></td>
+                <td style="width:35%;" class="topsearchtd">
+                    <div class="topsearch">
+                        <form action="cm.html" method="get">
+                            <input type="text" style="height: 18px; width: 180px;" class="topsearch_input default-value" id="q" name="q" title="i.e.:&#013;MAC: 0050940102ab&#013;DN  : 61280821133&#013;IP  :124.24.12.234&#013;" value=" Anything Search">
+                            <input type="submit" class="find_btn" title="Search for a Cable Modem via MAC, IP Address, Username, Address ID, or DN" value="Search"/>
+                        </form>
+                    </div>
+                    <div class="topsearch">
+                        <form action="node.html" method="get">
+                            <input type="text" style="height: 18px; width: 80px;" class="topsearch_input default-value" id="n" name="node" title="i.e.:&#013;33EB_900" value=" Node Search">
+                            <input type="submit" class="find_btn" title="Node Search" value="Search"/>
+                        </form>
+                    </div>
+                </td>
+ 
+                <td style="width:50%; vertical-align: top;">
+                    <table>
+                        <tr>
+                            <td style="text-align: right;">Help Links:</td>
+                            <td>
+                                <a href="https://wiki.optusnet.com.au/foswiki/Main/ScampsSupport">Support</a> |
+                                <a href="static/docs/SCaMPS_User_Guide_2.0.pdf">User Guide (pdf)</a> |
+                                <a href="static/docs/SCaMPS_User_Guide_Addendum_2.2.pdf">Guide Addendum (pdf)</a> |
+                                <a href="https://sirz.optusnet.com.au/buglist.cgi?list_id=20117;query_format=advanced;bug_status=NEW;bug_status=ASSIGNED;bug_status=REOPENED;component=SCAMPS;product=Internet%20Services%20Engineering">Open SIRz</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">Quick Links:</td>
+                            <td>
+                                <a href="/">Network Report</a> |
+                                <a href="/cmts.html?cmts=rivrw9">CMTS Report</a> |
+                                <a href="/interface.html?cmts=rivrw9&amp;int=5073">Upstream Report</a> |
+                                <a href="/node.html?node=22CJ_027">Node Report</a> |
+                                <a href="/cm.html?mac=841B5E667E38">CM Report</a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <div class="corner_logo">
+                        <span>
+                            <img src="static/images/logo_optus.png" height="24" width="100"/>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+ 
+    
+ 
+    <div class="left_container">
+        <div class="info_panel">
+            <h2>Subscriber Details</h2>
+            <hr />
+            <div class="animated_gif">
+                <span>
+                    <img style="float:right" src="static/images/animal-graphics-kangaroo-363368.gif" alt="Docsis 3.0 Speeds" />
+                </span>
+            </div>
+            <dl>
+                <dt>Username:</dt>
+                    <dd>john.odonnell32</dd>
+                <dt>Customer Name:</dt>
+                    <dd>John O'donnell</dd>
+                <dt>Child usernames:</dt>
+                    <dd> </dd>
+                <dt>DN 1:</dt>
+                    <dd>0297189920<br />61297189920</dd>
+                <dt>DN 2:</dt>
+                    <dd>-</dd>
+                <dt>CM Mac:</dt>
+                    <dd>841B5E667E38</dd>
+                <dt>MTA Mac: </dt>
+                    <dd>841B5E667E39</dd>
+                <dt>Address ID:</dt>
+                    <dd> <a class="alt2" href="https://staff.optusnet.com.au/tools/cableprovinfo/index.html?field=address_id&query=6218604">6218604</a>
+</dd>
+                <dt>RF Node: </dt>
+                    <dd> <a class="alt2" href="node.html?node=22CJ_027&amp;mac=841b5e667e38">22CJ_027</a>
+ <a class="alt2" href="node.html?node=22CJ_027&amp;mac=841b5e667e38#modem841b5e667e38">(Jump to Modem)</a>
+</dd>
+                <dt>Street Address:</dt>
+                    <dd> <a class="alt2" href="http://maps.google.com/?q=37%2CMAIN%20ST%2CEARLWOOD%2CNSW%2C2206">37 MAIN ST EARLWOOD NSW 2206</a>
+</dd>
+            </dl>
+        </div> <!-- End of info_panel -->
+ 
+        <div class="search_panel">
+            <div>
+                <h2>SCaMPS Tools</h2>
+                <hr />
+ 
+                <!-- display the links/buttons in the middle: view equipment, poll equipment etc. -->
+                <form method="get" action="history.html">
+                  <fieldset>
+ 
+                    <legend>Show history for the past:</legend>
+ 
+                    <input type="hidden" name="cmts" value="rivrw9" />
+                    <input type="hidden" name="mac"  value="841B5E667E38" />
+ 
+                    <div class="styled-select">
+                        <select name="timespan" size="1">
+                        <option value="1" selected>1</option>
+                        <option value="2" selected>2</option>
+                        <option value="3" selected>3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5" selected>5</option>
+                        <option value="6" selected>6</option>
+                        <option value="7" selected>7</option>
+                        <option value="8" selected>8</option>
+                        <option value="9" selected>9</option>
+                        <option value="10" selected>10</option>
+                        <option value="11" selected>11</option>
+                        <option value="12" selected>12</option>
+                        <option value="13" selected>13</option>
+                        <option value="14" selected>14</option>
+                        <option value="15" selected>15</option>
+                        <option value="16" selected>16</option>
+                        <option value="17" selected>17</option>
+                        <option value="18" selected>18</option>
+                        <option value="19" selected>19</option>
+                        <option value="20" selected>20</option>
+                        <option value="21" selected>21</option>
+                        <option value="22" selected>22</option>
+                        <option value="23" selected>23</option>
+                        <option value="24" selected>24</option>
+ 
+                        </select>
+                    </div>
+ 
+                    <label for="hours">hours</label><input type="radio" name="timeunits" id="hours" value="hours" checked />
+                    <label for="days">days</label><input type="radio" name="timeunits" id="days" value="days" />
+ 
+                    <div class="styled-select">
+                        <select name="table" size="1">
+                            <option value="summary">Summary</option>
+                            <option value="data_rf">Data RF</option>
+                            <option value="error">Error</option>
+                        </select>
+                    </div>
+ 
+                    <input type="submit" class="submit_btn" value="Go"/>
+                  </fieldset>
+                </form>
+ 
+                <ul>
+                  <!-- "Poll Equipment" button, static/images/poll_equip.png -->
+                  <li id="poll"><a href="poll.html?mac=841B5E667E38&amp;cmts=rivrw9">Poll Modem</a></li>
+                  <!-- "Reset" button, static/images/reset.png -->
+                  <li id="reset"><a onclick="centeredPopup('reset/index.html?mac=841b5e667e38&amp;cmts=rivrw9','resetModem', '400','400','yes');return false">Reset</a></li>
+                  <!-- "DHCP History" button, static/images/view_equip.png -->
+                  <li id="dhcp"><a href="dhcp.html?mac=841b5e667e38&amp;ip=10.107.221.101">DHCP History</a></li>
+                  <!-- "Usage History", was "Net Stats" button, static/images/netstats.png -->
+                  <li id="netstats"><a href="http://staff.optusnet.com.au/tools/usage/?username=john.odonnell32&amp;type=hsd">Usage History</a></li>
+                  <!-- "Ping & Traceroute" button, static/images/traceroute.png -->
+                  <li id="traceroute"><a onclick="centeredPopup('tools.cgi?host=10.107.221.101&amp;cmts=rivrw9','resetModem', '1000','800','yes');return false">Trace Route</a></li>
+                  <!-- "Congestion Check" button, static/images/congestion_check.png -->
+                  <li id="congestion"><a onclick="centeredPopup('http://mtsolutions.optus.com.au/core/apps/hsdcgn/index_scamps.php?user=john.odonnell32&node=22CJ_027&cmts=rivrw9&ds=Mo3/1/0:23&us=Cable5/0/7-upstream3',
+                  'congestioncheck', '1000','800','yes');return false">Congestion Check</a></li>                  
+                </ul>
+ 
+            </div>
+        </div>
+        <!-- End of search_panel -->
+    </div>
+ 
+    <div class="modem_panel">
+ 
+        <h2>Customer Equipment Details (Polled)</h2>
+ 
+        <hr />
+ 
+        <div>
+ 
+            <!--  Identification section -->
+            <div id="cmts_data">
+                <h3>CMTS Data</h3>
+                <dl>
+                    <dt>CMTS</dt>
+                        <dd><a class="alt2" href="cmts.html?cmts=rivrw9">rivrw9</a></dd>
+                    <dt>CM IP Address</dt>
+                        <dd>10.107.221.101</dd>
+                    <dt>MTA IP Address</dt>
+                        <dd>10.212.208.51</dd>
+                    <dt>CPE IP Address</dt>
+                        <dd><a class="alt2" href="http://reporting.ookla.com/index.php?ip=110.20.135.180">110.20.135.180</a></dd>
+                    <dt>CM Status (view by CMTS)</dt>
+                        <dd>w-online(pt)</dd>
+                </dl>
+                <p>The CM registered, BPI is enabled, and the TEK is assigned. BPI encryption is now being performed.<br /><br /></p>
+ 
+                <dl>
+                    <div class="two_col">
+                        <dt>CM Service Class</dt>
+                            <dd>Data - Standard, Download : 100m<br />Data - Standard, Upload : 2m</dd>
+                    </div>
+                    <div class="two_col">
+                        <dt>DS Bonding Status</dt>
+                            <dd>Full Service</dd>
+                    </div>
+                </dl>
+            </div>
+ 
+            <!-- CM Status -->
+            <div id="cm_status">
+                <h3>CM Status</h3>
+                <dl>
+                    <dt>Uptime</dt>
+                        <dd>0+00:04:58&nbsp;&nbsp;&nbsp; <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=uptime"><img src="static/images/graph.gif" /></a></dd>
+                    <dt>CM status</dt>
+                        <dd>operational(12)</dd>
+                    <dt>DOCSIS Capable</dt>
+                        <dd>3.0</dd>
+ 
+                    <dt>QoS Provisioned</dt>
+                        <dd>1.1</dd>
+ 
+                    <!-- version string of the firmware in eMTA or CM -->
+                    <dt>Version</dt>
+                        <dd>NETGEAR Wireless Cable Voice Gateway &lt;&lt;HW_REV: 1.04AE; VENDOR: Netgear; BOOTR: 2.3.0; SW_REV: 3.9.21.8.V0021; MODEL: CG3000&gt;&gt;</dd>
+                </dl>
+            </div>
+            <!-- END CM Status -->
+        </div>
+ 
+        <div>
+            <!--   VoIP Data -->
+            <div id="mta_status">
+ 
+                <h3>MTA Status</h3>
+                <div class="two_col_a">
+                    <dl>
+                        <dt>MTA Enabled</dt>
+                            <dd>true</dd>
+                        <dt>Prov. Complete Status</dt>
+                            <dd>-</dd>
+                        <dt>Prov. State</dt>
+                            <dd>operational</dd>
+                    </dl>
+                </div>
+                <div class="two_col_b">
+                    <table>
+                        <caption>Line Status</caption>
+                        <thead>
+                            <tr>
+                                <th>Line</th>
+                                <th>Switch Rego</th>
+                                <th>Status</th>
+                                <th>Jitter</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>registered</td>
+                                <td>on-hook</td>
+                                <td class="">-</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>unregistered</td>
+                                <td>on-hook</td>
+                                <td class="">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END VoIP Data -->
+        </div>
+ 
+        <div>
+ 
+            <!-- Upstream section -->
+            <div id="upstream">
+ 
+                <h3>Upstream</h3>
+ 
+                <dl>
+                    <div class="three_col">
+                    <dt>Interface</dt>
+                        <dd>Cable5/0/7-upstream3</dd>
+                    </div>
+                    <div class="three_col">
+                    <dt>Max Upload Speed</dt>
+                        <dd>2000000</dd>
+                    </div>
+                    <div class="three_col">
+                        &nbsp;
+                    </div>
+ 
+                    <br/>
+ 
+                    <div class="three_col">
+                        <dt>In-Packets (per hour)</dt>
+                            <dd>3777 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=inpackets"><img src="static/images/graph.gif" /></a></dd>
+ 
+                    </div>
+                    <div class="three_col">
+                        <dt>In-Octets (per hour)</dt>
+                            <dd>509385 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=inoctets"><img src="static/images/graph.gif" /></a></dd>
+                    </div>
+                    <div class="three_col">
+                        <dt>Error Rate (per hour)</dt>
+                            <dd>0.0 % <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=errorrate"><img src="static/images/graph.gif" /></a></dd>
+                    </div>
+                </dl>
+ 
+                <table>
+                    <caption>DOCSIS Channels</caption>
+                    <thead>
+                        <tr>
+                            <th>Ch.</th>
+                            <th>Freq</th>
+                            <th>Tx Pwr.</th>
+                            <th>Rx Pwr.</th>
+                            <th>SNR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>P</td>
+                            <td>15.900 MHz <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=upfrequency"><img src="static/images/graph.gif" /></a></td>
+                            <td>39.2 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=uptxpower"><img src="static/images/graph.gif" /></a></td>
+                            <td>0.00 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=recpower"><img src="static/images/graph.gif" /></a></td>
+                            <td>28.92 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=upsnr"><img src="static/images/graph.gif" /></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+ 
+            </div>
+ 
+            <!-- Downstream section -->
+            <div id="downstream">
+ 
+                <h3>Downstream</h3>
+ 
+                <dl>
+                    <div class="three_col">
+                        <dt>Interface</dt>
+                            <dd>Mo3/1/0:23</dd>
+                    </div>
+                    <div class="three_col">
+                        <dt>Max Download Speed</dt>
+                            <dd>107 Mb/s</dd>
+                    </div>
+                    <div class="three_col">
+                        &nbsp;
+                    </div>
+                    <div class="three_col">
+                        <dt>Out-Packets (per hour)</dt>
+                            <dd>26854 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=outpackets"><img src="static/images/graph.gif" /></a></dd>
+                    </div>
+                    <div class="three_col">
+                        <dt>Out-Octets (per hour)</dt>
+                            <dd>38894405 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=outoctets"><img src="static/images/graph.gif" /></a></dd>
+                    </div>
+                    <div class="three_col">
+                    <dt>Modulation</dt>
+                        <dd>QAM256(4) <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=downmodulation"><img src="static/images/graph.gif" /></a></dd>
+                    </div>
+                </dl>
+ 
+                <table>
+                    <caption>DOCSIS Channels</caption>
+                    <thead>
+                        <tr>
+                            <th>Ch.</th>
+                            <th>Freq</th>
+                            <th>Rx Pwr.</th>
+                            <th>SNR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>P</td>
+                            <td>339.000 MHz <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=downfreq"><img src="static/images/graph.gif" /></a></td>
+                            <td>-7.7 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=downrxpower"><img src="static/images/graph.gif" /></a></td>
+                             <td>40.7 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=snr"><img src="static/images/graph.gif" /></a></td>
+ 
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>297.000 MHz <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsfreq1"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">-2.1</span> <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsrxpower1"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">41.9</span> 
+<a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydssnr1"><img src="static/images/graph.gif" /></a></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>303.000 MHz <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsfreq2"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">-2.4</span> <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsrxpower2"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">41.9</span> 
+<a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydssnr2"><img src="static/images/graph.gif" /></a></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>309.000 MHz <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsfreq3"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">-2.3</span> <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsrxpower3"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">39.9</span> 
+<a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydssnr3"><img src="static/images/graph.gif" /></a></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>315.000 MHz <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsfreq4"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">-3.2</span> <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsrxpower4"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">41.3</span> 
+<a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydssnr4"><img src="static/images/graph.gif" /></a></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>321.000 MHz <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsfreq5"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">-4.5</span> <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsrxpower5"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">40.3</span> 
+<a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydssnr5"><img src="static/images/graph.gif" /></a></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>327.000 MHz <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsfreq6"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">-6.3</span> <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsrxpower6"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">39.8</span> 
+<a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydssnr6"><img src="static/images/graph.gif" /></a></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>333.000 MHz <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsfreq7"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">-7.6</span> <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydsrxpower7"><img src="static/images/graph.gif" /></a></td>
+                            <td><span class="">39.0</span> 
+<a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=secondarydssnr7"><img src="static/images/graph.gif" /></a></td>
+                        </tr>
+ 
+ 
+                    </tbody>
+                </table>
+            </div>
+ 
+ 
+ 
+        </div>
+ 
+        <div>
+            <!--  Stats section -->
+            <div id="statistics">
+ 
+                <h3>Statistics</h3>
+ 
+                <table>
+                    <caption>Flaps (Per Hour)</caption>
+                    <thead>
+                        <tr>
+                            <th>Hit</th>
+                            <th>Miss</th>
+                            <th>Insert Fail</th>
+                            <th>Power Adj</th>
+                            <th>CRC Fail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>202 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=flaphit"><img src="static/images/graph.gif" /></a></td>
+                            <td>28 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=flapmiss"><img src="static/images/graph.gif" /></a></td>
+                            <td>1 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=flapins"><img src="static/images/graph.gif" /></a></td>
+                            <td>- <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=flappower"><img src="static/images/graph.gif" /></a></td>
+                            <td>- <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=flapcrc"><img src="static/images/graph.gif" /></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+ 
+                <table>
+                    <caption>Flaps (Raw Counters)</caption>
+                    <thead>
+                        <tr>
+                            <th>Hit</th>
+                            <th>Miss</th>
+                            <th>Insert Fail</th>
+                            <th>Power Adj</th>
+                            <th>CRC Fail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2056</td>
+                            <td>15</td>
+                            <td>1</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+ 
+                <table>
+                    <caption>Timeouts</caption>
+                    <thead>
+                        <tr>
+                            <th>T1</th>
+                            <th>T2</th>
+                            <th>T3</th>
+                            <th>T4</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>0 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=t1"><img src="static/images/graph.gif" /></a></td>
+                            <td>0 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=t2"><img src="static/images/graph.gif" /></a></td>
+                            <td>1 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=t3"><img src="static/images/graph.gif" /></a></td>
+                            <td>0 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=t4"><img src="static/images/graph.gif" /></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+ 
+                <table>
+                    <caption>Other</caption>
+                    <thead>
+                        <tr>
+                            <th>Time Offset</th>
+                            <th>Resets</th>
+                            <th>Lost sync.</th>
+                            <th>Ranging Aborts</th>
+                            <th>Round Trip Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2505 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=timeoffset"><img src="static/images/graph.gif" /></a></td>
+                            <td>0 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=resets"><img src="static/images/graph.gif" /></a></td>
+                            <td>0 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=lostsyncs"><img src="static/images/graph.gif" /></a></td>
+                            <td>0 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=rangeaborts"><img src="static/images/graph.gif" /></a></td>
+                            <td>10154 <a href="graph.html?mac=841B5E667E38&amp;cmts=rivrw9&amp;int=5073&amp;node=&amp;show=rtt"><img src="static/images/graph.gif" /></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+ 
+            </div>
+ 
+            <div id="statistics">
+                <h3>&nbsp;</h3>
+ 
+                <table>
+                    <caption>DS Bonded Channels</caption>
+                    <thead>
+                        <tr>
+                            <th>Ch.</th>
+                            <th>Freq.</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RF0:3/1/0 23 (Primary)</td>
+                            <td class="">339.000 MHz</td>
+                            <td class="">UP</td>
+                        </tr>
+                        <tr>
+                            <td>RF1:3/1/0 16</td>
+                            <td class="">297.000 MHz</td>
+                            <td class="">UP</td>
+                        </tr>
+                        <tr>
+                            <td>RF2:3/1/0 17</td>
+                            <td class="">303.000 MHz</td>
+                            <td class="">UP</td>
+                        </tr>
+                        <tr>
+                            <td>RF3:3/1/0 18</td>
+                            <td class="">309.000 MHz</td>
+                            <td class="">UP</td>
+                        </tr>
+                        <tr>
+                            <td>RF4:3/1/0 19</td>
+                            <td class="">315.000 MHz</td>
+                            <td class="">UP</td>
+                        </tr>
+                        <tr>
+                            <td>RF5:3/1/0 20</td>
+                            <td class="">321.000 MHz</td>
+                            <td class="">UP</td>
+                        </tr>
+                        <tr>
+                            <td>RF6:3/1/0 21</td>
+                            <td class="">327.000 MHz</td>
+                            <td class="">UP</td>
+                        </tr>
+                        <tr>
+                            <td>RF7:3/1/0 22</td>
+                            <td class="">333.000 MHz</td>
+                            <td class="">UP</td>
+                        </tr>
+ 
+                    </tbody>
+                </table>
+ 
+ 
+            </div>
+            <!--  END Statistics -->
+ 
+    </div>  <!-- End of div modem_panel -->
+ 
+    <div class="bottom_panel">
+        System time: Wed 10 Sep 2014 16:44:29
+        <br/>
+        © Optus, 2000-2014. Developed by Optus Internet Engineering.
+    </div>
+ 
+</body>
+</html>
+

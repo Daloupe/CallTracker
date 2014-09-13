@@ -19,7 +19,7 @@ namespace CallTracker.Helpers
 {
     public delegate void ActionEventHandler(string _event, EventLogLevel _logLevel = EventLogLevel.Verbose);
 
-    public class HotkeyController : IDisposable
+    public partial class HotkeyController : IDisposable
     {
         private static Main parent;
         public static IE browser;
@@ -286,7 +286,7 @@ namespace CallTracker.Helpers
                     EventLogger.LogAndSaveNewEvent("SmartPaste Error: No Data to paste.", EventLogLevel.Brief);
                     return;
                 }
-                Clipboard.SetText(dataToPaste);
+                Clipboard.SetText("0" + dataToPaste);
                 SendKeys.Send("^(v)");
             }
             else
@@ -366,7 +366,7 @@ namespace CallTracker.Helpers
 
             if (String.IsNullOrEmpty(activeElement.IdOrName))
             {
-                EventLogger.LogAndSaveNewEvent("Unable to bind: activeElement.IdOrName is NullOrEmpty");
+                EventLogger.LogAndSaveNewEvent("Smart Paste Bind Error: activeElement.IdOrName is NullOrEmpty");
                 return;
             }
 
@@ -385,7 +385,7 @@ namespace CallTracker.Helpers
                 var system = urlOrTitleMatches.Any() ? urlOrTitleMatches.First().System : String.Empty;
                 elementMatch = new PasteBind(system, url, title, activeElement);
                 parent.BindsDataStore.PasteBinds.Add(elementMatch);
-                EventLogger.LogNewEvent("New Bind Created");
+                EventLogger.LogNewEvent("Smart Paste Bind: New Bind Created");
             }
 
             parent.editSmartPasteBinds.SelectQuery(elementMatch);
@@ -403,11 +403,11 @@ namespace CallTracker.Helpers
         {
             if (parent.SelectedContact == null)
             {
-                EventLogger.LogAndSaveNewEvent("GridLinks Search Error: Not Contact Selected", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("AutoFill Error: Not Contact Selected", EventLogLevel.Brief);
                 return;
             }
 
-            EventLogger.LogNewEvent(Environment.NewLine + "Searching for AutoFill Matches", EventLogLevel.Brief);
+            EventLogger.LogNewEvent(Environment.NewLine + "AutoFill: Searching for AutoFill Matches", EventLogLevel.Brief);
             if (!GetActiveBrowser())
                 return;
 
@@ -424,7 +424,7 @@ namespace CallTracker.Helpers
 
             if (query.Any())
             {
-                EventLogger.LogNewEvent(String.Format("{0} found.", query.Count()));
+                EventLogger.LogNewEvent(String.Format("AutoFill: {0} found.", query.Count()));
                 var affectedService = parent.SelectedContact.Fault.AffectedServiceType.ToString();
                 foreach (var bind in query)
                 {
@@ -441,17 +441,17 @@ namespace CallTracker.Helpers
                 }
             }
             else
-                EventLogger.LogAndSaveNewEvent("No Matches Found");
+                EventLogger.LogAndSaveNewEvent("AutoFill Error: No Matches Found");
 
             EventLogger.LogNewEvent("Browser URL: " + url, EventLogLevel.Status);
             if (title.Contains("F001 Create"))
             {
-                EventLogger.LogAndSaveNewEvent("Attempting IFMS AutoFills", EventLogLevel.Status);
+                EventLogger.LogAndSaveNewEvent("AutoFill: Attempting IFMS AutoFills", EventLogLevel.Status);
                 IFMSAutoFill.Go(parent);
             }
             else if (url.Contains("NewActivity.aspx"))
             {
-                EventLogger.LogAndSaveNewEvent("Attempting ICON AutoFills", EventLogLevel.Status);
+                EventLogger.LogAndSaveNewEvent("AutoFill: Attempting ICON AutoFills", EventLogLevel.Status);
                 ICONAutoFill.Go(parent);
             }
             parent.AddAppEvent(AppEventTypes.AutoFill);
@@ -465,14 +465,12 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private static void OnAutoLogin(HotkeyPressedEventArgs e)
         {
-            EventLogger.LogNewEvent("Attempting Autologin", EventLogLevel.Brief);
             AutoLogin();
-            EventLogger.LogNewEvent("Finished Autologin", EventLogLevel.ClearStatus);
         }
 
         private static void AutoLogin()
         {
-            EventLogger.LogNewEvent("Searching for matches");
+            EventLogger.LogNewEvent(Environment.NewLine + "AutoLogin: Searching for matches");
             if (!GetActiveBrowser())
                 return;
 
@@ -488,10 +486,14 @@ namespace CallTracker.Helpers
                             login)
                         .FirstOrDefault();
 
-            EventLogger.LogNewEvent("Actioning matches");
-            if (query == null)
-                return;
 
+            if (query == null)
+            {
+                EventLogger.LogAndSaveNewEvent("AutoLogin Error: No matches found");
+                return;
+            }
+
+            EventLogger.LogNewEvent("AutoLogin: Actioning matches");
             query.Paste(query.UsernameElement, query.Username);
             query.Paste(query.PasswordElement, query.Password);
             query.Submit(browser);
@@ -883,255 +885,6 @@ namespace CallTracker.Helpers
             if (browser != null)
                 browser.Dispose();
             return outcome;
-        }
-
-        /// <summary>
-        /// Searches a system.
-        /// </summary>
-        public static bool AutoSearch(string search, string title, string url, bool titleFirst = true, string dataType = "")
-        {
-            var outcome = false;
-            var activeWindowTitle = Regex.Match(WindowHelper.GetActiveWindowTitle(), @"(\w+)(?:\s-(?: Windows)? Internet Explorer)?", RegexOptions.IgnoreCase).Groups[1].Value;
-            //IE toBrowser;
-            switch (title)
-            {
-                case "SCAMPS":
-                    _scampsSearching = dataType;
-                    if (_scampsTimer != null)
-                        _scampsTimer.Stop();
-                    else
-                    {
-                        _scampsTimer = new System.Timers.Timer(1000) { SynchronizingObject = parent };
-                        _scampsTimer.Elapsed += scampsTimerElapsed;
-                    }
-                    break;
-                case "DIMPS":
-                    _dimpsSearching = dataType;
-                    if (_dimpsTimer != null)
-                        _dimpsTimer.Stop();
-                    else
-                    {
-                        _dimpsTimer = new System.Timers.Timer(1000) { SynchronizingObject = parent };
-                        _dimpsTimer.Elapsed += dimpsTimerElapsed;
-                    }
-                    break;
-                default:
-                    //toBrowser = browser;
-                    break;
-            }
-
-            if (titleFirst)
-            {
-                if (AutoSearchByTitle(search, title, activeWindowTitle))//, ref toBrowser))
-                    outcome = true;
-                else if (AutoSearchByUrl(search, url, activeWindowTitle))//, ref toBrowser))
-                    outcome = true; 
-            }
-            else
-            {
-                if (AutoSearchByUrl(search, url, activeWindowTitle))//, ref toBrowser))
-                    outcome = true;
-                else if (AutoSearchByTitle(search, title, activeWindowTitle))//, ref toBrowser))
-                    outcome = true;
-            }
-
-            if (!outcome && Properties.Settings.Default.AutoSearchOpenNew)
-            {
-                CreateNewIE(search);
-                AutoSearchByUrl(search, url, activeWindowTitle);//, ref toBrowser);
-                EventLogger.LogNewEvent("Creating New and Searching: " + search, EventLogLevel.Brief);
-                parent.AddAppEvent(AppEventTypes.AutoSearch);
-                outcome = true;
-            }
-
-            if (outcome)
-            {
-                switch (title)
-                {
-                    case "SCAMPS":
-                        _scampsBrowser = browser;
-                        _scampsSearchStarted = DateTime.Now;
-                        _scampsTimer.Start();
-                        break;
-                    case "DIMPS":
-                        _dimpsBrowser = browser;
-                        _dimpsSearchStarted = DateTime.Now;
-                        _dimpsTimer.Start();
-                        break;
-                    default:
-                        if (browser != null)
-                            browser.Dispose();
-                        break;
-                }
-            }
-
-            
-            return outcome;
-        }
-
-        private static bool AutoSearchByTitle(string search, string title, string activeWindowTitle)//, ref IE toBrowser)
-        {
-            if (!FindIEByTitle(title)) return false;
-
-            if (browser.Title == activeWindowTitle && Properties.Settings.Default.AutoSearchIgnoreActiveWindow)
-            {
-                EventLogger.LogAndSaveNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
-                return false;
-            }
-            EventLogger.LogNewEvent("Searching: " + search, EventLogLevel.Brief);
-
-            browser.GoToNoWait(search);
-            parent.AddAppEvent(AppEventTypes.AutoSearch);
-            return true;
-        }
-        private static bool AutoSearchByUrl(string search, string url, string activeWindowTitle)//, ref IE toBrowser)
-        {
-            if (!FindIEByUrl(url)) return false;
-
-            if (browser.Title == activeWindowTitle && Properties.Settings.Default.AutoSearchIgnoreActiveWindow)
-            {
-                EventLogger.LogAndSaveNewEvent("Cancelling Search as Matched Window is Active Window.", EventLogLevel.Brief);
-                return false;
-            }
-            EventLogger.LogNewEvent("Searching: " + search, EventLogLevel.Brief);
-
-            browser.GoToNoWait(search);
-            parent.AddAppEvent(AppEventTypes.AutoSearch);
-            return true;
-        }
-
-        private static System.Timers.Timer _scampsTimer;
-        private static IE _scampsBrowser;
-        private static string _scampsSearching;
-        private static DateTime _scampsSearchStarted;
-
-        private static void scampsTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            if ((e.SignalTime - _scampsSearchStarted).TotalSeconds > 5)
-            {
-                if (_scampsBrowser != null)
-                {
-                    _scampsBrowser.Dispose();
-                    _scampsBrowser = null;
-                }
-                _scampsTimer.Dispose();
-                _scampsTimer = null;
-                _scampsSearching = string.Empty;
-                parent.SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
-                parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true;
-                return;
-            }
-
-            if (_scampsBrowser == null)
-            {
-                FindIEByUrl("https://scamps.optusnet.com.au", ref _scampsBrowser);
-                if (_scampsBrowser == null)
-                    return;
-            }
-            var ieBrowser = ((IWebBrowser2)(_scampsBrowser.InternetExplorer));
-            if (ieBrowser.Busy) return;
-            if (_scampsBrowser.Title.Contains("Message"))
-            {
-                switch (_scampsSearching)
-                {
-                    case "DN":
-                        if (parent.SelectedContact.Service.WasSearched["DIMPSDN"])
-                            parent.SelectedContact.Fault.NFV = true;
-                        parent.SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
-                        break;
-                    case "Username":
-                        if (parent.SelectedContact.Service.WasSearched["DIMPSUsername"])
-                            parent.SelectedContact.Fault.NBF = true;
-                        parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true;
-                        break;
-                }
-            }
-            else
-            {
-                switch (_scampsSearching)
-                {
-                    case "DN":
-                        parent.SelectedContact.Fault.LIP = true;
-                        break;
-                    case "Username":
-                        parent.SelectedContact.Fault.ONC = true;
-                        break;
-                }
-                parent.SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
-                parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true;
-            }
-
-            _scampsBrowser.Dispose();
-            _scampsBrowser = null;
-            _scampsTimer.Dispose();
-            _scampsTimer = null;
-            _scampsSearching = string.Empty;
-        }
-
-        private static System.Timers.Timer _dimpsTimer;
-        private static IE _dimpsBrowser;
-        private static string _dimpsSearching;
-        private static DateTime _dimpsSearchStarted;
-
-        private static void dimpsTimerElapsed(object sender, ElapsedEventArgs e)
-        {
-            if ((e.SignalTime - _dimpsSearchStarted).TotalSeconds > 5)
-            {
-                if (_dimpsBrowser != null)
-                {
-                    _dimpsBrowser.Dispose();
-                    _dimpsBrowser = null;
-                }
-                _dimpsTimer.Dispose();
-                _dimpsTimer = null;
-                _dimpsSearching = string.Empty;
-                parent.SelectedContact.Service.WasSearched["DIMPSDN"] = true;
-                parent.SelectedContact.Service.WasSearched["DIMPSUsername"] = true;
-                return;
-            }
-
-            if (_dimpsBrowser == null)
-            {
-                FindIEByUrl("https://dimps.optusnet.com.au", ref _dimpsBrowser);
-                if (_dimpsBrowser == null)
-                    return;
-            }
-            var ieBrowser = ((IWebBrowser2)(_dimpsBrowser.InternetExplorer));
-            if (ieBrowser.Busy) return;
-            if (_dimpsBrowser.Url == "https://dimps.optusnet.com.au/search.html")
-            {
-                switch (_dimpsSearching)
-                {
-                    case "DN":
-                        parent.SelectedContact.Service.WasSearched["DIMPSDN"] = true;
-                        break;
-                    case "Username":
-                        parent.SelectedContact.Service.WasSearched["DIMPSUsername"] = true;
-                        break;
-                }
-            }
-            else
-            {
-                switch (_dimpsSearching)
-                {
-                    case "DN":
-                        if (parent.SelectedContact.Service.WasSearched["SCAMPSDN"] && parent.SelectedContact.Fault.AffectedServiceType.IsNot(ServiceTypes.LIP))
-                            parent.SelectedContact.Fault.NFV = true;
-                        break;
-                    case "Username":
-                        if (parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] && parent.SelectedContact.Fault.AffectedServiceType.IsNot(ServiceTypes.ONC))
-                            parent.SelectedContact.Fault.NBF = true;
-                        break;
-                }
-                parent.SelectedContact.Service.WasSearched["DIMPSDN"] = true;
-                parent.SelectedContact.Service.WasSearched["DIMPSUsername"] = true;
-            }
-
-            _dimpsBrowser.Dispose();
-            _dimpsBrowser = null;
-            _dimpsTimer.Dispose();
-            _dimpsTimer = null;
-            _dimpsSearching = string.Empty;
         }
     }
 

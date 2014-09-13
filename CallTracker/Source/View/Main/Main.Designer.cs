@@ -61,6 +61,7 @@
             this.didYouKnowToolStripMenuItem = new CTToolStripMenuItem();
             this.toolStripSeparator9 = new CTToolStripSeparator();
             this.reportBugToolStripMenuItem = new CTToolStripMenuItem();
+            this.changeLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new CTToolStripMenuItem();
             this.ctToolStripSeparator1 = new CTToolStripSeparator();
             this.saveLogToolStripMenuItem = new CTToolStripMenuItem();
@@ -144,7 +145,7 @@
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.changeLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -464,10 +465,11 @@
             this.helpToolStripMenuItem.Advanced = false;
             this.helpToolStripMenuItem.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.viewKeyCommandsMenuItem,
-            this.didYouKnowToolStripMenuItem,
-            this.toolStripSeparator9,
             this.reportBugToolStripMenuItem,
+            this.toolStripSeparator13,
+            this.didYouKnowToolStripMenuItem,
+            this.viewKeyCommandsMenuItem,
+            this.toolStripSeparator9,
             this.changeLogToolStripMenuItem,
             this.aboutToolStripMenuItem,
             this.ctToolStripSeparator1,
@@ -507,6 +509,13 @@
             this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.reportBugToolStripMenuItem.Text = "Report Bug";
             this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
+            // 
+            // changeLogToolStripMenuItem
+            // 
+            this.changeLogToolStripMenuItem.Name = "changeLogToolStripMenuItem";
+            this.changeLogToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.changeLogToolStripMenuItem.Text = "Change Log";
+            this.changeLogToolStripMenuItem.Click += new System.EventHandler(this.changeLogToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -1241,12 +1250,10 @@
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
             // 
-            // changeLogToolStripMenuItem
+            // toolStripSeparator13
             // 
-            this.changeLogToolStripMenuItem.Name = "changeLogToolStripMenuItem";
-            this.changeLogToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.changeLogToolStripMenuItem.Text = "Change Log";
-            this.changeLogToolStripMenuItem.Click += new System.EventHandler(this.changeLogToolStripMenuItem_Click);
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(187, 6);
             // 
             // Main
             // 
@@ -1400,5 +1407,6 @@
         private System.Windows.Forms.ToolStripMenuItem autoNewCallToolStripMenuItem;
         private CTToolStripMenuItem pullIPCCCallDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem changeLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
     }
 }
