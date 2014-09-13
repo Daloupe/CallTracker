@@ -76,7 +76,7 @@ namespace CallTracker.View
 
         private void SetSettings()
         {
-            autoNewCallToolStripMenuItem.Checked = Properties.Settings.Default.AutoNewCall;
+            //autoNewCallToolStripMenuItem.Checked = Properties.Settings.Default.AutoNewCall;
         }
 
         public void OnParentLoad()
@@ -874,14 +874,5 @@ namespace CallTracker.View
             var checkBox = (CheckBox)sender;
             checkBox.ImageIndex = checkBox.Checked ? 1 : 0;
         }
-
-        private void autoNewCallToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.AutoNewCall = autoNewCallToolStripMenuItem.Checked;
-        }
-
-
-
-
     }
 }

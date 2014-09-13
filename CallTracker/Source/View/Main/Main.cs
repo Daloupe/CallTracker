@@ -721,7 +721,7 @@ namespace CallTracker.View
                     case "Reserved":
                         _IPCCTimer.Interval = 125;
                         dailyData.AddCallEvent(CallEventTypes.CallStart);
-                        if (editContact.autoNewCallToolStripMenuItem.Checked)
+                        if (autoNewCallToolStripMenuItem.Checked)
                         {
                             editContact.bindingNavigatorAddNewItem_Click(_IPCCState, new EventArgs());
                             SelectedContact.AddCallEvent(CallEventTypes.Reserved);
@@ -1269,6 +1269,13 @@ namespace CallTracker.View
             {
                 ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
             }
+
+            foreach (var control in editContact._CallHistoryContextMenu.Items.OfType<CTToolStripItem>().Where(control => control.Advanced))
+            {
+                ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
+            }
+
+            
         }
 
         private void didYouKnowToolStripMenuItem_Click(object sender, EventArgs e)

@@ -34,7 +34,7 @@
 - Are timestamps terminating properly on quit?
 - Call History Done isn't retriggering Affected Services properly.
 
-0.9.0.8
+0.9.0.9
 (Major Features)
 | IPCC Data Pull working.
 (Bugs/Changes)
@@ -48,6 +48,7 @@
 | Added "IPCC Monitor" Settings item.
 	| Added "Enable IPCC Monitor on Startup" option 
 	| Moved "Auto New Call" and "Pull Call Data" options to this menu.
+| "New Call" option marked as Advanced.
 
 0.8.4.15
 (Bugs/Changes)

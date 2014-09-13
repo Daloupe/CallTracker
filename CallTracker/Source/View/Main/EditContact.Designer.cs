@@ -84,9 +84,8 @@
             this.toolStripMenuItem7 = new System.Windows.Forms.ToolStripMenuItem();
             this._CallHistoryContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this._ImportantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.newCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.autoNewCallToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new CTToolStripSeparator();
+            this.newCallToolStripMenuItem = new CTToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             this.callHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showStatsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -401,8 +400,8 @@
             this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DateField = new System.DateTime(2014, 9, 8, 0, 0, 0, 0);
-            this._BookingDate.DateText = "08/09";
+            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 0, 0, 0, 0);
+            this._BookingDate.DateText = "09/08";
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingDate.HasContextMenu = false;
             this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -1010,7 +1009,6 @@
             this._ImportantToolStripMenuItem,
             this.toolStripSeparator5,
             this.newCallToolStripMenuItem,
-            this.autoNewCallToolStripMenuItem,
             this.toolStripSeparator6,
             this.callHistoryToolStripMenuItem,
             this.showStatsToolStripMenuItem});
@@ -1030,26 +1028,17 @@
             // 
             // toolStripSeparator5
             // 
+            this.toolStripSeparator5.Advanced = true;
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(162, 6);
             // 
             // newCallToolStripMenuItem
             // 
+            this.newCallToolStripMenuItem.Advanced = true;
             this.newCallToolStripMenuItem.Name = "newCallToolStripMenuItem";
             this.newCallToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.newCallToolStripMenuItem.Text = "New Call";
             this.newCallToolStripMenuItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // autoNewCallToolStripMenuItem
-            // 
-            this.autoNewCallToolStripMenuItem.Checked = global::CallTracker.Properties.Settings.Default.AutoNewCall;
-            this.autoNewCallToolStripMenuItem.CheckOnClick = true;
-            this.autoNewCallToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.autoNewCallToolStripMenuItem.Name = "autoNewCallToolStripMenuItem";
-            this.autoNewCallToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
-            this.autoNewCallToolStripMenuItem.Text = "Auto New Call";
-            this.autoNewCallToolStripMenuItem.Visible = false;
-            this.autoNewCallToolStripMenuItem.CheckedChanged += new System.EventHandler(this.autoNewCallToolStripMenuItem_CheckedChanged);
             // 
             // toolStripSeparator6
             // 
@@ -2233,9 +2222,9 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem12;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem9;
         internal BindingNavigatorIgnoreFocus bindingNavigator1;
-        private System.Windows.Forms.ToolStripMenuItem newCallToolStripMenuItem;
+        private CTToolStripSeparator toolStripSeparator5;
+        private CTToolStripMenuItem newCallToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
-        internal System.Windows.Forms.ToolStripMenuItem autoNewCallToolStripMenuItem;
         internal System.Windows.Forms.ContextMenuStrip _CallHistoryContextMenu;
         private System.Windows.Forms.ContextMenuStrip _NameContextMenu;
         private System.Windows.Forms.ToolStripMenuItem _IDokToolStripMenuItem;
@@ -2253,7 +2242,6 @@
         internal System.Windows.Forms.ToolStripButton _CallMenuButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem _ImportantToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         internal System.Windows.Forms.ToolStripComboBox _DateSelector;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         internal ServicePanel _ServicePanel;
