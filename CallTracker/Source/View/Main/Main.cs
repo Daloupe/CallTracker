@@ -740,53 +740,45 @@ namespace CallTracker.View
 
         private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (!CheckForIpcc())
+            {
+                monitorIPCCToolStripMenuItem.Checked = false;
+                _CallStateTime.Text = @"00:00";
+            }
+            else
+                _IPCCState.Text = String.Empty;
 
-        }
-
-        private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void enableIPCCMonitorOnStartupToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void autoNewCallToolStripMenuItem1_CheckedChanged(object sender, EventArgs e)
-        {
-
+            _IPCCTimer.Enabled = monitorIPCCToolStripMenuItem.Checked;
         }
 
         private void pullIPCCCallDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Settings.Default.PullIPCCCallData = pullIPCCCallDataToolStripMenuItem.Checked; //((ToolStripMenuItem)sender).Checked;
         }
 
-        //private void monitorIPCCToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
+        private void autoNewCallToolStripMenuItem1_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.AutoNewCall = autoNewCallToolStripMenuItem.Checked;
+        }
 
-        //}
+        private void enableIPCCMonitorOnStartupToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.MonitorIPCC = enableIPCCMonitorOnStartupToolStripMenuItem.Checked;
+        }
 
-        //private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        //{
+        private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem == monitorIPCCToolStripMenuItem || e.ClickedItem == pullIPCCCallDataToolStripMenuItem) return;
 
-        //}
-
-        //private void enableIPCCMonitorOnStartupToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void autoNewCallToolStripMenuItem1_CheckedChanged(object sender, EventArgs e)
-        //{
-
-        //}
-
-        //private void pullIPCCCallDataToolStripMenuItem_Click(object sender, EventArgs e)
-        //{
-
-        //}
+            ChangeCallStateMenuItem((ToolStripMenuItem)e.ClickedItem);
+            if (e.ClickedItem == logInToolStripMenuItem)
+            {
+                _IPCCState.Text = String.Empty;
+                ChangeCallStateMenuItem(notReadyToolStripMenuItem);
+            }
+            if (!monitorIPCCToolStripMenuItem.Checked && !_IPCCTimer.Enabled)
+                _IPCCTimer.Enabled = true;
+        }
 
     }
 }
