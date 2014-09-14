@@ -1,8 +1,24 @@
-﻿- Hitting 'Done' in Callhistory not updating Affeceted Service.
-- DailyStats are only applied to Current Date, not selected Date.
-	- Stats View Displays Selected Date.
-	- Logging in shoudl switch date to today.
-- Get NBN & LIP DIMPS grab.
-- DIMPS Autosearch values.
-- Get NSI grab.
-- Can a service exist in DIMPS without a username?
+﻿DataDrop:
+	- Working on Ctrl-Space.
+Links:
+	- Resources > Links.
+	- EHB Search.
+GridLinks:
+	- Wobs GridLinks.
+AutoFill
+	- Grabbing PR Number.
+	- Turn off "AutoFill" option on appropriate IFMS elements.
+AutoSearch
+	- CMBS > IFMS.
+	- PR > IFMS.
+SmartPaste
+	- Username pasting as Upper.
+AutoSearch
+	- Service Number is being AutoSearched before Service Number.
+	- DIMPS macvendor field properly seperating Equipment and MAC.
+	- 0363441142 is doing a full NBN search just after load.
+		~ Should see ""AutoSearching DIMPS " + _dimpsSearching + " Mode: " + mode" in the log if events are getting down enough.
+	- 0397346689 was freezing the system just after CMBS copy.
+Visual
+	- Look of Composite over normal Double Buffering.
+	- Speed of opening and closing 

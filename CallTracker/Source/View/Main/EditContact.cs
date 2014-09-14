@@ -26,7 +26,7 @@ namespace CallTracker.View
             InitializeComponent();
             SetSettings();
             Application.AddMessageFilter(this);
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
 
             MainForm = mainform;
             Location = MainForm.ControlOffset;

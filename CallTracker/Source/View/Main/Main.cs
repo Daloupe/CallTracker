@@ -104,7 +104,7 @@ namespace CallTracker.View
         {
             InitializeComponent();
             _isStartingUp = true;
-            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             
             _splash = splash;
             _splash.Init(this);
@@ -123,6 +123,16 @@ namespace CallTracker.View
             CoreAppXmlConfiguration.Instance.PopupTimeout= 5000;
             CoreAppXmlConfiguration.Instance.TooltipWaitTime = 5000;
         }
+
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        var cp = base.CreateParams;
+        //        cp.ExStyle |= 0x02000000;    // Turn on WS_EX_COMPOSITED
+        //        return cp;
+        //    }
+        //}
 
         private void SetAppLocation()
         {
@@ -347,6 +357,7 @@ namespace CallTracker.View
             get { return _visibleSetting; }
             set
             {
+               
                 // If the new view isn't null
                 if (value != null)
                 {
@@ -378,6 +389,7 @@ namespace CallTracker.View
                 }
                 else
                     _visibleSetting = value;
+              
             }
         }
 
@@ -488,8 +500,9 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void toolStripServiceSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ((ToolStripComboBox)sender).GetCurrentParent().Focus();
-            foreach (ContextualToolStripMenuItem item in resourcesToolStripMenuItem.DropDownItems.OfType<ContextualToolStripMenuItem>())
+            resourcesToolStripMenuItem.GetCurrentParent().Focus();
+            //((ToolStripComboBox)sender).GetCurrentParent().Parent.Focus();
+            foreach (var item in resourcesToolStripMenuItem.DropDownItems.OfType<ContextualToolStripMenuItem>())
                 item.dirty = true;
         }
 
@@ -515,10 +528,10 @@ namespace CallTracker.View
             ShowPopupForm<EditSystems>();
         }
 
-        private void OpenURL_Click(object sender, EventArgs e)
-        {
-            UpdateMenuObject.newItem_Click(sender, e);
-        }
+        //private void OpenURL_Click(object sender, EventArgs e)
+        //{
+        //    UpdateMenuObject.newItem_Click(sender, e);
+        //}
 
 
 
@@ -797,17 +810,9 @@ namespace CallTracker.View
 
         private void _EHBSearch_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
-            {
-                case Keys.Enter:
-                    if (!String.IsNullOrEmpty(_EHBSearch.Text))
-                        HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/", "Nexus", "http://nexus.optus.com.au/index.php?#search/+" + _EHBSearch.Text);
-                    //_EHBSearch.Text = String.Empty;
-                    break;
-                //case Keys.Escape:
-                //    _EHBSearch.Text = String.Empty;
-                //    break;
-            }
+            if (e.KeyCode != Keys.Enter) return;
+            if (!String.IsNullOrEmpty(_EHBSearch.Text))
+                HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/index.php?#search/", "Nexus", "http://nexus.optus.com.au/index.php?#search/" + _EHBSearch.Text);
         }
 
         private void _EHBSearch_Leave(object sender, EventArgs e)

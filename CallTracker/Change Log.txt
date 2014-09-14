@@ -1,4 +1,39 @@
-﻿0.9.1.0
+﻿0.9.3.17
+(Minor Features)
+| Added IFMS Account Search and AutoSearch, Added PR AutoSearch.
+| Ctrl-Space opens the DataDrop window to allow typing in info > smartcopy.
+(Bugs/Changes)
+| Added an exception logger.
+| Tips and DataDrop window positions saved.
+| Full NBN scrape working.
+| Added setting "QuitProperly" to prevent log from deleting if wingman quit with an exception.
+| Fixed Search DN and Mobile replace Regexes.
+| Confirmed AddressId, GSID, and ESN Regexes.
+| Added "EHB Search" field to Main Menu.
+GridLinks:
+	| Fixed GridLinks Search not searching.
+	/ WOBS Gridlinks still not switching tabs.
+		| Changed IETabActivator to if(tab.LocationUrl == tabsUrl) instead of if(tab.LocationUrl.Contains(tabsUrl)).
+AutoFill:
+	| ICON AutoFill needs to happen before note field is filled to prevent it from being overwritten.
+	| SmartCopy PR on IFMS Create Autofill.
+Visual:
+	- CauPing Align text to right.
+	| Right Align _IPCCState Text.
+SmartPaste:
+	| Added SmartPaste Bind option "AutoFill" to avoid autofilling some elements.
+	| Binds Skip Constructor on Deserialization.
+	~ Username showing as lower, but pasting as upper?
+AutoSearch
+	| AVC only paritially copied into NSI search.
+	| Prevented Call Data Grab of Caller ID from triggering AutoSearch if Service Number isn't null.
+	/ DIMPS mac field: c8:91:f9:b7:0a:af / Unknown. Split at / for modem.
+	- Copying in 0397346689 froze the system just after CMBS copy.
+	/ Full NBN AutoSearch wont happen on first call after starting wingman.
+		~ Should see ""AutoSearching DIMPS " + _dimpsSearching + " Mode: " + mode" in the log if events are getting down enough.
+
+
+0.9.1.0
 (Minor Features)
 | Added rough code for DIMPS scrape and NSI search.
 

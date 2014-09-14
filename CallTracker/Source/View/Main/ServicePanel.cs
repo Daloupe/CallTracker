@@ -25,7 +25,7 @@ namespace CallTracker.View
         public ServicePanel()
         {
             InitializeComponent();
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
 
             //SetStyle(ControlStyles.DoubleBuffer, true);
             //SetStyle(ControlStyles.DoubleBuffer, true);

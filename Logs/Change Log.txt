@@ -44,19 +44,23 @@
 (Minor Features)
 - Analyze SCAMPS for high Reverse Power Flux, Low SNR.
 (Bugs/Changes))
+- Softact uses frames? name = "mainFrame"
 Tips:
 	- Added OPOM Smart Copy info.
 	- Added "Troubleshooting" Panel.
 	- Added info on "Report Bug" to overview.
+	- Data Drop.
+	- EHB Search.
 Resource Menu:
 	- New Bookmarks should change to listview to the new index.
 	- Changing product while editing bookmarks shouldn't update bookmarks window.
 
-0.9.3.16
+0.9.3.17
 (Minor Features)
 | Added IFMS Account Search and AutoSearch, Added PR AutoSearch.
 | Ctrl-Space opens the DataDrop window to allow typing in info > smartcopy.
 (Bugs/Changes)
+| Added an exception logger.
 | Tips and DataDrop window positions saved.
 | Full NBN scrape working.
 | Added setting "QuitProperly" to prevent log from deleting if wingman quit with an exception.
@@ -77,7 +81,6 @@ SmartPaste:
 	| Added SmartPaste Bind option "AutoFill" to avoid autofilling some elements.
 	| Binds Skip Constructor on Deserialization.
 	~ Username showing as lower, but pasting as upper?
-	- Softact uses frames? name = "mainFrame"
 AutoSearch
 	| AVC only paritially copied into NSI search.
 	| Prevented Call Data Grab of Caller ID from triggering AutoSearch if Service Number isn't null.

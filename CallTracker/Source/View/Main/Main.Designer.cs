@@ -143,13 +143,13 @@
             this.toolStripSeparator6 = new CTToolStripSeparator();
             this.sMSHubToolStripMenuItem = new CTToolStripMenuItem();
             this.afterHoursPaymentsToolStripMenuItem = new CTToolStripMenuItem();
+            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.premiumHomeServicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logMeInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._EHBSearch = new CueToolStripTextBox();
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -993,42 +993,42 @@
             // 
             this.iCONToolStripMenuItem.Advanced = false;
             this.iCONToolStripMenuItem.Name = "iCONToolStripMenuItem";
-            this.iCONToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iCONToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.iCONToolStripMenuItem.Text = "ICON";
             // 
             // iFMSToolStripMenuItem
             // 
             this.iFMSToolStripMenuItem.Advanced = false;
             this.iFMSToolStripMenuItem.Name = "iFMSToolStripMenuItem";
-            this.iFMSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.iFMSToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.iFMSToolStripMenuItem.Text = "IFMS";
             // 
             // uNMTToolStripMenuItem
             // 
             this.uNMTToolStripMenuItem.Advanced = false;
             this.uNMTToolStripMenuItem.Name = "uNMTToolStripMenuItem";
-            this.uNMTToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.uNMTToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.uNMTToolStripMenuItem.Text = "UNMT";
             // 
             // dIMPSToolStripMenuItem
             // 
             this.dIMPSToolStripMenuItem.Advanced = false;
             this.dIMPSToolStripMenuItem.Name = "dIMPSToolStripMenuItem";
-            this.dIMPSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dIMPSToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.dIMPSToolStripMenuItem.Text = "DIMPS";
             // 
             // totalViewToolStripMenuItem
             // 
             this.totalViewToolStripMenuItem.Advanced = false;
             this.totalViewToolStripMenuItem.Name = "totalViewToolStripMenuItem";
-            this.totalViewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.totalViewToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.totalViewToolStripMenuItem.Text = "TotalView";
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Advanced = false;
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(119, 6);
             // 
             // nBNToolStripMenuItem
             // 
@@ -1040,7 +1040,7 @@
             this.nBNServiceCallToolStripMenuItem,
             this.fSIToolStripMenuItem});
             this.nBNToolStripMenuItem.Name = "nBNToolStripMenuItem";
-            this.nBNToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nBNToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.nBNToolStripMenuItem.Text = "NBN";
             // 
             // softActToolStripMenuItem
@@ -1085,7 +1085,7 @@
             this.pPVDatabaseToolStripMenuItem,
             this.remotesToolStripMenuItem});
             this.dTVToolStripMenuItem.Name = "dTVToolStripMenuItem";
-            this.dTVToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.dTVToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.dTVToolStripMenuItem.Text = "DTV";
             // 
             // pPVDatabaseToolStripMenuItem
@@ -1111,7 +1111,7 @@
             this.wOBSToolStripMenuItem,
             this.pTWDatabaseToolStripMenuItem});
             this.hFCToolStripMenuItem.Name = "hFCToolStripMenuItem";
-            this.hFCToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.hFCToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.hFCToolStripMenuItem.Text = "HFC";
             // 
             // sCAMPSToolStripMenuItem
@@ -1148,7 +1148,7 @@
             this.mTVToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dPMToolStripMenuItem});
             this.mTVToolStripMenuItem.Name = "mTVToolStripMenuItem";
-            this.mTVToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mTVToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.mTVToolStripMenuItem.Text = "MTV";
             // 
             // dPMToolStripMenuItem
@@ -1253,6 +1253,11 @@
             this.afterHoursPaymentsToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.afterHoursPaymentsToolStripMenuItem.Text = "After Hours Payments";
             // 
+            // toolStripSeparator15
+            // 
+            this.toolStripSeparator15.Name = "toolStripSeparator15";
+            this.toolStripSeparator15.Size = new System.Drawing.Size(203, 6);
+            // 
             // premiumHomeServicesToolStripMenuItem
             // 
             this.premiumHomeServicesToolStripMenuItem.Name = "premiumHomeServicesToolStripMenuItem";
@@ -1277,7 +1282,7 @@
             this._EHBSearch.Font = new System.Drawing.Font("Verdana", 7F);
             this._EHBSearch.ForeColor = System.Drawing.SystemColors.ControlText;
             this._EHBSearch.Name = "_EHBSearch";
-            this._EHBSearch.Size = new System.Drawing.Size(130, 16);
+            this._EHBSearch.Size = new System.Drawing.Size(128, 16);
             this._EHBSearch.Leave += new System.EventHandler(this._EHBSearch_Leave);
             this._EHBSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this._EHBSearch_KeyDown);
             // 
@@ -1295,11 +1300,6 @@
             // _DailyDataBindingSource
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
-            // 
-            // toolStripSeparator15
-            // 
-            this.toolStripSeparator15.Name = "toolStripSeparator15";
-            this.toolStripSeparator15.Size = new System.Drawing.Size(203, 6);
             // 
             // Main
             // 

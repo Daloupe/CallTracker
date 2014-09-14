@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            CallTracker.DataSets.ServicesDataSet servicesDataSet;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditContact));
+            CallTracker.DataSets.ServicesDataSet servicesDataSet;
             this.FaultPanel = new System.Windows.Forms.Panel();
             this._FaultSplitContainer = new System.Windows.Forms.SplitContainer();
             this._ServiceSplitContainer = new System.Windows.Forms.SplitContainer();
@@ -154,7 +154,6 @@
             this._PR = new CallTracker.View.LabelledTextBox();
             this._ServicePanel = new CallTracker.View.ServicePanel();
             servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
-            ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).BeginInit();
             this.FaultPanel.SuspendLayout();
             this._FaultSplitContainer.Panel1.SuspendLayout();
             this._FaultSplitContainer.Panel2.SuspendLayout();
@@ -182,15 +181,11 @@
             this._NameContextMenu.SuspendLayout();
             this._CMBSContextMenu.SuspendLayout();
             this._ICONContextMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // servicesDataSet
-            // 
-            servicesDataSet.DataSetName = "ServicesDataSet";
-            servicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // FaultPanel
             // 
@@ -1276,6 +1271,11 @@
             this.toolStripMenuItem13.Text = "IFMS";
             this.toolStripMenuItem13.Click += new System.EventHandler(this._SearchIFMSCMBS_click);
             // 
+            // servicesDataSet
+            // 
+            servicesDataSet.DataSetName = "ServicesDataSet";
+            servicesDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // _Icon
             // 
             this._Icon.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
@@ -2103,7 +2103,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.Controls.Add(this._EditContactsPanel);
-            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.Name = "EditContact";
@@ -2111,7 +2110,6 @@
             this.Size = new System.Drawing.Size(584, 222);
             this.Tag = "584, 222";
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorderMain);
-            ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).EndInit();
             this.FaultPanel.ResumeLayout(false);
             this._FaultSplitContainer.Panel1.ResumeLayout(false);
             this._FaultSplitContainer.Panel2.ResumeLayout(false);
@@ -2140,6 +2138,7 @@
             this._NameContextMenu.ResumeLayout(false);
             this._CMBSContextMenu.ResumeLayout(false);
             this._ICONContextMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerContactsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);

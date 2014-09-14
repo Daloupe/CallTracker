@@ -24,6 +24,7 @@ namespace CallTracker
             {
                 if (createdNew)
                 {
+                    Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(Application_ThreadException); //it must be before Application.Run
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
 
@@ -56,6 +57,19 @@ namespace CallTracker
                         }
                     }
                 }
+            } 
+        }
+
+        static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            Logger.Log(e.Exception.ToString());
+        }
+
+        public static class Logger
+        {
+            public static void Log(string message)
+            {
+                File.AppendAllText(@".\ExceptionLog.txt", DateTime.Now.ToShortDateString() + " " + DateTime.Now.ToShortTimeString() + ":\t" + message + Environment.NewLine);
             }
         }
     }

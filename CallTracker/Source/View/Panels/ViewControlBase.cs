@@ -2,6 +2,8 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+using CallTracker.Helpers;
+
 namespace CallTracker.View
 {
     public class ViewControlBase : UserControl
@@ -9,7 +11,6 @@ namespace CallTracker.View
         internal DataGridView dgv;
         public ToolStripMenuItem MenuControl { get; protected set; }
         protected Main MainForm { get; set; }
-
         //public ViewControlBase()
         //{
         //   // SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
@@ -26,6 +27,8 @@ namespace CallTracker.View
             this.Visible = true;
             this.SendToBack();
             this.Visible = false;
+            
+            //ParentControl.Controls.Remove(this);
             //this.BringToFront();
 
             //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer, true);
@@ -43,8 +46,10 @@ namespace CallTracker.View
         public virtual void HideSetting()
         {
             //MainForm.Height = previousHeight;
-            this.SendToBack();
-            this.Visible = false;
+            SendToBack();
+            WindowHelper.ResumeDrawing(MainForm.editContact);
+            Hide();
+            
             MenuControl.Checked = false;
         }
 
@@ -53,8 +58,11 @@ namespace CallTracker.View
         {
             //previousHeight = MainForm.Height;
             //MainForm.Height = previousHeight - 20;
-            this.BringToFront();
-            this.Visible = true;
+            
+            
+            BringToFront();
+            WindowHelper.SuspendDrawing(MainForm.editContact);
+            Show();
             MenuControl.Checked = true;                
         }
 

@@ -6,7 +6,6 @@ using System.Threading;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
-using System.Timers;
 
 using Shortcut;
 using WatiN.Core;
@@ -72,7 +71,6 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private static void OnTest(HotkeyPressedEventArgs e)
         {
-            Console.WriteLine("yep");
             //if (!GetActiveBrowser())
             //    return;
             //ICONAutoFill.Go(parent);
@@ -92,6 +90,11 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private static void DataDrop(HotkeyPressedEventArgs e)
         {
+            if (parent.SelectedContact == null)
+            {
+                EventLogger.LogAndSaveNewEvent("Data Drop Error: No Contact Selected", EventLogLevel.Status);
+                return;
+            }
             Main.DataDrop.Show();
             parent.SelectedContact.AddAppEvent(AppEventTypes.DataDrop);
         }
@@ -158,7 +161,7 @@ namespace CallTracker.Helpers
         {
             if (parent.SelectedContact == null)
             {
-                EventLogger.LogAndSaveNewEvent("GridLinks Search Error: Not Contact Selected", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("GridLinks Search Error: No Contact Selected", EventLogLevel.Brief);
                 return;
             }
 
@@ -231,7 +234,7 @@ namespace CallTracker.Helpers
         {
             if (parent.SelectedContact == null)
             {
-                EventLogger.LogAndSaveNewEvent("DataPaste Error: Not Contact Selected", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("DataPaste Error: No Contact Selected", EventLogLevel.Brief);
                 return;
             }
 
@@ -275,7 +278,7 @@ namespace CallTracker.Helpers
         {
             if (parent.SelectedContact == null)
             {
-                EventLogger.LogAndSaveNewEvent("SmartPaste Error: Selected Contact is Null", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("SmartPaste Error: No Contact Selected", EventLogLevel.Brief);
                 return;
             }
             var activeWindowTitle = WindowHelper.GetActiveWindowTitle();
@@ -419,7 +422,7 @@ namespace CallTracker.Helpers
         {
             if (parent.SelectedContact == null)
             {
-                EventLogger.LogAndSaveNewEvent("AutoFill Error: Not Contact Selected", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("AutoFill Error: No Contact Selected", EventLogLevel.Brief);
                 return;
             }
 
@@ -532,6 +535,11 @@ namespace CallTracker.Helpers
         private static readonly Stopwatch Stopwatch = new Stopwatch();
         private static void OnSmartCopy(HotkeyPressedEventArgs e)
         {
+            if (parent.SelectedContact == null)
+            {
+                EventLogger.LogAndSaveNewEvent("Smart Copy Error: No Contact Selected", EventLogLevel.Brief);
+                return;
+            }
             //StopwatchTester.Reset();
             //StopwatchTester.Start();
             EventLogger.LogNewEvent(Environment.NewLine + "Starting Smart Copy", EventLogLevel.Brief);
