@@ -404,18 +404,18 @@ namespace CallTracker.View
                 {
                     var substring = value.Substring(value.Length - 8, 8);
                     if (substring.IsDigits())
+                    {
                         SelectedContact.Fault.PR = substring;
+
+                        SelectedContact.Service.WasSearched["IFMSPR"] = HotkeyController.AutoSearch(
+                            "http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F012_ProblemDetail.aspx?SD_NO=" + SelectedContact.Fault.PR,
+                            "IFMS",
+                            "http://ifmsprod.optus.com.au/");
+                    }
                 }
             }
 
-            gridLines[0].CachedChildren[4].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
-            if (cachedPattern != null)
-            {
-                value = ((ValuePattern)cachedPattern).Current.Value;
-                if (!SelectedContact.FindDNMatch(value))
-                    SelectedContact.FindMobileMatch(value);
-            }
-
+            //Service Number
             gridLines[0].CachedChildren[5].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
             if (cachedPattern != null)
             {
@@ -424,6 +424,19 @@ namespace CallTracker.View
                     SelectedContact.FindMobileMatch(value);
             }
 
+            //Caller ID
+            gridLines[0].CachedChildren[4].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
+            if (cachedPattern != null)
+            {
+                value = ((ValuePattern)cachedPattern).Current.Value;
+                if (!String.IsNullOrEmpty(SelectedContact.DN))
+                    SelectedContact.FindMobileMatch(value);
+                else if (!SelectedContact.FindDNMatch(value))
+                    SelectedContact.FindMobileMatch(value);
+            }
+
+            
+            //Account Number
             gridLines[0].CachedChildren[6].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
             if (cachedPattern != null)
             {
@@ -432,6 +445,7 @@ namespace CallTracker.View
                     SelectedContact.FindCMBSMatch(value);
             }
 
+            //ID Status
             gridLines[0].CachedChildren[9].TryGetCachedPattern(ValuePattern.Pattern, out cachedPattern);
             if (cachedPattern != null)
             {

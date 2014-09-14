@@ -168,6 +168,12 @@
     <Compile Include="Source\View\Panels\Contact\StatsView.Designer.cs">
       <DependentUpon>StatsView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Source\View\Popups\DataDrop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\DataDrop.Designer.cs">
+      <DependentUpon>DataDrop.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Popups\BugReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     <EmbeddedResource Include="Source\View\Panels\Contact\StatsView.resx">
       <DependentUpon>StatsView.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\DataDrop.resx">
+      <DependentUpon>DataDrop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Popups\BugReport.resx">
       <DependentUpon>BugReport.cs</DependentUpon>

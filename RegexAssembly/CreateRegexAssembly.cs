@@ -23,7 +23,7 @@ namespace RegexAssembly
                 new MyRegex("BRAS",     @"^[a-z]{3}\d{3}\.[a-z]{2}$"),
                 new MyRegex("CommonNBN",@"^(?<Type>[AVCSNIGPR]{3})" +                // Data Type
                                         @"(?<Id>\d{12})$"                          // Id
-                                        , RegexOptions.ExplicitCapture),                     
+                                        , RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture),                     
                 new MyRegex("Mobile",   @"^(0|61)"+                         // Prefix
                                         @"(?<Number>4\d{8})$"
                                         , RegexOptions.ExplicitCapture),                      // Number
@@ -44,7 +44,7 @@ namespace RegexAssembly
                                         @"(-|0| )?"+                     // Divider
                                         @"(0)?(?(-1)(?<Flip>\d)|(?<Flip>\d)\d?)$"   // Flip
                                         , RegexOptions.ExplicitCapture),                          
-                new MyRegex("ICON",     @"^((?:1|5|8|9)\d{7})(\d{6})$"),
+                new MyRegex("ICON",     @"^((?:1|5|8|9)\d{8})(\d{5})$"),
                 new MyRegex("Name",     @"(?:(Mr|Mrs|miss|dr)\.?)?\s?" +             // Title (Followed by a ".")
                                         @"([a-z]+)" +                       // First Name
                                         @"(?:\s([a-z]))?" +                       // Middle Initial
@@ -67,13 +67,13 @@ namespace RegexAssembly
                                         @"\s*(?<Postcode>\d{4})?"                      // Postcode (Optional)
                                         , RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture),
                 new MyRegex("ITCase",   @"^(?<Year>1[4-6])" +                           // Year
-                                        @"(?<Month>0\d|1[0-2])" +                       // Month
-                                        @"(?<Day>0\d|[1-3]\d|3[0-1])" +               // Date
+                                        @"(?<Month>(0\d|1[0-2]))" +                       // Month
+                                        @"(?<Day>(0\d|[1-2]\d|3[0-1]))" +               // Date
                                         @"(?<Id>\d{4})$"                         // 4 Digit id
                                         , RegexOptions.ExplicitCapture),                             
-                new MyRegex("MAC",      @"^(?:([0-9A-F]{2})(-|:)?){6}\b", RegexOptions.IgnoreCase),
-                new MyRegex("AddressId",@"^(\d{6})$"),
-                new MyRegex("ESN",      @"^(\d{6})$", RegexOptions.IgnoreCase),
+                new MyRegex("MAC",      @"^(?<Id>(([0-9A-F]{2})(-|:)?){6})\b", RegexOptions.IgnoreCase | RegexOptions.ExplicitCapture),
+                new MyRegex("AddressId",@"^(\d{7})$"),
+                new MyRegex("ESN",      @"^((\d|[a-z]){5})$", RegexOptions.IgnoreCase),
                 new MyRegex("NTDSN",    @"^(\d{12})$", RegexOptions.IgnoreCase),
                 new MyRegex("GSID",     @"^(\d{16})$", RegexOptions.IgnoreCase),
                 new MyRegex("IP",       @"^([0-2]?\d?\d\.){3}([0-2]?\d?\d)$", RegexOptions.IgnoreCase),

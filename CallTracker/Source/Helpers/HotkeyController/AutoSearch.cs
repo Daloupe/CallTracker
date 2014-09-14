@@ -11,6 +11,11 @@ namespace CallTracker.Helpers
 {
     public partial class HotkeyController
     {
+        //WindowHelper.ShowWindow(browser.hWnd, WindowHelper.SW_SHOWNORMAL);
+        //WindowHelper.SetForegroundWindow(browser.hWnd);
+        //SendKeys.SendWait("^{t}");
+        //FindIEByUrl("about:blank");
+
         /// <summary>
         /// Searches a system.
         /// </summary>
@@ -42,6 +47,7 @@ namespace CallTracker.Helpers
                     }
                     break;
                 case "NSI":
+                    _nsiSearching = dataType;
                     if (_nsiTimer != null)
                         _nsiTimer.Stop();
                     else
@@ -81,16 +87,19 @@ namespace CallTracker.Helpers
                 switch (title)
                 {
                     case "SCAMPS":
+                        EventLogger.LogNewEvent(Environment.NewLine + "SCAMPS AutoSearch Starting: " + search, EventLogLevel.Brief);
                         _scampsBrowser = browser;
                         _scampsSearchStarted = DateTime.Now;
                         _scampsTimer.Start();
                         break;
                     case "DIMPS":
+                        EventLogger.LogNewEvent(Environment.NewLine + "DIMPS AutoSearch Starting: " + search, EventLogLevel.Brief);
                         _dimpsBrowser = browser;
                         _dimpsSearchStarted = DateTime.Now;
                         _dimpsTimer.Start();
                         break;
                     case "NSI":
+                        EventLogger.LogNewEvent(Environment.NewLine + "NSI AutoSearch Starting: " + search, EventLogLevel.Brief);
                         _nsiBrowser = browser;
                         _nsiSearchStarted = DateTime.Now;
                         _nsiTimer.Start();
@@ -151,15 +160,21 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Get Data Methods /////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private static string GetTableCell(string id)
+        private static string GetTableCell(IE fromBrowser, string id)
         {
-            var cell = _dimpsBrowser.ElementOfType<TableCell>(Find.ById(id));
+            var cell = fromBrowser.ElementOfType<TableCell>(Find.ById(id));
             return cell.Exists ? cell.InnerHtml : null;
         }
 
-        private static string GetHidden(string id)
+        private static string GetHidden(IE fromBrowser, string id)
         {
-            var textfield = _dimpsBrowser.TextField(Find.ById(id));
+            var hidden = fromBrowser.TextField(Find.ById(id));
+            return hidden.Exists ? hidden.GetAttributeValue("value") : null;
+        }
+
+        private static string GetTextField(IE fromBrowser, string id)
+        {
+            var textfield = fromBrowser.TextField(Find.ById(id));
             return textfield.Exists ? textfield.GetAttributeValue("value") : null;
         }
 
@@ -191,6 +206,7 @@ namespace CallTracker.Helpers
                 _scampsSearching = string.Empty;
                 parent.SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
                 parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true;
+                EventLogger.LogAndSaveNewEvent("AutoSearching SCAMPS " + _scampsSearching + " Error: Timeout", EventLogLevel.Brief);
                 return;
             }
 
@@ -271,6 +287,7 @@ namespace CallTracker.Helpers
                 _dimpsSearching = string.Empty;
                 parent.SelectedContact.Service.WasSearched["DIMPSDN"] = true;
                 parent.SelectedContact.Service.WasSearched["DIMPSUsername"] = true;
+                EventLogger.LogAndSaveNewEvent("AutoSearching DIMPS " + _dimpsSearching + " Error: Timeout", EventLogLevel.Brief);
                 return;
             }
 
@@ -285,128 +302,107 @@ namespace CallTracker.Helpers
 
             var contact = parent.SelectedContact;
 
-            if (_dimpsBrowser.Url == "https://dimps.optusnet.com.au/search.html")
+            try
             {
-                switch (_dimpsSearching)
+                if (_dimpsBrowser.Url == "https://dimps.optusnet.com.au/search.html")
                 {
-                    case "DN":
-                        if (contact.Service.WasSearched["SCAMPSDN"] &&
-                            contact.Fault.AffectedServiceType.IsNot(ServiceTypes.LIP))
-                            contact.Fault.LAT = true;
-                        contact.Service.WasSearched["DIMPSDN"] = true;
-                        break;
-                    case "Username":
-                        contact.Service.WasSearched["DIMPSUsername"] = true;
-                        break;
+                    switch (_dimpsSearching)
+                    {
+                        case "DN":
+                            if (contact.Service.WasSearched["SCAMPSDN"] &&
+                                contact.Fault.AffectedServiceType.IsNot(ServiceTypes.LIP))
+                                contact.Fault.LAT = true;
+                            contact.Service.WasSearched["DIMPSDN"] = true;
+                            break;
+                        case "Username":
+                            contact.Service.WasSearched["DIMPSUsername"] = true;
+                            break;
+                    }
+                }
+                else
+                {
+                    var mode = GetHidden(_dimpsBrowser, "init_mode");
+                    var value = GetTableCell(_dimpsBrowser, "username");
+                    EventLogger.LogAndSaveNewEvent("AutoSearching DIMPS " + _dimpsSearching + " Mode: " + mode,
+                        EventLogLevel.Brief);
+                    // Assuming only services with a username are found in DIMPS.
+                    switch (mode)
+                    {
+                        case "cable":
+                            contact.Service.WasSearched["DIMPSUsername"] = true;
+                            contact.Fault.ONC = true;
+                            if (_dimpsSearching != "DN") break;
+                            contact.Service.WasSearched["DIMPSDN"] = true;
+                            contact.Fault.LIP = true;
+                            contact.Username = value;
+                            break;
+                        case "fbb":
+                            contact.Service.WasSearched["SCAMPSUsername"] = true;
+                            contact.Service.WasSearched["SCAMPSDN"] = true;
+                            contact.Service.WasSearched["DIMPSUsername"] = true;
+                            contact.Fault.NBF = true;
+                            if (_dimpsSearching != "DN") break;
+                            contact.Service.WasSearched["DIMPSDN"] = true;
+                            contact.Fault.NFV = true;
+                            contact.Username = value;
+                            break;
+                    }
+
+                    value = GetTableCell(_dimpsBrowser, "custname");
+                    if (value != null)
+                        contact.Name = value;
+
+                    value = GetTableCell(_dimpsBrowser, "servaddr");
+                    if (value != null)
+                        contact.Address.Address = value;
+
+                    value = GetTableCell(_dimpsBrowser, "macidvendor");
+                    if (value != null)
+                    {
+                        var split = value.Split('/');
+                        contact.Service.FindMACMatch(split[0]);
+                        if (split.Length > 1)
+                            contact.Service.FindEquipmentMatch(
+                                parent.editContact._ServicePanel._Equipment._ComboBox.GetDataSource, split[1]);
+                    }
+
+                    value = GetTableCell(_dimpsBrowser, "ipaddr");
+                    if (value != null)
+                        contact.Service.FindIPMatch(value);
+
+                    value = GetTableCell(_dimpsBrowser, "isonline");
+                    if (value != null)
+                        contact.Service.ModemStatus = value == "Yes" ? "Online" : "Offline";
+
+                    value = GetTableCell(_dimpsBrowser, "throttlingstatus");
+                    if (value != null)
+                        contact.Service.Throttled = value;
+
+                    if (mode == "fbb")
+                    {
+                        value = GetTableCell(_dimpsBrowser, "accountno");
+                        if (value != null)
+                            contact.FindICONMatch(value);
+
+                        value = GetTableCell(_dimpsBrowser, "bras");
+                        if (value != null)
+                            contact.Service.Bras = value;
+
+                        value = GetTableCell(_dimpsBrowser, "avcid");
+                        if (value != null)
+                            contact.Service.FindNBNMatch(value);
+                    }
+                    else
+                    {
+                        value = GetTableCell(_dimpsBrowser, "accountno");
+                        if (value != null)
+                            contact.FindCMBSMatch(value);
+                    }
                 }
             }
-            else
+            catch (Exception ex)
             {
-                var mode = GetHidden("init_mode");
-                var value = GetTableCell("username");
-
-                // Assuming only services with a username are found in DIMPS.
-                switch (mode)
-                {
-                    case "cable":
-                        contact.Fault.ONC = true;
-                        if (_dimpsSearching != "DN") break;
-                        contact.Fault.LIP = true;
-                        contact.Username = value;
-                        break;
-                    case "fbb":
-                        contact.Fault.NBF = true;
-                        if (_dimpsSearching != "DN") break;
-                        contact.Fault.NFV = true;
-                        contact.Username = value;
-                        break;
-                }
-                //switch (_dimpsSearching)
-                //{
-                //    case "DN":
-                //        //if (contact.Service.WasSearched["SCAMPSDN"] && contact.Fault.AffectedServiceType.IsNot(ServiceTypes.LIP))
-                //        //    contact.Fault.NFV = true;
-
-                //        value = GetTableCell("username");
-
-                //        switch (mode)
-                //        {
-                //            case "cable":
-                //                contact.Fault.LIP = true;
-                //                if (value == null) break;
-                //                contact.Fault.ONC = true;
-                //                contact.Username = value;
-                //                break;
-                //            case "fbb":
-                //                contact.Fault.NFV = true;
-                //                if (value == null) break;
-                //                contact.Fault.NBF = true;
-                //                contact.Username = value;
-                //                break;
-                //        }
-
-                //        break;
-                //    case "Username":
-                //        //if (contact.Service.WasSearched["SCAMPSUsername"] && contact.Fault.AffectedServiceType.IsNot(ServiceTypes.ONC))
-                //        //    contact.Fault.NBF = true;
-
-                //        switch (mode)
-                //        {
-                //            case "cable":
-                //                contact.Fault.ONC = true;
-                //                break;
-                //            case "fbb":
-                //                contact.Fault.NBF = true;
-                //                break;
-                //        }
-
-                //        break;
-                //}
-                contact.Service.WasSearched["DIMPSDN"] = true;
-                contact.Service.WasSearched["DIMPSUsername"] = true;
-
-                //value = GetTableCell("avc");
-                //if (value != null)
-                //{
-                //    contact.Service.AVC = value;
-                //    if (mode == "fbb" && !contact.Service.WasSearched["NSI"])
-                //        AutoSearch(
-                //            "https://staff.optusnet.com.au/tools/nsi/avc_detail.html?avcid=" + value,
-                //            "NSI", "https://staff.optusnet.com.au/tools/nsi/", false);
-                //}
-
-                //value = GetTableCell("bras");
-                //if (value != null)
-                //    contact.Service.Bras = value;
-
-                value = GetTableCell("accountno");
-                if (value != null)
-                    if(!contact.FindICONMatch(value))
-                        contact.FindCMBSMatch(value);
-
-                value = GetTableCell("custname");
-                if (value != null)
-                    contact.Name = value;
-
-                value = GetTableCell("servaddr");
-                if (value != null)
-                    contact.Address.Address = value;
-
-                value = GetTableCell("macidvendor");
-                if (value != null)
-                    contact.Service.FindMACMatch(value);
-
-                value = GetTableCell("ipaddr");
-                if (value != null)
-                    contact.Service.FindIPMatch(value);
-
-                value = GetTableCell("isonline");
-                if (value != null)
-                    contact.Service.ModemStatus = value;
-
-                value = GetTableCell("throttlingstatus");
-                if (value != null)
-                    contact.Service.Throttled = value;
+                EventLogger.LogAndSaveNewEvent("AutoSearching DIMPS " + _dimpsSearching + " Error: " + ex.Message, EventLogLevel.Status);
             }
 
             _dimpsBrowser.Dispose();
@@ -428,9 +424,11 @@ namespace CallTracker.Helpers
         private static Timer _nsiTimer;
         private static IE _nsiBrowser;
         private static DateTime _nsiSearchStarted;
+        private static string _nsiSearching;
 
         private static void NsiTimerElapsed(object sender, ElapsedEventArgs e)
         {
+            parent.SelectedContact.Service.WasSearched["NSI"] = true;
             if ((e.SignalTime - _nsiSearchStarted).TotalSeconds > 5)
             {
                 if (_nsiBrowser != null)
@@ -440,7 +438,7 @@ namespace CallTracker.Helpers
                 }
                 _nsiTimer.Dispose();
                 _nsiTimer = null;
-                parent.SelectedContact.Service.WasSearched["NSI"] = true;
+                EventLogger.LogAndSaveNewEvent("AutoSearching NSI "+ _nsiSearching +" Error: Timeout", EventLogLevel.Brief);
                 return;
             }
 
@@ -453,37 +451,54 @@ namespace CallTracker.Helpers
             var ieBrowser = ((IWebBrowser2)(_nsiBrowser.InternetExplorer));
             if (ieBrowser.Busy) return;
 
-            //var contact = parent.SelectedContact;
-            //string value;
+            var contact = parent.SelectedContact;
 
-            //value = GetTableCell("cvc");
-            //if (value != null)
-            //    contact.Service.FindMACMatch(value);
+            try
+            {
+                if (_nsiSearching == "AVC")
+                {
+                    EventLogger.LogNewEvent("AutoSearching: NSI AVC", EventLogLevel.Brief);
+                    string value;
 
-            //value = GetTableCell("csa");
-            //if (value != null)
-            //    contact.Service.FindIPMatch(value);
+                    value = GetHidden(_nsiBrowser, "cvcid");
+                    if (value != null)
+                        contact.Service.CVC = value;
 
-            //value = GetTableCell("gsid");
-            //if (value != null)
-            //    contact.Service.ModemStatus = value;
+                    value = GetHidden(_nsiBrowser, "gsid");
+                    if (value != null)
+                        contact.Service.GSID = value;
 
-            //value = GetTableCell("pri");
-            //if (value != null)
-            //    contact.Service.Throttled = value;
-            // Get CVC?
-            // Get CSA
-            // Get SIP?
-            // Get GSID
-            // Get PRI
-            // Get NNI?
-            // Trigger CVC Search?
+                    value = GetTableCell(_nsiBrowser, "pii");
+                    if (value != null)
+                        contact.Service.PRI = value;
 
-            parent.SelectedContact.Service.WasSearched["NSI"] = true;
-            _nsiBrowser.Dispose();
-            _nsiBrowser = null;
-            _nsiTimer.Dispose();
-            _nsiTimer = null;
+                    //parent.SelectedContact.Service.WasSearched["NSI"] = true;
+                    _nsiSearchStarted = DateTime.Now;
+                    _nsiSearching = "CVC";
+                    _nsiBrowser.GoToNoWait("https://staff.optusnet.com.au/tools/nsi/cvc_detail.html?cvcid=" +
+                                           contact.Service.CVC);
+                }
+                else if (_nsiSearching == "CVC")
+                {
+                    EventLogger.LogNewEvent("AutoSearching: NSI CVC", EventLogLevel.Brief);
+                    var top_col = _nsiBrowser.Div(Find.ByClass("top_col")).InnerHtml.Split(':');
+                    contact.Service.CSA = top_col[1].Substring(5, 15);
+                    contact.Service.NNI = top_col[4].Substring(5, 15);
+
+                    _nsiBrowser.Back();
+
+                    _nsiBrowser.Dispose();
+                    _nsiBrowser = null;
+                    _nsiTimer.Dispose();
+                    _nsiTimer = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                EventLogger.LogAndSaveNewEvent("AutoSearching NSI " + _nsiSearching + " Error: " + ex.Message,
+                    EventLogLevel.Status);
+            }
+            EventLogger.SaveLog();
         }
     }
 }

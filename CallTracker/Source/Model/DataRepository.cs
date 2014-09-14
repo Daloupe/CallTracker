@@ -204,6 +204,8 @@ namespace CallTracker.Model
 
             PasteBinds = dataStore.PasteBinds;
             GridLinks = dataStore.GridLinks;
+
+            GridLinks.PopulateIfEmpty();
         }
 
         public void WriteData()

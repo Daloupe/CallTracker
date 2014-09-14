@@ -25,4 +25,5 @@
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=NPR/@EntryIndexedValue">NPR</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=ONC/@EntryIndexedValue">ONC</s:String>
 	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=PR/@EntryIndexedValue">PR</s:String>
-	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=UN/@EntryIndexedValue">UN</s:String></wpf:ResourceDictionary>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=UN/@EntryIndexedValue">UN</s:String>
+	<s:String x:Key="/Default/CodeStyle/Naming/CSharpNaming/Abbreviations/=URL/@EntryIndexedValue">URL</s:String></wpf:ResourceDictionary>

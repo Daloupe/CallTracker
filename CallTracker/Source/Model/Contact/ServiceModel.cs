@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using CallTracker.Helpers;
 using ProtoBuf;
 using PropertyChanged;
@@ -33,7 +36,7 @@ namespace CallTracker.Model
             RFIssues = String.Empty;
             DTVLights = String.Empty;
             Throttled = String.Empty;
-            WasSearched = new Dictionary<string, bool> { { "IFMS", false }, { "Nexus", false }, { "SCAMPSDN", false }, { "SCAMPSUsername", false }, { "NSI", false }, { "DIMPSDN", false }, { "DIMPSUsername", false }, { "UNMT", false } };
+            WasSearched = new Dictionary<string, bool> { { "IFMSCMBS", false }, { "IFMSPR", false }, { "Nexus", false }, { "SCAMPSDN", false }, { "SCAMPSUsername", false }, { "NSI", false }, { "DIMPSDN", false }, { "DIMPSUsername", false }, { "UNMT", false } };
         }
 
         //[ProtoBeforeDeserialization]
@@ -137,6 +140,22 @@ namespace CallTracker.Model
 
         //public INetworkInfo NetworkInfo { get; set; }
 
+        public bool FindEquipmentMatch(IList source, string text)
+        {
+            var lower = text.ToLower();
+            var equip = (from object item in source
+                         where item.ToString().ToLower().Contains(lower) ||
+                         lower.Contains(item.ToString().ToLower())
+                         select item).FirstOrDefault();
+            if (equip != null)
+            {
+                Equipment = equip.ToString();
+                Main.FadingToolTip.ShowandFade("Equipment: " + Equipment);
+                return true;
+            }
+            return false;
+        }
+
         public bool FindBRASMatch(string text)
         {
             var match = BRASPattern.Match(text);
@@ -155,8 +174,16 @@ namespace CallTracker.Model
             var match = NBNPattern.Match(text);
             if (match.Success)
             {
-                FindProperty.SetPropertyFromPath(this, text.Substring(0, 3), text);
+                FindProperty.SetPropertyFromPath(this, match.Groups["Type"].Value, text);
                 Main.FadingToolTip.ShowandFade(text.Substring(0, 3) + ": " + text);
+
+                if (match.Groups["Type"].Value == "AVC")
+                {
+                    if (!WasSearched["NSI"])
+                        HotkeyController.AutoSearch(
+                            "https://staff.optusnet.com.au/tools/nsi/avc_detail.html?avcid=" + text,
+                            "NSI", "https://staff.optusnet.com.au/tools/nsi/", false, "AVC");
+                }
                 return true;
             };
             return false;
@@ -179,7 +206,7 @@ namespace CallTracker.Model
             var match = MACPattern.Match(text);
             if (match.Success)
             {
-                CMMac = text;
+                CMMac = match.Groups["Id"].Value;
                 Main.FadingToolTip.ShowandFade("MAC: " + CMMac);
                 return true;
             };

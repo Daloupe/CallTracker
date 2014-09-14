@@ -12,28 +12,78 @@
 //- Selecting "Clear and Close" brings up a PopUp with a single dropdown to select from before actioning the pr.
 
 
-0.9.x.x
+0.9.9.x
 (Minor Feature)
-- IFMS AutoSearch.
 - ICON AutoSearch.
 - IPCC Dial Filling in Customer Data fields.
-- White Timeout exceptions caught and EventLogged.
 - Added SMS template generators.
-- Added Help buttons to screens which link to their "Did You Know?" slide.
 (Bugs/Changes)
+- Added Help buttons to screens which link to their "Did You Know?" slide.
 - Fixed Resources file not building.
 - New IE pages can now be loaded as tabs.
 / Ensured PR and ICON templates are only being generated when they need to be.
 - Converted Call States into Menu Item subclass.
-- Confirmed Bras, NTDSN, AddressId, GSID, and ESN Regexes.
+- Confirmed Bras, NTDSN.
 - IPCC menu not drawing back color.
 - Allow Scrolling further in service panel.
 - Events now only recompute when dirty.
 - Are timestamps terminating properly on quit?
+- White Timeout exceptions caught and EventLogged.
+- Restore window after tab is switched.
 
-0.9.1.x
+0.9.6.x
+(Minor Feature)
+- Added Equipment specific context menu logic.
+
+0.9.5.x
 (Minor Feature)
 - ICON Tier4 linked to Action rather than Outcome.
+	- Add resolved Notes, ICON codes.
+
+0.9.4.x
+(Minor Features)
+- Analyze SCAMPS for high Reverse Power Flux, Low SNR.
+(Bugs/Changes))
+Tips:
+	- Added OPOM Smart Copy info.
+	- Added "Troubleshooting" Panel.
+	- Added info on "Report Bug" to overview.
+Resource Menu:
+	- New Bookmarks should change to listview to the new index.
+	- Changing product while editing bookmarks shouldn't update bookmarks window.
+	- Add "EHB Search" field to resources menu.
+
+0.9.3.13
+(Minor Features)
+| Added IFMS Account Search and AutoSearch, Added PR AutoSearch.
+| Ctrl-Space opens the DataDrop window to allow typing in info > smartcopy.
+(Bugs/Changes)
+| Tips and DataDrop window positions saved.
+| Full NBN scrape working.
+| Added setting "QuitProperly" to prevent log from deleting if wingman quit with an exception.
+| Fixed Search DN and Mobile replace Regexes.
+| Confirmed AddressId, GSID, and ESN Regexes.
+GridLinks:
+	| Fixed GridLinks Search not searching.
+	/ WOBS Gridlinks still not switching tabs.
+AutoFill:
+	| ICON AutoFill needs to happen before note field is filled to prevent it from being overwritten.
+	- SmartCopy PR on IFMS Create Autofill.
+Visual:
+	- CauPing Align text to right.
+	| Right Align _IPCCState Text.
+SmartPaste:
+	| Added SmartPaste Bind option "AutoFill" to avoid autofilling some elements.
+	| Binds Skip Constructor on Deserialization.
+	- Username showing as lower, but pasting as upper?
+	- Softact uses frames? name = "mainFrame"
+AutoSearch
+	| AVC only paritially copied into NSI search.
+	| Prevented Call Data Grab of Caller ID from triggering AutoSearch if Service Number isn't null.
+	/ DIMPS mac field: c8:91:f9:b7:0a:af / Unknown. Split at / for modem.
+	- Copying in 0397346689 froze the system just after CMBS copy.
+	- Full NBN AutoSearch wont happen on first call after starting wingman.
+
 
 0.9.1.0
 (Minor Features)
@@ -157,7 +207,7 @@ X Darkened Tips main panel background to make "Example" more readable.
 0.7.6.16
 (Minor Features)
 | Created Report Bug popup which sends email with log and bug text.
-| Added OPOM smart copy "0393364915	MARY TANTI	VoIP Second Line Service	Residential	14/08/2014		New		803374653	80337465300177	29/07/2014	ret_caitly_mcin		803374653		100060831702".
+| Added OPOM smart copy.
 (Bugs/Changes)
 | Smart Function enumerate query straight to list to avoid repeating the LINQ operation.
 | Added EventLogs to ICONAutoFill.

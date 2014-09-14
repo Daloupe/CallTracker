@@ -214,5 +214,41 @@ namespace CallTracker.Properties {
                 this["AdvancedMode"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point Tips_Position {
+            get {
+                return ((global::System.Drawing.Point)(this["Tips_Position"]));
+            }
+            set {
+                this["Tips_Position"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point DataDrop_Position {
+            get {
+                return ((global::System.Drawing.Point)(this["DataDrop_Position"]));
+            }
+            set {
+                this["DataDrop_Position"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool QuitProperly {
+            get {
+                return ((bool)(this["QuitProperly"]));
+            }
+            set {
+                this["QuitProperly"] = value;
+            }
+        }
     }
 }

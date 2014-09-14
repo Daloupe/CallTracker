@@ -1,0 +1,44 @@
+﻿| Hitting 'Done' in Callhistory not updating Affeceted Service.
+- DailyStats are only applied to Current Date, not selected Date.
+	- Stats View Displays Selected Date.
+	- Logging in should switch date to today.
+| Get NBN & LIP DIMPS grab.
+| DIMPS Autosearch values.
+| Get NSI grab.
+- Can a service exist in DIMPS without a username?
+
+- Softact uses frames? name = "mainFrame"
+- CauPing Align text to right.
+- Scamps search string using wrong regex.
+- Username showing as lower, but pasting as upper?
+- Right Align _IPCCState Text.
+/ WOBS Gridlinks still not switching tabs. Working now?
+- SmartCopy PR on IFMS Create Autofill.
+- Add Hotkey to open Info Drop window to allow typing in info > smartcopy. Add to navigation bar.
+- ICON AutoFill needs to happen before note field is filled to prevent it from being overwritten.
+- Changing product while editing bookmarks shouldn't update bookmarks window.
+- New Bookmarks should change to that index.
+- Analyze SCAMPS for high Reverse Power Flux, Low SNR.
+- Add "EHB Search" field to resources menu.
+- Copying in 0397346689 froze the system.
+- DIMPS mac field: c8:91:f9:b7:0a:af / Unknown. Split at / for modem.
+- Add resolved Notes, ICON codes.
+/ AVC only paritially copied into NSI search.
+- Full NBN AutoSearch wont happen on first call after starting wingman.
+- Add IFMS Account Search http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F191_CUST_ACCESS_OV.aspx?id=32388508%203
+
+GSID: 1000000000017200
+ICON: 80293664600144
+BRAS: meb2.bng mas800.ba
+Address ID: 5705194
+ESN: 4DB43
+NTDSN: 
+
+NBN: 0363441142
+
+
+Netgear CVG824g
+
+
+---------------------------------
+Double check ICON activity is for correct account.

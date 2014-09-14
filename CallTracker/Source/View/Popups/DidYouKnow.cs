@@ -23,7 +23,7 @@ namespace CallTracker.View
         public DidYouKnow()
         {
             InitializeComponent();
-
+            SetLocation();
             var fontCount = Program.Fonts.Families.Length;
             if (fontCount > 0)
                 heading.Font = new Font(Program.Fonts.Families[0], 18, FontStyle.Bold);
@@ -185,21 +185,27 @@ namespace CallTracker.View
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Move Window //////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
-
         private void _MainMenu_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
 
-            ReleaseCapture();
-            SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            //Properties.Settings.Default.Main_Position = Location;
+            Main.ReleaseCapture();
+            Main.SendMessage(Handle, Main.WM_NCLBUTTONDOWN, Main.HT_CAPTION, 0);
+            Properties.Settings.Default.Tips_Position = Location;
+        }
+
+        private void SetLocation()
+        {
+            var totalSize = new Size();
+            foreach (var screen in Screen.AllScreens)
+                totalSize += screen.Bounds.Size;
+
+            if (Properties.Settings.Default.Tips_Position == Point.Empty ||
+                Properties.Settings.Default.Tips_Position.X >= totalSize.Width ||
+                Properties.Settings.Default.Tips_Position.Y >= totalSize.Height) return;
+
+            StartPosition = FormStartPosition.Manual;
+            Location = Properties.Settings.Default.Tips_Position;
         }
 
         [DllImport("user32.dll")]

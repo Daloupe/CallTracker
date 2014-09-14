@@ -95,11 +95,15 @@ namespace CallTracker.View
 
         public static BindSmartPasteForm BindSmartPasteForm;
         public static BugReport BugReport;
+        public static DataDrop DataDrop;
 
         private readonly SplashScreen _splash;
+        private bool _isStartingUp;
+
         public Main(SplashScreen splash)
         {
             InitializeComponent();
+            _isStartingUp = true;
             //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             
             _splash = splash;
@@ -159,6 +163,7 @@ namespace CallTracker.View
             _DailyDataBindingSource.DataSource = DailyDataDataStore.DailyData;
             IsDifferentShift();
 
+            Settings.Default.QuitProperly = false;
             //SelectedContact = new CustomerContact();
 
             EventLogger.LogNewEvent("Startup: Loading Views");
@@ -188,20 +193,28 @@ namespace CallTracker.View
             EventLogger.LogNewEvent("Startup: Initializing Views");
             _splash.UpdateProgress("Initializing Views", 50);
             editContact.OnParentLoad();
+            
             _splash.StepProgress("Edit Contacts");
             editContact.Init();
+            
             _splash.StepProgress("Call History");
             callHistory.Init(this, callHistoryToolStripMenuItem);
+            
             _splash.StepProgress("Edit Logins");
             editLogins.Init(this, loginsViewMenuItem);
+            
             _splash.StepProgress("Edit Smart Paste Binds");
             editSmartPasteBinds.Init(this, pasteBindsViewMenuItem);
+            
             _splash.StepProgress("Edit Gridlinks");
             editGridLinks.Init(this, gridLinksViewMenuItem);
+            
             _splash.StepProgress("Keycommand Help");
             helpKeyCommands.Init(this, viewKeyCommandsMenuItem);
+            
             _splash.StepProgress("Edit Database");
             databaseView.Init(this, databaseEditorToolStripMenuItem);
+
             _splash.StepProgress("Edit Ratecodes");
             Ratecodes.Init(this, ratecodesMenuItem);
             StatsView.Init(this, viewStatsToolStripMenuItem);
@@ -228,26 +241,24 @@ namespace CallTracker.View
             _splash.UpdateProgress("Creating Hotkey Controller", 85);
             HotKeys = new HotkeyController(this);
 
-            _splash.UpdateProgress("Attaching Events", 90);
-            //IETabActivator.OnAction += UpdateProgressBar;
-            //HotkeyController.OnAction += UpdateProgressBar;
-
-            _splash.UpdateProgress("Finishing", 99);
-            _splash.UpdateProgress("", 100);
-            EventLogger.LogNewEvent("Finished Loading", EventLogLevel.ClearStatus);
-            ChangeCallStateMenuItem(logOutToolStripMenuItem);
-
+            _splash.UpdateProgress("Loading Helpers", 90);
             FadingToolTip = new FadingTooltip();
             AboutScreen = new AboutScreen();
             BindSmartPasteForm = new BindSmartPasteForm(this);
             BugReport = new BugReport();
+            DataDrop = new DataDrop();
+            DidYouKnow = new DidYouKnow();
 
+            _splash.UpdateProgress("Finishing", 99);
             SetSettings();
 
-            DidYouKnow = new DidYouKnow();
+            _splash.UpdateProgress("", 100);
+            EventLogger.LogNewEvent("Finished Loading", EventLogLevel.ClearStatus);         
+
             if (Settings.Default.ShowTipsOnStartup)
                 DidYouKnow.Show();
 
+            ChangeCallStateMenuItem(logOutToolStripMenuItem);
             EventLogger.SaveLog();
         }
 
@@ -274,6 +285,7 @@ namespace CallTracker.View
             Opacity = 1;
             _splash.Close();
             _splash.Dispose();
+            _isStartingUp = false;
             //CancelLoad = false;
         }
 
@@ -308,6 +320,7 @@ namespace CallTracker.View
             HotKeys.Dispose();
             FadingToolTip.Dispose();
 
+            Settings.Default.QuitProperly = true;
             EventLogger.SaveLog();
         }
 
@@ -584,14 +597,16 @@ namespace CallTracker.View
                 DateBindingSource.Position = DateFilterItems.Count - 1;
                 //_DailyDataBindingSource.Position = DailyDataDataStore.DailyData.Count - 1;
 
-                File.Delete("Log.txt");
+                if(Settings.Default.QuitProperly && !_isStartingUp)
+                    File.Delete("Log.txt");
             }
             else if (((DailyModel)_DailyDataBindingSource.Current).Date.LongDate != DateTime.Today)
             {
                 DateBindingSource.Position = DateFilterItems.IndexOf(DateFilterItems.FirstOrDefault(x => x.LongDate == DateTime.Today));
                 //_DailyDataBindingSource.Position = DateBindingSource.Position;
 
-                File.Delete("Log.txt");
+                if (Settings.Default.QuitProperly && !_isStartingUp)
+                    File.Delete("Log.txt");
             }
 
 

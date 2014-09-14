@@ -13,7 +13,7 @@ namespace CallTracker.Model
     // IEMethod(IEContext.ElementOfType<T>(IEConstraint(tag)), value);
     // Which is called in a generic function through reflection to enable IEType to select the element type.
 
-    [ProtoContract]
+    [ProtoContract(SkipConstructor = true)]
     [ProtoInclude(15, typeof(LoginsModel))]
     [ProtoInclude(16, typeof(PasteBind))]
     public class IEInteractBase
@@ -38,10 +38,18 @@ namespace CallTracker.Model
             FindByName = false;
             FireOnChange = false;
             FireOnChangeNoWait = false;
+            PasteWithSendKeys = false;
+            AutoFill = true;
             //FindAsTextField = false;
             //TypeText = false;
             //ClickButton = false;
             //SelectFromList = false;
+        }
+
+        [ProtoBeforeDeserialization]
+        private void PreDes()
+        {
+            ContextForm = b => b.Form(IEFormConstraint(FormElement));
         }
 
         [ProtoMember(1)]
@@ -96,6 +104,9 @@ namespace CallTracker.Model
 
         [ProtoMember(10)]
         public bool PasteWithSendKeys { get; set; }
+
+        [ProtoMember(20)]
+        public bool AutoFill { get; set; }
 
         private ElementTypes _elementType;
         [ProtoMember(11)]

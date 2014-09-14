@@ -579,7 +579,7 @@ namespace CallTracker.View
                 return;
             if (menu.SourceControl.Parent.Name == "_NPR")
             {
-                viewPRToolStripMenuItem.Enabled = false;
+                //viewPRToolStripMenuItem.Enabled = false;
 
                 dispatchToolStripMenuItem.Enabled = false;
                 stapleToParentToolStripMenuItem.Enabled = false;
@@ -587,7 +587,7 @@ namespace CallTracker.View
             }
             else
             {
-                viewPRToolStripMenuItem.Enabled = false;
+                //viewPRToolStripMenuItem.Enabled = false;
 
                 dispatchToolStripMenuItem.Enabled = false;
                 stapleToParentToolStripMenuItem.Enabled = false;
@@ -707,10 +707,17 @@ namespace CallTracker.View
             HotkeyController.NavigateOrNewIE("http://ifmsprod.optus.com.au/", "IFMS", "http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F012_ProblemDetail.aspx?SD_NO=" + ((ToolStripMenuItem)sender).Tag.ToString());
         }
 
+        private void _SearchIFMSCMBS_click(object sender, EventArgs e)
+        {
+            var str = ((ToolStripMenuItem) sender).Tag.ToString();
+            var s = str.Substring(0, 8) + @"%20" + str.Substring(9, 1);
+            HotkeyController.NavigateOrNewIE("http://ifmsprod.optus.com.au/", "IFMS", "http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F191_CUST_ACCESS_OV.aspx?id=" + s);
+        }
+
         private void _TextFieldContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             LabelledTextBoxLong field;
-            var fieldtest = ((ContextMenuStrip) sender).SourceControl;
+            var fieldtest = ((ContextMenuStrip)sender).SourceControl;
             if (fieldtest.GetType() != typeof (LabelledTextBoxLong))
                 field = (LabelledTextBoxLong)fieldtest.Parent;
             else
@@ -728,15 +735,15 @@ namespace CallTracker.View
                 case "dn":
                     match = new DNPattern().Match(MainForm.SelectedContact.DN);
                     if(match.Success)
-                        searchString = match.Result("0$1$2$3");
+                        searchString = match.Result("0$1");
                     break;
                 case "mobile":
                     match = new MobilePattern().Match(MainForm.SelectedContact.Mobile);
                     if(match.Success)
-                        searchString = match.Result("0$1$2");
+                        searchString = match.Result("0$1");
                     break;
             }
-            Console.WriteLine(searchString);
+            //Console.WriteLine(searchString);
 
             e.ClickedItem.Tag = searchString ?? String.Empty;
         }

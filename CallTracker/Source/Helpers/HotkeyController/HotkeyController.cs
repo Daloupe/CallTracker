@@ -14,6 +14,7 @@ using SHDocVw;
 
 using CallTracker.View;
 using CallTracker.Model;
+using WatiN.Core.Native.Windows;
 
 namespace CallTracker.Helpers
 {
@@ -33,7 +34,8 @@ namespace CallTracker.Helpers
 
             HotKeyManager = new HotKeyManager();
             HotKeyManager.AddOrReplaceHotkey("wintest", Modifiers.Win, Keys.N, OnTest);
-            HotKeyManager.AddOrReplaceHotkey("wintest2", Modifiers.Win, Keys.G, OnTest2);
+            //HotKeyManager.AddOrReplaceHotkey("wintest2", Modifiers.Win, Keys.G, OnTest2);
+            HotKeyManager.AddOrReplaceHotkey("DataDrop", Modifiers.Control, Keys.Space, DataDrop);
             HotKeyManager.AddOrReplaceHotkey("SmartCopy", Modifiers.Win, Keys.C, OnSmartCopy);
             HotKeyManager.AddOrReplaceHotkey("SmartPaste", Modifiers.Win, Keys.V, OnSmartPaste);
             HotKeyManager.AddOrReplaceHotkey("BindSmartPaste", Modifiers.Win | Modifiers.Shift, Keys.V, OnBindSmartPaste);
@@ -60,25 +62,38 @@ namespace CallTracker.Helpers
         public void Dispose()
         {
             HotKeyManager.UnbindHotkeys();
-
+            
             if (browser != null)
                 browser.Dispose();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
-        // TEST  //////////////////////////////////////////////////////////////////////////////////////////////
+        // TEST  ////////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private static void OnTest(HotkeyPressedEventArgs e)
         {
-            if (!GetActiveBrowser())
-                return;
-            ICONAutoFill.Go(parent);
+            Console.WriteLine("yep");
+            //if (!GetActiveBrowser())
+            //    return;
+            //ICONAutoFill.Go(parent);
+
+            //browser.Dispose();
         }
         private static void OnTest2(HotkeyPressedEventArgs e)
         {
             if (!GetActiveBrowser())
                 return;
             IFMSAutoFill.Go(parent);
+            browser.Dispose();
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Data Drop  ///////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        private static void DataDrop(HotkeyPressedEventArgs e)
+        {
+            Main.DataDrop.Show();
+            parent.SelectedContact.AddAppEvent(AppEventTypes.DataDrop);
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,33 +124,34 @@ namespace CallTracker.Helpers
         private static void OnGridLinks(HotkeyPressedEventArgs e)
         {
             var systemItem = parent.BindsDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name.Remove(0,2)));
-            //parent.SetProgressBarStep(4, Environment.NewLine + String.Format("Switching to: {0}", systemItem.Url));
             EventLogger.LogNewEvent(Environment.NewLine + "GridLinks Starting: " + systemItem.Url, EventLogLevel.Brief);
             
-            try
-            {
-                if (systemItem.System == "MAD" || systemItem.System == "OPOM")
-                {
-                    var hWnd = IntPtr.Zero;
-                    hWnd = WindowHelper.FindHWNDByTitle(systemItem.Title);
-                    
-                    if (hWnd == IntPtr.Zero) return;
 
-                    WindowHelper.ShowWindow(hWnd, WindowHelper.SW_SHOWNORMAL);
-                    WindowHelper.SetForegroundWindow(hWnd);
-                }
-                else if (NavigateOrNewIE(systemItem.Url, systemItem.Title))
-                {
-                    WindowHelper.ShowWindow(browser.hWnd, WindowHelper.SW_SHOWNORMAL);
-                    //if (!Browser.Exists<IE>(Find.ByTitle(systemItem.Title))) return;
-                    AutoLogin();
-                }
-            }
-            finally
+            if (systemItem.System == "MAD" || systemItem.System == "OPOM")
             {
-                parent.AddAppEvent(AppEventTypes.Gridlink);
-                EventLogger.LogNewEvent(String.Format("Switched to: {0}", systemItem.Url), EventLogLevel.ClearStatus);
+                var hWnd = IntPtr.Zero;
+                hWnd = WindowHelper.FindHWNDByTitle(systemItem.Title);
+                    
+                if (hWnd == IntPtr.Zero)
+                    hWnd = WindowHelper.FindHWNDByTitle(systemItem.Url);
+
+                if (hWnd == IntPtr.Zero) return;
+
+                WindowHelper.ShowWindow(hWnd, WindowHelper.SW_RESTORE);
+                WindowHelper.SetForegroundWindow(hWnd);
             }
+            else if (NavigateOrNewIE(systemItem.Url, systemItem.Title))
+            {
+                //if (!Browser.Exists<IE>(Find.ByTitle(systemItem.Title))) return;
+                if (browser != null)
+                {
+                    AutoLogin(true);
+                    browser.Dispose();
+                }
+            }
+
+            parent.AddAppEvent(AppEventTypes.Gridlink);
+            EventLogger.LogNewEvent(String.Format("Switched to: {0}", systemItem.Url), EventLogLevel.ClearStatus);
         }
 
         private static void OnGridLinksSearch(HotkeyPressedEventArgs e)
@@ -148,52 +164,52 @@ namespace CallTracker.Helpers
 
             var systemItem = parent.BindsDataStore.GridLinks.GetSystemItem(Convert.ToInt32(e.Name.Remove(0, 3)));
             EventLogger.LogNewEvent(Environment.NewLine + "Starting Grid Link Search: " + systemItem.Url, EventLogLevel.Brief);
-            //parent.SetProgressBarStep(4, String.Format("Searching: {0}", systemItem.Url));
             var url = String.Empty;
 
-            try
+            if (systemItem.System == "MAD" || systemItem.System == "OPOM")
             {
-                if (systemItem.System == "MAD" || systemItem.System == "OPOM")
+                var hWnd = IntPtr.Zero;
+                hWnd = WindowHelper.FindHWNDByTitle(systemItem.Title);
+
+                if (hWnd == IntPtr.Zero) return;
+
+                WindowHelper.ShowWindow(hWnd, WindowHelper.SW_RESTORE);
+                WindowHelper.SetForegroundWindow(hWnd);
+
+                url = systemItem.System;
+            }
+            else
+            {    
+                var productContext = parent.SelectedContact.Fault.AffectedServiceType.ToString();
+                foreach (var search in systemItem.Searches)
                 {
-                    var hWnd = IntPtr.Zero;
-                    hWnd = WindowHelper.FindHWNDByTitle(systemItem.Title);
-
-                    if (hWnd == IntPtr.Zero) return;
-
-                    WindowHelper.ShowWindow(hWnd, WindowHelper.SW_SHOWNORMAL);
-                    WindowHelper.SetForegroundWindow(hWnd);
+                    var data = FindProperty.FollowPropertyPath(parent.SelectedContact, search.SearchData, productContext);
+                    if (String.IsNullOrEmpty(data)) continue;
+                    url = search.SearchURL + data;
+                    EventLogger.LogAndSaveNewEvent("GridLinks Search: Found Data: " + data, EventLogLevel.Brief);
+                    break;
                 }
-                else
-                {    
-                    var productContext = parent.SelectedContact.Fault.AffectedServiceType.ToString();
-                    foreach (var search in systemItem.Searches)
-                    {
-                        var data = FindProperty.FollowPropertyPath(parent.SelectedContact, search.SearchData, productContext);
-                        if (String.IsNullOrEmpty(data)) continue;
-                        url = search.SearchURL + data;
-                        EventLogger.LogAndSaveNewEvent("GridLinks Search: Found Data: " + data, EventLogLevel.Brief);
-                        break;
-                    }
 
-                    NavigateOrNewIE(systemItem.Url, systemItem.Title, url);
-
+                if (NavigateOrNewIE(systemItem.Url, systemItem.Title, url))
+                {
                     if (String.IsNullOrEmpty(url))
                     {
-                        EventLogger.LogAndSaveNewEvent("GridLinks Search Error: No relevant data found", EventLogLevel.Brief);
+                        EventLogger.LogAndSaveNewEvent("GridLinks Search Error: No relevant data found",
+                            EventLogLevel.Brief);
                         url = systemItem.Url;
                     }
 
                     //if (!Browser.Exists<IE>(Find.ByUrl(url))) return;
-
-                    WindowHelper.ShowWindow(browser.hWnd, WindowHelper.SW_SHOWNORMAL);
-                    AutoLogin();
+                    if (browser != null)
+                    {
+                        AutoLogin(true);
+                        browser.Dispose();
+                    }
                 }
             }
-            finally
-            {
-                parent.AddAppEvent(AppEventTypes.GridlinkSearch);
-                EventLogger.LogNewEvent(String.Format("GridLinks Search: Switched to: {0}", url), EventLogLevel.ClearStatus);
-            }
+
+            parent.AddAppEvent(AppEventTypes.GridlinkSearch);
+            EventLogger.LogNewEvent(String.Format("GridLinks Search: Switched to: {0}", url), EventLogLevel.ClearStatus); 
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -414,11 +430,18 @@ namespace CallTracker.Helpers
             var url = browser.Url;
             var title = browser.Title;
 
+            if (title == "Activity - New activity and notes")
+            {
+                EventLogger.LogAndSaveNewEvent("AutoFill: Attempting ICON AutoFills", EventLogLevel.Status);
+                ICONAutoFill.Go(parent);
+            }
+
             var query = (from
                             bind in parent.BindsDataStore.PasteBinds
                         where
-                            url.Contains(bind.Url) ||
-                            title.Contains(bind.Title)
+                            (url.Contains(bind.Url) ||
+                            title.Contains(bind.Title)) &&
+                            bind.AutoFill
                         select
                             bind).ToList();
 
@@ -443,17 +466,12 @@ namespace CallTracker.Helpers
             else
                 EventLogger.LogAndSaveNewEvent("AutoFill Error: No Matches Found");
 
-            EventLogger.LogNewEvent("Browser URL: " + url, EventLogLevel.Status);
             if (title.Contains("F001 Create"))
             {
                 EventLogger.LogAndSaveNewEvent("AutoFill: Attempting IFMS AutoFills", EventLogLevel.Status);
                 IFMSAutoFill.Go(parent);
             }
-            else if (url.Contains("NewActivity.aspx"))
-            {
-                EventLogger.LogAndSaveNewEvent("AutoFill: Attempting ICON AutoFills", EventLogLevel.Status);
-                ICONAutoFill.Go(parent);
-            }
+
             parent.AddAppEvent(AppEventTypes.AutoFill);
 
             EventLogger.SaveLog();
@@ -468,11 +486,15 @@ namespace CallTracker.Helpers
             AutoLogin();
         }
 
-        private static void AutoLogin()
+        /// <summary>
+        /// Attempts to AutoLogin. Set useCurrentBrowser to true to avoid refinding and disposing browser.
+        /// </summary>
+        private static void AutoLogin(bool useCurrentBrowser = false)
         {
             EventLogger.LogNewEvent(Environment.NewLine + "AutoLogin: Searching for matches");
-            if (!GetActiveBrowser())
-                return;
+            if (!useCurrentBrowser)
+                if (!GetActiveBrowser())
+                    return;
 
             var title = browser.Title;
             var url = browser.Url;
@@ -499,7 +521,9 @@ namespace CallTracker.Helpers
             query.Submit(browser);
             
             parent.AddAppEvent(AppEventTypes.AutoLogin);
-            browser.Dispose();
+
+            if (!useCurrentBrowser)
+                browser.Dispose();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -567,60 +591,7 @@ namespace CallTracker.Helpers
             }
             else
             {
-                if(text.IsDigits())
-                {
-                    if (text.Substring(0, 1) == "1" && textlen == 8)
-                    {
-                        contact.Fault.PR = text;
-                        Main.FadingToolTip.ShowandFade("PR: " + contact.Fault.PR);                   
-                    }
-                    else if (contact.FindDNMatch(text)) { }
-                    else if (contact.FindCMBSMatch(text)) { }
-                    else if (contact.FindICONMatch(text)) { }
-                    else if (contact.FindMobileMatch(text)) { }
-                    //else if (contact.Service.FindNTDSNMatch(text)) { }
-                    //else if (contact.Service.FindAddressIdMatch(text)) { }
-                    //else if (contact.Service.FindGSIDMatch(text)) { }
-                    else if (contact.Service.FindIPMatch(text)) { }
-                    else if (contact.Fault.FindITCaseMatch(text)) { }         
-                    else
-                        contact.AddToNote(text);                  
-                } 
-                else if (text.IsLetters())
-                {
-                    if (contact.FindNameMatch(text)) { }
-                    else if (contact.FindUsernameMatch(text)) { }
-                    else
-                        contact.AddToNote(text);
-                } 
-                else if (Char.IsLetter(text, 0))
-                {
-                    var equip = (from object item in parent.editContact._ServicePanel._Equipment._ComboBox.GetDataSource
-                                 where item.ToString().ToLower().Contains(text.ToLower()) ||
-                                 text.ToLower().Contains(item.ToString().ToLower())
-                                 select item).FirstOrDefault();
-                    if (equip != null)
-                    {
-                        contact.Service.Equipment = equip.ToString();
-                        Main.FadingToolTip.ShowandFade("Equipment: " + contact.Service.Equipment);
-                    }
-                    else if (contact.Service.FindNBNMatch(text)) { }
-                    else if (contact.Service.FindBRASMatch(text)) { }
-                    else if (contact.Service.FindMACMatch(text)) { }
-                    else if (contact.FindUsernameMatch(text)) { }
-                    else if (contact.Address.FindAddressMatch(text)) { }
-                    else
-                        contact.AddToNote(text);
-                }
-                else
-                {
-                    if (contact.Service.FindNodeMatch(text)) { }
-                    else if (contact.Service.FindMACMatch(text)) { }
-                    //else if (contact.Service.FindESNMatch(text)) { }
-                    else if (contact.Address.FindAddressMatch(text)) { }
-                    else
-                        contact.AddToNote(text);
-                }
+                SmartCopy(text);
             }
 
             EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1} ticks", text, Stopwatch.ElapsedTicks));
@@ -632,53 +603,105 @@ namespace CallTracker.Helpers
             //StopwatchTester.Stop();
         }
 
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        // System Search /////////////////////////////////////////////////////////////////////////////////////
-        /////////////////////////////////////////////////////////////////////////////////////////////////////
-        public static void SearchSystem(string url, string searchValue, string searchElement, string submitElement = "")
+        public static void SmartCopy(string text)
         {
-            EventLogger.LogNewEvent("Searching System", EventLogLevel.Brief);
-
-            if (!FindIEByUrl(url))
-                NavigateOrNewIE(url);
-
-            // Fill Search field ////////////////////////////////////////////////////////
-            var query = (from
-                            bind in parent.BindsDataStore.PasteBinds
-                        where
-                            bind.Element == searchElement &&
-                            (url.Contains(bind.Url))
-                        select
-                            bind)
-                        .FirstOrDefault();
-
-            if (query != null)
+            var contact = parent.SelectedContact;
+            var textlen = text.Length;
+            if (text.IsDigits())
             {
-                EventLogger.LogNewEvent("Element Match Found");
-                query.Paste(searchElement, searchValue);        
-            };
-
-            // Click Submit /////////////////////////////////////////////////////////////
-            if (!String.IsNullOrEmpty(submitElement))
-            {
-                query = (from bind in parent.BindsDataStore.PasteBinds
-                        where
-                            bind.Element == submitElement &&
-                            (url.Contains(bind.Url))
-                        select
-                            bind)
-                        .FirstOrDefault();
-                
-                if (query != null)
+                if (text.Substring(0, 1) == "1" && textlen == 8)
                 {
-                    EventLogger.LogNewEvent("Button Match Found");
-                    query.Paste(submitElement, "");
+                    contact.Fault.PR = text;
+                    Main.FadingToolTip.ShowandFade("PR: " + contact.Fault.PR);
                 }
+                else if (contact.FindDNMatch(text)) { }
+                else if (contact.FindCMBSMatch(text)) { }
+                else if (contact.FindICONMatch(text)) { }
+                else if (contact.FindMobileMatch(text)) { }
+                //else if (contact.Service.FindNTDSNMatch(text)) { }
+                else if (contact.Service.FindAddressIdMatch(text)) { }
+                else if (contact.Service.FindGSIDMatch(text)) { }
+                else if (contact.Service.FindIPMatch(text)) { }
+                else if (contact.Fault.FindITCaseMatch(text)) { }
+                else
+                    contact.AddToNote(text);
             }
-            parent.AddAppEvent(AppEventTypes.SystemSearch);
-            browser.Dispose();
+            else if (text.IsLetters())
+            {
+                if (contact.FindNameMatch(text)) { }
+                else if (contact.FindUsernameMatch(text)) { }
+                else
+                    contact.AddToNote(text);
+            }
+            else if (Char.IsLetter(text, 0))
+            {
+                if (contact.Service.FindEquipmentMatch(parent.editContact._ServicePanel._Equipment._ComboBox.GetDataSource, text)) { }
+                else if (contact.Service.FindNBNMatch(text)) { }
+                else if (contact.Service.FindBRASMatch(text)) { }
+                else if (contact.Service.FindMACMatch(text)) { }
+                else if (contact.FindUsernameMatch(text)) { }
+                else if (contact.Address.FindAddressMatch(text)) { }
+                else
+                    contact.AddToNote(text);
+            }
+            else
+            {
+                if (contact.Service.FindNodeMatch(text)) { }
+                else if (contact.Service.FindMACMatch(text)) { }
+                else if (contact.Service.FindESNMatch(text)) { }
+                else if (contact.Address.FindAddressMatch(text)) { }
+                else
+                    contact.AddToNote(text);
+            }
         }
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //// System Search /////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////
+        //public static void SearchSystem(string url, string searchValue, string searchElement, string submitElement = "")
+        //{
+        //    EventLogger.LogNewEvent("Searching System", EventLogLevel.Brief);
+
+        //    if (!FindIEByUrl(url))
+        //        NavigateOrNewIE(url);
+
+        //    // Fill Search field ////////////////////////////////////////////////////////
+        //    var query = (from
+        //                    bind in parent.BindsDataStore.PasteBinds
+        //                where
+        //                    bind.Element == searchElement &&
+        //                    (url.Contains(bind.Url))
+        //                select
+        //                    bind)
+        //                .FirstOrDefault();
+
+        //    if (query != null)
+        //    {
+        //        EventLogger.LogNewEvent("Element Match Found");
+        //        query.Paste(searchElement, searchValue);        
+        //    };
+
+        //    // Click Submit /////////////////////////////////////////////////////////////
+        //    if (!String.IsNullOrEmpty(submitElement))
+        //    {
+        //        query = (from bind in parent.BindsDataStore.PasteBinds
+        //                where
+        //                    bind.Element == submitElement &&
+        //                    (url.Contains(bind.Url))
+        //                select
+        //                    bind)
+        //                .FirstOrDefault();
+                
+        //        if (query != null)
+        //        {
+        //            EventLogger.LogNewEvent("Button Match Found");
+        //            query.Paste(submitElement, "");
+        //        }
+        //    }
+        //    parent.AddAppEvent(AppEventTypes.SystemSearch);
+        //    browser.Dispose();
+        //}
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Browser Methods //////////////////////////////////////////////////////////////////////////////////
@@ -694,17 +717,13 @@ namespace CallTracker.Helpers
             var isInPostback = true;
             while (startWait > 0)
             {
-                EventLogger.LogAndSaveNewEvent("Checking if in Postback", EventLogLevel.Status);
                 isInPostback = Convert.ToBoolean(browser.Eval("Sys.WebForms.PageRequestManager.getInstance().get_isInAsyncPostBack();"));
-                EventLogger.LogAndSaveNewEvent("is in Postback: " + isInPostback, EventLogLevel.Status);
                 if (!isInPostback) break;
-                EventLogger.LogAndSaveNewEvent("Is in PostBack", EventLogLevel.Status);
                 Thread.Sleep(200); //sleep for 200ms and query again 
                 Application.DoEvents();
                 startWait -= 200;
-                EventLogger.LogAndSaveNewEvent("Startwait: "+ startWait, EventLogLevel.Status);
             }
-            EventLogger.LogAndSaveNewEvent(String.Format("WaitForAsyncPostBackToComplete isInPostback: {0}", isInPostback), EventLogLevel.Status);
+            EventLogger.LogNewEvent(String.Format("WaitForAsyncPostBackToComplete isInPostback: {0} in: {1} ms", isInPostback, startWait), EventLogLevel.Status);
         }
         
         public static bool WaitForBrowserBusy()
@@ -717,7 +736,7 @@ namespace CallTracker.Helpers
             var ieBrowser = (IWebBrowser2)browser.InternetExplorer;
             while (ieBrowser.Busy && StopwatchTester.ElapsedMilliseconds < 5000)
             {
-                EventLogger.LogNewEvent("Checking if browser is busy", EventLogLevel.Status);
+                //EventLogger.LogNewEvent("Checking if browser is busy", EventLogLevel.Status);
                 //if (!ieBrowser.Busy) break;
                 //{
                 //    //Thread.Sleep(200);
@@ -730,7 +749,7 @@ namespace CallTracker.Helpers
             }
             StopwatchTester.Stop();
             var stillBusy = ieBrowser.Busy;
-            EventLogger.LogAndSaveNewEvent("Browser busy: " + stillBusy + " in: " + StopwatchTester.ElapsedMilliseconds, EventLogLevel.Status);
+            EventLogger.LogNewEvent("Browser busy: " + stillBusy + " in: " + StopwatchTester.ElapsedMilliseconds, EventLogLevel.Status);
             return !stillBusy;
         }
         
@@ -772,7 +791,7 @@ namespace CallTracker.Helpers
             //var currentTitle = new Regex(".*" + title + ".*", RegexOptions.IgnoreCase);//new Regex("(http(s)?://)?.*" + title + ".*", RegexOptions.IgnoreCase); 
             if (!Browser.Exists<IE>(Find.ByTitle(currentTitle)))
             {
-                EventLogger.LogAndSaveNewEvent("Unable to Find IE by Title", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("Unable to Find IE by Title: " + title, EventLogLevel.Brief);
                 return false;
             }
             EventLogger.LogNewEvent("Found IE by Title: " + title, EventLogLevel.Brief);
@@ -789,7 +808,7 @@ namespace CallTracker.Helpers
             //var currentTitle = new Regex(".*" + title + ".*", RegexOptions.IgnoreCase);//new Regex("(http(s)?://)?.*" + title + ".*", RegexOptions.IgnoreCase); 
             if (!Browser.Exists<IE>(Find.ByTitle(currentTitle)))
             {
-                EventLogger.LogAndSaveNewEvent("Unable to Find IE by Title", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("Unable to Find IE by Title: " + title, EventLogLevel.Brief);
                 return false;
             }
             EventLogger.LogNewEvent("Found IE by Title: " + title, EventLogLevel.Brief);
@@ -806,7 +825,7 @@ namespace CallTracker.Helpers
             
             if (!Browser.Exists<IE>(Find.ByUrl(urlRegex)))
             {
-                EventLogger.LogAndSaveNewEvent("Unable to Find IE by URL", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("Unable to Find IE by URL: " + url, EventLogLevel.Brief);
                 return false;
             }
             EventLogger.LogNewEvent("Found IE by URL: " + url, EventLogLevel.Brief);
@@ -825,7 +844,7 @@ namespace CallTracker.Helpers
 
             if (!Browser.Exists<IE>(Find.ByUrl(urlRegex)))
             {
-                EventLogger.LogAndSaveNewEvent("Unable to Find IE by URL", EventLogLevel.Brief);
+                EventLogger.LogAndSaveNewEvent("Unable to Find IE by URL: " + url, EventLogLevel.Brief);
                 return false;
             }
             EventLogger.LogNewEvent("Found IE by URL: " + url, EventLogLevel.Brief);
@@ -845,132 +864,61 @@ namespace CallTracker.Helpers
 
             EventLogger.LogNewEvent("Creating brower");
 
+            //browser = new IE(url, true){AutoClose = false};
             var mProc = Process.Start("IExplore.exe", url);
-            if (mProc != null) mProc.Dispose();
+            if (mProc != null)
+                mProc.Dispose();
             return true;
         }
 
+        /// <summary>
+        /// Navigates to IE tab, or creates a new one if not found. Call browser.dispose() after calling this method.
+        /// </summary>
         public static bool NavigateOrNewIE(string url, string title = "", string searchUrl = "")
         {
+            EventLogger.LogNewEvent("NavigateOrNewIE Starting", EventLogLevel.Brief);
             var outcome = false;
             if (FindIEByUrl(url))
             {
-                new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
+                browser.ShowWindow(NativeMethods.WindowShowStyle.Restore);
+                new IETabActivator(browser).ActivateByTabsUrl(browser.Url);// This Line might be why WOBS isn't activating?
                 if (!String.IsNullOrEmpty(searchUrl))
+                {                 
+                    EventLogger.LogNewEvent("NavigateOrNewIE navigating to URL: " + searchUrl);
                     browser.GoToNoWait(searchUrl);
+                }
                 outcome = true;
             }
             else if (!String.IsNullOrEmpty(title))
             {
                 if (FindIEByTitle(title))
                 {
+                    browser.ShowWindow(NativeMethods.WindowShowStyle.Restore);
                     new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
                     if (!String.IsNullOrEmpty(searchUrl))
+                    {                  
+                        EventLogger.LogNewEvent("NavigateOrNewIE navigating to URL: " + searchUrl);
                         browser.GoToNoWait(searchUrl);
+                    }
                     outcome = true;
                 }
             }
 
             if (!outcome)
             {
-                EventLogger.LogNewEvent("Creating new IE window", EventLogLevel.Brief);
+                EventLogger.LogNewEvent("NavigateOrNewIE: Creating new IE window", EventLogLevel.Brief);
                 if (!String.IsNullOrEmpty(searchUrl))
+                {
                     if (CreateNewIE(searchUrl))
                         outcome = true;
-                else
-                    if (CreateNewIE(url))
-                        outcome = true;
+                }
+                else if (CreateNewIE(url))
+                    outcome = true;
             }
 
-            if (browser != null)
-                browser.Dispose();
             return outcome;
         }
     }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//if(new DigitPattern().IsMatch(text))
-//            {
-//                if (firstchar == "1" && textlen == 8)                       parent.SelectedContact.Fault.PR = text; 
-//                else if ((firstchar == "0" && textlen == 10) 
-//                     || (text.Substring(0, 2) == "61" && textlen == 11))
-//                {
-//                    if (CustomerContact.MobilePattern.IsMatch(text))        parent.SelectedContact.Mobile = "0" + text;
-//                    else if (parent.SelectedContact.FindDNMatch(text)) Main.FadingToolTip.ShowandFade("DN: " + text);
-//                    //else if (CustomerContact.DNPattern.IsMatch(text))
-//                    //{
-//                    //    parent.SelectedContact.DN = CustomerContact.DNPattern.Replace(text,"0$1$2$3");
-//                    //    var query = (from a in Main.ServicesStore.servicesDataSet.States
-//                    //                                            where a.Areacode == parent.SelectedContact.DN.Substring(1,1)
-//                    //                                            select a).First();
-//                    //    parent.SelectedContact.Address.State = query.NameShort;
-//                    //    parent.SelectedContact.Service.Sip = query.Sip;
-//                    //};
-//                }
-//                else if (CustomerContact.CMBSPattern.IsMatch(text)) 
-//                { 
-//                    parent.SelectedContact.CMBS = CustomerContact.CMBSPattern.Replace(text, "3$1$2 $3"); 
-//                    var query = (from a in Main.ServicesStore.servicesDataSet.States
-//                                                            where a.CMBScode == CustomerContact.CMBSPattern.Replace(text, "$1")
-//                                                            select a).First();
-//                    parent.SelectedContact.Address.State = query.NameShort;
-//                    parent.SelectedContact.Service.Sip = query.Sip;
-//                }
-//                else if (CustomerContact.ICONPattern.IsMatch(text)) parent.SelectedContact.ICON = text;
-//                else if (FaultModel.ITCasePattern.IsMatch(text)) parent.SelectedContact.Fault.ITCase = text;
-//                else parent.SelectedContact.Note += Environment.NewLine + text;
-//            }
-//            else if (new AlphaPattern().IsMatch(text))
-//            {
-//                if (NameModel.Pattern.IsMatch(text))                        parent.SelectedContact.Name = text;
-//                else if (CustomerContact.UNLowerPattern.IsMatch(text)
-//                      || CustomerContact.UNLowerPattern.IsMatch(text))      parent.SelectedContact.Username = text;
-//                else                                                        parent.SelectedContact.Note += text;
-//            }
-//            else
-//            {
-//                if (Char.IsLetter(text, 0))
-//                {
-//                    if (new BRASPattern().IsMatch(text))                    parent.SelectedContact.Service.Bras = text;
-//                    else if (new CommonNBNPattern().IsMatch(text))          parent.SelectedContact.SetProperty("Service." + text.Substring(0, 3), text);
-//                    else if (CustomerContact.UNLowerPattern.IsMatch(text)
-//                        ||   CustomerContact.UNLowerPattern.IsMatch(text))  parent.SelectedContact.Username = text;
-//                    else if (ContactAddress.Pattern.IsMatch(text))          parent.SelectedContact.Address.Address = text;
-//                }
-//                else
-//                {
-//                    if (new NodePattern().IsMatch(text))                    parent.SelectedContact.Service.Node = text;
-//                    else if (CustomerContact.CMBSPattern.IsMatch(text))
-//                    { 
-//                        parent.SelectedContact.CMBS = CustomerContact.CMBSPattern.Replace(text, "3$1$2 $3"); 
-//                        var query = (from a in Main.ServicesStore.servicesDataSet.States
-//                                                                where a.CMBScode == CustomerContact.CMBSPattern.Replace(text, "$1")
-//                                                                select a).First();
-//                        parent.SelectedContact.Address.State = query.NameShort;
-//                        parent.SelectedContact.Service.Sip = query.Sip;
-//                    }
-//                    else if (ContactAddress.Pattern.IsMatch(text))          parent.SelectedContact.Address.Address = text;
-//                    else                                                    parent.SelectedContact.Note += text;
-//                }    
-//            }

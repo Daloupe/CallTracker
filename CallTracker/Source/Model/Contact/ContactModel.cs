@@ -505,13 +505,17 @@ namespace CallTracker.Model
 
                 if (Properties.Settings.Default.AutoSearch)
                 {
+                    if (!Service.WasSearched["IFMSCMBS"])
+                        Service.WasSearched["IFMSCMBS"] = HotkeyController.AutoSearch(
+                            "http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F191_CUST_ACCESS_OV.aspx?id=" + match.Result("3$1$2%20$3"),
+                            "IFMS",
+                            "http://ifmsprod.optus.com.au/");
+
                     if (!Service.WasSearched["Nexus"])
-                    {
                         Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
                             "http://nexus.optus.com.au/index.php?#account/" + match.Result("3$1${2}0$3"), 
                             "Nexus",
                             "http://nexus.optus.com.au");
-                    }
                 }
 
                 return true;

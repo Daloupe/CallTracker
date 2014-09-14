@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 
 using CallTracker.Model;
@@ -151,7 +152,7 @@ namespace CallTracker.View
         {
             string title = "Nexus", url = "http://nexus.optus.com.au";
 
-            SystemItem item = MainForm.BindsDataStore.GridLinks.SystemItems.Find(c => c.System == "Rate Plan Calculator");
+            var item = MainForm.BindsDataStore.GridLinks.SystemItems.FirstOrDefault(c => c.System == "Rate Plan Calculator");
             if(item !=null)
             {
                 title = item.Title;

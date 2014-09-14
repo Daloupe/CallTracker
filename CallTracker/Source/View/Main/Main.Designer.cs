@@ -57,10 +57,11 @@
             this._MainMenu = new CallTracker.View.ToolStripMenuIgnoreFocus();
             this.quitToolStripMenuItem1 = new CTToolStripMenuItem();
             this.helpToolStripMenuItem = new CTToolStripMenuItem();
-            this.viewKeyCommandsMenuItem = new CTToolStripMenuItem();
-            this.didYouKnowToolStripMenuItem = new CTToolStripMenuItem();
-            this.toolStripSeparator9 = new CTToolStripSeparator();
             this.reportBugToolStripMenuItem = new CTToolStripMenuItem();
+            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+            this.didYouKnowToolStripMenuItem = new CTToolStripMenuItem();
+            this.viewKeyCommandsMenuItem = new CTToolStripMenuItem();
+            this.toolStripSeparator9 = new CTToolStripSeparator();
             this.changeLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new CTToolStripMenuItem();
             this.ctToolStripSeparator1 = new CTToolStripSeparator();
@@ -145,7 +146,6 @@
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -279,7 +279,7 @@
             this._IPCCState.Name = "_IPCCState";
             this._IPCCState.Size = new System.Drawing.Size(134, 15);
             this._IPCCState.Text = "Not Monitoring IPCC";
-            this._IPCCState.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._IPCCState.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this._IPCCState.Click += new System.EventHandler(this._IPCCState_Click);
             // 
             // _CallStateTime
@@ -479,13 +479,19 @@
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(42, 16);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // viewKeyCommandsMenuItem
+            // reportBugToolStripMenuItem
             // 
-            this.viewKeyCommandsMenuItem.Advanced = false;
-            this.viewKeyCommandsMenuItem.Name = "viewKeyCommandsMenuItem";
-            this.viewKeyCommandsMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.viewKeyCommandsMenuItem.Text = "Show Key Commands";
-            this.viewKeyCommandsMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            this.reportBugToolStripMenuItem.Advanced = false;
+            this.reportBugToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Bug2;
+            this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
+            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.reportBugToolStripMenuItem.Text = "Report Bug";
+            this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator13
+            // 
+            this.toolStripSeparator13.Name = "toolStripSeparator13";
+            this.toolStripSeparator13.Size = new System.Drawing.Size(187, 6);
             // 
             // didYouKnowToolStripMenuItem
             // 
@@ -495,20 +501,19 @@
             this.didYouKnowToolStripMenuItem.Text = "Show Tips";
             this.didYouKnowToolStripMenuItem.Click += new System.EventHandler(this.didYouKnowToolStripMenuItem_Click);
             // 
+            // viewKeyCommandsMenuItem
+            // 
+            this.viewKeyCommandsMenuItem.Advanced = false;
+            this.viewKeyCommandsMenuItem.Name = "viewKeyCommandsMenuItem";
+            this.viewKeyCommandsMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.viewKeyCommandsMenuItem.Text = "Show Key Commands";
+            this.viewKeyCommandsMenuItem.Click += new System.EventHandler(this.settingMenuItem_Click);
+            // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Advanced = false;
             this.toolStripSeparator9.Name = "toolStripSeparator9";
             this.toolStripSeparator9.Size = new System.Drawing.Size(187, 6);
-            // 
-            // reportBugToolStripMenuItem
-            // 
-            this.reportBugToolStripMenuItem.Advanced = false;
-            this.reportBugToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Bug2;
-            this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
-            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.reportBugToolStripMenuItem.Text = "Report Bug";
-            this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
             // 
             // changeLogToolStripMenuItem
             // 
@@ -1249,11 +1254,6 @@
             // _DailyDataBindingSource
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
-            // 
-            // toolStripSeparator13
-            // 
-            this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(187, 6);
             // 
             // Main
             // 

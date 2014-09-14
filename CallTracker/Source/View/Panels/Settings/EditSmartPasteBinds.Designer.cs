@@ -53,11 +53,12 @@
             this._FindByName = new System.Windows.Forms.CheckBox();
             this._FireOnChange = new System.Windows.Forms.CheckBox();
             this._FireOnChangeNoWait = new System.Windows.Forms.CheckBox();
+            this._PasteWithSendKeys = new System.Windows.Forms.CheckBox();
+            this._AutoFill = new System.Windows.Forms.CheckBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this._FormElement = new CallTracker.View.BorderedTextBox();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this._PasteWithSendKeys = new System.Windows.Forms.CheckBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -190,6 +191,7 @@
             this.flowLayoutPanel1.Controls.Add(this._FireOnChange);
             this.flowLayoutPanel1.Controls.Add(this._FireOnChangeNoWait);
             this.flowLayoutPanel1.Controls.Add(this._PasteWithSendKeys);
+            this.flowLayoutPanel1.Controls.Add(this._AutoFill);
             this.flowLayoutPanel1.Controls.Add(this.panel3);
             this.flowLayoutPanel1.Controls.Add(this.label7);
             this.flowLayoutPanel1.Controls.Add(this._FormElement);
@@ -199,7 +201,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(-1, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(3);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(205, 384);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(205, 409);
             this.flowLayoutPanel1.TabIndex = 9;
             // 
             // label2
@@ -331,9 +333,10 @@
             // 
             this._FindByName.AutoSize = true;
             this._FindByName.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FindByName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._FindByName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._FindByName.Location = new System.Drawing.Point(6, 252);
             this._FindByName.Name = "_FindByName";
-            this._FindByName.Size = new System.Drawing.Size(100, 16);
+            this._FindByName.Size = new System.Drawing.Size(97, 16);
             this._FindByName.TabIndex = 25;
             this._FindByName.Text = "Find By Name";
             this._FindByName.UseVisualStyleBackColor = true;
@@ -342,9 +345,10 @@
             // 
             this._FireOnChange.AutoSize = true;
             this._FireOnChange.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FireOnChange", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._FireOnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._FireOnChange.Location = new System.Drawing.Point(6, 274);
             this._FireOnChange.Name = "_FireOnChange";
-            this._FireOnChange.Size = new System.Drawing.Size(107, 16);
+            this._FireOnChange.Size = new System.Drawing.Size(104, 16);
             this._FireOnChange.TabIndex = 29;
             this._FireOnChange.Text = "Fire OnChange";
             this._FireOnChange.UseVisualStyleBackColor = true;
@@ -354,18 +358,43 @@
             // 
             this._FireOnChangeNoWait.AutoSize = true;
             this._FireOnChangeNoWait.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "FireOnChangeNoWait", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._FireOnChangeNoWait.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._FireOnChangeNoWait.Location = new System.Drawing.Point(6, 296);
             this._FireOnChangeNoWait.Name = "_FireOnChangeNoWait";
-            this._FireOnChangeNoWait.Size = new System.Drawing.Size(154, 16);
+            this._FireOnChangeNoWait.Size = new System.Drawing.Size(151, 16);
             this._FireOnChangeNoWait.TabIndex = 30;
             this._FireOnChangeNoWait.Text = "Fire OnChange No Wait";
             this._FireOnChangeNoWait.UseVisualStyleBackColor = true;
             this._FireOnChangeNoWait.CheckedChanged += new System.EventHandler(this._FireOnChangeNoWait_CheckedChanged);
             // 
+            // _PasteWithSendKeys
+            // 
+            this._PasteWithSendKeys.AutoSize = true;
+            this._PasteWithSendKeys.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "PasteWithSendKeys", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._PasteWithSendKeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._PasteWithSendKeys.Location = new System.Drawing.Point(6, 318);
+            this._PasteWithSendKeys.Name = "_PasteWithSendKeys";
+            this._PasteWithSendKeys.Size = new System.Drawing.Size(135, 16);
+            this._PasteWithSendKeys.TabIndex = 31;
+            this._PasteWithSendKeys.Text = "Paste with SendKeys";
+            this._PasteWithSendKeys.UseVisualStyleBackColor = true;
+            // 
+            // _AutoFill
+            // 
+            this._AutoFill.AutoSize = true;
+            this._AutoFill.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "AutoFill", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._AutoFill.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._AutoFill.Location = new System.Drawing.Point(6, 340);
+            this._AutoFill.Name = "_AutoFill";
+            this._AutoFill.Size = new System.Drawing.Size(61, 16);
+            this._AutoFill.TabIndex = 31;
+            this._AutoFill.Text = "AutoFill";
+            this._AutoFill.UseVisualStyleBackColor = true;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(6, 343);
+            this.panel3.Location = new System.Drawing.Point(6, 365);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(200, 1);
@@ -373,7 +402,7 @@
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(6, 347);
+            this.label7.Location = new System.Drawing.Point(6, 369);
             this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(189, 10);
@@ -386,7 +415,7 @@
             this._FormElement.BorderColor = System.Drawing.Color.Gray;
             this._FormElement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this._FormElement.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.pasteBindBindingSource, "FormElement", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._FormElement.Location = new System.Drawing.Point(6, 360);
+            this._FormElement.Location = new System.Drawing.Point(6, 382);
             this._FormElement.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this._FormElement.Name = "_FormElement";
             this._FormElement.Size = new System.Drawing.Size(189, 19);
@@ -402,17 +431,6 @@
             this.checkBox3.TabIndex = 18;
             this.checkBox3.Text = "Find Within Form";
             this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // _PasteWithSendKeys
-            // 
-            this._PasteWithSendKeys.AutoSize = true;
-            this._PasteWithSendKeys.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.pasteBindBindingSource, "PasteWithSendKeys", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._PasteWithSendKeys.Location = new System.Drawing.Point(6, 318);
-            this._PasteWithSendKeys.Name = "_PasteWithSendKeys";
-            this._PasteWithSendKeys.Size = new System.Drawing.Size(138, 16);
-            this._PasteWithSendKeys.TabIndex = 31;
-            this._PasteWithSendKeys.Text = "Paste with SendKeys";
-            this._PasteWithSendKeys.UseVisualStyleBackColor = true;
             // 
             // EditSmartPasteBinds
             // 
@@ -470,5 +488,6 @@
         private System.Windows.Forms.CheckBox _FireOnChange;
         private System.Windows.Forms.CheckBox _FireOnChangeNoWait;
         private System.Windows.Forms.CheckBox _PasteWithSendKeys;
+        private System.Windows.Forms.CheckBox _AutoFill;
     }
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
-
+using CallTracker.Helpers;
 using CallTracker.Model;
 
 namespace CallTracker.View
 {
     public partial class EditGridLinks : ViewControlBase
     {
-        BindingSource[] bs = new BindingSource[10];
+        readonly BindingSource[] _bs = new BindingSource[10];
 
         public EditGridLinks()
         {
@@ -27,38 +27,38 @@ namespace CallTracker.View
 
             for (var x = 0; x <10; x++)
             {
-                bs[x] = new BindingSource { DataSource = MainForm.BindsDataStore.GridLinks.SystemItems };
+                _bs[x] = new BindingSource { DataSource = MainForm.BindsDataStore.GridLinks.SystemItems };
             }
 
-            comboBox0.DataSource = bs[0];
-            comboBox0.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[0], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+            comboBox0.DataSource = _bs[0];
+            comboBox0.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[0], "System", false, DataSourceUpdateMode.OnPropertyChanged));
 
-            comboBox1.DataSource = bs[1];
-            comboBox1.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[1], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+            comboBox1.DataSource = _bs[1];
+            comboBox1.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[1], "System", false, DataSourceUpdateMode.OnPropertyChanged));
 
-            comboBox2.DataSource = bs[2];
-            comboBox2.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[2], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+            comboBox2.DataSource = _bs[2];
+            comboBox2.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[2], "System", false, DataSourceUpdateMode.OnPropertyChanged));
 
-            comboBox3.DataSource = bs[3];
-            comboBox3.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[3], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+            comboBox3.DataSource = _bs[3];
+            comboBox3.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[3], "System", false, DataSourceUpdateMode.OnPropertyChanged));
 
-            comboBox4.DataSource = bs[4];
-            comboBox4.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[4], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+            comboBox4.DataSource = _bs[4];
+            comboBox4.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[4], "System", false, DataSourceUpdateMode.OnPropertyChanged));
 
-            comboBox5.DataSource = bs[5];
-            comboBox5.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[5], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+            comboBox5.DataSource = _bs[5];
+            comboBox5.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[5], "System", false, DataSourceUpdateMode.OnPropertyChanged));
 
-            comboBox6.DataSource = bs[6];
-            comboBox6.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[6], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+            comboBox6.DataSource = _bs[6];
+            comboBox6.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[6], "System", false, DataSourceUpdateMode.OnPropertyChanged));
 
-            comboBox7.DataSource = bs[7];
-            comboBox7.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[7], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+            comboBox7.DataSource = _bs[7];
+            comboBox7.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[7], "System", false, DataSourceUpdateMode.OnPropertyChanged));
 
-            comboBox8.DataSource = bs[8];
-            comboBox8.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[8], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+            comboBox8.DataSource = _bs[8];
+            comboBox8.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[8], "System", false, DataSourceUpdateMode.OnPropertyChanged));
 
-            comboBox9.DataSource = bs[9];
-            comboBox9.DataBindings.Add(new Binding("SelectedValue", this.gridLinksBindingSource[9], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+            comboBox9.DataSource = _bs[9];
+            comboBox9.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[9], "System", false, DataSourceUpdateMode.OnPropertyChanged));
         }
 
         private void dataGridView1_DataError(object sender,
@@ -85,7 +85,42 @@ namespace CallTracker.View
 
         private void _SetDefaults_Click(object sender, EventArgs e)
         {
+            WindowHelper.SuspendDrawing(this);
             MainForm.BindsDataStore.GridLinks.Populate();
+            systemItemBindingSource.DataSource = MainForm.BindsDataStore.GridLinks.SystemItems;
+            gridLinksBindingSource.DataSource = MainForm.BindsDataStore.GridLinks.GridLinkList;
+
+            comboBox0.DataBindings.Clear();
+            comboBox0.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[0], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            comboBox1.DataBindings.Clear();
+            comboBox1.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[1], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            comboBox2.DataBindings.Clear();
+            comboBox2.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[2], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            comboBox3.DataBindings.Clear();
+            comboBox3.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[3], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            comboBox4.DataBindings.Clear();
+            comboBox4.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[4], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            comboBox5.DataBindings.Clear();
+            comboBox5.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[5], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            comboBox6.DataBindings.Clear();
+            comboBox6.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[6], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            comboBox7.DataBindings.Clear();
+            comboBox7.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[7], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            comboBox8.DataBindings.Clear();
+            comboBox8.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[8], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            comboBox9.DataBindings.Clear();
+            comboBox9.DataBindings.Add(new Binding("SelectedValue", gridLinksBindingSource[9], "System", false, DataSourceUpdateMode.OnPropertyChanged));
+
+            WindowHelper.ResumeDrawing(this);
         }
 
     }

@@ -161,7 +161,7 @@ namespace CallTracker.Helpers
                 new NoteItemString("Service.ModemStatus", "- Modem is {0}."),
                 new NoteItemBool("Service.RFIssues", "- Systems show RF Issues."),
                 new NoteItemString("Service.DownloadSpeed", "- Speed test shows download speed of {0}mbps."),
-                new NoteItemString("Service.Throttled", "- Service is currently throttled."),
+                new NoteItemString("Service.Throttled", "- Service is currently {0}."),
                 new NoteItemString("Service.DTVMsg", "- Customer is seeing error message: {0}."),
                 new NoteItemString("Fault.NPR", "- Area Outage PR#{0} is currently open."),
                 new NoteItemHeading(@"\cf1 Outcome\cf0 ", "{0}:"),
