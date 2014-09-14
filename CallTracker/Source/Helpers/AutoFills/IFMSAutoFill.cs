@@ -23,6 +23,13 @@ namespace CallTracker.Helpers
                 return;
             }
 
+            //Get the PR Number.
+            contact.Fault.FindPRMatch(
+                HotkeyController.browser.TextField(Find.ById("ctl00_cphPage_Worklist_form_header1_tx_title"))
+                    .GetAttributeValue("value")
+                    .Split(':')[1]);
+            
+
             var affectedServices = contact.Fault.AffectedServices;
             if (affectedServices.Is(ServiceTypes.NONE))
             {

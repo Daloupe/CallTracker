@@ -258,6 +258,18 @@ namespace CallTracker.Model
             };
             return false;
         }
+
+        public bool FindPRMatch(string text)
+        {
+            if (text.Substring(0, 1) == "1" && text.Length == 8)
+            {
+                PR = text;
+                Main.FadingToolTip.ShowandFade("PR: " + PR);
+
+                return true;
+            }
+            return false;
+        }
     }    
 
 }

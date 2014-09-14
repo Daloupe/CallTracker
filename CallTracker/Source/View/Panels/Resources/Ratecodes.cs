@@ -280,5 +280,10 @@ namespace CallTracker.View
             dataGridView1.Focus();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/", "Nexus", "http://nexus.optus.com.au/#ehb/7/ratePlans");
+        }
+
     }
 }

@@ -609,11 +609,7 @@ namespace CallTracker.Helpers
             var textlen = text.Length;
             if (text.IsDigits())
             {
-                if (text.Substring(0, 1) == "1" && textlen == 8)
-                {
-                    contact.Fault.PR = text;
-                    Main.FadingToolTip.ShowandFade("PR: " + contact.Fault.PR);
-                }
+                if (contact.Fault.FindPRMatch(text)) { }
                 else if (contact.FindDNMatch(text)) { }
                 else if (contact.FindCMBSMatch(text)) { }
                 else if (contact.FindICONMatch(text)) { }

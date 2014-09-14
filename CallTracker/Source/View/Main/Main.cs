@@ -795,57 +795,44 @@ namespace CallTracker.View
                 _IPCCTimer.Enabled = true;
         }
 
+        private void _EHBSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    if (!String.IsNullOrEmpty(_EHBSearch.Text))
+                        HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/", "Nexus", "http://nexus.optus.com.au/index.php?#search/+" + _EHBSearch.Text);
+                    //_EHBSearch.Text = String.Empty;
+                    break;
+                //case Keys.Escape:
+                //    _EHBSearch.Text = String.Empty;
+                //    break;
+            }
+        }
+
+        private void _EHBSearch_Leave(object sender, EventArgs e)
+        {
+            _EHBSearch.Text = String.Empty;
+        }
+
+        private void sMSHubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("http://zsolutions.optus.com.au/fmts_sms/index.php?", "SMS", "http://zsolutions.optus.com.au/fmts_sms/index.php?");
+        }
+
+        private void transfersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/", "Nexus", "http://nexus.optus.com.au/#ehb/8/ntk");
+        }
+
+        private void premiumHomeServicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("https://optus.qk.com.au/", "PHS", "https://optus.qk.com.au/extranet/?action=home");
+        }
+
+        private void logMeInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("https://secure.logmeinrescue.com", "Log Me In", "https://secure.logmeinrescue.com/Account/Login");
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-//var callGrid = _ipccWindow.Get<TestStack.White.UIItems.TableItems.Table>(SearchCriteria.ByAutomationId("m_callGrid"));
-//                            var callGridRow = callGrid.Rows[0];
-//                            // Caller ID
-//                            if (callGridRow.Cells[3].Value != null)
-//                            {
-//                                SelectedContact.FindMobileMatch(callGridRow.Cells[3].Value.ToString());
-//                                SelectedContact.FindDNMatch(callGridRow.Cells[3].Value.ToString());
-//                            }
-//                            // Service No
-//                            if (callGridRow.Cells[4].Value != null)
-//                            {
-//                                SelectedContact.FindMobileMatch(callGridRow.Cells[4].Value.ToString());
-//                                SelectedContact.FindDNMatch(callGridRow.Cells[4].Value.ToString());
-//                            }
-//                            // Acc No
-//                            if (callGridRow.Cells[5].Value != null)
-//                            {
-//                                SelectedContact.FindCMBSMatch(callGridRow.Cells[5].Value.ToString());
-//                                SelectedContact.FindICONMatch(callGridRow.Cells[5].Value.ToString());
-//                            }
-//                            // IVR Selection
-//                            if (callGridRow.Cells[6].Value != null)
-//                            {
-//                                var selection = callGridRow.Cells[6].Value.ToString();
-//                                if (selection.Contains("LAT"))
-//                                    SelectedContact.Fault.LAT = true;
-//                                else if (selection.Contains("LIP"))
-//                                    SelectedContact.Fault.LIP = true;
-//                                else if (selection.Contains("ONC"))
-//                                    SelectedContact.Fault.ONC = true;
-//                                else if (selection.Contains("NBN"))
-//                                    SelectedContact.Fault.NFV = true;
-//                                else if (selection.Contains("MTV"))
-//                                    SelectedContact.Fault.MTV = true;
-//                            }
-//                            // ID ok
-//                            if (callGridRow.Cells[8].Value != null)
-//                            {
-//                                if (callGridRow.Cells[8].Value.ToString().Contains("OK"))
-//                                    SelectedContact.IDok = true;
-//                            }
