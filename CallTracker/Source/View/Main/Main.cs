@@ -263,7 +263,7 @@ namespace CallTracker.View
             SetSettings();
 
             _splash.UpdateProgress("", 100);
-            EventLogger.LogNewEvent("Finished Loading", EventLogLevel.ClearStatus);         
+            EventLogger.LogNewEvent("Finished Loading", EventLogLevel.ClearStatus);
 
             if (Settings.Default.ShowTipsOnStartup)
                 DidYouKnow.Show();
@@ -739,6 +739,18 @@ namespace CallTracker.View
 
         }
 
+        private void _AutoSearchHelp_Click(object sender, EventArgs e)
+        {
+            DidYouKnow = new DidYouKnow(Convert.ToInt32(((ToolStripMenuItem)sender).Tag));
+            DidYouKnow.Show();
+            //if (DidYouKnow.IsDisposed)
+            //{
+                
+            //}
+            //else
+            //    DidYouKnow.ShowAtPosition(Convert.ToInt32(((ToolStripMenuItem)sender).Tag));   
+        }
+
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutScreen.Show();
@@ -839,5 +851,6 @@ namespace CallTracker.View
         {
             HotkeyController.NavigateOrNewIE("https://secure.logmeinrescue.com", "Log Me In", "https://secure.logmeinrescue.com/Account/Login");
         }
+
     }
 }

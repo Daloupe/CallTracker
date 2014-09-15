@@ -59,8 +59,9 @@ namespace CallTracker.Helpers
 
 
             // LAT ////////////////////////////////////////////////////////////////////////////////////////////////
-            if (affectedServices.Has(ServiceTypes.LAT | ServiceTypes.LIP))
+            if (affectedServices.Has(ServiceTypes.LAT) || affectedServices.Has(ServiceTypes.LIP))
             {
+                EventLogger.LogNewEvent("IFMS AutoFill: has LAT/LIP");
                 firstFault = true;
 
                 DropdownTextfieldButton("A", contact.DN);
@@ -72,6 +73,7 @@ namespace CallTracker.Helpers
             // ONC ////////////////////////////////////////////////////////////////////////////////////////////////
             if (affectedServices.Has(ServiceTypes.ONC))
             {
+                EventLogger.LogNewEvent("IFMS AutoFill: Has ONC");
                 if (firstFault)
                     bundleFault = true;
                 firstFault = true;
@@ -93,6 +95,7 @@ namespace CallTracker.Helpers
             // DTV ////////////////////////////////////////////////////////////////////////////////////////////////
             if (affectedServices.Has(ServiceTypes.DTV))
             {
+                EventLogger.LogNewEvent("IFMS AutoFill: Has DTV");
                 if (firstFault)
                     bundleFault = true;
                 firstFault = true;
@@ -109,8 +112,9 @@ namespace CallTracker.Helpers
 
 
             // NBN ////////////////////////////////////////////////////////////////////////////////////////////////
-            if (affectedServices.Has(ServiceTypes.NFV | ServiceTypes.NBF))
+            if (affectedServices.Has(ServiceTypes.NFV) || affectedServices.Has(ServiceTypes.NBF))
             {
+                EventLogger.LogNewEvent("IFMS AutoFill: Has NBN");
                 DropdownTextfieldButton("UIN", contact.Username);
                 if (!String.IsNullOrEmpty(contact.Fault.INC))
                     DropdownTextfieldButton("UIN", contact.Fault.INC);
@@ -122,6 +126,7 @@ namespace CallTracker.Helpers
             // NFV ////////////////////////////////////////////////////////////////////////////////////////////////
             if (affectedServices.Has(ServiceTypes.NFV))
             {
+                EventLogger.LogNewEvent("IFMS AutoFill: Has NFV");
                 if (firstFault)
                     bundleFault = true;
                 firstFault = true;
@@ -134,6 +139,7 @@ namespace CallTracker.Helpers
             // NBF ////////////////////////////////////////////////////////////////////////////////////////////////
             if (affectedServices.Has(ServiceTypes.NBF))
             {
+                EventLogger.LogNewEvent("IFMS AutoFill: Has NBF");
                 if (firstFault)
                     bundleFault = true;
                 firstFault = true;
@@ -145,6 +151,7 @@ namespace CallTracker.Helpers
             // MTV ////////////////////////////////////////////////////////////////////////////////////////////////
             if (affectedServices.Has(ServiceTypes.MTV))
             {
+                EventLogger.LogNewEvent("IFMS AutoFill: Has MTV");
                 if (firstFault)
                     bundleFault = true;
                 //firstFault = true;
@@ -157,7 +164,10 @@ namespace CallTracker.Helpers
 
             // MISC ///////////////////////////////////////////////////////////////////////////////////////////////
             if (bundleFault)
+            {
+                EventLogger.LogNewEvent("IFMS AutoFill: Is Bundle Fault");
                 DropdownTextfieldButton("SUMM", "Bundle Fault");
+            }
 
             EventLogger.SaveLog();
         }
@@ -168,21 +178,21 @@ namespace CallTracker.Helpers
         {
             if (String.IsNullOrEmpty(field))
             {
-                EventLogger.LogNewEvent(String.Format("IFMS AutoFill Error: Data for Dropdown '{0}' is NullOrEmpty", dropdown));
+                EventLogger.LogAndSaveNewEvent(String.Format("IFMS AutoFill Error: Data for Dropdown '{0}' is NullOrEmpty", dropdown));
                 return;
             }
 
             var ifmsDropdownElement = IFMSDropdownElements[dropdown];
             if (ifmsDropdownElement == null)
             {
-                EventLogger.LogNewEvent(String.Format("IFMS AutoFill Error: Dropdown '{0}' is Null", dropdown));
+                EventLogger.LogAndSaveNewEvent(String.Format("IFMS AutoFill Error: Dropdown '{0}' is Null", dropdown));
                 return;
             }
             _affectedServicesSelectList.Focus();
             var option = _affectedServicesSelectList.Option(dropdown);
             if (!option.Exists)
             {
-                EventLogger.LogNewEvent(String.Format("IFMS AutoFill Error: SelectList Option '{0}' Doesn't Exist", dropdown));
+                EventLogger.LogAndSaveNewEvent(String.Format("IFMS AutoFill Error: SelectList Option '{0}' Doesn't Exist", dropdown));
                 return;
             }
             option.Select();     
@@ -192,7 +202,7 @@ namespace CallTracker.Helpers
             var textfield = HotkeyController.browser.TextField(Find.ById(ifmsDropdownElement.Field));
             if (!textfield.Exists)
             {
-                EventLogger.LogNewEvent(String.Format("IFMS AutoFill Error: TextField '{0}' Doesn't Exist", ifmsDropdownElement.Field));
+                EventLogger.LogAndSaveNewEvent(String.Format("IFMS AutoFill Error: TextField '{0}' Doesn't Exist", ifmsDropdownElement.Field));
                 return;
             }
             textfield.Value = field;
@@ -200,7 +210,7 @@ namespace CallTracker.Helpers
             var button = HotkeyController.browser.Button(Find.ById(ifmsDropdownElement.Button));
             if (!button.Exists)
             {
-                EventLogger.LogNewEvent(String.Format("IFMS AutoFill Error: Button '{0}' Doesn't Exist", ifmsDropdownElement.Button));
+                EventLogger.LogAndSaveNewEvent(String.Format("IFMS AutoFill Error: Button '{0}' Doesn't Exist", ifmsDropdownElement.Button));
                 return;
             }       
             button.Click();

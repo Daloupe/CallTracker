@@ -2,35 +2,7 @@
 <ArrayOfArrayOfArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ArrayOfArrayOfString>
     <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Helpers\HotkeyController\HotkeyController.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Helpers\HotkeyController\AutoSearch.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\ThingsToCheck.txt</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Change Log.txt</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\EditContact.cs</string>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\EditContact.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\ServicePanel.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Contact\ServiceModel.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\Logs\Change Log.txt</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\Main.cs</string>
-    </ArrayOfString>
-    <ArrayOfString>
-      <string>C:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\IPCC.cs</string>
+      <string>c:\users\cb 2\documents\programming\csharp\projects\calltracker\calltracker\properties\settings.settings</string>
     </ArrayOfString>
   </ArrayOfArrayOfString>
 </ArrayOfArrayOfArrayOfString>

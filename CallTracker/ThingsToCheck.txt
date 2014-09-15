@@ -21,4 +21,12 @@ AutoSearch
 	- 0397346689 was freezing the system just after CMBS copy.
 Visual
 	- Look of Composite over normal Double Buffering.
-	- Speed of opening and closing 
+	- Speed of opening and closing.
+
+---------------- Pre Release
+Resources:
+	- Update all Paste Binds.
+	- Update Bookmarks + Systems menus.
+	~ Link T4 Notes to action.
+	- Create "Resolved" notes.
+	- Create Installer.

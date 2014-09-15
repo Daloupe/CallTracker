@@ -20,10 +20,13 @@ namespace CallTracker.View
         private readonly RtfParagraphFormatting _formatting;
         private readonly RtfWriter _rtfWriter;
 
-        public DidYouKnow()
+        public DidYouKnow(int pos = -1)
         {
             InitializeComponent();
             SetLocation();
+            if (pos == -1)
+                pos = Properties.Settings.Default.TipsPosition;
+
             var fontCount = Program.Fonts.Families.Length;
             if (fontCount > 0)
                 heading.Font = new Font(Program.Fonts.Families[0], 18, FontStyle.Bold);
@@ -51,7 +54,13 @@ namespace CallTracker.View
 
             _rtfWriter = new RtfWriter();
 
-            SelectSlide();
+            if (pos == -1)
+            {
+                ++Properties.Settings.Default.TipsPosition;
+                pos = Properties.Settings.Default.TipsPosition;
+            }
+
+            SelectSlide(pos);
 
             richTextBox1.MouseWheel += richTextBox1_MouseWheel;
         }
@@ -68,12 +77,12 @@ namespace CallTracker.View
             }
         }
 
-        private void SelectSlide()
-        {
+        private void SelectSlide(int pos)
+        {   
             WindowHelper.SuspendDrawing(panel1);
             examplePanel.Hide();
             tipsPanel.Height = 161;
-            var slide = TipSlides[Properties.Settings.Default.TipsPosition];
+            var slide = TipSlides[pos];
             heading.Text = slide.Heading;
             //subHeading.Text = slide.SubHeading;
             var p = new RtfFormattedParagraph(_formatting);
@@ -145,7 +154,7 @@ namespace CallTracker.View
             Properties.Settings.Default.TipsPosition -= 1;
             exampleRichTextBox.Clear();
             _currentExample = -1;
-            SelectSlide();
+            SelectSlide(Properties.Settings.Default.TipsPosition);
             SendMessage(richTextBox1.Handle, WM_VSCROLL, (IntPtr)SB_TOP, IntPtr.Zero);
         }
 
@@ -155,7 +164,7 @@ namespace CallTracker.View
             Properties.Settings.Default.TipsPosition += 1;
             exampleRichTextBox.Clear();
             _currentExample = -1;
-            SelectSlide();
+            SelectSlide(Properties.Settings.Default.TipsPosition);
             SendMessage(richTextBox1.Handle, WM_VSCROLL, (IntPtr)SB_TOP, IntPtr.Zero);
         }
 
@@ -180,6 +189,12 @@ namespace CallTracker.View
         private void DidYouKnow_Load(object sender, EventArgs e)
         {
             richTextBox1.Focus();
+        }
+
+        internal void ShowAtPosition(int pos)
+        {
+            SelectSlide(pos);
+            Show();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -280,7 +295,8 @@ namespace CallTracker.View
                 new List<TipModel>
                 {
                     new TipModel("- <Auto Fill>(|2<Win+Ctrl+V>|1) performs all known Smart Pastes on a page."),
-                    new TipModel("- Useful for systems with lots of required fields eg IFMS.")
+                    new TipModel("- Pressing <Auto Fill> on IFMS Create will additionally add in affected products."),
+                    new TipModel("- Pressing <Auto Fill> on ICON Note will additionally try to set the note dropdowns.")
                 }),
             new TipSlide("Call History",
                 new List<TipModel>
@@ -305,7 +321,7 @@ namespace CallTracker.View
                     new TipModel("- <IPCC Monitor> keeps track of call state changes."),
                     new TipModel("- When a new call pops in, it will automatically create a new record and prefill it with IPCC call data."),
                     new TipModel("- You can see how long you have spent in a call state in the bottom right hand corner of <Wingman>."),
-                    new TipModel("- Clicking this timer will give you the <Monitor IPCC> option.")
+                    new TipModel("- Clicking this timer will give you the <Monitor IPCC> option, which may need to be enabled if <Wingman> was started after IPCC.")
                 }),
             new TipSlide("Context Menus",
                 new List<TipModel>
