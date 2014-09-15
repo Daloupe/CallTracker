@@ -27,6 +27,10 @@ namespace CallTracker.View
             if (pos == -1)
                 pos = Properties.Settings.Default.TipsPosition;
 
+            //if (Program.Optus18 != null)
+            //{
+            //    heading.Font = Program.Optus18;
+            //}
             var fontCount = Program.Fonts.Families.Length;
             if (fontCount > 0)
                 heading.Font = new Font(Program.Fonts.Families[0], 18, FontStyle.Bold);
@@ -77,9 +81,12 @@ namespace CallTracker.View
             }
         }
 
-        private void SelectSlide(int pos)
-        {   
+        private void SelectSlide(int pos = -1)
+        {
+            if (pos == -1)
+                pos = Properties.Settings.Default.TipsPosition;
             WindowHelper.SuspendDrawing(panel1);
+            SendMessage(richTextBox1.Handle, WM_VSCROLL, (IntPtr)SB_TOP, IntPtr.Zero);
             examplePanel.Hide();
             tipsPanel.Height = 161;
             var slide = TipSlides[pos];
@@ -152,20 +159,20 @@ namespace CallTracker.View
         {
             if (Properties.Settings.Default.TipsPosition - 1 < 0) return;
             Properties.Settings.Default.TipsPosition -= 1;
-            exampleRichTextBox.Clear();
-            _currentExample = -1;
-            SelectSlide(Properties.Settings.Default.TipsPosition);
-            SendMessage(richTextBox1.Handle, WM_VSCROLL, (IntPtr)SB_TOP, IntPtr.Zero);
+            //exampleRichTextBox.Clear();
+            //_currentExample = -1;
+            SelectSlide();//Properties.Settings.Default.TipsPosition);
+            //SendMessage(richTextBox1.Handle, WM_VSCROLL, (IntPtr)SB_TOP, IntPtr.Zero);
         }
 
         private void nextTip_Click(object sender, EventArgs e)
         {
             if (Properties.Settings.Default.TipsPosition + 1 > TipSlides.Count - 1) return;
             Properties.Settings.Default.TipsPosition += 1;
-            exampleRichTextBox.Clear();
-            _currentExample = -1;
-            SelectSlide(Properties.Settings.Default.TipsPosition);
-            SendMessage(richTextBox1.Handle, WM_VSCROLL, (IntPtr)SB_TOP, IntPtr.Zero);
+            //exampleRichTextBox.Clear();
+            //_currentExample = -1;
+            SelectSlide();//Properties.Settings.Default.TipsPosition);
+            //SendMessage(richTextBox1.Handle, WM_VSCROLL, (IntPtr)SB_TOP, IntPtr.Zero);
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -85,7 +85,8 @@ namespace CallTracker.Helpers
                 else if(outcome != "Fault")
                 {
                     HotkeyController.browser.TextField(Find.ByName("ctl00_cphPage_tx_TruckRollStatus")).Value = Enum.GetName(typeof(BookingType), contact.Booking.Type);
-                    HotkeyController.browser.TextField(Find.ByName("ctl00_cphPage_tx_ScheduleStartTime")).Value = contact.Booking.GetDate;
+                    HotkeyController.WaitForAsyncPostBackToComplete();
+                    HotkeyController.browser.TextField(Find.ByName("ctl00_cphPage_tx_ScheduleStartTime")).Value = contact.Booking.GetIFMSDate;
                 }
             }
 
@@ -105,7 +106,7 @@ namespace CallTracker.Helpers
                 if(contact.Fault.Symptom == "MSG")
                     DropdownTextfieldButton("SUMM", contact.Service.DTVMsg);
                 if (contact.Service.Equipment != "Standard")
-                    DropdownTextfieldButton("SUMM", contact.Service.Equipment);
+                    DropdownTextfieldButton("SUMM", contact.Service.Equipment + "STB");
             }
 
 
@@ -116,8 +117,8 @@ namespace CallTracker.Helpers
             {
                 EventLogger.LogNewEvent("IFMS AutoFill: Has NBN");
                 DropdownTextfieldButton("UIN", contact.Username);
-                if (!String.IsNullOrEmpty(contact.Fault.INC))
-                    DropdownTextfieldButton("UIN", contact.Fault.INC);
+                if (!String.IsNullOrEmpty(contact.Service.INC))
+                    DropdownTextfieldButton("UIN", contact.Service.INC);
             }
 
 

@@ -13,11 +13,14 @@ namespace CallTracker.View
         protected Main MainForm { get; set; }
         //public ViewControlBase()
         //{
-        //   // SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+        //    DoubleBuffered = true;
+        //    //SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
         //}
 
         public virtual void Init(Main mainForm, ToolStripMenuItem menuItem)
         {
+            //DoubleBuffered = true;
+
             MenuControl = menuItem;
             MenuControl.Tag = this;
             MainForm = mainForm;
@@ -46,10 +49,10 @@ namespace CallTracker.View
         public virtual void HideSetting()
         {
             //MainForm.Height = previousHeight;
-            SendToBack();
-            WindowHelper.ResumeDrawing(MainForm.editContact);
-            Hide();
             
+            //WindowHelper.ResumeDrawing(MainForm.editContact);
+            Hide();
+            SendToBack();
             MenuControl.Checked = false;
         }
 
@@ -58,11 +61,11 @@ namespace CallTracker.View
         {
             //previousHeight = MainForm.Height;
             //MainForm.Height = previousHeight - 20;
-            
-            
-            BringToFront();
-            WindowHelper.SuspendDrawing(MainForm.editContact);
+
             Show();
+            BringToFront();
+            //WindowHelper.SuspendDrawing(MainForm.editContact);
+            
             MenuControl.Checked = true;                
         }
 
@@ -90,6 +93,18 @@ namespace CallTracker.View
              ((Control)sender).Height + 1);
             base.OnPaint(e);
         }
+
+        //private void InitializeComponent()
+        //{
+        //    this.SuspendLayout();
+        //    // 
+        //    // ViewControlBase
+        //    // 
+        //    this.DoubleBuffered = true;
+        //    this.Name = "ViewControlBase";
+        //    this.ResumeLayout(false);
+
+        //}
 
         //private void InitializeComponent()
         //{

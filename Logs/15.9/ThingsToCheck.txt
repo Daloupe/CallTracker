@@ -1,0 +1,92 @@
+﻿OIP = NBN.
+
+Misc:
+	| Add Save Data button.
+	- ONC uses DTR, NBN uses STT
+	- Move "About Wingman" to the Wingman menu.
+	- "Resolved" should add "- Confirmed working." to ICONNote.
+	- PR#12576032 has been raised, cleared and closed; SMS sent.
+	- INC000001086330, APT000003882495  not updating.
+	- Booking Type might not be bound correctly either.
+Monitor IPCC:
+	| Not working. Exception log indicates:
+		| Issue was caused by using old Contact.bin file.
+		- Issue seems to occur when reloading a contact file.
+DataDrop:
+	| Working on Ctrl-Space.
+Links:
+	| Resources > Links.
+		| LogMeIn is overwriting other pages. eg https://login.nbnco.net.au/portal-login?resource_url=http%3A%2F%2Fwww1.nbnco.com.au%2Fonline_customers%2Fpage%2Forder%2Favc%2Fview%2Fby-id%2F6d05d808f1dd4a609ee294bbc264a7b1
+		- SMSHUb not refinding. Title = "CSA Touch-Point SMS Hub"
+		- Nexus not refinging. use URL "http://nexus.optus.com.au/".
+	| EHB Search.
+		| Add \1
+		- WaTiN is adding %20 in spaces. String literal?
+GridLinks:
+	~ Wobs GridLinks.
+		- Seems to work once wobs is refreshed and logged in.
+	- Seem slower?
+	- Tab Activate not working properly.
+AutoFill
+	| Grabbing PR Number.
+	IFMS:
+		| Turn off "AutoFill" option on appropriate IFMS elements.
+			- Move IFMS ctl00_cphPage_tx_TruckRollStatus & ctl00_cphPage_tx_ScheduleStartTime to IFMSAutoFill.cs.
+		| LAT/LIP Adding correct services.
+		- IQ SUMM comment showing as "IQ" not "IQ STB"
+		- NBN Not using correct symptom code.
+AutoSearch
+	~ CMBS > IFMS.
+	X PR > IFMS.
+	- SCAMPS keeps creating new windows. url = https://scamps.optusnet.com.au/cm.html?q=0247211984. title = message.
+SmartPaste
+	- Username pasting as Upper.
+	/ Added Username and NBN to Regex dictionary.
+	/ Smart paste Dial is putting in CMBS number?
+SmartCopy
+	- Address SmartCopy hung: 72 LEANYER DR LEANYER Northern Territory 0812 AUSTRALIA, 
+		- Works as 
+			-72 LEANYER DR LEANYER Victoria 3702
+			-72 LEANYER DR LEANYER Victoria 0812 AUSTRALIA
+			-2 RUDOLPH ST HOPPERS CROSSING VIC 3029
+		- Not as
+			-72 LEANYER DR LEANYER vic 3702
+			-72 LEANYER DR LEANYER Northern Territory 0812 
+			-72 LEANYER DR LEANYER New South Wales 0812 
+			-72 LEANYER DR LEANYER Queensland 0812
+		- Could be the State as abbr or 2 worded. Or coule be the look-ahead not liking such a long list. Victoria might be first?
+		- Still having issues when using original Regex
+		- ... DR wasn't in the regex. Why is it crashing?
+		
+AutoSearch
+	- Service Number is being AutoSearched before Service Number.
+	- DIMPS macvendor field properly seperating Equipment and MAC.
+	/ 0363441142 is doing a full NBN search just after load.
+		~ Should see ""AutoSearching DIMPS " + _dimpsSearching + " Mode: " + mode" in the log if events are getting down enough.
+	| 0397346689 was freezing the system just after CMBS copy.
+		~ Likely related to Address issue.
+	- paullee715 hung.
+Visual
+	| Look of Composite over normal Double Buffering.
+		- Composite leaves trails.
+	/ Speed of opening and closing.
+		- Still slow.
+		
+---------------- Pre Release
+Resources:
+	- Update all Paste Binds.
+	- Update Bookmarks + Systems menus.
+	~ Link T4 Notes to action.
+	- Create "Resolved" notes.
+	- PHS Binds
+	- NBN Co Portal
+- Create Installer.
+
+
+
+
+
+NBN Co Portal:
+https://www1.nbnco.com.au/online_customers/page/home?search=1000000000029226
+
+no GSID regex.

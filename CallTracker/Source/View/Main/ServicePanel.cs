@@ -25,7 +25,7 @@ namespace CallTracker.View
         public ServicePanel()
         {
             InitializeComponent();
-            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
 
             //SetStyle(ControlStyles.DoubleBuffer, true);
             //SetStyle(ControlStyles.DoubleBuffer, true);
@@ -36,6 +36,16 @@ namespace CallTracker.View
 
 
         }
+
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        var parms = base.CreateParams;
+        //        parms.Style &= ~0x02000000;  // Turn off WS_CLIPCHILDREN
+        //        return parms;
+        //    }
+        //}
         //protected override CreateParams CreateParams
         //{
         //    get

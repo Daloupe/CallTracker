@@ -32,6 +32,10 @@ namespace CallTracker.View
         {
             InitializeComponent();
 
+            //if (Program.Optus18 != null)
+            //{
+            //    _Title.Font = Program.Optus20;
+            //}
             var fontCount = Program.Fonts.Families.Length;
             if (fontCount > 0)
                 _Title.Font = new Font(Program.Fonts.Families[0], 20, FontStyle.Bold);

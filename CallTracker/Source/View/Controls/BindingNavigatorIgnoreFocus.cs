@@ -16,7 +16,7 @@ namespace CallTracker.View
 
         public BindingNavigatorIgnoreFocus()
         {
-            SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
+            //SetStyle(ControlStyles.DoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
         }
                         
     }

@@ -38,6 +38,9 @@ namespace CallTracker.Model
         [ProtoBeforeDeserialization]
         private void PreDes()
         {
+            CallEvents = new List<EventModel<CallEventTypes>>();
+            AppEvents = new List<EventModel<AppEventTypes>>();
+            Statistics = new T();
             //_deserializing = true;
         }
 

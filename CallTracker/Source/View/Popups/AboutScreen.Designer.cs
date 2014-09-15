@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.Wingman = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.WingmanBG = new System.Windows.Forms.Label();
             this._VersionLabel = new System.Windows.Forms.Label();
             this._Version = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.button1 = new System.Windows.Forms.Button();
+            this._Close = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Wingman
@@ -49,17 +49,17 @@
             this.Wingman.TabIndex = 0;
             this.Wingman.Text = "Wingman";
             // 
-            // label1
+            // WingmanBG
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Optus Voice BETA Bold", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(173)))));
-            this.label1.Location = new System.Drawing.Point(19, 66);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 64);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Wingman";
+            this.WingmanBG.AutoSize = true;
+            this.WingmanBG.BackColor = System.Drawing.Color.Transparent;
+            this.WingmanBG.Font = new System.Drawing.Font("Optus Voice BETA Bold", 40F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.WingmanBG.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(156)))), ((int)(((byte)(173)))));
+            this.WingmanBG.Location = new System.Drawing.Point(19, 66);
+            this.WingmanBG.Name = "WingmanBG";
+            this.WingmanBG.Size = new System.Drawing.Size(256, 64);
+            this.WingmanBG.TabIndex = 2;
+            this.WingmanBG.Text = "Wingman";
             // 
             // _VersionLabel
             // 
@@ -67,7 +67,7 @@
             this._VersionLabel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._VersionLabel.Font = new System.Drawing.Font("Gautami", 7.75F);
             this._VersionLabel.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this._VersionLabel.Location = new System.Drawing.Point(183, 66);
+            this._VersionLabel.Location = new System.Drawing.Point(183, 67);
             this._VersionLabel.Margin = new System.Windows.Forms.Padding(0);
             this._VersionLabel.Name = "_VersionLabel";
             this._VersionLabel.Size = new System.Drawing.Size(49, 14);
@@ -81,10 +81,10 @@
             this._Version.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this._Version.Font = new System.Drawing.Font("Gautami", 7.75F);
             this._Version.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this._Version.Location = new System.Drawing.Point(225, 66);
+            this._Version.Location = new System.Drawing.Point(225, 67);
             this._Version.Margin = new System.Windows.Forms.Padding(0);
             this._Version.Name = "_Version";
-            this._Version.Size = new System.Drawing.Size(65, 14);
+            this._Version.Size = new System.Drawing.Size(54, 14);
             this._Version.TabIndex = 6;
             this._Version.Text = global::CallTracker.Properties.Settings.Default.Version;
             // 
@@ -94,23 +94,43 @@
             this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label3.Font = new System.Drawing.Font("Gautami", 7.75F);
             this.label3.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.label3.Location = new System.Drawing.Point(75, 215);
+            this.label3.Location = new System.Drawing.Point(74, 218);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(152, 14);
             this.label3.TabIndex = 7;
             this.label3.Text = "jesse.poulton@optus.com.au";
             // 
-            // pictureBox1
+            // button1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = global::CallTracker.Properties.Resources.Close;
-            this.pictureBox1.Location = new System.Drawing.Point(289, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(10, 11);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.PaleTurquoise;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(83)))), ((int)(((byte)(109)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(103)))), ((int)(((byte)(129)))));
+            this.button1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(83)))), ((int)(((byte)(109)))));
+            this.button1.Location = new System.Drawing.Point(105, 192);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(85, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Change Log";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // _Close
+            // 
+            this._Close.BackColor = System.Drawing.Color.Transparent;
+            this._Close.FlatAppearance.BorderSize = 0;
+            this._Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this._Close.Image = global::CallTracker.Properties.Resources.Close;
+            this._Close.Location = new System.Drawing.Point(284, 0);
+            this._Close.Name = "_Close";
+            this._Close.Size = new System.Drawing.Size(16, 16);
+            this._Close.TabIndex = 9;
+            this._Close.UseVisualStyleBackColor = false;
+            this._Close.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // AboutScreen
             // 
@@ -119,12 +139,13 @@
             this.BackgroundImage = global::CallTracker.Properties.Resources.blue_gradient_300;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(300, 238);
+            this.Controls.Add(this._Close);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this._Version);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this._VersionLabel);
             this.Controls.Add(this.Wingman);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.WingmanBG);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -135,7 +156,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SplashScreen";
             this.TopMost = true;
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -144,10 +164,11 @@
         #endregion
 
         private System.Windows.Forms.Label Wingman;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label WingmanBG;
         internal System.Windows.Forms.Label _VersionLabel;
         internal System.Windows.Forms.Label _Version;
         internal System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button _Close;
     }
 }

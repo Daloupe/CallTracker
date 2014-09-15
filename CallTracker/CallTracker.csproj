@@ -132,11 +132,15 @@
     <Content Include="Change Log.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resource Information.txt" />
     <Content Include="ThingsToCheck.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Source\Model\Resource\Settings\SearchModel.cs" />
     <Compile Include="Source\Model\Contact\TroubleShootingModel.cs" />
+    <Compile Include="Source\View\Controls\CTPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Source\View\Controls\CTToolStripMenuItem.cs">
       <SubType>Component</SubType>
     </Compile>

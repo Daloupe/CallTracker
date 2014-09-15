@@ -183,10 +183,10 @@ namespace CallTracker.Helpers
 
                         if (!string.IsNullOrEmpty(tabUrl))
                         {
-                            //if (tab.LocationUrl.Contains(tabsUrl))
+                            if (tab.LocationUrl.Contains(tabsUrl))
+                            return index;
+                            //if (tab.LocationUrl == tabsUrl)
                             //    return index;
-                            if (tab.LocationUrl == tabsUrl)
-                                return index;
                         }
 
                         index++;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Threading;
 using System.Diagnostics;
@@ -13,6 +14,10 @@ namespace CallTracker
     static class Program
     {
         internal static PrivateFontCollection Fonts;
+        //internal static Font Optus40;
+        //internal static Font Optus20;
+        //internal static Font Optus18;
+        //internal static Font TradeGothic12;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -29,11 +34,21 @@ namespace CallTracker
                     Application.SetCompatibleTextRenderingDefault(false);
 
                     Fonts = new PrivateFontCollection();
-                    if (File.Exists("Data\\Fonts\\OptusVoiceBETA-Bold.ttf"))
-                        Fonts.AddFontFile("Data\\Fonts\\OptusVoiceBETA-Bold.ttf");
+                    
+                        if (File.Exists("Data\\Fonts\\OptusVoiceBETA-Bold.ttf"))
+                        {
+                            Fonts.AddFontFile("Data\\Fonts\\OptusVoiceBETA-Bold.ttf");
+                            //Optus40 = new Font(fonts.Families[0], 40, FontStyle.Bold);
+                            //Optus20 = new Font(fonts.Families[0], 20, FontStyle.Bold);
+                            //Optus18 = new Font(fonts.Families[0], 18, FontStyle.Bold);
+                        }
 
-                    if (File.Exists("Data\\Fonts\\trade-gothic-lt-1361519976.ttf"))
-                        Fonts.AddFontFile("Data\\Fonts\\trade-gothic-lt-1361519976.ttf");
+                        if (File.Exists("Data\\Fonts\\trade-gothic-lt-1361519976.ttf"))
+                        {
+                            Fonts.AddFontFile("Data\\Fonts\\trade-gothic-lt-1361519976.ttf");
+                            //TradeGothic12 = new Font(fonts.Families[1], 12, FontStyle.Regular);
+                        }
+                    
 
                     if (File.Exists(@".\Change Log.txt"))
                         using (var file = new StreamReader(@".\Change Log.txt"))

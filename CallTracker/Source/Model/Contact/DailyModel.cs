@@ -46,6 +46,7 @@ namespace CallTracker.Model
         {
             // Edit contacts won't bind properly if not initialized when no contacts have been stored.
             Contacts = new FilterableBindingList<CustomerContact>();
+            Events = new EventsModel<DailyStats>();
         }
 
         internal void ArchiveContacts()

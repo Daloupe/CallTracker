@@ -85,6 +85,8 @@ namespace CallTracker.View
             _ipccDialWindow = null;
             _ipccDialNumberComboBox = null;
 
+
+            
             return true;
         }
 
@@ -171,7 +173,7 @@ namespace CallTracker.View
             _ipccDialNumberComboBox.EditableText = value;
         }
 
-        private void ChangeCallStateMenuItem(string callState)
+        protected void ChangeCallStateMenuItem(string callState)
         {
             foreach (var control in _CallStateTime.DropDownItems.OfType<ToolStripMenuItem>().Where(control => control.Tag.ToString() != "Protected"))
                 if (control.Tag.ToString() == callState)
@@ -183,7 +185,7 @@ namespace CallTracker.View
                     control.Checked = false;
         }
 
-        private void ChangeCallStateMenuItem(ToolStripMenuItem callState)
+        protected void ChangeCallStateMenuItem(ToolStripMenuItem callState)
         {
             foreach (var control in _CallStateTime.DropDownItems.OfType<ToolStripMenuItem>().Where(control => control.Tag.ToString() != "Protected"))
                 control.Checked = false;
@@ -191,13 +193,13 @@ namespace CallTracker.View
             CurrentItem.Checked = true;
         }
 
-        private bool DoesIPCCExist()
+        protected bool DoesIPCCExist()
         {
-            if (_ipccProcess == null) return false;
+            if (_ipccProcess == null || _ipccCallStatus == null) return false;
             return !_ipccProcess.HasExited;
         }
 
-        private void _IPCCTimer_Tick(object sender, EventArgs e)
+        protected void _IPCCTimer_Tick(object sender, EventArgs e)
         {
             // Exit if IPCC doesn't exist and IPCC monitoring is on.
             if (!DoesIPCCExist() && monitorIPCCToolStripMenuItem.Checked)
@@ -320,7 +322,7 @@ namespace CallTracker.View
             //    _callStateTimeElapsed = _callStateTimeElapsed.Add(new TimeSpan(0, 0, 0, 0, _IPCCTimer.Interval)); //new TimeSpan(_callStateTimeElapsed.Ticks + _IPCCTimer.Interval * 10000);
             //}
 
-            if (StatsView.Visible)
+            if (StatsView.Visible && SelectedDate != null)
             {
                 if (!((DateTime.Now - _statsViewUpdate).TotalSeconds > 1)) return;
                 StatsView.UpdateStats(SelectedDate);
@@ -329,9 +331,9 @@ namespace CallTracker.View
             else
                 _CallStateTime.Text = SelectedContact != null ? TimeSpanToString(DateTime.Now - SelectedContact.Events.LastCallEvent.Timestamp) : TimeSpanToString(DateTime.Now - SelectedDate.Events.LastCallEvent.Timestamp);
         }
-        private DateTime _statsViewUpdate = DateTime.Now;
+        protected DateTime _statsViewUpdate = DateTime.Now;
 
-        private void FinalizeEvents(DailyModel dailyData)
+        protected void FinalizeEvents(DailyModel dailyData)
         {
             if (CurrentContact != null)
             {
@@ -356,7 +358,7 @@ namespace CallTracker.View
             dailyData.AddCallEvent(CallEventTypes.LogOut);
         }
 
-        private void PullIPCCCallData()
+        protected void PullIPCCCallData()
         {
             if (SelectedContact == null) return;
 
@@ -455,12 +457,12 @@ namespace CallTracker.View
             }
         }
 
-        private static string TimeSpanToString(TimeSpan time)
+        protected static string TimeSpanToString(TimeSpan time)
         {
             return time.Hours > 0 ? String.Format("{0}:{1:00}:{2:00}", time.Hours, time.Minutes, time.Seconds) : String.Format("{0:00}:{1:00}", time.Minutes, time.Seconds);
         }
 
-        private void IPCCLevel(string level)
+        protected void IPCCLevel(string level)
         {
             switch (level)
             {

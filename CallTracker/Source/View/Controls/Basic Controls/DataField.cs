@@ -52,7 +52,7 @@ namespace CallTracker.View
 
         public IDataField() : base()
         {
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
         }
     }
 }

@@ -211,7 +211,7 @@ namespace RichTextBoxLinks
 		/// <param name="link">true: set link style, false: clear link style</param>
 		public void SetSelectionLink(bool link)
 		{
-            SetSelectionStyle(CFM_LINK | CFM_BACKCOLOR | CFM_COLOR, link ? CFE_LINK : 0);
+            SetSelectionStyle(CFM_LINK, link ? CFE_LINK : 0); //| CFM_BACKCOLOR | CFM_COLOR
 		}
 		/// <summary>
 		/// Get the link style for the current selection
@@ -219,7 +219,7 @@ namespace RichTextBoxLinks
 		/// <returns>0: link style not set, 1: link style set, -1: mixed</returns>
 		public int GetSelectionLink()
 		{
-            return GetSelectionStyle(CFM_LINK | CFM_BACKCOLOR | CFM_COLOR, CFE_LINK);
+            return GetSelectionStyle(CFM_LINK, CFE_LINK); //| CFM_BACKCOLOR | CFM_COLOR
 		}
 
 
@@ -229,9 +229,9 @@ namespace RichTextBoxLinks
             cf.cbSize = (UInt32)Marshal.SizeOf(cf);
             cf.dwMask |= mask;
             cf.dwEffects |= effect;
-            cf.dwEffects -= CFE_AUTOCOLOR;
-            cf.crBackColor = ColorTranslator.ToWin32(Color.FromArgb(43, 123, 149));
-            cf.crTextColor = ColorTranslator.ToWin32(LinkColor);
+            //cf.dwEffects -= CFE_AUTOCOLOR;
+            //cf.crBackColor = ColorTranslator.ToWin32(Color.FromArgb(93, 183, 209));
+            //cf.crTextColor = ColorTranslator.ToWin32(LinkColor);
             
 			var wpar = new IntPtr(SCF_SELECTION);
 			var lpar = Marshal.AllocCoTaskMem( Marshal.SizeOf( cf ) ); 
@@ -247,8 +247,8 @@ namespace RichTextBoxLinks
 			var cf = new CHARFORMAT2_STRUCT();
             cf.cbSize = (UInt32)Marshal.SizeOf(cf);
 			cf.szFaceName = new char[32];
-            cf.crBackColor = ColorTranslator.ToWin32(Color.FromArgb(43, 123, 149));
-            cf.crTextColor = ColorTranslator.ToWin32(LinkColor);
+            //cf.crBackColor = ColorTranslator.ToWin32(Color.FromArgb(93, 183, 209));
+            //cf.crTextColor = ColorTranslator.ToWin32(LinkColor);
 
 			var wpar = new IntPtr(SCF_SELECTION);
 			var lpar = 	Marshal.AllocCoTaskMem( Marshal.SizeOf( cf ) ); 

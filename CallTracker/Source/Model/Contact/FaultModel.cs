@@ -56,10 +56,6 @@ namespace CallTracker.Model
         public string NPR { get; set; }
         [ProtoMember(2)]
         public string PR { get; set; }
-        [ProtoMember(3)]
-        public string INC { get; set; }
-        [ProtoMember(20)]
-        public string APT { get; set; }
         [ProtoMember(4)]
         public string ITCase { get; set; }
 

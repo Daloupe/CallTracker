@@ -85,13 +85,17 @@ namespace CallTracker.Model
         public string NTDSN { get; set; }
         [ProtoMember(28)]
         public string GSID { get; set; }
+        [ProtoMember(29)]
+        public string INC { get; set; }
+        [ProtoMember(30)]
+        public string APT { get; set; }
 
         // LAT
-        [ProtoMember(30)]
+        [ProtoMember(35)]
         public string CauPing { get; set; }
-        [ProtoMember(31)]
+        [ProtoMember(36)]
         public string NitResults { get; set; }
-        [ProtoMember(32)]
+        [ProtoMember(37)]
         public string ESN { get; set; }
 
         // LIP

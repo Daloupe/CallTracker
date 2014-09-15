@@ -13,6 +13,15 @@ namespace CallTracker.View
         public SplashScreen()
         {
             InitializeComponent();
+            //if (Program.Optus40 != null)
+            //{
+            //    Wingman.Font = Program.Optus40;
+            //    WingmanBG.Font = Program.Optus40;
+            //}
+            //if (Program.TradeGothic12 != null)
+            //{
+            //    _LoadingText.Font = Program.TradeGothic12;
+            //}
             var fontCount = Program.Fonts.Families.Length;
             if (fontCount > 0)
             {

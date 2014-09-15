@@ -1,27 +1,27 @@
-﻿DataDrop:
-	- Working on Ctrl-Space.
-Links:
-	- Resources > Links.
-	- EHB Search.
+﻿Links:
+	- EHB Search Nexus not refinging. updated URL to "http://nexus.optus.com.au/".
+	- SMSHUb not refinding. Title = "CSA Touch-Point SMS Hub"
+IPCC Monitor
+	- Should work on reload.
 GridLinks:
-	- Wobs GridLinks.
+	- Changed IETabActivator back to if(tab.LocationUrl.Contains(tabsUrl). Check if lots of pages still not activating.
 AutoFill
-	- Grabbing PR Number.
-	- Turn off "AutoFill" option on appropriate IFMS elements.
+	-
 AutoSearch
 	- CMBS > IFMS.
 	- PR > IFMS.
 SmartPaste
 	- Username pasting as Upper.
 AutoSearch
-	- Service Number is being AutoSearched before Service Number.
+	- SCAMPS keeps creating new windows. url = https://scamps.optusnet.com.au/cm.html?q=0247211984. title = message.
+		- confirm url of Failed scamps search.
 	- DIMPS macvendor field properly seperating Equipment and MAC.
 	- 0363441142 is doing a full NBN search just after load.
-		~ Should see ""AutoSearching DIMPS " + _dimpsSearching + " Mode: " + mode" in the log if events are getting down enough.
 	- 0397346689 was freezing the system just after CMBS copy.
-Visual
-	- Look of Composite over normal Double Buffering.
-	- Speed of opening and closing.
+	- paullee715 hung.
+
+
+
 
 ---------------- Pre Release
 Resources:
@@ -29,4 +29,4 @@ Resources:
 	- Update Bookmarks + Systems menus.
 	~ Link T4 Notes to action.
 	- Create "Resolved" notes.
-	- Create Installer.
+- Create Installer.

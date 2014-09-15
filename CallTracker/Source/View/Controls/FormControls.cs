@@ -35,7 +35,7 @@ namespace CallTracker.View
 
         public BorderedTextBox() : base()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             BorderStyle = BorderStyle.FixedSingle;
             DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;         
         }
@@ -91,7 +91,7 @@ namespace CallTracker.View
 
         public BorderedLabel()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             BorderStyle = BorderStyle.None;
             DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
         }
@@ -150,7 +150,7 @@ namespace CallTracker.View
         public BorderedTextField()
             : base()
         {
-            SetStyle( ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle( ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             BorderStyle = BorderStyle.FixedSingle;
             DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
         }
@@ -284,7 +284,7 @@ namespace CallTracker.View
         public BorderedDateTimePicker()
             : base()
         {
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.DoubleBuffer | ControlStyles.DoubleBuffer, true);
             //this.SetStyle(ControlStyles.DoubleBuffer, true);
             //this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -415,7 +415,7 @@ namespace CallTracker.View
         public BorderedCombobox()
             : base()
         {
-            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             FlatStyle = FlatStyle.Popup;
             DataBindings.DefaultDataSourceUpdateMode = DataSourceUpdateMode.OnPropertyChanged;
             //this.DropDownStyle = ComboBoxStyle.DropDown;

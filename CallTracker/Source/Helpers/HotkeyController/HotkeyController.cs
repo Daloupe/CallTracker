@@ -25,7 +25,7 @@ namespace CallTracker.Helpers
         public static IE browser;
         private static HotKeyManager HotKeyManager;
         //public static event ActionEventHandler OnAction;
-        private static readonly Stopwatch StopwatchTester = new Stopwatch();
+        //private static readonly Stopwatch StopwatchTester = new Stopwatch();
 
         public HotkeyController(Main _parent)
         {
@@ -305,8 +305,13 @@ namespace CallTracker.Helpers
                     EventLogger.LogAndSaveNewEvent("SmartPaste Error: No Data to paste.", EventLogLevel.Brief);
                     return;
                 }
-                Clipboard.SetText("0" + dataToPaste);
-                SendKeys.Send("^(v)");
+                //Clipboard.SetText(String.Format("0{0}", dataToPaste));
+                //var sw = new Stopwatch();
+                //sw.Start();
+                //while (!Clipboard.ContainsText() && sw.ElapsedMilliseconds <= 100)
+                //    SendKeys.Flush();
+                //sw.Stop();
+                SendKeys.Send("0"+dataToPaste);//"^(v)");
             }
             else
             {
@@ -532,7 +537,6 @@ namespace CallTracker.Helpers
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Smart Copy ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        private static readonly Stopwatch Stopwatch = new Stopwatch();
         private static void OnSmartCopy(HotkeyPressedEventArgs e)
         {
             if (parent.SelectedContact == null)
@@ -553,17 +557,17 @@ namespace CallTracker.Helpers
 
             SendKeys.Send("^(c)");
             SendKeys.Flush();
-            Stopwatch.Reset();
-            Stopwatch.Start();
-            while (!Clipboard.ContainsText() && Stopwatch.ElapsedMilliseconds <= 100)
+            var sw = new Stopwatch();
+            sw.Start();
+            while (!Clipboard.ContainsText() && sw.ElapsedMilliseconds <= 100)
                 SendKeys.Flush();
-            Stopwatch.Stop();
+            sw.Stop();
 
             var text = Clipboard.GetText().Trim();
             var textlen = text.Length;
             if (textlen == 0)
             {
-                EventLogger.LogNewEvent("Smart Copy Error: Nothing Selected in " + Stopwatch.ElapsedTicks + " ticks", EventLogLevel.Brief);
+                EventLogger.LogNewEvent("Smart Copy Error: Nothing Selected in " + sw.ElapsedTicks + " ticks", EventLogLevel.Brief);
                 Main.FadingToolTip.ShowandFade("Nothing selected");
                 return;
             }
@@ -602,7 +606,7 @@ namespace CallTracker.Helpers
                 SmartCopy(text);
             }
 
-            EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1} ticks", text, Stopwatch.ElapsedTicks));
+            EventLogger.LogNewEvent(String.Format("{0} copied from the clipboard in {1} ticks", text, sw.ElapsedTicks));
             if (!String.IsNullOrEmpty(oldClip))
                 Clipboard.SetText(oldClip);
 
@@ -733,28 +737,15 @@ namespace CallTracker.Helpers
         public static bool WaitForBrowserBusy()
         {
             EventLogger.LogAndSaveNewEvent("WaitForBrowserBusy Called", EventLogLevel.Status);
-            //var startWait = 5000;
-            //var now = DateTime.Now;
-            StopwatchTester.Reset();
-            StopwatchTester.Start();
+            var sw = new Stopwatch();//.Reset();
+            sw.Start();
             var ieBrowser = (IWebBrowser2)browser.InternetExplorer;
-            while (ieBrowser.Busy && StopwatchTester.ElapsedMilliseconds < 5000)
+            while (ieBrowser.Busy)
             {
-                //EventLogger.LogNewEvent("Checking if browser is busy", EventLogLevel.Status);
-                //if (!ieBrowser.Busy) break;
-                //{
-                //    //Thread.Sleep(200);
-                //    //Application.DoEvents();
-                //    //startWait -= 200;
-                //    //EventLogger.LogAndSaveNewEvent("Startwait: " + startWait, EventLogLevel.Status);
-                //}
-                //else
-                //    break;
+                if (sw.ElapsedMilliseconds > 5000) break;
             }
-            StopwatchTester.Stop();
-            var stillBusy = ieBrowser.Busy;
-            EventLogger.LogNewEvent("Browser busy: " + stillBusy + " in: " + StopwatchTester.ElapsedMilliseconds, EventLogLevel.Status);
-            return !stillBusy;
+            EventLogger.LogNewEvent(String.Format("Browser busy: {0} with: {1} ms remaining", ieBrowser.Busy, sw.ElapsedMilliseconds), EventLogLevel.Status);
+            return !ieBrowser.Busy;
         }
         
         public static bool GetActiveBrowser()

@@ -148,10 +148,15 @@ namespace CallTracker.Helpers
             {"DN", new DNPattern()},
             {"Mobile", new MobilePattern()},
             {"ICON", new ICONPattern()},
+            {"Username", new UsernamePattern()},
             {"AVC", CommonNBNPattern},
             {"CVC", CommonNBNPattern},
             {"CSA", CommonNBNPattern},
-            {"NNI", CommonNBNPattern}
+            {"NNI", CommonNBNPattern},
+            {"PRI", CommonNBNPattern},
+            {"APT", CommonNBNPattern},
+            {"INC", CommonNBNPattern},
+            {"GSID", new GSIDPattern()}  
         };
 
         public static List<string> GetLists(string[] lists, Type datasource)

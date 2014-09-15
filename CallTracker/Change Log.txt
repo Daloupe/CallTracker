@@ -1,4 +1,32 @@
-﻿0.9.3.17
+﻿0.9.4.16
+(Bugs/Changes)
+Misc:
+	| Add Save Data button.
+	| Moved "About Wingman" to the Wingman menu.
+	| Moved "Change Log" into the about window.
+	| Moved INC and APT to service so SmartCopy works.
+	| Booking Type wasn't update with position change.
+Monitor IPCC:
+	| Moved SetSettings() in to the Main_Shown method to try avoid IPCC trying to monitor too early and getting exceptions.
+Links:
+	| Fixed LogMeIn is overwriting other pages.
+	| EHB Search: Replaced spaces with '+'. Added \1 to end.
+GridLinks:
+	| Changed IETabActivator back to if(tab.LocationUrl.Contains(tabsUrl).
+AutoFill
+	| Added WaitForAsyncPostBackToComplete call in between ctl00_cphPage_tx_TruckRollStatus & ctl00_cphPage_tx_ScheduleStartTime.
+	| IQ SUMM comment showing as "IQ" not "IQ STB"
+AutoSearch
+	~ CMBS > IFMS.
+	| PR Context menu didn't have ItemClicked Event.
+	| Increased NSI Autosearch timeout to ensure it gets enough time.
+SmartPaste
+	| Added Username and NBN to Regex dictionary.
+	| CTI Dial Pad Smart paste now sends the keys directly instead of paste.
+SmartCopy
+	| Updated Address Regex so it fails quickly, rather than hanging the whole system.
+
+0.9.3.18
 (Minor Features)
 | Added IFMS Account Search and AutoSearch, Added PR AutoSearch.
 | Ctrl-Space opens the DataDrop window to allow typing in info > smartcopy.
@@ -10,6 +38,7 @@
 | Fixed Search DN and Mobile replace Regexes.
 | Confirmed AddressId, GSID, and ESN Regexes.
 | Added "EHB Search" field to Main Menu.
+| Added Help options to IPCC Monitor and AutoSearch Settings menus.
 GridLinks:
 	| Fixed GridLinks Search not searching.
 	/ WOBS Gridlinks still not switching tabs.

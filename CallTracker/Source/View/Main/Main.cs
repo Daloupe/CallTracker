@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -17,6 +18,7 @@ using TestStack.White.Configuration;
 using CallTracker.Model;
 using CallTracker.Helpers;
 using CallTracker.Properties;
+using Utilities.RegularExpressions;
 
 namespace CallTracker.View
 {
@@ -104,7 +106,7 @@ namespace CallTracker.View
         {
             InitializeComponent();
             _isStartingUp = true;
-            SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            //SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             
             _splash = splash;
             _splash.Init(this);
@@ -123,16 +125,6 @@ namespace CallTracker.View
             CoreAppXmlConfiguration.Instance.PopupTimeout= 5000;
             CoreAppXmlConfiguration.Instance.TooltipWaitTime = 5000;
         }
-
-        //protected override CreateParams CreateParams
-        //{
-        //    get
-        //    {
-        //        var cp = base.CreateParams;
-        //        cp.ExStyle |= 0x02000000;    // Turn on WS_EX_COMPOSITED
-        //        return cp;
-        //    }
-        //}
 
         private void SetAppLocation()
         {
@@ -167,10 +159,13 @@ namespace CallTracker.View
 
 
             EventLogger.LogNewEvent("Startup: Setting Date");
+            _DailyDataBindingSource.DataSource = DailyDataDataStore.DailyData;
+            //SelectedDate = ((DailyModel)_DailyDataBindingSource.Current);
+
             DateFilterItems = new BindingList<DateFilterItem>(DailyDataDataStore.DailyData.Select(x => x.Date).ToList());
+            
             DateBindingSource.DataSource = DateFilterItems;
             DateBindingSource.PositionChanged += _DateSelector_PositionChanged;
-            _DailyDataBindingSource.DataSource = DailyDataDataStore.DailyData;
             IsDifferentShift();
 
             Settings.Default.QuitProperly = false;
@@ -260,7 +255,7 @@ namespace CallTracker.View
             DidYouKnow = new DidYouKnow();
 
             _splash.UpdateProgress("Finishing", 99);
-            SetSettings();
+            SetVisualSettings();
 
             _splash.UpdateProgress("", 100);
             EventLogger.LogNewEvent("Finished Loading", EventLogLevel.ClearStatus);
@@ -272,13 +267,16 @@ namespace CallTracker.View
             EventLogger.SaveLog();
         }
 
-        private void SetSettings()
+
+        private void SetVisualSettings()
         {
             advancedModeToolStripMenuItem.Checked = Settings.Default.AdvancedMode;
 
             showStatusBarToolStripMenuItem.Checked = Settings.Default.ShowStatusBar;
             clearMessagesToolStripMenuItem.Checked = Settings.Default.WarningLevel;
-            
+        }
+        private void SetSettings()
+        {
             autoSearchEnabledToolStripMenuItem.Checked = Settings.Default.AutoSearch;
             autoSearchActiveWindowToolStripMenuItem.Checked = Settings.Default.AutoSearchIgnoreActiveWindow;
             newPageIfRequiredToolStripMenuItem.Checked = Settings.Default.AutoSearchOpenNew;       
@@ -296,6 +294,9 @@ namespace CallTracker.View
             _splash.Close();
             _splash.Dispose();
             _isStartingUp = false;
+
+            SetSettings();
+            
             //CancelLoad = false;
         }
 
@@ -357,13 +358,13 @@ namespace CallTracker.View
             get { return _visibleSetting; }
             set
             {
-               
+                //WindowHelper.SuspendDrawing(_ViewPanel);
                 // If the new view isn't null
                 if (value != null)
                 {
-                    statusStrip1.Hide();
                     Height = 257;
                     value.ShowSetting();
+                    statusStrip1.Hide();
                 }
                 else
                 {
@@ -389,7 +390,8 @@ namespace CallTracker.View
                 }
                 else
                     _visibleSetting = value;
-              
+
+               // WindowHelper.ResumeDrawing(_ViewPanel);
             }
         }
 
@@ -426,6 +428,34 @@ namespace CallTracker.View
             return findForm;
         }
 
+        private void saveDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ServicesStore.WriteData();
+            LoginsDataStore.WriteData();
+            BindsDataStore.WriteData();
+            EventLogger.SaveLog();
+        }
+
+        private void _EHBSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter) return;
+            if (!String.IsNullOrEmpty(_EHBSearch.Text))
+            {
+                var searchText = _EHBSearch.Text.Replace(' ', '+');
+                HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/", "Nexus",
+                    "http://nexus.optus.com.au/index.php?#search/" + searchText + "/1");
+            }
+        }
+
+        private void _EHBSearch_Leave(object sender, EventArgs e)
+        {
+            _EHBSearch.Text = String.Empty;
+        }
+
+
+
+
+
 
 
 
@@ -435,14 +465,18 @@ namespace CallTracker.View
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         void _DateSelector_PositionChanged(object sender, EventArgs e)
         {
+            //Console.WriteLine("_DateSelector_PositionChanged Called");
             //_DailyDataBindingSource.Filter = "Date = " + ((DateFilterItem)DateBindingSource.Current).LongDate;
             _DailyDataBindingSource.Position = DateBindingSource.Position;
             SelectedDate = ((DailyModel) _DailyDataBindingSource.Current);
             //_DailyDataBindingSource.IndexOf(DailyData.FirstOrDefault(x => x.Date == ((DateFilterItem)DateBindingSource.Current).LongDate));
         }
 
-
-
+        //void DateBindingSource_CurrentChanged(object sender, EventArgs e)
+        //{
+        //    _DailyDataBindingSource.Position = DateBindingSource.Position;
+        //    SelectedDate = ((DailyModel)_DailyDataBindingSource.Current);
+        //}
 
 
 
@@ -528,6 +562,25 @@ namespace CallTracker.View
             ShowPopupForm<EditSystems>();
         }
 
+        private void sMSHubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("http://zsolutions.optus.com.au/fmts_sms/", "CSA Touch-Point SMS Hub", "http://zsolutions.optus.com.au/fmts_sms/index.php?");
+        }
+
+        private void transfersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/", "Nexus", "http://nexus.optus.com.au/#ehb/8/ntk");
+        }
+
+        private void premiumHomeServicesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("https://optus.qk.com.au/", "PHS", "https://optus.qk.com.au/extranet/?action=home");
+        }
+
+        private void logMeInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE("https://secure.logmeinrescue.com", "LogMeIn Rescue", "https://secure.logmeinrescue.com/Account/Login");
+        }
         //private void OpenURL_Click(object sender, EventArgs e)
         //{
         //    UpdateMenuObject.newItem_Click(sender, e);
@@ -594,11 +647,12 @@ namespace CallTracker.View
         {
             // If Date is right, or Agent isn't logged out, then don't do anything.
             if (_DailyDataBindingSource.Count > 0)
-                if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today)// || _IPCCState.Text != Resources.IPCC_Unmonitored_String)
-                {return false;}
-
-
-
+                if (((DateFilterItem)DateBindingSource.Current).LongDate == DateTime.Today)
+                //if (((DailyModel) _DailyDataBindingSource.Current).Date.LongDate == DateTime.Today)// && !_isStartingUp)
+                //    // || _IPCCState.Text != Resources.IPCC_Unmonitored_String)
+                {
+                    return false;
+                }
 
             
             // If today doesnt exist, create it, otherwise change the day.
@@ -613,17 +667,19 @@ namespace CallTracker.View
                 if(Settings.Default.QuitProperly && !_isStartingUp)
                     File.Delete("Log.txt");
             }
-            else if (((DailyModel)_DailyDataBindingSource.Current).Date.LongDate != DateTime.Today)
+            else //if (((DateFilterItem)DateBindingSource.Current).LongDate != DateTime.Today)//((DailyModel) _DailyDataBindingSource.Current).Date.LongDate != DateTime.Today)
             {
-                DateBindingSource.Position = DateFilterItems.IndexOf(DateFilterItems.FirstOrDefault(x => x.LongDate == DateTime.Today));
+                DateBindingSource.Position =
+                    DateFilterItems.IndexOf(DateFilterItems.FirstOrDefault(x => x.LongDate == DateTime.Today));
                 //_DailyDataBindingSource.Position = DateBindingSource.Position;
 
                 if (Settings.Default.QuitProperly && !_isStartingUp)
                     File.Delete("Log.txt");
             }
-
-
-
+            //else
+            //{
+            //    DateBindingSource.Position = DateFilterItems.IndexOf(DateFilterItems.FirstOrDefault(x => x.LongDate == DateTime.Today));
+            //}
 
             // Archive and Delete
             var daysToDelete = new List<DailyModel>();
@@ -704,25 +760,45 @@ namespace CallTracker.View
         {
             Settings.Default.AdvancedMode = advancedModeToolStripMenuItem.Checked;
 
-            foreach (var control in settingsToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
-            {
-                ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
-            }
+            var controls = settingsToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>().ToList();
+            controls.AddRange(helpToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>());
+            controls.AddRange(_CallStateTime.DropDownItems.OfType<CTToolStripItem>());
+            controls.AddRange(autoSearchToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>());
+            controls.AddRange(iPCCMonitorToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>());
+            controls.AddRange(editContact._CallHistoryContextMenu.Items.OfType<CTToolStripItem>());
 
-            foreach (var control in helpToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
+            foreach (var control in controls.Where(control => control.Advanced))
             {
                 ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
             }
+            
+            //foreach (var control in settingsToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
+            //{
+            //    ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
+            //}
 
-            foreach (var control in _CallStateTime.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
-            {
-                ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
-            }
+            //foreach (var control in helpToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
+            //{
+            //    ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
+            //}
 
-            foreach (var control in editContact._CallHistoryContextMenu.Items.OfType<CTToolStripItem>().Where(control => control.Advanced))
-            {
-                ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
-            }
+            //foreach (var control in _CallStateTime.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
+            //{
+            //    ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
+            //}
+
+            //foreach (var control in editContact._CallHistoryContextMenu.Items.OfType<CTToolStripItem>().Where(control => control.Advanced))
+            //{
+            //    ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
+            //}
+            //foreach (var control in iPCCMonitorToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
+            //{
+            //    ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
+            //}
+            //foreach (var control in autoSearchToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
+            //{
+            //    ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
+            //}
 
             
         }
@@ -765,12 +841,6 @@ namespace CallTracker.View
         {
             EventLogger.SaveLog();
             Process.Start(@".\Log.txt");
-        }
-
-
-        private void changeLogToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Process.Start(@".\Change Log.txt");
         }
 
         private void _IPCCState_Click(object sender, EventArgs e)
@@ -818,38 +888,6 @@ namespace CallTracker.View
             }
             if (!monitorIPCCToolStripMenuItem.Checked && !_IPCCTimer.Enabled)
                 _IPCCTimer.Enabled = true;
-        }
-
-        private void _EHBSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.Enter) return;
-            if (!String.IsNullOrEmpty(_EHBSearch.Text))
-                HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/index.php?#search/", "Nexus", "http://nexus.optus.com.au/index.php?#search/" + _EHBSearch.Text);
-        }
-
-        private void _EHBSearch_Leave(object sender, EventArgs e)
-        {
-            _EHBSearch.Text = String.Empty;
-        }
-
-        private void sMSHubToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            HotkeyController.NavigateOrNewIE("http://zsolutions.optus.com.au/fmts_sms/index.php?", "SMS", "http://zsolutions.optus.com.au/fmts_sms/index.php?");
-        }
-
-        private void transfersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            HotkeyController.NavigateOrNewIE("http://nexus.optus.com.au/", "Nexus", "http://nexus.optus.com.au/#ehb/8/ntk");
-        }
-
-        private void premiumHomeServicesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            HotkeyController.NavigateOrNewIE("https://optus.qk.com.au/", "PHS", "https://optus.qk.com.au/extranet/?action=home");
-        }
-
-        private void logMeInToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            HotkeyController.NavigateOrNewIE("https://secure.logmeinrescue.com", "Log Me In", "https://secure.logmeinrescue.com/Account/Login");
         }
 
     }

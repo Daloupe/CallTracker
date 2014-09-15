@@ -200,7 +200,7 @@ namespace CallTracker.View
             // richTextBox1
             // 
             this.richTextBox1.AutoWordSelection = true;
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(103)))), ((int)(((byte)(129)))));
+            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(143)))), ((int)(((byte)(169)))));
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -359,7 +359,6 @@ namespace CallTracker.View
             this.ClientSize = new System.Drawing.Size(414, 238);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
-            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MainMenuStrip = this.menuStrip1;

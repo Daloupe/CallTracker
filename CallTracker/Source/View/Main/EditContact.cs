@@ -26,7 +26,7 @@ namespace CallTracker.View
             InitializeComponent();
             SetSettings();
             Application.AddMessageFilter(this);
-            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer, true);
 
             MainForm = mainform;
             Location = MainForm.ControlOffset;
@@ -62,17 +62,25 @@ namespace CallTracker.View
             return false;
         }
 
-        
-
         //protected override CreateParams CreateParams
         //{
         //    get
         //    {
-        //        CreateParams cp = base.CreateParams;
-        //        cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
-        //        return cp;
+        //        var parms = base.CreateParams;
+        //        parms.Style &= ~0x02000000;  // Turn off WS_CLIPCHILDREN
+        //        return parms;
         //    }
         //}
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;  // Turn on WS_EX_COMPOSITED
+                return cp;
+            }
+        }
 
         private void SetSettings()
         {
@@ -118,6 +126,10 @@ namespace CallTracker.View
                 return;
             WindowHelper.SuspendDrawing(this);
             _isChangingDays = true;
+
+            //MainForm._DailyDataBindingSource.Position = DateBindingSource.Position;
+            MainForm.SelectedDate = ((DailyModel)MainForm._DailyDataBindingSource.Current);
+
             if (((DailyModel) MainForm._DailyDataBindingSource.Current).Contacts.Count < 2)
             {
                 
@@ -191,6 +203,7 @@ namespace CallTracker.View
 
                 _NoteContextMenuStrip.Items[0].PerformClick();
                 _BookingDate.BindDatePickerBox(customerContactsBindingSource);
+                _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)).Cast<BookingType>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
                 _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
 
                 UpdateCurrentPanel();

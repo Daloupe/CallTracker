@@ -1,0 +1,606 @@
+﻿0.9.3.18
+(Minor Features)
+| Added IFMS Account Search and AutoSearch, Added PR AutoSearch.
+| Ctrl-Space opens the DataDrop window to allow typing in info > smartcopy.
+(Bugs/Changes)
+| Added an exception logger.
+| Tips and DataDrop window positions saved.
+| Full NBN scrape working.
+| Added setting "QuitProperly" to prevent log from deleting if wingman quit with an exception.
+| Fixed Search DN and Mobile replace Regexes.
+| Confirmed AddressId, GSID, and ESN Regexes.
+| Added "EHB Search" field to Main Menu.
+| Added Help options to IPCC Monitor and AutoSearch Settings menus.
+GridLinks:
+	| Fixed GridLinks Search not searching.
+	/ WOBS Gridlinks still not switching tabs.
+		| Changed IETabActivator to if(tab.LocationUrl == tabsUrl) instead of if(tab.LocationUrl.Contains(tabsUrl)).
+AutoFill:
+	| ICON AutoFill needs to happen before note field is filled to prevent it from being overwritten.
+	| SmartCopy PR on IFMS Create Autofill.
+Visual:
+	- CauPing Align text to right.
+	| Right Align _IPCCState Text.
+SmartPaste:
+	| Added SmartPaste Bind option "AutoFill" to avoid autofilling some elements.
+	| Binds Skip Constructor on Deserialization.
+	~ Username showing as lower, but pasting as upper?
+AutoSearch
+	| AVC only paritially copied into NSI search.
+	| Prevented Call Data Grab of Caller ID from triggering AutoSearch if Service Number isn't null.
+	/ DIMPS mac field: c8:91:f9:b7:0a:af / Unknown. Split at / for modem.
+	- Copying in 0397346689 froze the system just after CMBS copy.
+	/ Full NBN AutoSearch wont happen on first call after starting wingman.
+		~ Should see ""AutoSearching DIMPS " + _dimpsSearching + " Mode: " + mode" in the log if events are getting down enough.
+
+
+0.9.1.0
+(Minor Features)
+| Added rough code for DIMPS scrape and NSI search.
+
+0.9.0.14
+(Major Features)
+| IPCC Data Pull working.
+(Bugs/Changes)
+| ICON AutoFill working.
+| IFMS AutoFill working.
+| Report Bug working.
+| IPCCTimer showing as red when in NR or Wrapup.
+| MAD DN Smart Paste Regex updated to 0$2$3$4.
+| MAD Smart Paste is quick.
+| Avoided excessive reflection by FindProperty on PRGenerate.
+| Added "IPCC Monitor" Settings item.
+	| Added "Enable IPCC Monitor on Startup" option 
+	| Moved "Auto New Call" and "Pull Call Data" options to this menu.
+| "New Call" option marked as Advanced.
+/ Call History Done isn't retriggering Affected Services properly. Can't replicate.
+| Moved IPCC methods to another partial declaration of Main.
+| Changing Date while still logged in should still apply event to original date.
+| Added "View Change Log" option to "Help" menu.
+
+0.8.4.15
+(Bugs/Changes)
+| Font on stats view and splash screen
+| Colour of stats view default numbers.
+X Darkened Tips main panel background to make "Example" more readable.
+| Changed Tips Link backcolor to try make more readable.
+| Binding Not working when contacts saved without any actual contacts. Initialized Contacts before deserialization.
+| Modified ICONAutoFill to use new method WaitForAsyncPostBackToComplete() and also set focus on each drop down.
+| Added a list.Options.Count Timer to wait while list is empty.
+| Replaced WaitForBrowserBusy with WaitForAsyncPostBackToComplete() calls in Paste method.
+| Added Win-G hotkey do do an IFMSAutoFill test.
+| Updated AutomationTester table finder with a try/catch block. Also a second version which just tries to get values from selected columns, without looping through them all.
+| Updated Tab Indexes.
+| Fixed PRTemplates not re-generating when Outcome was changed.
+| Added some Troubleshooting options to the _TSPanel.
+| Fixed abilty to delete Bookmarks and Systems.
+| Added basic DIMPS autosearch logic.
+| Updated Log.txt path for Bug Report.
+
+0.8.3.30
+(Minor Feature)
+| Added "Advanced Mode" settings item.
+(Bugs/Changes)
+| Tips Popup:
+	| Added Close button to Example section.
+	| Offset Tips clsoe button.
+	| Corrected Font size to 18pt.
+| Regexes:
+	| Made a few Regexes Explicit Capture.
+	| Added <DN> Group to DN which captures the whole DN.
+	| Moved UsernameUpper and Lower into a single Regex.
+	| CMBS
+		| Added ^$ tags to avoid misreading an ICON number.
+		| Added conditionals to allow 1123456070 and 1123456007 to both read as 31123456 7.
+		| Improved Address2 to properly capture address.
+| Fixed IsDifferentShift() to accomodate _IPCCState.text is now "Not Monitoring IPCC" isn't of empty.
+| Made CallStateTimer more accurate by DateTime.Now - dailyData.Events.LastCallEvent.Timestamp instead of adding timer interval, which may not be accurate.
+| Changed DataGrab code to copy code from AutomationTester.
+| Changed LabelledBase Context Menu Button Cursor to Hand.
+| Clicking on _IPCCState will open _CallStateTime dropdown.
+| Added bug icon to "Report Bug".
+| Updated Relevant "Smart paste bind" and "Database View" slide to reflect the need for advanced mode.
+| Removed Quit button from Splash Screen.
+| Fixed PRTemplate not updating properly.
+| PRTemplate and ICONNotes are generated no more than once per 25ms.
+| Added AutoSearch Logic for checking if system search failed.
+| AutoLogin wasn't working. Removed "http" bit from FindIEByUrl Regex.
+| Moved Logins to their own file.
+| LabelledTextBoxLong now correctly only fires events if set to OnPropertyChange.
+| Fixed spurious RecordCreated events form being created.
+| Caught Outlook not found exception and created error message.
+| Equipment is copies properly with Smart Copy.
+| Updated HotkeyManager to release its hotkeys before it triggers it's method.
+| Added "Paste by SendKeys" options to Binds.
+| Fixed Daily stats.
+| Improved look of Daily Stats.
+| Smoothed Servce Panel Changes.
+
+
+0.8.2.20
+(Major Features)
+| MAD Smart Paste working.
+	| Tried caching Edit to speed it up. May not work as Edit changes.
+| Added IPCC Call Data Grab code.
+| Added WaitWhileBrowserBusy method to HotkeyController to try accomodate for ICON drop down changes.
+(Bugs/Changes)
+| Changed Smart Copy Timer threshold to 3400 ticks. (still copied after 47000 ticks?)
+	| Changed again to 50ms(500000ticks).
+| Fixed IPCC monitor not displaying.
+| Reorder Username smart copy to allow for NBN grab.
+| FireChange also calls WaitWhileBrowserBusy.
+| Added more Regexes to FindProperty.
+| Fixed GridLinks Code search where it was activating system, but not searching.
+| Switched GridLinks show arg to SW_SHOWNORMAL instead of SW_RESTORE.
+| Replaced OnAction events with EventLogger.LogNewEvent().
+| Updated IP Regex to allow 1.192.3.34;
+| Changed IP Regex to be more specific.
+| Changed CMBS Regex to properly copy 1808173010 as 31808173 1 instead of 31808173 0.
+| CHanged Bug report item directory to @".\Log.txt".
+| Fixed AutoSearch not searchign any but DN.
+| Added Smartpaste logic for CTI Dial Pad.
+| IPCC Status displays "Not Monitoring IPCC".
+| Severity now setting. But not throuhg binds.
+/ May have fixed softact binding error.
+/ Handling Time and LogIn Time weren't +=. Should be fixed!
+| Fixed Issue with Deleting Rows in CallHistory.
+| IPCC data grab goes through columns backwards to ensure Svc no. is Autosearched before Caller Id.
+| Autosearch wont search DN in scamps or dimps if product is known as LAT.
+
+0.7.7.1
+(Minor Features)
+| .dlls are embedded in the .exe.
+(Bugs/Changes)
+| Selecting product from resource menu wasn't giving focus back properly.
+
+0.7.6.16
+(Minor Features)
+| Created Report Bug popup which sends email with log and bug text.
+| Added OPOM smart copy.
+(Bugs/Changes)
+| Smart Function enumerate query straight to list to avoid repeating the LINQ operation.
+| Added EventLogs to ICONAutoFill.
+| Added EventLogs to IFMSAutoFill.
+| Added AppEventType BindSmartPaste.
+| PasteBinds
+	| Added "Fire OnChange" and "Fire OnChange No Wait" option.
+	| Added all current AltData to Data.
+	| Sped Up .Paste by caching the generated method.
+| Adjusted Dial Code to find the window within _ipccApplication instead of _ipccWindow. Also added a wait while busy.
+| Tips
+	| Created Overview Tips panel.
+	| Added Color Parsing.
+	| Examples can be clicked without window having focus.
+	| currentExample is reset when changing slides.
+	| Changing Tips scrolls back to the top.
+| Made 48x48 sized icon.
+| Cleaned unused using directives.
+
+0.7.4.6
+(Minor Features)
+| SplitPanel now receives mousewheel messages properly, without needing to attach lots of events.
+(Bugs/Changes)
+| Fixed Tips panel not reopening.
+| Calls are archived after 7 days, leaving only symptom, action, outcome, note, affeceted service and call events.
+| Calls are deleted completly after 31 days.
+| Updated Tips.
+| Fading Tooltip doesnt activate or take mouse clicks.
+| SIP wasn't updating with DN grab. Manually updating object with nested change events.
+| Sped up Smart Paste ~80x by using browser.ActiveElement.SetProperty("value", data) rather then refinding through DOM.
+
+
+0.7.3.13
+(Minor Features)
+| Added Example windows to tips, hyperlinked example text.
+| Tip position saves with settings.
+(Bugs/Changes)
+| Tips 
+	| Removed SubHeading.
+	| Example section fold away.
+| Pressing ESC on BindSmartPasteForm Saves, rather than deleting.
+| 1123456076 from doesn't work.
+| Added Text formatting to PRtemplates.
+| Reduced Event Count.
+| Added GSID data and temp Regex.
+| Added IDok, Modem Status, and RFIssues to ICON Note Generator.
+| Note reverts to black.
+| Added reset of Tip Slides.
+| Enabled Tip mouse wheel scrolling.
+| Clicking example again closes it.
+| Suspended redraws on Day change and contact change.
+
+0.7.1.0
+(Major Features)
+| Created "Did You Know?" startup screen.
+(Minor Features)
+| Added RTF formatting.
+
+0.6.1.1
+(Minor Features)
+| Added methods for storing app events.
+(Bugs/Changes)
+| Fixed crash when viewing stats with 0 calls.
+
+0.6.0.0
+(Major Features)
+| Created Daily Stats view. Stats will be skewed if rep uses New Call Option. Not Ready will be a little skewed unless logged out.
+
+0.5.4.9
+(Minor Features)
+| Smart Paste changes:
+	| Removed 'Alt Data' combo from from. Made 'Data' a textfield. Changed 'Url' from textfield to textbox.
+	| '^' signifies context eg product specific: ^LATDN^ONCUsername.
+	| ',' signfies alternate data: ^LATDN,Username,Mobile^ONCUsername,DN,Mobile.
+	| Added "Help" button which opens up a text document with Smart Paste Reference.
+(Bugs/Changes)
+| Changed PRTemplates generate code to make question replacement more readable by using LINQ instead of a foreach loop.
+| Replacement questions are now cleared when "Outage" is no longer selected.
+| Change Booking type to NRQ on outage, properly reset item.
+| Updates GridLinks Search Items to use Context, rather than string[].
+| Added parent.SelectedContact null check to each relevant HotkeyController method.
+| EventLogger.LogAndSaveNewEvent will add event to list, then initiate a save.
+| Equipment field wasn't saving again. Made ComboBox active = false until rebinding was complete.
+| Fixed IPCC Monitoring not working. _CallStateTime_DropDownItemClicked wasn't checking if clicked item was the monitor button.
+
+0.5.1.2
+(Minor Features)
+| Added Auto Search Option "Open Page If Required" to create new IE i system can't be found.
+(Bugs/Changes)
+| Created a wingman icon.
+| Moved AutoSearch Options into a dropdown.
+| IgnoreActiveWindow wasn't searching if any of the tabs in a window matched. Using Title instead of HWND now.
+! Somethign about creating new IE windows.
+
+0.5.0.1
+(Major Features)
+| Created basic Call and Daily Stats system.
+
+(0.4.4.4)
+(* Added MyPanel class to better deal with double buffering and redraws.)
+(* Modified ToolStrip class to allow more customization.)
+
+0.4.4.3
+(Minor Features)
+| Added IsLetter and IsDigit Extensions to string to get quicker detection over Regex in smart copy method.
+(Bugs/Changes)
+| Changed FindIEByUrl to AttachNoWait to avoid timeouts.
+| Set bindingSource in callhistory to main bindingsource, rather than just the datasource.
+| EventLogger now only writes when Contact is changed, or form is closing.
+
+0.4.3.0
+(Minor Features)
+| Added About Screen.
+
+0.4.2.3
+(Major Features)
+| Search context menus added.
+(Minor Features)
+| Auto Search added. The 6 searchable systems are searched once at most by the first type of data that is able. 
+| Added option to not Auto Search on Active Window.
+| Added GridLinks Search - Win-Ctrl-Numpad.
+| Added DataTypes: Modem IP address, NTD Serial number, Address ID(LIP), ESN(LAT) and guessed at Regexes.
+(Bugs/Changes)
+| Splash Screen doesnt show in taskbar.
+| Fixed a derserialization issue by setting WasSearched list to OverwriteList = true, skipping the constructer on other classes that used other types of lists and added a ProtoBeforeDeserialization attirbute to initialize them.
+| Adjusted Auto tesing to try capture ipcc table data.
+
+
+0.3.11.0
+(Minor Features)
+| Added MAC Regex.
+
+0.3.9.4
+(Minor Features)
+| Smart Copy sets _Equipmnet by checking if _Equipment.Items contains input.
+/ Equipment Context Menu with guides and simulators.
+(Bugs/Changes)
+| Moved Equipment combo to service panel.
+| Fixed problems with drop downs filling other records if empty. Combo Boxes now nullable.
+
+0.3.7.5
+(Bugs/Changes)
+| Fixed custom font code. PFC a class variable. Only load if File.Exists.
+| Pull Data from IPCC setting isn't saving.
+| Floating ToolTip working. May need to have control box = true.
+| Reduced Smart Copy Flush Timeout to .5sec;
+/ Application not quitting properly/RAM fluctuating
+	/ Dispose of Process objects without quitting connected program?
+	/ Dispose of Browser object?
+	/ Dispose of IPCC and MAD processes, and other automation items.
+
+
+0.3.6.7
+/ Fixed MAD Smart Paste. (May need to take window height into account for systems that use different visual style)
+
+0.3.6.6
+| Added Automation Tester
+
+0.3.6.5
+| IPCC data grid pull option added to call history menu.
+| Added Resources.bin and UserData.bin to repo.
+| TestStack.White timeouts reduced to 2 seconds. 
+| Chanegd Tooltip Text to White.
+
+0.3.6.4
+| Updated Dial Pad Code
+| Started Test Code.
+
+0.3.6.0
+| Added DailyData model to house contacts and keep statistics.
+| Symptom PropertyName was set to Fault.Outcome.
+- Sorting callhistroy datagridview prevents delete key from working, backspace still seems to work though....
+
+0.3.5.1
+| Clear History playign up again.
+| Outcoem saving as symptom?
+- Resources are now saved on settings close.
+- Affected service is ding strange things on reload. Perhaps the filter changes the order.
+- Contact count resets on first IPCC login for the day, data saves on the last logout.
+
+0.3.5.0
+| Contacts moved to their own file Contacts.bin. Data.bin renamed UserData.bin.
+| Added date filter to CallHistory.
+
+0.3.4.4
+| Seperated Contacts and Userdata.
+
+0.3.4.3
+| Optus Font used on splash screen even if not installed.
+| Added Clear Call History to CallHistory Context Menu.
+| Login Passwords now loading correctly.
+
+0.3.4.2
+| Entered guesswork code for Call Details pull.
+| Entered guesswork code for dial pad fill.
+| Added Flag As Important and ID OK Checkboxes.
+| Fixed Tooltips on main data.
+| TextFields SelectAll on focus.
+| Fixed Outcome and Action binds.
+| Contacts are re-sorted by date on callhistory close.
+
+0.3.4.1
+| Floating Tooltip now functioning.
+| Auto New Call triggers if previous state contains "Reserved".
+| Cleaned unused references.
+| Moved Smart Copy logic in to methods on the model.
+| Smart Copy preserves original clipboard buffer.
+
+0.3.4.0
+| Started conversion of contacts model to entity framwork.
+| Started Floating ToolTip.
+| Fixed IPCC Monitor toggle.
+
+0.33.2
+| Changed bining method.
+
+0.33.1
+| Stopped contextmenus from showing during load.
+| Made Context Menu Arrows more visible.
+| Roughed out Dial or Transfer method and connected context menus.
+| Experimented with fading tooltip.
+| Clear red selected affected service.
+| PR generate not working.
+
+0.33.0
+| Seperated Outcome to CallType and Outcome dropdowns.
+| Outcome drop down resets on each new call.
+| Copy All Selects the text.
+| PRGenerator static class made.
+
+0.32.3
+| Replaced Service Panels with a single panel that hides and shows appropriate controls.
+| Added PRI, APT, Sip to servicemodel.
+| Equipment changes create excpetion.
+| Fixed ITCase, booking date binds.
+| Gridlinks now longer opens a new window if match found.
+| Fixed Name and CMBS Regexes.
+| Progressbar now used as CallState traffic light with overlayed timer.
+| CallState change to talking pulls info from IPCC.
+| Added Splash Screen.
+/ Change colour scheme to match branding.
+| SIP is set from address state.
+| New Call is automatically trigger when CallState changes from Ready to Talking.
+| Auto New Call option added to settings.
+| Added context menu with ID ok options to Name Field.
+| Setup popup when change of user detected.
+| Added Menu Hint to Call Navigation.
+
+
+
+0.32.2
+- Selecting ARO changed Booking type to NRQ, but this isn't flowing throuhg to the data object.
+	- ModifiedChanged event?
+- Silent Auto Searches.
+- Manually added Dispatch and NIM tooltips.
+- Contextmenu buttons on DTV headers?
+- Getting an exception when changing DTV equipment.
+
+0.32.1
+| Added Systems contextual menu item.
+| Systems and Bookmarks now set parent as dirty when new rows added, or values changed.
+| SelectedService dropdown now matches Affeceted service.
+| Systems and Bookmarks create new IE page.
+| DN/Username contextmenu now searches scamps.
+| SearchSystem Contextmenu option.
+	| AttachOrCreate IE
+	| Find binds matching url, element, submit element.
+	| Trigger.
+| Fixed view logic to resize window whether or not status bar is hidden.
+
+0.32.0
+| Added Edit Bookmarks popup.
+| Bookmarks menu items now update based on service type.
+| Edit Bookmarks now properly bind to the selecetd service type.
+
+0.31.2
+| Implemented MAD smart paste.
+| Updated Ratecode View. Inserted all 3 products.
+| Removed Resources Repository.
+
+0.31.1
+| Implemented PR Template Generation.
+| Split State and Postcode from the Address field.
+| Added State table to reference State identifiers.
+| State field is prefilled when CMBS or DN is smart copied. Address copies after the fact only overwrite, not erase.
+| Changed Mob and DN Regex groups - the 0/61 is dropped.
+| Expanded CMBS regex to include 11234567008 style.
+| Changed LabelledComboboxLong to use dropdown instead of dropdownlist. Onfocus loss, values are matched against data source.
+| ARO select NQR for booking type.
+
+0.31.0
+| Implemented IPCCMonitoring.
+| Replaced login encryption Environment.Username with Jesse Poulton
+| Outcome column in Call history now sortable, Date and Time concatenated into a single column.
+| Symptom will now select when product chanegs to different symptom codes.
+| Severity updates properly again.
+| Updated bind and autologin log to pikc match is the pages url or title contains a match.
+| Booking.GetIFMSDate should output dd/mm/yyyy hh:mm:ss.
+| Updated Name Regex to recognize a middle initial. Accessed via NameSplit.Initial.
+| Address Regex should now be able to deal with some extra spacing.
+| Symptom can be returned as "NDT - No Dial Tone" via Fault.SymptomFull.
+| Binding Source position decrements when the current call is deleetd from call history.
+
+0.30.5
+| Work Ready timer background changes color.
+| ParentForm.Validate on all labelledcontrols.
+| Adding BindingNavigatorIgnoreFocus.
+| Work Ready Timer resets properly.
+| Removed Ratecode search menu item.
+| Fixed Contol text color.
+| Added skeleton for IPCC Monitoring.
+
+0.30.4
+| Changed DataField Label color when populated with data.
+| /bin files moved to their own Data folder.
+| Added Work Ready Timer.
+
+0.30.3
+| Severity Should be being selected by default.
+| Fixed Outcome tooltip. - now attaches correctly to _Outcome._ComboBox.
+| LabelledBase heading now white.
+| ICON field property linked.
+| Fixed drop down binds.
+| Symptom not saving when product is changed.
+| Ratecodes gets focus on open.
+| Deleting Call History won't crash - a new call is made.
+| Note filed resets to Note instead of ICON note on new call.
+| IPCC offsets read from file.
+| Reconnected Context menus.
+	| Fixed Dial Menu logic.
+| Updated LAT and DTV panels with new controls.
+| Changed Colour Scheme.
+
+0.30.2
+| Othr gui stuff.
+
+0.30.1
+| Improved new Texfield and Combo boxes.
+| Combo boxes now give focus back to parent.
+| Replced gui elements
+| Mouse wheel now moves the Splitter at the rate of one row;
+- Check Symptoms are bidning properly.
+
+0.30.0
+| Fixed timing issues with left click context menu.
+| Fixed binding issues with context menu.
+	
+0.29.13
+| Added context menu to Next Call to select default product.
+| Created new controls for input fields.
+
+0.29.12
+| Fixed a big that was deleting data. Services.bin has to be loaded before other data files.
+
+0.29.11
+| Application no longer requires focus to send clicks.
+/ Attempted to fix need to sometimes press smart copy twice. Using Application.DoEvents() after sendkeys to try push message throuhg. Also SendKeys.Flush().
+	- Try waiting till clipboard has information. May need to clear it first, and store previous info.
+| Gridlinks will restore minimized windows.
+| AutoFill will now look for ICON.
+| Status bar level can now be set.
+| Changed IPCC Offsets.
+
+0.29.10
+| Moved View creation and initiliazation to onload to try get the program to display as quick as possible.
+| Moved serviceview initialization to it's own method, which is only called the first time the view is actually used.
+| Moved progress bar from binding navigator to status bar.
+| Changed progressbar events to send event logs.
+| Gridlinks will now maximize any match found.
+| Reduced WaTin Timeouts.
+| CreateNewIE no longer tries to attach browser to the object.
+
+0.29.9
+| Added Outcome field to CallHistory datagridview.
+| Added the CellClicked event from DatabaseView to other views that have datagridviews set to EditOnEvent.
+| Turned off "Unable to find window" msgboxes in HotkeyControllers, as they don't pop in front and make binding annoying.
+| Changed IFMS and ICON autofills to Find.ById instead of ByName.
+| DatabseView datagrid now set to RowHeaderSelect to prevent the entire row being copied when trying to copy a single cell.
+| Added Copy item to _Note context menu.
+| ICONNote is readonly(as changes wouldn't reflect in a smart paste anyway).
+| ICON Regex defines second group as last 6 digits.
+| Added Status Bar.
+| Added EventLogger model.
+
+- Hopefully smart paste will only need 1 press.
+- Shouldn't need to click twice on the application to open menus.
+- Shouldn't get those pop ups when trying to bind.
+- "Copy" is now in the right click menu for the Note field.
+- Open ICON search, and bind the Account field. Type CMBS|{1}{2}0{3} into the data field instead of select CMBS from the dropdown. Now even if you have 31-123456-7 the CMBS box, it will paste 3112345607. You can use CMBS|{1}{2} {3} for the IFMS account search field.
+
+
+0.29.8
+| Fixed crash caused by selecting a transfer while service was still NONE.
+| Added Equipment Statuses to database.
+| Added Tooltip to display hotkeys for Datapastes (DN, Mobile etc).
+
+0.28.7
+| Created ICONAutoFill.
+
+0.28.6
+| ServiceViews now utilzies the database.
+| Hooked up Equipment and other EditContacts drop downs.
+| Added Row change events to Panels.
+
+0.28.5
+| Fixed Transfer/Window selection bug.
+| Sending Ctrl before Ctrl-C on Smart Copy.
+| Removed PreviousIEMatch checks
+	| browser object nulls after every FindIEbyX call.
+| New Calls are no longer created on open.
+| Fixed Name display in Call History - DataPropertyName couldn't be set to Name.Full, so additional value created in CustomerContact class.
+| Prevented Call history from wigging out when datasource has no members.
+| ICON Note Generator now working for all service types.
+	| ICON symptoms pulled from database;
+| ICON Regex
+	| Last 5 digits now as seperate group.
+	| Fixed ICON smartcopy going to CMBS - Added \b to first CMBS group.
+| ITCase added.
+	| Regex
+	| EditContacts field in the Fault Panel.
+	| CustomerContact Model.
+| Fault.ProblemStyle switched with Fault.ProductCode.
+| Added IFMS Autofill.
+
+0.28.4
+| Updated Database with correct relations.
+| Created ContextualToolTipMenuItem type which has an Update method to changes it's items based on whether it's dirty or not.
+| Created UpdateObject TransferMenuItem and updated query code to reflect database changes - no joins, just a simple query.
+
+0.28.3
+| Added PR Context Menu.
+| Added Call Navigation Context Menu to bring up Call History.
+
+0.28.2
+| Changes to Name weren't updating ICONNote.
+| Updated help to include info on how ot use regex replace with numbers. eg $1${2}0$3.
+
+0.28.1
+| Most DataGrids now edit fields on click, rather than double click.
+| Name is it's own class with First, Last, and Full as fields.
+| Named Regexes from HotkeyController are now public static in their relevant models rather than created new on each smartcopy.
+
+0.27.8
+| Update database editor to replace id's on match tables.
+| Refactored database editor's column updating code.
+| Put States and Streets into Database.
+| "+" can be used in PasteBind Data field to indicate concatenation of 2+ data sources seperated with a space. EG "CMBS|$1$2 $3 +Mobile|61$2"

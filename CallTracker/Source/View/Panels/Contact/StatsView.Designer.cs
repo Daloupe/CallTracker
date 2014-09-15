@@ -1372,7 +1372,6 @@
             this.Controls.Add(this._StatsPanel);
             this.Controls.Add(this._DateSelect);
             this.Controls.Add(this._Title);
-            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Verdana", 7F);
             this.Name = "StatsView";
             this.Padding = new System.Windows.Forms.Padding(2, 3, 2, 2);

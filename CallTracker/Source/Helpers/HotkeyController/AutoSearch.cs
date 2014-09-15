@@ -42,7 +42,7 @@ namespace CallTracker.Helpers
                         _dimpsTimer.Stop();
                     else
                     {
-                        _dimpsTimer = new Timer(1000) { SynchronizingObject = parent };
+                        _dimpsTimer = new Timer(1500) { SynchronizingObject = parent };
                         _dimpsTimer.Elapsed += DimpsTimerElapsed;
                     }
                     break;
@@ -52,7 +52,7 @@ namespace CallTracker.Helpers
                         _nsiTimer.Stop();
                     else
                     {
-                        _nsiTimer = new Timer(1000) { SynchronizingObject = parent };
+                        _nsiTimer = new Timer(2000) { SynchronizingObject = parent };
                         _nsiTimer.Elapsed += NsiTimerElapsed;
                     }
                     break;
@@ -82,37 +82,34 @@ namespace CallTracker.Helpers
                 outcome = true;
             }
 
-            if (outcome)
+            if (!outcome) return false;
+
+            switch (title)
             {
-                switch (title)
-                {
-                    case "SCAMPS":
-                        EventLogger.LogNewEvent(Environment.NewLine + "SCAMPS AutoSearch Starting: " + search, EventLogLevel.Brief);
-                        _scampsBrowser = browser;
-                        _scampsSearchStarted = DateTime.Now;
-                        _scampsTimer.Start();
-                        break;
-                    case "DIMPS":
-                        EventLogger.LogNewEvent(Environment.NewLine + "DIMPS AutoSearch Starting: " + search, EventLogLevel.Brief);
-                        _dimpsBrowser = browser;
-                        _dimpsSearchStarted = DateTime.Now;
-                        _dimpsTimer.Start();
-                        break;
-                    case "NSI":
-                        EventLogger.LogNewEvent(Environment.NewLine + "NSI AutoSearch Starting: " + search, EventLogLevel.Brief);
-                        _nsiBrowser = browser;
-                        _nsiSearchStarted = DateTime.Now;
-                        _nsiTimer.Start();
-                        break;
-                    default:
-                        if (browser != null)
-                            browser.Dispose();
-                        break;
-                }
+                case "SCAMPS":
+                    EventLogger.LogNewEvent(Environment.NewLine + "SCAMPS AutoSearch Starting: " + search, EventLogLevel.Brief);
+                    _scampsBrowser = browser;
+                    _scampsSearchStarted = DateTime.Now;
+                    _scampsTimer.Start();
+                    break;
+                case "DIMPS":
+                    EventLogger.LogNewEvent(Environment.NewLine + "DIMPS AutoSearch Starting: " + search, EventLogLevel.Brief);
+                    _dimpsBrowser = browser;
+                    _dimpsSearchStarted = DateTime.Now;
+                    _dimpsTimer.Start();
+                    break;
+                case "NSI":
+                    EventLogger.LogNewEvent(Environment.NewLine + "NSI AutoSearch Starting: " + search, EventLogLevel.Brief);
+                    _nsiBrowser = browser;
+                    _nsiSearchStarted = DateTime.Now;
+                    _nsiTimer.Start();
+                    break;
+                default:
+                    if (browser != null)
+                        browser.Dispose();
+                    break;
             }
-
-
-            return outcome;
+            return true;
         }
 
 
@@ -189,12 +186,12 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private static Timer _scampsTimer;
         private static IE _scampsBrowser;
-        private static string _scampsSearching;
+        private static String _scampsSearching;
         private static DateTime _scampsSearchStarted;
 
         private static void ScampsTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            if ((e.SignalTime - _scampsSearchStarted).TotalSeconds > 5)
+            if ((e.SignalTime - _scampsSearchStarted).TotalSeconds > 10)
             {
                 if (_scampsBrowser != null)
                 {
@@ -255,7 +252,7 @@ namespace CallTracker.Helpers
             _scampsBrowser = null;
             _scampsTimer.Dispose();
             _scampsTimer = null;
-            _scampsSearching = string.Empty;
+            _scampsSearching = null;
         }
 
 
@@ -270,12 +267,12 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private static Timer _dimpsTimer;
         private static IE _dimpsBrowser;
-        private static string _dimpsSearching;
+        private static String _dimpsSearching;
         private static DateTime _dimpsSearchStarted;
 
         private static void DimpsTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            if ((e.SignalTime - _dimpsSearchStarted).TotalSeconds > 5)
+            if ((e.SignalTime - _dimpsSearchStarted).TotalSeconds > 10)
             {
                 if (_dimpsBrowser != null)
                 {
@@ -302,8 +299,8 @@ namespace CallTracker.Helpers
 
             var contact = parent.SelectedContact;
 
-            try
-            {
+            //try
+            //{
                 if (_dimpsBrowser.Url == "https://dimps.optusnet.com.au/search.html")
                 {
                     switch (_dimpsSearching)
@@ -399,17 +396,17 @@ namespace CallTracker.Helpers
                             contact.FindCMBSMatch(value);
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                EventLogger.LogAndSaveNewEvent("AutoSearching DIMPS " + _dimpsSearching + " Error: " + ex.Message, EventLogLevel.Status);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    EventLogger.LogAndSaveNewEvent("AutoSearching DIMPS " + _dimpsSearching + " Error: " + ex.Message, EventLogLevel.Status);
+            //}
 
             _dimpsBrowser.Dispose();
             _dimpsBrowser = null;
             _dimpsTimer.Dispose();
             _dimpsTimer = null;
-            _dimpsSearching = string.Empty;
+            _dimpsSearching = null;
         }
 
 
@@ -424,12 +421,12 @@ namespace CallTracker.Helpers
         private static Timer _nsiTimer;
         private static IE _nsiBrowser;
         private static DateTime _nsiSearchStarted;
-        private static string _nsiSearching;
+        private static String _nsiSearching;
 
         private static void NsiTimerElapsed(object sender, ElapsedEventArgs e)
         {
             parent.SelectedContact.Service.WasSearched["NSI"] = true;
-            if ((e.SignalTime - _nsiSearchStarted).TotalSeconds > 5)
+            if ((e.SignalTime - _nsiSearchStarted).TotalSeconds > 10)
             {
                 if (_nsiBrowser != null)
                 {
@@ -438,6 +435,7 @@ namespace CallTracker.Helpers
                 }
                 _nsiTimer.Dispose();
                 _nsiTimer = null;
+                _nsiSearching = null;
                 EventLogger.LogAndSaveNewEvent("AutoSearching NSI "+ _nsiSearching +" Error: Timeout", EventLogLevel.Brief);
                 return;
             }
@@ -453,8 +451,8 @@ namespace CallTracker.Helpers
 
             var contact = parent.SelectedContact;
 
-            try
-            {
+            //try
+            //{
                 if (_nsiSearching == "AVC")
                 {
                     EventLogger.LogNewEvent("AutoSearching: NSI AVC", EventLogLevel.Brief);
@@ -491,13 +489,14 @@ namespace CallTracker.Helpers
                     _nsiBrowser = null;
                     _nsiTimer.Dispose();
                     _nsiTimer = null;
+                    _nsiSearching = null;
                 }
-            }
-            catch (Exception ex)
-            {
-                EventLogger.LogAndSaveNewEvent("AutoSearching NSI " + _nsiSearching + " Error: " + ex.Message,
-                    EventLogLevel.Status);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    EventLogger.LogAndSaveNewEvent("AutoSearching NSI " + _nsiSearching + " Error: " + ex.Message,
+            //        EventLogLevel.Status);
+            //}
             EventLogger.SaveLog();
         }
     }
