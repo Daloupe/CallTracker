@@ -149,7 +149,7 @@ namespace CallTracker.View
             else if (dataGridView1.DataMember == "IFMSTier4OutcomeMatch")
             {
                 ReplaceWithComboBoxColumn("IFMSTier4Id", "Tier 4", "IFMSTier4Id", "Option", "Id", 250, Main.ServicesStore.servicesDataSet.IFMSTier4.ToList(), false, 0);
-                ReplaceWithComboBoxColumn("OutcomeId", "Outcome", "OutcomeId", "Acronym", "Id", 80, Main.ServicesStore.servicesDataSet.Outcomes.ToList(), false, 1);
+                ReplaceWithComboBoxColumn("OutcomeId", "Outcome", "OutcomeId", "Description", "Id", 150, Main.ServicesStore.servicesDataSet.Actions.ToList(), false, 1);
 
                 dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Ascending);
             }
@@ -178,7 +178,7 @@ namespace CallTracker.View
             {
                 dataGridView1.Columns.Remove(_columnName);
 
-                DataGridViewComboBoxColumn dtcol = new DataGridViewComboBoxColumn();
+                var dtcol = new DataGridViewComboBoxColumn();
                 dtcol.Name = _columnName;
                 dtcol.HeaderText = _columnHeader;
                 dtcol.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;

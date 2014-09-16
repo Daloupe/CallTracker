@@ -1,4 +1,4 @@
-﻿0.9.4.16
+﻿0.9.4.27
 (Bugs/Changes)
 Misc:
 	| Add Save Data button.
@@ -6,9 +6,16 @@ Misc:
 	| Moved "Change Log" into the about window.
 	| Moved INC and APT to service so SmartCopy works.
 	| Booking Type wasn't update with position change.
+	| Added First Load setting. if FirstLoad is true:
+		| Preset tips and main positions 
+		| Create new contact to enable interaction with tips examples.
 Monitor IPCC:
 	| Moved SetSettings() in to the Main_Shown method to try avoid IPCC trying to monitor too early and getting exceptions.
-Links:
+Edit Bookmarks/Systems:
+	| New items now change the listview to the new index.
+	| Selected product doesn't change until reopened.
+	| Title changes with product.
+Resource Menu:
 	| Fixed LogMeIn is overwriting other pages.
 	| EHB Search: Replaced spaces with '+'. Added \1 to end.
 GridLinks:
@@ -17,7 +24,6 @@ AutoFill
 	| Added WaitForAsyncPostBackToComplete call in between ctl00_cphPage_tx_TruckRollStatus & ctl00_cphPage_tx_ScheduleStartTime.
 	| IQ SUMM comment showing as "IQ" not "IQ STB"
 AutoSearch
-	~ CMBS > IFMS.
 	| PR Context menu didn't have ItemClicked Event.
 	| Increased NSI Autosearch timeout to ensure it gets enough time.
 SmartPaste
@@ -25,6 +31,12 @@ SmartPaste
 	| CTI Dial Pad Smart paste now sends the keys directly instead of paste.
 SmartCopy
 	| Updated Address Regex so it fails quickly, rather than hanging the whole system.
+Tips:
+	| Added OPOM Smart Copy info.
+	| Added "Troubleshooting" Panel.
+	| Added info on "Report Bug" to overview.
+	| Data Drop.
+	| EHB Search.
 
 0.9.3.18
 (Minor Features)

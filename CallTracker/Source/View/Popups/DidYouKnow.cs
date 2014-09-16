@@ -239,14 +239,14 @@ namespace CallTracker.View
 
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
-        uint WM_VSCROLL = 0x115;
+        const uint WM_VSCROLL = 0x115;
         private const uint SB_LINEUP = 0;
         private const uint SB_LINEDOWN = 1;
-        private const uint SB_PAGEUP = 2;
-        private const uint SB_PAGEDOWN = 3;
+        //private const uint SB_PAGEUP = 2;
+        //private const uint SB_PAGEDOWN = 3;
         private const uint SB_TOP = 6;
-        private const uint SB_BOTTOM = 7;
-        private const uint SB_ENDSCROLL = 8;
+        //private const uint SB_BOTTOM = 7;
+        //private const uint SB_ENDSCROLL = 8;
 
         
 
@@ -287,7 +287,8 @@ namespace CallTracker.View
                     new TipModel("- <Smart Paste>(|2<Win+V>|1) looks at where you're trying to paste and pastes in the most appropriate data. ", "- Clicking on the \"Account Number\" field in ICON and pressing |2<Win+V>|1 will paste in the <CMBS> number, or ICON if <Wingman> doesn't have it."),
                     new TipModel("- <Grid Links>(|2<Win+Numpad>|1) will jump straight to the desired system. A different system assigned to each number on the Numpad. ", "- Pressing |2<Win+Numpad2>|1 will activate IFMS and bring it to the front."),
                     new TipModel("- <Auto Fill>(|2<Win+Ctrl+V>|1) looks at what page you have active, and triggers all the <Smart Pastes> it knows for that page. ", "- Pressing |2<Win+Ctrl+V>|1 in \"IFMS Create\" will fill all the fields that <Wingman> has data for."),
-                    new TipModel("- <Monitor IPCC> will tell <Wingman> when your phone state changes. This gives you realtime estimates of your KPIs, lets you keep track of how long you've been in a call state, and resets <Wingmans> fields when a call pops in.")
+                    new TipModel("- <Monitor IPCC> will tell <Wingman> when your phone state changes. This gives you realtime estimates of your KPIs, lets you keep track of how long you've been in a call state, and resets <Wingmans> fields when a call pops in."),
+                    new TipModel("- If you have any issues, or would to send some feedback, click <Report Bug> in the help menu.")
                 }),
             new TipSlide("Smart Copy - Win+C",
                 new List<TipModel>
@@ -295,7 +296,9 @@ namespace CallTracker.View
                     new TipModel("- <Smart Copy>(|2<Win+C>|1) copies your selected text in to the appropriate field."),
                     new TipModel("- It will recognize data in multiple formats. ", "- <CMBS> will be detected as either \"31-123456-7\", \"31123456 7\", \"3112345607\", or \"1123456076\"."),
                     new TipModel("- <Smart Copy> won't change what is currently in the copy buffer. ", "- If i |2Ctrl+C|1 \"Some text\", then |2<Win+C>|1 \"61394811234\", pressing |2Ctrl+V|1 will still paste \"Some text\"."),
-                    new TipModel("- When copying information like <DN> and <CMBS>, <Smart Copy> will also infer the NBN <SIP> server and <State>.")
+                    new TipModel("- When copying information like <DN> and <CMBS>, <Smart Copy> will also infer the NBN <SIP> server and <State>."),
+                    new TipModel("- <Smart Copy> in OPOM will copy all the info from the selected product."),
+                    new TipModel("- Sometimes people start giving you info before you're ready, pressing |2<Ctrl+Space>|1 will bring up the <Data Drop> popup so you can start typing, hitting |2Enter|1 will put the data in the right field.")
                 }),
             new TipSlide("Smart Paste - Win+V",
                 new List<TipModel>
@@ -303,14 +306,15 @@ namespace CallTracker.View
                     new TipModel("- <Smart Paste>(|2<Win+V>|1) pastes the most appropriate data depending on where you want to paste."),
                     new TipModel("- It picks the most relevant data based on what is available, and which product you've selected. ", "- Pressing |2<Win+V>|1 in ICON's \"Service Number\" field will paste <Username> only if <Wingman> doesn't have <DN>. Vice Versa if the product is <ONC> or <NVF>."),
                     new TipModel("- It will paste data in the appropriate format. ", "- <CMBS> will paste as \"31123456 7\" into <IFMS>, and \"3112345607\" into <ICON>."),
-                    new TipModel("- Doesn't yet work in Chrome, or IE pages that use a Chrome Frame like Nexus and the PR Templates, but it will work in MAD!")
+                    new TipModel("- Doesn't yet work in Chrome or IE pages that use a Chrome Frame, like Nexus and the PR Templates, but it will work in MAD!")
                 }),
             new TipSlide("Auto Fill - Win+Ctrl+V",
                 new List<TipModel>
                 {
                     new TipModel("- <Auto Fill>(|2<Win+Ctrl+V>|1) performs all known Smart Pastes on a page."),
                     new TipModel("- Pressing <Auto Fill> on IFMS Create will additionally add in affected products."),
-                    new TipModel("- Pressing <Auto Fill> on ICON Note will additionally try to set the note dropdowns.")
+                    new TipModel("- Pressing <Auto Fill> on ICON Note will additionally try to set the note dropdowns."),
+                    new TipModel("- Double clicking the slider for right most panel will reveal the <Troubleshooting Panel>, which contains some basic troubleshooting checkboxes to help to prefill your ICON and IFMS notes.")
                 }),
             new TipSlide("Call History",
                 new List<TipModel>
@@ -337,6 +341,12 @@ namespace CallTracker.View
                     new TipModel("- You can see how long you have spent in a call state in the bottom right hand corner of <Wingman>."),
                     new TipModel("- Clicking this timer will give you the <Monitor IPCC> option, which may need to be enabled if <Wingman> was started after IPCC.")
                 }),
+            new TipSlide("Daily Stats",
+                new List<TipModel>
+                {
+                    new TipModel("- <Daily Stats> gives you an estimate of your KPI's, as long as <IPCC Monitor> is on."),
+                    new TipModel("- Stats can be viewed from <Wingman> > <View Stats>.")
+                }),
             new TipSlide("Context Menus",
                 new List<TipModel>
                 {
@@ -362,7 +372,8 @@ namespace CallTracker.View
                     new TipModel("- The departments in the <Numbers To Know> menu will change with the selected product. Hovering over a department will give you their contact numbers, and opening times."),
                     new TipModel("- Clicking on a department will put the number into IPCC, and Prefill the call data section."),
                     new TipModel("- <Rateplans> provides a list of <CMBS> changes codes. Once you open the window, you can just type the product code to start searching. New ratecodes can be added to the last row"),
-                    new TipModel("- You can add your own context sensitive <Bookmarks> and <Systems> in their relative menus.")         
+                    new TipModel("- You can add your own context sensitive <Bookmarks> and <Systems> in their relative menus."),
+                    new TipModel("- The menu bar has a field labelled <EHB Search...> which bring up your search in Nexus EHB.")
                 }),
             new TipSlide("Auto Login - Win+`",
                 new List<TipModel>
@@ -376,12 +387,6 @@ namespace CallTracker.View
                     new TipModel("- The most common fields can also be pasted directly with these hotkeys. These are useful for pasting into systems that can't be bound to. "),
                     new TipModel("- They are assigned to 1,2,Q,W,A,S,Z,X.  ", "- Pressing |2<Ctrl+Shift+Q>|1 will paste <Username>"),
                     new TipModel("- Hover over the main data fields to see their hotkey.")
-                }),
-            new TipSlide("Daily Stats",
-                new List<TipModel>
-                {
-                    new TipModel("- <Daily Stats> gives you an estimate of your KPI's, as long as <IPCC Monitor> is on."),
-                    new TipModel("- Stats can be viewed from <Wingman> > <View Stats>.")
                 }),
             new TipSlide("Smart Paste Bind - Win+Shift+V",
                 new List<TipModel>

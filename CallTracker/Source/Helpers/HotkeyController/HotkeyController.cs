@@ -379,7 +379,12 @@ namespace CallTracker.Helpers
             var url = browser.Url;
             var title = browser.Title;
             var activeElement = browser.ActiveElement;
-
+            //if (activeElement.GetType() == typeof(Frame))
+            //{
+            //    EventLogger.LogAndSaveNewEvent("Is Frame", EventLogLevel.Status);
+            //    //browser.Frames[2].ac  
+            //}
+            
             //Console.WriteLine(browser.ActiveElement.GetAttributeValue("type"));
             if (activeElement == null)
             {

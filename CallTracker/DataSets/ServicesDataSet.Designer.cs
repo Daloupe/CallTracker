@@ -132,8 +132,6 @@ namespace CallTracker.DataSets {
         
         private global::System.Data.DataRelation relationIFMSTier1_Tier1Tier2Match;
         
-        private global::System.Data.DataRelation relationOutcomes_IFMSTier4OutcomeMatch1;
-        
         private global::System.Data.DataRelation relationIFMSTier4_IFMSTier4OutcomeMatch1;
         
         private global::System.Data.DataRelation relationSymptoms_SeverityCodeSymptomMatch;
@@ -149,6 +147,8 @@ namespace CallTracker.DataSets {
         private global::System.Data.DataRelation relationProblemStyles_SystemLinks;
         
         private global::System.Data.DataRelation relationOutcomes_Actions;
+        
+        private global::System.Data.DataRelation relationOutcomes_IFMSTier4OutcomeMatch1;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -1064,7 +1064,6 @@ namespace CallTracker.DataSets {
             this.relationOutcomes_Tier2OutcomesMatch = this.Relations["Outcomes_Tier2OutcomesMatch"];
             this.relationIFMSTier2_Tier2OutcomesMatch = this.Relations["IFMSTier2_Tier2OutcomesMatch"];
             this.relationIFMSTier1_Tier1Tier2Match = this.Relations["IFMSTier1_Tier1Tier2Match"];
-            this.relationOutcomes_IFMSTier4OutcomeMatch1 = this.Relations["Outcomes_IFMSTier4OutcomeMatch1"];
             this.relationIFMSTier4_IFMSTier4OutcomeMatch1 = this.Relations["IFMSTier4_IFMSTier4OutcomeMatch1"];
             this.relationSymptoms_SeverityCodeSymptomMatch = this.Relations["Symptoms_SeverityCodeSymptomMatch"];
             this.relationSeverityCodes_SeverityCodeSymptomMatch = this.Relations["SeverityCodes_SeverityCodeSymptomMatch"];
@@ -1073,6 +1072,7 @@ namespace CallTracker.DataSets {
             this.relationProblemStyles_Bookmarks = this.Relations["ProblemStyles_Bookmarks"];
             this.relationProblemStyles_SystemLinks = this.Relations["ProblemStyles_SystemLinks"];
             this.relationOutcomes_Actions = this.Relations["Outcomes_Actions"];
+            this.relationOutcomes_IFMSTier4OutcomeMatch1 = this.Relations["Outcomes_IFMSTier4OutcomeMatch1"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1231,10 +1231,6 @@ namespace CallTracker.DataSets {
                         this.tableIFMSTier1.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableIFMSTier1IFMSTier2Match.IFMSTier1IdColumn}, false);
             this.Relations.Add(this.relationIFMSTier1_Tier1Tier2Match);
-            this.relationOutcomes_IFMSTier4OutcomeMatch1 = new global::System.Data.DataRelation("Outcomes_IFMSTier4OutcomeMatch1", new global::System.Data.DataColumn[] {
-                        this.tableOutcomes.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableIFMSTier4OutcomeMatch.OutcomeIdColumn}, false);
-            this.Relations.Add(this.relationOutcomes_IFMSTier4OutcomeMatch1);
             this.relationIFMSTier4_IFMSTier4OutcomeMatch1 = new global::System.Data.DataRelation("IFMSTier4_IFMSTier4OutcomeMatch1", new global::System.Data.DataColumn[] {
                         this.tableIFMSTier4.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableIFMSTier4OutcomeMatch.IFMSTier4IdColumn}, false);
@@ -1267,6 +1263,10 @@ namespace CallTracker.DataSets {
                         this.tableOutcomes.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableActions.OutcomeIdColumn}, false);
             this.Relations.Add(this.relationOutcomes_Actions);
+            this.relationOutcomes_IFMSTier4OutcomeMatch1 = new global::System.Data.DataRelation("Outcomes_IFMSTier4OutcomeMatch1", new global::System.Data.DataColumn[] {
+                        this.tableActions.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableIFMSTier4OutcomeMatch.OutcomeIdColumn}, false);
+            this.Relations.Add(this.relationOutcomes_IFMSTier4OutcomeMatch1);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4489,6 +4489,10 @@ namespace CallTracker.DataSets {
             
             private global::System.Data.DataColumn columnType;
             
+            private global::System.Data.DataColumn columnUserGuide;
+            
+            private global::System.Data.DataColumn columnSimulator;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public EquipmentDataTable() {
@@ -4548,6 +4552,22 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn UserGuideColumn {
+                get {
+                    return this.columnUserGuide;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn SimulatorColumn {
+                get {
+                    return this.columnSimulator;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -4583,12 +4603,14 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public EquipmentRow AddEquipmentRow(string Description, string Type) {
+            public EquipmentRow AddEquipmentRow(string Description, string Type, string UserGuide, string Simulator) {
                 EquipmentRow rowEquipmentRow = ((EquipmentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Description,
-                        Type};
+                        Type,
+                        UserGuide,
+                        Simulator};
                 rowEquipmentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowEquipmentRow);
                 return rowEquipmentRow;
@@ -4614,6 +4636,8 @@ namespace CallTracker.DataSets {
                 this.columnId = base.Columns["Id"];
                 this.columnDescription = base.Columns["Description"];
                 this.columnType = base.Columns["Type"];
+                this.columnUserGuide = base.Columns["UserGuide"];
+                this.columnSimulator = base.Columns["Simulator"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4625,6 +4649,10 @@ namespace CallTracker.DataSets {
                 base.Columns.Add(this.columnDescription);
                 this.columnType = new global::System.Data.DataColumn("Type", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnType);
+                this.columnUserGuide = new global::System.Data.DataColumn("UserGuide", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserGuide);
+                this.columnSimulator = new global::System.Data.DataColumn("Simulator", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSimulator);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, false));
                 this.columnId.AutoIncrement = true;
@@ -8521,7 +8549,7 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public IFMSTier4OutcomeMatchRow AddIFMSTier4OutcomeMatchRow(IFMSTier4Row parentIFMSTier4RowByIFMSTier4_IFMSTier4OutcomeMatch1, OutcomesRow parentOutcomesRowByOutcomes_IFMSTier4OutcomeMatch1) {
+            public IFMSTier4OutcomeMatchRow AddIFMSTier4OutcomeMatchRow(IFMSTier4Row parentIFMSTier4RowByIFMSTier4_IFMSTier4OutcomeMatch1, ActionsRow parentActionsRowByOutcomes_IFMSTier4OutcomeMatch1) {
                 IFMSTier4OutcomeMatchRow rowIFMSTier4OutcomeMatchRow = ((IFMSTier4OutcomeMatchRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -8529,8 +8557,8 @@ namespace CallTracker.DataSets {
                 if ((parentIFMSTier4RowByIFMSTier4_IFMSTier4OutcomeMatch1 != null)) {
                     columnValuesArray[0] = parentIFMSTier4RowByIFMSTier4_IFMSTier4OutcomeMatch1[0];
                 }
-                if ((parentOutcomesRowByOutcomes_IFMSTier4OutcomeMatch1 != null)) {
-                    columnValuesArray[1] = parentOutcomesRowByOutcomes_IFMSTier4OutcomeMatch1[0];
+                if ((parentActionsRowByOutcomes_IFMSTier4OutcomeMatch1 != null)) {
+                    columnValuesArray[1] = parentActionsRowByOutcomes_IFMSTier4OutcomeMatch1[0];
                 }
                 rowIFMSTier4OutcomeMatchRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowIFMSTier4OutcomeMatchRow);
@@ -12437,17 +12465,6 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public IFMSTier4OutcomeMatchRow[] GetIFMSTier4OutcomeMatchRows() {
-                if ((this.Table.ChildRelations["Outcomes_IFMSTier4OutcomeMatch1"] == null)) {
-                    return new IFMSTier4OutcomeMatchRow[0];
-                }
-                else {
-                    return ((IFMSTier4OutcomeMatchRow[])(base.GetChildRows(this.Table.ChildRelations["Outcomes_IFMSTier4OutcomeMatch1"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ActionsRow[] GetActionsRows() {
                 if ((this.Table.ChildRelations["Outcomes_Actions"] == null)) {
                     return new ActionsRow[0];
@@ -12632,6 +12649,38 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string UserGuide {
+                get {
+                    try {
+                        return ((string)(this[this.tableEquipment.UserGuideColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UserGuide\' in table \'Equipment\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEquipment.UserGuideColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Simulator {
+                get {
+                    try {
+                        return ((string)(this[this.tableEquipment.SimulatorColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Simulator\' in table \'Equipment\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableEquipment.SimulatorColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsIdNull() {
                 return this.IsNull(this.tableEquipment.IdColumn);
             }
@@ -12664,6 +12713,30 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTypeNull() {
                 this[this.tableEquipment.TypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUserGuideNull() {
+                return this.IsNull(this.tableEquipment.UserGuideColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUserGuideNull() {
+                this[this.tableEquipment.UserGuideColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsSimulatorNull() {
+                return this.IsNull(this.tableEquipment.SimulatorColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetSimulatorNull() {
+                this[this.tableEquipment.SimulatorColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14294,23 +14367,23 @@ namespace CallTracker.DataSets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public OutcomesRow OutcomesRow {
-                get {
-                    return ((OutcomesRow)(this.GetParentRow(this.Table.ParentRelations["Outcomes_IFMSTier4OutcomeMatch1"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Outcomes_IFMSTier4OutcomeMatch1"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public IFMSTier4Row IFMSTier4Row {
                 get {
                     return ((IFMSTier4Row)(this.GetParentRow(this.Table.ParentRelations["IFMSTier4_IFMSTier4OutcomeMatch1"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["IFMSTier4_IFMSTier4OutcomeMatch1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ActionsRow ActionsRow {
+                get {
+                    return ((ActionsRow)(this.GetParentRow(this.Table.ParentRelations["Outcomes_IFMSTier4OutcomeMatch1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Outcomes_IFMSTier4OutcomeMatch1"]);
                 }
             }
             
@@ -15320,6 +15393,17 @@ namespace CallTracker.DataSets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetDescriptionNull() {
                 this[this.tableActions.DescriptionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public IFMSTier4OutcomeMatchRow[] GetIFMSTier4OutcomeMatchRows() {
+                if ((this.Table.ChildRelations["Outcomes_IFMSTier4OutcomeMatch1"] == null)) {
+                    return new IFMSTier4OutcomeMatchRow[0];
+                }
+                else {
+                    return ((IFMSTier4OutcomeMatchRow[])(base.GetChildRows(this.Table.ChildRelations["Outcomes_IFMSTier4OutcomeMatch1"])));
+                }
             }
         }
         

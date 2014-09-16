@@ -357,6 +357,7 @@ namespace CallTracker.View
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(143)))), ((int)(((byte)(169)))));
             this.BackgroundImage = global::CallTracker.Properties.Resources.blue_gradient_300;
             this.ClientSize = new System.Drawing.Size(414, 238);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Verdana", 7F);
@@ -370,7 +371,6 @@ namespace CallTracker.View
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Did You Know?";
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.DidYouKnow_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
             this.panel1.ResumeLayout(false);

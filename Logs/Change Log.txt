@@ -35,27 +35,19 @@
 (Minor Feature)
 - Added Equipment specific context menu logic.
 
-0.9.5.x
-(Minor Feature)
-- ICON Tier4 linked to Action rather than Outcome.
-	- Add resolved Notes, ICON codes.
-
 0.9.4.x
 (Minor Features)
 - Analyze SCAMPS for high Reverse Power Flux, Low SNR.
 (Bugs/Changes))
-- Softact uses frames? name = "mainFrame"
-Tips:
-	- Added OPOM Smart Copy info.
-	- Added "Troubleshooting" Panel.
-	- Added info on "Report Bug" to overview.
-	- Data Drop.
-	- EHB Search.
-Resource Menu:
-	
+- Softact uses frames? name = "mainFrame".
 
-0.9.4.22
-(Bugs/Changes)
+0.9.5.1
+DataSet:
+	| Added "UserGuide" and "Simulator" columns to Equipment.
+	| ICON Tier4 linked to Action rather than Outcome.
+		- Add resolved Notes, ICON codes.
+
+0.9.4.27
 Misc:
 	| Add Save Data button.
 	| Moved "About Wingman" to the Wingman menu.
@@ -87,6 +79,12 @@ SmartPaste
 	| CTI Dial Pad Smart paste now sends the keys directly instead of paste.
 SmartCopy
 	| Updated Address Regex so it fails quickly, rather than hanging the whole system.
+Tips:
+	| Added OPOM Smart Copy info.
+	| Added "Troubleshooting" Panel.
+	| Added info on "Report Bug" to overview.
+	| Data Drop.
+	| EHB Search.
 
 0.9.3.18
 (Minor Features)

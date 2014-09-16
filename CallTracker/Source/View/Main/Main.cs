@@ -271,9 +271,6 @@ namespace CallTracker.View
             _splash.UpdateProgress("", 100);
             EventLogger.LogNewEvent("Finished Loading", EventLogLevel.ClearStatus);
 
-            if (Settings.Default.ShowTipsOnStartup)
-                DidYouKnow.Show();
-
             ChangeCallStateMenuItem(logOutToolStripMenuItem);
             EventLogger.SaveLog();
         }
@@ -305,6 +302,9 @@ namespace CallTracker.View
             _splash.Close();
             _splash.Dispose();
             _isStartingUp = false;
+            
+            if (Settings.Default.ShowTipsOnStartup)
+                DidYouKnow.Show();
 
             SetSettings();
             
