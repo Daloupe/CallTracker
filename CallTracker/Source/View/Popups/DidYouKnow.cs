@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using CallTracker.Properties;
 using CallTracker.Source.Helpers.Type;
 using ESCommon;
 using ESCommon.Rtf;
@@ -25,7 +25,7 @@ namespace CallTracker.View
             InitializeComponent();
             SetLocation();
             if (pos == -1)
-                pos = Properties.Settings.Default.TipsPosition;
+                pos = Settings.Default.TipsPosition;
 
             //if (Program.Optus18 != null)
             //{
@@ -60,8 +60,8 @@ namespace CallTracker.View
 
             if (pos == -1)
             {
-                ++Properties.Settings.Default.TipsPosition;
-                pos = Properties.Settings.Default.TipsPosition;
+                ++Settings.Default.TipsPosition;
+                pos = Settings.Default.TipsPosition;
             }
 
             SelectSlide(pos);
@@ -84,7 +84,7 @@ namespace CallTracker.View
         private void SelectSlide(int pos = -1)
         {
             if (pos == -1)
-                pos = Properties.Settings.Default.TipsPosition;
+                pos = Settings.Default.TipsPosition;
             WindowHelper.SuspendDrawing(panel1);
             SendMessage(richTextBox1.Handle, WM_VSCROLL, (IntPtr)SB_TOP, IntPtr.Zero);
             examplePanel.Hide();
@@ -157,8 +157,8 @@ namespace CallTracker.View
 
         private void prevTip_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.TipsPosition - 1 < 0) return;
-            Properties.Settings.Default.TipsPosition -= 1;
+            if (Settings.Default.TipsPosition - 1 < 0) return;
+            Settings.Default.TipsPosition -= 1;
             //exampleRichTextBox.Clear();
             //_currentExample = -1;
             SelectSlide();//Properties.Settings.Default.TipsPosition);
@@ -167,8 +167,8 @@ namespace CallTracker.View
 
         private void nextTip_Click(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.TipsPosition + 1 > TipSlides.Count - 1) return;
-            Properties.Settings.Default.TipsPosition += 1;
+            if (Settings.Default.TipsPosition + 1 > TipSlides.Count - 1) return;
+            Settings.Default.TipsPosition += 1;
             //exampleRichTextBox.Clear();
             //_currentExample = -1;
             SelectSlide();//Properties.Settings.Default.TipsPosition);
@@ -213,21 +213,28 @@ namespace CallTracker.View
 
             Main.ReleaseCapture();
             Main.SendMessage(Handle, Main.WM_NCLBUTTONDOWN, Main.HT_CAPTION, 0);
-            Properties.Settings.Default.Tips_Position = Location;
+            Settings.Default.Tips_Position = Location;
+
+            //var screenBounds = Screen.AllScreens[0].Bounds;
+            //Console.WriteLine(new Point((screenBounds.Width / 2) - (Width / 2) - Location.X, (screenBounds.Height / 2) - (Height / 2) - Location.Y));
         }
 
         private void SetLocation()
         {
-            var totalSize = new Size();
-            foreach (var screen in Screen.AllScreens)
-                totalSize += screen.Bounds.Size;
+            if (Settings.Default.FirstLoad)
+            {
+                var screenBounds = Screen.AllScreens[0].Bounds;
+                Settings.Default.Tips_Position = new Point((screenBounds.Width / 2) - (Width / 2) + 130, (screenBounds.Height / 2) - (Height / 2) - 40);
 
-            if (Properties.Settings.Default.Tips_Position == Point.Empty ||
-                Properties.Settings.Default.Tips_Position.X >= totalSize.Width ||
-                Properties.Settings.Default.Tips_Position.Y >= totalSize.Height) return;
+            }
+            else if (Screen.AllScreens.Any(s => s.WorkingArea.Contains(Settings.Default.Tips_Position)))
+            {
+                var screenBounds = Screen.AllScreens[0].Bounds;
+                Settings.Default.Tips_Position = new Point((screenBounds.Width / 2) - (Width / 2), (screenBounds.Height / 2) - (Height / 2));
+            }
 
             StartPosition = FormStartPosition.Manual;
-            Location = Properties.Settings.Default.Tips_Position;
+            Location = Settings.Default.Tips_Position;
         }
 
         [DllImport("user32.dll")]
@@ -276,10 +283,10 @@ namespace CallTracker.View
                 new List<TipModel>
                 {
                     new TipModel("- <Wingman> works by always trying to hand you the best tool for the job, reducing system friction and the need for Notepad."), 
-                    new TipModel("- <Smart Copy>(|2<Win+C>|1) copies your selection and pops it straight in to the appropriate field. ", "- Selecting \"0394811234\" and pressing |2<Win+C>|1 will copy it straight into the <DN> field in <Wingman>."),
+                    new TipModel("- <Smart Copy>(|2<Win+C>|1) copies your selection and pops it straight in to the appropriate field. ", "- Selecting \"31-123456-7\" and pressing |2<Win+C>|1 will copy it straight into the <CMBS> field in <Wingman>."),
                     new TipModel("- <Smart Paste>(|2<Win+V>|1) looks at where you're trying to paste and pastes in the most appropriate data. ", "- Clicking on the \"Account Number\" field in ICON and pressing |2<Win+V>|1 will paste in the <CMBS> number, or ICON if <Wingman> doesn't have it."),
-                    new TipModel("- <Auto Fill>(|2<Win+Ctrl+V>|1) looks at what page you have active, and triggers all the <Smart Pastes> it knows for that page. ", "- Pressing |2<Win+Ctrl+V>|1 in \"IFMS Create\" will fill all the fields that <Wingman> has data for."),
                     new TipModel("- <Grid Links>(|2<Win+Numpad>|1) will jump straight to the desired system. A different system assigned to each number on the Numpad. ", "- Pressing |2<Win+Numpad2>|1 will activate IFMS and bring it to the front."),
+                    new TipModel("- <Auto Fill>(|2<Win+Ctrl+V>|1) looks at what page you have active, and triggers all the <Smart Pastes> it knows for that page. ", "- Pressing |2<Win+Ctrl+V>|1 in \"IFMS Create\" will fill all the fields that <Wingman> has data for."),
                     new TipModel("- <Monitor IPCC> will tell <Wingman> when your phone state changes. This gives you realtime estimates of your KPIs, lets you keep track of how long you've been in a call state, and resets <Wingmans> fields when a call pops in.")
                 }),
             new TipSlide("Smart Copy - Win+C",

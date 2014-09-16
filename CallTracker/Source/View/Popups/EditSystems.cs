@@ -3,7 +3,6 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-using CallTracker.DataSets;
 using PropertyChanged;
 
 namespace CallTracker.View
@@ -12,19 +11,22 @@ namespace CallTracker.View
     public partial class EditSystems : Form
     {
         private Main MainForm;
+        private Int16 id;
 
         public EditSystems()
         {
             InitializeComponent();
             MainForm = Application.OpenForms.OfType<Main>().First();
-            var query = (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
+            id = (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
                            where a.Description == MainForm.toolStripServiceSelector.Text
                            select a).First().Id;
-            systemLinksBindingSource.Filter = "ProblemStyleId in (" + query + ")";
+            systemLinksBindingSource.Filter = "ProblemStyleId in (" + id + ")";
             systemLinksBindingSource.DataSource = Main.ServicesStore.servicesDataSet;
 
             listBox1.DataSource = systemLinksBindingSource;
             listBox1.DisplayMember = "Name";
+
+            editBookmarksToolStripMenuItem.Text = MainForm.toolStripServiceSelector.Text + @" Systems";
         }
 
         private void _Ok_Click(object sender, EventArgs e)
@@ -42,16 +44,17 @@ namespace CallTracker.View
             _Name.Enabled = true;
             _Url.Enabled = true;
 
-            listBox1.DataSource = null;
-            ServicesDataSet.SystemLinksRow newRow = Main.ServicesStore.servicesDataSet.SystemLinks.NewSystemLinksRow();
+            //listBox1.DataSource = null;
+            var newRow = Main.ServicesStore.servicesDataSet.SystemLinks.NewSystemLinksRow();
             newRow.Name = "New System";
-            newRow.ProblemStyleId = (from a in Main.ServicesStore.servicesDataSet.ProblemStyles
-                                    where a.Description == MainForm.toolStripServiceSelector.Text
-                                    select a).First().Id;
+            newRow.ProblemStyleId = id;//(from a in Main.ServicesStore.servicesDataSet.ProblemStyles
+                                    //where a.Description == MainForm.toolStripServiceSelector.Text
+                                    //select a).First().Id;
             newRow.Url = "http://";
             Main.ServicesStore.servicesDataSet.SystemLinks.AddSystemLinksRow(newRow);
-            listBox1.DataSource = systemLinksBindingSource;
-            listBox1.DisplayMember = "Name";
+            //listBox1.DataSource = systemLinksBindingSource;
+            //listBox1.DisplayMember = "Name";
+            listBox1.SelectedIndex = listBox1.Items.Count - 1;
         }
 
         private void _Name_KeyUp(object sender, KeyEventArgs e)

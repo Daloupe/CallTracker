@@ -401,8 +401,8 @@
             this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DateField = new System.DateTime(2014, 9, 8, 0, 0, 0, 0);
-            this._BookingDate.DateText = "08/09";
+            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 0, 0, 0, 0);
+            this._BookingDate.DateText = "09/08";
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingDate.HasContextMenu = false;
             this._BookingDate.LabelActiveColor = System.Drawing.Color.Firebrick;
@@ -2207,16 +2207,7 @@
         private System.Windows.Forms.ToolStripMenuItem clearAndCloseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem stapleToParentToolStripMenuItem;
         internal System.Windows.Forms.ContextMenuStrip _PRContextMenu;
-        private LabelledTextBox _NPR;
-        private LabelledTextBoxLong _Icon;
-        private LabelledTextBoxLong _Cmbs;
-        private LabelledTextBoxLong _Username;
-        private LabelledTextBoxLong _Dn;
-        private LabelledTextBoxLong _Name;
-        private LabelledTextBoxLong _Mobile;
-        private LabelledTextBoxLong _Address;
         private System.Windows.Forms.Panel _notePanel;
-        private LabelledTextBox _Itcase;
         internal LabelledComboBox _BookingType;
         internal LabelledComboBox _BookingTimeSlot;
         private System.Windows.Forms.ToolStripButton _PrevCallButton;
@@ -2242,7 +2233,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem17;
         private System.Windows.Forms.Panel _NavigatorPanel;
-        private LabelledTextBox _PR;
         internal LabelledComboBoxLong _Action;
         internal LabelledComboBox _Symptom;
         internal LabelledComboBox _Outcome;
@@ -2273,5 +2263,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem13;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem18;
+        internal LabelledTextBox _NPR;
+        internal LabelledTextBoxLong _Icon;
+        internal LabelledTextBoxLong _Cmbs;
+        internal LabelledTextBoxLong _Username;
+        internal LabelledTextBoxLong _Dn;
+        internal LabelledTextBoxLong _Name;
+        internal LabelledTextBoxLong _Mobile;
+        internal LabelledTextBoxLong _Address;
+        internal LabelledTextBox _Itcase;
+        internal LabelledTextBox _PR;
     }
 }

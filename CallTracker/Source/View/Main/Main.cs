@@ -127,14 +127,17 @@ namespace CallTracker.View
         }
 
         private void SetAppLocation()
-        {
-            var totalSize = new Size();
-            foreach (var screen in Screen.AllScreens)
-                totalSize += screen.Bounds.Size;
-
-            if (Settings.Default.Main_Position == Point.Empty ||
-                Settings.Default.Main_Position.X >= totalSize.Width ||
-                Settings.Default.Main_Position.Y >= totalSize.Height) return;
+        {           
+            if(Settings.Default.FirstLoad)
+            {
+                var screenBounds = Screen.AllScreens[0].Bounds;
+                Settings.Default.Main_Position = new Point((screenBounds.Width / 2) - (Width / 2) - 160, (screenBounds.Height / 2) - (Height / 2) + 60);
+            }
+            else if (Screen.AllScreens.Any(s => s.WorkingArea.Contains(Settings.Default.Main_Position)))
+            {
+                var screenBounds = Screen.AllScreens[0].Bounds;
+                Settings.Default.Main_Position = new Point((screenBounds.Width / 2) - (Width / 2), (screenBounds.Height / 2) - (Height / 2));
+            }
 
             StartPosition = FormStartPosition.Manual;
             Location = Settings.Default.Main_Position;
@@ -256,6 +259,14 @@ namespace CallTracker.View
 
             _splash.UpdateProgress("Finishing", 99);
             SetVisualSettings();
+
+            if (Settings.Default.FirstLoad)
+            {
+                //editContact.bindingNavigatorAddNewItem_Click(this, new EventArgs());
+                editContact.customerContactsBindingSource.AddNew();
+                editContact.customerContactsBindingSource.MoveLast();
+                Settings.Default.FirstLoad = false;
+            }
 
             _splash.UpdateProgress("", 100);
             EventLogger.LogNewEvent("Finished Loading", EventLogLevel.ClearStatus);
@@ -633,6 +644,9 @@ namespace CallTracker.View
             ReleaseCapture();
             SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             Settings.Default.Main_Position = Location;
+
+            //var screenBounds = Screen.AllScreens[0].Bounds;
+            //Console.WriteLine(new Point((screenBounds.Width / 2) - (Width / 2) - Location.X, (screenBounds.Height / 2) - (Height / 2) - Location.Y));
         }
 
 

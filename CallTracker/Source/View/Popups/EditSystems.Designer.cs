@@ -212,7 +212,7 @@ namespace CallTracker.View
             this.editBookmarksToolStripMenuItem.Name = "editBookmarksToolStripMenuItem";
             this.editBookmarksToolStripMenuItem.ReadOnly = true;
             this.editBookmarksToolStripMenuItem.Size = new System.Drawing.Size(113, 18);
-            this.editBookmarksToolStripMenuItem.Text = "Edit Bookmarks";
+            this.editBookmarksToolStripMenuItem.Text = "Edit Systems";
             // 
             // EditSystems
             // 

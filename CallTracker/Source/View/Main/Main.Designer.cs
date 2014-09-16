@@ -1404,6 +1404,7 @@
             this._EHBSearch.Margin = new System.Windows.Forms.Padding(1, 0, 2, 0);
             this._EHBSearch.Name = "_EHBSearch";
             this._EHBSearch.Size = new System.Drawing.Size(134, 16);
+            this._EHBSearch.ToolTipText = "Hitting enter brings up your search in Nexu EHB";
             this._EHBSearch.Leave += new System.EventHandler(this._EHBSearch_Leave);
             this._EHBSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this._EHBSearch_KeyDown);
             // 
@@ -1438,7 +1439,7 @@
             this.Name = "Main";
             this.Opacity = 0D;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Wingman";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);

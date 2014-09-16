@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 //using System.Threading;
 using System.Timers;
@@ -23,6 +24,7 @@ namespace CallTracker.Helpers
             newTemplate = newTemplate.GroupBy(a => a.Question)
                                      .Select(b => b.Last())
                                      .ToList();
+
 
             foreach (var model in newTemplate.Where(model => model.RequiresObject))
                 model.SetObject(service);
