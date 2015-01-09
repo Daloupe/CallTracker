@@ -59,7 +59,7 @@ namespace CallTracker.View
         private bool InitIpccMonitor()
         {
             foreach (var pList in Process.GetProcesses())
-                if (pList.MainWindowTitle.Contains("IPCC Agent Desktop"))
+                if (pList.MainWindowTitle.Contains("IPCC")) //Agent Desktop
                 {
                     _ipccProcess = pList;
                     break;

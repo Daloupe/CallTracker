@@ -2,7 +2,8 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-
+using CallTracker.DataSets;
+using CallTracker.Helpers;
 using PropertyChanged;
 
 namespace CallTracker.View
@@ -84,6 +85,28 @@ namespace CallTracker.View
             if (bookmarksBindingSource.Count <= 0) return;
             _Name.Enabled = true;
             _Url.Enabled = true;
+        }
+
+        private void _MoveUp_Click(object sender, EventArgs e)
+        {
+            //var pos = listBox1.SelectedIndex;
+            //listBox1.DataSource = null;
+            //var current = Main.ServicesStore.servicesDataSet.Bookmarks[pos];
+            Main.ServicesStore.servicesDataSet.Bookmarks[bookmarksBindingSource.Position].MoveRowUp();
+
+            bookmarksBindingSource.ResetBindings(true);
+            //bookmarksBindingSource.Position -= 1;
+            ////listBox1.Refresh();
+            listBox1.ResetBindings();
+            //bookmarksBindingSource.Position -= 1;
+            //listBox1.DataSource = bookmarksBindingSource;
+            //listBox1.DisplayMember = "Name";
+            // Main.ServicesStore.servicesDataSet.Bookmarks.MoveRow(current, DataTableMoveDirection.Up);
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //bookmarksBindingSource.Position = listBox1.SelectedIndex;
         }
 
     }

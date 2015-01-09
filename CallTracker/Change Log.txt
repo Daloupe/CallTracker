@@ -1,5 +1,11 @@
-﻿0.9.4.27
-(Bugs/Changes)
+﻿0.9.5.2
+Misc:
+	| Added Equipment specific context menu logic.
+DataSet:
+	| Added "UserGuide" and "Simulator" columns to Equipment.
+	| ICON Tier4 linked to Action rather than Outcome.
+
+0.9.4.27
 Misc:
 	| Add Save Data button.
 	| Moved "About Wingman" to the Wingman menu.

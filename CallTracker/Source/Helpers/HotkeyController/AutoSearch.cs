@@ -426,7 +426,7 @@ namespace CallTracker.Helpers
         private static void NsiTimerElapsed(object sender, ElapsedEventArgs e)
         {
             parent.SelectedContact.Service.WasSearched["NSI"] = true;
-            if ((e.SignalTime - _nsiSearchStarted).TotalSeconds > 10)
+            if ((e.SignalTime - _nsiSearchStarted).TotalSeconds > 60)
             {
                 if (_nsiBrowser != null)
                 {

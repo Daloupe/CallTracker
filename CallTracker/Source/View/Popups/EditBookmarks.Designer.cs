@@ -35,16 +35,18 @@ namespace CallTracker.View
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label4 = new System.Windows.Forms.Label();
+            this._Name = new CallTracker.View.BorderedTextBox();
             this.bookmarksBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
+            this._Url = new CallTracker.View.BorderedTextBox();
             this._Done = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this._MoveDown = new System.Windows.Forms.Button();
+            this._MoveUp = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.editBookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripTextBox();
-            this._Name = new CallTracker.View.BorderedTextBox();
-            this._Url = new CallTracker.View.BorderedTextBox();
             servicesDataSet = new CallTracker.DataSets.ServicesDataSet();
             ((System.ComponentModel.ISupportInitialize)(servicesDataSet)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -82,6 +84,7 @@ namespace CallTracker.View
             this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(222, 160);
             this.listBox1.TabIndex = 14;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -92,6 +95,21 @@ namespace CallTracker.View
             this.label4.Size = new System.Drawing.Size(55, 19);
             this.label4.TabIndex = 8;
             this.label4.Text = "Name:";
+            // 
+            // _Name
+            // 
+            this._Name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this._Name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this._Name.BorderColor = System.Drawing.Color.Gray;
+            this._Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bookmarksBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Name.Enabled = false;
+            this._Name.Location = new System.Drawing.Point(64, 165);
+            this._Name.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this._Name.Name = "_Name";
+            this._Name.Size = new System.Drawing.Size(161, 19);
+            this._Name.TabIndex = 9;
+            this._Name.KeyUp += new System.Windows.Forms.KeyEventHandler(this._Name_KeyUp);
             // 
             // bookmarksBindingSource
             // 
@@ -107,6 +125,19 @@ namespace CallTracker.View
             this.label6.Size = new System.Drawing.Size(55, 19);
             this.label6.TabIndex = 12;
             this.label6.Text = "URL:";
+            // 
+            // _Url
+            // 
+            this._Url.BorderColor = System.Drawing.Color.Gray;
+            this._Url.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this._Url.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bookmarksBindingSource, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._Url.Enabled = false;
+            this._Url.Location = new System.Drawing.Point(64, 186);
+            this._Url.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this._Url.Name = "_Url";
+            this._Url.Size = new System.Drawing.Size(161, 19);
+            this._Url.TabIndex = 13;
+            this._Url.KeyUp += new System.Windows.Forms.KeyEventHandler(this._Name_KeyUp);
             // 
             // _Done
             // 
@@ -126,6 +157,8 @@ namespace CallTracker.View
             // 
             this.panel1.BackColor = System.Drawing.Color.LightSlateGray;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this._MoveDown);
+            this.panel1.Controls.Add(this._MoveUp);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button2);
@@ -136,6 +169,31 @@ namespace CallTracker.View
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(238, 262);
             this.panel1.TabIndex = 2;
+            // 
+            // _MoveDown
+            // 
+            this._MoveDown.Image = global::CallTracker.Properties.Resources.bindingNavigatorDeleteItem_Image;
+            this._MoveDown.Location = new System.Drawing.Point(85, 235);
+            this._MoveDown.Margin = new System.Windows.Forms.Padding(0, 0, 120, 0);
+            this._MoveDown.Name = "_MoveDown";
+            this._MoveDown.Size = new System.Drawing.Size(27, 22);
+            this._MoveDown.TabIndex = 18;
+            this._MoveDown.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._MoveDown.UseVisualStyleBackColor = true;
+            this._MoveDown.Visible = false;
+            // 
+            // _MoveUp
+            // 
+            this._MoveUp.Image = global::CallTracker.Properties.Resources.AddImage;
+            this._MoveUp.Location = new System.Drawing.Point(58, 235);
+            this._MoveUp.Margin = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this._MoveUp.Name = "_MoveUp";
+            this._MoveUp.Size = new System.Drawing.Size(27, 22);
+            this._MoveUp.TabIndex = 17;
+            this._MoveUp.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._MoveUp.UseVisualStyleBackColor = true;
+            this._MoveUp.Visible = false;
+            this._MoveUp.Click += new System.EventHandler(this._MoveUp_Click);
             // 
             // button3
             // 
@@ -186,34 +244,6 @@ namespace CallTracker.View
             this.editBookmarksToolStripMenuItem.Size = new System.Drawing.Size(113, 18);
             this.editBookmarksToolStripMenuItem.Text = "Edit Bookmarks";
             // 
-            // _Name
-            // 
-            this._Name.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this._Name.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this._Name.BorderColor = System.Drawing.Color.Gray;
-            this._Name.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Name.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bookmarksBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Name.Enabled = false;
-            this._Name.Location = new System.Drawing.Point(64, 165);
-            this._Name.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this._Name.Name = "_Name";
-            this._Name.Size = new System.Drawing.Size(161, 19);
-            this._Name.TabIndex = 9;
-            this._Name.KeyUp += new System.Windows.Forms.KeyEventHandler(this._Name_KeyUp);
-            // 
-            // _Url
-            // 
-            this._Url.BorderColor = System.Drawing.Color.Gray;
-            this._Url.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this._Url.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bookmarksBindingSource, "Url", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._Url.Enabled = false;
-            this._Url.Location = new System.Drawing.Point(64, 186);
-            this._Url.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this._Url.Name = "_Url";
-            this._Url.Size = new System.Drawing.Size(161, 19);
-            this._Url.TabIndex = 13;
-            this._Url.KeyUp += new System.Windows.Forms.KeyEventHandler(this._Name_KeyUp);
-            // 
             // EditBookmarks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -262,5 +292,7 @@ namespace CallTracker.View
         private ListBox listBox1;
         private Button button3;
         private Button button2;
+        private Button _MoveDown;
+        private Button _MoveUp;
     }
 }

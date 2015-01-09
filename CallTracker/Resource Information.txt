@@ -2,7 +2,7 @@
 Resources:
 	- Update all Paste Binds.
 	- Update Bookmarks + Systems menus.
-	~ Link T4 Notes to action.
+	- Update Tier4 Outcomes Matches.
 	- Create "Resolved" notes.
 	- PHS Binds
 	- NBN Co Portal

@@ -30,10 +30,50 @@
         {
             this.components = new System.ComponentModel.Container();
             this._LATPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this._Node = new CallTracker.View.LabelledTextBoxLong();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this._CauPing = new CallTracker.View.LabelledComboBoxLong();
+            this._NitResults = new CallTracker.View.LabelledTextField();
+            this.labelledBase2 = new CallTracker.View.LabelledBase();
+            this._ESN = new CallTracker.View.LabelledTextBoxLong();
             this._NBNPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this._Bras = new CallTracker.View.LabelledTextBoxLong();
+            this._Sip = new CallTracker.View.LabelledComboBoxLong();
+            this._AVC = new CallTracker.View.LabelledTextBoxLong();
+            this._CSA = new CallTracker.View.LabelledTextBoxLong();
+            this._CVC = new CallTracker.View.LabelledTextBoxLong();
+            this._NNI = new CallTracker.View.LabelledTextBoxLong();
+            this._GSID = new CallTracker.View.LabelledTextBoxLong();
+            this._INC = new CallTracker.View.LabelledTextBoxLong();
+            this._APT = new CallTracker.View.LabelledTextBoxLong();
+            this._NTDSN = new CallTracker.View.LabelledTextBoxLong();
+            this._IPNBN = new CallTracker.View.LabelledTextBoxLong();
             this._DTVPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this._DTVNode = new CallTracker.View.LabelledTextBoxLong();
+            this._DTVMsg = new CallTracker.View.LabelledTextBoxLong();
+            this._DTVLights = new CallTracker.View.LabelledComboBoxLong();
+            this._STBHeading = new CallTracker.View.LabelledBase();
+            this._STBSmartCard = new CallTracker.View.LabelledTextBoxLong();
+            this._STBLot = new CallTracker.View.LabelledTextBox();
+            this._STBBox = new CallTracker.View.LabelledTextBox();
             this._MTVPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this._MTVHeading = new CallTracker.View.LabelledBase();
+            this._MTVMac = new CallTracker.View.LabelledTextBoxLong();
+            this._MTVSN = new CallTracker.View.LabelledTextBoxLong();
             this._ONCPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this._ModemStatus = new CallTracker.View.LabelledComboBoxLong();
+            this._ModemRF = new CallTracker.View.LabelledComboBoxLong();
+            this._ONCNode = new CallTracker.View.LabelledTextBoxLong();
+            this._SpeedTestHeading = new CallTracker.View.LabelledBase();
+            this._SpeedTestDown = new CallTracker.View.LabelledTextBoxLong();
+            this._SpeedTestUp = new CallTracker.View.LabelledTextBoxLong();
+            this._ModemDetailsHeading = new CallTracker.View.LabelledBase();
+            this._ModemCMMac = new CallTracker.View.LabelledTextBoxLong();
+            this._ModemMTAMac = new CallTracker.View.LabelledTextBoxLong();
+            this._ModemSN = new CallTracker.View.LabelledTextBoxLong();
+            this.labelledTextBoxLong1 = new CallTracker.View.LabelledTextBoxLong();
+            this.labelledBase1 = new CallTracker.View.LabelledBase();
+            this._AddressId = new CallTracker.View.LabelledTextBoxLong();
             this._EquipmentMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.userGuideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.simulatorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,48 +86,9 @@
             this._CVCContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this._Equipment = new CallTracker.View.LabelledComboBoxLong();
-            this._Node = new CallTracker.View.LabelledTextBoxLong();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this._CauPing = new CallTracker.View.LabelledComboBoxLong();
-            this._NitResults = new CallTracker.View.LabelledTextField();
-            this.labelledBase2 = new CallTracker.View.LabelledBase();
-            this._ESN = new CallTracker.View.LabelledTextBoxLong();
-            this._ONCNode = new CallTracker.View.LabelledTextBoxLong();
-            this._SpeedTestHeading = new CallTracker.View.LabelledBase();
-            this._SpeedTestDown = new CallTracker.View.LabelledTextBoxLong();
-            this._SpeedTestUp = new CallTracker.View.LabelledTextBoxLong();
-            this._ModemDetailsHeading = new CallTracker.View.LabelledBase();
-            this._ModemStatus = new CallTracker.View.LabelledComboBoxLong();
-            this._ModemRF = new CallTracker.View.LabelledComboBoxLong();
-            this._ModemCMMac = new CallTracker.View.LabelledTextBoxLong();
-            this._ModemMTAMac = new CallTracker.View.LabelledTextBoxLong();
-            this._ModemSN = new CallTracker.View.LabelledTextBoxLong();
-            this.labelledTextBoxLong1 = new CallTracker.View.LabelledTextBoxLong();
-            this.labelledBase1 = new CallTracker.View.LabelledBase();
-            this._AddressId = new CallTracker.View.LabelledTextBoxLong();
-            this._MTVHeading = new CallTracker.View.LabelledBase();
-            this._MTVMac = new CallTracker.View.LabelledTextBoxLong();
-            this._MTVSN = new CallTracker.View.LabelledTextBoxLong();
             this._ServiceHeading = new CallTracker.View.LabelledBase();
-            this._Bras = new CallTracker.View.LabelledTextBoxLong();
-            this._Sip = new CallTracker.View.LabelledComboBoxLong();
-            this._AVC = new CallTracker.View.LabelledTextBoxLong();
-            this._CSA = new CallTracker.View.LabelledTextBoxLong();
-            this._CVC = new CallTracker.View.LabelledTextBoxLong();
-            this._NNI = new CallTracker.View.LabelledTextBoxLong();
-            this._GSID = new CallTracker.View.LabelledTextBoxLong();
-            this._INC = new CallTracker.View.LabelledTextBoxLong();
-            this._APT = new CallTracker.View.LabelledTextBoxLong();
-            this._NTDSN = new CallTracker.View.LabelledTextBoxLong();
-            this._IPNBN = new CallTracker.View.LabelledTextBoxLong();
-            this._DTVNode = new CallTracker.View.LabelledTextBoxLong();
-            this._DTVMsg = new CallTracker.View.LabelledTextBoxLong();
-            this._DTVLights = new CallTracker.View.LabelledComboBoxLong();
-            this._STBHeading = new CallTracker.View.LabelledBase();
-            this._STBSmartCard = new CallTracker.View.LabelledTextBoxLong();
-            this._STBLot = new CallTracker.View.LabelledTextBox();
-            this._STBBox = new CallTracker.View.LabelledTextBox();
             this._LATPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this._NBNPanel.SuspendLayout();
             this._DTVPanel.SuspendLayout();
             this._MTVPanel.SuspendLayout();
@@ -97,7 +98,6 @@
             this._PRIContextMenu.SuspendLayout();
             this._AVCContextMenu.SuspendLayout();
             this._CVCContextMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // _LATPanel
@@ -112,200 +112,6 @@
             this._LATPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
             this._LATPanel.Size = new System.Drawing.Size(180, 217);
             this._LATPanel.TabIndex = 70;
-            // 
-            // _NBNPanel
-            // 
-            this._NBNPanel.Controls.Add(this._Bras);
-            this._NBNPanel.Controls.Add(this._Sip);
-            this._NBNPanel.Controls.Add(this._AVC);
-            this._NBNPanel.Controls.Add(this._CSA);
-            this._NBNPanel.Controls.Add(this._CVC);
-            this._NBNPanel.Controls.Add(this._NNI);
-            this._NBNPanel.Controls.Add(this._GSID);
-            this._NBNPanel.Controls.Add(this._INC);
-            this._NBNPanel.Controls.Add(this._APT);
-            this._NBNPanel.Controls.Add(this._NTDSN);
-            this._NBNPanel.Controls.Add(this._IPNBN);
-            this._NBNPanel.Location = new System.Drawing.Point(558, 35);
-            this._NBNPanel.Name = "_NBNPanel";
-            this._NBNPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
-            this._NBNPanel.Size = new System.Drawing.Size(180, 217);
-            this._NBNPanel.TabIndex = 97;
-            // 
-            // _DTVPanel
-            // 
-            this._DTVPanel.Controls.Add(this._DTVNode);
-            this._DTVPanel.Controls.Add(this._DTVMsg);
-            this._DTVPanel.Controls.Add(this._DTVLights);
-            this._DTVPanel.Controls.Add(this._STBHeading);
-            this._DTVPanel.Controls.Add(this._STBSmartCard);
-            this._DTVPanel.Controls.Add(this._STBLot);
-            this._DTVPanel.Controls.Add(this._STBBox);
-            this._DTVPanel.Location = new System.Drawing.Point(0, 35);
-            this._DTVPanel.Name = "_DTVPanel";
-            this._DTVPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
-            this._DTVPanel.Size = new System.Drawing.Size(180, 217);
-            this._DTVPanel.TabIndex = 77;
-            this._DTVPanel.MouseEnter += new System.EventHandler(this._DTVPanel_MouseEnter);
-            // 
-            // _MTVPanel
-            // 
-            this._MTVPanel.Controls.Add(this._MTVHeading);
-            this._MTVPanel.Controls.Add(this._MTVMac);
-            this._MTVPanel.Controls.Add(this._MTVSN);
-            this._MTVPanel.Location = new System.Drawing.Point(744, 35);
-            this._MTVPanel.Name = "_MTVPanel";
-            this._MTVPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
-            this._MTVPanel.Size = new System.Drawing.Size(180, 217);
-            this._MTVPanel.TabIndex = 100;
-            // 
-            // _ONCPanel
-            // 
-            this._ONCPanel.Controls.Add(this._ONCNode);
-            this._ONCPanel.Controls.Add(this._SpeedTestHeading);
-            this._ONCPanel.Controls.Add(this._SpeedTestDown);
-            this._ONCPanel.Controls.Add(this._SpeedTestUp);
-            this._ONCPanel.Controls.Add(this._ModemDetailsHeading);
-            this._ONCPanel.Controls.Add(this._ModemStatus);
-            this._ONCPanel.Controls.Add(this._ModemRF);
-            this._ONCPanel.Controls.Add(this._ModemCMMac);
-            this._ONCPanel.Controls.Add(this._ModemMTAMac);
-            this._ONCPanel.Controls.Add(this._ModemSN);
-            this._ONCPanel.Controls.Add(this.labelledTextBoxLong1);
-            this._ONCPanel.Controls.Add(this.labelledBase1);
-            this._ONCPanel.Controls.Add(this._AddressId);
-            this._ONCPanel.Location = new System.Drawing.Point(186, 35);
-            this._ONCPanel.Name = "_ONCPanel";
-            this._ONCPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
-            this._ONCPanel.Size = new System.Drawing.Size(180, 217);
-            this._ONCPanel.TabIndex = 100;
-            // 
-            // _EquipmentMenu
-            // 
-            this._EquipmentMenu.Enabled = false;
-            this._EquipmentMenu.Font = new System.Drawing.Font("Verdana", 7F);
-            this._EquipmentMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.userGuideToolStripMenuItem,
-            this.simulatorToolStripMenuItem});
-            this._EquipmentMenu.Name = "_EquipmentContextMenu";
-            this._EquipmentMenu.Size = new System.Drawing.Size(132, 48);
-            // 
-            // userGuideToolStripMenuItem
-            // 
-            this.userGuideToolStripMenuItem.Enabled = false;
-            this.userGuideToolStripMenuItem.Name = "userGuideToolStripMenuItem";
-            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.userGuideToolStripMenuItem.Text = "User Guide";
-            // 
-            // simulatorToolStripMenuItem
-            // 
-            this.simulatorToolStripMenuItem.Enabled = false;
-            this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
-            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.simulatorToolStripMenuItem.Text = "Simulator";
-            // 
-            // _NodeContextMenu
-            // 
-            this._NodeContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
-            this._NodeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem13});
-            this._NodeContextMenu.Name = "_PRContextMenu";
-            this._NodeContextMenu.Size = new System.Drawing.Size(98, 26);
-            this._NodeContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._NodeContextMenu_ItemClicked);
-            // 
-            // toolStripMenuItem13
-            // 
-            this.toolStripMenuItem13.Image = global::CallTracker.Properties.Resources.Search;
-            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(97, 22);
-            this.toolStripMenuItem13.Text = "IFMS";
-            // 
-            // _PRIContextMenu
-            // 
-            this._PRIContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
-            this._PRIContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nSIToolStripMenuItem});
-            this._PRIContextMenu.Name = "_PRIContextMenu";
-            this._PRIContextMenu.Size = new System.Drawing.Size(90, 26);
-            this._PRIContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._NBNContextMenu_ItemClicked);
-            // 
-            // nSIToolStripMenuItem
-            // 
-            this.nSIToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 7F);
-            this.nSIToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Search;
-            this.nSIToolStripMenuItem.Name = "nSIToolStripMenuItem";
-            this.nSIToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
-            this.nSIToolStripMenuItem.Text = "NSI";
-            // 
-            // _AVCContextMenu
-            // 
-            this._AVCContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
-            this._AVCContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1});
-            this._AVCContextMenu.Name = "_PRIContextMenu";
-            this._AVCContextMenu.Size = new System.Drawing.Size(90, 26);
-            this._AVCContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._NBNContextMenu_ItemClicked);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.toolStripMenuItem1.Image = global::CallTracker.Properties.Resources.Search;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(89, 22);
-            this.toolStripMenuItem1.Text = "NSI";
-            // 
-            // _CVCContextMenu
-            // 
-            this._CVCContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
-            this._CVCContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2});
-            this._CVCContextMenu.Name = "_PRIContextMenu";
-            this._CVCContextMenu.Size = new System.Drawing.Size(90, 26);
-            this._CVCContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._NBNContextMenu_ItemClicked);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Font = new System.Drawing.Font("Verdana", 7F);
-            this.toolStripMenuItem2.Image = global::CallTracker.Properties.Resources.Search;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(89, 22);
-            this.toolStripMenuItem2.Text = "NSI";
-            // 
-            // _Equipment
-            // 
-            this._Equipment.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._Equipment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._Equipment.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._Equipment.ControlHeight = 20;
-            this._Equipment.DataSource = null;
-            this._Equipment.DefaultText = "";
-            this._Equipment.Font = new System.Drawing.Font("Verdana", 7F);
-            this._Equipment.HasContextMenu = false;
-            this._Equipment.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._Equipment.LabelAutoSize = false;
-            this._Equipment.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
-            this._Equipment.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._Equipment.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._Equipment.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._Equipment.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._Equipment.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._Equipment.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._Equipment.LabelOffset = new System.Drawing.Point(2, 0);
-            this._Equipment.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._Equipment.LabelSize = new System.Drawing.Size(50, 20);
-            this._Equipment.LabelText = "equipment";
-            this._Equipment.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._Equipment.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._Equipment.LabelToolTip = "";
-            this._Equipment.LabelVisible = true;
-            this._Equipment.Location = new System.Drawing.Point(4, 14);
-            this._Equipment.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._Equipment.MenuButtonImage = null;
-            this._Equipment.Name = "_Equipment";
-            this._Equipment.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
-            this._Equipment.PropertyName = "Service.Equipment";
-            this._Equipment.Size = new System.Drawing.Size(171, 20);
-            this._Equipment.TabIndex = 0;
             // 
             // _Node
             // 
@@ -509,695 +315,24 @@
             this._ESN.TFReadOnly = false;
             this._ESN.TFTextColor = System.Drawing.SystemColors.WindowText;
             // 
-            // _ONCNode
+            // _NBNPanel
             // 
-            this._ONCNode.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._ONCNode.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._ONCNode.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._ONCNode.ControlHeight = 20;
-            this._ONCNode.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ONCNode.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._ONCNode.DefaultText = "";
-            this._ONCNode.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ONCNode.HasContextMenu = false;
-            this._ONCNode.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._ONCNode.LabelAutoSize = false;
-            this._ONCNode.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._ONCNode.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._ONCNode.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._ONCNode.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._ONCNode.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._ONCNode.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._ONCNode.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._ONCNode.LabelOffset = new System.Drawing.Point(0, 0);
-            this._ONCNode.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._ONCNode.LabelSize = new System.Drawing.Size(44, 20);
-            this._ONCNode.LabelText = "node";
-            this._ONCNode.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._ONCNode.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ONCNode.LabelToolTip = "";
-            this._ONCNode.LabelVisible = true;
-            this._ONCNode.Location = new System.Drawing.Point(4, 1);
-            this._ONCNode.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ONCNode.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._ONCNode.MenuButtonImage = null;
-            this._ONCNode.Name = "_ONCNode";
-            this._ONCNode.PropertyName = null;
-            this._ONCNode.Size = new System.Drawing.Size(171, 20);
-            this._ONCNode.TabIndex = 7;
-            this._ONCNode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._ONCNode.TextField = "";
-            this._ONCNode.TextfieldToolTip = "";
-            this._ONCNode.TFBackColor = System.Drawing.SystemColors.Window;
-            this._ONCNode.TFCursor = System.Windows.Forms.Cursors.IBeam;
-            this._ONCNode.TFReadOnly = false;
-            this._ONCNode.TFTextColor = System.Drawing.SystemColors.WindowText;
-            // 
-            // _SpeedTestHeading
-            // 
-            this._SpeedTestHeading.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._SpeedTestHeading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._SpeedTestHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._SpeedTestHeading.ControlHeight = 12;
-            this._SpeedTestHeading.Font = new System.Drawing.Font("Verdana", 7F);
-            this._SpeedTestHeading.HasContextMenu = false;
-            this._SpeedTestHeading.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._SpeedTestHeading.LabelAutoSize = true;
-            this._SpeedTestHeading.LabelBorderColor = System.Drawing.Color.Empty;
-            this._SpeedTestHeading.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._SpeedTestHeading.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._SpeedTestHeading.LabelDock = System.Windows.Forms.DockStyle.None;
-            this._SpeedTestHeading.LabelFont = new System.Drawing.Font("Gautami", 7F);
-            this._SpeedTestHeading.LabelInactiveColor = System.Drawing.Color.Empty;
-            this._SpeedTestHeading.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._SpeedTestHeading.LabelOffset = new System.Drawing.Point(1, -2);
-            this._SpeedTestHeading.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._SpeedTestHeading.LabelSize = new System.Drawing.Size(161, 22);
-            this._SpeedTestHeading.LabelText = "//SPEED TEST RESULTS(MBPS)";
-            this._SpeedTestHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._SpeedTestHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._SpeedTestHeading.LabelToolTip = "";
-            this._SpeedTestHeading.LabelVisible = true;
-            this._SpeedTestHeading.Location = new System.Drawing.Point(4, 22);
-            this._SpeedTestHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._SpeedTestHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._SpeedTestHeading.MenuButtonImage = null;
-            this._SpeedTestHeading.Name = "_SpeedTestHeading";
-            this._SpeedTestHeading.PropertyName = null;
-            this._SpeedTestHeading.Size = new System.Drawing.Size(171, 12);
-            this._SpeedTestHeading.TabIndex = 105;
-            this._SpeedTestHeading.TabStop = false;
-            // 
-            // _SpeedTestDown
-            // 
-            this._SpeedTestDown.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._SpeedTestDown.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._SpeedTestDown.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._SpeedTestDown.ControlHeight = 20;
-            this._SpeedTestDown.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._SpeedTestDown.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DownloadSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._SpeedTestDown.DefaultText = "";
-            this._SpeedTestDown.Font = new System.Drawing.Font("Verdana", 7F);
-            this._SpeedTestDown.HasContextMenu = false;
-            this._SpeedTestDown.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._SpeedTestDown.LabelAutoSize = false;
-            this._SpeedTestDown.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._SpeedTestDown.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._SpeedTestDown.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._SpeedTestDown.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._SpeedTestDown.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._SpeedTestDown.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._SpeedTestDown.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._SpeedTestDown.LabelOffset = new System.Drawing.Point(0, 0);
-            this._SpeedTestDown.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._SpeedTestDown.LabelSize = new System.Drawing.Size(44, 20);
-            this._SpeedTestDown.LabelText = "down";
-            this._SpeedTestDown.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._SpeedTestDown.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._SpeedTestDown.LabelToolTip = "";
-            this._SpeedTestDown.LabelVisible = true;
-            this._SpeedTestDown.Location = new System.Drawing.Point(4, 35);
-            this._SpeedTestDown.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._SpeedTestDown.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._SpeedTestDown.MenuButtonImage = null;
-            this._SpeedTestDown.Name = "_SpeedTestDown";
-            this._SpeedTestDown.PropertyName = null;
-            this._SpeedTestDown.Size = new System.Drawing.Size(85, 20);
-            this._SpeedTestDown.TabIndex = 8;
-            this._SpeedTestDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._SpeedTestDown.TextField = "";
-            this._SpeedTestDown.TextfieldToolTip = "";
-            this._SpeedTestDown.TFBackColor = System.Drawing.SystemColors.Window;
-            this._SpeedTestDown.TFCursor = System.Windows.Forms.Cursors.IBeam;
-            this._SpeedTestDown.TFReadOnly = false;
-            this._SpeedTestDown.TFTextColor = System.Drawing.SystemColors.WindowText;
-            // 
-            // _SpeedTestUp
-            // 
-            this._SpeedTestUp.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._SpeedTestUp.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._SpeedTestUp.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._SpeedTestUp.ControlHeight = 20;
-            this._SpeedTestUp.ControlMargin = new System.Windows.Forms.Padding(2, 0, 0, 1);
-            this._SpeedTestUp.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.UploadSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._SpeedTestUp.DefaultText = "";
-            this._SpeedTestUp.Font = new System.Drawing.Font("Verdana", 7F);
-            this._SpeedTestUp.HasContextMenu = false;
-            this._SpeedTestUp.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._SpeedTestUp.LabelAutoSize = false;
-            this._SpeedTestUp.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._SpeedTestUp.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._SpeedTestUp.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._SpeedTestUp.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._SpeedTestUp.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._SpeedTestUp.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._SpeedTestUp.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._SpeedTestUp.LabelOffset = new System.Drawing.Point(0, 0);
-            this._SpeedTestUp.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._SpeedTestUp.LabelSize = new System.Drawing.Size(44, 20);
-            this._SpeedTestUp.LabelText = "up";
-            this._SpeedTestUp.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._SpeedTestUp.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._SpeedTestUp.LabelToolTip = "";
-            this._SpeedTestUp.LabelVisible = true;
-            this._SpeedTestUp.Location = new System.Drawing.Point(91, 35);
-            this._SpeedTestUp.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
-            this._SpeedTestUp.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._SpeedTestUp.MenuButtonImage = null;
-            this._SpeedTestUp.Name = "_SpeedTestUp";
-            this._SpeedTestUp.PropertyName = null;
-            this._SpeedTestUp.Size = new System.Drawing.Size(84, 20);
-            this._SpeedTestUp.TabIndex = 9;
-            this._SpeedTestUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._SpeedTestUp.TextField = "";
-            this._SpeedTestUp.TextfieldToolTip = "";
-            this._SpeedTestUp.TFBackColor = System.Drawing.SystemColors.Window;
-            this._SpeedTestUp.TFCursor = System.Windows.Forms.Cursors.IBeam;
-            this._SpeedTestUp.TFReadOnly = false;
-            this._SpeedTestUp.TFTextColor = System.Drawing.SystemColors.WindowText;
-            // 
-            // _ModemDetailsHeading
-            // 
-            this._ModemDetailsHeading.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._ModemDetailsHeading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._ModemDetailsHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._ModemDetailsHeading.ControlHeight = 12;
-            this._ModemDetailsHeading.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemDetailsHeading.HasContextMenu = false;
-            this._ModemDetailsHeading.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._ModemDetailsHeading.LabelAutoSize = true;
-            this._ModemDetailsHeading.LabelBorderColor = System.Drawing.Color.Empty;
-            this._ModemDetailsHeading.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._ModemDetailsHeading.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._ModemDetailsHeading.LabelDock = System.Windows.Forms.DockStyle.None;
-            this._ModemDetailsHeading.LabelFont = new System.Drawing.Font("Gautami", 7F);
-            this._ModemDetailsHeading.LabelInactiveColor = System.Drawing.Color.Empty;
-            this._ModemDetailsHeading.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._ModemDetailsHeading.LabelOffset = new System.Drawing.Point(1, -2);
-            this._ModemDetailsHeading.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._ModemDetailsHeading.LabelSize = new System.Drawing.Size(101, 22);
-            this._ModemDetailsHeading.LabelText = "//MODEM DETAILS";
-            this._ModemDetailsHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._ModemDetailsHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemDetailsHeading.LabelToolTip = "";
-            this._ModemDetailsHeading.LabelVisible = true;
-            this._ModemDetailsHeading.Location = new System.Drawing.Point(4, 56);
-            this._ModemDetailsHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemDetailsHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._ModemDetailsHeading.MenuButtonImage = null;
-            this._ModemDetailsHeading.Name = "_ModemDetailsHeading";
-            this._ModemDetailsHeading.PropertyName = null;
-            this._ModemDetailsHeading.Size = new System.Drawing.Size(171, 12);
-            this._ModemDetailsHeading.TabIndex = 104;
-            this._ModemDetailsHeading.TabStop = false;
-            // 
-            // _ModemStatus
-            // 
-            this._ModemStatus.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._ModemStatus.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._ModemStatus.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._ModemStatus.ControlHeight = 20;
-            this._ModemStatus.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemStatus.DataSource = null;
-            this._ModemStatus.DefaultText = "";
-            this._ModemStatus.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemStatus.HasContextMenu = false;
-            this._ModemStatus.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._ModemStatus.LabelAutoSize = false;
-            this._ModemStatus.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._ModemStatus.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._ModemStatus.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._ModemStatus.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._ModemStatus.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._ModemStatus.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._ModemStatus.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._ModemStatus.LabelOffset = new System.Drawing.Point(0, 0);
-            this._ModemStatus.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._ModemStatus.LabelSize = new System.Drawing.Size(44, 20);
-            this._ModemStatus.LabelText = "status";
-            this._ModemStatus.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._ModemStatus.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemStatus.LabelToolTip = "";
-            this._ModemStatus.LabelVisible = true;
-            this._ModemStatus.Location = new System.Drawing.Point(4, 69);
-            this._ModemStatus.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemStatus.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
-            this._ModemStatus.MenuButtonImage = null;
-            this._ModemStatus.Name = "_ModemStatus";
-            this._ModemStatus.PropertyName = "Service.ModemStatus";
-            this._ModemStatus.Size = new System.Drawing.Size(104, 20);
-            this._ModemStatus.TabIndex = 10;
-            // 
-            // _ModemRF
-            // 
-            this._ModemRF.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._ModemRF.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._ModemRF.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._ModemRF.ControlHeight = 20;
-            this._ModemRF.ControlMargin = new System.Windows.Forms.Padding(2, 0, 0, 1);
-            this._ModemRF.DataSource = null;
-            this._ModemRF.DefaultText = "";
-            this._ModemRF.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemRF.HasContextMenu = false;
-            this._ModemRF.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._ModemRF.LabelAutoSize = true;
-            this._ModemRF.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._ModemRF.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._ModemRF.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._ModemRF.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._ModemRF.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._ModemRF.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._ModemRF.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._ModemRF.LabelOffset = new System.Drawing.Point(0, 0);
-            this._ModemRF.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._ModemRF.LabelSize = new System.Drawing.Size(16, 23);
-            this._ModemRF.LabelText = "rf";
-            this._ModemRF.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._ModemRF.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemRF.LabelToolTip = "";
-            this._ModemRF.LabelVisible = true;
-            this._ModemRF.Location = new System.Drawing.Point(110, 69);
-            this._ModemRF.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
-            this._ModemRF.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
-            this._ModemRF.MenuButtonImage = null;
-            this._ModemRF.Name = "_ModemRF";
-            this._ModemRF.OverlapLabel = false;
-            this._ModemRF.PropertyName = "Service.RFIssues";
-            this._ModemRF.Size = new System.Drawing.Size(65, 20);
-            this._ModemRF.TabIndex = 11;
-            // 
-            // _ModemCMMac
-            // 
-            this._ModemCMMac.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._ModemCMMac.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._ModemCMMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._ModemCMMac.ControlHeight = 20;
-            this._ModemCMMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemCMMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.CMMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._ModemCMMac.DefaultText = "";
-            this._ModemCMMac.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemCMMac.HasContextMenu = false;
-            this._ModemCMMac.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._ModemCMMac.LabelAutoSize = false;
-            this._ModemCMMac.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._ModemCMMac.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._ModemCMMac.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._ModemCMMac.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._ModemCMMac.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._ModemCMMac.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._ModemCMMac.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._ModemCMMac.LabelOffset = new System.Drawing.Point(0, 0);
-            this._ModemCMMac.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._ModemCMMac.LabelSize = new System.Drawing.Size(44, 20);
-            this._ModemCMMac.LabelText = "cm mac";
-            this._ModemCMMac.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._ModemCMMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemCMMac.LabelToolTip = "";
-            this._ModemCMMac.LabelVisible = true;
-            this._ModemCMMac.Location = new System.Drawing.Point(4, 90);
-            this._ModemCMMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemCMMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._ModemCMMac.MenuButtonImage = null;
-            this._ModemCMMac.Name = "_ModemCMMac";
-            this._ModemCMMac.PropertyName = null;
-            this._ModemCMMac.Size = new System.Drawing.Size(171, 20);
-            this._ModemCMMac.TabIndex = 12;
-            this._ModemCMMac.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._ModemCMMac.TextField = "";
-            this._ModemCMMac.TextfieldToolTip = "";
-            this._ModemCMMac.TFBackColor = System.Drawing.SystemColors.Window;
-            this._ModemCMMac.TFCursor = System.Windows.Forms.Cursors.IBeam;
-            this._ModemCMMac.TFReadOnly = false;
-            this._ModemCMMac.TFTextColor = System.Drawing.SystemColors.WindowText;
-            // 
-            // _ModemMTAMac
-            // 
-            this._ModemMTAMac.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._ModemMTAMac.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._ModemMTAMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._ModemMTAMac.ControlHeight = 20;
-            this._ModemMTAMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemMTAMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MTAMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._ModemMTAMac.DefaultText = "";
-            this._ModemMTAMac.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemMTAMac.HasContextMenu = false;
-            this._ModemMTAMac.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._ModemMTAMac.LabelAutoSize = false;
-            this._ModemMTAMac.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._ModemMTAMac.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._ModemMTAMac.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._ModemMTAMac.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._ModemMTAMac.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._ModemMTAMac.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._ModemMTAMac.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._ModemMTAMac.LabelOffset = new System.Drawing.Point(0, 0);
-            this._ModemMTAMac.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._ModemMTAMac.LabelSize = new System.Drawing.Size(44, 20);
-            this._ModemMTAMac.LabelText = "mta mac";
-            this._ModemMTAMac.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._ModemMTAMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemMTAMac.LabelToolTip = "";
-            this._ModemMTAMac.LabelVisible = true;
-            this._ModemMTAMac.Location = new System.Drawing.Point(4, 111);
-            this._ModemMTAMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemMTAMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._ModemMTAMac.MenuButtonImage = null;
-            this._ModemMTAMac.Name = "_ModemMTAMac";
-            this._ModemMTAMac.PropertyName = null;
-            this._ModemMTAMac.Size = new System.Drawing.Size(171, 20);
-            this._ModemMTAMac.TabIndex = 13;
-            this._ModemMTAMac.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._ModemMTAMac.TextField = "";
-            this._ModemMTAMac.TextfieldToolTip = "";
-            this._ModemMTAMac.TFBackColor = System.Drawing.SystemColors.Window;
-            this._ModemMTAMac.TFCursor = System.Windows.Forms.Cursors.IBeam;
-            this._ModemMTAMac.TFReadOnly = false;
-            this._ModemMTAMac.TFTextColor = System.Drawing.SystemColors.WindowText;
-            // 
-            // _ModemSN
-            // 
-            this._ModemSN.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._ModemSN.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._ModemSN.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._ModemSN.ControlHeight = 20;
-            this._ModemSN.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemSN.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.ModemSN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._ModemSN.DefaultText = "";
-            this._ModemSN.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ModemSN.HasContextMenu = false;
-            this._ModemSN.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._ModemSN.LabelAutoSize = false;
-            this._ModemSN.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._ModemSN.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._ModemSN.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._ModemSN.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._ModemSN.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._ModemSN.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._ModemSN.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._ModemSN.LabelOffset = new System.Drawing.Point(0, 0);
-            this._ModemSN.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._ModemSN.LabelSize = new System.Drawing.Size(44, 20);
-            this._ModemSN.LabelText = "serial";
-            this._ModemSN.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._ModemSN.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ModemSN.LabelToolTip = "";
-            this._ModemSN.LabelVisible = true;
-            this._ModemSN.Location = new System.Drawing.Point(4, 132);
-            this._ModemSN.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._ModemSN.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._ModemSN.MenuButtonImage = null;
-            this._ModemSN.Name = "_ModemSN";
-            this._ModemSN.PropertyName = null;
-            this._ModemSN.Size = new System.Drawing.Size(171, 20);
-            this._ModemSN.TabIndex = 14;
-            this._ModemSN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._ModemSN.TextField = "";
-            this._ModemSN.TextfieldToolTip = "";
-            this._ModemSN.TFBackColor = System.Drawing.SystemColors.Window;
-            this._ModemSN.TFCursor = System.Windows.Forms.Cursors.IBeam;
-            this._ModemSN.TFReadOnly = false;
-            this._ModemSN.TFTextColor = System.Drawing.SystemColors.WindowText;
-            // 
-            // labelledTextBoxLong1
-            // 
-            this.labelledTextBoxLong1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.labelledTextBoxLong1.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this.labelledTextBoxLong1.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this.labelledTextBoxLong1.ControlHeight = 20;
-            this.labelledTextBoxLong1.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.labelledTextBoxLong1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.ModemIp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.labelledTextBoxLong1.DefaultText = "";
-            this.labelledTextBoxLong1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.labelledTextBoxLong1.HasContextMenu = false;
-            this.labelledTextBoxLong1.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this.labelledTextBoxLong1.LabelAutoSize = false;
-            this.labelledTextBoxLong1.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this.labelledTextBoxLong1.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.labelledTextBoxLong1.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this.labelledTextBoxLong1.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this.labelledTextBoxLong1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this.labelledTextBoxLong1.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this.labelledTextBoxLong1.LabelMargin = new System.Windows.Forms.Padding(0);
-            this.labelledTextBoxLong1.LabelOffset = new System.Drawing.Point(0, 0);
-            this.labelledTextBoxLong1.LabelPadding = new System.Windows.Forms.Padding(0);
-            this.labelledTextBoxLong1.LabelSize = new System.Drawing.Size(44, 20);
-            this.labelledTextBoxLong1.LabelText = "ip";
-            this.labelledTextBoxLong1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelledTextBoxLong1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelledTextBoxLong1.LabelToolTip = "";
-            this.labelledTextBoxLong1.LabelVisible = true;
-            this.labelledTextBoxLong1.Location = new System.Drawing.Point(4, 153);
-            this.labelledTextBoxLong1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.labelledTextBoxLong1.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this.labelledTextBoxLong1.MenuButtonImage = null;
-            this.labelledTextBoxLong1.Name = "labelledTextBoxLong1";
-            this.labelledTextBoxLong1.PropertyName = null;
-            this.labelledTextBoxLong1.Size = new System.Drawing.Size(171, 20);
-            this.labelledTextBoxLong1.TabIndex = 15;
-            this.labelledTextBoxLong1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.labelledTextBoxLong1.TextField = "";
-            this.labelledTextBoxLong1.TextfieldToolTip = "";
-            this.labelledTextBoxLong1.TFBackColor = System.Drawing.SystemColors.Window;
-            this.labelledTextBoxLong1.TFCursor = System.Windows.Forms.Cursors.IBeam;
-            this.labelledTextBoxLong1.TFReadOnly = false;
-            this.labelledTextBoxLong1.TFTextColor = System.Drawing.SystemColors.WindowText;
-            // 
-            // labelledBase1
-            // 
-            this.labelledBase1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this.labelledBase1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this.labelledBase1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.labelledBase1.ControlHeight = 12;
-            this.labelledBase1.Font = new System.Drawing.Font("Verdana", 7F);
-            this.labelledBase1.HasContextMenu = false;
-            this.labelledBase1.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this.labelledBase1.LabelAutoSize = true;
-            this.labelledBase1.LabelBorderColor = System.Drawing.Color.Empty;
-            this.labelledBase1.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this.labelledBase1.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this.labelledBase1.LabelDock = System.Windows.Forms.DockStyle.None;
-            this.labelledBase1.LabelFont = new System.Drawing.Font("Gautami", 7F);
-            this.labelledBase1.LabelInactiveColor = System.Drawing.Color.Empty;
-            this.labelledBase1.LabelMargin = new System.Windows.Forms.Padding(0);
-            this.labelledBase1.LabelOffset = new System.Drawing.Point(1, -2);
-            this.labelledBase1.LabelPadding = new System.Windows.Forms.Padding(0);
-            this.labelledBase1.LabelSize = new System.Drawing.Size(106, 22);
-            this.labelledBase1.LabelText = "//SOFTACT DETAILS";
-            this.labelledBase1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelledBase1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this.labelledBase1.LabelToolTip = "";
-            this.labelledBase1.LabelVisible = true;
-            this.labelledBase1.Location = new System.Drawing.Point(4, 174);
-            this.labelledBase1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.labelledBase1.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this.labelledBase1.MenuButtonImage = null;
-            this.labelledBase1.Name = "labelledBase1";
-            this.labelledBase1.PropertyName = null;
-            this.labelledBase1.Size = new System.Drawing.Size(171, 12);
-            this.labelledBase1.TabIndex = 107;
-            this.labelledBase1.TabStop = false;
-            // 
-            // _AddressId
-            // 
-            this._AddressId.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._AddressId.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._AddressId.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._AddressId.ControlHeight = 20;
-            this._AddressId.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._AddressId.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.AddressId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._AddressId.DefaultText = "";
-            this._AddressId.Font = new System.Drawing.Font("Verdana", 7F);
-            this._AddressId.HasContextMenu = false;
-            this._AddressId.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._AddressId.LabelAutoSize = false;
-            this._AddressId.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._AddressId.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._AddressId.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._AddressId.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._AddressId.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._AddressId.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._AddressId.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._AddressId.LabelOffset = new System.Drawing.Point(0, 0);
-            this._AddressId.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._AddressId.LabelSize = new System.Drawing.Size(54, 20);
-            this._AddressId.LabelText = "address id";
-            this._AddressId.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._AddressId.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._AddressId.LabelToolTip = "";
-            this._AddressId.LabelVisible = true;
-            this._AddressId.Location = new System.Drawing.Point(4, 187);
-            this._AddressId.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._AddressId.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._AddressId.MenuButtonImage = null;
-            this._AddressId.Name = "_AddressId";
-            this._AddressId.PropertyName = null;
-            this._AddressId.Size = new System.Drawing.Size(171, 20);
-            this._AddressId.TabIndex = 16;
-            this._AddressId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._AddressId.TextField = "";
-            this._AddressId.TextfieldToolTip = "";
-            this._AddressId.TFBackColor = System.Drawing.SystemColors.Window;
-            this._AddressId.TFCursor = System.Windows.Forms.Cursors.IBeam;
-            this._AddressId.TFReadOnly = false;
-            this._AddressId.TFTextColor = System.Drawing.SystemColors.WindowText;
-            // 
-            // _MTVHeading
-            // 
-            this._MTVHeading.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._MTVHeading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._MTVHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._MTVHeading.ControlHeight = 12;
-            this._MTVHeading.Font = new System.Drawing.Font("Verdana", 7F);
-            this._MTVHeading.HasContextMenu = false;
-            this._MTVHeading.LabelActiveColor = System.Drawing.Color.Empty;
-            this._MTVHeading.LabelAutoSize = true;
-            this._MTVHeading.LabelBorderColor = System.Drawing.Color.Empty;
-            this._MTVHeading.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._MTVHeading.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._MTVHeading.LabelDock = System.Windows.Forms.DockStyle.None;
-            this._MTVHeading.LabelFont = new System.Drawing.Font("Gautami", 7F);
-            this._MTVHeading.LabelInactiveColor = System.Drawing.Color.Empty;
-            this._MTVHeading.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._MTVHeading.LabelOffset = new System.Drawing.Point(1, -2);
-            this._MTVHeading.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._MTVHeading.LabelSize = new System.Drawing.Size(40, 22);
-            this._MTVHeading.LabelText = "//STB";
-            this._MTVHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._MTVHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._MTVHeading.LabelToolTip = "";
-            this._MTVHeading.LabelVisible = true;
-            this._MTVHeading.Location = new System.Drawing.Point(4, 1);
-            this._MTVHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._MTVHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._MTVHeading.MenuButtonImage = null;
-            this._MTVHeading.Name = "_MTVHeading";
-            this._MTVHeading.PropertyName = null;
-            this._MTVHeading.Size = new System.Drawing.Size(171, 12);
-            this._MTVHeading.TabIndex = 95;
-            this._MTVHeading.TabStop = false;
-            // 
-            // _MTVMac
-            // 
-            this._MTVMac.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._MTVMac.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._MTVMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._MTVMac.ControlHeight = 20;
-            this._MTVMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._MTVMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MeTVMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._MTVMac.DefaultText = "";
-            this._MTVMac.Font = new System.Drawing.Font("Verdana", 7F);
-            this._MTVMac.HasContextMenu = false;
-            this._MTVMac.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._MTVMac.LabelAutoSize = false;
-            this._MTVMac.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._MTVMac.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._MTVMac.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._MTVMac.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._MTVMac.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._MTVMac.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._MTVMac.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._MTVMac.LabelOffset = new System.Drawing.Point(0, 0);
-            this._MTVMac.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._MTVMac.LabelSize = new System.Drawing.Size(44, 20);
-            this._MTVMac.LabelText = "mac";
-            this._MTVMac.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._MTVMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._MTVMac.LabelToolTip = "";
-            this._MTVMac.LabelVisible = true;
-            this._MTVMac.Location = new System.Drawing.Point(4, 14);
-            this._MTVMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._MTVMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._MTVMac.MenuButtonImage = null;
-            this._MTVMac.Name = "_MTVMac";
-            this._MTVMac.PropertyName = null;
-            this._MTVMac.Size = new System.Drawing.Size(171, 20);
-            this._MTVMac.TabIndex = 32;
-            this._MTVMac.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._MTVMac.TextField = "";
-            this._MTVMac.TextfieldToolTip = "";
-            this._MTVMac.TFBackColor = System.Drawing.SystemColors.Window;
-            this._MTVMac.TFCursor = System.Windows.Forms.Cursors.IBeam;
-            this._MTVMac.TFReadOnly = false;
-            this._MTVMac.TFTextColor = System.Drawing.SystemColors.WindowText;
-            // 
-            // _MTVSN
-            // 
-            this._MTVSN.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._MTVSN.BackColor = System.Drawing.Color.DarkOliveGreen;
-            this._MTVSN.BorderColour = System.Drawing.Color.DarkOliveGreen;
-            this._MTVSN.ControlHeight = 20;
-            this._MTVSN.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._MTVSN.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MeTVSN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this._MTVSN.DefaultText = "";
-            this._MTVSN.Font = new System.Drawing.Font("Verdana", 7F);
-            this._MTVSN.HasContextMenu = false;
-            this._MTVSN.LabelActiveColor = System.Drawing.Color.Firebrick;
-            this._MTVSN.LabelAutoSize = false;
-            this._MTVSN.LabelBorderColor = System.Drawing.Color.OliveDrab;
-            this._MTVSN.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._MTVSN.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._MTVSN.LabelDock = System.Windows.Forms.DockStyle.Left;
-            this._MTVSN.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
-            this._MTVSN.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
-            this._MTVSN.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._MTVSN.LabelOffset = new System.Drawing.Point(0, 0);
-            this._MTVSN.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._MTVSN.LabelSize = new System.Drawing.Size(44, 20);
-            this._MTVSN.LabelText = "serial";
-            this._MTVSN.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this._MTVSN.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._MTVSN.LabelToolTip = "";
-            this._MTVSN.LabelVisible = true;
-            this._MTVSN.Location = new System.Drawing.Point(4, 35);
-            this._MTVSN.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this._MTVSN.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._MTVSN.MenuButtonImage = null;
-            this._MTVSN.Name = "_MTVSN";
-            this._MTVSN.PropertyName = null;
-            this._MTVSN.Size = new System.Drawing.Size(171, 20);
-            this._MTVSN.TabIndex = 33;
-            this._MTVSN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this._MTVSN.TextField = "";
-            this._MTVSN.TextfieldToolTip = "";
-            this._MTVSN.TFBackColor = System.Drawing.SystemColors.Window;
-            this._MTVSN.TFCursor = System.Windows.Forms.Cursors.IBeam;
-            this._MTVSN.TFReadOnly = false;
-            this._MTVSN.TFTextColor = System.Drawing.SystemColors.WindowText;
-            // 
-            // _ServiceHeading
-            // 
-            this._ServiceHeading.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
-            this._ServiceHeading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
-            this._ServiceHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this._ServiceHeading.ControlHeight = 12;
-            this._ServiceHeading.Font = new System.Drawing.Font("Verdana", 7F);
-            this._ServiceHeading.HasContextMenu = false;
-            this._ServiceHeading.LabelActiveColor = System.Drawing.Color.Empty;
-            this._ServiceHeading.LabelAutoSize = true;
-            this._ServiceHeading.LabelBorderColor = System.Drawing.Color.Empty;
-            this._ServiceHeading.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
-            this._ServiceHeading.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
-            this._ServiceHeading.LabelDock = System.Windows.Forms.DockStyle.None;
-            this._ServiceHeading.LabelFont = new System.Drawing.Font("Gautami", 7F);
-            this._ServiceHeading.LabelInactiveColor = System.Drawing.Color.Empty;
-            this._ServiceHeading.LabelMargin = new System.Windows.Forms.Padding(0);
-            this._ServiceHeading.LabelOffset = new System.Drawing.Point(1, -2);
-            this._ServiceHeading.LabelPadding = new System.Windows.Forms.Padding(0);
-            this._ServiceHeading.LabelSize = new System.Drawing.Size(49, 22);
-            this._ServiceHeading.LabelText = "//NONE";
-            this._ServiceHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this._ServiceHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
-            this._ServiceHeading.LabelToolTip = "";
-            this._ServiceHeading.LabelVisible = true;
-            this._ServiceHeading.Location = new System.Drawing.Point(0, 0);
-            this._ServiceHeading.Margin = new System.Windows.Forms.Padding(0);
-            this._ServiceHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
-            this._ServiceHeading.MenuButtonImage = null;
-            this._ServiceHeading.Name = "_ServiceHeading";
-            this._ServiceHeading.PropertyName = null;
-            this._ServiceHeading.Size = new System.Drawing.Size(180, 12);
-            this._ServiceHeading.TabIndex = 71;
-            this._ServiceHeading.TabStop = false;
+            this._NBNPanel.Controls.Add(this._Bras);
+            this._NBNPanel.Controls.Add(this._Sip);
+            this._NBNPanel.Controls.Add(this._AVC);
+            this._NBNPanel.Controls.Add(this._CSA);
+            this._NBNPanel.Controls.Add(this._CVC);
+            this._NBNPanel.Controls.Add(this._NNI);
+            this._NBNPanel.Controls.Add(this._GSID);
+            this._NBNPanel.Controls.Add(this._INC);
+            this._NBNPanel.Controls.Add(this._APT);
+            this._NBNPanel.Controls.Add(this._NTDSN);
+            this._NBNPanel.Controls.Add(this._IPNBN);
+            this._NBNPanel.Location = new System.Drawing.Point(558, 35);
+            this._NBNPanel.Name = "_NBNPanel";
+            this._NBNPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
+            this._NBNPanel.Size = new System.Drawing.Size(180, 217);
+            this._NBNPanel.TabIndex = 97;
             // 
             // _Bras
             // 
@@ -1222,7 +357,7 @@
             this._Bras.LabelOffset = new System.Drawing.Point(0, 0);
             this._Bras.LabelPadding = new System.Windows.Forms.Padding(0);
             this._Bras.LabelSize = new System.Drawing.Size(40, 20);
-            this._Bras.LabelText = "bras";
+            this._Bras.LabelText = "online";
             this._Bras.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this._Bras.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
             this._Bras.LabelToolTip = "";
@@ -1677,6 +812,22 @@
             this._IPNBN.TFReadOnly = false;
             this._IPNBN.TFTextColor = System.Drawing.SystemColors.WindowText;
             // 
+            // _DTVPanel
+            // 
+            this._DTVPanel.Controls.Add(this._DTVNode);
+            this._DTVPanel.Controls.Add(this._DTVMsg);
+            this._DTVPanel.Controls.Add(this._DTVLights);
+            this._DTVPanel.Controls.Add(this._STBHeading);
+            this._DTVPanel.Controls.Add(this._STBSmartCard);
+            this._DTVPanel.Controls.Add(this._STBLot);
+            this._DTVPanel.Controls.Add(this._STBBox);
+            this._DTVPanel.Location = new System.Drawing.Point(0, 35);
+            this._DTVPanel.Name = "_DTVPanel";
+            this._DTVPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
+            this._DTVPanel.Size = new System.Drawing.Size(180, 217);
+            this._DTVPanel.TabIndex = 77;
+            this._DTVPanel.MouseEnter += new System.EventHandler(this._DTVPanel_MouseEnter);
+            // 
             // _DTVNode
             // 
             this._DTVNode.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
@@ -1962,6 +1113,857 @@
             this._STBBox.TextField = "";
             this._STBBox.TextFieldBackColour = System.Drawing.SystemColors.Window;
             // 
+            // _MTVPanel
+            // 
+            this._MTVPanel.Controls.Add(this._MTVHeading);
+            this._MTVPanel.Controls.Add(this._MTVMac);
+            this._MTVPanel.Controls.Add(this._MTVSN);
+            this._MTVPanel.Location = new System.Drawing.Point(744, 35);
+            this._MTVPanel.Name = "_MTVPanel";
+            this._MTVPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
+            this._MTVPanel.Size = new System.Drawing.Size(180, 217);
+            this._MTVPanel.TabIndex = 100;
+            // 
+            // _MTVHeading
+            // 
+            this._MTVHeading.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._MTVHeading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._MTVHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._MTVHeading.ControlHeight = 12;
+            this._MTVHeading.Font = new System.Drawing.Font("Verdana", 7F);
+            this._MTVHeading.HasContextMenu = false;
+            this._MTVHeading.LabelActiveColor = System.Drawing.Color.Empty;
+            this._MTVHeading.LabelAutoSize = true;
+            this._MTVHeading.LabelBorderColor = System.Drawing.Color.Empty;
+            this._MTVHeading.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._MTVHeading.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._MTVHeading.LabelDock = System.Windows.Forms.DockStyle.None;
+            this._MTVHeading.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this._MTVHeading.LabelInactiveColor = System.Drawing.Color.Empty;
+            this._MTVHeading.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._MTVHeading.LabelOffset = new System.Drawing.Point(1, -2);
+            this._MTVHeading.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._MTVHeading.LabelSize = new System.Drawing.Size(40, 22);
+            this._MTVHeading.LabelText = "//STB";
+            this._MTVHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._MTVHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._MTVHeading.LabelToolTip = "";
+            this._MTVHeading.LabelVisible = true;
+            this._MTVHeading.Location = new System.Drawing.Point(4, 1);
+            this._MTVHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._MTVHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._MTVHeading.MenuButtonImage = null;
+            this._MTVHeading.Name = "_MTVHeading";
+            this._MTVHeading.PropertyName = null;
+            this._MTVHeading.Size = new System.Drawing.Size(171, 12);
+            this._MTVHeading.TabIndex = 95;
+            this._MTVHeading.TabStop = false;
+            // 
+            // _MTVMac
+            // 
+            this._MTVMac.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._MTVMac.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._MTVMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._MTVMac.ControlHeight = 20;
+            this._MTVMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._MTVMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MeTVMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._MTVMac.DefaultText = "";
+            this._MTVMac.Font = new System.Drawing.Font("Verdana", 7F);
+            this._MTVMac.HasContextMenu = false;
+            this._MTVMac.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._MTVMac.LabelAutoSize = false;
+            this._MTVMac.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._MTVMac.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._MTVMac.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._MTVMac.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._MTVMac.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._MTVMac.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._MTVMac.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._MTVMac.LabelOffset = new System.Drawing.Point(0, 0);
+            this._MTVMac.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._MTVMac.LabelSize = new System.Drawing.Size(44, 20);
+            this._MTVMac.LabelText = "mac";
+            this._MTVMac.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._MTVMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._MTVMac.LabelToolTip = "";
+            this._MTVMac.LabelVisible = true;
+            this._MTVMac.Location = new System.Drawing.Point(4, 14);
+            this._MTVMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._MTVMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._MTVMac.MenuButtonImage = null;
+            this._MTVMac.Name = "_MTVMac";
+            this._MTVMac.PropertyName = null;
+            this._MTVMac.Size = new System.Drawing.Size(171, 20);
+            this._MTVMac.TabIndex = 32;
+            this._MTVMac.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._MTVMac.TextField = "";
+            this._MTVMac.TextfieldToolTip = "";
+            this._MTVMac.TFBackColor = System.Drawing.SystemColors.Window;
+            this._MTVMac.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._MTVMac.TFReadOnly = false;
+            this._MTVMac.TFTextColor = System.Drawing.SystemColors.WindowText;
+            // 
+            // _MTVSN
+            // 
+            this._MTVSN.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._MTVSN.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._MTVSN.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._MTVSN.ControlHeight = 20;
+            this._MTVSN.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._MTVSN.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MeTVSN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._MTVSN.DefaultText = "";
+            this._MTVSN.Font = new System.Drawing.Font("Verdana", 7F);
+            this._MTVSN.HasContextMenu = false;
+            this._MTVSN.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._MTVSN.LabelAutoSize = false;
+            this._MTVSN.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._MTVSN.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._MTVSN.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._MTVSN.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._MTVSN.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._MTVSN.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._MTVSN.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._MTVSN.LabelOffset = new System.Drawing.Point(0, 0);
+            this._MTVSN.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._MTVSN.LabelSize = new System.Drawing.Size(44, 20);
+            this._MTVSN.LabelText = "serial";
+            this._MTVSN.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._MTVSN.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._MTVSN.LabelToolTip = "";
+            this._MTVSN.LabelVisible = true;
+            this._MTVSN.Location = new System.Drawing.Point(4, 35);
+            this._MTVSN.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._MTVSN.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._MTVSN.MenuButtonImage = null;
+            this._MTVSN.Name = "_MTVSN";
+            this._MTVSN.PropertyName = null;
+            this._MTVSN.Size = new System.Drawing.Size(171, 20);
+            this._MTVSN.TabIndex = 33;
+            this._MTVSN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._MTVSN.TextField = "";
+            this._MTVSN.TextfieldToolTip = "";
+            this._MTVSN.TFBackColor = System.Drawing.SystemColors.Window;
+            this._MTVSN.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._MTVSN.TFReadOnly = false;
+            this._MTVSN.TFTextColor = System.Drawing.SystemColors.WindowText;
+            // 
+            // _ONCPanel
+            // 
+            this._ONCPanel.Controls.Add(this._ModemStatus);
+            this._ONCPanel.Controls.Add(this._ModemRF);
+            this._ONCPanel.Controls.Add(this._ONCNode);
+            this._ONCPanel.Controls.Add(this._SpeedTestHeading);
+            this._ONCPanel.Controls.Add(this._SpeedTestDown);
+            this._ONCPanel.Controls.Add(this._SpeedTestUp);
+            this._ONCPanel.Controls.Add(this._ModemDetailsHeading);
+            this._ONCPanel.Controls.Add(this._ModemCMMac);
+            this._ONCPanel.Controls.Add(this._ModemMTAMac);
+            this._ONCPanel.Controls.Add(this._ModemSN);
+            this._ONCPanel.Controls.Add(this.labelledTextBoxLong1);
+            this._ONCPanel.Controls.Add(this.labelledBase1);
+            this._ONCPanel.Controls.Add(this._AddressId);
+            this._ONCPanel.Location = new System.Drawing.Point(186, 35);
+            this._ONCPanel.Name = "_ONCPanel";
+            this._ONCPanel.Padding = new System.Windows.Forms.Padding(4, 1, 4, 0);
+            this._ONCPanel.Size = new System.Drawing.Size(180, 217);
+            this._ONCPanel.TabIndex = 100;
+            // 
+            // _ModemStatus
+            // 
+            this._ModemStatus.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._ModemStatus.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._ModemStatus.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._ModemStatus.ControlHeight = 20;
+            this._ModemStatus.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemStatus.DataSource = null;
+            this._ModemStatus.DefaultText = "";
+            this._ModemStatus.Font = new System.Drawing.Font("Verdana", 7F);
+            this._ModemStatus.HasContextMenu = false;
+            this._ModemStatus.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._ModemStatus.LabelAutoSize = false;
+            this._ModemStatus.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._ModemStatus.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._ModemStatus.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._ModemStatus.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._ModemStatus.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._ModemStatus.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._ModemStatus.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._ModemStatus.LabelOffset = new System.Drawing.Point(0, 0);
+            this._ModemStatus.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._ModemStatus.LabelSize = new System.Drawing.Size(44, 20);
+            this._ModemStatus.LabelText = "status";
+            this._ModemStatus.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._ModemStatus.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._ModemStatus.LabelToolTip = "";
+            this._ModemStatus.LabelVisible = true;
+            this._ModemStatus.Location = new System.Drawing.Point(4, 1);
+            this._ModemStatus.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemStatus.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
+            this._ModemStatus.MenuButtonImage = null;
+            this._ModemStatus.Name = "_ModemStatus";
+            this._ModemStatus.PropertyName = "Service.ModemStatus";
+            this._ModemStatus.Size = new System.Drawing.Size(104, 20);
+            this._ModemStatus.TabIndex = 10;
+            // 
+            // _ModemRF
+            // 
+            this._ModemRF.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._ModemRF.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._ModemRF.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._ModemRF.ControlHeight = 20;
+            this._ModemRF.ControlMargin = new System.Windows.Forms.Padding(2, 0, 0, 1);
+            this._ModemRF.DataSource = null;
+            this._ModemRF.DefaultText = "";
+            this._ModemRF.Font = new System.Drawing.Font("Verdana", 7F);
+            this._ModemRF.HasContextMenu = false;
+            this._ModemRF.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._ModemRF.LabelAutoSize = true;
+            this._ModemRF.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._ModemRF.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._ModemRF.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._ModemRF.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._ModemRF.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._ModemRF.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._ModemRF.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._ModemRF.LabelOffset = new System.Drawing.Point(0, 0);
+            this._ModemRF.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._ModemRF.LabelSize = new System.Drawing.Size(16, 23);
+            this._ModemRF.LabelText = "rf";
+            this._ModemRF.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._ModemRF.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._ModemRF.LabelToolTip = "";
+            this._ModemRF.LabelVisible = true;
+            this._ModemRF.Location = new System.Drawing.Point(110, 1);
+            this._ModemRF.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
+            this._ModemRF.MenuButtonDock = System.Windows.Forms.DockStyle.Left;
+            this._ModemRF.MenuButtonImage = null;
+            this._ModemRF.Name = "_ModemRF";
+            this._ModemRF.OverlapLabel = false;
+            this._ModemRF.PropertyName = "Service.RFIssues";
+            this._ModemRF.Size = new System.Drawing.Size(65, 20);
+            this._ModemRF.TabIndex = 11;
+            // 
+            // _ONCNode
+            // 
+            this._ONCNode.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._ONCNode.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._ONCNode.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._ONCNode.ControlHeight = 20;
+            this._ONCNode.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ONCNode.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.Node", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._ONCNode.DefaultText = "";
+            this._ONCNode.Font = new System.Drawing.Font("Verdana", 7F);
+            this._ONCNode.HasContextMenu = false;
+            this._ONCNode.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._ONCNode.LabelAutoSize = false;
+            this._ONCNode.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._ONCNode.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._ONCNode.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._ONCNode.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._ONCNode.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._ONCNode.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._ONCNode.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._ONCNode.LabelOffset = new System.Drawing.Point(0, 0);
+            this._ONCNode.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._ONCNode.LabelSize = new System.Drawing.Size(44, 20);
+            this._ONCNode.LabelText = "node";
+            this._ONCNode.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._ONCNode.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._ONCNode.LabelToolTip = "";
+            this._ONCNode.LabelVisible = true;
+            this._ONCNode.Location = new System.Drawing.Point(4, 22);
+            this._ONCNode.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ONCNode.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ONCNode.MenuButtonImage = null;
+            this._ONCNode.Name = "_ONCNode";
+            this._ONCNode.PropertyName = null;
+            this._ONCNode.Size = new System.Drawing.Size(171, 20);
+            this._ONCNode.TabIndex = 7;
+            this._ONCNode.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._ONCNode.TextField = "";
+            this._ONCNode.TextfieldToolTip = "";
+            this._ONCNode.TFBackColor = System.Drawing.SystemColors.Window;
+            this._ONCNode.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._ONCNode.TFReadOnly = false;
+            this._ONCNode.TFTextColor = System.Drawing.SystemColors.WindowText;
+            // 
+            // _SpeedTestHeading
+            // 
+            this._SpeedTestHeading.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._SpeedTestHeading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._SpeedTestHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._SpeedTestHeading.ControlHeight = 12;
+            this._SpeedTestHeading.Font = new System.Drawing.Font("Verdana", 7F);
+            this._SpeedTestHeading.HasContextMenu = false;
+            this._SpeedTestHeading.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._SpeedTestHeading.LabelAutoSize = true;
+            this._SpeedTestHeading.LabelBorderColor = System.Drawing.Color.Empty;
+            this._SpeedTestHeading.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._SpeedTestHeading.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._SpeedTestHeading.LabelDock = System.Windows.Forms.DockStyle.None;
+            this._SpeedTestHeading.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this._SpeedTestHeading.LabelInactiveColor = System.Drawing.Color.Empty;
+            this._SpeedTestHeading.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._SpeedTestHeading.LabelOffset = new System.Drawing.Point(1, -2);
+            this._SpeedTestHeading.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._SpeedTestHeading.LabelSize = new System.Drawing.Size(161, 22);
+            this._SpeedTestHeading.LabelText = "//SPEED TEST RESULTS(MBPS)";
+            this._SpeedTestHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._SpeedTestHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._SpeedTestHeading.LabelToolTip = "";
+            this._SpeedTestHeading.LabelVisible = true;
+            this._SpeedTestHeading.Location = new System.Drawing.Point(4, 43);
+            this._SpeedTestHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._SpeedTestHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._SpeedTestHeading.MenuButtonImage = null;
+            this._SpeedTestHeading.Name = "_SpeedTestHeading";
+            this._SpeedTestHeading.PropertyName = null;
+            this._SpeedTestHeading.Size = new System.Drawing.Size(171, 12);
+            this._SpeedTestHeading.TabIndex = 105;
+            this._SpeedTestHeading.TabStop = false;
+            // 
+            // _SpeedTestDown
+            // 
+            this._SpeedTestDown.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._SpeedTestDown.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._SpeedTestDown.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._SpeedTestDown.ControlHeight = 20;
+            this._SpeedTestDown.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._SpeedTestDown.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.DownloadSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._SpeedTestDown.DefaultText = "";
+            this._SpeedTestDown.Font = new System.Drawing.Font("Verdana", 7F);
+            this._SpeedTestDown.HasContextMenu = false;
+            this._SpeedTestDown.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._SpeedTestDown.LabelAutoSize = false;
+            this._SpeedTestDown.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._SpeedTestDown.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._SpeedTestDown.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._SpeedTestDown.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._SpeedTestDown.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._SpeedTestDown.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._SpeedTestDown.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._SpeedTestDown.LabelOffset = new System.Drawing.Point(0, 0);
+            this._SpeedTestDown.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._SpeedTestDown.LabelSize = new System.Drawing.Size(44, 20);
+            this._SpeedTestDown.LabelText = "down";
+            this._SpeedTestDown.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._SpeedTestDown.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._SpeedTestDown.LabelToolTip = "";
+            this._SpeedTestDown.LabelVisible = true;
+            this._SpeedTestDown.Location = new System.Drawing.Point(4, 56);
+            this._SpeedTestDown.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._SpeedTestDown.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._SpeedTestDown.MenuButtonImage = null;
+            this._SpeedTestDown.Name = "_SpeedTestDown";
+            this._SpeedTestDown.PropertyName = null;
+            this._SpeedTestDown.Size = new System.Drawing.Size(85, 20);
+            this._SpeedTestDown.TabIndex = 8;
+            this._SpeedTestDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._SpeedTestDown.TextField = "";
+            this._SpeedTestDown.TextfieldToolTip = "";
+            this._SpeedTestDown.TFBackColor = System.Drawing.SystemColors.Window;
+            this._SpeedTestDown.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._SpeedTestDown.TFReadOnly = false;
+            this._SpeedTestDown.TFTextColor = System.Drawing.SystemColors.WindowText;
+            // 
+            // _SpeedTestUp
+            // 
+            this._SpeedTestUp.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._SpeedTestUp.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._SpeedTestUp.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._SpeedTestUp.ControlHeight = 20;
+            this._SpeedTestUp.ControlMargin = new System.Windows.Forms.Padding(2, 0, 0, 1);
+            this._SpeedTestUp.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.UploadSpeed", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._SpeedTestUp.DefaultText = "";
+            this._SpeedTestUp.Font = new System.Drawing.Font("Verdana", 7F);
+            this._SpeedTestUp.HasContextMenu = false;
+            this._SpeedTestUp.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._SpeedTestUp.LabelAutoSize = false;
+            this._SpeedTestUp.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._SpeedTestUp.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._SpeedTestUp.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._SpeedTestUp.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._SpeedTestUp.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._SpeedTestUp.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._SpeedTestUp.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._SpeedTestUp.LabelOffset = new System.Drawing.Point(0, 0);
+            this._SpeedTestUp.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._SpeedTestUp.LabelSize = new System.Drawing.Size(44, 20);
+            this._SpeedTestUp.LabelText = "up";
+            this._SpeedTestUp.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._SpeedTestUp.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._SpeedTestUp.LabelToolTip = "";
+            this._SpeedTestUp.LabelVisible = true;
+            this._SpeedTestUp.Location = new System.Drawing.Point(91, 56);
+            this._SpeedTestUp.Margin = new System.Windows.Forms.Padding(2, 0, 0, 1);
+            this._SpeedTestUp.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._SpeedTestUp.MenuButtonImage = null;
+            this._SpeedTestUp.Name = "_SpeedTestUp";
+            this._SpeedTestUp.PropertyName = null;
+            this._SpeedTestUp.Size = new System.Drawing.Size(84, 20);
+            this._SpeedTestUp.TabIndex = 9;
+            this._SpeedTestUp.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._SpeedTestUp.TextField = "";
+            this._SpeedTestUp.TextfieldToolTip = "";
+            this._SpeedTestUp.TFBackColor = System.Drawing.SystemColors.Window;
+            this._SpeedTestUp.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._SpeedTestUp.TFReadOnly = false;
+            this._SpeedTestUp.TFTextColor = System.Drawing.SystemColors.WindowText;
+            // 
+            // _ModemDetailsHeading
+            // 
+            this._ModemDetailsHeading.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._ModemDetailsHeading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._ModemDetailsHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._ModemDetailsHeading.ControlHeight = 12;
+            this._ModemDetailsHeading.Font = new System.Drawing.Font("Verdana", 7F);
+            this._ModemDetailsHeading.HasContextMenu = false;
+            this._ModemDetailsHeading.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._ModemDetailsHeading.LabelAutoSize = true;
+            this._ModemDetailsHeading.LabelBorderColor = System.Drawing.Color.Empty;
+            this._ModemDetailsHeading.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._ModemDetailsHeading.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._ModemDetailsHeading.LabelDock = System.Windows.Forms.DockStyle.None;
+            this._ModemDetailsHeading.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this._ModemDetailsHeading.LabelInactiveColor = System.Drawing.Color.Empty;
+            this._ModemDetailsHeading.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._ModemDetailsHeading.LabelOffset = new System.Drawing.Point(1, -2);
+            this._ModemDetailsHeading.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._ModemDetailsHeading.LabelSize = new System.Drawing.Size(101, 22);
+            this._ModemDetailsHeading.LabelText = "//MODEM DETAILS";
+            this._ModemDetailsHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._ModemDetailsHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._ModemDetailsHeading.LabelToolTip = "";
+            this._ModemDetailsHeading.LabelVisible = true;
+            this._ModemDetailsHeading.Location = new System.Drawing.Point(4, 77);
+            this._ModemDetailsHeading.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemDetailsHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ModemDetailsHeading.MenuButtonImage = null;
+            this._ModemDetailsHeading.Name = "_ModemDetailsHeading";
+            this._ModemDetailsHeading.PropertyName = null;
+            this._ModemDetailsHeading.Size = new System.Drawing.Size(171, 12);
+            this._ModemDetailsHeading.TabIndex = 104;
+            this._ModemDetailsHeading.TabStop = false;
+            // 
+            // _ModemCMMac
+            // 
+            this._ModemCMMac.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._ModemCMMac.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._ModemCMMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._ModemCMMac.ControlHeight = 20;
+            this._ModemCMMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemCMMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.CMMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._ModemCMMac.DefaultText = "";
+            this._ModemCMMac.Font = new System.Drawing.Font("Verdana", 7F);
+            this._ModemCMMac.HasContextMenu = false;
+            this._ModemCMMac.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._ModemCMMac.LabelAutoSize = false;
+            this._ModemCMMac.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._ModemCMMac.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._ModemCMMac.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._ModemCMMac.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._ModemCMMac.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._ModemCMMac.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._ModemCMMac.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._ModemCMMac.LabelOffset = new System.Drawing.Point(0, 0);
+            this._ModemCMMac.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._ModemCMMac.LabelSize = new System.Drawing.Size(44, 20);
+            this._ModemCMMac.LabelText = "cm mac";
+            this._ModemCMMac.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._ModemCMMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._ModemCMMac.LabelToolTip = "";
+            this._ModemCMMac.LabelVisible = true;
+            this._ModemCMMac.Location = new System.Drawing.Point(4, 90);
+            this._ModemCMMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemCMMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ModemCMMac.MenuButtonImage = null;
+            this._ModemCMMac.Name = "_ModemCMMac";
+            this._ModemCMMac.PropertyName = null;
+            this._ModemCMMac.Size = new System.Drawing.Size(171, 20);
+            this._ModemCMMac.TabIndex = 12;
+            this._ModemCMMac.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._ModemCMMac.TextField = "";
+            this._ModemCMMac.TextfieldToolTip = "";
+            this._ModemCMMac.TFBackColor = System.Drawing.SystemColors.Window;
+            this._ModemCMMac.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._ModemCMMac.TFReadOnly = false;
+            this._ModemCMMac.TFTextColor = System.Drawing.SystemColors.WindowText;
+            // 
+            // _ModemMTAMac
+            // 
+            this._ModemMTAMac.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._ModemMTAMac.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._ModemMTAMac.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._ModemMTAMac.ControlHeight = 20;
+            this._ModemMTAMac.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemMTAMac.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.MTAMac", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._ModemMTAMac.DefaultText = "";
+            this._ModemMTAMac.Font = new System.Drawing.Font("Verdana", 7F);
+            this._ModemMTAMac.HasContextMenu = false;
+            this._ModemMTAMac.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._ModemMTAMac.LabelAutoSize = false;
+            this._ModemMTAMac.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._ModemMTAMac.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._ModemMTAMac.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._ModemMTAMac.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._ModemMTAMac.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._ModemMTAMac.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._ModemMTAMac.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._ModemMTAMac.LabelOffset = new System.Drawing.Point(0, 0);
+            this._ModemMTAMac.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._ModemMTAMac.LabelSize = new System.Drawing.Size(44, 20);
+            this._ModemMTAMac.LabelText = "mta mac";
+            this._ModemMTAMac.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._ModemMTAMac.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._ModemMTAMac.LabelToolTip = "";
+            this._ModemMTAMac.LabelVisible = true;
+            this._ModemMTAMac.Location = new System.Drawing.Point(4, 111);
+            this._ModemMTAMac.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemMTAMac.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ModemMTAMac.MenuButtonImage = null;
+            this._ModemMTAMac.Name = "_ModemMTAMac";
+            this._ModemMTAMac.PropertyName = null;
+            this._ModemMTAMac.Size = new System.Drawing.Size(171, 20);
+            this._ModemMTAMac.TabIndex = 13;
+            this._ModemMTAMac.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._ModemMTAMac.TextField = "";
+            this._ModemMTAMac.TextfieldToolTip = "";
+            this._ModemMTAMac.TFBackColor = System.Drawing.SystemColors.Window;
+            this._ModemMTAMac.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._ModemMTAMac.TFReadOnly = false;
+            this._ModemMTAMac.TFTextColor = System.Drawing.SystemColors.WindowText;
+            // 
+            // _ModemSN
+            // 
+            this._ModemSN.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._ModemSN.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._ModemSN.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._ModemSN.ControlHeight = 20;
+            this._ModemSN.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemSN.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.ModemSN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._ModemSN.DefaultText = "";
+            this._ModemSN.Font = new System.Drawing.Font("Verdana", 7F);
+            this._ModemSN.HasContextMenu = false;
+            this._ModemSN.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._ModemSN.LabelAutoSize = false;
+            this._ModemSN.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._ModemSN.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._ModemSN.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._ModemSN.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._ModemSN.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._ModemSN.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._ModemSN.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._ModemSN.LabelOffset = new System.Drawing.Point(0, 0);
+            this._ModemSN.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._ModemSN.LabelSize = new System.Drawing.Size(44, 20);
+            this._ModemSN.LabelText = "serial";
+            this._ModemSN.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._ModemSN.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._ModemSN.LabelToolTip = "";
+            this._ModemSN.LabelVisible = true;
+            this._ModemSN.Location = new System.Drawing.Point(4, 132);
+            this._ModemSN.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._ModemSN.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ModemSN.MenuButtonImage = null;
+            this._ModemSN.Name = "_ModemSN";
+            this._ModemSN.PropertyName = null;
+            this._ModemSN.Size = new System.Drawing.Size(171, 20);
+            this._ModemSN.TabIndex = 14;
+            this._ModemSN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._ModemSN.TextField = "";
+            this._ModemSN.TextfieldToolTip = "";
+            this._ModemSN.TFBackColor = System.Drawing.SystemColors.Window;
+            this._ModemSN.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._ModemSN.TFReadOnly = false;
+            this._ModemSN.TFTextColor = System.Drawing.SystemColors.WindowText;
+            // 
+            // labelledTextBoxLong1
+            // 
+            this.labelledTextBoxLong1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledTextBoxLong1.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong1.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong1.ControlHeight = 20;
+            this.labelledTextBoxLong1.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong1.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.ModemIp", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.labelledTextBoxLong1.DefaultText = "";
+            this.labelledTextBoxLong1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledTextBoxLong1.HasContextMenu = false;
+            this.labelledTextBoxLong1.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this.labelledTextBoxLong1.LabelAutoSize = false;
+            this.labelledTextBoxLong1.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this.labelledTextBoxLong1.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.labelledTextBoxLong1.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this.labelledTextBoxLong1.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this.labelledTextBoxLong1.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this.labelledTextBoxLong1.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this.labelledTextBoxLong1.LabelMargin = new System.Windows.Forms.Padding(0);
+            this.labelledTextBoxLong1.LabelOffset = new System.Drawing.Point(0, 0);
+            this.labelledTextBoxLong1.LabelPadding = new System.Windows.Forms.Padding(0);
+            this.labelledTextBoxLong1.LabelSize = new System.Drawing.Size(44, 20);
+            this.labelledTextBoxLong1.LabelText = "ip";
+            this.labelledTextBoxLong1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelledTextBoxLong1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledTextBoxLong1.LabelToolTip = "";
+            this.labelledTextBoxLong1.LabelVisible = true;
+            this.labelledTextBoxLong1.Location = new System.Drawing.Point(4, 153);
+            this.labelledTextBoxLong1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledTextBoxLong1.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this.labelledTextBoxLong1.MenuButtonImage = null;
+            this.labelledTextBoxLong1.Name = "labelledTextBoxLong1";
+            this.labelledTextBoxLong1.PropertyName = null;
+            this.labelledTextBoxLong1.Size = new System.Drawing.Size(171, 20);
+            this.labelledTextBoxLong1.TabIndex = 15;
+            this.labelledTextBoxLong1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.labelledTextBoxLong1.TextField = "";
+            this.labelledTextBoxLong1.TextfieldToolTip = "";
+            this.labelledTextBoxLong1.TFBackColor = System.Drawing.SystemColors.Window;
+            this.labelledTextBoxLong1.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this.labelledTextBoxLong1.TFReadOnly = false;
+            this.labelledTextBoxLong1.TFTextColor = System.Drawing.SystemColors.WindowText;
+            // 
+            // labelledBase1
+            // 
+            this.labelledBase1.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this.labelledBase1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this.labelledBase1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.labelledBase1.ControlHeight = 12;
+            this.labelledBase1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.labelledBase1.HasContextMenu = false;
+            this.labelledBase1.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this.labelledBase1.LabelAutoSize = true;
+            this.labelledBase1.LabelBorderColor = System.Drawing.Color.Empty;
+            this.labelledBase1.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this.labelledBase1.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this.labelledBase1.LabelDock = System.Windows.Forms.DockStyle.None;
+            this.labelledBase1.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this.labelledBase1.LabelInactiveColor = System.Drawing.Color.Empty;
+            this.labelledBase1.LabelMargin = new System.Windows.Forms.Padding(0);
+            this.labelledBase1.LabelOffset = new System.Drawing.Point(1, -2);
+            this.labelledBase1.LabelPadding = new System.Windows.Forms.Padding(0);
+            this.labelledBase1.LabelSize = new System.Drawing.Size(106, 22);
+            this.labelledBase1.LabelText = "//SOFTACT DETAILS";
+            this.labelledBase1.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelledBase1.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this.labelledBase1.LabelToolTip = "";
+            this.labelledBase1.LabelVisible = true;
+            this.labelledBase1.Location = new System.Drawing.Point(4, 174);
+            this.labelledBase1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.labelledBase1.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this.labelledBase1.MenuButtonImage = null;
+            this.labelledBase1.Name = "labelledBase1";
+            this.labelledBase1.PropertyName = null;
+            this.labelledBase1.Size = new System.Drawing.Size(171, 12);
+            this.labelledBase1.TabIndex = 107;
+            this.labelledBase1.TabStop = false;
+            // 
+            // _AddressId
+            // 
+            this._AddressId.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._AddressId.BackColor = System.Drawing.Color.DarkOliveGreen;
+            this._AddressId.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._AddressId.ControlHeight = 20;
+            this._AddressId.ControlMargin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._AddressId.DataBindings.Add(new System.Windows.Forms.Binding("TextField", this.bindingSource1, "Service.AddressId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this._AddressId.DefaultText = "";
+            this._AddressId.Font = new System.Drawing.Font("Verdana", 7F);
+            this._AddressId.HasContextMenu = false;
+            this._AddressId.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._AddressId.LabelAutoSize = false;
+            this._AddressId.LabelBorderColor = System.Drawing.Color.OliveDrab;
+            this._AddressId.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._AddressId.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._AddressId.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._AddressId.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._AddressId.LabelInactiveColor = System.Drawing.Color.DarkOliveGreen;
+            this._AddressId.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._AddressId.LabelOffset = new System.Drawing.Point(0, 0);
+            this._AddressId.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._AddressId.LabelSize = new System.Drawing.Size(54, 20);
+            this._AddressId.LabelText = "address id";
+            this._AddressId.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._AddressId.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._AddressId.LabelToolTip = "";
+            this._AddressId.LabelVisible = true;
+            this._AddressId.Location = new System.Drawing.Point(4, 187);
+            this._AddressId.Margin = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this._AddressId.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._AddressId.MenuButtonImage = null;
+            this._AddressId.Name = "_AddressId";
+            this._AddressId.PropertyName = null;
+            this._AddressId.Size = new System.Drawing.Size(171, 20);
+            this._AddressId.TabIndex = 16;
+            this._AddressId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this._AddressId.TextField = "";
+            this._AddressId.TextfieldToolTip = "";
+            this._AddressId.TFBackColor = System.Drawing.SystemColors.Window;
+            this._AddressId.TFCursor = System.Windows.Forms.Cursors.IBeam;
+            this._AddressId.TFReadOnly = false;
+            this._AddressId.TFTextColor = System.Drawing.SystemColors.WindowText;
+            // 
+            // _EquipmentMenu
+            // 
+            this._EquipmentMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._EquipmentMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.userGuideToolStripMenuItem,
+            this.simulatorToolStripMenuItem});
+            this._EquipmentMenu.Name = "_EquipmentContextMenu";
+            this._EquipmentMenu.Size = new System.Drawing.Size(132, 48);
+            // 
+            // userGuideToolStripMenuItem
+            // 
+            this.userGuideToolStripMenuItem.Enabled = false;
+            this.userGuideToolStripMenuItem.Name = "userGuideToolStripMenuItem";
+            this.userGuideToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.userGuideToolStripMenuItem.Text = "User Guide";
+            this.userGuideToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
+            // 
+            // simulatorToolStripMenuItem
+            // 
+            this.simulatorToolStripMenuItem.Enabled = false;
+            this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
+            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.simulatorToolStripMenuItem.Text = "Simulator";
+            this.simulatorToolStripMenuItem.Click += new System.EventHandler(this.userGuideToolStripMenuItem_Click);
+            // 
+            // _NodeContextMenu
+            // 
+            this._NodeContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._NodeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem13});
+            this._NodeContextMenu.Name = "_PRContextMenu";
+            this._NodeContextMenu.Size = new System.Drawing.Size(98, 26);
+            this._NodeContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._NodeContextMenu_ItemClicked);
+            // 
+            // toolStripMenuItem13
+            // 
+            this.toolStripMenuItem13.Image = global::CallTracker.Properties.Resources.Search;
+            this.toolStripMenuItem13.Name = "toolStripMenuItem13";
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(97, 22);
+            this.toolStripMenuItem13.Text = "IFMS";
+            // 
+            // _PRIContextMenu
+            // 
+            this._PRIContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._PRIContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nSIToolStripMenuItem});
+            this._PRIContextMenu.Name = "_PRIContextMenu";
+            this._PRIContextMenu.Size = new System.Drawing.Size(90, 26);
+            this._PRIContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._NBNContextMenu_ItemClicked);
+            // 
+            // nSIToolStripMenuItem
+            // 
+            this.nSIToolStripMenuItem.Font = new System.Drawing.Font("Verdana", 7F);
+            this.nSIToolStripMenuItem.Image = global::CallTracker.Properties.Resources.Search;
+            this.nSIToolStripMenuItem.Name = "nSIToolStripMenuItem";
+            this.nSIToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
+            this.nSIToolStripMenuItem.Text = "NSI";
+            // 
+            // _AVCContextMenu
+            // 
+            this._AVCContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._AVCContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem1});
+            this._AVCContextMenu.Name = "_PRIContextMenu";
+            this._AVCContextMenu.Size = new System.Drawing.Size(90, 26);
+            this._AVCContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._NBNContextMenu_ItemClicked);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Font = new System.Drawing.Font("Verdana", 7F);
+            this.toolStripMenuItem1.Image = global::CallTracker.Properties.Resources.Search;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(89, 22);
+            this.toolStripMenuItem1.Text = "NSI";
+            // 
+            // _CVCContextMenu
+            // 
+            this._CVCContextMenu.Font = new System.Drawing.Font("Verdana", 7F);
+            this._CVCContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2});
+            this._CVCContextMenu.Name = "_PRIContextMenu";
+            this._CVCContextMenu.Size = new System.Drawing.Size(90, 26);
+            this._CVCContextMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this._NBNContextMenu_ItemClicked);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Font = new System.Drawing.Font("Verdana", 7F);
+            this.toolStripMenuItem2.Image = global::CallTracker.Properties.Resources.Search;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(89, 22);
+            this.toolStripMenuItem2.Text = "NSI";
+            // 
+            // _Equipment
+            // 
+            this._Equipment.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._Equipment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Equipment.BorderColour = System.Drawing.Color.DarkOliveGreen;
+            this._Equipment.ControlHeight = 20;
+            this._Equipment.DataSource = null;
+            this._Equipment.DefaultText = "";
+            this._Equipment.Font = new System.Drawing.Font("Verdana", 7F);
+            this._Equipment.HasContextMenu = false;
+            this._Equipment.LabelActiveColor = System.Drawing.Color.Firebrick;
+            this._Equipment.LabelAutoSize = false;
+            this._Equipment.LabelBorderColor = System.Drawing.Color.DarkOliveGreen;
+            this._Equipment.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._Equipment.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._Equipment.LabelDock = System.Windows.Forms.DockStyle.Left;
+            this._Equipment.LabelFont = new System.Drawing.Font("Gautami", 8.25F);
+            this._Equipment.LabelInactiveColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._Equipment.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._Equipment.LabelOffset = new System.Drawing.Point(2, 0);
+            this._Equipment.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._Equipment.LabelSize = new System.Drawing.Size(50, 20);
+            this._Equipment.LabelText = "equipment";
+            this._Equipment.LabelTextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this._Equipment.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._Equipment.LabelToolTip = "";
+            this._Equipment.LabelVisible = true;
+            this._Equipment.Location = new System.Drawing.Point(4, 14);
+            this._Equipment.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._Equipment.MenuButtonImage = null;
+            this._Equipment.Name = "_Equipment";
+            this._Equipment.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
+            this._Equipment.PropertyName = "Service.Equipment";
+            this._Equipment.Size = new System.Drawing.Size(171, 20);
+            this._Equipment.TabIndex = 0;
+            this._Equipment.SelectedIndexChanged += new System.EventHandler(this._Equipment_SelectedIndexChanged);
+            // 
+            // _ServiceHeading
+            // 
+            this._ServiceHeading.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
+            this._ServiceHeading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(79)))), ((int)(((byte)(30)))));
+            this._ServiceHeading.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this._ServiceHeading.ControlHeight = 12;
+            this._ServiceHeading.Font = new System.Drawing.Font("Verdana", 7F);
+            this._ServiceHeading.HasContextMenu = false;
+            this._ServiceHeading.LabelActiveColor = System.Drawing.Color.Empty;
+            this._ServiceHeading.LabelAutoSize = true;
+            this._ServiceHeading.LabelBorderColor = System.Drawing.Color.Empty;
+            this._ServiceHeading.LabelBorderOffset = new System.Drawing.Rectangle(0, 0, 0, 0);
+            this._ServiceHeading.LabelBorderStyle = System.Windows.Forms.ButtonBorderStyle.None;
+            this._ServiceHeading.LabelDock = System.Windows.Forms.DockStyle.None;
+            this._ServiceHeading.LabelFont = new System.Drawing.Font("Gautami", 7F);
+            this._ServiceHeading.LabelInactiveColor = System.Drawing.Color.Empty;
+            this._ServiceHeading.LabelMargin = new System.Windows.Forms.Padding(0);
+            this._ServiceHeading.LabelOffset = new System.Drawing.Point(1, -2);
+            this._ServiceHeading.LabelPadding = new System.Windows.Forms.Padding(0);
+            this._ServiceHeading.LabelSize = new System.Drawing.Size(49, 22);
+            this._ServiceHeading.LabelText = "//NONE";
+            this._ServiceHeading.LabelTextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._ServiceHeading.LabelTextColor = System.Drawing.SystemColors.ControlLightLight;
+            this._ServiceHeading.LabelToolTip = "";
+            this._ServiceHeading.LabelVisible = true;
+            this._ServiceHeading.Location = new System.Drawing.Point(0, 0);
+            this._ServiceHeading.Margin = new System.Windows.Forms.Padding(0);
+            this._ServiceHeading.MenuButtonDock = System.Windows.Forms.DockStyle.Right;
+            this._ServiceHeading.MenuButtonImage = null;
+            this._ServiceHeading.Name = "_ServiceHeading";
+            this._ServiceHeading.PropertyName = null;
+            this._ServiceHeading.Size = new System.Drawing.Size(180, 12);
+            this._ServiceHeading.TabIndex = 71;
+            this._ServiceHeading.TabStop = false;
+            // 
             // ServicePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1980,6 +1982,7 @@
             this.Padding = new System.Windows.Forms.Padding(3);
             this.Size = new System.Drawing.Size(995, 252);
             this._LATPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this._NBNPanel.ResumeLayout(false);
             this._DTVPanel.ResumeLayout(false);
             this._MTVPanel.ResumeLayout(false);
@@ -1989,7 +1992,6 @@
             this._PRIContextMenu.ResumeLayout(false);
             this._AVCContextMenu.ResumeLayout(false);
             this._CVCContextMenu.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }

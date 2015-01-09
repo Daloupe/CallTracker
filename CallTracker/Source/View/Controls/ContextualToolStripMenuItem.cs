@@ -159,7 +159,7 @@ using CallTracker.Helpers;
             var queries = (from a in ds.Bookmarks
                           where a.ProblemStylesRow != null &&
                                a.ProblemStylesRow.Description == service
-                          select a).ToList();
+                           select a).Reverse().ToList();
 
             foreach (var query in queries)
             {
@@ -186,10 +186,10 @@ using CallTracker.Helpers;
 
         public override void Go(string service)
         {
-            var queries = from a in ds.SystemLinks
+            var queries = (from a in ds.SystemLinks
                           where a.ProblemStylesRow != null && 
                                 a.ProblemStylesRow.Description == service
-                          select a;
+                          select a).Reverse().ToList();
 
             foreach (var query in queries)
             {

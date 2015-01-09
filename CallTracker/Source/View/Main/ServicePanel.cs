@@ -351,6 +351,39 @@ namespace CallTracker.View
                 "http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F139_SearchByNode.aspx?id=" +
                 EditContacts.MainForm.SelectedContact.Service.Node, "IFMS");
         }
+
+        private void userGuideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HotkeyController.NavigateOrNewIE(((ToolStripMenuItem)sender).Tag.ToString());
+        }
+
+        private void _Equipment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_Equipment._ComboBox.SelectedItem == null) return;
+            var equipment =
+                Main.ServicesStore.servicesDataSet.Equipment.FirstOrDefault(
+                    eq => eq.Description == _Equipment._ComboBox.SelectedItem.ToString());
+
+            if (equipment == null) return;
+
+            if (!equipment.IsUserGuideNull())
+            {
+                userGuideToolStripMenuItem.Enabled = true;
+                userGuideToolStripMenuItem.Tag = equipment.UserGuide;
+            }
+            else
+                userGuideToolStripMenuItem.Enabled = false;
+
+            if (!equipment.IsSimulatorNull())
+            {
+                simulatorToolStripMenuItem.Enabled = true;
+                simulatorToolStripMenuItem.Tag = equipment.Simulator;
+            }
+            else
+                simulatorToolStripMenuItem.Enabled = false;
+        }
+
+        
     }
 
     public class ServicePanelDetails

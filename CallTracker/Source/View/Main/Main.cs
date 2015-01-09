@@ -133,7 +133,7 @@ namespace CallTracker.View
                 var screenBounds = Screen.AllScreens[0].Bounds;
                 Settings.Default.Main_Position = new Point((screenBounds.Width / 2) - (Width / 2) - 160, (screenBounds.Height / 2) - (Height / 2) + 60);
             }
-            else if (Screen.AllScreens.Any(s => s.WorkingArea.Contains(Settings.Default.Main_Position)))
+            else if (!Screen.AllScreens.Any(s => s.WorkingArea.Contains(Settings.Default.Main_Position)))
             {
                 var screenBounds = Screen.AllScreens[0].Bounds;
                 Settings.Default.Main_Position = new Point((screenBounds.Width / 2) - (Width / 2), (screenBounds.Height / 2) - (Height / 2));

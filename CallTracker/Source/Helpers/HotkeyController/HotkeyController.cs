@@ -505,38 +505,69 @@ namespace CallTracker.Helpers
         private static void AutoLogin(bool useCurrentBrowser = false)
         {
             EventLogger.LogNewEvent(Environment.NewLine + "AutoLogin: Searching for matches");
-            if (!useCurrentBrowser)
-                if (!GetActiveBrowser())
-                    return;
 
-            var title = browser.Title;
-            var url = browser.Url;
-
-            var query = (from
-                            login in parent.LoginsDataStore.Logins
-                        where
-                            title.Contains(login.Title) ||
-                            url.Contains(login.Url)
-                        select
-                            login)
-                        .FirstOrDefault();
-
-
-            if (query == null)
+            var title = WindowHelper.GetActiveWindowTitle();
+            if (title.Contains("OPOM"))
             {
-                EventLogger.LogAndSaveNewEvent("AutoLogin Error: No matches found");
-                return;
+                var query = (from
+                            login in parent.LoginsDataStore.Logins
+                             where
+                                 title.Contains(login.Title)
+                             select
+                                 login)
+                        .FirstOrDefault();
+                SendKeys.Send(query.Username);
+                SendKeys.Send("{TAB}");
+                SendKeys.Send(query.Password);
+            }
+            else if (title.Contains("TCP/IP QSPlus for Windows") || title.Contains("PMS"))
+            {
+                var query = (from
+                            login in parent.LoginsDataStore.Logins
+                                  where
+                                      title.Contains(login.Title)
+                                  select
+                                      login)
+                        .FirstOrDefault();
+                SendKeys.Send(query.Username);
+                SendKeys.Send("{Enter}");
+                SendKeys.Send(query.Password);
+            }
+            else
+            {
+                if (!useCurrentBrowser)
+                    if (!GetActiveBrowser())
+                        return;
+
+                title = browser.Title;
+                var url = browser.Url;
+
+                var query = (from
+                                login in parent.LoginsDataStore.Logins
+                             where
+                                 title.Contains(login.Title) ||
+                                 url.Contains(login.Url)
+                             select
+                                 login)
+                            .FirstOrDefault();
+
+
+                if (query == null)
+                {
+                    EventLogger.LogAndSaveNewEvent("AutoLogin Error: No matches found");
+                    return;
+                }
+
+                EventLogger.LogNewEvent("AutoLogin: Actioning matches");
+                query.Paste(query.UsernameElement, query.Username);
+                query.Paste(query.PasswordElement, query.Password);
+                query.Submit(browser);
+
+                if (!useCurrentBrowser)
+                    browser.Dispose();
             }
 
-            EventLogger.LogNewEvent("AutoLogin: Actioning matches");
-            query.Paste(query.UsernameElement, query.Username);
-            query.Paste(query.PasswordElement, query.Password);
-            query.Submit(browser);
-            
             parent.AddAppEvent(AppEventTypes.AutoLogin);
-
-            if (!useCurrentBrowser)
-                browser.Dispose();
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////

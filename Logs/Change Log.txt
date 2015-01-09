@@ -30,22 +30,53 @@
 - Are timestamps terminating properly on quit?
 - White Timeout exceptions caught and EventLogged.
 - Restore window after tab is switched.
+SCAMPS Analyser:
+	- Analyze SCAMPS for high Reverse Power Flux, Low SNR.
+Toggle Systems:
+	- Restores/Minimizes HFC/NBN systems.
 
-0.9.6.x
-(Minor Feature)
-- Added Equipment specific context menu logic.
+0.9.6.23
+Testing Field:
+	- Use hidden text to flag lines as edited.
+ICON Note:
+	- Paste technician time as AM/PM/EVE instead of 7:31/12:00/16:00.
+IPCC Monitor:
+	/ Changed search string from "IPCC Agent Desktop" to "IPCC" as IPCC wasn't monitoring on Tom's computer.
+	- Prevent Transfers from re-reading IPCC.
+Autologin:
+	/ Add CMBS - TCP/IP QSPlus for Windows - baix0900.vision.com.au
+	/ Add PMS - TTWin Session1 - PMS
+	- If no elements provided, just paste > return > paste.
+SmartPaste:
+	- MAD smart paste needs to refresh cached object if failed.
+DataPaste:
+	- Add option to toggle between sendkeys and paste.
+	- Add option to change sendkeys speed.
+SmartCopy:
+	- OPOM smart copy isn't AutoSearching DN/Username.
+	- Softact uses frames? name = "mainFrame".
+AutoSearch:
+	- Option to toggle IFMS AutoSearch.
+	- Option to allow systems to be searched multiple times.
+	- Return to search page on failed AutoSearch for IFMS/SCAMPS.
+	| Increased NNI Timeout to 60 seconds..
+	- Nexus isn't being auosearched.
+	- DIMPS is opening a new window if "Open New if not found" is on, and still searching in existing window.
+	- OOkla AutoSearch.
+	| Change "Don't search active windows" default to false.
+Misc:
+	- Clear logs every day.
+	- Save data more often.
+		- On settings close if change made.
+		- On Ready.
 
-0.9.4.x
-(Minor Features)
-- Analyze SCAMPS for high Reverse Power Flux, Low SNR.
-(Bugs/Changes))
-- Softact uses frames? name = "mainFrame".
 
-0.9.5.1
+0.9.5.2
+Misc:
+	| Added Equipment specific context menu logic.
 DataSet:
 	| Added "UserGuide" and "Simulator" columns to Equipment.
 	| ICON Tier4 linked to Action rather than Outcome.
-		- Add resolved Notes, ICON codes.
 
 0.9.4.27
 Misc:
