@@ -6,6 +6,8 @@ namespace CallTracker.View
 {
     public partial class FadingTooltip : Form
     {
+        public bool SupressToolTips;
+
         private int _timeCounter;
         public int FadeOutDelay;
 
@@ -81,6 +83,8 @@ namespace CallTracker.View
 
         public void ShowandFade(string text)
         {
+            if (SupressToolTips) return;
+
             label1.Text = text;
             if(Visible)
             {

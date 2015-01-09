@@ -245,19 +245,24 @@ namespace CallTracker.Helpers
                 return;
             }
 
-            //var oldClip = String.Empty;
-            //if (Clipboard.ContainsText())
-            //{
-            //    oldClip = Clipboard.GetText();
-            //    Clipboard.Clear();
-            //}
+            if (CallTracker.Properties.Settings.Default.dataPasteTypeInput)
+            {
+                SendKeys.Send(dataToPaste);
+            }
+            else
+            {
+                var oldClip = String.Empty;
+                if (Clipboard.ContainsText())
+                {
+                    oldClip = Clipboard.GetText();
+                }
 
-            //Clipboard.SetText(dataToPaste);
-            //SendKeys.Send("+^");
-            //SendKeys.Send("^(v)");
-            SendKeys.Send(dataToPaste);
-            //Application.DoEvents();
-            //SendKeys.Flush();
+                Clipboard.Clear();
+                Clipboard.SetText(dataToPaste);
+                SendKeys.SendWait("+^");
+                SendKeys.SendWait("^(v)");
+                Clipboard.SetText(oldClip);
+            }
 
             //Stopwatch.Reset();
             //Stopwatch.Start();
@@ -265,7 +270,6 @@ namespace CallTracker.Helpers
             //    SendKeys.Flush();
             //Stopwatch.Stop();
 
-            //Clipboard.SetText(oldClip);
             parent.AddAppEvent(AppEventTypes.DataPaste);
         }
 
@@ -606,6 +610,7 @@ namespace CallTracker.Helpers
             var contact = parent.SelectedContact;
             if (WindowHelper.GetActiveWindowTitle().Contains("Service Instance Search") && text.Contains('\t'))
             {
+                Main.FadingToolTip.SupressToolTips = true;
                 var split = text.Split('\t');
                 var sb = new StringBuilder("OPOM: ");
                 if (split[0].IsDigits())
@@ -621,15 +626,16 @@ namespace CallTracker.Helpers
 
                 if (!String.IsNullOrEmpty(split[1]))
                 {
-                    contact.Name = split[1];
+                    contact.FindNameMatch(split[1]);
                     sb.Append(", Name");
                 }
                 if (!String.IsNullOrEmpty(split[9]))
                 {
-                    contact.ICON = split[9];
+                    contact.FindICONMatch(split[9]);
                     sb.Append(", ICON");
                 }
-
+                
+                Main.FadingToolTip.SupressToolTips = false;
                 Main.FadingToolTip.ShowandFade(sb.ToString());
             }
             else

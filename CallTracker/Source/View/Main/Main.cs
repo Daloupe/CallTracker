@@ -295,6 +295,9 @@ namespace CallTracker.View
             enableIPCCMonitorOnStartupToolStripMenuItem.Checked = Settings.Default.MonitorIPCC;
             pullIPCCCallDataToolStripMenuItem.Checked = Settings.Default.PullIPCCCallData;
             autoNewCallToolStripMenuItem.Checked = Settings.Default.AutoNewCall;
+
+            dataPasteTypeToolStripMenuItem.Checked = Settings.Default.dataPasteTypeInput;
+
             if (Settings.Default.MonitorIPCC)
                 monitorIPCCToolStripMenuItem.Checked = true;
         }
@@ -856,6 +859,11 @@ namespace CallTracker.View
             Settings.Default.AutoSearchAllowMultipleSearches = MultipleSearchesToolStripMenuItem.Checked;
         }
 
+        private void dataPasteTypeToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.dataPasteTypeInput = dataPasteTypeToolStripMenuItem.Checked;
+        }
+
         private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem == monitorIPCCToolStripMenuItem || e.ClickedItem == pullIPCCCallDataToolStripMenuItem) return;
@@ -868,6 +876,12 @@ namespace CallTracker.View
             }
             if (!monitorIPCCToolStripMenuItem.Checked && !_IPCCTimer.Enabled)
                 _IPCCTimer.Enabled = true;
+        }
+
+        private void fileToolStripMenuItem_DropDownClosed(object sender, EventArgs e)
+        {
+            EventLogger.LogNewEvent("Saving Settings");
+            Settings.Default.Save();
         }
 
 

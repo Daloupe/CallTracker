@@ -1,41 +1,39 @@
-﻿0.9.6.16
+﻿0.9.6.17
 Testing Field:
 	- Use hidden text to flag lines as edited.
 ICON Note:
 	- Paste technician time as AM/PM/EVE instead of 7:31/12:00/16:00.
 IPCC Monitor:
-	/ Changed search string from "IPCC Agent Desktop" to "IPCC" as IPCC wasn't monitoring on Tom's computer.
+	/ Changed search string from "IPCC Agent Desktop" to "IPCC".
 	- Prevent Transfers from re-reading IPCC.
 Autologin:
-	/ Add CMBS - TCP/IP QSPlus for Windows - baix0900.vision.com.au
-	/ Add PMS - TTWin Session1 - PMS
-	- If no elements provided, just paste > return > paste.
+	/ Added CMBS/PMS/OPOM AutoLogin Exceptions.
 SmartPaste:
 	- MAD smart paste needs to refresh cached object if failed.
 		- Need to confirm exact point at which it fails.
 DataPaste:
-	- Add option to toggle between sendkeys and paste.
-	- Add option to change sendkeys speed.
+	| Added option to toggle between sendkeys and paste.
 SmartCopy:
-	| OPOM smart copy isn't AutoSearching DN/Username.
+	| OPOM smart copy now correctly AutoSearches.
 	- Softact uses frames? name = "mainFrame".
 AutoSearch:
-	/ Option to toggle IFMS AutoSearch.
-	/ Option to allow systems to be searched multiple times.
-	/ Return to search page on failed AutoSearch for IFMS/SCAMPS.
-	| Increased NNI Timeout to 60 seconds..
+	/ Added option to toggle IFMS AutoSearch.
+	/ Added option to allow systems to be searched multiple times.
+	/ Failed AutoSearches for IFMS/SCAMPS now return to search page.
+	| Increased NNI Timeout to 60 seconds.
 	/ Nexus isn't being auosearched.
 		| Changed ContactModel to search for Nexus by URL first. 
 	/ DIMPS is opening a new window if "Open New if not found" is on, and still searching in existing window.
 		| Removed "https://" from DIMPS URL search string.
-	/ OOkla AutoSearch.
-	| Change "Don't search active windows" default to false.
+	/ Ookla now AutoSearches.
+	| Changed "Don't search active windows" default to false.
 Misc:
-	| Clear logs every day.
+	| Logs clear every day.
 	| Save data more often.
-		| On settings close.
-			- Only if change made.
-		| On Ready.
+		| Settings save on Wingman menu close.
+		| Pastebinds/Logins/Gridlinks/Database/Bookmarks/Systems/Rateplans save on view/popup close.
+		| Call Data saves on Ready.
+		- Only save if changes made.
 
 0.9.5.2
 Misc:

@@ -286,5 +286,17 @@ namespace CallTracker.Properties {
                 this["AutoSearchAllowMultipleSearches"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool dataPasteTypeInput {
+            get {
+                return ((bool)(this["dataPasteTypeInput"]));
+            }
+            set {
+                this["dataPasteTypeInput"] = value;
+            }
+        }
     }
 }
