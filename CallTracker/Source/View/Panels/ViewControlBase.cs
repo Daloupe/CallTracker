@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Windows.Forms;
 
 using CallTracker.Helpers;
+using CallTracker.Model;
+
 
 namespace CallTracker.View
 {

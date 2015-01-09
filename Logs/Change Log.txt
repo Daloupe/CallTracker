@@ -35,7 +35,7 @@ SCAMPS Analyser:
 Toggle Systems:
 	- Restores/Minimizes HFC/NBN systems.
 
-0.9.6.23
+0.9.6.16
 Testing Field:
 	- Use hidden text to flag lines as edited.
 ICON Note:
@@ -49,26 +49,30 @@ Autologin:
 	- If no elements provided, just paste > return > paste.
 SmartPaste:
 	- MAD smart paste needs to refresh cached object if failed.
+		- Need to confirm exact point at which it fails.
 DataPaste:
 	- Add option to toggle between sendkeys and paste.
 	- Add option to change sendkeys speed.
 SmartCopy:
-	- OPOM smart copy isn't AutoSearching DN/Username.
+	| OPOM smart copy isn't AutoSearching DN/Username.
 	- Softact uses frames? name = "mainFrame".
 AutoSearch:
-	- Option to toggle IFMS AutoSearch.
-	- Option to allow systems to be searched multiple times.
-	- Return to search page on failed AutoSearch for IFMS/SCAMPS.
+	/ Option to toggle IFMS AutoSearch.
+	/ Option to allow systems to be searched multiple times.
+	/ Return to search page on failed AutoSearch for IFMS/SCAMPS.
 	| Increased NNI Timeout to 60 seconds..
-	- Nexus isn't being auosearched.
-	- DIMPS is opening a new window if "Open New if not found" is on, and still searching in existing window.
-	- OOkla AutoSearch.
+	/ Nexus isn't being auosearched.
+		| Changed ContactModel to search for Nexus by URL first. 
+	/ DIMPS is opening a new window if "Open New if not found" is on, and still searching in existing window.
+		| Removed "https://" from DIMPS URL search string.
+	/ OOkla AutoSearch.
 	| Change "Don't search active windows" default to false.
 Misc:
-	- Clear logs every day.
-	- Save data more often.
-		- On settings close if change made.
-		- On Ready.
+	| Clear logs every day.
+	| Save data more often.
+		| On settings close.
+			- Only if change made.
+		| On Ready.
 
 
 0.9.5.2

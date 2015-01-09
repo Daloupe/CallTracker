@@ -129,7 +129,19 @@ namespace CallTracker.Helpers
             }
             EventLogger.LogNewEvent("Searching: " + search, EventLogLevel.Brief);
 
-            browser.GoToNoWait(search);
+            if (browser.Title.Contains("IFMS"))
+            {
+                browser.GoTo(search);
+                if (browser.Title.Contains("Error"))
+                {
+                    EventLogger.LogAndSaveNewEvent("IFMS Search return error.", EventLogLevel.Brief);
+                    browser.Back();
+                }
+            }
+            else
+            {
+                browser.GoToNoWait(search);
+            }
             parent.AddAppEvent(AppEventTypes.AutoSearch);
             return true;
         }
@@ -143,6 +155,20 @@ namespace CallTracker.Helpers
                 return false;
             }
             EventLogger.LogNewEvent("Searching: " + search, EventLogLevel.Brief);
+
+            if (browser.Title.Contains("IFMS"))
+            {
+                browser.GoTo(search);
+                if (browser.Title.Contains("Error"))
+                {
+                    EventLogger.LogAndSaveNewEvent("IFMS Search return error.", EventLogLevel.Brief);
+                    browser.Back();
+                }
+            }
+            else
+            {
+                browser.GoToNoWait(search);
+            }
 
             browser.GoToNoWait(search);
             parent.AddAppEvent(AppEventTypes.AutoSearch);
@@ -232,6 +258,7 @@ namespace CallTracker.Helpers
                         contact.Service.WasSearched["SCAMPSUsername"] = true;
                         break;
                 }
+                _scampsBrowser.GoToNoWait("https://scamps.optusnet.com.au");
             }
             else
             {

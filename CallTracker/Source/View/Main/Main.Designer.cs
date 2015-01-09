@@ -86,6 +86,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.autoSearchActiveWindowToolStripMenuItem = new CTToolStripMenuItem();
             this.newPageIfRequiredToolStripMenuItem = new CTToolStripMenuItem();
+            this.SearchIFMSToolStripMenuItem = new CTToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this._AutoSearchHelp = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator12 = new CTToolStripSeparator();
@@ -161,6 +162,7 @@
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.MultipleSearchesToolStripMenuItem = new CTToolStripMenuItem();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -678,6 +680,8 @@
             this.ctToolStripMenuItem4,
             this.autoSearchActiveWindowToolStripMenuItem,
             this.newPageIfRequiredToolStripMenuItem,
+            this.SearchIFMSToolStripMenuItem,
+            this.MultipleSearchesToolStripMenuItem,
             this.toolStripSeparator16,
             this._AutoSearchHelp});
             this.autoSearchToolStripMenuItem.Name = "autoSearchToolStripMenuItem";
@@ -784,6 +788,17 @@
             this.newPageIfRequiredToolStripMenuItem.ToolTipText = "Opens a new IE page if a system isn\'t already open";
             this.newPageIfRequiredToolStripMenuItem.Visible = false;
             this.newPageIfRequiredToolStripMenuItem.CheckedChanged += new System.EventHandler(this.newPageIfRequiredToolStripMenuItem_CheckedChanged);
+            // 
+            // SearchIFMSToolStripMenuItem
+            // 
+            this.SearchIFMSToolStripMenuItem.Advanced = true;
+            this.SearchIFMSToolStripMenuItem.CheckOnClick = true;
+            this.SearchIFMSToolStripMenuItem.Name = "SearchIFMSToolStripMenuItem";
+            this.SearchIFMSToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.SearchIFMSToolStripMenuItem.Text = "Search IFMS";
+            this.SearchIFMSToolStripMenuItem.ToolTipText = "AutoSearch IFMS";
+            this.SearchIFMSToolStripMenuItem.Visible = false;
+            this.SearchIFMSToolStripMenuItem.CheckedChanged += new System.EventHandler(this.SearchIFMSToolStripMenuItem_CheckedChanged);
             // 
             // toolStripSeparator16
             // 
@@ -1423,6 +1438,17 @@
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
             // 
+            // MultipleSearchesToolStripMenuItem
+            // 
+            this.MultipleSearchesToolStripMenuItem.Advanced = true;
+            this.MultipleSearchesToolStripMenuItem.CheckOnClick = true;
+            this.MultipleSearchesToolStripMenuItem.Name = "MultipleSearchesToolStripMenuItem";
+            this.MultipleSearchesToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.MultipleSearchesToolStripMenuItem.Text = "Allow Multiple Searches";
+            this.MultipleSearchesToolStripMenuItem.ToolTipText = "Allows systems to be searched multiple times per call.";
+            this.MultipleSearchesToolStripMenuItem.Visible = false;
+            this.MultipleSearchesToolStripMenuItem.CheckedChanged += new System.EventHandler(this.MultipleSearchesToolStripMenuItem_CheckedChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1591,5 +1617,7 @@
         private CTToolStripMenuItem aboutToolStripMenuItem;
         public System.Windows.Forms.StatusStrip statusStrip1;
         public System.Windows.Forms.ToolStripStatusLabel _IPCCState;
+        private CTToolStripMenuItem SearchIFMSToolStripMenuItem;
+        private CTToolStripMenuItem MultipleSearchesToolStripMenuItem;
     }
 }

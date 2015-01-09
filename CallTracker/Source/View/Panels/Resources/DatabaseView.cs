@@ -206,6 +206,8 @@ namespace CallTracker.View
 
         protected override void _Done_Click(object sender, EventArgs e)
         {
+            EventLogger.LogNewEvent("Saving Services");
+            Main.ServicesStore.WriteData();
             base._Done_Click(sender, e);
         }
 

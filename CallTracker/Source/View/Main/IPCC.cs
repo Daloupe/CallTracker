@@ -304,6 +304,8 @@ namespace CallTracker.View
                         CurrentDate.AddCallEvent(CallEventTypes.Ready);
                         if (SelectedContact != null)
                             SelectedContact.AddCallEvent(CallEventTypes.Ready);
+                        EventLogger.LogNewEvent("Saving Call Data");
+                        DailyDataDataStore.WriteData();
                         break;
                     case "":
                         IPCCLevel("white");

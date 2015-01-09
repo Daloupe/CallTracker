@@ -36,7 +36,7 @@ namespace CallTracker.Model
             RFIssues = String.Empty;
             DTVLights = String.Empty;
             Throttled = String.Empty;
-            WasSearched = new Dictionary<string, bool> { { "IFMSCMBS", false }, { "IFMSPR", false }, { "Nexus", false }, { "SCAMPSDN", false }, { "SCAMPSUsername", false }, { "NSI", false }, { "DIMPSDN", false }, { "DIMPSUsername", false }, { "UNMT", false } };
+            WasSearched = new Dictionary<string, bool> { { "IFMSCMBS", false }, { "IFMSPR", false }, { "Nexus", false }, { "SCAMPSDN", false }, { "SCAMPSUsername", false }, { "NSI", false }, { "DIMPSDN", false }, { "DIMPSUsername", false }, { "UNMT", false }, { "Ookla", false } };
         }
 
         //[ProtoBeforeDeserialization]
@@ -224,6 +224,18 @@ namespace CallTracker.Model
             {
                 ModemIP = text;
                 Main.FadingToolTip.ShowandFade("IP: " + ModemIP);
+
+                if (Properties.Settings.Default.AutoSearch)
+                {
+                    if (!WasSearched["Ookla"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
+                    {
+                        WasSearched["Ookla"] = HotkeyController.AutoSearch(
+                            "http://reporting.ookla.com/index.php?ip=" + ModemIP,
+                            "Ookla",
+                            "http://reporting.ookla.com");
+                    }
+                }
+
                 return true;
             };
             return false;

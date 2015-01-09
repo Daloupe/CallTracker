@@ -1,21 +1,23 @@
-﻿using System;
+﻿using CallTracker.Model;
+using System;
 using System.Collections.Generic;
-using System.Windows;
 using System.Linq;
-using CallTracker.Model;
-using TestStack.White.UIItems.Finders;
+using System.Windows;
 using System.Windows.Automation;
-
+using TestStack.White.UIItems.Finders;
 using Window = TestStack.White.UIItems.WindowItems.Window;
 
 namespace CallTracker.Helpers
 {
     public class MADElementOffset
     {
-        public string Name {get; set;}
+        public string Name { get; set; }
+
         public Vector Offset { get; set; }
-        public int X {get; set;}
-        public int Y {get; set;}
+
+        public int X { get; set; }
+
+        public int Y { get; set; }
 
         public MADElementOffset(string name, int x, int y)
         {
@@ -31,6 +33,7 @@ namespace CallTracker.Helpers
         //private static Process MADProcess = null;
         //private static TestStack.White.Application MADApplication;
         private static Window _madWindow;
+
         private const string WindowTitle = "Oracle";
         private static TestStack.White.UIItems.UIItemContainer _madSearchWindow;
         private const string ControlText = "Search";
@@ -58,6 +61,57 @@ namespace CallTracker.Helpers
             _madWindow = null;
         }
 
+        public static void SetActiveElement(CustomerContact contact)
+        {
+            EventLogger.LogAndSaveNewEvent("MAD Smart Paste: Starting SetActiveElement");
+
+            if (!CacheUIElements()) return;
+
+            var offset = _madEdit.Bounds.Location - _madSearchWindow.Bounds.Location;//new Point(_madEdit.Bounds.Location.X - _madSearchWindow.Bounds.Location.X, _madEdit.Bounds.Location.Y - _madSearchWindow.Bounds.Location.Y);
+            EventLogger.LogNewEvent("MAD Smart Paste: Edit Offset: " + offset.X + "," + offset.Y);
+
+            var editMatch = ElementOffsets.FirstOrDefault(x => x.Offset == offset);
+            if (editMatch == null)
+            {
+                EventLogger.LogNewEvent("MAD Smart Paste Error: Edit Name Not Found" + Environment.NewLine);
+                return;
+            }
+            EventLogger.LogNewEvent("MAD Smart Paste: Edit Name Found: " + editMatch.Name);
+
+            EventLogger.LogNewEvent("MAD Smart Paste: Trying to set MAD value" + Environment.NewLine);
+            _madEdit.SetValue(FindProperty.FollowPropertyPath(contact, editMatch.Name));
+
+            EventLogger.SaveLog();
+        }
+
+        private static bool CacheUIElements()
+        {
+            if (_madWindow == null)
+            {
+                if (!GetMADWindow())
+                    return false;
+            }
+            else if (!_madWindow.IsClosed)
+            {
+                if (!GetMADWindow())
+                    return false;
+            }
+
+            if (_madSearchWindow == null)
+            {
+                if (!GetMADSearchWindow())
+                    return false;
+            }
+
+            if (_madEdit == null)
+            {
+                if (!GetMADEdit())
+                    return false;
+            }
+
+            return true;
+        }
+
         private static bool GetMADWindow()
         {
             _madWindow = TestStack.White.Desktop.Instance.Windows().Find(obj => obj.Title.Contains(WindowTitle));
@@ -67,7 +121,7 @@ namespace CallTracker.Helpers
                 return false;
             }
             EventLogger.LogNewEvent("MAD Smart Paste: Window Found: " + WindowTitle + Environment.NewLine);
-            return GetMADSearchWindow();            
+            return GetMADSearchWindow();
         }
 
         private static bool GetMADSearchWindow()
@@ -95,140 +149,6 @@ namespace CallTracker.Helpers
 
             return true;
         }
-
-        public static void SetActiveElement(CustomerContact contact)
-        {
-            EventLogger.LogAndSaveNewEvent("MAD Smart Paste: Starting SetActiveElement");
-
-
-            if (_madWindow == null)
-            {
-                if (!GetMADWindow())
-                    return;
-            }
-            else if(!_madWindow.IsClosed)
-            {
-                if (!GetMADWindow())
-                    return;
-            }
-
-            if (_madSearchWindow == null)
-            {
-                if (!GetMADSearchWindow())
-                    return;
-            }
-
-            if (_madEdit == null)
-            {
-                if (!GetMADEdit())
-                    return;
-            }
-
-            //var window = TestStack.White.Desktop.Instance.Windows().Find(obj => obj.Title.Contains(windowTitle));
-            //if (window == null)
-            //{
-            //    EventLogger.LogAndSaveNewEvent("MAD Smart Paste Error: Window Not Found: " + windowTitle);
-            //    return;
-            //}
-            //EventLogger.LogNewEvent("MAD Smart Paste: Window Found: " + windowTitle + Environment.NewLine);
-
-            //var mdiChild = window.MdiChild(SearchCriteria.ByControlType(controlType).AndByText(controlText));
-            //if (mdiChild == null)
-            //{
-            //    EventLogger.LogAndSaveNewEvent("MAD Smart Paste Error: MDIChild Not Found: " + controlText + Environment.NewLine);
-            //    return;
-            //}
-            //EventLogger.LogNewEvent("MAD Smart Paste: MDIChild Found: " + controlText);
-            //EventLogger.LogNewEvent("MAD Smart Paste: Edit Bounds: " + mdiChild.Bounds.Location.X + "," + mdiChild.Bounds.Location.Y);
-
-            //var edit = _madSearchWindow.Get(SearchCriteria.ByControlType(ControlType.Edit));
-            //if (edit == null)
-            //{
-            //    EventLogger.LogAndSaveNewEvent("MAD Smart Paste Error: Edit Not Found" + Environment.NewLine);
-            //    return;
-            //}
-            //EventLogger.LogNewEvent("MAD Smart Paste: Edit Found with Bound: " + edit.Bounds.Location.X + "," + edit.Bounds.Location.Y);
-
-            var offset = _madEdit.Bounds.Location - _madSearchWindow.Bounds.Location;//new Point(_madEdit.Bounds.Location.X - _madSearchWindow.Bounds.Location.X, _madEdit.Bounds.Location.Y - _madSearchWindow.Bounds.Location.Y);
-            EventLogger.LogNewEvent("MAD Smart Paste: Edit Offset: " + offset.X + "," + offset.Y);
-            
-            var editMatch = ElementOffsets.FirstOrDefault(x => x.Offset == offset);
-            if (editMatch == null)
-            {
-                EventLogger.LogAndSaveNewEvent("MAD Smart Paste Error: Edit Name Not Found" + Environment.NewLine);
-                return;
-            }
-            EventLogger.LogNewEvent("MAD Smart Paste: Edit Name Found: " + editMatch.Name);
-
-            EventLogger.LogNewEvent("MAD Smart Paste: Trying to set MAD value" + Environment.NewLine);
-            _madEdit.SetValue(FindProperty.FollowPropertyPath(contact, editMatch.Name));
-
-            EventLogger.SaveLog();
-        }
-
-        //public static void SetElementValue(string _value)
-        //{
-        //    MADActiveElement.SetValue(_value);
-        //}
-
-        //public static void SetElementText(string _value)
-        //{
-        //    MADActiveElement.Text = _value;
-        //}
-
-        //private static bool InitMADMonitor()
-        //{
-        //    //string windowTitle = "Oracle";
-        //    //ControlType controlType = ControlType.Window;
-        //    //string controlText = "Search";
-
-        //    //var window = TestStack.White.Desktop.Instance.Windows().Find(obj => obj.Title.Contains(windowTitle));
-        //    //if (window == null)
-        //    //{
-        //    //    EventLogger.LogNewEvent("Window Not Found: " + windowTitle + Environment.NewLine);
-        //    //    return false;
-        //    //}
-
-        //    //var mdiChild = window.MdiChild(SearchCriteria.ByControlType(controlType).AndByText(controlText));
-        //    //if (mdiChild == null){
-        //    //    EventLogger.LogNewEvent(controlText + " Not Found");
-        //    //    return false;
-        //    //}
-
-        //    //var edit = mdiChild.Get(SearchCriteria.ByControlType(ControlType.Edit));
-        //    //if (edit == null)
-        //    //{
-        //    //    EventLogger.LogNewEvent("Edit Not Found");
-        //    //    return false;
-        //    //}
-
-        //    //return true;
-
-        //    //foreach (Process pList in Process.GetProcesses())
-        //    //    if (pList.MainWindowTitle.Contains("Oracle Forms Runtime"))
-        //    //        MADProcess = pList;
-
-        //    //if (MADProcess == null)
-        //    //{
-        //    //    EventLogger.LogNewEvent("Unable to Find MAD", EventLogLevel.Status);
-        //    //    return false;
-        //    //}
-
-        //    //MADProcess.Exited += MADProcess_Exited;
-        //    //MADApplication = TestStack.White.Application.Attach(MADProcess);
-            
-        //    //MADWindow = MADApplication.GetWindow(SearchCriteria.ByText("Search"), InitializeOption.NoCache);
-        //    //if (!MADWindow.Exists(SearchCriteria.ByText("Search")))
-        //    //    return false;
-        //    //return true;
-        //}
-
-        //static void MADProcess_Exited(object sender, EventArgs e)
-        //{
-        //    MADProcess.Exited -= MADProcess_Exited;
-        //    MADProcess.Dispose();
-        //    MADProcess = null;
-        //}
 
     }
 }

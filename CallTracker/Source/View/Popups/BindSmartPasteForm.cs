@@ -104,5 +104,11 @@ namespace CallTracker.View
                 _FireOnChangeNoWait.Checked = false;
         }
 
+        private void BindSmartPasteForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            EventLogger.LogNewEvent("Saving Binds");
+            _mainForm.BindsDataStore.WriteData();
+        }
+
     }
 }

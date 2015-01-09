@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using CallTracker.DataSets;
 using CallTracker.Helpers;
+using CallTracker.Model;
 using PropertyChanged;
 
 namespace CallTracker.View
@@ -38,6 +39,8 @@ namespace CallTracker.View
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
+            EventLogger.LogNewEvent("Saving Services");
+            Main.ServicesStore.WriteData();
             MainForm = null;
         }
 

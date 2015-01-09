@@ -1,24 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Drawing;
-using System.Diagnostics;
+﻿using CallTracker.Helpers;
 
-using PropertyChanged;
-
-using TestStack.White.Configuration;
 //using Control = System.Windows.Forms.Control;
 //using Form = System.Windows.Forms.Form;
 
 using CallTracker.Model;
-using CallTracker.Helpers;
 using CallTracker.Properties;
-using Utilities.RegularExpressions;
+using PropertyChanged;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using TestStack.White.Configuration;
 
 namespace CallTracker.View
 {
@@ -30,18 +27,20 @@ namespace CallTracker.View
 
         //internal UserDataStore UserDataStore = new UserDataStore();
         internal DailyDataRepository DailyDataDataStore = new DailyDataRepository();
+
         internal static ServicesData ServicesStore = new ServicesData();
         internal LoginDataStore LoginsDataStore = new LoginDataStore();
         internal BindsDataStore BindsDataStore = new BindsDataStore();
 
         private CustomerContact _selectedContact;
+
         internal CustomerContact SelectedContact
         {
-            get {return _selectedContact; }
+            get { return _selectedContact; }
             set
             {
                 if (_IPCCState.Text == @"Talking")
-                        CurrentContact = _selectedContact;
+                    CurrentContact = _selectedContact;
                 else if (_selectedContact != null)
                     _selectedContact.FinishUp();
                 _selectedContact = value;
@@ -51,6 +50,7 @@ namespace CallTracker.View
         }
 
         private CustomerContact _currentContact;
+
         internal CustomerContact CurrentContact
         {
             get { return _currentContact; }
@@ -63,6 +63,7 @@ namespace CallTracker.View
         }
 
         private DailyModel _selectedDate;
+
         internal DailyModel SelectedDate
         {
             get { return _selectedDate; }
@@ -73,9 +74,11 @@ namespace CallTracker.View
                 _selectedDate = value;
             }
         }
+
         internal DailyModel CurrentDate { get; set; }
 
         internal BindingList<DateFilterItem> DateFilterItems { get; set; }
+
         internal BindingSource DateBindingSource = new BindingSource();
 
         internal EditLogins editLogins;
@@ -107,11 +110,11 @@ namespace CallTracker.View
             InitializeComponent();
             _isStartingUp = true;
             //SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
-            
+
             _splash = splash;
             _splash.Init(this);
 
-            _splash.UpdateProgress("Main setup",0);
+            _splash.UpdateProgress("Main setup", 0);
             _splash.StepProgress("Setting up Logs");
             _StatusLabel.Tag = EventLogLevel.Status;
             EventLogger.Init(_StatusLabel);
@@ -122,13 +125,13 @@ namespace CallTracker.View
 
             CoreAppXmlConfiguration.Instance.BusyTimeout = 5000;
             CoreAppXmlConfiguration.Instance.FindWindowTimeout = 5000;
-            CoreAppXmlConfiguration.Instance.PopupTimeout= 5000;
+            CoreAppXmlConfiguration.Instance.PopupTimeout = 5000;
             CoreAppXmlConfiguration.Instance.TooltipWaitTime = 5000;
         }
 
         private void SetAppLocation()
-        {           
-            if(Settings.Default.FirstLoad)
+        {
+            if (Settings.Default.FirstLoad)
             {
                 var screenBounds = Screen.AllScreens[0].Bounds;
                 Settings.Default.Main_Position = new Point((screenBounds.Width / 2) - (Width / 2) - 160, (screenBounds.Height / 2) - (Height / 2) + 60);
@@ -149,24 +152,23 @@ namespace CallTracker.View
             EventLogger.LogNewEvent("Startup: Loading Data");
             _splash.UpdateProgress("Loading Data", 10);
             ServicesStore.ReadData();
-            
+
             _splash.UpdateProgress("Loading Binds", 15);
             BindsDataStore.ReadData();
             //UserDataStore = UserDataStore.ReadFile();
 
             _splash.UpdateProgress("Loading Contact Data", 20);
             DailyDataDataStore.ReadData();// = DailyDataRepository.ReadData();
-            
+
             _splash.UpdateProgress("Loading Logins", 25);
             LoginsDataStore.ReadData();
-
 
             EventLogger.LogNewEvent("Startup: Setting Date");
             _DailyDataBindingSource.DataSource = DailyDataDataStore.DailyData;
             //SelectedDate = ((DailyModel)_DailyDataBindingSource.Current);
 
             DateFilterItems = new BindingList<DateFilterItem>(DailyDataDataStore.DailyData.Select(x => x.Date).ToList());
-            
+
             DateBindingSource.DataSource = DateFilterItems;
             DateBindingSource.PositionChanged += _DateSelector_PositionChanged;
             IsDifferentShift();
@@ -201,25 +203,25 @@ namespace CallTracker.View
             EventLogger.LogNewEvent("Startup: Initializing Views");
             _splash.UpdateProgress("Initializing Views", 50);
             editContact.OnParentLoad();
-            
+
             _splash.StepProgress("Edit Contacts");
             editContact.Init();
-            
+
             _splash.StepProgress("Call History");
             callHistory.Init(this, callHistoryToolStripMenuItem);
-            
+
             _splash.StepProgress("Edit Logins");
             editLogins.Init(this, loginsViewMenuItem);
-            
+
             _splash.StepProgress("Edit Smart Paste Binds");
             editSmartPasteBinds.Init(this, pasteBindsViewMenuItem);
-            
+
             _splash.StepProgress("Edit Gridlinks");
             editGridLinks.Init(this, gridLinksViewMenuItem);
-            
+
             _splash.StepProgress("Keycommand Help");
             helpKeyCommands.Init(this, viewKeyCommandsMenuItem);
-            
+
             _splash.StepProgress("Edit Database");
             databaseView.Init(this, databaseEditorToolStripMenuItem);
 
@@ -236,7 +238,6 @@ namespace CallTracker.View
             bookmarksContextualToolStripMenuItem.UpdateObject = new BookmarksMenuItem(ServicesStore.servicesDataSet);
             systemsContextualToolStripMenuItem.UpdateObject = new SystemsMenuItem(ServicesStore.servicesDataSet);
 
-            
             toolStripServiceSelector.ComboBox.BindingContext = BindingContext;
             toolStripServiceSelector.ComboBox.DataSource = ServicesStore.servicesDataSet.Services.Select(x => x.ProblemStylesRow).Distinct().ToList();
             toolStripServiceSelector.ComboBox.DisplayMember = "Description";
@@ -275,7 +276,6 @@ namespace CallTracker.View
             EventLogger.SaveLog();
         }
 
-
         private void SetVisualSettings()
         {
             advancedModeToolStripMenuItem.Checked = Settings.Default.AdvancedMode;
@@ -283,12 +283,15 @@ namespace CallTracker.View
             showStatusBarToolStripMenuItem.Checked = Settings.Default.ShowStatusBar;
             clearMessagesToolStripMenuItem.Checked = Settings.Default.WarningLevel;
         }
+
         private void SetSettings()
         {
             autoSearchEnabledToolStripMenuItem.Checked = Settings.Default.AutoSearch;
             autoSearchActiveWindowToolStripMenuItem.Checked = Settings.Default.AutoSearchIgnoreActiveWindow;
-            newPageIfRequiredToolStripMenuItem.Checked = Settings.Default.AutoSearchOpenNew;       
-            
+            SearchIFMSToolStripMenuItem.Checked = Settings.Default.AutoSearchIFMS;
+            MultipleSearchesToolStripMenuItem.Checked = Settings.Default.AutoSearchAllowMultipleSearches;
+            newPageIfRequiredToolStripMenuItem.Checked = Settings.Default.AutoSearchOpenNew;
+
             enableIPCCMonitorOnStartupToolStripMenuItem.Checked = Settings.Default.MonitorIPCC;
             pullIPCCCallDataToolStripMenuItem.Checked = Settings.Default.PullIPCCCallData;
             autoNewCallToolStripMenuItem.Checked = Settings.Default.AutoNewCall;
@@ -302,12 +305,12 @@ namespace CallTracker.View
             _splash.Close();
             _splash.Dispose();
             _isStartingUp = false;
-            
+
             if (Settings.Default.ShowTipsOnStartup)
                 DidYouKnow.Show();
 
             SetSettings();
-            
+
             //CancelLoad = false;
         }
 
@@ -364,7 +367,8 @@ namespace CallTracker.View
         }
 
         private ViewControlBase _visibleSetting;
-        private ViewControlBase VisibleSetting 
+
+        private ViewControlBase VisibleSetting
         {
             get { return _visibleSetting; }
             set
@@ -384,7 +388,7 @@ namespace CallTracker.View
                     else
                         Height = 239;
                 }
-                
+
                 // If the previous view isn't null
                 if (_visibleSetting != null)
                     _visibleSetting.HideSetting();
@@ -402,7 +406,7 @@ namespace CallTracker.View
                 else
                     _visibleSetting = value;
 
-               // WindowHelper.ResumeDrawing(_ViewPanel);
+                // WindowHelper.ResumeDrawing(_ViewPanel);
             }
         }
 
@@ -412,9 +416,9 @@ namespace CallTracker.View
         }
 
         public void settingMenuItem_Click(object sender, EventArgs e)
-        {      
+        {
             var item = (ToolStripMenuItem)sender;
-            
+
             var view = (ViewControlBase)item.Tag;
             if (view == VisibleSetting)
                 view = null;
@@ -463,23 +467,15 @@ namespace CallTracker.View
             _EHBSearch.Text = String.Empty;
         }
 
-
-
-
-
-
-
-
-
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Day Change ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        void _DateSelector_PositionChanged(object sender, EventArgs e)
+        private void _DateSelector_PositionChanged(object sender, EventArgs e)
         {
             //Console.WriteLine("_DateSelector_PositionChanged Called");
             //_DailyDataBindingSource.Filter = "Date = " + ((DateFilterItem)DateBindingSource.Current).LongDate;
             _DailyDataBindingSource.Position = DateBindingSource.Position;
-            SelectedDate = ((DailyModel) _DailyDataBindingSource.Current);
+            SelectedDate = ((DailyModel)_DailyDataBindingSource.Current);
             //_DailyDataBindingSource.IndexOf(DailyData.FirstOrDefault(x => x.Date == ((DateFilterItem)DateBindingSource.Current).LongDate));
         }
 
@@ -489,18 +485,14 @@ namespace CallTracker.View
         //    SelectedDate = ((DailyModel)_DailyDataBindingSource.Current);
         //}
 
-
-
-
-
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Status Bar ///////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private void _StatusContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             if (e.ClickedItem.Name == "clearMessagesToolStripMenuItem")
-                    EventLogger.ClearMessage = !EventLogger.ClearMessage;
-            else      
+                EventLogger.ClearMessage = !EventLogger.ClearMessage;
+            else
                 foreach (var item in _StatusContextMenu.Items.OfType<ToolStripMenuItem>().Where(item => item.Tag != null))
                 {
                     if (item == e.ClickedItem)
@@ -511,7 +503,6 @@ namespace CallTracker.View
                     else
                         item.Checked = false;
                 }
-            
         }
 
         private void showStatusBarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -530,15 +521,6 @@ namespace CallTracker.View
                 Height = 239;
             }
         }
-
-
-
-
-
-
-
-
-
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Resource menu events /////////////////////////////////////////////////////////////////////////////
@@ -592,14 +574,11 @@ namespace CallTracker.View
         {
             HotkeyController.NavigateOrNewIE("https://secure.logmeinrescue.com", "LogMeIn Rescue", "https://secure.logmeinrescue.com/Account/Login");
         }
+
         //private void OpenURL_Click(object sender, EventArgs e)
         //{
         //    UpdateMenuObject.newItem_Click(sender, e);
         //}
-
-
-
-
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
         //// Progress Bar /////////////////////////////////////////////////////////////////////////////////////
@@ -622,25 +601,23 @@ namespace CallTracker.View
         //    UpdateProgressBar(eventString, logLevel);
         //}
 
-
-
-
-
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Move Window //////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public const int WM_NCLBUTTONDOWN = 0xA1;
+
         public const int HT_CAPTION = 0x2;
 
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
         private void _MainMenu_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            
+
             ReleaseCapture();
             SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             Settings.Default.Main_Position = Location;
@@ -648,11 +625,6 @@ namespace CallTracker.View
             //var screenBounds = Screen.AllScreens[0].Bounds;
             //Console.WriteLine(new Point((screenBounds.Width / 2) - (Width / 2) - Location.X, (screenBounds.Height / 2) - (Height / 2) - Location.Y));
         }
-
-
-
-
-
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Working Date Checker /////////////////////////////////////////////////////////////////////////////
@@ -668,7 +640,6 @@ namespace CallTracker.View
                     return false;
                 }
 
-            
             // If today doesnt exist, create it, otherwise change the day.
             if (DailyDataDataStore.DailyData.All(x => x.Date.LongDate != DateTime.Today))
             {
@@ -676,24 +647,11 @@ namespace CallTracker.View
                 DateFilterItems.AddNew();
 
                 DateBindingSource.Position = DateFilterItems.Count - 1;
-                //_DailyDataBindingSource.Position = DailyDataDataStore.DailyData.Count - 1;
-
-                if(Settings.Default.QuitProperly && !_isStartingUp)
-                    File.Delete("Log.txt");
             }
-            else //if (((DateFilterItem)DateBindingSource.Current).LongDate != DateTime.Today)//((DailyModel) _DailyDataBindingSource.Current).Date.LongDate != DateTime.Today)
+            else
             {
-                DateBindingSource.Position =
-                    DateFilterItems.IndexOf(DateFilterItems.FirstOrDefault(x => x.LongDate == DateTime.Today));
-                //_DailyDataBindingSource.Position = DateBindingSource.Position;
-
-                if (Settings.Default.QuitProperly && !_isStartingUp)
-                    File.Delete("Log.txt");
+                DateBindingSource.Position = DateFilterItems.IndexOf(DateFilterItems.FirstOrDefault(x => x.LongDate == DateTime.Today));
             }
-            //else
-            //{
-            //    DateBindingSource.Position = DateFilterItems.IndexOf(DateFilterItems.FirstOrDefault(x => x.LongDate == DateTime.Today));
-            //}
 
             // Archive and Delete
             var daysToDelete = new List<DailyModel>();
@@ -704,7 +662,7 @@ namespace CallTracker.View
                     daysToDelete.Add(day);
                     continue;
                 }
-                if((DateTime.Today - day.Date.LongDate).Days > 7 && !day.IsArchived)
+                if ((DateTime.Today - day.Date.LongDate).Days > 7 && !day.IsArchived)
                     day.ArchiveContacts();
             }
             foreach (var day in daysToDelete)
@@ -713,10 +671,11 @@ namespace CallTracker.View
                 DailyDataDataStore.DailyData.Remove(day);
             }
 
+            //if (Settings.Default.QuitProperly && !_isStartingUp)
+            File.Delete("Log.txt");
+
             return true;
         }
-
-
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Misc /////////////////////////////////////////////////////////////////////////////////////////////
@@ -744,7 +703,7 @@ namespace CallTracker.View
 
         public void AddAppEvent(AppEventTypes newEvent)
         {
-            if(SelectedContact != null)
+            if (SelectedContact != null)
                 SelectedContact.AddAppEvent(newEvent);
             else
                 ((DailyModel)_DailyDataBindingSource.Current).AddAppEvent(newEvent);
@@ -785,7 +744,7 @@ namespace CallTracker.View
             {
                 ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
             }
-            
+
             //foreach (var control in settingsToolStripMenuItem.DropDownItems.OfType<CTToolStripItem>().Where(control => control.Advanced))
             //{
             //    ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
@@ -813,8 +772,6 @@ namespace CallTracker.View
             //{
             //    ((ToolStripItem)control).Visible = Settings.Default.AdvancedMode;
             //}
-
-            
         }
 
         private void didYouKnowToolStripMenuItem_Click(object sender, EventArgs e)
@@ -826,7 +783,6 @@ namespace CallTracker.View
             }
             else
                 DidYouKnow.Show();
-
         }
 
         private void _AutoSearchHelp_Click(object sender, EventArgs e)
@@ -835,10 +791,9 @@ namespace CallTracker.View
             DidYouKnow.Show();
             //if (DidYouKnow.IsDisposed)
             //{
-                
             //}
             //else
-            //    DidYouKnow.ShowAtPosition(Convert.ToInt32(((ToolStripMenuItem)sender).Tag));   
+            //    DidYouKnow.ShowAtPosition(Convert.ToInt32(((ToolStripMenuItem)sender).Tag));
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -888,6 +843,17 @@ namespace CallTracker.View
         private void enableIPCCMonitorOnStartupToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.MonitorIPCC = enableIPCCMonitorOnStartupToolStripMenuItem.Checked;
+
+        }
+
+        private void SearchIFMSToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.AutoSearchIFMS = SearchIFMSToolStripMenuItem.Checked;
+        }
+
+        private void MultipleSearchesToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.AutoSearchAllowMultipleSearches = MultipleSearchesToolStripMenuItem.Checked;
         }
 
         private void _CallStateTime_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -903,6 +869,8 @@ namespace CallTracker.View
             if (!monitorIPCCToolStripMenuItem.Checked && !_IPCCTimer.Enabled)
                 _IPCCTimer.Enabled = true;
         }
+
+
 
     }
 }

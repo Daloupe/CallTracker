@@ -35,6 +35,8 @@ namespace CallTracker.Model
                 StatusLabel.Text = eventString;
             else if(logLevel == EventLogLevel.ClearStatus && ClearMessage)
                 StatusLabel.Text = String.Empty;
+
+            //Console.WriteLine(eventString);
         }
 
         public static void LogAndSaveNewEvent(string eventString, EventLogLevel logLevel = EventLogLevel.Verbose)
@@ -50,7 +52,7 @@ namespace CallTracker.Model
             {
                 sb.AppendLine(entry.GetLogEntry());
             }
-            File.AppendAllText("Log.txt ", sb.ToString());
+            File.AppendAllText("Log.txt", sb.ToString());
             EventLog.Clear();
         }
 
