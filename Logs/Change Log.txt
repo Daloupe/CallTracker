@@ -35,7 +35,7 @@ SCAMPS Analyser:
 Toggle Systems:
 	- Restores/Minimizes HFC/NBN systems.
 
-0.9.6.18
+0.9.6.19
 Testing Field:
 	- Use hidden text to flag lines as edited.
 ICON Note:
@@ -43,7 +43,7 @@ ICON Note:
 	| ICONNote now pastes with HTML code.
 IPCC Monitor:
 	/ Changed search string from "IPCC Agent Desktop" to "IPCC".
-	- Prevent Transfers from re-reading IPCC.
+	/ IPCC now only pulls data on "Talking" that follows either "Reserved" or "Ready".
 Autologin:
 	/ Added CMBS/PMS/OPOM AutoLogin Exceptions.
 SmartPaste:

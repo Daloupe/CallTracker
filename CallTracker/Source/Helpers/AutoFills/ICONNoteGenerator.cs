@@ -262,6 +262,7 @@ namespace CallTracker.Helpers
                         ((AltNoteItemString)noteItem).GenerateNote(contact);
                 }
             }
+
             var sb = new StringBuilder();
             var first = true;
             foreach (var noteItem in NoteItems)

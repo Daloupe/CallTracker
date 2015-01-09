@@ -270,7 +270,7 @@ namespace CallTracker.View
                     case "Talking":
                         IPCCLevel("amber");
 
-                        if (Settings.Default.PullIPCCCallData)
+                        if (Settings.Default.PullIPCCCallData && (_IPCCState.Text == "Reserved" || _IPCCState.Text == "Ready"))
                             PullIPCCCallData();
 
                         if (CurrentContact != null)
