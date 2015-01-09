@@ -119,7 +119,8 @@ Global
 		{E9FEB68C-D688-4E53-BA93-D23A176BE58A}.RegexAssembly|x86.ActiveCfg = Release|Any CPU
 		{E9FEB68C-D688-4E53-BA93-D23A176BE58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9FEB68C-D688-4E53-BA93-D23A176BE58A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9FEB68C-D688-4E53-BA93-D23A176BE58A}.Release|x86.ActiveCfg = Release|Any CPU
+		{E9FEB68C-D688-4E53-BA93-D23A176BE58A}.Release|x86.ActiveCfg = Release|x86
+		{E9FEB68C-D688-4E53-BA93-D23A176BE58A}.Release|x86.Build.0 = Release|x86
 		{5DEADF0B-DC7B-430F-982E-647F7B05455D}.!RelRegex|Any CPU.ActiveCfg = Release|Any CPU
 		{5DEADF0B-DC7B-430F-982E-647F7B05455D}.!RelRegex|x86.ActiveCfg = Release|x86
 		{5DEADF0B-DC7B-430F-982E-647F7B05455D}.!RelRegex|x86.Build.0 = Release|x86
@@ -138,7 +139,6 @@ Global
 		{5DEADF0B-DC7B-430F-982E-647F7B05455D}.RegexAssembly|x86.Build.0 = Release|x86
 		{5DEADF0B-DC7B-430F-982E-647F7B05455D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DEADF0B-DC7B-430F-982E-647F7B05455D}.Release|x86.ActiveCfg = Release|x86
-		{5DEADF0B-DC7B-430F-982E-647F7B05455D}.Release|x86.Build.0 = Release|x86
 		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.!RelRegex|Any CPU.ActiveCfg = Release|Any CPU
 		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.!RelRegex|Any CPU.Build.0 = Release|Any CPU
 		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.!RelRegex|x86.ActiveCfg = Release|Any CPU
@@ -154,7 +154,7 @@ Global
 		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.RegexAssembly|Any CPU.Build.0 = Release|Any CPU
 		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.RegexAssembly|x86.ActiveCfg = Release|Any CPU
 		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.Release|x86.ActiveCfg = Release|Any CPU
+		{391A87E7-B716-4C1C-9FF2-FACEA8B54820}.Release|x86.ActiveCfg = Release|x86
 		{05758AE7-AF35-4B9F-B7B1-CAA307E7A412}.!RelRegex|Any CPU.ActiveCfg = Release|Any CPU
 		{05758AE7-AF35-4B9F-B7B1-CAA307E7A412}.!RelRegex|x86.ActiveCfg = Release|Any CPU
 		{05758AE7-AF35-4B9F-B7B1-CAA307E7A412}.AutomationTester|Any CPU.ActiveCfg = Release|Any CPU
@@ -168,7 +168,7 @@ Global
 		{05758AE7-AF35-4B9F-B7B1-CAA307E7A412}.RegexAssembly|Any CPU.ActiveCfg = Release|Any CPU
 		{05758AE7-AF35-4B9F-B7B1-CAA307E7A412}.RegexAssembly|x86.ActiveCfg = Release|Any CPU
 		{05758AE7-AF35-4B9F-B7B1-CAA307E7A412}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{05758AE7-AF35-4B9F-B7B1-CAA307E7A412}.Release|x86.ActiveCfg = Release|Any CPU
+		{05758AE7-AF35-4B9F-B7B1-CAA307E7A412}.Release|x86.ActiveCfg = Release|x86
 		{8B833B00-BB4C-4FAF-B6C4-BF77824F96A1}.!RelRegex|Any CPU.ActiveCfg = Release|Any CPU
 		{8B833B00-BB4C-4FAF-B6C4-BF77824F96A1}.!RelRegex|x86.ActiveCfg = Release|Any CPU
 		{8B833B00-BB4C-4FAF-B6C4-BF77824F96A1}.AutomationTester|Any CPU.ActiveCfg = Release|Any CPU
@@ -182,7 +182,7 @@ Global
 		{8B833B00-BB4C-4FAF-B6C4-BF77824F96A1}.RegexAssembly|Any CPU.ActiveCfg = Release|Any CPU
 		{8B833B00-BB4C-4FAF-B6C4-BF77824F96A1}.RegexAssembly|x86.ActiveCfg = Release|Any CPU
 		{8B833B00-BB4C-4FAF-B6C4-BF77824F96A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8B833B00-BB4C-4FAF-B6C4-BF77824F96A1}.Release|x86.ActiveCfg = Release|Any CPU
+		{8B833B00-BB4C-4FAF-B6C4-BF77824F96A1}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
