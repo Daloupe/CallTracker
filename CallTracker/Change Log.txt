@@ -1,14 +1,16 @@
-﻿0.9.6.17
+﻿0.9.6.18
 Testing Field:
 	- Use hidden text to flag lines as edited.
 ICON Note:
-	- Paste technician time as AM/PM/EVE instead of 7:31/12:00/16:00.
+	| Paste technician time as AM/PM/EVE instead of 7:31/12:00/16:00.
+	| ICONNote now pastes with HTML code.
 IPCC Monitor:
 	/ Changed search string from "IPCC Agent Desktop" to "IPCC".
 	- Prevent Transfers from re-reading IPCC.
 Autologin:
 	/ Added CMBS/PMS/OPOM AutoLogin Exceptions.
 SmartPaste:
+	- SmartPasteBindForm is sluggish to load.
 	- MAD smart paste needs to refresh cached object if failed.
 		- Need to confirm exact point at which it fails.
 DataPaste:
@@ -27,7 +29,10 @@ AutoSearch:
 		| Removed "https://" from DIMPS URL search string.
 	/ Ookla now AutoSearches.
 	| Changed "Don't search active windows" default to false.
+GridLinks:
+	- Fixed sluggish restores.
 Misc:
+	| Data fields trim text on lose focus.
 	| Logs clear every day.
 	| Save data more often.
 		| Settings save on Wingman menu close.

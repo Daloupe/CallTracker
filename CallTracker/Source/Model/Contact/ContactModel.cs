@@ -288,7 +288,7 @@ namespace CallTracker.Model
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         public string ICONNote
         {
-            get { return StripRtf(ICONNoteRtf); }
+            get { return Main.NoteGen.GenerateHTMLNoteManually(this); }//StripRtf(ICONNoteRtf); }
         }
 
         private static DateTime _lastICONGenerate;

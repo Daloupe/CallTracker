@@ -80,6 +80,7 @@ namespace CallTracker.View
         private void _DataField_Leave(object sender, EventArgs e)
         {
             _focus = false;
+            _DataField.Text = _DataField.Text.Trim();
         }
 
         private void _DataField_MouseDown(object sender, MouseEventArgs e)
