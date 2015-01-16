@@ -35,7 +35,7 @@ SCAMPS Analyser:
 Toggle Systems:
 	- Restores/Minimizes HFC/NBN systems.
 
-0.9.6.19
+0.9.6.20
 Testing Field:
 	- Use hidden text to flag lines as edited.
 ICON Note:
@@ -46,6 +46,7 @@ IPCC Monitor:
 	/ IPCC now only pulls data on "Talking" that follows either "Reserved" or "Ready".
 Autologin:
 	/ Added CMBS/PMS/OPOM AutoLogin Exceptions.
+		- Added null protection logic.
 SmartPaste:
 	- SmartPasteBindForm is sluggish to load.
 	- MAD smart paste needs to refresh cached object if failed.
@@ -56,10 +57,13 @@ SmartCopy:
 	| OPOM smart copy now correctly AutoSearches.
 	- Softact uses frames? name = "mainFrame".
 AutoSearch:
+	| Prevented crash by disposing of AutoSearch browsers properly.
 	/ Added option to toggle IFMS AutoSearch.
+	- Refreshed IFMS page before autosearching.
 	/ Added option to allow systems to be searched multiple times.
 	/ Failed AutoSearches for IFMS/SCAMPS now return to search page.
 	| Increased NNI Timeout to 60 seconds.
+		- Changed CSA check to check if DOM has loaded, rather than page.
 	/ Nexus isn't being auosearched.
 		| Changed ContactModel to search for Nexus by URL first. 
 	/ DIMPS is opening a new window if "Open New if not found" is on, and still searching in existing window.

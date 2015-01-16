@@ -59,9 +59,13 @@ namespace CallTracker.Helpers
         public void Dispose()
         {
             HotKeyManager.UnbindHotkeys();
-
+            
             if (browser != null)
                 browser.Dispose();
+
+            DisposeScampsBrowser();
+            DisposeDimpsBrowser();
+            DisposeNsiBrowser();   
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////

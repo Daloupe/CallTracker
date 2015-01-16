@@ -215,17 +215,24 @@ namespace CallTracker.Helpers
         private static String _scampsSearching;
         private static DateTime _scampsSearchStarted;
 
+        private static void DisposeScampsBrowser()
+        {
+            if (_scampsTimer != null)
+            {
+                _scampsTimer.Dispose();
+                _scampsTimer = null;
+            }
+            if (_scampsBrowser != null)
+            {
+                _scampsBrowser.Dispose();
+                _scampsBrowser = null;
+            }
+        }
         private static void ScampsTimerElapsed(object sender, ElapsedEventArgs e)
         {
             if ((e.SignalTime - _scampsSearchStarted).TotalSeconds > 10)
             {
-                if (_scampsBrowser != null)
-                {
-                    _scampsBrowser.Dispose();
-                    _scampsBrowser = null;
-                }
-                _scampsTimer.Dispose();
-                _scampsTimer = null;
+                DisposeScampsBrowser();
                 _scampsSearching = string.Empty;
                 parent.SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
                 parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true;
@@ -297,17 +304,24 @@ namespace CallTracker.Helpers
         private static String _dimpsSearching;
         private static DateTime _dimpsSearchStarted;
 
+        private static void DisposeDimpsBrowser()
+        {
+            if (_dimpsTimer != null)
+            {
+                _dimpsTimer.Dispose();
+                _dimpsTimer = null;
+            }
+            if (_dimpsBrowser != null)
+            {
+                _dimpsBrowser.Dispose();
+                _dimpsBrowser = null;
+            }
+        }
         private static void DimpsTimerElapsed(object sender, ElapsedEventArgs e)
         {
             if ((e.SignalTime - _dimpsSearchStarted).TotalSeconds > 10)
             {
-                if (_dimpsBrowser != null)
-                {
-                    _dimpsBrowser.Dispose();
-                    _dimpsBrowser = null;
-                }
-                _dimpsTimer.Dispose();
-                _dimpsTimer = null;
+                DisposeDimpsBrowser();
                 _dimpsSearching = string.Empty;
                 parent.SelectedContact.Service.WasSearched["DIMPSDN"] = true;
                 parent.SelectedContact.Service.WasSearched["DIMPSUsername"] = true;
@@ -450,18 +464,25 @@ namespace CallTracker.Helpers
         private static DateTime _nsiSearchStarted;
         private static String _nsiSearching;
 
+        private static void DisposeNsiBrowser()
+        {
+            if (_nsiTimer != null)
+            {
+                _nsiTimer.Dispose();
+                _nsiTimer = null;
+            }
+            if (_nsiBrowser != null)
+            {
+                _nsiBrowser.Dispose();
+                _nsiBrowser = null;
+            }
+        }
         private static void NsiTimerElapsed(object sender, ElapsedEventArgs e)
         {
             parent.SelectedContact.Service.WasSearched["NSI"] = true;
             if ((e.SignalTime - _nsiSearchStarted).TotalSeconds > 60)
             {
-                if (_nsiBrowser != null)
-                {
-                    _nsiBrowser.Dispose();
-                    _nsiBrowser = null;
-                }
-                _nsiTimer.Dispose();
-                _nsiTimer = null;
+                DisposeNsiBrowser();
                 _nsiSearching = null;
                 EventLogger.LogAndSaveNewEvent("AutoSearching NSI "+ _nsiSearching +" Error: Timeout", EventLogLevel.Brief);
                 return;
