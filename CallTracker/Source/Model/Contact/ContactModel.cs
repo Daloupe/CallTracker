@@ -424,16 +424,16 @@ namespace CallTracker.Model
                             HotkeyController.AutoSearch(
                                 "https://dimps.optusnet.com.au/search/servno?servno=" + DN, 
                                 "DIMPS", 
-                                "dimps.optusnet.com.au",
+                                "https://dimps.optusnet.com.au",
                                 true, 
                                 "DN");
                     }
-                    if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
-                        Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
-                            "http://nexus.optus.com.au/index.php?#service/" + DN,
-                            "Nexus",
-                            "https://nexus.optus.com.au",
-                            false);
+                    //if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
+                    //    Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
+                    //        "http://nexus.optus.com.au/index.php?#service/" + DN,
+                    //        "Nexus",
+                    //        "http://nexus.optus.com.au",
+                    //        true);
 
                 }
 
@@ -452,14 +452,14 @@ namespace CallTracker.Model
 
                 if (Properties.Settings.Default.AutoSearch)
                 {
-                    if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
-                    {
-                        Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
-                            "http://nexus.optus.com.au/index.php?#service/" + Mobile, 
-                            "Nexus",
-                            "http://nexus.optus.com.au",
-                            false);
-                    }
+                    //if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
+                    //{
+                    //    Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
+                    //        "http://nexus.optus.com.au/index.php?#service/" + Mobile, 
+                    //        "Nexus",
+                    //        "http://nexus.optus.com.au",
+                    //        true);
+                    //}
                 }
 
                 return true;
@@ -477,14 +477,14 @@ namespace CallTracker.Model
 
                 if (Properties.Settings.Default.AutoSearch)
                 {
-                    if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
-                    {
-                        Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
-                            "http://nexus.optus.com.au/index.php?#account/" + ICON, 
-                            "Nexus",
-                            "http://nexus.optus.com.au",
-                            false);
-                    }
+                    //if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
+                    //{
+                    //    Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
+                    //        "http://nexus.optus.com.au/index.php?#account/" + ICON, 
+                    //        "Nexus",
+                    //        "http://nexus.optus.com.au",
+                    //        true);
+                    //}
                 }
 
                 return true;
@@ -514,12 +514,12 @@ namespace CallTracker.Model
                             "IFMS",
                             "http://ifmsprod.optus.com.au/");
 
-                    if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
-                        Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
-                            "http://nexus.optus.com.au/index.php?#account/" + match.Result("3$1${2}0$3"), 
-                            "Nexus",
-                            "http://nexus.optus.com.au",
-                            false);
+                    //if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
+                    //    Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
+                    //        "http://nexus.optus.com.au/index.php?#account/" + match.Result("3$1${2}0$3"), 
+                    //        "Nexus",
+                    //        "http://nexus.optus.com.au",
+                    //        true);
                 }
 
                 return true;
@@ -548,7 +548,7 @@ namespace CallTracker.Model
                     HotkeyController.AutoSearch(
                         "https://dimps.optusnet.com.au/display.html?username=" + Username,
                         "DIMPS",
-                        "dimps.optusnet.com.au",
+                        "https://dimps.optusnet.com.au",
                         true,
                         "Username");
 
