@@ -301,46 +301,26 @@ namespace CallTracker.Helpers
         public static bool NavigateOrNewIE(string url, string title = "", string searchUrl = "")
         {
             EventLogger.LogNewEvent("NavigateOrNewIE Starting", EventLogLevel.Brief);
-            var outcome = false;
-            if (FindIEByUrl(url))
+
+            if (FindIEByUrl(url) || (!String.IsNullOrEmpty(title) && FindIEByTitle(title)))
             {
-                browser.ShowWindow(NativeMethods.WindowShowStyle.Restore);
-                new IETabActivator(browser).ActivateByTabsUrl(browser.Url);// This Line might be why WOBS isn't activating?
+                //browser.ShowWindow(NativeMethods.WindowShowStyle.Restore);
+                new IETabActivator(browser.hWnd).ActivateByTabsUrl(browser.Url);
+                WindowHelper.ShowWindow(browser.hWnd, WindowHelper.SW_RESTORE);
+                WindowHelper.SetForegroundWindow(browser.hWnd);
                 if (!String.IsNullOrEmpty(searchUrl))
                 {
-                    EventLogger.LogNewEvent("NavigateOrNewIE navigating to URL: " + searchUrl);
+                    EventLogger.LogNewEvent("NavigateOrNewIE: navigating to URL: " + searchUrl);
                     browser.GoToNoWait(searchUrl);
                 }
-                outcome = true;
-            }
-            else if (!String.IsNullOrEmpty(title))
-            {
-                if (FindIEByTitle(title))
-                {
-                    browser.ShowWindow(NativeMethods.WindowShowStyle.Restore);
-                    new IETabActivator(browser).ActivateByTabsUrl(browser.Url);
-                    if (!String.IsNullOrEmpty(searchUrl))
-                    {
-                        EventLogger.LogNewEvent("NavigateOrNewIE navigating to URL: " + searchUrl);
-                        browser.GoToNoWait(searchUrl);
-                    }
-                    outcome = true;
-                }
-            }
-
-            if (!outcome)
-            {
+                return true;
+            }else{
                 EventLogger.LogNewEvent("NavigateOrNewIE: Creating new IE window", EventLogLevel.Brief);
-                if (!String.IsNullOrEmpty(searchUrl))
-                {
-                    if (CreateNewIE(searchUrl))
-                        outcome = true;
-                }
-                else if (CreateNewIE(url))
-                    outcome = true;
+                if (CreateNewIE(searchUrl != "" ? searchUrl : url))
+                    return true;
             }
 
-            return outcome;
+            return false;
         }
     }
 }

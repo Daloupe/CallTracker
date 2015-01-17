@@ -165,8 +165,8 @@ namespace CallTracker.Model
                 return;
             }
             EventLogger.LogNewEvent("Paste Data : " + element);
-
-            browserElement.Focus();//.FindNativeElement().SetFocus();
+    
+            //browserElement.Focus();//.FindNativeElement().SetFocus();
             if (PasteWithSendKeys)
             {
                 browserElement.SetAttributeValue("value", "");
@@ -176,7 +176,7 @@ namespace CallTracker.Model
                 SendKeys.Send(value);
                 if (FireOnChange)
                     HotkeyController.WaitForAsyncPostBackToComplete();
-                    //HotkeyController.WaitForBrowserBusy();
+                //HotkeyController.WaitForBrowserBusy();
             }
             else
             {

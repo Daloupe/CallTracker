@@ -48,9 +48,10 @@ namespace CallTracker.Helpers
         {
             EventLogger.LogNewEvent("Creating Tab Activator", EventLogLevel.Brief);
 
-            _browser.BringToFront();
+            //_browser.BringToFront();
             _hWnd = _browser.hWnd;
-            WindowHelper.ShowWindow(_hWnd, WindowHelper.SW_RESTORE);
+            //WindowHelper.ShowWindow(_hWnd, WindowHelper.SW_RESTORE);
+            //WindowHelper.SetForegroundWindow(_hWnd);
             AccessibleObjectFromWindow(GetDirectUIHWND(_hWnd), OBJID.OBJID_WINDOW, ref _accessible);
 
             CheckForAccessible();
@@ -59,6 +60,8 @@ namespace CallTracker.Helpers
         internal IETabActivator(IntPtr hwnd)
         {
             _hWnd = hwnd;
+            //WindowHelper.ShowWindow(_hWnd, WindowHelper.SW_RESTORE);
+            //WindowHelper.SetForegroundWindow(_hWnd);
             AccessibleObjectFromWindow(GetDirectUIHWND(hwnd), OBJID.OBJID_WINDOW, ref _accessible);
 
             CheckForAccessible();

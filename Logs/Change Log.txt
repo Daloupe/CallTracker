@@ -35,7 +35,7 @@ SCAMPS Analyser:
 Toggle Systems:
 	- Restores/Minimizes HFC/NBN systems.
 
-0.9.6.20
+0.9.6-8
 Testing Field:
 	- Use hidden text to flag lines as edited.
 ICON Note:
@@ -50,8 +50,7 @@ Autologin:
 		| Logins decrypt after saving.
 SmartPaste:
 	- SmartPasteBindForm is sluggish to load.
-	- MAD smart paste needs to refresh cached object if failed.
-		- Need to confirm exact point at which it fails.
+	/ MAD smart paste needs to refresh cached object if failed.
 DataPaste:
 	| Added option to toggle between sendkeys and paste.
 SmartCopy:
@@ -60,11 +59,15 @@ SmartCopy:
 AutoSearch:
 	| Prevented crash by disposing of AutoSearch browsers properly.
 	/ Added option to toggle IFMS AutoSearch.
-	- Refreshed IFMS page before autosearching.
+	/ Added option to Refresh IFMS page before autosearching.
 	/ Added option to allow systems to be searched multiple times.
 	/ Failed AutoSearches for IFMS/SCAMPS now return to search page.
 	| Increased NNI Timeout to 60 seconds.
-		- Changed CSA check to check if DOM has loaded, rather than page.
+		/ Changed CSA check to check if DOM has loaded, rather than page.
+		/ Changed _nsiTimer:
+			| To not use a SyncronizationObject.
+			| AutoReset = false. Timer is restarted on fail conditions, and when AVC successfully loads.
+			| CVC search increases interval to 3 seconds to avoid excessive WaTiN Exists checks.
 	/ Nexus isn't being auosearched.
 		| Changed ContactModel to search for Nexus by URL first. 
 	/ DIMPS is opening a new window if "Open New if not found" is on, and still searching in existing window.
@@ -72,9 +75,14 @@ AutoSearch:
 	/ Ookla now AutoSearches.
 	| Changed "Don't search active windows" default to false.
 GridLinks:
-	- Fixed sluggish restores.
+	/ Fixed sluggish restores.
+		| Removed window restores via WaTiN browser, using NativeMethods instead. 
+		| Removed window restoral in IETabActivator, left it to NavigateOfNew method.
+		| Sending browser.hWnd instead of browser to IETabActivator.
+		| Restore window after tab is found.
 Misc:
-	- WaTin isn't playing with IE11.
+	| WaTin isn't playing with IE11.
+		| Removed "browserElement.Focus()" from the Paste code.
 	| Data fields trim text on lose focus.
 	| Logs clear every day.
 	| Save data more often.

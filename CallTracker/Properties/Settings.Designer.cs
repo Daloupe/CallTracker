@@ -298,5 +298,17 @@ namespace CallTracker.Properties {
                 this["dataPasteTypeInput"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSearchRefreshIFMSFirst {
+            get {
+                return ((bool)(this["AutoSearchRefreshIFMSFirst"]));
+            }
+            set {
+                this["AutoSearchRefreshIFMSFirst"] = value;
+            }
+        }
     }
 }

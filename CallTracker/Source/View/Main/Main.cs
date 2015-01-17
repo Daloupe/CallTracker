@@ -289,6 +289,7 @@ namespace CallTracker.View
             autoSearchEnabledToolStripMenuItem.Checked = Settings.Default.AutoSearch;
             autoSearchActiveWindowToolStripMenuItem.Checked = Settings.Default.AutoSearchIgnoreActiveWindow;
             SearchIFMSToolStripMenuItem.Checked = Settings.Default.AutoSearchIFMS;
+            refreshIFMSFirstToolStripMenuItem.Checked = Settings.Default.AutoSearchRefreshIFMSFirst;
             MultipleSearchesToolStripMenuItem.Checked = Settings.Default.AutoSearchAllowMultipleSearches;
             newPageIfRequiredToolStripMenuItem.Checked = Settings.Default.AutoSearchOpenNew;
 
@@ -854,6 +855,11 @@ namespace CallTracker.View
             Settings.Default.AutoSearchIFMS = SearchIFMSToolStripMenuItem.Checked;
         }
 
+        private void refreshIFMSFirstToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            Settings.Default.AutoSearchRefreshIFMSFirst = refreshIFMSFirstToolStripMenuItem.Checked;
+        }
+
         private void MultipleSearchesToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             Settings.Default.AutoSearchAllowMultipleSearches = MultipleSearchesToolStripMenuItem.Checked;
@@ -883,6 +889,8 @@ namespace CallTracker.View
             EventLogger.LogNewEvent("Saving Settings");
             Settings.Default.Save();
         }
+
+
 
 
 

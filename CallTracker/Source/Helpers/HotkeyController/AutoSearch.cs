@@ -52,7 +52,8 @@ namespace CallTracker.Helpers
                         _nsiTimer.Stop();
                     else
                     {
-                        _nsiTimer = new Timer(2000) { SynchronizingObject = parent };
+                        _nsiTimer = new Timer(2000);// { SynchronizingObject = parent };
+                        _nsiTimer.AutoReset = false;
                         _nsiTimer.Elapsed += NsiTimerElapsed;
                     }
                     break;
@@ -104,7 +105,7 @@ namespace CallTracker.Helpers
                     EventLogger.LogNewEvent(Environment.NewLine + "NSI AutoSearch Starting: " + search, EventLogLevel.Brief);
                     _nsiBrowser = browser;
                     _nsiSearchStarted = DateTime.Now;
-                    _nsiTimer.Start();
+                    _nsiTimer.Enabled = true;
                     break;
 
                 default:
@@ -128,6 +129,8 @@ namespace CallTracker.Helpers
 
             if (browser.Title.Contains("IFMS"))
             {
+                if (Properties.Settings.Default.AutoSearchRefreshIFMSFirst)
+                    browser.GoToNoWait("http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F191_CUST_ACCESS_OV.aspx");
                 browser.GoTo(search);
                 if (browser.Title.Contains("Error"))
                 {
@@ -156,6 +159,8 @@ namespace CallTracker.Helpers
 
             if (browser.Title.Contains("IFMS"))
             {
+                if (Properties.Settings.Default.AutoSearchRefreshIFMSFirst)
+                    browser.GoToNoWait("http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F191_CUST_ACCESS_OV.aspx");
                 browser.GoTo(search);
                 if (browser.Title.Contains("Error"))
                 {
@@ -459,15 +464,17 @@ namespace CallTracker.Helpers
                 _nsiBrowser.Dispose();
                 _nsiBrowser = null;
             }
+
+            _nsiSearching = null;
         }
 
         private static void NsiTimerElapsed(object sender, ElapsedEventArgs e)
         {
             parent.SelectedContact.Service.WasSearched["NSI"] = true;
-            if ((e.SignalTime - _nsiSearchStarted).TotalSeconds > 60)
+            if ((e.SignalTime - _nsiSearchStarted).TotalSeconds > 20)
             {
                 DisposeNsiBrowser();
-                _nsiSearching = null;
+                
                 EventLogger.LogAndSaveNewEvent("AutoSearching NSI " + _nsiSearching + " Error: Timeout", EventLogLevel.Brief);
                 return;
             }
@@ -479,7 +486,6 @@ namespace CallTracker.Helpers
                     return;
             }
             var ieBrowser = ((IWebBrowser2)(_nsiBrowser.InternetExplorer));
-            if (ieBrowser.Busy) return;
 
             var contact = parent.SelectedContact;
 
@@ -487,6 +493,11 @@ namespace CallTracker.Helpers
             //{
             if (_nsiSearching == "AVC")
             {
+                if (ieBrowser.Busy){
+                    _nsiTimer.Start();
+                    return;
+                }
+
                 EventLogger.LogNewEvent("AutoSearching: NSI AVC", EventLogLevel.Brief);
                 string value;
 
@@ -507,21 +518,26 @@ namespace CallTracker.Helpers
                 _nsiSearching = "CVC";
                 _nsiBrowser.GoToNoWait("https://staff.optusnet.com.au/tools/nsi/cvc_detail.html?cvcid=" +
                                        contact.Service.CVC);
+                _nsiTimer.Start();
             }
             else if (_nsiSearching == "CVC")
             {
+                var div = _nsiBrowser.Div(Find.ByClass("top_col"));
+                if (!div.Exists)
+                {
+                    _nsiTimer.Interval = 3000;
+                    _nsiTimer.Start();
+                    return;
+                }
+                
                 EventLogger.LogNewEvent("AutoSearching: NSI CVC", EventLogLevel.Brief);
-                var top_col = _nsiBrowser.Div(Find.ByClass("top_col")).InnerHtml.Split(':');
+                var top_col = div.InnerHtml.Split(':');
                 contact.Service.CSA = top_col[1].Substring(5, 15);
                 contact.Service.NNI = top_col[4].Substring(5, 15);
 
                 _nsiBrowser.Back();
 
-                _nsiBrowser.Dispose();
-                _nsiBrowser = null;
-                _nsiTimer.Dispose();
-                _nsiTimer = null;
-                _nsiSearching = null;
+                DisposeNsiBrowser();
             }
             //}
             //catch (Exception ex)
