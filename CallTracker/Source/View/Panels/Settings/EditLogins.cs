@@ -36,6 +36,7 @@ namespace CallTracker.View
         {
             EventLogger.LogNewEvent("Saving Logins");
             MainForm.LoginsDataStore.WriteData();
+            MainForm.LoginsDataStore.DecryptData();
             base._Done_Click(sender, e);
         }
 

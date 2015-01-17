@@ -46,7 +46,8 @@ IPCC Monitor:
 	/ IPCC now only pulls data on "Talking" that follows either "Reserved" or "Ready".
 Autologin:
 	/ Added CMBS/PMS/OPOM AutoLogin Exceptions.
-		- Added null protection logic.
+		/ Added null protection logic.
+		| Logins decrypt after saving.
 SmartPaste:
 	- SmartPasteBindForm is sluggish to load.
 	- MAD smart paste needs to refresh cached object if failed.
@@ -73,6 +74,7 @@ AutoSearch:
 GridLinks:
 	- Fixed sluggish restores.
 Misc:
+	- WaTin isn't playing with IE11.
 	| Data fields trim text on lose focus.
 	| Logs clear every day.
 	| Save data more often.

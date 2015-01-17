@@ -170,7 +170,7 @@ namespace CallTracker.Model
         public void WriteData()
         {
             EncryptData();
-
+            
             using (var file = File.Create(Filename))
                 Serializer.Serialize(file, this);
         }
