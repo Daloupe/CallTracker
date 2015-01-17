@@ -134,6 +134,7 @@
       <DependentUpon>ServicesDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Source\Helpers\AutoFills\PRGenerators.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\SmartCopy.cs" />
     <Compile Include="Source\Helpers\HotkeyController\AutoSearch.cs" />
     <Compile Include="Source\Helpers\Type\DataGridExtentions.cs" />
     <Compile Include="Source\Helpers\Type\FilterableBindingList.cs" />
