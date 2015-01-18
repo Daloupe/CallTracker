@@ -86,6 +86,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.autoSearchActiveWindowToolStripMenuItem = new CTToolStripMenuItem();
             this.newPageIfRequiredToolStripMenuItem = new CTToolStripMenuItem();
+            this.refreshIFMSFirstToolStripMenuItem = new CTToolStripMenuItem();
             this.SearchIFMSToolStripMenuItem = new CTToolStripMenuItem();
             this.MultipleSearchesToolStripMenuItem = new CTToolStripMenuItem();
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
@@ -165,7 +166,6 @@
             this._IPCCTimer = new System.Windows.Forms.Timer(this.components);
             this.bindableContextMenu1 = new CallTracker.View.BindableContextMenu();
             this._DailyDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.refreshIFMSFirstToolStripMenuItem = new CTToolStripMenuItem();
             this.AppPanel.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this._StatusContextMenu.SuspendLayout();
@@ -794,6 +794,17 @@
             this.newPageIfRequiredToolStripMenuItem.ToolTipText = "Opens a new IE page if a system isn\'t already open";
             this.newPageIfRequiredToolStripMenuItem.Visible = false;
             this.newPageIfRequiredToolStripMenuItem.CheckedChanged += new System.EventHandler(this.newPageIfRequiredToolStripMenuItem_CheckedChanged);
+            // 
+            // refreshIFMSFirstToolStripMenuItem
+            // 
+            this.refreshIFMSFirstToolStripMenuItem.Advanced = true;
+            this.refreshIFMSFirstToolStripMenuItem.CheckOnClick = true;
+            this.refreshIFMSFirstToolStripMenuItem.Name = "refreshIFMSFirstToolStripMenuItem";
+            this.refreshIFMSFirstToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.refreshIFMSFirstToolStripMenuItem.Text = "Refresh IFMS first";
+            this.refreshIFMSFirstToolStripMenuItem.ToolTipText = "AutoSearch IFMS";
+            this.refreshIFMSFirstToolStripMenuItem.Visible = false;
+            this.refreshIFMSFirstToolStripMenuItem.CheckedChanged += new System.EventHandler(this.refreshIFMSFirstToolStripMenuItem_CheckedChanged);
             // 
             // SearchIFMSToolStripMenuItem
             // 
@@ -1474,17 +1485,6 @@
             // _DailyDataBindingSource
             // 
             this._DailyDataBindingSource.DataSource = typeof(CallTracker.Model.DailyModel);
-            // 
-            // refreshIFMSFirstToolStripMenuItem
-            // 
-            this.refreshIFMSFirstToolStripMenuItem.Advanced = true;
-            this.refreshIFMSFirstToolStripMenuItem.CheckOnClick = true;
-            this.refreshIFMSFirstToolStripMenuItem.Name = "refreshIFMSFirstToolStripMenuItem";
-            this.refreshIFMSFirstToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
-            this.refreshIFMSFirstToolStripMenuItem.Text = "Refresh IFMS first";
-            this.refreshIFMSFirstToolStripMenuItem.ToolTipText = "AutoSearch IFMS";
-            this.refreshIFMSFirstToolStripMenuItem.Visible = false;
-            this.refreshIFMSFirstToolStripMenuItem.CheckedChanged += new System.EventHandler(this.refreshIFMSFirstToolStripMenuItem_CheckedChanged);
             // 
             // Main
             // 
