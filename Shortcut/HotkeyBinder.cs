@@ -47,8 +47,10 @@ namespace Shortcut
             if (hotkeyCombination == null) throw new ArgumentNullException("hotkeyCombination");
 
             HotkeyCallback callback = new HotkeyCallback();
+
             StoreHotkeyCombinationInDictionary(hotkeyCombination, callback);
             RegisterHotkeyCombination(hotkeyCombination);
+
             return callback;
         }
 

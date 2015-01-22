@@ -197,6 +197,12 @@
     <Compile Include="Source\View\Main\IPCC.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Source\View\Main\Note.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Main\Note.Designer.cs">
+      <DependentUpon>Note.cs</DependentUpon>
+    </Compile>
     <Compile Include="Source\View\Panels\Contact\StatsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     <Compile Include="Source\View\Popups\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Source\View\Main\Note.resx">
+      <DependentUpon>Note.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Source\View\Panels\Contact\StatsView.resx">
       <DependentUpon>StatsView.cs</DependentUpon>
       <SubType>Designer</SubType>

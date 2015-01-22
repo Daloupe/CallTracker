@@ -35,6 +35,8 @@ SCAMPS Analyser:
 Toggle Systems:
 	- Restores/Minimizes HFC/NBN systems.
 
+
+
 0.9.6-8
 Testing Field:
 	- Use hidden text to flag lines as edited.
@@ -81,6 +83,8 @@ GridLinks:
 		| Sending browser.hWnd instead of browser to IETabActivator.
 		| Restore window after tab is found.
 Misc:
+	/ Caught Hotkey startup exceptions
+	| Chnaged Bind Smart Paste hotkey to alt-ctrl-v.
 	| WaTin isn't playing with IE11.
 		| Removed "browserElement.Focus()" from the Paste code.
 	| Data fields trim text on lose focus.
