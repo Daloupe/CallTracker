@@ -223,11 +223,16 @@
             this._FaultSplitContainer.Panel2MinSize = 0;
             this._FaultSplitContainer.Size = new System.Drawing.Size(275, 216);
             this._FaultSplitContainer.SplitterDistance = 180;
-            this._FaultSplitContainer.SplitterWidth = 6;
+            this._FaultSplitContainer.SplitterWidth = 7;
             this._FaultSplitContainer.TabIndex = 300;
             this._FaultSplitContainer.TabStop = false;
             this._FaultSplitContainer.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
-            this._FaultSplitContainer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.splitContainer1_MouseDoubleClick);
+            this._FaultSplitContainer.MouseClick += new System.Windows.Forms.MouseEventHandler(this._FaultSplitContainer_MouseClick);
+            this._FaultSplitContainer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this._FaultSplitContainer_MouseDoubleClick);
+            this._FaultSplitContainer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SplitContainer_MouseDown);
+            this._FaultSplitContainer.MouseLeave += new System.EventHandler(this.SplitContainer_MouseLeave);
+            this._FaultSplitContainer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SplitContainer_MouseMove);
+            this._FaultSplitContainer.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SplitContainer_MouseUp);
             // 
             // _ServiceSplitContainer
             // 
@@ -253,12 +258,18 @@
             this._ServiceSplitContainer.Panel2MinSize = 0;
             this._ServiceSplitContainer.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this._ServiceSplitContainer.Size = new System.Drawing.Size(180, 214);
-            this._ServiceSplitContainer.SplitterDistance = 84;
+            this._ServiceSplitContainer.SplitterDistance = 113;
+            this._ServiceSplitContainer.SplitterWidth = 7;
             this._ServiceSplitContainer.TabIndex = 301;
             this._ServiceSplitContainer.TabStop = false;
             this._ServiceSplitContainer.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer2_SplitterMoved);
             this._ServiceSplitContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.PaintGrayBorder);
+            this._ServiceSplitContainer.MouseClick += new System.Windows.Forms.MouseEventHandler(this._ServiceSplitContainer_MouseClick);
             this._ServiceSplitContainer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.splitContainer2_MouseDoubleClick);
+            this._ServiceSplitContainer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SplitContainer_MouseDown);
+            this._ServiceSplitContainer.MouseLeave += new System.EventHandler(this.SplitContainer_MouseLeave);
+            this._ServiceSplitContainer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.SplitContainer_MouseMove);
+            this._ServiceSplitContainer.MouseUp += new System.Windows.Forms.MouseEventHandler(this.SplitContainer_MouseUp);
             // 
             // HfcPanel
             // 
@@ -273,7 +284,7 @@
             this.HfcPanel.Controls.Add(this._NPR);
             this.HfcPanel.Controls.Add(this._PR);
             this.HfcPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.HfcPanel.Location = new System.Drawing.Point(0, -107);
+            this.HfcPanel.Location = new System.Drawing.Point(0, -78);
             this.HfcPanel.Margin = new System.Windows.Forms.Padding(0);
             this.HfcPanel.Name = "HfcPanel";
             this.HfcPanel.Size = new System.Drawing.Size(180, 191);
@@ -401,7 +412,7 @@
             this._BookingDate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this._BookingDate.BorderColour = System.Drawing.Color.DarkOliveGreen;
             this._BookingDate.ControlHeight = 29;
-            this._BookingDate.DateField = new System.DateTime(2014, 8, 9, 0, 0, 0, 0);
+            this._BookingDate.DateField = new System.DateTime(2015, 8, 9, 0, 0, 0, 0);
             this._BookingDate.DateText = "09/08";
             this._BookingDate.Font = new System.Drawing.Font("Verdana", 7F);
             this._BookingDate.HasContextMenu = false;

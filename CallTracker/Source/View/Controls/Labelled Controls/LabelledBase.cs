@@ -8,6 +8,15 @@ namespace CallTracker.View
 
     public partial class LabelledBase : IDataField
     {
+        private const int WM_MOUSEACTIVATE = 0x21;
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == WM_MOUSEACTIVATE && CanFocus && !Focused)
+                Focus();
+
+            base.WndProc(ref m);
+        }
         
         [Category("!Label")]
         public string LabelText

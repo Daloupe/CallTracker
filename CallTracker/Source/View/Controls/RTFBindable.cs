@@ -9,6 +9,16 @@ namespace CallTracker.View
 	Docking(DockingBehavior.Ask)]
     public class dbRTBox : RichTextBox
     {
+        private const int WM_MOUSEACTIVATE = 0x21;
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == WM_MOUSEACTIVATE && CanFocus && !Focused)
+                Focus();
+
+            base.WndProc(ref m);
+        }
+
         [Bindable(true), RefreshProperties(RefreshProperties.All), 
 	SettingsBindable(true), DefaultValue(""), Category("Appearance")]
         new public string Rtf

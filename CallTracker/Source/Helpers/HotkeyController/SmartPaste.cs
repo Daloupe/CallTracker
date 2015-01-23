@@ -103,7 +103,8 @@ namespace CallTracker.Helpers
                 browser.Dispose();
             }
             parent.AddAppEvent(AppEventTypes.SmartPaste);
-            Clipboard.SetText(oldClip);
+            if (!String.IsNullOrEmpty(oldClip))
+                Clipboard.SetText(oldClip);
         }
 
         private static void OnBindSmartPaste(HotkeyPressedEventArgs e)

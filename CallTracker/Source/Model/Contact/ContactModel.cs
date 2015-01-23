@@ -6,6 +6,7 @@ using PropertyChanged;
 using ProtoBuf;
 
 using Utilities.RegularExpressions;
+
 using CallTracker.View;
 using CallTracker.Helpers;
 
@@ -47,6 +48,8 @@ namespace CallTracker.Model
             //Contacts.StartDate = DateTime.Today;
             //Contacts.StartTime = DateTime.Now.TimeOfDay;//.TimeOfDay();
 
+            CreateNotes();
+            
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
@@ -86,6 +89,8 @@ namespace CallTracker.Model
             //Contacts = new ContactStatistics();
             Booking = new BookingModel();
 
+            CreateNotes();
+
             ((INotifyPropertyChanged)Fault).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Booking).PropertyChanged += CustomerContact_PropertyChanged;
             ((INotifyPropertyChanged)Service).PropertyChanged += CustomerContact_PropertyChanged;
@@ -106,6 +111,48 @@ namespace CallTracker.Model
         {
             if (NestedChange != null)
                 NestedChange(sender, e);
+        }
+
+        private void CreateNotes()
+        {
+            PRAltNotes = new List<AltNote>
+            {
+                new AltNote("CRQ", "Booking.Type", "CRQ", "Tech has been booked for customer requested date: {0}"),
+                new AltNote("FAQ", "Booking.Type", "FAQ", "Tech has been booked for first available date: {0}"),
+                new AltNote("MDQ","Booking.Type", "MDQ", "Tech has been booked for must do quota: {0}"),
+                new AltNote("CM","Booking.Type", "CM", "Case Management callback has been organized for {0}")
+            };
+
+            NotesSituation = new List<NoteItem> 
+            {
+                new NoteItemHeading("Situation", "Situation", "{0}:"),
+                new NoteItemString("Name", "Name", "Spoke with {0}."),
+                new NoteItemBool("Id", "IDok", "ID ok."),
+                new NoteItemAcronym("Symptom", "Fault.Symptom", "Customer is experiencing {0}.", Main.ServicesStore.servicesDataSet.Symptoms.ToDictionary(x => x.IFMSCode, x => x.Description)),
+            };
+
+            NotesAction = new List<NoteItem> 
+            {
+                new NoteItemHeading("Action", "Action", "{0}:"),
+                new NoteItemBool("Powercycled", "Fault.Powercycled", "Powercycled."),
+                new NoteItemBool("FactoryReset", "Fault.FactoryReset", "Factory Reset."),
+                new NoteItemBool("CheckedCables", "Fault.CheckedCables", "Checked Cables."),
+                new NoteItemBool("CheckedNode", "Fault.CheckedNodeForOfflines", "Checked Node in SCAMPS for offlines."),
+                new NoteItemBool("WifiChannel", "Fault.ChangedWiFiChannel", "Changed WiFi Channel."),
+                new NoteItemString("ModemStatus", "Service.ModemStatus", "Modem is {0}."),
+                new NoteItemBool("RFIssues", "Service.RFIssues", "Systems show RF Issues."),
+                new NoteItemString("SpeedTest", "Service.DownloadSpeed", "Speed test shows download speed of {0}mbps."),
+                new NoteItemString("Throttled", "Service.Throttled", "Service is currently {0}."),
+                new NoteItemString("ErrorMessage", "Service.DTVMsg", "Customer is seeing error message: {0}."),
+                new NoteItemString("ARO", "Fault.NPR", "Area Outage PR#{0} is currently open."),
+            };
+
+            NotesOutcome = new List<NoteItem> 
+            {
+                new NoteItemHeading("Outcome", "Outcome", "{0}:"),
+                new NoteItemString("PR", "Fault.PR", "PR#{0} has been raised."),
+                new AltNoteItemString("Booking", "Booking.GetDateAndTimeslot", PRAltNotes)
+            };
         }
 
         [ProtoMember(1)]
@@ -154,6 +201,14 @@ namespace CallTracker.Model
         public bool Important { get; set; }
         [ProtoMember(32)]
         public string Note { get; set; }
+        [ProtoMember(33, OverwriteList=true)]
+        public List<NoteItem> NotesSituation { get; set; }
+        [ProtoMember(34, OverwriteList = true)]
+        public List<NoteItem> NotesAction { get; set; }
+        [ProtoMember(35, OverwriteList = true)]
+        public List<NoteItem> NotesOutcome { get; set; }
+        [ProtoMember(36, OverwriteList=true)]
+        public List<AltNote> PRAltNotes { get; set; }
 
         [ProtoMember(40)]
         public bool OriginalCall { get; set; }
@@ -314,7 +369,24 @@ namespace CallTracker.Model
             return rtfBox.Text;
         }
 
-
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Note////////////////////////////////////////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        [DependsOn("Name", "IDok", "Fault")]
+        public string SituationNote
+        {
+            get { return Main.NoteGen.GenerateRTFNote(NotesSituation, this); }
+        }
+        [DependsOn("Service", "Id", "Fault")]
+        public string ActionNote
+        {
+            get { return Main.NoteGen.GenerateRTFNote(NotesAction, this); }
+        }
+        [DependsOn("Booking", "Fault")]
+        public string OutcomeNote
+        {
+            get { return Main.NoteGen.GenerateRTFNote(NotesOutcome, this); }
+        }
 
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -428,12 +500,12 @@ namespace CallTracker.Model
                                 true, 
                                 "DN");
                     }
-                    //if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
-                    //    Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
-                    //        "http://nexus.optus.com.au/index.php?#service/" + DN,
-                    //        "Nexus",
-                    //        "http://nexus.optus.com.au",
-                    //        true);
+                    if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
+                        Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
+                            "http://nexus.optus.com.au/index.php?#service/" + DN,
+                            "Nexus",
+                            "http://nexus.optus.com.au",
+                            true);
 
                 }
 
@@ -452,14 +524,14 @@ namespace CallTracker.Model
 
                 if (Properties.Settings.Default.AutoSearch)
                 {
-                    //if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
-                    //{
-                    //    Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
-                    //        "http://nexus.optus.com.au/index.php?#service/" + Mobile, 
-                    //        "Nexus",
-                    //        "http://nexus.optus.com.au",
-                    //        true);
-                    //}
+                    if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
+                    {
+                        Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
+                            "http://nexus.optus.com.au/index.php?#service/" + Mobile,
+                            "Nexus",
+                            "http://nexus.optus.com.au",
+                            true);
+                    }
                 }
 
                 return true;
@@ -477,14 +549,14 @@ namespace CallTracker.Model
 
                 if (Properties.Settings.Default.AutoSearch)
                 {
-                    //if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
-                    //{
-                    //    Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
-                    //        "http://nexus.optus.com.au/index.php?#account/" + ICON, 
-                    //        "Nexus",
-                    //        "http://nexus.optus.com.au",
-                    //        true);
-                    //}
+                    if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
+                    {
+                        Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
+                            "http://nexus.optus.com.au/index.php?#account/" + ICON,
+                            "Nexus",
+                            "http://nexus.optus.com.au",
+                            true);
+                    }
                 }
 
                 return true;
@@ -514,12 +586,12 @@ namespace CallTracker.Model
                             "IFMS",
                             "http://ifmsprod.optus.com.au/");
 
-                    //if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
-                    //    Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
-                    //        "http://nexus.optus.com.au/index.php?#account/" + match.Result("3$1${2}0$3"), 
-                    //        "Nexus",
-                    //        "http://nexus.optus.com.au",
-                    //        true);
+                    if (!Service.WasSearched["Nexus"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
+                        Service.WasSearched["Nexus"] = HotkeyController.AutoSearch(
+                            "http://nexus.optus.com.au/index.php?#account/" + match.Result("3$1${2}0$3"),
+                            "Nexus",
+                            "http://nexus.optus.com.au",
+                            true);
                 }
 
                 return true;

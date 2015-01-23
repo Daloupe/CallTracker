@@ -97,6 +97,7 @@ namespace CallTracker.View
             
             // Needs to be init after bindingsource datasource is set so fields binding properly.
             _ServicePanel.Init();
+            MainForm.editNote.Init();
 
             _Outcome.BindComboBox(Main.ServicesStore.servicesDataSet.Outcomes.Select(x => x.Description).ToList(), customerContactsBindingSource);
             _BookingType.BindComboBox(Enum.GetValues(typeof(BookingType)).Cast<BookingType>().Select(x => x.ToString()).ToList(), customerContactsBindingSource);
@@ -438,6 +439,9 @@ namespace CallTracker.View
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Splitter /////////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// <summary>
+        /// Fault Splitter (Horizontal)
+        /// </summary>
         private const int SPLITTER_1_MIN = 0;
         private const int SPLITTER_1_MAX = 180;
         private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
@@ -446,7 +450,18 @@ namespace CallTracker.View
                 _FaultSplitContainer.SplitterDistance = SPLITTER_1_MAX;
         }
 
-        private void splitContainer1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void _FaultSplitContainer_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            FlickFaultSplitter();
+        }
+
+        private void _FaultSplitContainer_MouseClick(object sender, MouseEventArgs e)
+        {
+            if(e.Button.Equals(MouseButtons.Right))
+                FlickFaultSplitter();
+        }
+
+        private void FlickFaultSplitter() 
         {
             int dist = _FaultSplitContainer.SplitterDistance;
 
@@ -462,6 +477,9 @@ namespace CallTracker.View
             _FaultSplitContainer.SplitterDistance = dist;
         }
 
+        /// <summary>
+        /// Service Splitter (Vertical)
+        /// </summary>
         private static readonly List<int> SplitterRows = new List<int> { 0, 25, 55, 84, 114, 144, 164};// 153, 122, 99, 67, 35, 0};
         private const int SPLITTER_2_MIN = 0;
         private const int SPLITTER_2_MAX = 164;
@@ -474,6 +492,17 @@ namespace CallTracker.View
         }
 
         private void splitContainer2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            FlickServiceSplitter();
+        }
+
+        private void _ServiceSplitContainer_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button.Equals(MouseButtons.Right))
+                FlickServiceSplitter();
+        }
+
+        private void FlickServiceSplitter()
         {
             int dist = _ServiceSplitContainer.SplitterDistance;
 
@@ -490,8 +519,7 @@ namespace CallTracker.View
         }
 
         void splitContainer2_MouseWheel(object sender, MouseEventArgs e)
-        {
-           
+        {  
             int dist = _ServiceSplitContainer.SplitterDistance;
 
             if (e.Delta > 0)
@@ -508,10 +536,56 @@ namespace CallTracker.View
             }
         }
 
-        //void splitContainer2_MouseEnter(object sender, EventArgs e)
-        //{
-        //    splitContainer2.Focus();
-        //}
+        /// <summary>
+        /// Shared Splitter Events
+        /// </summary>
+        private void SplitContainer_MouseDown(object sender, MouseEventArgs e)
+        {
+            ((SplitContainer)sender).IsSplitterFixed = true;
+        }
+
+        private void SplitContainer_MouseUp(object sender, MouseEventArgs e)
+        {
+            ((SplitContainer)sender).IsSplitterFixed = false;
+        }
+
+        private void SplitContainer_MouseMove(object sender, MouseEventArgs e)
+        {
+            var container = (SplitContainer)sender;
+
+            container.BackColor = Color.Khaki;
+
+            if (!container.IsSplitterFixed) return;
+
+            if (e.Button.Equals(MouseButtons.Left))
+            {
+                if (container.Orientation.Equals(Orientation.Vertical))
+                {
+                    if (e.X > 0 && e.X < (container.Width))
+                    {
+                        container.SplitterDistance = e.X;
+                        container.Refresh();
+                    }
+                }
+                else
+                {
+                    if (e.Y > 0 && e.Y < container.Height)
+                    {
+                        container.SplitterDistance = e.Y;
+                        container.Refresh();
+                    }
+                }
+            }
+            else
+            {
+                container.IsSplitterFixed = false;
+            }
+        }
+
+        private void SplitContainer_MouseLeave(object sender, EventArgs e)
+        {
+            ((SplitContainer)sender).BackColor = Color.DarkKhaki;
+        }
 
 
 
@@ -887,5 +961,6 @@ namespace CallTracker.View
             var checkBox = (CheckBox)sender;
             checkBox.ImageIndex = checkBox.Checked ? 1 : 0;
         }
+
     }
 }

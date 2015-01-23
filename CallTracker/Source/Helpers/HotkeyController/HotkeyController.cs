@@ -93,53 +93,6 @@ namespace CallTracker.Helpers
             Main.ShowPopupForm<AddAROForm>();
         }
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //// System Search /////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////
-        //public static void SearchSystem(string url, string searchValue, string searchElement, string submitElement = "")
-        //{
-        //    EventLogger.LogNewEvent("Searching System", EventLogLevel.Brief);
-
-        //    if (!FindIEByUrl(url))
-        //        NavigateOrNewIE(url);
-
-        //    // Fill Search field ////////////////////////////////////////////////////////
-        //    var query = (from
-        //                    bind in parent.BindsDataStore.PasteBinds
-        //                where
-        //                    bind.Element == searchElement &&
-        //                    (url.Contains(bind.Url))
-        //                select
-        //                    bind)
-        //                .FirstOrDefault();
-
-        //    if (query != null)
-        //    {
-        //        EventLogger.LogNewEvent("Element Match Found");
-        //        query.Paste(searchElement, searchValue);
-        //    };
-
-        //    // Click Submit /////////////////////////////////////////////////////////////
-        //    if (!String.IsNullOrEmpty(submitElement))
-        //    {
-        //        query = (from bind in parent.BindsDataStore.PasteBinds
-        //                where
-        //                    bind.Element == submitElement &&
-        //                    (url.Contains(bind.Url))
-        //                select
-        //                    bind)
-        //                .FirstOrDefault();
-
-        //        if (query != null)
-        //        {
-        //            EventLogger.LogNewEvent("Button Match Found");
-        //            query.Paste(submitElement, "");
-        //        }
-        //    }
-        //    parent.AddAppEvent(AppEventTypes.SystemSearch);
-        //    browser.Dispose();
-        //}
-
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Browser Methods //////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -50,7 +50,6 @@ namespace CallTracker.View
         }
 
         private CustomerContact _currentContact;
-
         internal CustomerContact CurrentContact
         {
             get { return _currentContact; }
@@ -63,7 +62,6 @@ namespace CallTracker.View
         }
 
         private DailyModel _selectedDate;
-
         internal DailyModel SelectedDate
         {
             get { return _selectedDate; }
@@ -85,6 +83,7 @@ namespace CallTracker.View
         internal EditGridLinks editGridLinks;
         internal EditSmartPasteBinds editSmartPasteBinds;
         internal EditContact editContact;
+        internal Note editNote;
         internal CallHistory callHistory;
         internal HelpKeyCommands helpKeyCommands;
         internal DatabaseView databaseView;
@@ -179,6 +178,7 @@ namespace CallTracker.View
             EventLogger.LogNewEvent("Startup: Loading Views");
             _splash.UpdateProgress("Loading Views", 30);
             editContact = new EditContact(this);
+            editNote = new Note(new Point(this.Location.X + this.Width - 1, this.Location.Y + 20), this);
             callHistory = new CallHistory();
             editLogins = new EditLogins();
             editGridLinks = new EditGridLinks();
@@ -202,10 +202,13 @@ namespace CallTracker.View
 
             EventLogger.LogNewEvent("Startup: Initializing Views");
             _splash.UpdateProgress("Initializing Views", 50);
+
             editContact.OnParentLoad();
 
-            _splash.StepProgress("Edit Contacts");
+            _splash.StepProgress("Contact Editor");
             editContact.Init();
+
+            
 
             _splash.StepProgress("Call History");
             callHistory.Init(this, callHistoryToolStripMenuItem);
@@ -269,6 +272,9 @@ namespace CallTracker.View
                 Settings.Default.FirstLoad = false;
             }
 
+            //_splash.StepProgress("Note Editor");
+            
+
             _splash.UpdateProgress("", 100);
             EventLogger.LogNewEvent("Finished Loading", EventLogLevel.ClearStatus);
 
@@ -306,6 +312,8 @@ namespace CallTracker.View
         private void Main_Shown(object sender, EventArgs e)
         {
             Opacity = 1;
+            editNote.Show(this);
+            editNote.ResizePanel(Settings.Default.NoteWidth);
             _splash.Close();
             _splash.Dispose();
             _isStartingUp = false;
@@ -625,11 +633,16 @@ namespace CallTracker.View
             ReleaseCapture();
             SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             Settings.Default.Main_Position = Location;
-
+            
             //var screenBounds = Screen.AllScreens[0].Bounds;
             //Console.WriteLine(new Point((screenBounds.Width / 2) - (Width / 2) - Location.X, (screenBounds.Height / 2) - (Height / 2) - Location.Y));
         }
 
+        private void Main_Move(object sender, EventArgs e)
+        {
+            if (editNote != null)
+                editNote.Location = new Point(this.Location.X + this.Width - 1, this.Location.Y + 20);
+        }
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // Working Date Checker /////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -889,6 +902,8 @@ namespace CallTracker.View
             EventLogger.LogNewEvent("Saving Settings");
             Settings.Default.Save();
         }
+
+
 
 
 
