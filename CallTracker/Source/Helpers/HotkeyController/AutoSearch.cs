@@ -436,10 +436,7 @@ namespace CallTracker.Helpers
             //    EventLogger.LogAndSaveNewEvent("AutoSearching DIMPS " + _dimpsSearching + " Error: " + ex.Message, EventLogLevel.Status);
             //}
 
-            _dimpsBrowser.Dispose();
-            _dimpsBrowser = null;
-            _dimpsTimer.Dispose();
-            _dimpsTimer = null;
+            DisposeDimpsBrowser();
             _dimpsSearching = null;
         }
 
@@ -471,7 +468,7 @@ namespace CallTracker.Helpers
         private static void NsiTimerElapsed(object sender, ElapsedEventArgs e)
         {
             parent.SelectedContact.Service.WasSearched["NSI"] = true;
-            if ((e.SignalTime - _nsiSearchStarted).TotalSeconds > 20)
+            if ((e.SignalTime - _nsiSearchStarted).TotalSeconds > 60)
             {
                 DisposeNsiBrowser();
                 
@@ -522,16 +519,17 @@ namespace CallTracker.Helpers
             }
             else if (_nsiSearching == "CVC")
             {
-                var div = _nsiBrowser.Div(Find.ByClass("top_col"));
-                if (!div.Exists)
+                EventLogger.LogNewEvent("AutoSearching: NSI CVC", EventLogLevel.Brief);
+
+                //var div = _nsiBrowser.Div(Find.ByClass("top_col"));
+                if (!_nsiBrowser.Div(Find.ByClass("top_col")).Exists)
                 {
                     _nsiTimer.Interval = 3000;
                     _nsiTimer.Start();
                     return;
                 }
-                
-                EventLogger.LogNewEvent("AutoSearching: NSI CVC", EventLogLevel.Brief);
-                var top_col = div.InnerHtml.Split(':');
+
+                var top_col = _nsiBrowser.Div(Find.ByClass("top_col")).InnerHtml.Split(':');
                 contact.Service.CSA = top_col[1].Substring(5, 15);
                 contact.Service.NNI = top_col[4].Substring(5, 15);
 

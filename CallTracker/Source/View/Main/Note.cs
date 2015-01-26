@@ -154,8 +154,8 @@ namespace CallTracker.View
 
                 var selStart = textField.SelectionStart;
                 textField.DataBindings[0].ReadValue();
-                textField.SelectionStart = selStart + 3;
-
+                textField.SelectionStart = selStart;// +newItem.Name.Length;
+                SendKeys.Send("{DOWN}{LEFT}");
                 getLineNum(textField);
             }
             else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.Left || e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
