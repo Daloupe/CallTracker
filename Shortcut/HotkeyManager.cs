@@ -17,11 +17,18 @@ namespace Shortcut
 
         public void AddOrReplaceHotkey(string _name, Modifiers _mods, Keys _keys, Action<HotkeyPressedEventArgs> _callback)
         {
-            if (!HotKeys.ContainsKey(_name))
-                HotKeys.Add(_name, new HotkeyCombination(_mods, _keys));
-            else
-                HotKeys[_name] = new HotkeyCombination(_mods, _keys);
-            _hotkeyBinder.Bind(HotKeys[_name]).To(_callback);
+            try
+            {
+                if (!HotKeys.ContainsKey(_name))
+                    HotKeys.Add(_name, new HotkeyCombination(_mods, _keys));
+                else
+                    HotKeys[_name] = new HotkeyCombination(_mods, _keys);
+                _hotkeyBinder.Bind(HotKeys[_name]).To(_callback);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         public void UnbindHotkeys()
