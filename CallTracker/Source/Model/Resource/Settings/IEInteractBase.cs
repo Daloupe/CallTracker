@@ -169,6 +169,7 @@ namespace CallTracker.Model
             //browserElement.Focus();//.FindNativeElement().SetFocus();
             if (PasteWithSendKeys)
             {
+                browserElement.Focus();
                 browserElement.SetAttributeValue("value", "");
                 //Clipboard.SetText(value);
                 //SendKeys.Send("^(v)");

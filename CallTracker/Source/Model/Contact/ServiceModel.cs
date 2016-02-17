@@ -227,13 +227,13 @@ namespace CallTracker.Model
 
                 if (Properties.Settings.Default.AutoSearch)
                 {
-                    if (!WasSearched["Ookla"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
-                    {
-                        WasSearched["Ookla"] = HotkeyController.AutoSearch(
-                            "http://reporting.ookla.com/index.php?ip=" + ModemIP,
-                            "Ookla",
-                            "http://reporting.ookla.com");
-                    }
+                    //if (!WasSearched["Ookla"] || CallTracker.Properties.Settings.Default.AutoSearchAllowMultipleSearches)
+                    //{
+                    //    WasSearched["Ookla"] = HotkeyController.AutoSearch(
+                    //        "http://reporting.ookla.com/index.php?ip=" + ModemIP,
+                    //        "Ookla",
+                    //        "http://reporting.ookla.com");
+                    //}
                 }
 
                 return true;

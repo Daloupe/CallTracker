@@ -688,8 +688,8 @@ namespace CallTracker.View
                 DailyDataDataStore.DailyData.Remove(day);
             }
 
-            //if (Settings.Default.QuitProperly && !_isStartingUp)
-            File.Delete("Log.txt");
+            if (Settings.Default.QuitProperly && !_isStartingUp)
+                File.Delete("Log.txt");
 
             return true;
         }

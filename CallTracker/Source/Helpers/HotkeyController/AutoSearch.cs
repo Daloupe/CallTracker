@@ -19,101 +19,113 @@ namespace CallTracker.Helpers
         /// </summary>
         public static bool AutoSearch(string search, string title, string url, bool titleFirst = true, string dataType = "")
         {
-            var outcome = false;
-            var activeWindowTitle = Regex.Match(WindowHelper.GetActiveWindowTitle(), @"(\w+)(?:\s-(?: Windows)? Internet Explorer)?", RegexOptions.IgnoreCase).Groups[1].Value;
-
-            switch (title)
+            try
             {
-                case "SCAMPS":
-                    _scampsSearching = dataType;
-                    if (_scampsTimer != null)
-                        _scampsTimer.Stop();
-                    else
-                    {
-                        _scampsTimer = new Timer(1000) { SynchronizingObject = parent };
-                        _scampsTimer.Elapsed += ScampsTimerElapsed;
-                    }
-                    break;
 
-                case "DIMPS":
-                    _dimpsSearching = dataType;
-                    if (_dimpsTimer != null)
-                        _dimpsTimer.Stop();
-                    else
-                    {
-                        _dimpsTimer = new Timer(1500) { SynchronizingObject = parent };
-                        _dimpsTimer.Elapsed += DimpsTimerElapsed;
-                    }
-                    break;
 
-                case "NSI":
-                    _nsiSearching = dataType;
-                    if (_nsiTimer != null)
-                        _nsiTimer.Stop();
-                    else
-                    {
-                        _nsiTimer = new Timer(2000);// { SynchronizingObject = parent };
-                        _nsiTimer.AutoReset = false;
-                        _nsiTimer.Elapsed += NsiTimerElapsed;
-                    }
-                    break;
-            }
+                var outcome = false;
+                var activeWindowTitle = Regex.Match(WindowHelper.GetActiveWindowTitle(), @"(\w+)(?:\s-(?: Windows)? Internet Explorer)?", RegexOptions.IgnoreCase).Groups[1].Value;
 
-            if (titleFirst)
-            {
-                if (AutoSearchByTitle(search, title, activeWindowTitle))//, ref toBrowser))
+                switch (title)
+                {
+                    case "SCAMPS":
+                        _scampsSearching = dataType;
+                        if (_scampsTimer != null)
+                            _scampsTimer.Stop();
+                        else
+                        {
+                            _scampsTimer = new Timer(1500) { SynchronizingObject = parent };
+                            _scampsTimer.Elapsed += ScampsTimerElapsed;
+                        }
+                        break;
+
+                    case "DIMPS":
+                        _dimpsSearching = dataType;
+                        if (_dimpsTimer != null)
+                            _dimpsTimer.Stop();
+                        else
+                        {
+                            _dimpsTimer = new Timer(1500) { SynchronizingObject = parent };
+                            _dimpsTimer.Elapsed += DimpsTimerElapsed;
+                        }
+                        break;
+
+                    case "NSI":
+                        _nsiSearching = dataType;
+                        if (_nsiTimer != null)
+                            _nsiTimer.Stop();
+                        else
+                        {
+                            _nsiTimer = new Timer(2000) { SynchronizingObject = parent };
+                            _nsiTimer.AutoReset = false;
+                            _nsiTimer.Elapsed += NsiTimerElapsed;
+                        }
+                        break;
+                }
+
+                if (titleFirst)
+                {
+                    if (AutoSearchByTitle(search, title, activeWindowTitle))//, ref toBrowser))
+                        outcome = true;
+                    else if (AutoSearchByUrl(search, url, activeWindowTitle))//, ref toBrowser))
+                        outcome = true;
+                }
+                else
+                {
+                    if (AutoSearchByUrl(search, url, activeWindowTitle))//, ref toBrowser))
+                        outcome = true;
+                    else if (AutoSearchByTitle(search, title, activeWindowTitle))//, ref toBrowser))
+                        outcome = true;
+                }
+
+                if (!outcome && Properties.Settings.Default.AutoSearchOpenNew)
+                {
+                    CreateNewIE(search);
+                    AutoSearchByUrl(search, url, activeWindowTitle);//, ref toBrowser);
+                    EventLogger.LogNewEvent("Creating New and Searching: " + search, EventLogLevel.Brief);
+                    parent.AddAppEvent(AppEventTypes.AutoSearch);
                     outcome = true;
-                else if (AutoSearchByUrl(search, url, activeWindowTitle))//, ref toBrowser))
-                    outcome = true;
+                }
+
+                if (!outcome) return false;
+
+                switch (title)
+                {
+                    case "SCAMPS":
+                        EventLogger.LogNewEvent(Environment.NewLine + "SCAMPS AutoSearch Starting: " + search, EventLogLevel.Brief);
+                        _scampsBrowser = browser;
+                        _scampsSearchStarted = DateTime.Now;
+                        _scampsTimer.Start();
+                        break;
+
+                    case "DIMPS":
+                        EventLogger.LogNewEvent(Environment.NewLine + "DIMPS AutoSearch Starting: " + search, EventLogLevel.Brief);
+                        _dimpsBrowser = browser;
+                        _dimpsSearchStarted = DateTime.Now;
+                        _dimpsTimer.Start();
+                        break;
+
+                    case "NSI":
+                        EventLogger.LogNewEvent(Environment.NewLine + "NSI AutoSearch Starting: " + search, EventLogLevel.Brief);
+                        _nsiBrowser = browser;
+                        _nsiSearchStarted = DateTime.Now;
+                        _nsiTimer.Enabled = true;
+                        break;
+
+                    default:
+                        if (browser != null)
+                            browser.Dispose();
+                        break;
+                }
+                if (browser != null)
+                    browser.Dispose();
+                return true;
             }
-            else
+            catch(Exception ex)
             {
-                if (AutoSearchByUrl(search, url, activeWindowTitle))//, ref toBrowser))
-                    outcome = true;
-                else if (AutoSearchByTitle(search, title, activeWindowTitle))//, ref toBrowser))
-                    outcome = true;
+                EventLogger.LogNewEvent("AutoSearch Error: " + ex, EventLogLevel.Brief);
+                return false;
             }
-
-            if (!outcome && Properties.Settings.Default.AutoSearchOpenNew)
-            {
-                CreateNewIE(search);
-                AutoSearchByUrl(search, url, activeWindowTitle);//, ref toBrowser);
-                EventLogger.LogNewEvent("Creating New and Searching: " + search, EventLogLevel.Brief);
-                parent.AddAppEvent(AppEventTypes.AutoSearch);
-                outcome = true;
-            }
-
-            if (!outcome) return false;
-
-            switch (title)
-            {
-                case "SCAMPS":
-                    EventLogger.LogNewEvent(Environment.NewLine + "SCAMPS AutoSearch Starting: " + search, EventLogLevel.Brief);
-                    _scampsBrowser = browser;
-                    _scampsSearchStarted = DateTime.Now;
-                    _scampsTimer.Start();
-                    break;
-
-                case "DIMPS":
-                    EventLogger.LogNewEvent(Environment.NewLine + "DIMPS AutoSearch Starting: " + search, EventLogLevel.Brief);
-                    _dimpsBrowser = browser;
-                    _dimpsSearchStarted = DateTime.Now;
-                    _dimpsTimer.Start();
-                    break;
-
-                case "NSI":
-                    EventLogger.LogNewEvent(Environment.NewLine + "NSI AutoSearch Starting: " + search, EventLogLevel.Brief);
-                    _nsiBrowser = browser;
-                    _nsiSearchStarted = DateTime.Now;
-                    _nsiTimer.Enabled = true;
-                    break;
-
-                default:
-                    if (browser != null)
-                        browser.Dispose();
-                    break;
-            }
-            return true;
         }
 
         private static bool AutoSearchByTitle(string search, string title, string activeWindowTitle)//, ref IE toBrowser)
@@ -183,18 +195,21 @@ namespace CallTracker.Helpers
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private static string GetTableCell(IE fromBrowser, string id)
         {
+            EventLogger.LogNewEvent("AutoSearch: Getting Table Cell: " + id, EventLogLevel.Brief);
             var cell = fromBrowser.ElementOfType<TableCell>(Find.ById(id));
             return cell.Exists ? cell.InnerHtml : null;
         }
 
         private static string GetHidden(IE fromBrowser, string id)
         {
+            EventLogger.LogNewEvent("AutoSearch: Getting Hidden: " + id, EventLogLevel.Brief);
             var hidden = fromBrowser.TextField(Find.ById(id));
             return hidden.Exists ? hidden.GetAttributeValue("value") : null;
         }
 
         private static string GetTextField(IE fromBrowser, string id)
         {
+            EventLogger.LogNewEvent("AutoSearch: Getting TextField: " + id, EventLogLevel.Brief);
             var textfield = fromBrowser.TextField(Find.ById(id));
             return textfield.Exists ? textfield.GetAttributeValue("value") : null;
         }
@@ -210,13 +225,17 @@ namespace CallTracker.Helpers
 
         private static void DisposeScampsBrowser()
         {
+            EventLogger.LogNewEvent("AutoSearch: SCAMPS Search Disposing", EventLogLevel.Brief);
             if (_scampsTimer != null)
             {
+                _scampsTimer.Stop();
+                EventLogger.LogNewEvent("AutoSearch: SCAMPS Search Disposing Timer", EventLogLevel.Brief);
                 _scampsTimer.Dispose();
                 _scampsTimer = null;
             }
             if (_scampsBrowser != null)
             {
+                EventLogger.LogNewEvent("AutoSearch: SCAMPS Search Disposing Browser", EventLogLevel.Brief);
                 _scampsBrowser.Dispose();
                 _scampsBrowser = null;
             }
@@ -227,15 +246,16 @@ namespace CallTracker.Helpers
             if ((e.SignalTime - _scampsSearchStarted).TotalSeconds > 10)
             {
                 DisposeScampsBrowser();
-                _scampsSearching = string.Empty;
+                EventLogger.LogNewEvent("AutoSearching SCAMPS " + _scampsSearching + " Error: Timeout", EventLogLevel.Brief);
+                _scampsSearching = String.Empty;
                 parent.SelectedContact.Service.WasSearched["SCAMPSDN"] = true;
-                parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true;
-                EventLogger.LogAndSaveNewEvent("AutoSearching SCAMPS " + _scampsSearching + " Error: Timeout", EventLogLevel.Brief);
+                parent.SelectedContact.Service.WasSearched["SCAMPSUsername"] = true; 
                 return;
             }
 
             if (_scampsBrowser == null)
             {
+                EventLogger.LogNewEvent("AutoSearching SCAMPS Error: Scamps browser null", EventLogLevel.Brief);
                 FindIEByUrl("https://scamps.optusnet.com.au", ref _scampsBrowser);
                 if (_scampsBrowser == null)
                     return;
@@ -278,10 +298,11 @@ namespace CallTracker.Helpers
                 contact.Service.WasSearched["SCAMPSUsername"] = true;
             }
 
-            _scampsBrowser.Dispose();
-            _scampsBrowser = null;
-            _scampsTimer.Dispose();
-            _scampsTimer = null;
+            //_scampsBrowser.Dispose();
+            //_scampsBrowser = null;
+            //_scampsTimer.Dispose();
+            //_scampsTimer = null;
+            DisposeScampsBrowser();
             _scampsSearching = null;
         }
 
@@ -296,13 +317,17 @@ namespace CallTracker.Helpers
 
         private static void DisposeDimpsBrowser()
         {
+            EventLogger.LogNewEvent("AutoSearch: DIMPS Search", EventLogLevel.Brief);
             if (_dimpsTimer != null)
             {
+                _dimpsTimer.Stop();
+                EventLogger.LogNewEvent("AutoSearch: DIMPS Search Timer", EventLogLevel.Brief);
                 _dimpsTimer.Dispose();
                 _dimpsTimer = null;
             }
             if (_dimpsBrowser != null)
             {
+                EventLogger.LogNewEvent("AutoSearch: DIMPS Search Browser", EventLogLevel.Brief);
                 _dimpsBrowser.Dispose();
                 _dimpsBrowser = null;
             }
@@ -316,7 +341,7 @@ namespace CallTracker.Helpers
                 _dimpsSearching = string.Empty;
                 parent.SelectedContact.Service.WasSearched["DIMPSDN"] = true;
                 parent.SelectedContact.Service.WasSearched["DIMPSUsername"] = true;
-                EventLogger.LogAndSaveNewEvent("AutoSearching DIMPS " + _dimpsSearching + " Error: Timeout", EventLogLevel.Brief);
+                EventLogger.LogNewEvent("AutoSearching DIMPS " + _dimpsSearching + " Error: Timeout", EventLogLevel.Brief);
                 return;
             }
 
@@ -353,30 +378,33 @@ namespace CallTracker.Helpers
             {
                 var mode = GetHidden(_dimpsBrowser, "init_mode");
                 var value = GetTableCell(_dimpsBrowser, "username");
-                EventLogger.LogAndSaveNewEvent("AutoSearching DIMPS " + _dimpsSearching + " Mode: " + mode,
+                EventLogger.LogNewEvent("AutoSearching DIMPS " + _dimpsSearching + " Mode: " + mode,
                     EventLogLevel.Brief);
                 // Assuming only services with a username are found in DIMPS.
-                switch (mode)
+                if (mode != null)
                 {
-                    case "cable":
-                        contact.Service.WasSearched["DIMPSUsername"] = true;
-                        contact.Fault.ONC = true;
-                        if (_dimpsSearching != "DN") break;
-                        contact.Service.WasSearched["DIMPSDN"] = true;
-                        contact.Fault.LIP = true;
-                        contact.Username = value;
-                        break;
+                    switch (mode)
+                    {
+                        case "cable":
+                            contact.Service.WasSearched["DIMPSUsername"] = true;
+                            contact.Fault.ONC = true;
+                            if (_dimpsSearching != "DN") break;
+                            contact.Service.WasSearched["DIMPSDN"] = true;
+                            contact.Fault.LIP = true;
+                            contact.Username = value;
+                            break;
 
-                    case "fbb":
-                        contact.Service.WasSearched["SCAMPSUsername"] = true;
-                        contact.Service.WasSearched["SCAMPSDN"] = true;
-                        contact.Service.WasSearched["DIMPSUsername"] = true;
-                        contact.Fault.NBF = true;
-                        if (_dimpsSearching != "DN") break;
-                        contact.Service.WasSearched["DIMPSDN"] = true;
-                        contact.Fault.NFV = true;
-                        contact.Username = value;
-                        break;
+                        case "fbb":
+                            contact.Service.WasSearched["SCAMPSUsername"] = true;
+                            contact.Service.WasSearched["SCAMPSDN"] = true;
+                            contact.Service.WasSearched["DIMPSUsername"] = true;
+                            contact.Fault.NBF = true;
+                            if (_dimpsSearching != "DN") break;
+                            contact.Service.WasSearched["DIMPSDN"] = true;
+                            contact.Fault.NFV = true;
+                            contact.Username = value;
+                            break;
+                    }
                 }
 
                 value = GetTableCell(_dimpsBrowser, "custname");
@@ -441,28 +469,31 @@ namespace CallTracker.Helpers
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
-        // SCAMPS Search ////////////////////////////////////////////////////////////////////////////////////
+        // NSI  Search   ////////////////////////////////////////////////////////////////////////////////////
         ////////////////////////////////////////////////////////////////////////////////////////////////////
         private static Timer _nsiTimer;
-
         private static IE _nsiBrowser;
         private static DateTime _nsiSearchStarted;
         private static String _nsiSearching;
 
         private static void DisposeNsiBrowser()
         {
+            EventLogger.LogNewEvent("AutoSearch: NSI Search Disposing", EventLogLevel.Brief);
             if (_nsiTimer != null)
             {
+                _nsiTimer.Stop();
+                EventLogger.LogNewEvent("AutoSearch: NSI Search Disposing Timer", EventLogLevel.Brief);
                 _nsiTimer.Dispose();
                 _nsiTimer = null;
             }
             if (_nsiBrowser != null)
             {
+                EventLogger.LogNewEvent("AutoSearch: NSI Search Browser", EventLogLevel.Brief);
                 _nsiBrowser.Dispose();
                 _nsiBrowser = null;
             }
 
-            _nsiSearching = null;
+            _nsiSearching = String.Empty;
         }
 
         private static void NsiTimerElapsed(object sender, ElapsedEventArgs e)
@@ -471,8 +502,8 @@ namespace CallTracker.Helpers
             if ((e.SignalTime - _nsiSearchStarted).TotalSeconds > 60)
             {
                 DisposeNsiBrowser();
-                
-                EventLogger.LogAndSaveNewEvent("AutoSearching NSI " + _nsiSearching + " Error: Timeout", EventLogLevel.Brief);
+
+                EventLogger.LogNewEvent("AutoSearching NSI " + _nsiSearching + " Error: Timeout", EventLogLevel.Brief);
                 return;
             }
 
@@ -482,7 +513,6 @@ namespace CallTracker.Helpers
                 if (_nsiBrowser == null)
                     return;
             }
-            var ieBrowser = ((IWebBrowser2)(_nsiBrowser.InternetExplorer));
 
             var contact = parent.SelectedContact;
 
@@ -490,6 +520,8 @@ namespace CallTracker.Helpers
             //{
             if (_nsiSearching == "AVC")
             {
+                var ieBrowser = ((IWebBrowser2)(_nsiBrowser.InternetExplorer));
+
                 if (ieBrowser.Busy){
                     _nsiTimer.Start();
                     return;
@@ -524,6 +556,7 @@ namespace CallTracker.Helpers
                 //var div = _nsiBrowser.Div(Find.ByClass("top_col"));
                 if (!_nsiBrowser.Div(Find.ByClass("top_col")).Exists)
                 {
+                    EventLogger.LogNewEvent("AutoSearching Retrying: NSI CVC can't find div", EventLogLevel.Brief);
                     _nsiTimer.Interval = 3000;
                     _nsiTimer.Start();
                     return;
