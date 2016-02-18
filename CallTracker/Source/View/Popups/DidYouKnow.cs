@@ -388,7 +388,7 @@ namespace CallTracker.View
                     new TipModel("- They are assigned to 1,2,Q,W,A,S,Z,X.  ", "- Pressing |2<Ctrl+Shift+Q>|1 will paste <Username>"),
                     new TipModel("- Hover over the main data fields to see their hotkey.")
                 }),
-            new TipSlide("Smart Paste Bind - Win+Shift+V",
+            new TipSlide("Smart Paste Bind - Ctrl+Alt+V",
                 new List<TipModel>
                 {
                     new TipModel("- Allows you to setup which data is bound to which field."),
