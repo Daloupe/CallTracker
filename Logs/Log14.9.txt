@@ -1,0 +1,336 @@
+14/09/14 06:40:34: Startup: Loading Data
+14/09/14 06:40:34: Startup: Setting Date
+14/09/14 06:40:34: Startup: Loading Views
+14/09/14 06:40:34: Startup: Adding Controls
+14/09/14 06:40:35: Startup: Initializing Views
+14/09/14 06:40:35: Finished Loading
+14/09/14 06:40:35: Trying to find IPCC
+14/09/14 06:40:38: Monitoring IPCC
+14/09/14 06:40:39: Status Changed: Talking
+14/09/14 06:40:39: Daily Data: 14/09 > LogIn at 14/09/14 06:40:39
+14/09/14 06:40:40: 58 0398780224 > Talking at 14/09/14 06:40:40
+14/09/14 06:40:52: 
+Starting Smart Copy
+14/09/14 06:40:52: 32-403535-3 copied from the clipboard in 576 ticks
+14/09/14 06:40:52: CallTracker.Model.CallStats > SmartCopy
+14/09/14 06:40:55: 
+Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+14/09/14 06:40:55: Found IE by Title: IFMS: F191 Search by Customer - Windows Internet Explorer
+14/09/14 06:41:03: 
+Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+14/09/14 06:41:03: Found IE by Title: IFMS: F191 Search by Customer - Windows Internet Explorer
+14/09/14 06:41:03: WaitForBrowserBusy Called
+14/09/14 06:41:03: Browser busy: False in: 1
+14/09/14 06:41:03: Smart Paste: Match Found: 32403535 3
+14/09/14 06:41:03: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:41:17: 
+Starting Smart Copy
+14/09/14 06:41:17: 32-667053-3 copied from the clipboard in 1175 ticks
+14/09/14 06:41:17: CallTracker.Model.CallStats > SmartCopy
+14/09/14 06:41:19: 
+Searching for SmartPaste Matches for Window: IFMS: F191 Search by Customer - Windows Internet Explorer
+14/09/14 06:41:19: Found IE by Title: IFMS: F191 Search by Customer - Windows Internet Explorer
+14/09/14 06:41:19: WaitForBrowserBusy Called
+14/09/14 06:41:19: Browser busy: False in: 0
+14/09/14 06:41:19: Smart Paste: Match Found: 32667053 3
+14/09/14 06:41:19: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:41:53: 
+Starting Smart Copy
+14/09/14 06:41:53: 12573946 copied from the clipboard in 25330 ticks
+14/09/14 06:41:53: CallTracker.Model.CallStats > SmartCopy
+14/09/14 06:41:54: 
+GridLinks Starting: http://ohun8442.optus.com.au:7001/
+14/09/14 06:41:54: Found IE by URL: http://ohun8442.optus.com.au:7001/
+14/09/14 06:41:54: Creating Tab Activator
+14/09/14 06:41:54: Activating Tab
+14/09/14 06:41:54: CallTracker.Model.CallStats > Gridlink
+14/09/14 06:41:54: Switched to: http://ohun8442.optus.com.au:7001/
+14/09/14 06:41:58: 
+AutoLogin: Searching for matches
+14/09/14 06:41:59: Found IE by Title: Optus - WOBS - Windows Internet Explorer
+14/09/14 06:41:59: AutoLogin: Actioning matches
+14/09/14 06:41:59: Paste Data : USERID
+14/09/14 06:41:59: Paste Data : PASSWORD
+14/09/14 06:42:00: 
+AutoFill: Searching for AutoFill Matches
+14/09/14 06:42:00: Found IE by Title: Optus - WOBS - Windows Internet Explorer
+14/09/14 06:42:00: AutoFill: 2 found.
+14/09/14 06:42:00: Paste Data : ACCNUMBER
+14/09/14 06:42:00: Paste Data : TTNUMBER
+14/09/14 06:42:00: CallTracker.Model.CallStats > AutoFill
+14/09/14 06:42:32: 
+AutoFill: Searching for AutoFill Matches
+14/09/14 06:42:32: Found IE by Title: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:42:32: AutoFill: 13 found.
+14/09/14 06:42:32: Paste Data : ctl00_cphPage_tx_ProblemStyle
+14/09/14 06:42:32: WaitForAsyncPostBackToComplete Called
+14/09/14 06:42:33: WaitForAsyncPostBackToComplete isInPostback: False in: 4200 ms
+14/09/14 06:42:33: Paste Data : ctl00_cphPage_tx_ProductCode
+14/09/14 06:42:33: WaitForAsyncPostBackToComplete Called
+14/09/14 06:42:33: WaitForAsyncPostBackToComplete isInPostback: False in: 5000 ms
+14/09/14 06:42:33: Paste Data : ctl00_cphPage_tx_Phone
+14/09/14 06:42:33: Paste Data : ctl00_cphPage_tx_Severity
+14/09/14 06:42:34: Paste Data : ctl00_cphPage_tx_Symptom
+14/09/14 06:42:34: Paste Data : ctl00_cphPage_tx_SymptomCode
+14/09/14 06:42:34: Paste Data : ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Phone1_tx_affsvc_phA
+14/09/14 06:42:34: Exception: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Runtime.InteropServices.COMException (0x800A083E): Can't move focus to the control because it is invisible, not enabled, or of a type that does not accept the focus.
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at mshtml.DispHTMLBaseElement.focus()
+   at WatiN.Core.Native.InternetExplorer.IEElement.SetFocus()
+   at WatiN.Core.Element.Focus()
+   at CallTracker.Model.IEInteractBase.PasteData[T](String element, String value) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Resource\Settings\IEInteractBase.cs:line 158
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct& sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at CallTracker.Model.IEInteractBase.Paste(String element, String value) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Resource\Settings\IEInteractBase.cs:line 145
+   at CallTracker.Helpers.HotkeyController.OnAutoFill(HotkeyPressedEventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Helpers\HotkeyController\HotkeyController.cs:line 442
+14/09/14 06:42:34: Paste Data : ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Generic1_tx_GenericValue
+14/09/14 06:42:34: Exception: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Runtime.InteropServices.COMException (0x800A083E): Can't move focus to the control because it is invisible, not enabled, or of a type that does not accept the focus.
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at mshtml.DispHTMLBaseElement.focus()
+   at WatiN.Core.Native.InternetExplorer.IEElement.SetFocus()
+   at WatiN.Core.Element.Focus()
+   at CallTracker.Model.IEInteractBase.PasteData[T](String element, String value) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Resource\Settings\IEInteractBase.cs:line 158
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct& sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at CallTracker.Model.IEInteractBase.Paste(String element, String value) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Resource\Settings\IEInteractBase.cs:line 145
+   at CallTracker.Helpers.HotkeyController.OnAutoFill(HotkeyPressedEventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Helpers\HotkeyController\HotkeyController.cs:line 442
+14/09/14 06:42:34: Paste Data : ctl00_cphPage_tx_TruckRollStatus
+14/09/14 06:42:34: Paste Data : ctl00_cphPage_tx_ScheduleStartTime
+14/09/14 06:42:34: Exception: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> WatiN.Core.Exceptions.ElementDisabledException: Element with Id:ctl00_cphPage_tx_ScheduleStartTime is disabled
+   at WatiN.Core.Element.Focus()
+   at CallTracker.Model.IEInteractBase.PasteData[T](String element, String value) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Resource\Settings\IEInteractBase.cs:line 158
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct& sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at CallTracker.Model.IEInteractBase.Paste(String element, String value) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Resource\Settings\IEInteractBase.cs:line 145
+   at CallTracker.Helpers.HotkeyController.OnAutoFill(HotkeyPressedEventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Helpers\HotkeyController\HotkeyController.cs:line 442
+14/09/14 06:42:34: Paste Data : ctl00_cphPage_tx_ReportPerson
+14/09/14 06:42:34: Paste Data : ctl00_cphPage_F001_Aff_Svc_ProxyPR1_F001_Aff_Svc_Acct1_tx_affsvc_number
+14/09/14 06:42:34: Exception: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.Runtime.InteropServices.COMException (0x800A083E): Can't move focus to the control because it is invisible, not enabled, or of a type that does not accept the focus.
+   at System.RuntimeType.ForwardCallToInvokeMember(String memberName, BindingFlags flags, Object target, Int32[] aWrapperTypes, MessageData& msgData)
+   at mshtml.DispHTMLBaseElement.focus()
+   at WatiN.Core.Native.InternetExplorer.IEElement.SetFocus()
+   at WatiN.Core.Element.Focus()
+   at CallTracker.Model.IEInteractBase.PasteData[T](String element, String value) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Resource\Settings\IEInteractBase.cs:line 158
+   --- End of inner exception stack trace ---
+   at System.RuntimeMethodHandle._InvokeMethodFast(Object target, Object[] arguments, SignatureStruct& sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.RuntimeMethodHandle.InvokeMethodFast(Object target, Object[] arguments, Signature sig, MethodAttributes methodAttributes, RuntimeTypeHandle typeOwner)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture, Boolean skipVisibilityChecks)
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at CallTracker.Model.IEInteractBase.Paste(String element, String value) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Model\Resource\Settings\IEInteractBase.cs:line 145
+   at CallTracker.Helpers.HotkeyController.OnAutoFill(HotkeyPressedEventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Helpers\HotkeyController\HotkeyController.cs:line 442
+14/09/14 06:42:34: Paste Data : ctl00_cphPage_tx_Description
+14/09/14 06:42:34: AutoFill: Attempting IFMS AutoFills
+14/09/14 06:42:34: Attempting IFMS Create AutoFill
+14/09/14 06:42:34: IFMS AutoFill Error: Data for Dropdown 'CBM' is NullOrEmpty
+14/09/14 06:42:34: WaitForAsyncPostBackToComplete Called
+14/09/14 06:42:34: WaitForAsyncPostBackToComplete isInPostback: False in: 5000 ms
+14/09/14 06:42:35: WaitForAsyncPostBackToComplete Called
+14/09/14 06:42:35: WaitForAsyncPostBackToComplete isInPostback: False in: 5000 ms
+14/09/14 06:42:35: CallTracker.Model.CallStats > AutoFill
+14/09/14 06:42:39: 
+Starting Smart Copy
+14/09/14 06:42:39: MATTHEW BESWICK copied from the clipboard in 1652 ticks
+14/09/14 06:42:39: CallTracker.Model.CallStats > SmartCopy
+14/09/14 06:42:40: 
+Pasting: Name.Full
+14/09/14 06:42:40: CallTracker.Model.CallStats > DataPaste
+14/09/14 06:43:43: 
+Pasting: Name.Full
+14/09/14 06:43:43: CallTracker.Model.CallStats > DataPaste
+14/09/14 06:43:46: Status Changed: Wrapup
+14/09/14 06:43:46: 58 0398780224 > Wrapup at 14/09/14 06:43:46
+14/09/14 06:43:52: 
+Starting Smart Copy
+14/09/14 06:43:52: NETGEAR CG3000V2 3 copied from the clipboard in 827 ticks
+14/09/14 06:43:52: CallTracker.Model.CallStats > SmartCopy
+14/09/14 06:44:00: 
+Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:44:00: Found IE by Title: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:44:00: Smart Paste: Match Found: Name: MATTHEW BESWICK
+Contact Number: 0414313797
+Symptoms: CCI - Loss of Internet
+Configuration: Netgear CG3000
+m.beswick1
+Testing/Outcome: Powercycled; 
+Issue/Root Cause: 
+Next Action: 
+14/09/14 06:44:00: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:45:08: 
+Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:45:08: Found IE by Title: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:45:08: Smart Paste: Match Found: 9/09/2014 7:31
+14/09/14 06:45:08: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:45:11: 
+Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:45:11: Found IE by Title: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:45:11: Smart Paste: Match Found: 9/09/2014 7:31
+14/09/14 06:45:11: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:45:13: 
+Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:45:13: Found IE by Title: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:45:13: Smart Paste: Match Found: 9/09/2014 7:31
+14/09/14 06:45:13: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:45:17: 
+Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:45:17: Found IE by Title: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:45:17: Smart Paste: Match Found: 9/09/2014 7:31
+14/09/14 06:45:17: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:45:36: 
+Searching for SmartPaste Matches for Window: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:45:36: Found IE by Title: IFMS: F001 Create - Windows Internet Explorer
+14/09/14 06:45:36: Smart Paste: Match Found: 9/09/2014 7:31
+14/09/14 06:45:36: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:45:56: 
+Starting Smart Copy
+14/09/14 06:45:56: 12573946 copied from the clipboard in 1724 ticks
+14/09/14 06:45:56: CallTracker.Model.CallStats > SmartCopy
+14/09/14 06:46:03: 
+Starting Smart Copy
+14/09/14 06:46:03: 12573946 copied from the clipboard in 1694 ticks
+14/09/14 06:46:03: CallTracker.Model.CallStats > SmartCopy
+14/09/14 06:46:04: 
+Searching for SmartPaste Matches for Window: IFMS: F007 Dispatch - Windows Internet Explorer
+14/09/14 06:46:04: Found IE by Title: IFMS: F007 Dispatch - Windows Internet Explorer
+14/09/14 06:46:04: Smart Paste: Match Found: 12573946
+14/09/14 06:46:04: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:46:05: 
+GridLinks Starting: http://ohun8442.optus.com.au:7001/
+14/09/14 06:46:05: Found IE by URL: http://ohun8442.optus.com.au:7001/
+14/09/14 06:46:05: Creating Tab Activator
+14/09/14 06:46:05: Activating Tab
+14/09/14 06:46:05: CallTracker.Model.CallStats > Gridlink
+14/09/14 06:46:05: Switched to: http://ohun8442.optus.com.au:7001/
+14/09/14 06:46:08: 
+GridLinks Starting: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+14/09/14 06:46:08: Unable to Find IE by URL: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+14/09/14 06:46:08: Found IE by Title: IFMS
+14/09/14 06:46:08: Creating Tab Activator
+14/09/14 06:46:08: Activating Tab
+14/09/14 06:46:08: CallTracker.Model.CallStats > Gridlink
+14/09/14 06:46:08: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+14/09/14 06:46:09: 
+GridLinks Starting: http://icon.optus.com.au/icon/cm/login/main.aspx
+14/09/14 06:46:09: Found IE by URL: http://icon.optus.com.au/icon/cm/login/main.aspx
+14/09/14 06:46:09: Creating Tab Activator
+14/09/14 06:46:09: Activating Tab
+14/09/14 06:46:09: CallTracker.Model.CallStats > Gridlink
+14/09/14 06:46:09: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+14/09/14 06:46:12: 
+Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+14/09/14 06:46:12: Found IE by Title: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+14/09/14 06:46:12: Smart Paste: Match Found: 0398780224
+14/09/14 06:46:12: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:46:14: 
+Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+14/09/14 06:46:14: Found IE by Title: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+14/09/14 06:46:14: Smart Paste: Match Found: 3266705303
+14/09/14 06:46:14: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:46:27: 
+AutoFill: Searching for AutoFill Matches
+14/09/14 06:46:27: Found IE by Title: http://icon.optus.com.au/ - Activity - New activity and notes - Windows Internet Explorer
+14/09/14 06:46:27: AutoFill: Attempting ICON AutoFills
+14/09/14 06:46:27: Attempting ICON Note AutoFill
+14/09/14 06:46:27: Attempting Tier 1
+14/09/14 06:46:27: Attempting Tier 2
+14/09/14 06:46:27: Attempting Tier 3
+14/09/14 06:46:28: Attempting Tier 4
+14/09/14 06:46:29: AutoFill: 2 found.
+14/09/14 06:46:29: Paste Data : usr_NewActivityDetails_txtNoteBody
+14/09/14 06:46:29: Paste Data : usr_NewActivityDetails_TextBoxCallContactName
+14/09/14 06:46:29: CallTracker.Model.CallStats > AutoFill
+14/09/14 06:46:30: 
+Pasting: Fault.PR
+14/09/14 06:46:30: CallTracker.Model.CallStats > DataPaste
+14/09/14 06:47:02: 
+Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Activity - New activity and notes - Windows Internet Explorer
+14/09/14 06:47:02: Found IE by Title: http://icon.optus.com.au/ - Activity - New activity and notes - Windows Internet Explorer
+14/09/14 06:47:02: Smart Paste: Match Found: Situation:
+- Spoke with MATTHEW BESWICK.
+- Customer is experiencing Loss of Internet.
+Action:
+- Powercycled.
+- Systems show RF Issues.
+Outcome:
+- PR#12573946 has been raised.
+- Tech has been booked for customer requested date: 9/09/2014 7:31
+14/09/14 06:47:02: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:47:23: 
+Pasting: Fault.PR
+14/09/14 06:47:23: CallTracker.Model.CallStats > DataPaste
+14/09/14 06:47:32: Status Changed: Ready
+14/09/14 06:47:32: Daily Data: 14/09 > Ready at 14/09/14 06:47:32
+14/09/14 06:47:32: 58 0398780224 > Ready at 14/09/14 06:47:32
+14/09/14 06:47:59: 
+GridLinks Starting: http://ohun8442.optus.com.au:7001/
+14/09/14 06:47:59: Found IE by URL: http://ohun8442.optus.com.au:7001/
+14/09/14 06:47:59: Creating Tab Activator
+14/09/14 06:47:59: Activating Tab
+14/09/14 06:47:59: CallTracker.Model.CallStats > Gridlink
+14/09/14 06:47:59: Switched to: http://ohun8442.optus.com.au:7001/
+14/09/14 06:49:25: 58 0398780224 > CallEnd at 14/09/14 06:49:25
+14/09/14 06:53:34: Status Changed: Reserved
+14/09/14 06:53:34: Daily Data: 14/09 > CallStart at 14/09/14 06:53:34
+14/09/14 06:53:34: CallTracker.Model.CallStats > RecordCreated
+14/09/14 06:53:34: 59  > Reserved at 14/09/14 06:53:34
+14/09/14 06:53:35: Status Changed: Talking
+14/09/14 06:53:36: 59 0395230279 > Talking at 14/09/14 06:53:36
+14/09/14 06:54:16: 
+Starting Smart Copy
+14/09/14 06:54:16: JACQUELINE WIRTH copied from the clipboard in 734 ticks
+14/09/14 06:54:16: CallTracker.Model.CallStats > SmartCopy
+14/09/14 06:54:18: 
+Starting Smart Copy
+14/09/14 06:54:18: 32-782365-2 copied from the clipboard in 784 ticks
+14/09/14 06:54:18: CallTracker.Model.CallStats > SmartCopy
+14/09/14 06:54:43: 
+GridLinks Starting: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+14/09/14 06:54:43: Unable to Find IE by URL: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+14/09/14 06:54:43: Found IE by Title: IFMS
+14/09/14 06:54:43: Creating Tab Activator
+14/09/14 06:54:43: Activating Tab
+14/09/14 06:54:43: CallTracker.Model.CallStats > Gridlink
+14/09/14 06:54:43: Switched to: https://ifmsprod.optus.com.au/IFMSWeb1P/Secure/SignIn.aspx
+14/09/14 06:54:44: 
+GridLinks Starting: http://icon.optus.com.au/icon/cm/login/main.aspx
+14/09/14 06:54:44: Found IE by URL: http://icon.optus.com.au/icon/cm/login/main.aspx
+14/09/14 06:54:44: Creating Tab Activator
+14/09/14 06:54:44: Activating Tab
+14/09/14 06:54:44: CallTracker.Model.CallStats > Gridlink
+14/09/14 06:54:44: Switched to: http://icon.optus.com.au/icon/cm/login/main.aspx
+14/09/14 06:54:48: 
+Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+14/09/14 06:54:48: Found IE by Title: http://icon.optus.com.au/ - Customer Search/Prospect - Windows Internet Explorer
+14/09/14 06:54:48: Smart Paste: Match Found: 3278236502
+14/09/14 06:54:48: CallTracker.Model.CallStats > SmartPaste
+14/09/14 06:56:24: Status Changed: Wrapup
+14/09/14 06:56:24: 59 0395230279 > Wrapup at 14/09/14 06:56:24
+14/09/14 06:58:26: 
+AutoFill: Searching for AutoFill Matches
+14/09/14 06:58:26: Found IE by Title: http://icon.optus.com.au/ - Activity - New activity and notes - Windows Internet Explorer
+14/09/14 06:58:26: AutoFill: Attempting ICON AutoFills
+14/09/14 06:58:26: Attempting ICON Note AutoFill
+14/09/14 06:58:26: Attempting Tier 1
+14/09/14 06:58:27: Attempting Tier 2
+14/09/14 06:58:27: ICON AutoFill Error: No Tier 2 Option Found
+14/09/14 06:58:27: AutoFill: 2 found.
+14/09/14 06:58:27: Paste Data : usr_NewActivityDetails_txtNoteBody
+14/09/14 06:58:27: Paste Data : usr_NewActivityDetails_TextBoxCallContactName
+14/09/14 06:58:27: CallTracker.Model.CallStats > AutoFill
+14/09/14 06:58:38: 
+Searching for SmartPaste Matches for Window: http://icon.optus.com.au/ - Activity - New activity and notes - Windows Internet Explorer
+14/09/14 06:58:38: Found IE by Title: http://icon.optus.com.au/ - Activity - New activity and notes - Windows Internet Explorer
+14/09/14 06:58:38: Smart Paste: Match Found: Situation:
+- Spoke with JACQUELINE WIRTH.
+- Customer is experiencing No Dial Tone.
+Action:
+Outcome:
+14/09/14 06:58:38: CallTracker.Model.CallStats > SmartPaste

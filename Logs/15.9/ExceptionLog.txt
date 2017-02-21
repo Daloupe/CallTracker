@@ -1,0 +1,144 @@
+15/09/2014 7:08 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.Helpers.HotkeyController.NsiTimerElapsed(Object sender, ElapsedEventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Helpers\HotkeyController\AutoSearch.cs:line 439
+15/09/2014 7:47 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.Helpers.HotkeyController.NsiTimerElapsed(Object sender, ElapsedEventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\Helpers\HotkeyController\AutoSearch.cs:line 439
+15/09/2014 8:22 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.EditContact._SearchIFMS_click(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\EditContact.cs:line 707
+   at System.Windows.Forms.ToolStripItem.RaiseEvent(Object key, EventArgs e)
+   at System.Windows.Forms.ToolStripMenuItem.OnClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleMouseUp(MouseEventArgs e)
+   at System.Windows.Forms.ToolStripItem.FireEventInteractive(EventArgs e, ToolStripItemEventType met)
+   at System.Windows.Forms.ToolStripItem.FireEvent(EventArgs e, ToolStripItemEventType met)
+   at System.Windows.Forms.ToolStrip.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.ToolStripDropDown.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ToolStrip.WndProc(Message& m)
+   at System.Windows.Forms.ToolStripDropDown.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+15/09/2014 8:22 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.EditContact._SearchIFMS_click(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\EditContact.cs:line 707
+   at System.Windows.Forms.ToolStripItem.RaiseEvent(Object key, EventArgs e)
+   at System.Windows.Forms.ToolStripMenuItem.OnClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleMouseUp(MouseEventArgs e)
+   at System.Windows.Forms.ToolStripItem.FireEventInteractive(EventArgs e, ToolStripItemEventType met)
+   at System.Windows.Forms.ToolStripItem.FireEvent(EventArgs e, ToolStripItemEventType met)
+   at System.Windows.Forms.ToolStrip.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.ToolStripDropDown.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ToolStrip.WndProc(Message& m)
+   at System.Windows.Forms.ToolStripDropDown.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+15/09/2014 8:22 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.EditContact._SearchIFMS_click(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\EditContact.cs:line 707
+   at System.Windows.Forms.ToolStripItem.RaiseEvent(Object key, EventArgs e)
+   at System.Windows.Forms.ToolStripMenuItem.OnClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleMouseUp(MouseEventArgs e)
+   at System.Windows.Forms.ToolStripItem.FireEventInteractive(EventArgs e, ToolStripItemEventType met)
+   at System.Windows.Forms.ToolStripItem.FireEvent(EventArgs e, ToolStripItemEventType met)
+   at System.Windows.Forms.ToolStrip.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.ToolStripDropDown.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ToolStrip.WndProc(Message& m)
+   at System.Windows.Forms.ToolStripDropDown.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+15/09/2014 8:22 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.EditContact._SearchIFMS_click(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\EditContact.cs:line 707
+   at System.Windows.Forms.ToolStripItem.RaiseEvent(Object key, EventArgs e)
+   at System.Windows.Forms.ToolStripMenuItem.OnClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleClick(EventArgs e)
+   at System.Windows.Forms.ToolStripItem.HandleMouseUp(MouseEventArgs e)
+   at System.Windows.Forms.ToolStripItem.FireEventInteractive(EventArgs e, ToolStripItemEventType met)
+   at System.Windows.Forms.ToolStripItem.FireEvent(EventArgs e, ToolStripItemEventType met)
+   at System.Windows.Forms.ToolStrip.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.ToolStripDropDown.OnMouseUp(MouseEventArgs mea)
+   at System.Windows.Forms.Control.WmMouseUp(Message& m, MouseButtons button, Int32 clicks)
+   at System.Windows.Forms.Control.WndProc(Message& m)
+   at System.Windows.Forms.ScrollableControl.WndProc(Message& m)
+   at System.Windows.Forms.ToolStrip.WndProc(Message& m)
+   at System.Windows.Forms.ToolStripDropDown.WndProc(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.OnMessage(Message& m)
+   at System.Windows.Forms.Control.ControlNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+15/09/2014 8:42 PM:	System.Windows.Automation.ElementNotAvailableException: The target element corresponds to UI that is no longer available (for example, the parent window has closed).
+   at MS.Internal.AutomationProxies.Misc.ThrowWin32ExceptionsIfError(Int32 errorCode)
+   at MS.Internal.AutomationProxies.Misc.EvaluateSendMessageTimeoutError(Int32 error, Boolean ignoreTimeout)
+   at MS.Internal.AutomationProxies.Misc.ProxySendMessage(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam)
+   at MS.Internal.AutomationProxies.Misc.ProxySendMessageInt(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam)
+   at MS.Internal.AutomationProxies.WindowsStatusBar.WindowsStatusBarPane.get_Text()
+   at MS.Internal.AutomationProxies.WindowsStatusBar.WindowsStatusBarPane.get_LocalizedName()
+   at MS.Internal.AutomationProxies.ProxySimple.GetElementProperty(AutomationProperty idProp)
+   at MS.Internal.AutomationProxies.ProxySimple.System.Windows.Automation.Provider.IRawElementProviderSimple.GetPropertyValue(Int32 propertyId)
+   at MS.Internal.Automation.UiaCoreApi.CheckError(Int32 hr)
+   at System.Windows.Automation.AutomationElement.GetCurrentPropertyValue(AutomationProperty property, Boolean ignoreDefaultValue)
+   at System.Windows.Automation.AutomationElement.GetPatternPropertyValue(AutomationProperty property, Boolean useCache)
+   at System.Windows.Automation.AutomationElement.AutomationElementInformation.get_Name()
+   at TestStack.White.UIItems.UIItem.get_Name()
+   at TestStack.White.Bricks.DelegateInvoker.ActionInvokerWrapper`1.Call(Object[] args)
+   at TestStack.White.Bricks.DynamicProxyInterceptors.Process(IInvocation invocation, CoreInterceptContext interceptedContext)
+   at TestStack.White.Interceptors.CoreInterceptor.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.WinFormTextBoxProxy.get_Name()
+   at CallTracker.View.Main._IPCCTimer_Tick(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\IPCC.cs:line 222
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+9/15/2014 9:01 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.Main._IPCCTimer_Tick(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\IPCC.cs:line 236
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+9/15/2014 9:01 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.Main._IPCCTimer_Tick(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\IPCC.cs:line 236
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+9/15/2014 9:01 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.Main._IPCCTimer_Tick(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\IPCC.cs:line 236
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+9/15/2014 9:01 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.Main._IPCCTimer_Tick(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\IPCC.cs:line 236
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+9/15/2014 9:01 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.Main._IPCCTimer_Tick(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\IPCC.cs:line 236
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+9/15/2014 9:01 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.Main._IPCCTimer_Tick(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\IPCC.cs:line 236
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+9/15/2014 9:01 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.Main._IPCCTimer_Tick(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\IPCC.cs:line 236
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+9/15/2014 9:01 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.Main._IPCCTimer_Tick(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\IPCC.cs:line 236
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)
+9/15/2014 9:01 PM:	System.NullReferenceException: Object reference not set to an instance of an object.
+   at CallTracker.View.Main._IPCCTimer_Tick(Object sender, EventArgs e) in c:\Users\CB 2\Documents\Programming\CSharp\Projects\CallTracker\CallTracker\Source\View\Main\IPCC.cs:line 236
+   at System.Windows.Forms.Timer.OnTick(EventArgs e)
+   at System.Windows.Forms.Timer.TimerNativeWindow.WndProc(Message& m)
+   at System.Windows.Forms.NativeWindow.Callback(IntPtr hWnd, Int32 msg, IntPtr wparam, IntPtr lparam)

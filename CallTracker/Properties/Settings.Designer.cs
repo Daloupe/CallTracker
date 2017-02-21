@@ -26,60 +26,300 @@ namespace CallTracker.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point ViewSmartPasteBinds_Position {
-            get {
-                return ((global::System.Drawing.Point)(this["ViewSmartPasteBinds_Position"]));
-            }
-            set {
-                this["ViewSmartPasteBinds_Position"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("552, 241")]
-        public global::System.Drawing.Size ViewSmartPasteBinds_Size {
-            get {
-                return ((global::System.Drawing.Size)(this["ViewSmartPasteBinds_Size"]));
-            }
-            set {
-                this["ViewSmartPasteBinds_Size"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point Logins_Position {
-            get {
-                return ((global::System.Drawing.Point)(this["Logins_Position"]));
-            }
-            set {
-                this["Logins_Position"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Size Logins_Size {
-            get {
-                return ((global::System.Drawing.Size)(this["Logins_Size"]));
-            }
-            set {
-                this["Logins_Size"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
         public global::System.Drawing.Point Main_Position {
             get {
                 return ((global::System.Drawing.Point)(this["Main_Position"]));
             }
             set {
                 this["Main_Position"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.9.6.16")]
+        public string Version {
+            get {
+                return ((string)(this["Version"]));
+            }
+            set {
+                this["Version"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoNewCall {
+            get {
+                return ((bool)(this["AutoNewCall"]));
+            }
+            set {
+                this["AutoNewCall"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowStatusBar {
+            get {
+                return ((bool)(this["ShowStatusBar"]));
+            }
+            set {
+                this["ShowStatusBar"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool WarningLevel {
+            get {
+                return ((bool)(this["WarningLevel"]));
+            }
+            set {
+                this["WarningLevel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool MonitorIPCC {
+            get {
+                return ((bool)(this["MonitorIPCC"]));
+            }
+            set {
+                this["MonitorIPCC"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool DatabaseAutoSort {
+            get {
+                return ((bool)(this["DatabaseAutoSort"]));
+            }
+            set {
+                this["DatabaseAutoSort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int NextContactsId {
+            get {
+                return ((int)(this["NextContactsId"]));
+            }
+            set {
+                this["NextContactsId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PullIPCCCallData {
+            get {
+                return ((bool)(this["PullIPCCCallData"]));
+            }
+            set {
+                this["PullIPCCCallData"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoSearch {
+            get {
+                return ((bool)(this["AutoSearch"]));
+            }
+            set {
+                this["AutoSearch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSearchIgnoreActiveWindow {
+            get {
+                return ((bool)(this["AutoSearchIgnoreActiveWindow"]));
+            }
+            set {
+                this["AutoSearchIgnoreActiveWindow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ToolTipAsControlBox {
+            get {
+                return ((bool)(this["ToolTipAsControlBox"]));
+            }
+            set {
+                this["ToolTipAsControlBox"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSearchOpenNew {
+            get {
+                return ((bool)(this["AutoSearchOpenNew"]));
+            }
+            set {
+                this["AutoSearchOpenNew"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowTipsOnStartup {
+            get {
+                return ((bool)(this["ShowTipsOnStartup"]));
+            }
+            set {
+                this["ShowTipsOnStartup"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-1")]
+        public int TipsPosition {
+            get {
+                return ((int)(this["TipsPosition"]));
+            }
+            set {
+                this["TipsPosition"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AdvancedMode {
+            get {
+                return ((bool)(this["AdvancedMode"]));
+            }
+            set {
+                this["AdvancedMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point Tips_Position {
+            get {
+                return ((global::System.Drawing.Point)(this["Tips_Position"]));
+            }
+            set {
+                this["Tips_Position"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point DataDrop_Position {
+            get {
+                return ((global::System.Drawing.Point)(this["DataDrop_Position"]));
+            }
+            set {
+                this["DataDrop_Position"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool QuitProperly {
+            get {
+                return ((bool)(this["QuitProperly"]));
+            }
+            set {
+                this["QuitProperly"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FirstLoad {
+            get {
+                return ((bool)(this["FirstLoad"]));
+            }
+            set {
+                this["FirstLoad"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSearchIFMS {
+            get {
+                return ((bool)(this["AutoSearchIFMS"]));
+            }
+            set {
+                this["AutoSearchIFMS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSearchAllowMultipleSearches {
+            get {
+                return ((bool)(this["AutoSearchAllowMultipleSearches"]));
+            }
+            set {
+                this["AutoSearchAllowMultipleSearches"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool dataPasteTypeInput {
+            get {
+                return ((bool)(this["dataPasteTypeInput"]));
+            }
+            set {
+                this["dataPasteTypeInput"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSearchRefreshIFMSFirst {
+            get {
+                return ((bool)(this["AutoSearchRefreshIFMSFirst"]));
+            }
+            set {
+                this["AutoSearchRefreshIFMSFirst"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("210")]
+        public int NoteWidth {
+            get {
+                return ((int)(this["NoteWidth"]));
+            }
+            set {
+                this["NoteWidth"] = value;
             }
         }
     }

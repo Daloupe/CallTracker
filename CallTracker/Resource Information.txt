@@ -1,0 +1,13 @@
+﻿---------------- Pre Release
+Resources:
+	- Update all Paste Binds.
+	- Update Bookmarks + Systems menus.
+	- Update Tier4 Outcomes Matches.
+	- Create "Resolved" notes.
+	- PHS Binds
+	- NBN Co Portal
+	- ONC uses DTR, NBN uses STT
+	- "Resolved" should add "- Confirmed working." to ICONNote.
+	- PR#12576032 has been raised, cleared and closed; SMS sent.
+	- NBN Not using correct symptom group.
+- Create Installer.

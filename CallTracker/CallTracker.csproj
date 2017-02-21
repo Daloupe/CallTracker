@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CallTracker</RootNamespace>
-    <AssemblyName>CallTracker</AssemblyName>
+    <AssemblyName>Wingman</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>
@@ -29,7 +29,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -37,15 +37,48 @@
   <PropertyGroup>
     <StartupObject>CallTracker.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\WingMan.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Interop.SHDocVw">
-      <HintPath>..\packages\WatiN.2.1.0\lib\net35\Interop.SHDocVw.dll</HintPath>
+    <Reference Include="Accessibility" />
+    <Reference Include="Castle.Core">
+      <HintPath>..\References\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Equin.ApplicationFramework.BindingListView">
+      <HintPath>..\References\Equin.ApplicationFramework.BindingListView.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.SHDocVw, Version=1.1.0.0, Culture=neutral, PublicKeyToken=db7cfd3acb5ad44e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\packages\WatiN.2.1.0\lib\net35\Interop.SHDocVw.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <Private>True</Private>
       <HintPath>..\packages\WatiN.2.1.0\lib\net35\Microsoft.mshtml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Outlook">
+      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 12.0\Visual Studio Tools for Office\PIA\Office15\Microsoft.Office.Interop.Outlook.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="PropertyChanged">
       <HintPath>..\packages\PropertyChanged.Fody.1.48.1.0\Lib\NET35\PropertyChanged.dll</HintPath>
@@ -55,77 +88,529 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net35\protobuf-net.dll</HintPath>
     </Reference>
+    <Reference Include="protobuf-net-data">
+      <HintPath>..\packages\protobuf-net-data.2.0.7.668\lib\net35\protobuf-net-data.dll</HintPath>
+    </Reference>
+    <Reference Include="RegexLib, Version=1.0.0.1001, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\RegexLib.dll</HintPath>
+    </Reference>
+    <Reference Include="RichTextBoxLinks">
+      <HintPath>..\References\RichTextBoxLinks.dll</HintPath>
+    </Reference>
+    <Reference Include="Rtf">
+      <HintPath>..\References\Rtf.dll</HintPath>
+    </Reference>
     <Reference Include="Shortcut, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Libraries\Shortcut-master\src\Shortcut\bin\Release\Shortcut.dll</HintPath>
+      <HintPath>..\References\Shortcut.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WatiN.Core">
+    <Reference Include="TestStack.White">
+      <HintPath>..\References\TestStack.White.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WatiN.Core, Version=2.1.0.1196, Culture=neutral, PublicKeyToken=db7cfd3acb5ad44e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WatiN.2.1.0\lib\net35\WatiN.Core.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSets\ServicesDataSet.cs">
+      <DependentUpon>ServicesDataSet.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataSets\ServicesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServicesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Helpers\AutoFills\PRGenerators.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\DataDrop.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\AutoFill.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\DataPaste.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\GridLinks.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\AutoLogin.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\SmartPaste.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\SmartCopy.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\AutoSearch.cs" />
+    <Compile Include="Source\Helpers\Type\DataGridExtentions.cs" />
+    <Compile Include="Source\Helpers\Type\FilterableBindingList.cs" />
+    <Compile Include="Source\Helpers\Type\RtfExtensions.cs" />
+    <Compile Include="Source\Model\Contact\DailyModel.cs" />
+    <Compile Include="Source\Model\Contact\DateFilterItem.cs" />
+    <Compile Include="Source\Model\Contact\EventsModel.cs" />
+    <None Include="Data\Binds.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Resources\bindingnavigatordeleteitem.image1.png" />
+    <None Include="Resources\TipExampleClose.png" />
+    <None Include="Resources\Bug.png" />
+    <Content Include="Change Log.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource Information.txt" />
+    <Content Include="ThingsToCheck.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Source\Model\Resource\Settings\SearchModel.cs" />
+    <Compile Include="Source\Model\Contact\TroubleShootingModel.cs" />
+    <Compile Include="Source\View\Controls\CTPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\CTToolStripMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\CustomDataGrid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\CustomDgv.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\CustomDgv.Designer.cs">
+      <DependentUpon>CustomDgv.cs</DependentUpon>
+    </Compile>
+    <Content Include="Bind_ReadMe.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\WingMan.ico" />
+    <None Include="Source\View\Controls\NullableComboBox.cs">
+      <SubType>Component</SubType>
+    </None>
+    <Compile Include="Source\View\Controls\RTFBindable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\View\Main\IPCC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Main\Note.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Main\Note.Designer.cs">
+      <DependentUpon>Note.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Contact\StatsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Contact\StatsView.Designer.cs">
+      <DependentUpon>StatsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Popups\DataDrop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\DataDrop.Designer.cs">
+      <DependentUpon>DataDrop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Popups\BugReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\BugReport.Designer.cs">
+      <DependentUpon>BugReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Popups\DidYouKnow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\DidYouKnow.Designer.cs">
+      <DependentUpon>DidYouKnow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Popups\FadingTooltip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\FadingTooltip.Designer.cs">
+      <DependentUpon>FadingTooltip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Popups\AboutScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\AboutScreen.Designer.cs">
+      <DependentUpon>AboutScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Popups\SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Source\View\Main\Note.resx">
+      <DependentUpon>Note.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Contact\StatsView.resx">
+      <DependentUpon>StatsView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\DataDrop.resx">
+      <DependentUpon>DataDrop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\BugReport.resx">
+      <DependentUpon>BugReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\DidYouKnow.resx">
+      <DependentUpon>DidYouKnow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\FadingTooltip.resx">
+      <DependentUpon>FadingTooltip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\AboutScreen.resx">
+      <DependentUpon>AboutScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="DataSets\ServicesDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServicesDataSet.xsd</DependentUpon>
+    </None>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Source\Helpers\Converters.cs" />
-    <None Include="Source\Helpers\DialogCloser.cs" />
-    <Compile Include="Source\Helpers\GetActiveWindow.cs" />
-    <Compile Include="Source\Helpers\HotkeyController.cs" />
-    <None Include="Source\Helpers\IClosableViewModel.cs" />
-    <None Include="Source\Helpers\RelayCommand.cs" />
-    <Compile Include="Source\Model\Address.cs" />
-    <Compile Include="Source\Model\BookingModel.cs" />
-    <Compile Include="Source\Model\CustomerContact.cs" />
-    <Compile Include="Source\Model\FaultModel.cs" />
-    <Compile Include="Source\Model\LoginsModel.cs" />
-    <Compile Include="Source\Model\PasteBind.cs" />
-    <Compile Include="Source\Model\Person.cs" />
-    <None Include="Source\Model\PersonelBusinessObject.cs" />
-    <Compile Include="Source\Model\PocoCustomer.cs" />
-    <Compile Include="Source\Model\PocoPerson.cs" />
-    <Compile Include="Source\Model\ServiceModel.cs" />
-    <Compile Include="Source\Model\StatisticsModel.cs" />
-    <Compile Include="Source\View\BindSmartPasteForm.cs">
+    <Compile Include="Source\Data\Equipment.cs" />
+    <Compile Include="Source\Data\Symptoms.cs" />
+    <Compile Include="Source\Helpers\AutoFills\ICONAutoFill.cs" />
+    <Compile Include="Source\Helpers\AutoFills\MadSmartPaste.cs" />
+    <Compile Include="Source\Helpers\Type\EnumExtensions.cs" />
+    <Compile Include="Source\Helpers\FindProperty.cs" />
+    <Compile Include="Source\Helpers\AutoFills\ICONNoteGenerator.cs" />
+    <Compile Include="Source\Helpers\Windows\IETabActivator.cs" />
+    <Compile Include="Source\Helpers\AutoFills\IFMSAutoFill.cs" />
+    <Compile Include="Source\Helpers\Type\ListHelpers.cs" />
+    <Compile Include="Source\Helpers\Type\StringHelpers.cs" />
+    <Compile Include="Source\Model\Contact\NameModel.cs" />
+    <Compile Include="Source\Model\Resource\EnumData.cs" />
+    <Compile Include="Source\Model\Resource\EventLogModel.cs" />
+    <Compile Include="Source\Model\Resource\PRTemplateModel.cs" />
+    <Compile Include="Source\Model\Resource\Settings\AROModel.cs" />
+    <Compile Include="Source\Model\Resource\Settings\IEInteractBase.cs" />
+    <Compile Include="Source\Model\Resource\Settings\ElementBinds.cs" />
+    <Compile Include="Source\Model\Resource\RatePlanModel.cs" />
+    <Compile Include="Source\View\Controls\BindableContextMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledBase.Designer.cs">
+      <DependentUpon>LabelledBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledDatePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledDatePicker.Designer.cs">
+      <DependentUpon>LabelledDatePicker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledComboBoxLong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledComboBoxLong.Designer.cs">
+      <DependentUpon>LabelledComboBoxLong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledHeading.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledHeading.Designer.cs">
+      <DependentUpon>LabelledHeading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledTextField.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledTextField.Designer.cs">
+      <DependentUpon>LabelledTextField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledTextBoxLong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledTextBoxLong.Designer.cs">
+      <DependentUpon>LabelledTextBoxLong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledTextBox.Designer.cs">
+      <DependentUpon>LabelledTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledComboBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Labelled Controls\LabelledComboBox.Designer.cs">
+      <DependentUpon>LabelledComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\BindingNavigatorIgnoreFocus.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\ToolStripIgnoreFocus.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Basic Controls\DataArea.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Basic Controls\DataArea.Designer.cs">
+      <DependentUpon>DataArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\Basic Controls\DataDropDown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Basic Controls\DataDropDown.Designer.cs">
+      <DependentUpon>DataDropDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\Basic Controls\DataControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Basic Controls\DataControlBase.Designer.cs">
+      <DependentUpon>DataControlBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\ContextualToolStripMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Basic Controls\PanelHeading.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Basic Controls\PanelHeading.Designer.cs">
+      <DependentUpon>PanelHeading.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\ToopStripProgressBarWithText.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Help\HelpKeyCommands.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Help\HelpKeyCommands.Designer.cs">
+      <DependentUpon>HelpKeyCommands.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\Basic Controls\DataField.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Controls\Basic Controls\DataField.Designer.cs">
+      <DependentUpon>DataField.cs</DependentUpon>
+    </Compile>
+    <Content Include="Data\Resources.bin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Data\Contacts.bin" />
+    <None Include="Data\Fonts\OptusVoiceBETA-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Fonts\trade-gothic-lt-1361519976.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\Fonts\TradeGothicLTPro-BdCn20.ttf" />
+    <None Include="Data\Fonts\TradeGothicLTPro.ttf" />
+    <None Include="Properties\DataSources\CallTracker.Model.DailyModel.datasource" />
+    <Compile Include="Source\View\Main\ServicePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Main\ServicePanel.Designer.cs">
+      <DependentUpon>ServicePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Resources\DatabaseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Resources\DatabaseView.Designer.cs">
+      <DependentUpon>DatabaseView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Resources\Ratecodes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Resources\Ratecodes.Designer.cs">
+      <DependentUpon>Ratecodes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Contact\CallHistoryPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Contact\CallHistoryPanel.Designer.cs">
+      <DependentUpon>CallHistoryPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\PanelBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\PanelBase.Designer.cs">
+      <DependentUpon>PanelBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Contact\CallHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Contact\CallHistory.Designer.cs">
+      <DependentUpon>CallHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\ViewControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\EditSystems.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Source\View\BindSmartPasteForm.Designer.cs">
+    <Compile Include="Source\View\Popups\EditSystems.Designer.cs">
+      <DependentUpon>EditSystems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Popups\EditBookmarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\EditBookmarks.Designer.cs">
+      <DependentUpon>EditBookmarks.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Source\View\Controls\Basic Controls\DataArea.resx">
+      <DependentUpon>DataArea.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Basic Controls\DataDropDown.resx">
+      <DependentUpon>DataDropDown.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Basic Controls\DataControlBase.resx">
+      <DependentUpon>DataControlBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Labelled Controls\LabelledBase.resx">
+      <DependentUpon>LabelledBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Labelled Controls\LabelledDatePicker.resx">
+      <DependentUpon>LabelledDatePicker.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Labelled Controls\LabelledComboBoxLong.resx">
+      <DependentUpon>LabelledComboBoxLong.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Labelled Controls\LabelledHeading.resx">
+      <DependentUpon>LabelledHeading.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Labelled Controls\LabelledTextField.resx">
+      <DependentUpon>LabelledTextField.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Labelled Controls\LabelledTextBoxLong.resx">
+      <DependentUpon>LabelledTextBoxLong.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Labelled Controls\LabelledTextBox.resx">
+      <DependentUpon>LabelledTextBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Labelled Controls\LabelledComboBox.resx">
+      <DependentUpon>LabelledComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Basic Controls\PanelHeading.resx">
+      <DependentUpon>PanelHeading.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Help\HelpKeyCommands.resx">
+      <DependentUpon>HelpKeyCommands.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Controls\Basic Controls\DataField.resx">
+      <DependentUpon>DataField.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Main\ServicePanel.resx">
+      <DependentUpon>ServicePanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Resources\DatabaseView.resx">
+      <DependentUpon>DatabaseView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Resources\Ratecodes.resx">
+      <DependentUpon>Ratecodes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Contact\CallHistoryPanel.resx">
+      <DependentUpon>CallHistoryPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\PanelBase.resx">
+      <DependentUpon>PanelBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Contact\CallHistory.resx">
+      <DependentUpon>CallHistory.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\ViewControlBase.resx">
+      <DependentUpon>ViewControlBase.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\CallTracker.Model.ContactAddress.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.CustomerContact.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.FaultModel.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.GridLinksItem.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.GridLinksModel.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.LoginsModel.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.PasteBind.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.Rateplan.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.ServiceModel.datasource" />
+    <None Include="Properties\DataSources\CallTracker.Model.SystemItem.datasource" />
+    <None Include="DataSets\ServicesDataSet.xsc">
+      <DependentUpon>ServicesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DataSets\ServicesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ServicesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSets\ServicesDataSet.xss">
+      <DependentUpon>ServicesDataSet.xsd</DependentUpon>
+    </None>
+    <Compile Include="Source\Helpers\Windows\WindowHelper.cs" />
+    <Compile Include="Source\Helpers\HotkeyController\HotkeyController.cs" />
+    <Compile Include="Source\Helpers\SimpleEncrypt.cs" />
+    <Compile Include="Source\Model\Contact\AddressModel.cs" />
+    <Compile Include="Source\Model\Contact\BookingModel.cs" />
+    <Compile Include="Source\Model\Contact\ContactModel.cs" />
+    <Compile Include="Source\Model\DataRepository.cs" />
+    <Compile Include="Source\Model\Contact\FaultModel.cs" />
+    <Compile Include="Source\Model\Resource\Settings\GridLinksModel.cs" />
+    <Compile Include="Source\Model\Resource\Settings\LoginsModel.cs" />
+    <Compile Include="Source\Model\Contact\ServiceModel.cs" />
+    <Compile Include="Source\Model\Contact\StatisticsModel.cs" />
+    <Compile Include="Source\View\Popups\AddAROForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\AddAROForm.Designer.cs">
+      <DependentUpon>AddAROForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Popups\BindSmartPasteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Source\View\Popups\BindSmartPasteForm.Designer.cs">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Source\View\Main.cs">
+    <Compile Include="Source\View\Panels\Settings\EditGridLinks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Settings\EditGridLinks.Designer.cs">
+      <DependentUpon>EditGridLinks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Controls\FormControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Source\View\Main\EditContact.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Main\EditContact.Designer.cs">
+      <DependentUpon>EditContact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Settings\EditSmartPasteBinds.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Settings\EditSmartPasteBinds.Designer.cs">
+      <DependentUpon>EditSmartPasteBinds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Panels\Settings\EditLogins.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Source\View\Panels\Settings\EditLogins.Designer.cs">
+      <DependentUpon>EditLogins.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Source\View\Main\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Source\View\Main.Designer.cs">
+    <Compile Include="Source\View\Main\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\View\Options.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Source\View\Options.Designer.cs">
-      <DependentUpon>Options.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\View\SettingsFormBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Source\View\ViewLogins.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Source\View\ViewLogins.Designer.cs">
-      <DependentUpon>ViewLogins.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Source\View\ViewSmartPasteBinds.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Source\View\ViewSmartPasteBinds.Designer.cs">
-      <DependentUpon>ViewSmartPasteBinds.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -137,23 +622,34 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Source\View\BindSmartPasteForm.resx">
+    <EmbeddedResource Include="Source\View\Popups\AddAROForm.resx">
+      <DependentUpon>AddAROForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\EditSystems.resx">
+      <DependentUpon>EditSystems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\EditBookmarks.resx">
+      <DependentUpon>EditBookmarks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Popups\BindSmartPasteForm.resx">
       <DependentUpon>BindSmartPasteForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Main.resx">
+    <EmbeddedResource Include="Source\View\Main\EditContact.resx">
+      <DependentUpon>EditContact.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Settings\EditGridLinks.resx">
+      <DependentUpon>EditGridLinks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Settings\EditSmartPasteBinds.resx">
+      <DependentUpon>EditSmartPasteBinds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Panels\Settings\EditLogins.resx">
+      <DependentUpon>EditLogins.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Source\View\Main\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\Options.resx">
-      <DependentUpon>Options.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\SettingsFormBase.resx">
-      <DependentUpon>SettingsFormBase.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\ViewLogins.resx">
-      <DependentUpon>ViewLogins.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Source\View\ViewSmartPasteBinds.resx">
-      <DependentUpon>ViewSmartPasteBinds.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -165,14 +661,53 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Template1.tt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <None Include="Resources\TinyArrow2111.png" />
+    <None Include="Resources\TinyArrow212.png" />
+    <None Include="Resources\TinyArrow211.png" />
+    <None Include="Resources\TinyArrow21.png" />
+    <None Include="Resources\bg_gradient-teal.jpg" />
+    <Content Include="Resources\bindingNavigatorDeleteItem.Image.png" />
+    <None Include="Resources\Property_501.png" />
+    <None Include="Resources\ViewinBrowser_6294.png" />
+    <None Include="Resources\TinyArrow2.png" />
+    <None Include="Resources\TinyArrow1.png" />
+    <None Include="Resources\TinyArrow.png" />
+    <None Include="Resources\SmallArrow.png" />
+    <None Include="Resources\help.jpg" />
+    <None Include="Resources\c.png" />
+    <None Include="Resources\Ctrl.png" />
+    <None Include="Resources\Copy_6524.png" />
+    <None Include="Resources\CallerOrCalleeView_8871.png" />
+    <None Include="Resources\Find_5650.png" />
+    <None Include="Resources\CallerOrCalleeView_88711.png" />
+    <None Include="Resources\CallerOrCalleeView_887111.png" />
+    <None Include="Resources\blue_gradient_300.jpg" />
+    <None Include="Resources\blue_gradient_586.jpg" />
+    <None Include="Resources\flag_16xLG.png" />
+    <None Include="Resources\FlagThread-Flagged,NotHot,NotSelected_10392_16x.png" />
+    <Content Include="Resources\helpToolStripButton.Image.png" />
+    <None Include="Resources\lock.jpg" />
+    <None Include="Resources\lock.png" />
+    <None Include="Resources\padlock_small.png" />
+    <None Include="Resources\Windows.png" />
+    <None Include="Resources\Numpad.png" />
+    <None Include="Resources\Tilda.png" />
+    <None Include="Resources\v.png" />
+    <None Include="Resources\keyboard.png" />
+    <None Include="Resources\Shift.png" />
     <None Include="Resources\Close.png" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Fody.1.23.2\build\Fody.targets" Condition="Exists('..\packages\Fody.1.23.2\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -180,6 +715,13 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Fody.1.23.2\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.23.2\build\Fody.targets'))" />
+  </Target>
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <Target AfterTargets="AfterBuild;NonWinFodyTarget" Name="CleanReferenceCopyLocalPaths">
+    <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,273 @@
+| Remove Ratecode search menu.
+| Work ready timer - Go Green/Red.
+| DN not updating on prop change? Invalidate Parent?
+| Text color is black on some controls.
+| Can't sort by outcome.
+/ Transfer isn't getting CTI DialPad offsets.
+| "FInd within form" button might not be updating proerly. Same as Typeastext.
+	| They are disconnected. Need to be replaced with new dropdown.
+| Severity not pasting? 
+| Symptom not updating on change, needs to be selected
+| Autologin shoudl go by Title first. Do fuzzy search for url.
+| Gridlinks not updating dropdowns when name is changed.
+- OPOM isn't restoring if minimized.
+- Have Alt title search? eg OPOM search screen. Or ICON Search Screen.
+| Gridlinks gettign confused between UNMT and NSI as both have simliar title.
+| Update GetDate for IFMS. 00/00/0000 00:00:00
+| Name Regex needs to recognize middle initial
+| 1A MAIR ST BRIGHTON Victoria 3186 AUSTRALIA remove spaces.
+| NBN Service Calls Fault Type drop down. Need to have NDT - No Dial Tone. Fault.SymptomFull?
+
+*MAC Regex
+*Modem IP address.PRI. NTD Serial number. CMR 1000000000021266_12494541. LAT: Address ID, ESN
+*Add abilty to paste certain values with binds. eg Data = "Node" - for PTW database.
+*Address.StateAcronym
+*Postcode alone?
+*Get Address.State from CMBS/DN information.
+*Win-Middle Mouse Button?
+
+Select No Symptom.
+MeTV PPV Symptom
+
+Username contextmenu - search in UNMT.
+Name contextmenu - id ok.
+Equipment contextmenu - Open Simulator.
+
+
+
+
+
+
+---------------------------------------------------------
+
+C:\Program Files\Optus\IPCC Agent Desktop\IPCCAgentDesktop.exe
+  Identification
+    ClassName:	"WindowsForms10.Window.8.app.0.1ca0192_r17_ad1"
+    ControlType:	"ControlType.Window"
+    Culture:	"(null)"
+    AutomationId:	"SoftphoneForm"
+    LocalizedControlType:	"window"
+    Name:	"IPCC Agent Desktop for Fusion: v5.2.1(c2) - Jesse POULTON"
+
+Group
+Identification
+    ClassName:	"WindowsForms10.Window.8.app.0.1ca0192_r17_ad1"
+    ControlType:	"ControlType.Group"
+    Culture:	"(null)"
+    AutomationId:	"groupBox8"
+    LocalizedControlType:	"group"
+    Name:	"Dial              Answer    Release"
+    ProcessId:	"13420 (IPCCAgentDesktop)"
+    RuntimeId:	"42 31264334"
+    IsPassword:	"False"
+    IsControlElement:	"True"
+    IsContentElement:	"True"
+
+Button
+
+  Identification
+    ClassName:	"WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1"
+    ControlType:	"ControlType.Button"
+    Culture:	"(null)"
+    AutomationId:	"btnRelease"
+    LocalizedControlType:	"button"
+    Name:	""
+
+
+Not Ready
+  Identification
+    ClassName:	"WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1"
+    ControlType:	"ControlType.Button"
+    Culture:	"(null)"
+    AutomationId:	"btnNotReady"
+    LocalizedControlType:	"button"
+    Name:	""
+    ProcessId:	"13420 (IPCCAgentDesktop)"
+
+Work Ready
+  Identification
+    ClassName:	"WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1"
+    ControlType:	"ControlType.Button"
+    Culture:	"(null)"
+    AutomationId:	"btnWorkReady"
+    LocalizedControlType:	"button"
+    Name:	""
+    ProcessId:	"13420 (IPCCAgentDesktop)"
+    RuntimeId:	"42 528246"
+
+Ready
+Identification
+    ClassName:	"WindowsForms10.BUTTON.app.0.1ca0192_r17_ad1"
+    ControlType:	"ControlType.Button"
+    Culture:	"(null)"
+    AutomationId:	"btnReady"
+    LocalizedControlType:	"button"
+    Name:	""
+    ProcessId:	"13420 (IPCCAgentDesktop)"
+    RuntimeId:	"42 1449186"
+
+Status Bar
+  Identification
+    ClassName:	"WindowsForms10.msctls_statusbar32.app.0.1ca0192_r17_ad1"
+    ControlType:	"ControlType.StatusBar"
+    Culture:	"(null)"
+    AutomationId:	"statusBar1"
+    LocalizedControlType:	"status bar"
+    Name:	"statusBar1"
+    ProcessId:	"13420 (IPCCAgentDesktop)"
+    RuntimeId:	"42 2956118"
+
+edit statuts
+  Identification
+    ClassName:	""
+    ControlType:	"ControlType.Edit"
+    Culture:	"(null)"
+    AutomationId:	"StatusBar.Pane3"
+    LocalizedControlType:	"edit"
+    Name:	"AgentStatus: Ready"
+    ProcessId:	"13420 (IPCCAgentDesktop)"
+    RuntimeId:	"42 2956118 2 3"
+    IsPassword:	"False"
+    IsControlElement:	"True"
+    IsContentElement:	"True"
+
+IPCC
+button - AutomaitonId = btnDial, IsEnabled = false/true
+btnLogin
+btnTransfer
+
+edit - txtAgentID_orName
+
+CTI Dial Pad
+edit - AID = 1001 Name = Number to Dial:", 
+
+--------------------------------------------------------------------------
+
+"C:\Program Files\Oracle\Oracle6i\BIN\ifrun60.EXE" "MAD_F_SPLASH.fmx"
+MAD
+Telphone
+edit - "(53, 333, 105, 18)"
+42 18023972
+42 18023972
+
+Main 
+Visibility
+    BoundingRectangle:	"(404, 111, 1080, 839)"
+    ClickablePoint:	"407,530"
+
+Search Window:
+  Identification
+    ClassName:	"ui60MDIdocument_W32"
+    ControlType:	"ControlType.Window"
+    Culture:	"(null)"
+    AutomationId:	"60016"
+    LocalizedControlType:	"window"
+    Name:	"Search"
+    ProcessId:	"12340 (ifrun60)"
+    RuntimeId:	"42 4067320"
+    IsPassword:	"False"
+    IsControlElement:	"True"
+    IsContentElement:	"True"
+
+  Visibility
+    BoundingRectangle:	"(412, 161, 497, 368)"
+    ClickablePoint:	"413,344"
+    IsOffscreen:	"False"
+
+Edit field
+Identification
+    ClassName:	"Edit"
+    ControlType:	"ControlType.Edit"
+    Culture:	"(null)"
+    AutomationId:	"1"
+    LocalizedControlType:	"edit"
+    Name:	"CASS"
+    ProcessId:	"12340 (ifrun60)"
+    RuntimeId:	"42 18023972"
+    IsPassword:	"False"
+    IsControlElement:	"True"
+    IsContentElement:	"True"
+
+Telephony 11,212
+  Visibility
+    BoundingRectangle:	"(423, 373, 105, 18)"
+    ClickablePoint:	"475,381"
+Cass 343,212
+ Visibility
+    BoundingRectangle:	"(755, 373, 131, 18)"
+    ClickablePoint:	"820,381"
+CMBS 343,161
+  Visibility
+    BoundingRectangle:	"(755, 322, 76, 19)"
+    ClickablePoint:	"792,331"
+    IsOffscreen:	"False"
+
+Login 343, 108
+Visibility
+    BoundingRectangle:	"(755, 269, 133, 18)"
+    ClickablePoint:	"821,277"
+    IsOffscreen:	"False"
+
+FirstName 11, 53
+  Visibility
+    BoundingRectangle:	"(423, 214, 91, 19)"
+    ClickablePoint:	"468,223"
+
+Surname 126, 53
+Visibility
+    BoundingRectangle:	"(538, 214, 166, 19)"
+    ClickablePoint:	"620,223"
+    IsOffscreen:	"False"
+
+Unit 11, 108
+  Visibility
+    BoundingRectangle:	"(423, 269, 40, 18)"
+    ClickablePoint:	"442,277"
+    IsOffscreen:	"False"
+
+No 70, 108
+Visibility
+    BoundingRectangle:	"(482, 269, 37, 18)"
+    ClickablePoint:	"500,277"
+    IsOffscreen:	"False"
+
+Street 124, 108
+  Visibility
+    BoundingRectangle:	"(536, 269, 167, 18)"
+    ClickablePoint:	"619,277"
+    IsOffscreen:	"False"
+
+Suburb 11,161
+  Visibility
+    BoundingRectangle:	"(423, 322, 133, 19)"
+    ClickablePoint:	"489,331"
+    IsOffscreen:	"False"
+
+Postcode 171,162
+  Visibility
+    BoundingRectangle:	"(583, 323, 57, 19)"
+    ClickablePoint:	"611,332"
+    IsOffscreen:	"False"
+
+
+----------------------------------------
+// source exe file path. here it is calculator exe path
+private const string ExeSourceFile = @"C:\Windows\system32\calc.exe";
+//Global Variable to for Application launch
+private static White.Core.Application _application;
+//Global variable to get the Main window of calculator from application.
+private static White.Core.UIItems.WindowItems.Window _mainWindow;
+
+//start process for the above exe file location
+var psi = new ProcessStartInfo(ExeSourceFile);
+
+// launch the process through white application
+_application = White.Core.Application.AttachOrLaunch(psi);
+//Get the window of calculator from white application 
+_mainWindow = _application.GetWindow
+        (SearchCriteria.ByText("Calculator"), InitializeOption.NoCache);
+var comboBox = _mainWindow.Get<White.Core.UIItems.ListBoxItems.ComboBox>
+(SearchCriteria.ByAutomationId("4003"));
+White.Core.UIItems.Button caclButton =
+_mainWindow.Get<White.Core.UIItems.Button>(SearchCriteria.ByAutomationId("4009"));
+caclButton.Click();

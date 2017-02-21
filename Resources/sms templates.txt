@@ -1,0 +1,40 @@
+Hi, a network outage exists in your area. Technicians are currently working on the issue REF#. Thanks, Jesse - Optus.
+
+[LAT]
+Hi, Thanks for calling Optus. For further enquires call 131344 anytime 24/7, or visit www.optus.com.au/contactus. Thanks - Jesse.
+
+Hi, REF# has been raised, a tech will attend from :-: on the /07. Thanks, Jesse - Optus.
+
+Hi, Thanks for calling Optus. For further enquires call 1300300427 anytime 24/7, or visit www.optus.com.au/contactus. Thanks - Jesse, Optus
+
+REF <#######> for your records has been logged as reported. For further information on network faults, visit www.optus.com.au/networkhelp
+
+Nim: 52834
+
+Bundled plans to be applied only on LAT/LIP side of CMBS	
+WIFI eMTA - PU - $60 
+WN - $20
+
+Core Broadband Plan (Non Fusion)	 
+WIFI eMTA - UW - $60 
+GF - $20
+
+
+
+
+
+Situation
+- Loss of service
+Action
+- Customer affected by outage PR# 12329634 
+Outcome
+- Raised PR#
+
+
+
+
+
+0466999113
+0397742858
+shaowenruan
+32-323144-4

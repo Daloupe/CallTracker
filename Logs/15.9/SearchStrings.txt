@@ -1,0 +1,121 @@
+Account ID OK
+INVALID ID
+NO ID
+
+
+IFMS
+http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F012_ProblemDetail.aspx?SD_NO=12529089
+http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F139_SearchByNode.aspx?id=22CJ228
+http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F191_CUST_ACCESS_OV.aspx?id=32388508%203
+http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F191_CUST_ACCESS_OV.aspx?id=31463134%203
+http://ifmsprod.optus.com.au/IFMSWeb1P/PR%20Manage/F191_CUST_ACCESS_OV.aspx?id=33239468%203
+SCAMPS
+https://scamps.optusnet.com.au/cm.html?q=0293896747
+https://scamps.optusnet.com.au/cm.html?q=banksmeadow
+DIMPS
+https://dimps.optusnet.com.au/display.html?username=macka53
+https://dimps.optusnet.com.au/search/servno?servno=0296695530
+https://dimps.optusnet.com.au/search/account?account_no=3182604302
+OOKLA
+http://reporting.ookla.com/index.php?ip=58.106.136.233
+UNMT
+https://staff.optusnet.com.au/tools/usernames/users.html?username=ben.beslagic&namespace=optus
+NSI
+https://staff.optusnet.com.au/tools/nsi/avc_detail.html?gsid=1000000000018311
+https://staff.optusnet.com.au/tools/nsi/avc_detail.html?avcid=AVC000003151737
+https://staff.optusnet.com.au/tools/nsi/cvc_detail.html?cvcid=CVC000000332302
+NEXUS
+http://nexus.optus.com.au/index.php?#search/uniden/1
+http://nexus.optus.com.au/index.php?#service/0288127034/
+http://nexus.optus.com.au/index.php?#account/11532145000121
+http://nexus.optus.com.au/index.php?#account/3171869202
+
+Links:
+SMS Hub:
+http://zsolutions.optus.com.au/fmts_sms/index.php?
+LogMeIn:
+https://secure.logmeinrescue.com/Account/Login
+PHS:
+https://optus.qk.com.au/extranet/?action=home
+CSA Damages:
+http://gamma.optus.com.au/solutions/cto/damages/index.php?
+ICON
+http://icon.optus.com.au/icon/CustSvc/CustSearch.aspxk
+NEXUS
+http://nexus.optus.com.au/#ehb/8/ntk
+http://nexus.optus.com.au/#ehb/7/ratePlans
+SIMULATORS
+http://mtsolutions.optus.com.au/core/sims/windows8/
+http://mtsolutions.optus.com.au/core/sims/win_7/index.html
+http://mtsolutions.optus.com.au/core/sims/Sim_Vista_data/Networking_sim01.html
+http://mtsolutions.optus.com.au/core/sims/xp_sp2/main.html
+http://mtsolutions.optus.com.au/core/sims//Netgear_CG814WG_/NetgearCG814WG/main.htm
+http://mtsolutions.optus.com.au/core/sims/CVG824GS-EMTA/index.html
+http://mtsolutions.optus.com.au/core/sims/CG3000/netgear_gateway.htm
+http://netonline.optus.com.au/metv/MeTVEmulator/metvfirst.html
+http://nexus.optus.com.au/index.php?cID=33045(NBN RG Trobuleshooting)
+http://nexus.optus.com.au/index.php?cID=32826 (NBN Sagem 3864)
+http://nexus.optus.com.au/index.php?cID=33568 (MeTV Troubleshooting)
+http://www.uniden.com.au/RESOURCES_MAIN/pdfs/XDECT_SSE25_OM.pdf
+http://www.uniden.com.au/RESOURCES_MAIN/pdfs/DECT1015_OM.pdf
+http://www.uniden.com.au/RESOURCES_MAIN/pdfs/DECT3035_OM.pdf
+http://www.cisco.com/c/dam/en/us/td/docs/video/at_home/Cable_Modems/3900_Series/OL-30824-01.pdf (3295 manual)
+http://nexus.optus.com.au/?cID=33045&sID=#content/32047/Netgear_CG3000_WiFi_cable_modem_userguide
+http://nexus.optus.com.au/content.php?cID=33010 (NBN Speeds Congestions etc.)
+
+
+
+Getting IPCC Windows
+IPCC Window: IPCC Agent Desktop for Fusion: v5.2.1(c2) - Jesse POULTON
+Getting IPCC Windows
+IPCC Window: IPCC Agent Desktop for Fusion: v5.2.1(c2) - Jesse POULTON
+IPCC Agent Desktop for Fusion: v5.2.1(c2) - Jesse POULTON Modal Window: CTI Dial Pad
+IPCC Window: CTI Dial Pad
+Getting IPCC Windows
+IPCC Window: IPCC Agent Desktop for Fusion: v5.2.1(c2) - Jesse POULTON
+IPCC Agent Desktop for Fusion: v5.2.1(c2) - Jesse POULTON Modal Window: CTI Dial Pad
+IPCC Window: CTI Dial Pad
+Getting MAD Windows
+MAD Window: Oracle Forms Runtime
+Oracle Forms Runtime Modal Window: Residential Customer
+Oracle Forms Runtime Modal Window: Details
+Oracle Forms Runtime Modal Window: Customer/Prospect Summary List
+Oracle Forms Runtime Modal Window: Search
+Oracle Forms Runtime Modal Window: New Note
+Getting MAD Windows
+MAD Window: Oracle Forms Runtime
+Oracle Forms Runtime Modal Window: Residential Customer
+Oracle Forms Runtime Modal Window: Details
+Oracle Forms Runtime Modal Window: Customer/Prospect Summary List
+Oracle Forms Runtime Modal Window: Search
+Oracle Forms Runtime Modal Window: New Note
+Getting MAD Windows
+MAD Window: Oracle Forms Runtime
+Oracle Forms Runtime Modal Window: Residential Customer
+Oracle Forms Runtime Modal Window: Details
+Oracle Forms Runtime Modal Window: Customer/Prospect Summary List
+Oracle Forms Runtime Modal Window: Search
+Oracle Forms Runtime Modal Window: New Note
+Getting MAD MdiChild
+Getting MAD MdiChildSearch
+Oracle has MdiChild: Search at x: 569 y: 114
+Getting MAD Controls with typeControlType.Edit
+<Oracle Forms Runtime>
+	(ControlType.Edit)
+		Location = 580,167
+		IsFocussed = False
+Getting MAD Controls with typeControlType.Edit
+<Oracle Forms Runtime>
+	(ControlType.Edit)
+		Location = 580,275
+		IsFocussed = False
+Getting MAD Controls with typeControlType.Edit
+<Oracle Forms Runtime>
+	(ControlType.Edit)
+		Location = 740,276
+		IsFocussed = True
+Getting MAD Controls with typeControlType.Edit
+<Oracle Forms Runtime>
+	(ControlType.Edit)
+		Location = 580,275
+		IsFocussed = True

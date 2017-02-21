@@ -2,20 +2,80 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="CallTracker.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ViewSmartPasteBinds_Position" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="ViewSmartPasteBinds_Size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">552, 241</Value>
-    </Setting>
-    <Setting Name="Logins_Position" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="Logins_Size" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
     <Setting Name="Main_Position" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="Version" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0.9.6.16</Value>
+    </Setting>
+    <Setting Name="AutoNewCall" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ShowStatusBar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="WarningLevel" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="MonitorIPCC" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DatabaseAutoSort" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="NextContactsId" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="PullIPCCCallData" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AutoSearch" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AutoSearchIgnoreActiveWindow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ToolTipAsControlBox" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoSearchOpenNew" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ShowTipsOnStartup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="TipsPosition" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">-1</Value>
+    </Setting>
+    <Setting Name="AdvancedMode" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Tips_Position" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="DataDrop_Position" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="QuitProperly" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FirstLoad" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AutoSearchIFMS" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoSearchAllowMultipleSearches" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="dataPasteTypeInput" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutoSearchRefreshIFMSFirst" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="NoteWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">210</Value>
     </Setting>
   </Settings>
 </SettingsFile>

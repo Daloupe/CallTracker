@@ -1,0 +1,32 @@
+﻿Links:
+	- EHB Search Nexus not refinging. updated URL to "http://nexus.optus.com.au/".
+	- SMSHUb not refinding. Title = "CSA Touch-Point SMS Hub"
+IPCC Monitor
+	- Should work on reload.
+GridLinks:
+	- Changed IETabActivator back to if(tab.LocationUrl.Contains(tabsUrl). Check if lots of pages still not activating.
+AutoFill
+	-
+AutoSearch
+	- CMBS > IFMS.
+	- PR > IFMS.
+SmartPaste
+	- Username pasting as Upper.
+AutoSearch
+	- SCAMPS keeps creating new windows. url = https://scamps.optusnet.com.au/cm.html?q=0247211984. title = message.
+		- confirm url of Failed scamps search.
+	- DIMPS macvendor field properly seperating Equipment and MAC.
+	- 0363441142 is doing a full NBN search just after load.
+	- 0397346689 was freezing the system just after CMBS copy.
+	- paullee715 hung.
+
+
+
+
+---------------- Pre Release
+Resources:
+	- Update all Paste Binds.
+	- Update Bookmarks + Systems menus.
+	~ Link T4 Notes to action.
+	- Create "Resolved" notes.
+- Create Installer.
